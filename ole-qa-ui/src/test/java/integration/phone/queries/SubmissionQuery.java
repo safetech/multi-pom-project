@@ -19,7 +19,7 @@ public class SubmissionQuery {
 
     private String COMPAS_SYS1 = "jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=dbslt0014.uhc.com)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=cmpts08.uhc.com)))";
     private String SUBMISSION_QUERY = "select" +
-        "  TO_CHAR(b.MEMBERSHIP_NUMBER, '000000000') as MEMBERSHIP_NUMBER," +
+        "  TRIM(TO_CHAR(b.MEMBERSHIP_NUMBER, '000000000')) as MEMBERSHIP_NUMBER," +
         "  c.NAME_PREFIX_ID," +
         "  a.FIRST_NAME," +
         "  c.MIDDLE_NAME," +
@@ -75,44 +75,46 @@ public class SubmissionQuery {
 
         HashMap<String, String> row = DbUtils.getSingleRecord(query, COMPAS_SYS1);
 
-//        assertThat(row.get("MEMBERSHIP_NUMBER"), equalTo(""));
-//        assertThat(rs.getString("NAME_PREFIX_ID"), equalTo(""));
-//        assertThat(rs.getString("FIRST_NAME"), equalTo(""));
-//        assertThat(rs.getString("MIDDLE_NAME"), equalTo(""));
-//        assertThat(rs.getString("LAST_NAME"), equalTo(""));
-//        assertThat(rs.getString("NAME_SUFFIX_ID"), equalTo(""));
-//        assertThat(rs.getString("ADDRESS_LINE_1"), equalTo(""));
-//        assertThat(rs.getString("ADDRESS_LINE_2"), equalTo(""));
-//        assertThat(rs.getString("CITY"), equalTo(""));
-//        assertThat(rs.getString("STATE_CD"), equalTo(""));
-//        assertThat(rs.getString("ZIP_CD"), equalTo(""));
-//        assertThat(rs.getString("DATE_OF_BIRTH"), equalTo(""));
-//        assertThat(rs.getString("GENDER_CD"), equalTo(""));
-//        assertThat(rs.getString("DAY_PHONE_NUM"), equalTo(""));
-//        assertThat(rs.getString("EVENING_PHONE_NUM"), equalTo(""));
+        String currentDate = DateUtils.NORMALIZED_DATE_FORMAT.format(new java.util.Date());
+
+        assertThat(row.get("MEMBERSHIP_NUMBER"), equalTo(app.getAARPMembershipNumber()));
+//        assertThat(row.get("NAME_PREFIX_ID"), equalTo(""));
+        assertThat(row.get("FIRST_NAME"), equalTo(app.getFirstName().toUpperCase()));
+        assertThat(row.get("MIDDLE_NAME"), equalTo(app.getMI().toUpperCase()));
+        assertThat(row.get("LAST_NAME"), equalTo(app.getLastName().toUpperCase()));
+//        assertThat(row.get("NAME_SUFFIX_ID"), equalTo(""));
+//        assertThat(row.get("ADDRESS_LINE_1"), equalTo(""));
+//        assertThat(row.get("ADDRESS_LINE_2"), equalTo(""));
+//        assertThat(row.get("CITY"), equalTo(""));
+//        assertThat(row.get("STATE_CD"), equalTo(""));
+//        assertThat(row.get("ZIP_CD"), equalTo(""));
+//        assertThat(row.get("DATE_OF_BIRTH"), equalTo(""));
+//        assertThat(row.get("GENDER_CD"), equalTo(""));
+//        assertThat(row.get("DAY_PHONE_NUM"), equalTo(""));
+//        assertThat(row.get("EVENING_PHONE_NUM"), equalTo(""));
         assertThat(row.get("EMAIL_ADDRESS"), equalTo(""));
-//        assertThat(rs.getString("PLAN_CD"), equalTo(""));
-//        assertThat(rs.getString("REQUESTED_EFFECTIVE_DATE"), equalTo(""));
-//        assertThat(rs.getString("MEDICARE_CLAIM_NUMBER"), equalTo(""));
-//        assertThat(rs.getString("PART_A_EFFECTIVE_DATE"), equalTo(""));
-        assertThat(row.get("MED_PART_B_DATE"), equalTo("01/01/1999"));
-//        assertThat(rs.getString("BOTH_PARTS_ACTIVE"), equalTo(""));
-//        assertThat(rs.getString("CPA_SIGNATURE_DATE"), equalTo(""));
-//        assertThat(rs.getString("APPL_RECEIPT_DATE"), equalTo(""));
-//        assertThat(rs.getString("APPL_SIGNATURE_DATE"), equalTo(""));
-//        assertThat(rs.getString("AGENT_FIRST_NAME"), equalTo(""));
-//        assertThat(rs.getString("AGENT_LAST_NAME"), equalTo(""));
-//        assertThat(rs.getString("SELLING_AGENT_ID"), equalTo(""));
-//        assertThat(rs.getString("QR_DATE"), equalTo(""));
-//        assertThat(rs.getString("STATUS"), equalTo(""));
-//        assertThat(rs.getString("MARKETING_PRODUCT_CODE"), equalTo(""));
-//        assertThat(rs.getString("CHANNEL"), equalTo(""));
-//        assertThat(rs.getString("ACTOR"), equalTo(""));
-//        assertThat(rs.getString("MECHANISM"), equalTo(""));
-//        assertThat(rs.getString("APPL_COMPONENT_NUMBER"), equalTo(""));
-//        assertThat(rs.getString("HASH_CD"), equalTo(""));
-//        assertThat(rs.getString("PAYMENT_METHOD_TYPE_ID"), equalTo(""));
-//        assertThat(rs.getString("ADJUDICATION_CD"), equalTo("A"));
+//        assertThat(row.get("PLAN_CD"), equalTo(""));
+        assertThat(row.get("REQUESTED_EFFECTIVE_DATE"), equalTo(app.getReqEffectiveDate()));
+        assertThat(row.get("MEDICARE_CLAIM_NUMBER"), equalTo(app.getMedicareClaimNum().toUpperCase()));
+        assertThat(row.get("PART_A_EFFECTIVE_DATE"), equalTo(app.getMPAED()));
+        assertThat(row.get("MED_PART_B_DATE"), equalTo(app.getMPBED()));
+        assertThat(row.get("BOTH_PARTS_ACTIVE"), equalTo(app.getPartABActiveIndicator() == "yes" ? "Y" : "N"));
+        assertThat(row.get("CPA_SIGNATURE_DATE"), equalTo(currentDate));
+        assertThat(row.get("APPL_RECEIPT_DATE"), equalTo(currentDate));
+        assertThat(row.get("APPL_SIGNATURE_DATE"), equalTo(currentDate));
+//        assertThat(row.get("AGENT_FIRST_NAME"), equalTo(""));
+//        assertThat(row.get("AGENT_LAST_NAME"), equalTo(""));
+        assertThat(row.get("SELLING_AGENT_ID"), equalTo(""));
+        assertThat(row.get("QR_DATE"), equalTo(""));
+        assertThat(row.get("STATUS"), equalTo("C"));
+//        assertThat(row.get("MARKETING_PRODUCT_CODE"), equalTo(""));
+        assertThat(row.get("CHANNEL"), equalTo("1"));
+        assertThat(row.get("ACTOR"), equalTo("2"));
+        assertThat(row.get("MECHANISM"), equalTo("2"));
+//        assertThat(row.get("APPL_COMPONENT_NUMBER"), equalTo(""));
+//        assertThat(row.get("HASH_CD"), equalTo(""));
+        assertThat(row.get("PAYMENT_METHOD_TYPE_ID"), equalTo("2"));
+        assertThat(row.get("ADJUDICATION_CD"), equalTo("A"));
 
     }
 

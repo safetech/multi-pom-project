@@ -14,6 +14,34 @@ public class Application {
     }
 
     private String AARPMembershipNumber = "";
+    private String FirstName = "";
+    private String MI = "";
+    private String LastName = "";
+
+    public String getFirstName() {
+        return FirstName;
+    }
+
+    public void setFirstName(String firstName) {
+        FirstName = firstName;
+    }
+
+    public String getMI() {
+        return MI;
+    }
+
+    public void setMI(String MI) {
+        this.MI = MI;
+    }
+
+    public String getLastName() {
+        return LastName;
+    }
+
+    public void setLastName(String lastName) {
+        LastName = lastName;
+    }
+
     private String MedicareClaimNum = "";
     private String MPAED = "";
     private String MPBED = "";
@@ -60,6 +88,9 @@ public class Application {
 
     public Application(CribSheet sheet) {
         setAARPMembershipNumber(sheet.getMembershipNumber());
+        setFirstName(sheet.getFirstName());
+        setLastName(sheet.getLastName());
+        setMI(sheet.getMiddleInitial().substring(0,1));
         setHCSGApplicationId(sheet.getHcsgApplicationId());
     }
 
