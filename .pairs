@@ -1,0 +1,14 @@
+# .pairs - configuration for 'git pair'
+pairs:
+  # <initials>: <Firstname> <Lastname>[; <email-id>]
+  em: Ernie McGinty; emcginty
+  nb: Nitin Bhatia; nbhatia2
+  dp: Dodd Pfeffer; dpfeffe1
+  si: Saiful Islam; sislam11
+  pr: Parvinder Rai; prai100
+  mj: Mary Joseph; mjose16
+email:
+  prefix: pair
+  domain: uhc.com
+  # no_solo_prefix: true
+#global: true
