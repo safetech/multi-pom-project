@@ -9,7 +9,7 @@ import java.util.GregorianCalendar;
 public class DateUtils {
 
     public static SimpleDateFormat COMPAS_DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
-    public static SimpleDateFormat NORMALIZED_DATE_FORMAT = new SimpleDateFormat("dd/MM/yyyy");
+    public static SimpleDateFormat NORMALIZED_DATE_FORMAT = new SimpleDateFormat("MM/dd/yyyy");
 
     public static String getRandomDOB() {
 
