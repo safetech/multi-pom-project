@@ -71,7 +71,7 @@ public class SubmissionQuery {
 
         String query = String.format(SUBMISSION_QUERY, app.getHCSGApplicationId());
 
-        logger.debug(query);
+        logger.info(query);
 
         HashMap<String, String> row = DbUtils.getSingleRecord(query, COMPAS_SYS1);
 
@@ -83,15 +83,15 @@ public class SubmissionQuery {
         assertThat(row.get("MIDDLE_NAME"), equalTo(app.getMI().toUpperCase()));
         assertThat(row.get("LAST_NAME"), equalTo(app.getLastName().toUpperCase()));
 //        assertThat(row.get("NAME_SUFFIX_ID"), equalTo(""));
-//        assertThat(row.get("ADDRESS_LINE_1"), equalTo(""));
-//        assertThat(row.get("ADDRESS_LINE_2"), equalTo(""));
-//        assertThat(row.get("CITY"), equalTo(""));
-//        assertThat(row.get("STATE_CD"), equalTo(""));
-//        assertThat(row.get("ZIP_CD"), equalTo(""));
+        assertThat(row.get("ADDRESS_LINE_1"), equalTo(app.getAddressLine1().toUpperCase()));
+        assertThat(row.get("ADDRESS_LINE_2"), equalTo(app.getAddressLine2().toUpperCase()));
+        assertThat(row.get("CITY"), equalTo(app.getCity().toUpperCase()));
+        assertThat(row.get("STATE_CD"), equalTo(app.getState().toUpperCase()));
+        assertThat(row.get("ZIP_CD"), equalTo(app.getZipCode()));
 //        assertThat(row.get("DATE_OF_BIRTH"), equalTo(""));
 //        assertThat(row.get("GENDER_CD"), equalTo(""));
-//        assertThat(row.get("DAY_PHONE_NUM"), equalTo(""));
-//        assertThat(row.get("EVENING_PHONE_NUM"), equalTo(""));
+        assertThat(row.get("DAY_PHONE_NUM"), equalTo(app.getPhonePrimary()));
+        assertThat(row.get("EVENING_PHONE_NUM"), equalTo(app.getPhoneEvening()));
         assertThat(row.get("EMAIL_ADDRESS"), equalTo(""));
 //        assertThat(row.get("PLAN_CD"), equalTo(""));
         assertThat(row.get("REQUESTED_EFFECTIVE_DATE"), equalTo(app.getReqEffectiveDate()));
