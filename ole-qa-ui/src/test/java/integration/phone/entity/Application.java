@@ -42,6 +42,52 @@ public class Application {
         LastName = lastName;
     }
 
+    private String AddressLine1 = "";
+    private String AddressLine2 = "";
+    private String City = "";
+    private String State = "";
+    private String ZipCode = "";
+
+    public String getAddressLine1() {
+        return AddressLine1;
+    }
+
+    public void setAddressLine1(String addressLine1) {
+        AddressLine1 = addressLine1;
+    }
+
+    public String getAddressLine2() {
+        return AddressLine2;
+    }
+
+    public void setAddressLine2(String addressLine2) {
+        AddressLine2 = addressLine2;
+    }
+
+    public String getCity() {
+        return City;
+    }
+
+    public void setCity(String city) {
+        City = city;
+    }
+
+    public String getState() {
+        return State;
+    }
+
+    public void setState(String state) {
+        State = state;
+    }
+
+    public String getZipCode() {
+        return ZipCode;
+    }
+
+    public void setZipCode(String zipCode) {
+        ZipCode = zipCode;
+    }
+
     private String MedicareClaimNum = "";
     private String MPAED = "";
     private String MPBED = "";
@@ -73,6 +119,415 @@ public class Application {
     private String AgentPoliciesInForce = "";
     private String AgentPoliciesSoldNotInForce = "";
     private String AgentSignatureInd = "";
+    private String ESRD = "";
+    private String SurgeryNeeded = "";
+
+    public String getAneurysm() {
+        return aneurysm;
+    }
+
+    public void setAneurysm(String aneurysm) {
+        this.aneurysm = aneurysm;
+    }
+
+    public String getSclerosis() {
+        return sclerosis;
+    }
+
+    public void setSclerosis(String sclerosis) {
+        this.sclerosis = sclerosis;
+    }
+
+    public String getArtery() {
+        return artery;
+    }
+
+    public void setArtery(String artery) {
+        this.artery = artery;
+    }
+
+    public String getAtrial() {
+        return atrial;
+    }
+
+    public void setAtrial(String atrial) {
+        this.atrial = atrial;
+    }
+
+    public String getCardiomyopathy() {
+        return cardiomyopathy;
+    }
+
+    public void setCardiomyopathy(String cardiomyopathy) {
+        this.cardiomyopathy = cardiomyopathy;
+    }
+
+    public String getCarotid() {
+        return carotid;
+    }
+
+    public void setCarotid(String carotid) {
+        this.carotid = carotid;
+    }
+
+    public String getCHF() {
+        return CHF;
+    }
+
+    public void setCHF(String CHF) {
+        this.CHF = CHF;
+    }
+
+    public String getCAD() {
+        return CAD;
+    }
+
+    public void setCAD(String CAD) {
+        this.CAD = CAD;
+    }
+
+    public String getHeart_attack() {
+        return heart_attack;
+    }
+
+    public void setHeart_attack(String heart_attack) {
+        this.heart_attack = heart_attack;
+    }
+
+    public String getPVD() {
+        return PVD;
+    }
+
+    public void setPVD(String PVD) {
+        this.PVD = PVD;
+    }
+
+    public String getStroke() {
+        return stroke;
+    }
+
+    public void setStroke(String stroke) {
+        this.stroke = stroke;
+    }
+
+    public String getVentricular() {
+        return ventricular;
+    }
+
+    public void setVentricular(String ventricular) {
+        this.ventricular = ventricular;
+    }
+
+    public String getCOPD() {
+        return COPD;
+    }
+
+    public void setCOPD(String COPD) {
+        this.COPD = COPD;
+    }
+
+    public String getEmphysema() {
+        return emphysema;
+    }
+
+    public void setEmphysema(String emphysema) {
+        this.emphysema = emphysema;
+    }
+
+    public String getOthercancer() {
+        return othercancer;
+    }
+
+    public void setOthercancer(String othercancer) {
+        this.othercancer = othercancer;
+    }
+
+    public String getLeukemia() {
+        return leukemia;
+    }
+
+    public void setLeukemia(String leukemia) {
+        this.leukemia = leukemia;
+    }
+
+    public String getMelanoma() {
+        return melanoma;
+    }
+
+    public void setMelanoma(String melanoma) {
+        this.melanoma = melanoma;
+    }
+
+    public String getRenalfailure() {
+        return renalfailure;
+    }
+
+    public void setRenalfailure(String renalfailure) {
+        this.renalfailure = renalfailure;
+    }
+
+    public String getPolycystic() {
+        return polycystic;
+    }
+
+    public void setPolycystic(String polycystic) {
+        this.polycystic = polycystic;
+    }
+
+    public String getRenal() {
+        return renal;
+    }
+
+    public void setRenal(String renal) {
+        this.renal = renal;
+    }
+
+    public String getCirrhosis() {
+        return cirrhosis;
+    }
+
+    public void setCirrhosis(String cirrhosis) {
+        this.cirrhosis = cirrhosis;
+    }
+
+    public String getBonemarrow() {
+        return bonemarrow;
+    }
+
+    public void setBonemarrow(String bonemarrow) {
+        this.bonemarrow = bonemarrow;
+    }
+
+    public String getPancreatitis() {
+        return pancreatitis;
+    }
+
+    public void setPancreatitis(String pancreatitis) {
+        this.pancreatitis = pancreatitis;
+    }
+
+    public String getEsophageal_varices() {
+        return esophageal_varices;
+    }
+
+    public void setEsophageal_varices(String esophageal_varices) {
+        this.esophageal_varices = esophageal_varices;
+    }
+
+    public String getAmputation() {
+        return amputation;
+    }
+
+    public void setAmputation(String amputation) {
+        this.amputation = amputation;
+    }
+
+    public String getRheumatoid() {
+        return rheumatoid;
+    }
+
+    public void setRheumatoid(String rheumatoid) {
+        this.rheumatoid = rheumatoid;
+    }
+
+    public String getSpinal_stenosis() {
+        return spinal_stenosis;
+    }
+
+    public void setSpinal_stenosis(String spinal_stenosis) {
+        this.spinal_stenosis = spinal_stenosis;
+    }
+
+    public String getAlcohol() {
+        return alcohol;
+    }
+
+    public void setAlcohol(String alcohol) {
+        this.alcohol = alcohol;
+    }
+
+    public String getDrug() {
+        return drug;
+    }
+
+    public void setDrug(String drug) {
+        this.drug = drug;
+    }
+
+    public String getParaplegia() {
+        return paraplegia;
+    }
+
+    public void setParaplegia(String paraplegia) {
+        this.paraplegia = paraplegia;
+    }
+
+    public String getBipolar() {
+        return bipolar;
+    }
+
+    public void setBipolar(String bipolar) {
+        this.bipolar = bipolar;
+    }
+
+    public String getSchizophrenia() {
+        return schizophrenia;
+    }
+
+    public void setSchizophrenia(String schizophrenia) {
+        this.schizophrenia = schizophrenia;
+    }
+
+    public String getMacular() {
+        return macular;
+    }
+
+    public void setMacular(String macular) {
+        this.macular = macular;
+    }
+
+    public String getALS() {
+        return ALS;
+    }
+
+    public void setALS(String ALS) {
+        this.ALS = ALS;
+    }
+
+    public String getAlzheimers() {
+        return alzheimers;
+    }
+
+    public void setAlzheimers(String alzheimers) {
+        this.alzheimers = alzheimers;
+    }
+
+    public String getMultiple_sclerosis() {
+        return multiple_sclerosis;
+    }
+
+    public void setMultiple_sclerosis(String multiple_sclerosis) {
+        this.multiple_sclerosis = multiple_sclerosis;
+    }
+
+    public String getParkinsons() {
+        return parkinsons;
+    }
+
+    public void setParkinsons(String parkinsons) {
+        this.parkinsons = parkinsons;
+    }
+
+    public String getNervous_condition() {
+        return nervous_condition;
+    }
+
+    public void setNervous_condition(String nervous_condition) {
+        this.nervous_condition = nervous_condition;
+    }
+
+    public String getAIDS() {
+        return AIDS;
+    }
+
+    public void setAIDS(String AIDS) {
+        this.AIDS = AIDS;
+    }
+
+    public String getHIV() {
+        return HIV;
+    }
+
+    public void setHIV(String HIV) {
+        this.HIV = HIV;
+    }
+
+
+    public String getDiabetes_child() {
+        return diabetes_child;
+    }
+
+    public void setDiabetes_child(String diabetes_child) {
+        this.diabetes_child = diabetes_child;
+    }
+
+    private String aneurysm = "";
+    private String sclerosis = "";
+    private String artery = "";
+    private String atrial = "";
+    private String cardiomyopathy = "";
+    private String carotid = "";
+    private String CHF = "";
+    private String CAD = "";
+    private String heart_attack = "";
+    private String PVD = "";
+    private String stroke = "";
+    private String ventricular = "";
+    private String diabetes_child = "";
+    private String COPD = "";
+    private String emphysema = "";
+    private String othercancer = "";
+    private String leukemia = "";
+    private String melanoma = "";
+    private String renalfailure = "";
+    private String polycystic = "";
+    private String renal = "";
+    private String cirrhosis = "";
+    private String bonemarrow = "";
+    private String pancreatitis = "";
+    private String esophageal_varices = "";
+    private String amputation = "";
+    private String rheumatoid = "";
+    private String spinal_stenosis = "";
+    private String alcohol = "";
+    private String drug = "";
+    private String paraplegia = "";
+    private String bipolar = "";
+    private String schizophrenia = "";
+    private String macular = "";
+    private String ALS = "";
+    private String alzheimers = "";
+    private String multiple_sclerosis = "";
+    private String parkinsons = "";
+    private String nervous_condition = "";
+    private String AIDS = "";
+    private String HIV = "";
+    
+    public String getESRD() {
+        return ESRD;
+    }
+
+    public void setESRD(String ESRD) {
+        this.ESRD = ESRD;
+    }
+
+    public String getSurgeryNeeded() {
+        return SurgeryNeeded;
+    }
+
+    public void setSurgeryNeeded(String surgeryNeeded) {
+        SurgeryNeeded = surgeryNeeded;
+    }
+
+    public String getPhonePrimary() {
+        return PhonePrimary;
+    }
+
+    public void setPhonePrimary(String phonePrimary) {
+        PhonePrimary = phonePrimary;
+    }
+
+    public String getPhoneEvening() {
+        return PhoneEvening;
+    }
+
+    public void setPhoneEvening(String phoneEvening) {
+        PhoneEvening = phoneEvening;
+    }
+
+    private String PhonePrimary = "";
+    private String PhoneEvening = "";
+
 
     public String getHCSGApplicationId() {
         return HCSGApplicationId;
@@ -90,8 +545,15 @@ public class Application {
         setAARPMembershipNumber(sheet.getMembershipNumber());
         setFirstName(sheet.getFirstName());
         setLastName(sheet.getLastName());
-        setMI(sheet.getMiddleInitial().substring(0,1));
+        setMI(sheet.getMiddleInitial().substring(0, 1));
         setHCSGApplicationId(sheet.getHcsgApplicationId());
+        setAddressLine1(sheet.getAddressLine1());
+        setAddressLine2(sheet.getAddressLine2());
+        setCity(sheet.getCity());
+        setState(sheet.getState());
+        setZipCode(sheet.getZip());
+        setPhonePrimary(sheet.getDayPhone());
+        setPhoneEvening(sheet.getEveningPhone());
     }
 
     public String getAgentOtherInsPoliciesSold() {

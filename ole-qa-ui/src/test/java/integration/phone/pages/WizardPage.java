@@ -25,8 +25,15 @@ public class WizardPage extends FluentPage {
     protected void fillYesNoQuestion(FluentWebElement yesRadio, FluentWebElement noRadio, String answer) {
         if(answer.equals("yes")) {
             yesRadio.click();
-        } else {
+        }
+        if(answer.equals("no")) {
             noRadio.click();
+        }
+    }
+
+    protected void fillCheckboxQuestion(FluentWebElement checkbox, String answer) {
+        if(answer.equals("yes")) {
+            checkbox.click();
         }
     }
 

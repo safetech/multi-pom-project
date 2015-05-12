@@ -17,9 +17,12 @@ public class PlanApplicationQuestions extends WizardPage{
     @FindBy(css = "#PlanEffIn6OfEligible_2") FluentWebElement PlanEffIn6OfEligible_No;
     @FindBy(css = "#TobaccoUse_1") FluentWebElement TobaccoUse_Yes;
     @FindBy(css = "#TobaccoUse_2") FluentWebElement TobaccoUse_No;
+    @FindBy(css = "#LostCoverage_1") FluentWebElement LostCoverage_Yes;
+    @FindBy(css = "#LostCoverage_2") FluentWebElement LostCoverage_No;
 
     public void fillAndSubmit(Application app) {
 
+        fillYesNoQuestion(LostCoverage_Yes, LostCoverage_No, app.getLostCoverage());
         fillYesNoQuestion(TobaccoUse_Yes, TobaccoUse_No, app.getTobaccoUse());
 
         clickNextAndWaitForSpinnerToFinish();
