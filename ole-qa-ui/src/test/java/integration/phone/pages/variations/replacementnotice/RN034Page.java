@@ -1,13 +1,14 @@
-package integration.phone.pages;
+package integration.phone.pages.variations.replacementnotice;
 
 import integration.phone.entity.Application;
+import integration.phone.pages.WizardPage;
 import org.fluentlenium.core.domain.FluentWebElement;
 import org.openqa.selenium.support.FindBy;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class RN034Page extends WizardPage{
+public class RN034Page extends WizardPage {
 
     @FindBy(css = "#ReplacementReason_1") FluentWebElement ReplacementReason_ReplaceAdditionalBenefits;
     @FindBy(css = "#ReplacementReason_2") FluentWebElement ReplacementReason_SameBenefits;
