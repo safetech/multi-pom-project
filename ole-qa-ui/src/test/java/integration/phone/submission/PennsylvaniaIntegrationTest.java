@@ -1,6 +1,8 @@
 package integration.phone.submission;
 
 import com.github.javafaker.Faker;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import integration.CQBaseIntegrationTest;
 import integration.phone.entity.Application;
 import integration.phone.entity.CribSheet;
@@ -121,6 +123,7 @@ public class PennsylvaniaIntegrationTest extends CQBaseIntegrationTest {
         expectedSubmissionResult.setWorkQueue("UNDERWRITING");
         expectedSubmissionResult.setWorkQueueReason("REVIEW FOR POSSIBLE ESRD");
 
+        logger.info(gson.toJson(app));
 
         goTo(cheatPage);
         cheatPage.isAt();
