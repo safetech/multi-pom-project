@@ -4,7 +4,10 @@ import com.github.javafaker.Faker;
 import integration.CQBaseIntegrationTest;
 import integration.phone.entity.Application;
 import integration.phone.entity.CribSheet;
+import integration.phone.entity.SubmissionResult;
 import integration.phone.pages.*;
+import integration.phone.pages.variations.pastandcurrentcoverage.PAPastAndCurrentInsuranceCoveragePage;
+import integration.phone.pages.variations.replacementnotice.RN078Page;
 import integration.phone.queries.SubmissionQuery;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
@@ -19,22 +22,25 @@ public class PennsylvaniaIntegrationTest extends CQBaseIntegrationTest {
     @Page public PlanSelectionAndStartDatePage planSelectionAndStartDatePage;
     @Page public PlanApplicationQuestions planApplicationQuestionsPage;
     @Page public EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
-    @Page public PastAndCurrentInsuranceCoveragePage pastAndCurrentInsuranceCoveragePage;
+    @Page public PAPastAndCurrentInsuranceCoveragePage pastAndCurrentInsuranceCoveragePage;
     @Page public AuthorizationAndVerificationPage authorizationAndVerificationPage;
     @Page public HealthHistoryQuestionsPage healthHistoryQuestionsPage;
     @Page public AgentVerificationPage agentVerificationPage;
+    @Page public RN078Page replacementNoticePage;
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
     @Page public ApplicationSubmissionPage applicationSubmissionPage;
 
     public SubmissionQuery submissionQuery;
     private Faker faker;
     private CribSheet sheet;
+    private SubmissionResult expectedSubmissionResult;
 
     @Before
     public void setup() {
         submissionQuery = new SubmissionQuery();
         faker = new Faker();
         sheet = new CribSheet(faker);
+        expectedSubmissionResult = new SubmissionResult();
     }
 
     @Test
@@ -59,9 +65,8 @@ public class PennsylvaniaIntegrationTest extends CQBaseIntegrationTest {
         app.setReqEffectiveDate(DateUtils.getFirstDayOfFutureMonth(1));
         app.setLostCoverage("no");
         app.setTobaccoUse("no");
-        app.setCPATurned65("yes");
         app.setCPAPartBIn6("no");
-        //Elibility Questions
+        //Eligibility Questions
         app.setESRD("no");
         app.setSurgeryNeeded("no");
         //Health History
@@ -79,16 +84,42 @@ public class PennsylvaniaIntegrationTest extends CQBaseIntegrationTest {
         app.setAlzheimers("yes");
         app.setHIV("yes");
         //Past And Current Coverage
-        app.setMedicaidCovered("no");
-        app.setOtherMedplanstart("");
-        app.setOtherMedplanend("");
-        app.setExistMedSupp("no");
-        app.setOtherInsCoverage("no");
+        app.setMedicaidCovered("yes");
+        app.setMedicaidSupPremium("yes");
+        app.setMedicaidbenefit("yes");
+        app.setExistingMedicare("yes");
+        app.setOtherMedplanstart("01/01/2000");
+        app.setOtherMedplanend("01/01/2015");
+        app.setIntentReplace("yes");
+        app.setFirstTime("yes");
+        app.setDropMedSuppForThisPlan("yes");
+        app.setExistMedSupp("yes");
+        app.setReplaceExistingMedSup("yes");
+        app.setOtherInsCoverage("yes");
+        app.setOtherInsCompany("Blue Cross Blue Shield");
+        app.setOtherInsType("HMO");
+        app.setOtherInsStart("01/01/2001");
+        app.setOtherInsEnd("01/01/2014");
+        app.setOtherInsReplace("yes");
         app.setCpaSignatureInd("yes");
+        //Agent Verification Page
         app.setAgentOtherInsPoliciesSold("HIP");
         app.setAgentPoliciesInForce("EP");
         app.setAgentPoliciesSoldNotInForce("EPHIP");
         app.setAgentSignatureInd("yes");
+        //Replacement Notice Page
+        app.setReplacementReason("OtherReason");
+        app.setRNOther("Cheaper");
+        app.setAgentPrintedNameAdd("ProducerName");
+        app.setAgentAddress("ProducerAdd");
+        app.setApplicantPrintedNameAdd("AppName");
+        app.setApplicantAddress("AppAdd");
+
+        expectedSubmissionResult.setAdjudicationStatus("P");
+        expectedSubmissionResult.setStatus("C");
+        expectedSubmissionResult.setWorkQueue("UNDERWRITING");
+        expectedSubmissionResult.setWorkQueueReason("REVIEW FOR POSSIBLE ESRD");
+
 
         goTo(cheatPage);
         cheatPage.isAt();
@@ -121,13 +152,17 @@ public class PennsylvaniaIntegrationTest extends CQBaseIntegrationTest {
         agentVerificationPage.isAt();
         agentVerificationPage.fillAndSubmit(app);
 
+        replacementNoticePage.isAt();
+        replacementNoticePage.fillAndSubmit(app);
+
         reviewAndSubmitPage.isAt();
         reviewAndSubmitPage.fillAndSubmit(app);
 
         applicationSubmissionPage.isAt();
-        applicationSubmissionPage.isApproved();
+        applicationSubmissionPage.isPending();
 
-        submissionQuery.verifySubmissionData(app);
+        submissionQuery.verifySubmissionData(app, expectedSubmissionResult);
+        submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
 
     }
 

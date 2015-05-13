@@ -1,6 +1,7 @@
 package integration.phone.queries;
 
 import integration.phone.entity.Application;
+import integration.phone.entity.SubmissionResult;
 import oracle.jdbc.pool.OracleDataSource;
 import org.slf4j.Logger;
 import util.DateUtils;
@@ -18,6 +19,25 @@ public class SubmissionQuery {
     private final Logger logger = getLogger(this.getClass());
 
     private String COMPAS_SYS1 = "jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=dbslt0014.uhc.com)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=cmpts08.uhc.com)))";
+    private String ADJUDICATION_QUERY = "\n" +
+        "select \n" +
+        "  f.hcsg_application_id,\n" +
+        "  f.ole_reference_identifier,\n" +
+        "  b.application_id,\n" +
+        "  f.status,\n" +
+        "  b.adjudication_cd,\n" +
+        "  g.type_desc,\n" +
+        "  d.item_reason_type_desc\n" +
+        "from \n" +
+        "  ((((((ole_application f left outer join application b on f.application_id = b.application_id) \n" +
+        "    left outer join work_queue_rec_id a on (a.identifier_value = b.application_id and a.identifier_type_id = 2011))\n" +
+        "    left outer join work_queue_item_reason c on a.tracking_number = c.tracking_number)\n" +
+        "    left outer join work_queue_item_reason_type d on c.item_reason_type_id = d.item_reason_type_id)\n" +
+        "    left outer join work_queue_item e on a.tracking_number = e.tracking_number)\n" +
+        "    left outer join work_queue_type g on e.type_id = g.type_id)  \n" +
+        "where\n" +
+        "  f.hcsg_application_id = '%s'";
+
     private String SUBMISSION_QUERY = "select" +
         "  TRIM(TO_CHAR(b.MEMBERSHIP_NUMBER, '000000000')) as MEMBERSHIP_NUMBER," +
         "  c.NAME_PREFIX_ID," +
@@ -66,8 +86,7 @@ public class SubmissionQuery {
         "  a.hcsg_application_id = '%s'";
 
 
-
-    public void verifySubmissionData(Application app) throws SQLException {
+    public void verifySubmissionData(Application app, SubmissionResult expectedSubmissionResult) throws SQLException {
 
         String query = String.format(SUBMISSION_QUERY, app.getHCSGApplicationId());
 
@@ -106,7 +125,7 @@ public class SubmissionQuery {
 //        assertThat(row.get("AGENT_LAST_NAME"), equalTo(""));
         assertThat(row.get("SELLING_AGENT_ID"), equalTo(""));
         assertThat(row.get("QR_DATE"), equalTo(""));
-        assertThat(row.get("STATUS"), equalTo("C"));
+        assertThat(row.get("STATUS"), equalTo(expectedSubmissionResult.getStatus()));
 //        assertThat(row.get("MARKETING_PRODUCT_CODE"), equalTo(""));
         assertThat(row.get("CHANNEL"), equalTo("1"));
         assertThat(row.get("ACTOR"), equalTo("2"));
@@ -114,8 +133,23 @@ public class SubmissionQuery {
 //        assertThat(row.get("APPL_COMPONENT_NUMBER"), equalTo(""));
 //        assertThat(row.get("HASH_CD"), equalTo(""));
         assertThat(row.get("PAYMENT_METHOD_TYPE_ID"), equalTo("2"));
-        assertThat(row.get("ADJUDICATION_CD"), equalTo("A"));
+        assertThat(row.get("ADJUDICATION_CD"), equalTo(expectedSubmissionResult.getAdjudicationStatus()));
 
     }
+
+    public void verifyAdjudicationData(Application app, SubmissionResult expectedSubmissionResult) throws SQLException {
+
+        String query = String.format(ADJUDICATION_QUERY, app.getHCSGApplicationId());
+
+        logger.info(query);
+
+        HashMap<String, String> row = DbUtils.getSingleRecord(query, COMPAS_SYS1);
+
+        assertThat(row.get("TYPE_DESC"), equalTo(expectedSubmissionResult.getWorkQueue()));
+        assertThat(row.get("ITEM_REASON_TYPE_DESC"), equalTo(expectedSubmissionResult.getWorkQueueReason()));
+
+    }
+
+
 
 }

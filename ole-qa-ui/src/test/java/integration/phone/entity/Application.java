@@ -121,6 +121,100 @@ public class Application {
     private String AgentSignatureInd = "";
     private String ESRD = "";
     private String SurgeryNeeded = "";
+    private String ExistingMedicare = "";
+    private String FirstTime = "";
+    private String DropMedSuppForThisPlan = "";
+    private String AgentPrintedNameAdd = "";
+    private String AgentAddress = "";
+
+    public String getAgentPrintedNameAdd() {
+        return AgentPrintedNameAdd;
+    }
+
+    public void setAgentPrintedNameAdd(String agentPrintedNameAdd) {
+        AgentPrintedNameAdd = agentPrintedNameAdd;
+    }
+
+    public String getAgentAddress() {
+        return AgentAddress;
+    }
+
+    public void setAgentAddress(String agentAddress) {
+        AgentAddress = agentAddress;
+    }
+
+    public String getApplicantPrintedNameAdd() {
+        return ApplicantPrintedNameAdd;
+    }
+
+    public void setApplicantPrintedNameAdd(String applicantPrintedNameAdd) {
+        ApplicantPrintedNameAdd = applicantPrintedNameAdd;
+    }
+
+    public String getApplicantAddress() {
+        return ApplicantAddress;
+    }
+
+    public void setApplicantAddress(String applicantAddress) {
+        ApplicantAddress = applicantAddress;
+    }
+
+    private String ApplicantPrintedNameAdd = "";
+    private String ApplicantAddress = "";
+
+    public String getRNOther() {
+        return RNOther;
+    }
+
+    public void setRNOther(String RNOther) {
+        this.RNOther = RNOther;
+    }
+
+    private String RNOther = "";
+
+    public String getReplacementReason() {
+        return ReplacementReason;
+    }
+
+    public void setReplacementReason(String replacementReason) {
+        ReplacementReason = replacementReason;
+    }
+
+    private String ReplacementReason = "";
+
+    public String getFirstTime() {
+        return FirstTime;
+    }
+
+    public void setFirstTime(String firstTime) {
+        FirstTime = firstTime;
+    }
+
+    public String getDropMedSuppForThisPlan() {
+        return DropMedSuppForThisPlan;
+    }
+
+    public void setDropMedSuppForThisPlan(String dropMedSuppForThisPlan) {
+        DropMedSuppForThisPlan = dropMedSuppForThisPlan;
+    }
+
+    public String getIntentReplace() {
+        return IntentReplace;
+    }
+
+    public void setIntentReplace(String intentReplace) {
+        IntentReplace = intentReplace;
+    }
+
+    private String IntentReplace = "";
+
+    public String getExistingMedicare() {
+        return ExistingMedicare;
+    }
+
+    public void setExistingMedicare(String existingMedicare) {
+        ExistingMedicare = existingMedicare;
+    }
 
     public String getAneurysm() {
         return aneurysm;

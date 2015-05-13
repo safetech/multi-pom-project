@@ -4,18 +4,14 @@ import com.github.javafaker.Faker;
 import integration.CQBaseIntegrationTest;
 import integration.phone.entity.Application;
 import integration.phone.entity.CribSheet;
+import integration.phone.entity.SubmissionResult;
 import integration.phone.pages.*;
 import integration.phone.queries.SubmissionQuery;
-import oracle.jdbc.pool.OracleDataSource;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import util.DateUtils;
-
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
 
 public class FloridaIntegrationTest extends CQBaseIntegrationTest {
 
@@ -34,12 +30,14 @@ public class FloridaIntegrationTest extends CQBaseIntegrationTest {
     public SubmissionQuery submissionQuery;
     private Faker faker;
     private CribSheet sheet;
+    private SubmissionResult expectedSubmissionResult;
 
     @Before
     public void setup() {
         submissionQuery = new SubmissionQuery();
         faker = new Faker();
         sheet = new CribSheet(faker);
+        expectedSubmissionResult = new SubmissionResult();
     }
 
     @Ignore
@@ -48,7 +46,8 @@ public class FloridaIntegrationTest extends CQBaseIntegrationTest {
 
         Application app = new Application();
         app.setHCSGApplicationId("3-BXRJHQO");
-        submissionQuery.verifySubmissionData(app);
+        SubmissionResult expectedSubmissionResult = new SubmissionResult();
+        submissionQuery.verifySubmissionData(app, expectedSubmissionResult);
     }
 
     @Test
@@ -85,6 +84,9 @@ public class FloridaIntegrationTest extends CQBaseIntegrationTest {
         app.setAgentPoliciesSoldNotInForce("EPHIP");
         app.setAgentSignatureInd("yes");
 
+        expectedSubmissionResult.setStatus("C");
+        expectedSubmissionResult.setAdjudicationStatus("A");
+
         goTo(cheatPage);
         cheatPage.isAt();
         cheatPage.fillAndSubmit(sheet);
@@ -116,7 +118,9 @@ public class FloridaIntegrationTest extends CQBaseIntegrationTest {
         applicationSubmissionPage.isAt();
         applicationSubmissionPage.isApproved();
 
-        submissionQuery.verifySubmissionData(app);
+        submissionQuery.verifySubmissionData(app, expectedSubmissionResult);
+        submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
+
 
     }
 
@@ -155,6 +159,9 @@ public class FloridaIntegrationTest extends CQBaseIntegrationTest {
         app.setAgentPoliciesSoldNotInForce("EPHIP");
         app.setAgentSignatureInd("yes");
 
+        expectedSubmissionResult.setStatus("C");
+        expectedSubmissionResult.setAdjudicationStatus("A");
+
         goTo(cheatPage);
         cheatPage.isAt();
         cheatPage.fillAndSubmit(sheet);
@@ -189,7 +196,8 @@ public class FloridaIntegrationTest extends CQBaseIntegrationTest {
         applicationSubmissionPage.isAt();
         applicationSubmissionPage.isApproved();
 
-        submissionQuery.verifySubmissionData(app);
+        submissionQuery.verifySubmissionData(app, expectedSubmissionResult);
+        submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
 
     }
 
