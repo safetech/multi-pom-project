@@ -695,7 +695,7 @@ public class Application {
         setDOB(DateUtils.convertDate(sheet.getDateOfBirth(), DateUtils.NORMALIZED_DATE_FORMAT));
         setPhonePrimary(sheet.getDayPhone());
         setPhoneEvening(sheet.getEveningPhone());
-        setGender(sheet.getGender());
+        setGender(sheet.getGender().equals("M") || sheet.getGender().equals("F") ? sheet.getGender() : "");
         setPrefix(sheet.getPrefix().toUpperCase());
         setSuffix(sheet.getSuffix().toUpperCase());
     }
