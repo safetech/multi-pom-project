@@ -1,6 +1,7 @@
 package util;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -49,7 +50,16 @@ public class DateUtils {
     }
 
     public static String convertDate(String date, SimpleDateFormat format) {
-        Date dt = new Date(date);
+        Date dt;
+        if(date.contains("-")){
+            try {
+                dt = COMPAS_DATE_FORMAT.parse(date);
+            } catch (ParseException e) {
+                return "";
+            }
+        } else {
+            dt = new Date(date);
+        }
         return format.format(dt);
     }
 
