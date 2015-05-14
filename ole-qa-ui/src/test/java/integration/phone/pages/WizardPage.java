@@ -19,6 +19,8 @@ public class WizardPage extends FluentPage {
     @FindBy(css = "a.action_next")
     protected FluentWebElement nextButton;
 
+    private String TEXT_SUB_SELECTOR = "span[data-textsub-id='%s']";
+
     protected void waitForSpinnerToFinish() {
         waitForSpinnerToFinish(10);
     }
@@ -74,8 +76,16 @@ public class WizardPage extends FluentPage {
         clickNextAndWaitForSpinnerToFinish(10);
     }
 
-    FluentWebElement getTextSubValue(String answername) {
-        return findFirst(String.format("span[data-textsub-id='%s']", answername));
+    protected FluentWebElement getTextSubValue(String answername) {
+        return findFirst(String.format(TEXT_SUB_SELECTOR, answername));
+    }
+
+    protected void assertTextSubValue(String answername, String value) {
+        if(!value.equals("")) {
+            assertThat(getTextSubValue(answername).getText(), equalTo(value));
+        } else {
+            assertThat(find(String.format(TEXT_SUB_SELECTOR, answername)).size(), equalTo(0));
+        }
     }
 
     protected void clickNextAndWaitForSpinnerToFinish(int seconds) {

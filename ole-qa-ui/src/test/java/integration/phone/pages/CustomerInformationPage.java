@@ -20,21 +20,21 @@ public class CustomerInformationPage extends WizardPage{
     protected int TOTAL_POSSIBLE_QUESTION_COUNT = 6;
 
     public void verifyCustomerInfo(Application app) {
-        assertThat(getTextSubValue("Prefix").getText(), equalTo(app.getPrefix()));
-        assertThat(getTextSubValue("FirstName").getText(), equalTo(app.getFirstName()));
-        assertThat(getTextSubValue("MI").getText(), equalTo(app.getMI()));
-        assertThat(getTextSubValue("LastName").getText(), equalTo(app.getLastName()));
-        assertThat(getTextSubValue("Suffix").getText(), equalTo(app.getSuffix()));
-        assertThat(getTextSubValue("AddressLine1").getText(), equalTo(app.getAddressLine1()));
-        assertThat(getTextSubValue("AddressLine2").getText(), equalTo(app.getAddressLine2()));
-        assertThat(getTextSubValue("City").getText(), equalTo(app.getCity()));
-        assertThat(getTextSubValue("State").getText(), equalTo(app.getState()));
-        assertThat(getTextSubValue("ZipCode").getText(), equalTo(app.getZipCode()));
-        assertThat(getTextSubValue("DOB").getText(), equalTo(app.getDOB()));
-        assertThat(getTextSubValue("Gender").getText(), equalTo(app.getGender()));
-        assertThat(getTextSubValue("PhonePrimary").getText(), equalTo(app.getPhonePrimary()));
-        assertThat(getTextSubValue("PhoneEvening").getText(), equalTo(app.getPhoneEvening()));
-        assertThat(getTextSubValue("AARPMembershipNumber").getText(), equalTo(app.getAARPMembershipNumber()));
+        assertTextSubValue("Prefix", app.getPrefix());
+        assertTextSubValue("FirstName", app.getFirstName());
+        assertTextSubValue("MI", app.getMI());
+        assertTextSubValue("LastName", app.getLastName());
+        assertTextSubValue("Suffix", app.getSuffix());
+        assertTextSubValue("AddressLine1", app.getAddressLine1());
+        assertTextSubValue("AddressLine2", app.getAddressLine2());
+        assertTextSubValue("City", app.getCity());
+        assertTextSubValue("State", app.getState());
+        assertTextSubValue("ZipCode", app.getZipCode());
+        assertTextSubValue("DOB", app.getDOB());
+        assertTextSubValue("Gender", app.getGender());
+        assertTextSubValue("PhonePrimary", app.getPhonePrimary());
+        assertTextSubValue("PhoneEvening", app.getPhoneEvening());
+        assertTextSubValue("AARPMembershipNumber", app.getAARPMembershipNumber());
     }
 
     public void verifyInitialStateOfElements(Application app) {
