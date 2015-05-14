@@ -1,6 +1,8 @@
 package integration.phone.pages;
 
+import integration.phone.entity.Application;
 import org.fluentlenium.core.domain.FluentWebElement;
+import org.openqa.selenium.support.FindBy;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -8,14 +10,35 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class VoiceSignatureInstructionsPage extends WizardPage{
 
     FluentWebElement VoiceSignatureApproval;
-    FluentWebElement AppInFrontOfYou_1;
+    @FindBy(css = "#AppInFrontOfYou_1") FluentWebElement AppInFrontOfYou_Yes;
+    @FindBy(css = "#AppInFrontOfYou_2") FluentWebElement AppInFrontOfYou_No;
 
-    public void fillAndSubmit() {
+    protected int TOTAL_POSSIBLE_QUESTION_COUNT = 3;
+
+    public void fillAndSubmit(Application app) {
+
+        verifyInitialStateOfElements();
 
         VoiceSignatureApproval.click();
-        AppInFrontOfYou_1.click();
+        AppInFrontOfYou_Yes.click();
+
+        verifyStateOfElementAfterAnswers(app);
 
         clickNextAndWaitForSpinnerToFinish();
+    }
+
+    public void verifyInitialStateOfElements() {
+        assertBlank(VoiceSignatureApproval);
+        assertHidden(AppInFrontOfYou_Yes, AppInFrontOfYou_No);
+        assertQuestionCount(TOTAL_POSSIBLE_QUESTION_COUNT);
+    }
+
+    public void verifyStateOfElementAfterAnswers(Application app) {
+        assertVisible(VoiceSignatureApproval);
+        assertThat(VoiceSignatureApproval.isSelected(), equalTo(true));
+        assertVisible(AppInFrontOfYou_Yes, AppInFrontOfYou_No);
+        assertThat(AppInFrontOfYou_Yes.isSelected(), equalTo(true));
+        assertQuestionCount(TOTAL_POSSIBLE_QUESTION_COUNT);
     }
 
     public void isAt() {

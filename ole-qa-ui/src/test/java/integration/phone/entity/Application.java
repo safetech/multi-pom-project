@@ -2,6 +2,7 @@ package integration.phone.entity;
 
 import org.fluentlenium.core.domain.FluentWebElement;
 import org.openqa.selenium.support.FindBy;
+import util.DateUtils;
 
 public class Application {
 
@@ -13,10 +14,21 @@ public class Application {
         this.AARPMembershipNumber = AARPMembershipNumber;
     }
 
-    private String AARPMembershipNumber = "";
-    private String FirstName = "";
-    private String MI = "";
-    private String LastName = "";
+    public String getPrefix() {
+        return Prefix;
+    }
+
+    public void setPrefix(String prefix) {
+        Prefix = prefix;
+    }
+
+    public String getSuffix() {
+        return Suffix;
+    }
+
+    public void setSuffix(String suffix) {
+        Suffix = suffix;
+    }
 
     public String getFirstName() {
         return FirstName;
@@ -41,12 +53,6 @@ public class Application {
     public void setLastName(String lastName) {
         LastName = lastName;
     }
-
-    private String AddressLine1 = "";
-    private String AddressLine2 = "";
-    private String City = "";
-    private String State = "";
-    private String ZipCode = "";
 
     public String getAddressLine1() {
         return AddressLine1;
@@ -91,6 +97,16 @@ public class Application {
     private String MedicareClaimNum = "";
     private String MPAED = "";
     private String MPBED = "";
+    private String Email = "";
+
+    public String getEmail() {
+        return Email;
+    }
+
+    public void setEmail(String email) {
+        Email = email;
+    }
+
     private String PartABActiveIndicator = "";
     private String Turned65In6GA = "";
     private String PartBIn6GA = "";
@@ -126,6 +142,36 @@ public class Application {
     private String DropMedSuppForThisPlan = "";
     private String AgentPrintedNameAdd = "";
     private String AgentAddress = "";
+    private String AddressLine1 = "";
+    private String AddressLine2 = "";
+    private String City = "";
+    private String State = "";
+    private String ZipCode = "";
+    private String AARPMembershipNumber = "";
+    private String FirstName = "";
+    private String MI = "";
+    private String LastName = "";
+    private String Prefix = "";
+    private String Suffix = "";
+
+    public String getDOB() {
+        return DOB;
+    }
+
+    public void setDOB(String DOB) {
+        this.DOB = DOB;
+    }
+
+    public String getGender() {
+        return Gender;
+    }
+
+    public void setGender(String gender) {
+        Gender = gender;
+    }
+
+    private String DOB = "";
+    private String Gender= "";
 
     public String getAgentPrintedNameAdd() {
         return AgentPrintedNameAdd;
@@ -646,8 +692,12 @@ public class Application {
         setCity(sheet.getCity());
         setState(sheet.getState());
         setZipCode(sheet.getZip());
+        setDOB(DateUtils.convertDate(sheet.getDateOfBirth(), DateUtils.NORMALIZED_DATE_FORMAT));
         setPhonePrimary(sheet.getDayPhone());
         setPhoneEvening(sheet.getEveningPhone());
+        setGender(sheet.getGender());
+        setPrefix(sheet.getPrefix().toUpperCase());
+        setSuffix(sheet.getSuffix().toUpperCase());
     }
 
     public String getAgentOtherInsPoliciesSold() {

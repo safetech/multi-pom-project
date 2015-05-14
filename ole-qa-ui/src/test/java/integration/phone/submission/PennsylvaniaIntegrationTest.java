@@ -130,7 +130,7 @@ public class PennsylvaniaIntegrationTest extends CQBaseIntegrationTest {
         cheatPage.fillAndSubmit(sheet);
 
         voiceSignatureInstructionsPage.isAt();
-        voiceSignatureInstructionsPage.fillAndSubmit();
+        voiceSignatureInstructionsPage.fillAndSubmit(app);
 
         customerInformationPage.isAt();
         customerInformationPage.fillAndSubmit(app);

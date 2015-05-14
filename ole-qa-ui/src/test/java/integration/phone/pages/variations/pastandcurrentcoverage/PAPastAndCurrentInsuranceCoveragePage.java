@@ -46,7 +46,48 @@ public class PAPastAndCurrentInsuranceCoveragePage extends WizardPage{
     @FindBy(css = "#OtherInsReplace_2") FluentWebElement OtherInsReplace_No;
     FluentWebElement CpaSignatureInd;
 
+    protected int TOTAL_POSSIBLE_QUESTION_COUNT = 31;
+
+    public void verifyInitialStateOfElements(Application app) {
+
+        assertBlank(UnderstandPandC_Yes, UnderstandPandC_No);
+
+        assertBlank(MedicaidCovered_Yes, MedicaidCovered_No);
+        assertHidden(MedicaidSupPremium_Yes,
+            MedicaidSupPremium_No,
+            Medicaidbenefit_Yes,
+            Medicaidbenefit_No);
+
+        assertBlank(ExistingMedicare_Yes, ExistingMedicare_No);
+        assertHidden(OtherMedplanstart,
+            OtherMedplanend,
+            IntentReplace_Yes,
+            IntentReplace_No,
+            FirstTime_Yes,
+            FirstTime_No,
+            DropMedSuppForThisPlan_Yes,
+            DropMedSuppForThisPlan_No);
+
+        assertBlank(ExistMedSupp_Yes, ExistMedSupp_No);
+        assertHidden(ReplaceExistingMedSup_Yes,
+            ReplaceExistingMedSup_No);
+
+        assertBlank(OtherInsCoverage_Yes, OtherInsCoverage_No);
+        assertHidden(OtherInsCompany,
+            OtherInsType,
+            OtherInsStart,
+            OtherInsEnd,
+            OtherInsReplace_Yes,
+            OtherInsReplace_No);
+
+        assertBlank(CpaSignatureInd);
+
+        assertQuestionCount(TOTAL_POSSIBLE_QUESTION_COUNT);
+    }
+
     public void fillAndSubmit(Application app) {
+
+        verifyInitialStateOfElements(app);
 
         UnderstandPandC_Yes.click();
 
@@ -81,7 +122,67 @@ public class PAPastAndCurrentInsuranceCoveragePage extends WizardPage{
 
         CpaSignatureInd.click();
 
+        verifyStateOfElementAfterAnswers(app);
+
         clickNextAndWaitForSpinnerToFinish();
+    }
+
+    public void verifyStateOfElementAfterAnswers(Application app) {
+
+        assertThat(UnderstandPandC_Yes.isSelected(), equalTo(true));
+
+        assertVisible(MedicaidCovered_Yes, MedicaidCovered_No);
+        assertYesNoQuestion(MedicaidCovered_Yes, MedicaidCovered_No, app.getMedicaidCovered());
+        assertVisibleBasedUpon(app.getMedicaidCovered().equals("yes"),
+            MedicaidSupPremium_Yes,
+            MedicaidSupPremium_No,
+            Medicaidbenefit_Yes,
+            Medicaidbenefit_No);
+        assertYesNoQuestion(MedicaidSupPremium_Yes, MedicaidSupPremium_No, app.getMedicaidCovered());
+        assertYesNoQuestion(Medicaidbenefit_Yes, Medicaidbenefit_No, app.getMedicaidCovered());
+
+        assertVisible(ExistingMedicare_Yes, ExistingMedicare_No);
+        assertYesNoQuestion(ExistingMedicare_Yes, ExistingMedicare_No, app.getExistingMedicare());
+        assertVisibleBasedUpon(app.getExistingMedicare().equals("yes"),
+            OtherMedplanstart,
+            OtherMedplanend,
+            IntentReplace_Yes,
+            IntentReplace_No,
+            FirstTime_Yes,
+            FirstTime_No,
+            DropMedSuppForThisPlan_Yes,
+            DropMedSuppForThisPlan_No);
+        assertThat(OtherMedplanstart.getValue(), equalTo(app.getOtherMedplanstart()));
+        assertThat(OtherMedplanend.getValue(), equalTo(app.getOtherMedplanend()));
+        assertYesNoQuestion(IntentReplace_Yes, IntentReplace_No, app.getIntentReplace());
+        assertYesNoQuestion(FirstTime_Yes, FirstTime_No, app.getFirstTime());
+        assertYesNoQuestion(DropMedSuppForThisPlan_Yes, DropMedSuppForThisPlan_No, app.getDropMedSuppForThisPlan());
+
+        assertVisible(ExistMedSupp_Yes, ExistMedSupp_No);
+        assertYesNoQuestion(ExistMedSupp_Yes, ExistMedSupp_No, app.getExistMedSupp());
+        assertVisibleBasedUpon(app.getExistMedSupp().equals("yes"),
+            ReplaceExistingMedSup_Yes,
+            ReplaceExistingMedSup_No);
+        assertYesNoQuestion(ReplaceExistingMedSup_Yes, ReplaceExistingMedSup_No, app.getReplaceExistingMedSup());
+
+        assertVisible(OtherInsCoverage_Yes, OtherInsCoverage_No);
+        assertYesNoQuestion(OtherInsCoverage_Yes, OtherInsCoverage_No, app.getOtherInsCoverage());
+        assertVisibleBasedUpon(app.getOtherInsCoverage().equals("yes"),
+            OtherInsCompany,
+            OtherInsType,
+            OtherInsStart,
+            OtherInsEnd,
+            OtherInsReplace_Yes,
+            OtherInsReplace_No);
+        assertThat(OtherInsCompany.getValue(), equalTo(app.getOtherInsCompany()));
+        assertThat(OtherInsType.getValue(), equalTo(app.getOtherInsType()));
+        assertThat(OtherInsStart.getValue(), equalTo(app.getOtherInsStart()));
+        assertThat(OtherInsEnd.getValue(), equalTo(app.getOtherInsEnd()));
+        assertYesNoQuestion(OtherInsReplace_Yes, OtherInsReplace_No, app.getOtherInsReplace());
+
+        assertThat(CpaSignatureInd.isSelected(), equalTo(true));
+
+        assertQuestionCount(TOTAL_POSSIBLE_QUESTION_COUNT);
     }
 
     public void isAt() {

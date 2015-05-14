@@ -93,7 +93,7 @@ public class FloridaIntegrationTest extends CQBaseIntegrationTest {
         cheatPage.fillAndSubmit(sheet);
 
         voiceSignatureInstructionsPage.isAt();
-        voiceSignatureInstructionsPage.fillAndSubmit();
+        voiceSignatureInstructionsPage.fillAndSubmit(app);
 
         customerInformationPage.isAt();
         customerInformationPage.fillAndSubmit(app);
@@ -168,7 +168,7 @@ public class FloridaIntegrationTest extends CQBaseIntegrationTest {
         cheatPage.fillAndSubmit(sheet);
 
         voiceSignatureInstructionsPage.isAt();
-        voiceSignatureInstructionsPage.fillAndSubmit();
+        voiceSignatureInstructionsPage.fillAndSubmit(app);
 
         customerInformationPage.isAt();
         customerInformationPage.fillAndSubmit(app);
