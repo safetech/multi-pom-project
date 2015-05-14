@@ -66,9 +66,12 @@ public class PennsylvaniaIntegrationTest extends CQBaseIntegrationTest {
         app.setPartABActiveIndicator("yes");
         app.setPlanCode("F");
         app.setReqEffectiveDate(DateUtils.getFirstDayOfFutureMonth(1));
+        //Plan Eligibility
+        app.setTurned65In6GA("no"); //TODO: Replace these hard coded values with helper function that will determine answer based upon DOB
+        app.setPartBIn6GA("no"); //TODO: Replace these hard coded values with helper function that will determine answer based upon MPBED
+        app.setPlanEffIn6OfEligible("no");  //TODO: Replace these hard coded values with helper function that will determine answer based upon DOB & MPBED
         app.setLostCoverage("no");
         app.setTobaccoUse("no");
-        app.setCPAPartBIn6("no");
         //Eligibility Questions
         app.setESRD("no");
         app.setSurgeryNeeded("no");

@@ -41,20 +41,20 @@ public class WizardPage extends FluentPage {
     protected void assertYesNoQuestion(FluentWebElement yesRadio, FluentWebElement noRadio, String answer) {
         switch (answer) {
             case "yes":
-                assertThat(yesRadio.isSelected(), equalTo(true));
+                assertThat(String.format("Testing selectedness of radio with id = %s", yesRadio.getId()), yesRadio.isSelected(), equalTo(true));
                 break;
             case "no":
-                assertThat(noRadio.isSelected(), equalTo(true));
+                assertThat(String.format("Testing selectedness of radio with id = %s", yesRadio.getId()), noRadio.isSelected(), equalTo(true));
                 break;
             default:
-                assertThat(yesRadio.isSelected(), equalTo(false));
-                assertThat(noRadio.isSelected(), equalTo(false));
+                assertThat(String.format("Testing selectedness of radio with id = %s", yesRadio.getId()), yesRadio.isSelected(), equalTo(false));
+                assertThat(String.format("Testing selectedness of radio with id = %s", yesRadio.getId()), noRadio.isSelected(), equalTo(false));
         }
     }
 
     protected void assertVisibleBasedUpon(boolean shouldBeVisible, FluentWebElement... elements) {
         for(FluentWebElement element : elements) {
-            assertThat(element.isDisplayed(), equalTo(shouldBeVisible));
+            assertThat(String.format("Testing visibility of %s", element.getId()),element.isDisplayed(), equalTo(shouldBeVisible));
         }
     }
 
@@ -98,22 +98,23 @@ public class WizardPage extends FluentPage {
     }
 
     protected void assertBlank(FluentWebElement... elements) {
+        String assertMessage = "Testing following element for blankness: %s";
         for(FluentWebElement element : elements) {
             switch (element.getTagName().toLowerCase()) {
                 case "input":
                     switch (element.getAttribute("type").toLowerCase()) {
                         case "radio":
                         case "checkbox":
-                            assertThat(element.isSelected(), equalTo(false));
+                            assertThat(String.format(assertMessage, element.getId()), element.isSelected(), equalTo(false));
                             break;
                         default:
-                            assertThat(element.getValue(), equalTo(""));
+                            assertThat(String.format(assertMessage, element.getId()), element.getValue(), equalTo(""));
                             break;
                     }
                     break;
                 case "select":
                 case "textarea":
-                    assertThat(element.getValue(), equalTo(""));
+                    assertThat(String.format(assertMessage, element.getId()), element.getValue(), equalTo(""));
                     break;
                 default:
                     fail();

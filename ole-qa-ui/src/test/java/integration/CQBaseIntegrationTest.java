@@ -36,9 +36,7 @@ public class CQBaseIntegrationTest extends FluentTest {
 
     @Override
     public WebDriver getDefaultDriver() {
-        //You need to point this to your local FF29 installation which you can download at
-        //https://ftp.mozilla.org/pub/mozilla.org/firefox/releases/29.0.1/mac/en-US/
-        System.setProperty("webdriver.firefox.bin", "/Users/dpfeffe1/dev/apps/firefox/firefox-29/Firefox.app/Contents/MacOS/firefox");
+        logger.info(String.format("Using driver: webdriver.firefox.bin=%s", System.getProperty("webdriver.firefox.bin")));
         driver = new FirefoxDriver();
         return driver;
     }
