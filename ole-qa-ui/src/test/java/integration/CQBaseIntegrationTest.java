@@ -2,29 +2,23 @@ package integration;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import org.apache.commons.lang3.time.DateUtils;
+import org.apache.commons.io.FileUtils;
 import org.fluentlenium.adapter.FluentTest;
 import org.fluentlenium.adapter.util.SharedDriver;
-import org.fluentlenium.core.Fluent;
 import org.junit.After;
-import org.junit.Before;
+import org.junit.Rule;
+import org.junit.rules.TestRule;
+import org.junit.rules.TestWatcher;
+import org.junit.runner.Description;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.slf4j.Logger;
+import util.AnswerUtils;
+import java.io.File;
+import java.io.IOException;
 
-import javax.json.JsonArray;
-import javax.json.JsonObject;
-import javax.json.JsonReader;
-import java.io.StringReader;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.concurrent.TimeUnit;
-
-import static javax.json.Json.createReader;
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.MatcherAssert.assertThat;
 import static org.slf4j.LoggerFactory.getLogger;
 
 @SharedDriver(type = SharedDriver.SharedType.PER_CLASS)
@@ -33,6 +27,23 @@ public class CQBaseIntegrationTest extends FluentTest {
     public WebDriver driver;
     protected final Logger logger = getLogger(this.getClass());
     protected Gson gson = new GsonBuilder().create();
+
+    @Rule
+    public TestRule testWatcher = new TestWatcher() {
+        @Override
+        public void failed(Throwable e, Description test){
+            File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+            try {
+                // make sure target directory exists
+                new File("target/surefire-reports/").mkdirs();
+                String path = String.format("target/surefire-reports/screenshot-%s.png", test.getMethodName());
+                logger.info(String.format("Saving screenshot to %s", path));
+                FileUtils.copyFile(scrFile, new File(path));
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+        }
+    };
 
     @Override
     public WebDriver getDefaultDriver() {
