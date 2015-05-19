@@ -106,7 +106,52 @@ public class Application {
     public void setEmail(String email) {
         Email = email;
     }
+    private String GI30dayBday = "";
 
+    public String getGI30dayBday() {
+        return GI30dayBday;
+    }
+
+    public void setGI30dayBday(String GI30dayBday) {
+        this.GI30dayBday = GI30dayBday;
+    }
+
+    public String getGIEmployerCov() {
+        return GIEmployerCov;
+    }
+
+    public void setGIEmployerCov(String GIEmployerCov) {
+        this.GIEmployerCov = GIEmployerCov;
+    }
+
+    public String getGIMediCal() {
+        return GIMediCal;
+    }
+
+    public void setGIMediCal(String GIMediCal) {
+        this.GIMediCal = GIMediCal;
+    }
+
+    public String getGIMilitary() {
+        return GIMilitary;
+    }
+
+    public void setGIMilitary(String GIMilitary) {
+        this.GIMilitary = GIMilitary;
+    }
+
+    public String getGILocation() {
+        return GILocation;
+    }
+
+    public void setGILocation(String GILocation) {
+        this.GILocation = GILocation;
+    }
+
+    private String GIEmployerCov = "";
+    private String GIMediCal = "";
+    private String GIMilitary = "";
+    private String GILocation = "";
     private String PartABActiveIndicator = "";
     private String Turned65In6GA = "";
     private String PartBIn6GA = "";
@@ -153,6 +198,96 @@ public class Application {
     private String LastName = "";
     private String Prefix = "";
     private String Suffix = "";
+    private String Eligdialysis = "";
+    private String EligRecdialysis = "";
+    private String EligHospital = "";
+    private String EligSurgery = "";
+    private String EligOrgan = "";
+    private String EligSpine = "";
+    private String Eligjoint = "";
+    private String EligCancer = "";
+    private String EligHeart = "";
+    private String EligVascular = "";
+
+    public String getEligdialysis() {
+        return Eligdialysis;
+    }
+
+    public void setEligdialysis(String eligdialysis) {
+        Eligdialysis = eligdialysis;
+    }
+
+    public String getEligRecdialysis() {
+        return EligRecdialysis;
+    }
+
+    public void setEligRecdialysis(String eligRecdialysis) {
+        EligRecdialysis = eligRecdialysis;
+    }
+
+    public String getEligHospital() {
+        return EligHospital;
+    }
+
+    public void setEligHospital(String eligHospital) {
+        EligHospital = eligHospital;
+    }
+
+    public String getEligSurgery() {
+        return EligSurgery;
+    }
+
+    public void setEligSurgery(String eligSurgery) {
+        EligSurgery = eligSurgery;
+    }
+
+    public String getEligOrgan() {
+        return EligOrgan;
+    }
+
+    public void setEligOrgan(String eligOrgan) {
+        EligOrgan = eligOrgan;
+    }
+
+    public String getEligSpine() {
+        return EligSpine;
+    }
+
+    public void setEligSpine(String eligSpine) {
+        EligSpine = eligSpine;
+    }
+
+    public String getEligjoint() {
+        return Eligjoint;
+    }
+
+    public void setEligjoint(String eligjoint) {
+        Eligjoint = eligjoint;
+    }
+
+    public String getEligCancer() {
+        return EligCancer;
+    }
+
+    public void setEligCancer(String eligCancer) {
+        EligCancer = eligCancer;
+    }
+
+    public String getEligHeart() {
+        return EligHeart;
+    }
+
+    public void setEligHeart(String eligHeart) {
+        EligHeart = eligHeart;
+    }
+
+    public String getEligVascular() {
+        return EligVascular;
+    }
+
+    public void setEligVascular(String eligVascular) {
+        EligVascular = eligVascular;
+    }
 
     public String getDOB() {
         return DOB;

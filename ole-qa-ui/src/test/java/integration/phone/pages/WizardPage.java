@@ -4,6 +4,7 @@ import org.fluentlenium.core.FluentPage;
 import org.fluentlenium.core.domain.FluentList;
 import org.fluentlenium.core.domain.FluentWebElement;
 import org.openqa.selenium.support.FindBy;
+import util.AnswerUtils;
 
 import java.util.concurrent.TimeUnit;
 
@@ -12,6 +13,11 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.fail;
 
 public class WizardPage extends FluentPage {
+
+    protected final static String NO = AnswerUtils.NO;
+    protected final static String YES = AnswerUtils.YES;
+    protected final static String UNSURE = AnswerUtils.UNSURE;
+    protected final static String BLANK = AnswerUtils.BLANK;
 
     @FindBy(css = "section h3:first-of-type")
     protected FluentWebElement pageTitle;
@@ -30,25 +36,55 @@ public class WizardPage extends FluentPage {
     }
 
     protected void fillYesNoQuestion(FluentWebElement yesRadio, FluentWebElement noRadio, String answer) {
-        if(answer.equals("yes")) {
+        if(answer.equals(YES)) {
             yesRadio.click();
         }
-        if(answer.equals("no")) {
+        if(answer.equals(NO)) {
             noRadio.click();
+        }
+    }
+
+    protected void fillYesUnsureQuestion(FluentWebElement yesRadio, FluentWebElement noRadio, FluentWebElement unsureRadio, String answer) {
+        if(answer.equals(YES)) {
+            yesRadio.click();
+        }
+        if(answer.equals(NO)) {
+            noRadio.click();
+        }
+        if(answer.equals(UNSURE)) {
+            unsureRadio.click();
         }
     }
 
     protected void assertYesNoQuestion(FluentWebElement yesRadio, FluentWebElement noRadio, String answer) {
         switch (answer) {
-            case "yes":
+            case YES:
                 assertThat(String.format("Testing selectedness of radio with id = %s", yesRadio.getId()), yesRadio.isSelected(), equalTo(true));
                 break;
-            case "no":
-                assertThat(String.format("Testing selectedness of radio with id = %s", yesRadio.getId()), noRadio.isSelected(), equalTo(true));
+            case NO:
+                assertThat(String.format("Testing selectedness of radio with id = %s", noRadio.getId()), noRadio.isSelected(), equalTo(true));
                 break;
             default:
                 assertThat(String.format("Testing selectedness of radio with id = %s", yesRadio.getId()), yesRadio.isSelected(), equalTo(false));
-                assertThat(String.format("Testing selectedness of radio with id = %s", yesRadio.getId()), noRadio.isSelected(), equalTo(false));
+                assertThat(String.format("Testing selectedness of radio with id = %s", noRadio.getId()), noRadio.isSelected(), equalTo(false));
+        }
+    }
+
+    protected void assertYesNoUnsureQuestion(FluentWebElement yesRadio, FluentWebElement noRadio, FluentWebElement unsureRadio, String answer) {
+        switch (answer) {
+            case YES:
+                assertThat(String.format("Testing selectedness of radio with id = %s", yesRadio.getId()), yesRadio.isSelected(), equalTo(true));
+                break;
+            case NO:
+                assertThat(String.format("Testing selectedness of radio with id = %s", noRadio.getId()), noRadio.isSelected(), equalTo(true));
+                break;
+            case UNSURE:
+                assertThat(String.format("Testing selectedness of radio with id = %s", unsureRadio.getId()), unsureRadio.isSelected(), equalTo(true));
+                break;
+            default:
+                assertThat(String.format("Testing selectedness of radio with id = %s", yesRadio.getId()), yesRadio.isSelected(), equalTo(false));
+                assertThat(String.format("Testing selectedness of radio with id = %s", noRadio.getId()), noRadio.isSelected(), equalTo(false));
+                assertThat(String.format("Testing selectedness of radio with id = %s", unsureRadio.getId()), unsureRadio.isSelected(), equalTo(false));
         }
     }
 

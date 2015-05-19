@@ -28,6 +28,11 @@ public class CQBaseIntegrationTest extends FluentTest {
     protected final Logger logger = getLogger(this.getClass());
     protected Gson gson = new GsonBuilder().create();
 
+    protected String NO = AnswerUtils.NO;
+    protected String YES = AnswerUtils.YES;
+    protected String UNSURE = AnswerUtils.UNSURE;
+    protected String BLANK = AnswerUtils.BLANK;
+
     @Rule
     public TestRule testWatcher = new TestWatcher() {
         @Override
