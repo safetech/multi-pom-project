@@ -1,4 +1,4 @@
-package integration.phone.pages.variations.pastandcurrentcoverage;
+package integration.phone.pages.variations.eligibilityhealthquestions;
 
 import integration.phone.entity.Application;
 import integration.phone.pages.WizardPage;

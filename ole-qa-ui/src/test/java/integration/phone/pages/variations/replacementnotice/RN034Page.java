@@ -23,6 +23,36 @@ public class RN034Page extends WizardPage {
     FluentWebElement ApplicantAddress;
 
     public void fillAndSubmit(Application app) {
+
+        switch (app.getReplacementReason()) {
+            case "ReplaceAdditionalBenefits":
+                ReplacementReason_ReplaceAdditionalBenefits.click();
+                break;
+            case "SameBenefits":
+                ReplacementReason_SameBenefits.click();
+                break;
+            case "FewerBenefits":
+                ReplacementReason_FewerBenefits.click();
+                break;
+            case "EnrolledPartD":
+                ReplacementReason_EnrolledPartD.click();
+                break;
+            case "Disenroll":
+                ReplacementReason_Disenroll.click();
+                fill(RNOther).with(app.getRNOther());
+                break;
+            case "OtherReason":
+                ReplacementReason_OtherReason.click();
+                fill(RNOther).with(app.getRNOther());
+                break;
+        }
+
+        AgentRNSignatureInd.click();
+
+        ApplicantRNSignatureInd.click();
+        fill(ApplicantPrintedNameAdd).with(app.getApplicantPrintedNameAdd());
+        fill(ApplicantAddress).with(app.getApplicantAddress());
+
         clickNextAndWaitForSpinnerToFinish();
     }
 

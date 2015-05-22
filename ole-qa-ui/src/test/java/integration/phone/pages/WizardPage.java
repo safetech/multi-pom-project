@@ -117,11 +117,7 @@ public class WizardPage extends FluentPage {
     }
 
     protected void assertTextSubValue(String answername, String value) {
-        if(!value.equals("")) {
-            assertThat(getTextSubValue(answername).getText(), equalTo(value));
-        } else {
-            assertThat(find(String.format(TEXT_SUB_SELECTOR, answername)).size(), equalTo(0));
-        }
+        assertThat(getTextSubValue(answername).getText(), equalTo(value));
     }
 
     protected void clickNextAndWaitForSpinnerToFinish(int seconds) {

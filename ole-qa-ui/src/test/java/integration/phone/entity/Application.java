@@ -94,10 +94,6 @@ public class Application {
         ZipCode = zipCode;
     }
 
-    private String MedicareClaimNum = "";
-    private String MPAED = "";
-    private String MPBED = "";
-    private String Email = "";
 
     public String getEmail() {
         return Email;
@@ -148,6 +144,10 @@ public class Application {
         this.GILocation = GILocation;
     }
 
+    private String MedicareClaimNum = "";
+    private String MPAED = "";
+    private String MPBED = "";
+    private String Email = "";
     private String GIEmployerCov = "";
     private String GIMediCal = "";
     private String GIMilitary = "";
@@ -208,6 +208,25 @@ public class Application {
     private String EligCancer = "";
     private String EligHeart = "";
     private String EligVascular = "";
+    private String CPAMPBED = "";
+    private String SellingAgentSignatureInd = "";
+
+    public String getSellingAgentSignatureInd() {
+        return SellingAgentSignatureInd;
+    }
+
+    public void setSellingAgentSignatureInd(String sellingAgentSignatureInd) {
+        SellingAgentSignatureInd = sellingAgentSignatureInd;
+    }
+
+
+    public String getCPAMPBED() {
+        return CPAMPBED;
+    }
+
+    public void setCPAMPBED(String CPAMPBED) {
+        this.CPAMPBED = CPAMPBED;
+    }
 
     public String getEligdialysis() {
         return Eligdialysis;

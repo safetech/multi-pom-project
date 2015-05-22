@@ -7,9 +7,9 @@ import integration.phone.entity.CribSheet;
 import integration.phone.entity.SubmissionResult;
 import integration.phone.pages.*;
 import integration.phone.pages.variations.healthhistoryquestions.CAHealthHistoryQuestionsPage;
-import integration.phone.pages.variations.pastandcurrentcoverage.CAEligibilityHealthQuestionsPage;
-import integration.phone.pages.variations.pastandcurrentcoverage.CAPlanApplicationQuestions;
-import integration.phone.pages.variations.pastandcurrentcoverage.PAPastAndCurrentInsuranceCoveragePage;
+import integration.phone.pages.variations.eligibilityhealthquestions.CAEligibilityHealthQuestionsPage;
+import integration.phone.pages.variations.pastandcurrentcoverage.PAandNJPastAndCurrentInsuranceCoveragePage;
+import integration.phone.pages.variations.planapplicationpage.VAandNJPlanApplicationQuestions;
 import integration.phone.pages.variations.replacementnotice.RN078Page;
 import integration.phone.queries.SubmissionQuery;
 import org.fluentlenium.core.annotation.Page;
@@ -23,10 +23,10 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
     @Page public VoiceSignatureInstructionsPage voiceSignatureInstructionsPage;
     @Page public CustomerInformationPage customerInformationPage;
     @Page public PlanSelectionAndStartDatePage planSelectionAndStartDatePage;
-    @Page public CAPlanApplicationQuestions planApplicationQuestionsPage;
+    @Page public VAandNJPlanApplicationQuestions.CAPlanApplicationQuestions planApplicationQuestionsPage;
     @Page public CAEligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
     @Page public CAHealthHistoryQuestionsPage healthHistoryQuestionsPage;
-    @Page public PAPastAndCurrentInsuranceCoveragePage pastAndCurrentInsuranceCoveragePage;
+    @Page public PAandNJPastAndCurrentInsuranceCoveragePage pastAndCurrentInsuranceCoveragePage;
     @Page public AuthorizationAndVerificationPage authorizationAndVerificationPage;
     @Page public AgentVerificationPage agentVerificationPage;
     @Page public RN078Page replacementNoticePage;
@@ -66,7 +66,7 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         app.setPartABActiveIndicator(YES);
         app.setPlanCode("F");
         app.setReqEffectiveDate(DateUtils.getFirstDayOfFutureMonth(1));
-        //Plan Eligibility
+        //Plan Application
         app.setTurned65In6GA(NO); //TODO: Replace these hard coded values with helper function that will determine answer based upon DOB
         app.setPartBIn6GA(YES); //TODO: Replace these hard coded values with helper function that will determine answer based upon MPBED
         app.setPlanEffIn6OfEligible(YES);  //TODO: Replace these hard coded values with helper function that will determine answer based upon DOB & MPBED
