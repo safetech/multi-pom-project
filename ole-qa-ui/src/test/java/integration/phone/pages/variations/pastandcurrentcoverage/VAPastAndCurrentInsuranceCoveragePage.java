@@ -175,8 +175,8 @@ public class VAPastAndCurrentInsuranceCoveragePage extends WizardPage{
         assertVisibleBasedUpon(app.getExistMedSupp().equals("yes"),
             ReplaceExistingMedSup_Yes,
             ReplaceExistingMedSup_No,
-            ReplaceExistingMedSup_Yes,
-            ReplaceExistingMedSup_No);
+            MSInsCompany,
+            MSPLAN);
         assertVisible(OtherInsCoverage_Yes, OtherInsCoverage_No);
         assertYesNoQuestion(OtherInsCoverage_Yes, OtherInsCoverage_No, app.getOtherInsCoverage());
         assertVisibleBasedUpon(app.getOtherInsCoverage().equals("yes"),
