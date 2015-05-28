@@ -36,7 +36,7 @@ public class NevadaIntegrationTest extends CQBaseIntegrationTest {
     private Faker faker;
     private CribSheet sheet;
     private SubmissionResult expectedSubmissionResult;
-    private Application app;
+
 
     @Before
     public void setup() {
@@ -52,7 +52,6 @@ public class NevadaIntegrationTest extends CQBaseIntegrationTest {
         sheet.setPlanCode("F01");
 
         app = new Application();
-
         // Customer Info Page Question
         app.setMedicareClaimNum(faker.bothify("??#########"));
         app.setPartABActiveIndicator(YES);

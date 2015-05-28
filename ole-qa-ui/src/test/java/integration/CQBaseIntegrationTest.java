@@ -30,6 +30,7 @@ public class CQBaseIntegrationTest extends FluentTest {
     public WebDriver driver;
     protected final Logger logger = getLogger(this.getClass());
     protected Gson gson = new GsonBuilder().create();
+    protected Application app;
 
     protected String NO = AnswerUtils.NO;
     protected String YES = AnswerUtils.YES;

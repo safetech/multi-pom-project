@@ -52,7 +52,8 @@ public class MEPlanApplicationQuestions extends PlanApplicationQuestions {
         assertYesNoQuestion(PartBIn6GA_Yes, PartBIn6GA_No, app.getPartBIn6GA());
         assertYesNoQuestion(PlanEffIn6OfEligible_Yes, PlanEffIn6OfEligible_No, app.getPlanEffIn6OfEligible());
         assertYesNoQuestion(LostCoverage_Yes, LostCoverage_No, app.getLostCoverage());
-        assertVisibleBasedUpon(app.getLostCoverage().equals("no"), TobaccoUse_Yes, TobaccoUse_No);
+        assertYesNoQuestion(TobaccoUse_Yes, TobaccoUse_No, app.getTobaccoUse());
+        //assertVisibleBasedUpon(app.getLostCoverage().equals("no"), TobaccoUse_Yes, TobaccoUse_No);
         assertYesNoQuestion(TobaccoUse_Yes, TobaccoUse_No, app.getTobaccoUse());
         assertQuestionCount(TOTAL_POSSIBLE_QUESTION_COUNT);
     }
