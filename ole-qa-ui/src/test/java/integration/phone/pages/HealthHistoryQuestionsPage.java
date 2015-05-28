@@ -52,6 +52,8 @@ public class HealthHistoryQuestionsPage extends WizardPage{
 
     public void fillAndSubmit(Application app) {
 
+        isAt();
+
         fillCheckboxQuestion(aneurysm, app.getAneurysm());
         fillCheckboxQuestion(sclerosis, app.getSclerosis());
         fillCheckboxQuestion(artery, app.getArtery());

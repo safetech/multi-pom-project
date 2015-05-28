@@ -1,8 +1,9 @@
 package integration.phone.entity;
 
-import org.fluentlenium.core.domain.FluentWebElement;
-import org.openqa.selenium.support.FindBy;
-import util.DateUtils;
+        import org.fluentlenium.core.domain.FluentWebElement;
+        import org.openqa.selenium.support.FindBy;
+        import util.AnswerUtils;
+        import util.DateUtils;
 
 public class Application {
 
@@ -37,7 +38,6 @@ public class Application {
     public void setFirstName(String firstName) {
         FirstName = firstName;
     }
-
     public String getMI() {
         return MI;
     }
@@ -94,14 +94,85 @@ public class Application {
         ZipCode = zipCode;
     }
 
-
-    public String getEmail() {
+    public String getEmail(){
         return Email;
     }
 
-    public void setEmail(String email) {
+    public void setEmail(String email){
         Email = email;
     }
+
+    public String getDesignateLapse() {
+        return DesignateLapse;
+    }
+
+    public void setDesignateLapse(String designateLapse) {
+        DesignateLapse = designateLapse;
+    }
+
+    public String getAuxFirstName() {
+        return AuxFirstName;
+    }
+
+    public void setAuxFirstName(String auxFirstName) {
+        AuxFirstName = auxFirstName;
+    }
+    public String geAuxtMI() {
+        return AuxMI;
+    }
+
+    public void setAuxMI(String auxMI) {
+        this.AuxMI = auxMI;
+    }
+
+    public String getAuxLastName() {
+        return AuxLastName;
+    }
+
+    public void setAuxLastName(String auxLastName) {
+        AuxLastName = auxLastName;
+    }
+
+    public String getAuxAddressLine1() {
+        return AuxAddressLine1;
+    }
+
+    public void setAuxAddressLine1(String auxAddressLine1) {
+        AuxAddressLine1 = auxAddressLine1;
+    }
+
+    public String getAuxCity() {
+        return AuxCity;
+    }
+
+    public void setAuxCity(String auxCity) {
+        AuxCity = auxCity;
+    }
+
+    public String getAuxState() {
+        return AuxState;
+    }
+
+    public void setAuxState(String auxState) {
+        AuxState = auxState;
+    }
+
+    public String getAuxZipCode() {
+        return AuxZipCode;
+    }
+
+    public void setAuxZipCode(String auxZipCode) {
+        AuxZipCode = auxZipCode;
+    }
+
+    public String getAuxPhonePrimary() {
+        return AuxPhonePrimary;
+    }
+
+    public void setAuxPhonePrimary(String auxPhonePrimary) {
+        AuxPhonePrimary = auxPhonePrimary;
+    }
+
     private String GI30dayBday = "";
 
     public String getGI30dayBday() {
@@ -157,6 +228,7 @@ public class Application {
     private String PartBIn6GA = "";
     private String PlanEffIn6OfEligible = "";
     private String LostCoverage = "";
+    private String ContinuousCoverage = "";
     private String TobaccoUse = "";
     private String CPATurned65 = "";
     private String CPAPartBIn6 = "";
@@ -192,7 +264,16 @@ public class Application {
     private String City = "";
     private String State = "";
     private String ZipCode = "";
+    private String DesignateLapse = "";
+    private String AuxAddressLine1 = "";
+    private String AuxCity = "";
+    private String AuxState = "";
+    private String AuxZipCode = "";
+    private String AuxPhonePrimary = "";
     private String AARPMembershipNumber = "";
+    private String AuxFirstName = "";
+    private String AuxMI = "";
+    private String AuxLastName = "";
     private String FirstName = "";
     private String MI = "";
     private String LastName = "";
@@ -786,7 +867,7 @@ public class Application {
     private String nervous_condition = "";
     private String AIDS = "";
     private String HIV = "";
-    
+
     public String getESRD() {
         return ESRD;
     }
@@ -836,22 +917,7 @@ public class Application {
     public Application() { }
 
     public Application(CribSheet sheet) {
-        setAARPMembershipNumber(sheet.getMembershipNumber());
-        setFirstName(sheet.getFirstName());
-        setLastName(sheet.getLastName());
-        setMI(sheet.getMiddleInitial().substring(0, 1));
-        setHCSGApplicationId(sheet.getHcsgApplicationId());
-        setAddressLine1(sheet.getAddressLine1());
-        setAddressLine2(sheet.getAddressLine2());
-        setCity(sheet.getCity());
-        setState(sheet.getState());
-        setZipCode(sheet.getZip());
-        setDOB(DateUtils.convertDate(sheet.getDateOfBirth(), DateUtils.NORMALIZED_DATE_FORMAT));
-        setPhonePrimary(sheet.getDayPhone());
-        setPhoneEvening(sheet.getEveningPhone());
-        setGender(sheet.getGender().equals("M") || sheet.getGender().equals("F") ? sheet.getGender() : "");
-        setPrefix(sheet.getPrefix().toUpperCase());
-        setSuffix(sheet.getSuffix().toUpperCase());
+        setAnswersWithSheetValues(sheet);
     }
 
     public String getAgentOtherInsPoliciesSold() {
@@ -1054,6 +1120,14 @@ public class Application {
         LostCoverage = lostCoverage;
     }
 
+    public String getContinuousCoverage() {
+        return ContinuousCoverage;
+    }
+
+    public void setContinuousCoverage(String continuousCoverage) {
+        ContinuousCoverage = continuousCoverage;
+    }
+
     public String getTobaccoUse() {
         return TobaccoUse;
     }
@@ -1119,5 +1193,60 @@ public class Application {
 
     public void setPartABActiveIndicator(String partABActiveIndicator) {
         PartABActiveIndicator = partABActiveIndicator;
+    }
+
+    public void setCommonHealthHistoryAnswers() {
+        setEmphysema(AnswerUtils.YES);
+        setOthercancer(AnswerUtils.YES);
+        setPolycystic(AnswerUtils.YES);
+        setCirrhosis(AnswerUtils.YES);
+        setBonemarrow(AnswerUtils.YES);
+        setPancreatitis(AnswerUtils.YES);
+        setAmputation(AnswerUtils.YES);
+        setAlcohol(AnswerUtils.YES);
+        setParaplegia(AnswerUtils.YES);
+        setBipolar(AnswerUtils.YES);
+        setMacular(AnswerUtils.YES);
+        setAlzheimers(AnswerUtils.YES);
+        setHIV(AnswerUtils.YES);
+    }
+
+    public void setCommonAgentVerificationAnswers() {
+        setAgentOtherInsPoliciesSold("HIP");
+        setAgentPoliciesInForce("EP");
+        setAgentPoliciesSoldNotInForce("EPHIP");
+        setAgentSignatureInd(AnswerUtils.YES);
+    }
+    
+    public void setCommonReplacementNoticeAnswersWithApplicantInfo() {
+        setCommonReplacementNoticeAnswersWithoutApplicantInfo();
+        setApplicantPrintedNameAdd("AppName");
+        setApplicantAddress("AppAdd");
+    }
+
+    public void setCommonReplacementNoticeAnswersWithoutApplicantInfo() {
+        setReplacementReason("OtherReason");
+        setRNOther("Cheaper");
+        setAgentPrintedNameAdd("ProducerName");
+        setAgentAddress("ProducerAdd");
+    }
+
+    public void setAnswersWithSheetValues(CribSheet sheet) {
+        setAARPMembershipNumber(sheet.getMembershipNumber());
+        setFirstName(sheet.getFirstName());
+        setLastName(sheet.getLastName());
+        setMI(sheet.getMiddleInitial().substring(0, 1));
+        setHCSGApplicationId(sheet.getHcsgApplicationId());
+        setAddressLine1(sheet.getAddressLine1());
+        setAddressLine2(sheet.getAddressLine2());
+        setCity(sheet.getCity());
+        setState(sheet.getState());
+        setZipCode(sheet.getZip());
+        setDOB(DateUtils.convertDate(sheet.getDateOfBirth(), DateUtils.NORMALIZED_DATE_FORMAT));
+        setPhonePrimary(sheet.getDayPhone());
+        setPhoneEvening(sheet.getEveningPhone());
+        setGender(sheet.getGender().equals("M") || sheet.getGender().equals("F") ? sheet.getGender() : "");
+        setPrefix(sheet.getPrefix().toUpperCase());
+        setSuffix(sheet.getSuffix().toUpperCase());
     }
 }

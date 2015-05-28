@@ -24,6 +24,8 @@ public class RN034Page extends WizardPage {
 
     public void fillAndSubmit(Application app) {
 
+        isAt();
+
         switch (app.getReplacementReason()) {
             case "ReplaceAdditionalBenefits":
                 ReplacementReason_ReplaceAdditionalBenefits.click();

@@ -77,7 +77,8 @@ public class SubmissionQuery {
         "  b.APPL_COMPONENT_NUMBER," +
         "  b.ADJUDICATION_CD," +
         "  b.HASH_CD," +
-        "  d.PAYMENT_METHOD_TYPE_ID" +
+        "  d.PAYMENT_METHOD_TYPE_ID," +
+        "  b.APPL_IMAGE_NUM_ORIG" +
         " from " +
         "  ((ole_application a left outer join application b on a.application_id = b.application_id)" +
         "  left outer join individual c on b.individual_id = c.individual_id)" +
@@ -135,6 +136,8 @@ public class SubmissionQuery {
         assertThat(row.get("PAYMENT_METHOD_TYPE_ID"), equalTo("2"));
         assertThat(row.get("ADJUDICATION_CD"), equalTo(expectedSubmissionResult.getAdjudicationStatus()));
 
+        logger.info(String.format("Here is the link to the image... https://acesx-stg-alt.uhc.com/appEnroll-web/resources/retrievePDF/v1/%s", row.get("APPL_IMAGE_NUM_ORIG")));
+
     }
 
     public void verifyAdjudicationData(Application app, SubmissionResult expectedSubmissionResult) throws SQLException {
@@ -144,7 +147,7 @@ public class SubmissionQuery {
         logger.info(query);
 
         HashMap<String, String> row = DbUtils.getSingleRecord(query, COMPAS_SYS1);
-
+        logger.info("query is "+row.get("TYPE_DESC")+" and expected is "+expectedSubmissionResult.getWorkQueue());
         assertThat(row.get("TYPE_DESC"), equalTo(expectedSubmissionResult.getWorkQueue()));
         assertThat(row.get("ITEM_REASON_TYPE_DESC"), equalTo(expectedSubmissionResult.getWorkQueueReason()));
 

@@ -6,30 +6,31 @@ import integration.phone.entity.Application;
 import integration.phone.entity.CribSheet;
 import integration.phone.entity.SubmissionResult;
 import integration.phone.pages.*;
-import integration.phone.pages.variations.authorizationandverification.VAAuthorizationAndVerificationPage;
-import integration.phone.pages.variations.pastandcurrentcoverage.VAPastAndCurrentInsuranceCoveragePage;
-import integration.phone.pages.variations.planapplicationpage.VAandNJPlanApplicationQuestions;
+import integration.phone.pages.variations.authorizationandverification.NVAuthorizationAndVerificationPage;
+import integration.phone.pages.variations.pastandcurrentcoverage.NVPastAndCurrentInsuranceCoveragePage;
+import integration.phone.pages.variations.planapplicationpage.DEGuranteedIssuePlanApplicationQuestions;
+import integration.phone.pages.variations.planapplicationpage.MEPlanApplicationQuestions;
 import integration.phone.pages.variations.replacementnotice.RN034Page;
 import integration.phone.queries.SubmissionQuery;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import util.DateUtils;
 
-public class VirginiaIntegrationTest extends CQBaseIntegrationTest {
+public class MaineIntegrationTest extends CQBaseIntegrationTest {
 
     @Page public CheatPage cheatPage;
     @Page public VoiceSignatureInstructionsPage voiceSignatureInstructionsPage;
     @Page public CustomerInformationPage customerInformationPage;
     @Page public PlanSelectionAndStartDatePage planSelectionAndStartDatePage;
-    @Page public VAandNJPlanApplicationQuestions planApplicationQuestionsPage;
+    @Page public MEPlanApplicationQuestions planApplicationQuestionsPage;
+    @Page public DEGuranteedIssuePlanApplicationQuestions GIplanApplicationQuestionsPage;
     @Page public EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
-    @Page public VAPastAndCurrentInsuranceCoveragePage pastAndCurrentInsuranceCoveragePage;
-    @Page public VAAuthorizationAndVerificationPage authorizationAndVerificationPage;
+    @Page public NVPastAndCurrentInsuranceCoveragePage pastAndCurrentInsuranceCoveragePage;
+    @Page public NVAuthorizationAndVerificationPage authorizationAndVerificationPage;
     @Page public HealthHistoryQuestionsPage healthHistoryQuestionsPage;
     @Page public AgentVerificationPage agentVerificationPage;
-    @Page public RN034Page ReplacementNotice034Page;
+    @Page public RN034Page replacementNoticePage;
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
     @Page public ApplicationSubmissionPage applicationSubmissionPage;
 
@@ -46,33 +47,33 @@ public class VirginiaIntegrationTest extends CQBaseIntegrationTest {
         expectedSubmissionResult = new SubmissionResult();
     }
 
-
     @Test
-    public void test_virginia_full_underwriting_with_rn() throws Exception {
+    public void test_maine_health_history_underwriting_with_designeeSig_with_rn() throws Exception {
 
         sheet.setRandomNameGenderAndMembershipNumber();
-        sheet.setRandomAddress("VA", "22222");
+        sheet.setRandomAddress("ME", "04001");
         sheet.setRandomContactInfo();
         sheet.setRandomCallCenterInfo();
-        sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(68));
-        sheet.setMedPartBdate("2011-01-01");
+        sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(69));
+        sheet.setMedPartBdate("2012-04-01");
         sheet.setDpsdToFirstDayOfFutureMonth(1);
         sheet.setPlanCode("F01");
 
         Application app = new Application(sheet);
-        //Customer Information
+
         app.setMedicareClaimNum(faker.bothify("??#########"));
-        app.setMPAED("01/01/2011");
-        app.setMPBED("01/01/2011");
+        app.setMPAED("01/01/2012");
+        app.setMPBED("04/01/2012");
         app.setPartABActiveIndicator(YES);
         app.setPlanCode("F");
         app.setReqEffectiveDate(DateUtils.getFirstDayOfFutureMonth(1));
         //Plan Eligibility
         app.setTurned65In6GA(NO); //TODO: Replace these hard coded values with helper function that will determine answer based upon DOB
         app.setPartBIn6GA(NO); //TODO: Replace these hard coded values with helper function that will determine answer based upon MPBED
-        app.setPlanEffIn6OfEligible(NO); //TODO: Replace these hard coded values with helper function that will determine answer based upon DOB & MPBED
-        app.setLostCoverage(NO);
-        app.setTobaccoUse(YES);
+        app.setPlanEffIn6OfEligible(NO);  //TODO: Replace these hard coded values with helper function that will determine answer based upon DOB & MPBED
+        app.setLostCoverage(YES);
+        app.setTobaccoUse(NO);
+        app.setContinuousCoverage(NO);
         //Eligibility Questions
         app.setESRD(NO);
         app.setSurgeryNeeded(NO);
@@ -97,14 +98,14 @@ public class VirginiaIntegrationTest extends CQBaseIntegrationTest {
         app.setMedicaidSupPremium(YES);
         app.setMedicaidbenefit(YES);
         app.setExistingMedicare(YES);
-        app.setOtherMedplanstart("01/01/2000");
+        app.setOtherMedplanstart("01/01/2012");
         app.setOtherMedplanend("01/01/2015");
         app.setIntentReplace(YES);
         app.setFirstTime(YES);
         app.setDropMedSuppForThisPlan(YES);
         app.setExistMedSupp(YES);
-        app.setMSInsCompany("Blue Cross Blue Shield VA");
-        app.setMSPLAN("Medical Supplement VA");
+        app.setMSInsCompany("Blue Cross Blue Shield NV");
+        app.setMSPLAN("Medical Supplement NV");
         app.setReplaceExistingMedSup(YES);
         app.setOtherInsCoverage(YES);
         app.setOtherInsCompany("Blue Cross Blue Shield");
@@ -113,6 +114,16 @@ public class VirginiaIntegrationTest extends CQBaseIntegrationTest {
         app.setOtherInsEnd("01/01/2014");
         app.setOtherInsReplace(YES);
         app.setCpaSignatureInd(YES);
+        //Authorizationa and verififcation page
+        app.setDesignateLapse(NO);
+        app.setAuxFirstName("AuxFirstName");
+        app.setAuxMI("M");
+        app.setAuxLastName("AuxLastName");
+        app.setAuxAddressLine1("AuxAddressLine1");
+        app.setAuxCity("AuxCity");
+        app.setAuxState("NV");
+        app.setAuxZipCode("89101");
+        app.setAuxPhonePrimary("");
         //Agent Verification Page
         app.setAgentOtherInsPoliciesSold("HIP");
         app.setAgentPoliciesInForce("EP");
@@ -126,7 +137,7 @@ public class VirginiaIntegrationTest extends CQBaseIntegrationTest {
         app.setApplicantPrintedNameAdd("AppName");
         app.setApplicantAddress("AppAdd");
 
-        expectedSubmissionResult.setAdjudicationStatus("A");
+        expectedSubmissionResult.setAdjudicationStatus("P");
         expectedSubmissionResult.setStatus("C");
         expectedSubmissionResult.setWorkQueue("UNDERWRITING");
         expectedSubmissionResult.setWorkQueueReason("REVIEW FOR POSSIBLE ESRD");
@@ -145,7 +156,6 @@ public class VirginiaIntegrationTest extends CQBaseIntegrationTest {
 
         planSelectionAndStartDatePage.isAt();
         planSelectionAndStartDatePage.fillAndSubmit(app);
-        // The above pages will always appear
 
         planApplicationQuestionsPage.isAt();
         planApplicationQuestionsPage.fillAndSubmit(app);
@@ -165,37 +175,36 @@ public class VirginiaIntegrationTest extends CQBaseIntegrationTest {
         agentVerificationPage.isAt();
         agentVerificationPage.fillAndSubmit(app);
 
-        ReplacementNotice034Page.isAt();
-        ReplacementNotice034Page.fillAndSubmit(app);
+        replacementNoticePage.isAt();
+        replacementNoticePage.fillAndSubmit(app);
 
         reviewAndSubmitPage.isAt();
         reviewAndSubmitPage.fillAndSubmit(app);
 
         applicationSubmissionPage.isAt();
-        applicationSubmissionPage.isApproved();
+        applicationSubmissionPage.isPending();
 
         submissionQuery.verifySubmissionData(app, expectedSubmissionResult);
         submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
 
     }
-
     @Test
-    public void test_virginia_full_underwriting_without_rn() throws Exception {
+    public void test_nevada_eligibility_underwriting_without_designeeSig_without_rn() throws Exception {
 
         sheet.setRandomNameGenderAndMembershipNumber();
-        sheet.setRandomAddress("VA", "22222");
+        sheet.setRandomAddress("NV", "89101");
         sheet.setRandomContactInfo();
         sheet.setRandomCallCenterInfo();
         sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(68));
-        sheet.setMedPartBdate("2011-01-01");
+        sheet.setMedPartBdate("2014-01-01");
         sheet.setDpsdToFirstDayOfFutureMonth(1);
         sheet.setPlanCode("F01");
 
         Application app = new Application(sheet);
 
         app.setMedicareClaimNum(faker.bothify("??#########"));
-        app.setMPAED("01/01/2011");
-        app.setMPBED("01/01/2011");
+        app.setMPAED("01/01/2014");
+        app.setMPBED("01/01/2014");
         app.setPartABActiveIndicator(YES);
         app.setPlanCode("F");
         app.setReqEffectiveDate(DateUtils.getFirstDayOfFutureMonth(1));
@@ -204,7 +213,8 @@ public class VirginiaIntegrationTest extends CQBaseIntegrationTest {
         app.setPartBIn6GA(NO); //TODO: Replace these hard coded values with helper function that will determine answer based upon MPBED
         app.setPlanEffIn6OfEligible(NO);  //TODO: Replace these hard coded values with helper function that will determine answer based upon DOB & MPBED
         app.setLostCoverage(NO);
-        app.setTobaccoUse(YES);
+        app.setTobaccoUse(NO);
+        app.setContinuousCoverage(NO);
         //Eligibility Questions
         app.setESRD(NO);
         app.setSurgeryNeeded(NO);
@@ -235,7 +245,9 @@ public class VirginiaIntegrationTest extends CQBaseIntegrationTest {
         app.setFirstTime("");
         app.setDropMedSuppForThisPlan("");
         app.setExistMedSupp(NO);
-        app.setReplaceExistingMedSup(NO);
+        app.setMSInsCompany("Blue Cross Blue Shield NV");
+        app.setMSPLAN("Medical Supplement NV");
+        app.setReplaceExistingMedSup("");
         app.setOtherInsCoverage(YES);
         app.setOtherInsCompany("Blue Cross Blue Shield");
         app.setOtherInsType("HMO");
@@ -243,6 +255,8 @@ public class VirginiaIntegrationTest extends CQBaseIntegrationTest {
         app.setOtherInsEnd("01/01/2014");
         app.setOtherInsReplace(YES);
         app.setCpaSignatureInd(YES);
+        //Authorizationa and verififcation page
+        app.setDesignateLapse(YES);
         //Agent Verification Page
         app.setAgentOtherInsPoliciesSold("HIP");
         app.setAgentPoliciesInForce("EP");
@@ -258,8 +272,8 @@ public class VirginiaIntegrationTest extends CQBaseIntegrationTest {
 
         expectedSubmissionResult.setAdjudicationStatus("A");
         expectedSubmissionResult.setStatus("C");
-        expectedSubmissionResult.setWorkQueue("UNDERWRITING");
-        expectedSubmissionResult.setWorkQueueReason("REVIEW FOR POSSIBLE ESRD");
+        expectedSubmissionResult.setWorkQueue("");
+        expectedSubmissionResult.setWorkQueueReason("");
 
         logger.info(gson.toJson(app));
 
@@ -282,9 +296,6 @@ public class VirginiaIntegrationTest extends CQBaseIntegrationTest {
         eligibilityHealthQuestionsPage.isAt();
         eligibilityHealthQuestionsPage.fillAndSubmit(app);
 
-        healthHistoryQuestionsPage.isAt();
-        healthHistoryQuestionsPage.fillAndSubmit(app);
-
         pastAndCurrentInsuranceCoveragePage.isAt();
         pastAndCurrentInsuranceCoveragePage.fillAndSubmit(app);
 
@@ -306,5 +317,3 @@ public class VirginiaIntegrationTest extends CQBaseIntegrationTest {
     }
 
 }
-
-

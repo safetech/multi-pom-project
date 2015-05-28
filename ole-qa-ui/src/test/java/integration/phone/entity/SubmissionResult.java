@@ -1,8 +1,5 @@
 package integration.phone.entity;
 
-/**
- * Created by dpfeffe1 on 5/13/15.
- */
 public class SubmissionResult {
     private String adjudicationStatus = "";
     private String status = "";
@@ -39,5 +36,18 @@ public class SubmissionResult {
 
     public void setWorkQueueReason(String workQueueReason) {
         this.workQueueReason = workQueueReason;
+    }
+
+    public void setPendingInfo(String workQueue, String workQueueReason) {
+        setAdjudicationStatus("P");
+        setStatus("C");
+        setWorkQueue(workQueue);
+        setWorkQueueReason(workQueueReason);
+
+    }
+
+    public void setAcceptedInfo() {
+        setAdjudicationStatus("A");
+        setStatus("C");
     }
 }

@@ -46,6 +46,8 @@ public class CheatPage extends FluentPage{
     }
 
     public void fillAndSubmit(CribSheet sheet) {
+        isAt();
+
         (new Select(Prefix.getElement())).selectByValue(sheet.getPrefix());
         fill(FirstName).with(sheet.getFirstName());
         fill(MI).with(sheet.getMiddleInitial());

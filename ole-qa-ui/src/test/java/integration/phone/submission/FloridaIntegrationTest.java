@@ -77,14 +77,10 @@ public class FloridaIntegrationTest extends CQBaseIntegrationTest {
         app.setCPAPartBIn6(NO);
         app.setMedicaidCovered(NO);
         app.setOtherMedplanstart("");
-        app.setOtherMedplanend("");
+        app.setOtherMedplanend(BLANK);
         app.setExistMedSupp(NO);
         app.setOtherInsCoverage(NO);
         app.setCpaSignatureInd(YES);
-        app.setAgentOtherInsPoliciesSold("HIP");
-        app.setAgentPoliciesInForce("EP");
-        app.setAgentPoliciesSoldNotInForce("EPHIP");
-        app.setAgentSignatureInd(YES);
 
         expectedSubmissionResult.setStatus("C");
         expectedSubmissionResult.setAdjudicationStatus("A");
@@ -162,10 +158,7 @@ public class FloridaIntegrationTest extends CQBaseIntegrationTest {
         app.setIntentReplace(YES);
         app.setOtherInsCoverage(NO);
         app.setCpaSignatureInd(YES);
-        app.setAgentOtherInsPoliciesSold("HIP");
-        app.setAgentPoliciesInForce("EP");
-        app.setAgentPoliciesSoldNotInForce("EPHIP");
-        app.setAgentSignatureInd(YES);
+        app.setCommonReplacementNoticeAnswersWithoutApplicantInfo();
 
         expectedSubmissionResult.setStatus("C");
         expectedSubmissionResult.setAdjudicationStatus("A");

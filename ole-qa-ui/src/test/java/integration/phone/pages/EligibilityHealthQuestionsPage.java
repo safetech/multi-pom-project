@@ -22,6 +22,9 @@ public class EligibilityHealthQuestionsPage extends WizardPage {
     }
 
     public void fillAndSubmit(Application app) {
+
+        isAt();
+
         verifyInitialStateOfElements(app);
 
         fillYesNoQuestion(ESRD_Yes, ESRD_No, app.getESRD());

@@ -16,6 +16,8 @@ public class AgentVerificationPage extends WizardPage{
 
     public void fillAndSubmit(Application app) {
 
+        isAt();
+
         fill(AgentOtherInsPoliciesSold).with(app.getAgentOtherInsPoliciesSold());
         fill(AgentPoliciesInForce).with(app.getAgentPoliciesInForce());
         fill(AgentPoliciesSoldNotInForce).with(app.getAgentPoliciesSoldNotInForce());

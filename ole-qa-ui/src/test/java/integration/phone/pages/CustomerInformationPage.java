@@ -49,6 +49,7 @@ public class CustomerInformationPage extends WizardPage{
 
     public void fillAndSubmit(Application app) {
 
+        isAt();
         verifyInitialStateOfElements(app);
 
         verifyCustomerInfo(app);

@@ -12,6 +12,7 @@ public class ReviewAndSubmitPage extends WizardPage{
 
     public void fillAndSubmit(Application app) {
 
+        isAt();
         nextButton.click();
         waitForSpinnerToFinish(20);
 

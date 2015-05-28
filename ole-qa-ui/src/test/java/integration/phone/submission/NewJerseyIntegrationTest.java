@@ -177,12 +177,12 @@ public class NewJerseyIntegrationTest extends CQBaseIntegrationTest {
 
     }
 
-    @Ignore
+    @Test
 
     public void test_newjersey_full_underwriting_without_rn() throws Exception {
 
         sheet.setRandomNameGenderAndMembershipNumber();
-        sheet.setRandomAddress("VA", "22222");
+        sheet.setRandomAddress("NJ", "08406");
         sheet.setRandomContactInfo();
         sheet.setRandomCallCenterInfo();
         sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(68));
@@ -227,14 +227,14 @@ public class NewJerseyIntegrationTest extends CQBaseIntegrationTest {
         app.setMedicaidCovered(YES);
         app.setMedicaidSupPremium(YES);
         app.setMedicaidbenefit(YES);
-        app.setExistingMedicare(YES);
-        app.setOtherMedplanstart("01/01/2000");
-        app.setOtherMedplanend("01/01/2015");
-        app.setIntentReplace(YES);
-        app.setFirstTime(YES);
-        app.setDropMedSuppForThisPlan(YES);
+        app.setExistingMedicare(NO);
+        app.setOtherMedplanstart("");
+        app.setOtherMedplanend("");
+        app.setIntentReplace("");
+        app.setFirstTime("");
+        app.setDropMedSuppForThisPlan("");
         app.setExistMedSupp(NO);
-        app.setReplaceExistingMedSup(NO);
+        app.setReplaceExistingMedSup("");
         app.setOtherInsCoverage(YES);
         app.setOtherInsCompany("Blue Cross Blue Shield");
         app.setOtherInsType("HMO");
@@ -255,7 +255,7 @@ public class NewJerseyIntegrationTest extends CQBaseIntegrationTest {
         app.setApplicantPrintedNameAdd("AppName");
         app.setApplicantAddress("AppAdd");
 
-        expectedSubmissionResult.setAdjudicationStatus("P");
+        expectedSubmissionResult.setAdjudicationStatus("A");
         expectedSubmissionResult.setStatus("C");
         expectedSubmissionResult.setWorkQueue("UNDERWRITING");
         expectedSubmissionResult.setWorkQueueReason("REVIEW FOR POSSIBLE ESRD");
@@ -293,14 +293,11 @@ public class NewJerseyIntegrationTest extends CQBaseIntegrationTest {
         agentVerificationPage.isAt();
         agentVerificationPage.fillAndSubmit(app);
 
-        ReplacementNotice034Page.isAt();
-        ReplacementNotice034Page.fillAndSubmit(app);
-
         reviewAndSubmitPage.isAt();
         reviewAndSubmitPage.fillAndSubmit(app);
 
         applicationSubmissionPage.isAt();
-        applicationSubmissionPage.isPending();
+        applicationSubmissionPage.isApproved();
 
         submissionQuery.verifySubmissionData(app, expectedSubmissionResult);
         submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);

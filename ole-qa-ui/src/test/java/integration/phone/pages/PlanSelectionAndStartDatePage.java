@@ -13,6 +13,7 @@ public class PlanSelectionAndStartDatePage extends WizardPage{
 
     public void fillAndSubmit(Application app) {
 
+        isAt();
         getPlanCodeRadio(app.getPlanCode()).click();
         getReqEffectiveDateSelect().selectByValue(app.getReqEffectiveDate());
 

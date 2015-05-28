@@ -2,6 +2,9 @@ package integration;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import integration.phone.entity.Application;
+import integration.phone.entity.CribSheet;
+import integration.phone.pages.CheatPage;
 import org.apache.commons.io.FileUtils;
 import org.fluentlenium.adapter.FluentTest;
 import org.fluentlenium.adapter.util.SharedDriver;
@@ -61,5 +64,15 @@ public class CQBaseIntegrationTest extends FluentTest {
     public void teardown(){
         executeScript("window.onbeforeunload = null;");
     }
+
+    protected void startApp(CheatPage cheatPage, Application app, CribSheet sheet) {
+
+        app.setAnswersWithSheetValues(sheet);
+        logger.info(gson.toJson(app));
+
+        goTo(cheatPage);
+        cheatPage.fillAndSubmit(sheet);
+    }
+
 
 }

@@ -16,6 +16,7 @@ public class VAAuthorizationAndVerificationPage extends WizardPage{
     FluentWebElement MedicalReleaseAuthSignatureInd;
     FluentWebElement SellingAgentSignatureInd;
 
+
     public void fillAndSubmit(Application app) {
 
         UnderstandAuth_Yes.click();
