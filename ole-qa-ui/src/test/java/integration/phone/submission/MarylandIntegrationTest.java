@@ -7,16 +7,18 @@ import integration.phone.entity.CribSheet;
 import integration.phone.entity.SubmissionResult;
 import integration.phone.pages.*;
 import integration.phone.pages.variations.authorizationandverification.NVAuthorizationAndVerificationPage;
+import integration.phone.pages.variations.pastandcurrentcoverage.MAPastAndCurrentInsuranceCoveragePage;
 import integration.phone.pages.variations.pastandcurrentcoverage.NVPastAndCurrentInsuranceCoveragePage;
 import integration.phone.pages.variations.planapplicationpage.DEandNVPlanApplicationQuestions;
 import integration.phone.pages.variations.replacementnotice.RN034Page;
 import integration.phone.queries.SubmissionQuery;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import util.DateUtils;
 
-public class NevadaIntegrationTest extends CQBaseIntegrationTest {
+public class MarylandIntegrationTest extends CQBaseIntegrationTest {
 
     @Page public CheatPage cheatPage;
     @Page public VoiceSignatureInstructionsPage voiceSignatureInstructionsPage;
@@ -26,7 +28,7 @@ public class NevadaIntegrationTest extends CQBaseIntegrationTest {
     @Page public EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
     @Page public NVPastAndCurrentInsuranceCoveragePage pastAndCurrentInsuranceCoveragePage;
     @Page public NVAuthorizationAndVerificationPage authorizationAndVerificationPage;
-    @Page public HealthHistoryQuestionsPage healthHistoryQuestionsPage;
+    @Page public MAPastAndCurrentInsuranceCoveragePage healthHistoryQuestionsPage;
     @Page public AgentVerificationPage agentVerificationPage;
     @Page public RN034Page replacementNoticePage;
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
@@ -44,13 +46,14 @@ public class NevadaIntegrationTest extends CQBaseIntegrationTest {
 
         sheet = new CribSheet(faker);
         sheet.setRandomNameGenderAndMembershipNumber();
-        sheet.setRandomAddress("NV", "89101");
+        sheet.setRandomAddress("MA", "21234");
         sheet.setRandomContactInfo();
         sheet.setRandomCallCenterInfo();
         sheet.setDpsdToFirstDayOfFutureMonth(1);
         sheet.setPlanCode("F01");
 
         app = new Application();
+
         // Customer Info Page Question
         app.setMedicareClaimNum(faker.bothify("??#########"));
         app.setPartABActiveIndicator(YES);
@@ -68,7 +71,7 @@ public class NevadaIntegrationTest extends CQBaseIntegrationTest {
     }
 
     @Test
-    public void test_nevada_health_history_underwriting_with_designeeSig_with_rn() throws Exception {
+    public void test_maryland_health_history_underwriting_with_rn() throws Exception {
 
         sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(69));
         sheet.setMedPartBdate("2012-04-01");
@@ -100,8 +103,8 @@ public class NevadaIntegrationTest extends CQBaseIntegrationTest {
         app.setFirstTime(YES);
         app.setDropMedSuppForThisPlan(YES);
         app.setExistMedSupp(YES);
-        app.setMSInsCompany("Blue Cross Blue Shield NV");
-        app.setMSPLAN("Medical Supplement NV");
+        app.setMSInsCompany("Blue Cross Blue Shield");
+        app.setMSPLAN("Medical Supplement");
         app.setReplaceExistingMedSup(YES);
         app.setOtherInsCoverage(YES);
         app.setOtherInsCompany("Blue Cross Blue Shield");
@@ -131,9 +134,6 @@ public class NevadaIntegrationTest extends CQBaseIntegrationTest {
         voiceSignatureInstructionsPage.fillAndSubmit(app);
         customerInformationPage.fillAndSubmit(app);
         planSelectionAndStartDatePage.fillAndSubmit(app);
-        planApplicationQuestionsPage.fillAndSubmit(app);
-        eligibilityHealthQuestionsPage.fillAndSubmit(app);
-        healthHistoryQuestionsPage.fillAndSubmit(app);
         pastAndCurrentInsuranceCoveragePage.fillAndSubmit(app);
         authorizationAndVerificationPage.fillAndSubmit(app);
         agentVerificationPage.fillAndSubmit(app);
@@ -148,8 +148,8 @@ public class NevadaIntegrationTest extends CQBaseIntegrationTest {
 
     }
 
-    @Test
-    public void test_nevada_eligibility_underwriting_without_designeeSig_without_rn() throws Exception {
+    @Ignore
+    public void test_maryland_eligibility_underwriting_without_rn() throws Exception {
 
         sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(68));
         sheet.setMedPartBdate("2014-01-01");
@@ -180,7 +180,7 @@ public class NevadaIntegrationTest extends CQBaseIntegrationTest {
         app.setReplaceExistingMedSup(BLANK);
         app.setOtherInsCoverage(YES);
         app.setOtherInsCompany("Blue Cross Blue Shield");
-        app.setOtherInsType("HMO");
+        app.setOtherInsType("HMO");                     
         app.setOtherInsStart("01/01/2001");
         app.setOtherInsEnd("01/01/2014");
         app.setOtherInsReplace(YES);

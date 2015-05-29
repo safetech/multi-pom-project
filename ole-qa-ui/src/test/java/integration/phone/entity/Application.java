@@ -867,6 +867,58 @@ public class Application {
     private String nervous_condition = "";
     private String AIDS = "";
     private String HIV = "";
+    private String SixMonEligEnroll = "";
+    private String SixMonTurn65Enrol = "";
+    private String SixEmpCovTerm = "";
+    private String SixMonMoveOut = "";
+    private String SixMonResident = "";
+
+
+
+
+    public String getAuxMI() {
+        return AuxMI;
+    }
+
+    public String getSixMonEligEnroll() {
+        return SixMonEligEnroll;
+    }
+
+    public void setSixMonEligEnroll(String sixMonEligEnroll) {
+        SixMonEligEnroll = sixMonEligEnroll;
+    }
+
+    public String getSixMonTurn65Enrol() {
+        return SixMonTurn65Enrol;
+    }
+
+    public void setSixMonTurn65Enrol(String sixMonTurn65Enrol) {
+        SixMonTurn65Enrol = sixMonTurn65Enrol;
+    }
+
+    public String getSixEmpCovTerm() {
+        return SixEmpCovTerm;
+    }
+
+    public void setSixEmpCovTerm(String sixEmpCovTerm) {
+        SixEmpCovTerm = sixEmpCovTerm;
+    }
+
+    public String getSixMonMoveOut() {
+        return SixMonMoveOut;
+    }
+
+    public void setSixMonMoveOut(String sixMonMoveOut) {
+        SixMonMoveOut = sixMonMoveOut;
+    }
+
+    public String getSixMonResident() {
+        return SixMonResident;
+    }
+
+    public void setSixMonResident(String sixMonResident) {
+        SixMonResident = sixMonResident;
+    }
 
     public String getESRD() {
         return ESRD;

@@ -8,7 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class PAandNJPastAndCurrentInsuranceCoveragePage extends WizardPage{
+public class MAPastAndCurrentInsuranceCoveragePage extends WizardPage{
 
     @FindBy(css = "#UnderstandPandC_1") FluentWebElement UnderstandPandC_Yes;
     @FindBy(css = "#UnderstandPandC_2") FluentWebElement UnderstandPandC_No;
@@ -19,6 +19,17 @@ public class PAandNJPastAndCurrentInsuranceCoveragePage extends WizardPage{
     @FindBy(css = "#MedicaidSupPremium_2") FluentWebElement MedicaidSupPremium_No;
     @FindBy(css = "#Medicaidbenefit_1") FluentWebElement Medicaidbenefit_Yes;
     @FindBy(css = "#Medicaidbenefit_2") FluentWebElement Medicaidbenefit_No;
+    FluentWebElement CPAMPBED;
+    @FindBy(css = "#6monEligEnroll_1") FluentWebElement SixMonEligEnroll_Yes;
+    @FindBy(css = "#6monEligEnroll_2") FluentWebElement SixMonEligEnroll_No;
+    @FindBy(css = "#6monTurn65Enroll_1") FluentWebElement SixMonTurn65Enroll_Yes;
+    @FindBy(css = "#6monTurn65Enroll_2") FluentWebElement SixMonTurn65Enroll_No;
+    @FindBy(css = "#6monEmpCovTerm_1") FluentWebElement SixEmpCovTerm_Yes;
+    @FindBy(css = "#6monEmpCovTerm_2") FluentWebElement SixEmpCovTerm_No;
+    @FindBy(css = "#6monMoveOut_1") FluentWebElement SixMonMoveOut_Yes;
+    @FindBy(css = "#6monMoveOut_2") FluentWebElement SixMonMoveOut_No;
+    @FindBy(css = "#6monResident_1") FluentWebElement SixMonResident_Yes;
+    @FindBy(css = "#6monResident_2") FluentWebElement SixMonResident_No;
 
     @FindBy(css = "#ExistingMedicare_1") FluentWebElement ExistingMedicare_Yes;
     @FindBy(css = "#ExistingMedicare_2") FluentWebElement ExistingMedicare_No;
@@ -33,6 +44,8 @@ public class PAandNJPastAndCurrentInsuranceCoveragePage extends WizardPage{
 
     @FindBy(css = "#ExistMedSupp_1") FluentWebElement ExistMedSupp_Yes;
     @FindBy(css = "#ExistMedSupp_2") FluentWebElement ExistMedSupp_No;
+    FluentWebElement MSInsCompany;
+    FluentWebElement MSPLAN;
     @FindBy(css = "#ReplaceExistingMedSup_1") FluentWebElement ReplaceExistingMedSup_Yes;
     @FindBy(css = "#ReplaceExistingMedSup_2") FluentWebElement ReplaceExistingMedSup_No;
 
@@ -46,12 +59,13 @@ public class PAandNJPastAndCurrentInsuranceCoveragePage extends WizardPage{
     @FindBy(css = "#OtherInsReplace_2") FluentWebElement OtherInsReplace_No;
     FluentWebElement CpaSignatureInd;
 
-    protected int TOTAL_POSSIBLE_QUESTION_COUNT = 36;
+    protected int TOTAL_POSSIBLE_QUESTION_COUNT = 38;
 
     public void verifyInitialStateOfElements(Application app) {
 
-        assertBlank(UnderstandPandC_Yes, UnderstandPandC_No);
+        assertHidden(CPAMPBED);
 
+            assertBlank(UnderstandPandC_Yes, UnderstandPandC_No);
         assertBlank(MedicaidCovered_Yes, MedicaidCovered_No);
         assertHidden(MedicaidSupPremium_Yes,
             MedicaidSupPremium_No,
@@ -70,7 +84,9 @@ public class PAandNJPastAndCurrentInsuranceCoveragePage extends WizardPage{
 
         assertBlank(ExistMedSupp_Yes, ExistMedSupp_No);
         assertHidden(ReplaceExistingMedSup_Yes,
-            ReplaceExistingMedSup_No);
+            ReplaceExistingMedSup_No,
+            MSInsCompany,
+            MSPLAN);
 
         assertBlank(OtherInsCoverage_Yes, OtherInsCoverage_No);
         assertHidden(OtherInsCompany,
@@ -86,7 +102,7 @@ public class PAandNJPastAndCurrentInsuranceCoveragePage extends WizardPage{
     }
 
     public void fillAndSubmit(Application app) {
-        isAt();
+
         verifyInitialStateOfElements(app);
 
         UnderstandPandC_Yes.click();
@@ -109,6 +125,8 @@ public class PAandNJPastAndCurrentInsuranceCoveragePage extends WizardPage{
         fillYesNoQuestion(ExistMedSupp_Yes, ExistMedSupp_No, app.getExistMedSupp());
         if(app.getExistMedSupp().equals("yes")){
             fillYesNoQuestion(ReplaceExistingMedSup_Yes, ReplaceExistingMedSup_No, app.getReplaceExistingMedSup());
+            fill(MSInsCompany).with(app.getMSInsCompany());
+            fill(MSPLAN).with(app.getMSPLAN());
         }
 
         fillYesNoQuestion(OtherInsCoverage_Yes, OtherInsCoverage_No, app.getOtherInsCoverage());
@@ -140,7 +158,6 @@ public class PAandNJPastAndCurrentInsuranceCoveragePage extends WizardPage{
             Medicaidbenefit_No);
         assertYesNoQuestion(MedicaidSupPremium_Yes, MedicaidSupPremium_No, app.getMedicaidCovered());
         assertYesNoQuestion(Medicaidbenefit_Yes, Medicaidbenefit_No, app.getMedicaidCovered());
-
         assertVisible(ExistingMedicare_Yes, ExistingMedicare_No);
         assertYesNoQuestion(ExistingMedicare_Yes, ExistingMedicare_No, app.getExistingMedicare());
         assertVisibleBasedUpon(app.getExistingMedicare().equals("yes"),
@@ -157,14 +174,13 @@ public class PAandNJPastAndCurrentInsuranceCoveragePage extends WizardPage{
         assertYesNoQuestion(IntentReplace_Yes, IntentReplace_No, app.getIntentReplace());
         assertYesNoQuestion(FirstTime_Yes, FirstTime_No, app.getFirstTime());
         assertYesNoQuestion(DropMedSuppForThisPlan_Yes, DropMedSuppForThisPlan_No, app.getDropMedSuppForThisPlan());
-
         assertVisible(ExistMedSupp_Yes, ExistMedSupp_No);
         assertYesNoQuestion(ExistMedSupp_Yes, ExistMedSupp_No, app.getExistMedSupp());
         assertVisibleBasedUpon(app.getExistMedSupp().equals("yes"),
             ReplaceExistingMedSup_Yes,
-            ReplaceExistingMedSup_No);
-        assertYesNoQuestion(ReplaceExistingMedSup_Yes, ReplaceExistingMedSup_No, app.getReplaceExistingMedSup());
-
+            ReplaceExistingMedSup_No,
+            MSInsCompany,
+            MSPLAN);
         assertVisible(OtherInsCoverage_Yes, OtherInsCoverage_No);
         assertYesNoQuestion(OtherInsCoverage_Yes, OtherInsCoverage_No, app.getOtherInsCoverage());
         assertVisibleBasedUpon(app.getOtherInsCoverage().equals("yes"),
