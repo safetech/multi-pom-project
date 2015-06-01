@@ -7,11 +7,10 @@ import integration.phone.entity.CribSheet;
 import integration.phone.entity.SubmissionResult;
 import integration.phone.pages.*;
 import integration.phone.pages.variations.pastandcurrentcoverage.FLPastAndCurrentInsuranceCoveragePage;
-import integration.phone.pages.variations.replacementnotice.RN034Page;
+import integration.phone.pages.variations.replacementnotice.RN034andRE073Page;
 import integration.phone.queries.SubmissionQuery;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import util.DateUtils;
 
@@ -25,7 +24,7 @@ public class FloridaIntegrationTest extends CQBaseIntegrationTest {
     @Page public FLPastAndCurrentInsuranceCoveragePage pastAndCurrentInsuranceCoveragePage;
     @Page public AuthorizationAndVerificationPage authorizationAndVerificationPage;
     @Page public AgentVerificationPage agentVerificationPage;
-    @Page public RN034Page replacementNoticePage;
+    @Page public RN034andRE073Page replacementNoticePage;
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
     @Page public ApplicationSubmissionPage applicationSubmissionPage;
 

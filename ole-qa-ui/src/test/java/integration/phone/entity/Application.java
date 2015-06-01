@@ -291,6 +291,15 @@ public class Application {
     private String EligVascular = "";
     private String CPAMPBED = "";
     private String SellingAgentSignatureInd = "";
+    private String MedSuppReplace = "";
+
+    public String getMedSuppReplace() {
+        return MedSuppReplace;
+    }
+
+    public void setMedSuppReplace(String medSuppReplace) {
+        MedSuppReplace = medSuppReplace;
+    }
 
     public String getSellingAgentSignatureInd() {
         return SellingAgentSignatureInd;

@@ -6,7 +6,7 @@ import integration.phone.pages.WizardPage;
 import org.fluentlenium.core.domain.FluentWebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class VAandNJPlanApplicationQuestions extends PlanApplicationQuestions {
+public class VA_NJ_IL_PlanApplicationQuestions extends PlanApplicationQuestions {
 
 
     protected int TOTAL_POSSIBLE_QUESTION_COUNT = 10;
@@ -50,7 +50,8 @@ public class VAandNJPlanApplicationQuestions extends PlanApplicationQuestions {
         assertYesNoQuestion(TobaccoUse_Yes, TobaccoUse_No, app.getTobaccoUse());
         assertQuestionCount(TOTAL_POSSIBLE_QUESTION_COUNT);
     }
-    public static class PAPlanApplicationQuestions extends PlanApplicationQuestions {
+
+    /* public static class PAPlanApplicationQuestions extends PlanApplicationQuestions {
 
         protected int TOTAL_POSSIBLE_QUESTION_COUNT = 10;
         @FindBy(css = "#LostCoverage_1") FluentWebElement LostCoverage_Yes;
@@ -207,5 +208,5 @@ public class VAandNJPlanApplicationQuestions extends PlanApplicationQuestions {
             assertQuestionCount(TOTAL_POSSIBLE_QUESTION_COUNT);
             clickNextAndWaitForSpinnerToFinish();
         }
-    }
+    }*/
 }

@@ -7,12 +7,11 @@ import integration.phone.entity.CribSheet;
 import integration.phone.entity.SubmissionResult;
 import integration.phone.pages.*;
 import integration.phone.pages.variations.pastandcurrentcoverage.PAandNJPastAndCurrentInsuranceCoveragePage;
-import integration.phone.pages.variations.planapplicationpage.OHPlanApplicationQuestions;
-import integration.phone.pages.variations.replacementnotice.RN034Page;
+import integration.phone.pages.variations.planapplicationpage.OHandMIPlanApplicationQuestions;
+import integration.phone.pages.variations.replacementnotice.RN034andRE073Page;
 import integration.phone.queries.SubmissionQuery;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import util.DateUtils;
 
@@ -22,13 +21,13 @@ public class OhioIntegrationTest extends CQBaseIntegrationTest {
     @Page public VoiceSignatureInstructionsPage voiceSignatureInstructionsPage;
     @Page public CustomerInformationPage customerInformationPage;
     @Page public PlanSelectionAndStartDatePage planSelectionAndStartDatePage;
-    @Page public OHPlanApplicationQuestions planApplicationQuestionsPage;
+    @Page public OHandMIPlanApplicationQuestions planApplicationQuestionsPage;
     @Page public EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
     @Page public PAandNJPastAndCurrentInsuranceCoveragePage pastAndCurrentInsuranceCoveragePage;
     @Page public AuthorizationAndVerificationPage authorizationAndVerificationPage;
     @Page public HealthHistoryQuestionsPage healthHistoryQuestionsPage;
     @Page public AgentVerificationPage agentVerificationPage;
-    @Page public RN034Page ReplacementNotice034Page;
+    @Page public RN034andRE073Page ReplacementNotice034Page;
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
     @Page public ApplicationSubmissionPage applicationSubmissionPage;
 

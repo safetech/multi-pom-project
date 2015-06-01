@@ -8,7 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class RN034Page extends WizardPage {
+public class RN034andRE073Page extends WizardPage {
 
     @FindBy(css = "#ReplacementReason_1") FluentWebElement ReplacementReason_ReplaceAdditionalBenefits;
     @FindBy(css = "#ReplacementReason_2") FluentWebElement ReplacementReason_SameBenefits;

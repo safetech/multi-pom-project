@@ -9,7 +9,7 @@ import integration.phone.pages.*;
 import integration.phone.pages.variations.healthhistoryquestions.CAHealthHistoryQuestionsPage;
 import integration.phone.pages.variations.eligibilityhealthquestions.CAEligibilityHealthQuestionsPage;
 import integration.phone.pages.variations.pastandcurrentcoverage.PAandNJPastAndCurrentInsuranceCoveragePage;
-import integration.phone.pages.variations.planapplicationpage.VAandNJPlanApplicationQuestions;
+import integration.phone.pages.variations.planapplicationpage.VA_NJ_IL_PlanApplicationQuestions;
 import integration.phone.pages.variations.replacementnotice.RN078Page;
 import integration.phone.queries.SubmissionQuery;
 import org.fluentlenium.core.annotation.Page;
@@ -23,7 +23,7 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
     @Page public VoiceSignatureInstructionsPage voiceSignatureInstructionsPage;
     @Page public CustomerInformationPage customerInformationPage;
     @Page public PlanSelectionAndStartDatePage planSelectionAndStartDatePage;
-    @Page public VAandNJPlanApplicationQuestions.CAPlanApplicationQuestions planApplicationQuestionsPage;
+    @Page public VA_NJ_IL_PlanApplicationQuestions planApplicationQuestionsPage;
     @Page public CAEligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
     @Page public CAHealthHistoryQuestionsPage healthHistoryQuestionsPage;
     @Page public PAandNJPastAndCurrentInsuranceCoveragePage pastAndCurrentInsuranceCoveragePage;

@@ -7,16 +7,14 @@ import integration.phone.entity.CribSheet;
 import integration.phone.entity.SubmissionResult;
 import integration.phone.pages.*;
 import integration.phone.pages.variations.authorizationandverification.GAAuthorizationAndVerificationPage;
-import integration.phone.pages.variations.pastandcurrentcoverage.GAPastAndCurrentInsuranceCoveragePage;
+import integration.phone.pages.variations.pastandcurrentcoverage.GAandMIPastAndCurrentInsuranceCoveragePage;
 import integration.phone.pages.variations.planapplicationpage.DEandNVPlanApplicationQuestions;
-import integration.phone.pages.variations.replacementnotice.RN034Page;
+import integration.phone.pages.variations.replacementnotice.RN034andRE073Page;
 import integration.phone.queries.SubmissionQuery;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
 import util.DateUtils;
-
-import java.util.concurrent.TimeUnit;
 
 public class GeorgiaIntegrationTest extends CQBaseIntegrationTest {
 
@@ -26,11 +24,11 @@ public class GeorgiaIntegrationTest extends CQBaseIntegrationTest {
     @Page public PlanSelectionAndStartDatePage planSelectionAndStartDatePage;
     @Page public DEandNVPlanApplicationQuestions planApplicationQuestionsPage;
     @Page public EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
-    @Page public GAPastAndCurrentInsuranceCoveragePage pastAndCurrentInsuranceCoveragePage;
+    @Page public GAandMIPastAndCurrentInsuranceCoveragePage pastAndCurrentInsuranceCoveragePage;
     @Page public GAAuthorizationAndVerificationPage authorizationAndVerificationPage;
     @Page public HealthHistoryQuestionsPage healthHistoryQuestionsPage;
     @Page public AgentVerificationPage agentVerificationPage;
-    @Page public RN034Page replacementNoticePage;
+    @Page public RN034andRE073Page replacementNoticePage;
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
     @Page public ApplicationSubmissionPage applicationSubmissionPage;
 

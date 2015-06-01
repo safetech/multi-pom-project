@@ -6,8 +6,8 @@ import integration.phone.entity.Application;
 import integration.phone.entity.CribSheet;
 import integration.phone.entity.SubmissionResult;
 import integration.phone.pages.*;
-import integration.phone.pages.variations.pastandcurrentcoverage.PAandNJPastAndCurrentInsuranceCoveragePage;
-import integration.phone.pages.variations.planapplicationpage.VA_NJ_IL_PlanApplicationQuestions;
+import integration.phone.pages.variations.pastandcurrentcoverage.GAandMIPastAndCurrentInsuranceCoveragePage;
+import integration.phone.pages.variations.planapplicationpage.OHandMIPlanApplicationQuestions;
 import integration.phone.pages.variations.replacementnotice.RN034andRE073Page;
 import integration.phone.queries.SubmissionQuery;
 import org.fluentlenium.core.annotation.Page;
@@ -15,15 +15,15 @@ import org.junit.Before;
 import org.junit.Test;
 import util.DateUtils;
 
-public class NewJerseyIntegrationTest extends CQBaseIntegrationTest {
+public class MichiganIntegrationTest extends CQBaseIntegrationTest {
 
     @Page public CheatPage cheatPage;
     @Page public VoiceSignatureInstructionsPage voiceSignatureInstructionsPage;
     @Page public CustomerInformationPage customerInformationPage;
     @Page public PlanSelectionAndStartDatePage planSelectionAndStartDatePage;
-    @Page public VA_NJ_IL_PlanApplicationQuestions planApplicationQuestionsPage;
+    @Page public OHandMIPlanApplicationQuestions planApplicationQuestionsPage;
     @Page public EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
-    @Page public PAandNJPastAndCurrentInsuranceCoveragePage pastAndCurrentInsuranceCoveragePage;
+    @Page public GAandMIPastAndCurrentInsuranceCoveragePage pastAndCurrentInsuranceCoveragePage;
     @Page public AuthorizationAndVerificationPage authorizationAndVerificationPage;
     @Page public HealthHistoryQuestionsPage healthHistoryQuestionsPage;
     @Page public AgentVerificationPage agentVerificationPage;
@@ -42,13 +42,30 @@ public class NewJerseyIntegrationTest extends CQBaseIntegrationTest {
         faker = new Faker();
         sheet = new CribSheet(faker);
         expectedSubmissionResult = new SubmissionResult();
+
+        app = new Application();
+
+        // Customer Info Page Question
+        app.setMedicareClaimNum(faker.bothify("??#########"));
+        app.setPartABActiveIndicator(YES);
+        app.setPlanCode("F");
+        app.setReqEffectiveDate(DateUtils.getFirstDayOfFutureMonth(1));
+
+        //Eligibility Questions
+        app.setESRD(NO);
+        app.setSurgeryNeeded(NO);
+
+        //Agent Verification Page
+        app.setCommonAgentVerificationAnswers();
+
+        expectedSubmissionResult = new SubmissionResult();
     }
 
     @Test
-    public void test_newjersey_full_underwriting_with_rn() throws Exception {
+    public void test_michigan_full_underwriting_with_rn() throws Exception {
 
         sheet.setRandomNameGenderAndMembershipNumber();
-        sheet.setRandomAddress("NJ", "08406");
+        sheet.setRandomAddress("MI", "48001");
         sheet.setRandomContactInfo();
         sheet.setRandomCallCenterInfo();
         sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(99));
@@ -100,8 +117,8 @@ public class NewJerseyIntegrationTest extends CQBaseIntegrationTest {
         app.setFirstTime(YES);
         app.setDropMedSuppForThisPlan(YES);
         app.setExistMedSupp(YES);
-        app.setMSInsCompany("Blue Cross Blue Shield VA");
-        app.setMSPLAN("Medical Supplement VA");
+        app.setMSInsCompany("Blue Cross Blue Shield");
+        app.setMSPLAN("Medical Supplement");
         app.setReplaceExistingMedSup(YES);
         app.setOtherInsCoverage(YES);
         app.setOtherInsCompany("Blue Cross Blue Shield");
@@ -134,40 +151,19 @@ public class NewJerseyIntegrationTest extends CQBaseIntegrationTest {
         cheatPage.isAt();
         cheatPage.fillAndSubmit(sheet);
 
-        voiceSignatureInstructionsPage.isAt();
+
         voiceSignatureInstructionsPage.fillAndSubmit(app);
-
-        customerInformationPage.isAt();
         customerInformationPage.fillAndSubmit(app);
-
-        planSelectionAndStartDatePage.isAt();
         planSelectionAndStartDatePage.fillAndSubmit(app);
         // The above pages will always appear
-
-        planApplicationQuestionsPage.isAt();
         planApplicationQuestionsPage.fillAndSubmit(app);
-
-        eligibilityHealthQuestionsPage.isAt();
         eligibilityHealthQuestionsPage.fillAndSubmit(app);
-
-        healthHistoryQuestionsPage.isAt();
         healthHistoryQuestionsPage.fillAndSubmit(app);
-
-        pastAndCurrentInsuranceCoveragePage.isAt();
         pastAndCurrentInsuranceCoveragePage.fillAndSubmit(app);
-
-        authorizationAndVerificationPage.isAt();
         authorizationAndVerificationPage.fillAndSubmit(app);
-
-        agentVerificationPage.isAt();
         agentVerificationPage.fillAndSubmit(app);
-
-        ReplacementNotice034Page.isAt();
         ReplacementNotice034Page.fillAndSubmit(app);
-
-        reviewAndSubmitPage.isAt();
         reviewAndSubmitPage.fillAndSubmit(app);
-
         applicationSubmissionPage.isAt();
         applicationSubmissionPage.isPending();
 
@@ -177,15 +173,14 @@ public class NewJerseyIntegrationTest extends CQBaseIntegrationTest {
     }
 
     @Test
-
-    public void test_newjersey_full_underwriting_without_rn() throws Exception {
+    public void test_michigan_full_underwriting_without_rn() throws Exception {
 
         sheet.setRandomNameGenderAndMembershipNumber();
-        sheet.setRandomAddress("NJ", "08406");
+        sheet.setRandomAddress("MI", "48001");
         sheet.setRandomContactInfo();
         sheet.setRandomCallCenterInfo();
-        sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(68));
-        sheet.setMedPartBdate("2011-01-01");
+        sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(66));
+        sheet.setMedPartBdate("01/01/2011");
         sheet.setDpsdToFirstDayOfFutureMonth(1);
         sheet.setPlanCode("F01");
 
@@ -267,34 +262,17 @@ public class NewJerseyIntegrationTest extends CQBaseIntegrationTest {
 
         voiceSignatureInstructionsPage.isAt();
         voiceSignatureInstructionsPage.fillAndSubmit(app);
-
-        customerInformationPage.isAt();
         customerInformationPage.fillAndSubmit(app);
-
-        planSelectionAndStartDatePage.isAt();
+        // The above pages will always appear
         planSelectionAndStartDatePage.fillAndSubmit(app);
-
-        planApplicationQuestionsPage.isAt();
         planApplicationQuestionsPage.fillAndSubmit(app);
-
-        eligibilityHealthQuestionsPage.isAt();
         eligibilityHealthQuestionsPage.fillAndSubmit(app);
-
-        healthHistoryQuestionsPage.isAt();
-        healthHistoryQuestionsPage.fillAndSubmit(app);
-
-        pastAndCurrentInsuranceCoveragePage.isAt();
         pastAndCurrentInsuranceCoveragePage.fillAndSubmit(app);
-
         authorizationAndVerificationPage.isAt();
         authorizationAndVerificationPage.fillAndSubmit(app);
-
         agentVerificationPage.isAt();
         agentVerificationPage.fillAndSubmit(app);
-
-        reviewAndSubmitPage.isAt();
         reviewAndSubmitPage.fillAndSubmit(app);
-
         applicationSubmissionPage.isAt();
         applicationSubmissionPage.isApproved();
 

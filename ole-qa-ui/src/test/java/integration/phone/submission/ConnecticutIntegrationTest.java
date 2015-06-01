@@ -7,7 +7,7 @@ import integration.phone.entity.CribSheet;
 import integration.phone.entity.SubmissionResult;
 import integration.phone.pages.*;
 import integration.phone.pages.variations.pastandcurrentcoverage.CTPastAndCurrentInsuranceCoveragePage;
-import integration.phone.pages.variations.replacementnotice.RN034Page;
+import integration.phone.pages.variations.replacementnotice.RN034andRE073Page;
 import integration.phone.queries.SubmissionQuery;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
@@ -24,7 +24,7 @@ public class ConnecticutIntegrationTest extends CQBaseIntegrationTest {
     @Page public CTPastAndCurrentInsuranceCoveragePage pastAndCurrentInsuranceCoveragePage;
     @Page public AuthorizationAndVerificationPage authorizationAndVerificationPage;
     @Page public AgentVerificationPage agentVerificationPage;
-    @Page public RN034Page ReplacementNotice034Page;
+    @Page public RN034andRE073Page ReplacementNotice034Page;
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
     @Page public ApplicationSubmissionPage applicationSubmissionPage;
 

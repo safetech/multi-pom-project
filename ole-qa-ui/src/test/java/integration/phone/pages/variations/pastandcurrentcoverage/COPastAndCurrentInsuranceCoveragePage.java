@@ -8,7 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class GAPastAndCurrentInsuranceCoveragePage extends WizardPage{
+public class COPastAndCurrentInsuranceCoveragePage extends WizardPage{
 
     @FindBy(css = "#UnderstandPandC_1") FluentWebElement UnderstandPandC_Yes;
     @FindBy(css = "#UnderstandPandC_2") FluentWebElement UnderstandPandC_No;
@@ -38,7 +38,6 @@ public class GAPastAndCurrentInsuranceCoveragePage extends WizardPage{
 
     @FindBy(css = "#ExistMedSupp_1") FluentWebElement ExistMedSupp_Yes;
     @FindBy(css = "#ExistMedSupp_2") FluentWebElement ExistMedSupp_No;
-
     @FindBy(css = "#ReplaceExistingMedSup_1") FluentWebElement ReplaceExistingMedSup_Yes;
     @FindBy(css = "#ReplaceExistingMedSup_2") FluentWebElement ReplaceExistingMedSup_No;
 
@@ -52,11 +51,15 @@ public class GAPastAndCurrentInsuranceCoveragePage extends WizardPage{
     @FindBy(css = "#OtherInsReplace_2") FluentWebElement OtherInsReplace_No;
     FluentWebElement CpaSignatureInd;
 
-    protected int TOTAL_POSSIBLE_QUESTION_COUNT = 31;
+    protected int TOTAL_POSSIBLE_QUESTION_COUNT = 36;
 
     public void verifyInitialStateOfElements(Application app) {
 
-        assertBlank(UnderstandPandC_Yes, UnderstandPandC_No);
+        assertYesNoQuestion(CPATurned65_Yes, CPATurned65_No, app.getCPATurned65());
+        assertYesNoQuestion(CPAPartBIn6_Yes, CPAPartBIn6_No, app.getCPAPartBIn6());
+        assertHidden(CPAMPBED);
+
+            assertBlank(UnderstandPandC_Yes, UnderstandPandC_No);
         assertBlank(MedicaidCovered_Yes, MedicaidCovered_No);
         assertHidden(MedicaidSupPremium_Yes,
             MedicaidSupPremium_No,
@@ -91,6 +94,8 @@ public class GAPastAndCurrentInsuranceCoveragePage extends WizardPage{
     }
 
     public void fillAndSubmit(Application app) {
+
+        isAt();
 
         verifyInitialStateOfElements(app);
 

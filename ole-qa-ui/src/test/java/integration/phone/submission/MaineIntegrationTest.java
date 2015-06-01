@@ -9,7 +9,7 @@ import integration.phone.pages.*;
 import integration.phone.pages.variations.authorizationandverification.NVAuthorizationAndVerificationPage;
 import integration.phone.pages.variations.pastandcurrentcoverage.NVPastAndCurrentInsuranceCoveragePage;
 import integration.phone.pages.variations.planapplicationpage.MEPlanApplicationQuestions;
-import integration.phone.pages.variations.replacementnotice.RN034Page;
+import integration.phone.pages.variations.replacementnotice.RN034andRE073Page;
 import integration.phone.queries.SubmissionQuery;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
@@ -27,7 +27,7 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
     @Page public NVPastAndCurrentInsuranceCoveragePage pastAndCurrentInsuranceCoveragePage;
     @Page public NVAuthorizationAndVerificationPage authorizationAndVerificationPage;
     @Page public AgentVerificationPage agentVerificationPage;
-    @Page public RN034Page replacementNoticePage;
+    @Page public RN034andRE073Page replacementNoticePage;
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
     @Page public ApplicationSubmissionPage applicationSubmissionPage;
 

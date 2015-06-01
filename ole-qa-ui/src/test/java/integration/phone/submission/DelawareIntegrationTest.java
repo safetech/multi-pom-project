@@ -9,7 +9,7 @@ import integration.phone.pages.*;
 import integration.phone.pages.variations.pastandcurrentcoverage.PAandNJPastAndCurrentInsuranceCoveragePage;
 import integration.phone.pages.variations.planapplicationpage.DEGuranteedIssuePlanApplicationQuestions;
 import integration.phone.pages.variations.planapplicationpage.DEandNVPlanApplicationQuestions;
-import integration.phone.pages.variations.replacementnotice.RN034Page;
+import integration.phone.pages.variations.replacementnotice.RN034andRE073Page;
 import integration.phone.queries.SubmissionQuery;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
@@ -29,7 +29,7 @@ public class DelawareIntegrationTest extends CQBaseIntegrationTest {
     @Page public AuthorizationAndVerificationPage authorizationAndVerificationPage;
     @Page public HealthHistoryQuestionsPage healthHistoryQuestionsPage;
     @Page public AgentVerificationPage agentVerificationPage;
-    @Page public RN034Page replacementNoticePage;
+    @Page public RN034andRE073Page replacementNoticePage;
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
     @Page public ApplicationSubmissionPage applicationSubmissionPage;
 

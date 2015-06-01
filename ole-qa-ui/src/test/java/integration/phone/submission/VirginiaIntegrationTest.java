@@ -8,12 +8,11 @@ import integration.phone.entity.SubmissionResult;
 import integration.phone.pages.*;
 import integration.phone.pages.variations.authorizationandverification.VAAuthorizationAndVerificationPage;
 import integration.phone.pages.variations.pastandcurrentcoverage.VAPastAndCurrentInsuranceCoveragePage;
-import integration.phone.pages.variations.planapplicationpage.VAandNJPlanApplicationQuestions;
-import integration.phone.pages.variations.replacementnotice.RN034Page;
+import integration.phone.pages.variations.planapplicationpage.VA_NJ_IL_PlanApplicationQuestions;
+import integration.phone.pages.variations.replacementnotice.RN034andRE073Page;
 import integration.phone.queries.SubmissionQuery;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import util.DateUtils;
 
@@ -23,13 +22,13 @@ public class VirginiaIntegrationTest extends CQBaseIntegrationTest {
     @Page public VoiceSignatureInstructionsPage voiceSignatureInstructionsPage;
     @Page public CustomerInformationPage customerInformationPage;
     @Page public PlanSelectionAndStartDatePage planSelectionAndStartDatePage;
-    @Page public VAandNJPlanApplicationQuestions planApplicationQuestionsPage;
+    @Page public VA_NJ_IL_PlanApplicationQuestions planApplicationQuestionsPage;
     @Page public EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
     @Page public VAPastAndCurrentInsuranceCoveragePage pastAndCurrentInsuranceCoveragePage;
     @Page public VAAuthorizationAndVerificationPage authorizationAndVerificationPage;
     @Page public HealthHistoryQuestionsPage healthHistoryQuestionsPage;
     @Page public AgentVerificationPage agentVerificationPage;
-    @Page public RN034Page ReplacementNotice034Page;
+    @Page public RN034andRE073Page ReplacementNotice034Page;
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
     @Page public ApplicationSubmissionPage applicationSubmissionPage;
 

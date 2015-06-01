@@ -6,9 +6,10 @@ import integration.phone.entity.Application;
 import integration.phone.entity.CribSheet;
 import integration.phone.entity.SubmissionResult;
 import integration.phone.pages.*;
+import integration.phone.pages.variations.pastandcurrentcoverage.CTPastAndCurrentInsuranceCoveragePage;
 import integration.phone.pages.variations.pastandcurrentcoverage.PAandNJPastAndCurrentInsuranceCoveragePage;
 import integration.phone.pages.variations.planapplicationpage.GuranteedIssuePlanApplicationQuestions;
-import integration.phone.pages.variations.planapplicationpage.VAandNJPlanApplicationQuestions;
+import integration.phone.pages.variations.planapplicationpage.VA_NJ_IL_PlanApplicationQuestions;
 import integration.phone.pages.variations.replacementnotice.RN078Page;
 import integration.phone.queries.SubmissionQuery;
 import org.fluentlenium.core.annotation.Page;
@@ -22,7 +23,7 @@ public class PennsylvaniaIntegrationTest extends CQBaseIntegrationTest {
     @Page public VoiceSignatureInstructionsPage voiceSignatureInstructionsPage;
     @Page public CustomerInformationPage customerInformationPage;
     @Page public PlanSelectionAndStartDatePage planSelectionAndStartDatePage;
-    @Page public VAandNJPlanApplicationQuestions planApplicationQuestionsPage;
+    @Page public VA_NJ_IL_PlanApplicationQuestions planApplicationQuestionsPage;
     @Page public GuranteedIssuePlanApplicationQuestions GIplanApplicationQuestionsPage;
     @Page public EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
     @Page public PAandNJPastAndCurrentInsuranceCoveragePage pastAndCurrentInsuranceCoveragePage;
@@ -248,10 +249,10 @@ public class PennsylvaniaIntegrationTest extends CQBaseIntegrationTest {
         app.setApplicantPrintedNameAdd("AppName");
         app.setApplicantAddress("AppAdd");
 
-        expectedSubmissionResult.setAdjudicationStatus("P");
+        expectedSubmissionResult.setAdjudicationStatus("A");
         expectedSubmissionResult.setStatus("C");
-        expectedSubmissionResult.setWorkQueue("UNDERWRITING");
-        expectedSubmissionResult.setWorkQueueReason("REVIEW FOR POSSIBLE ESRD");
+        expectedSubmissionResult.setWorkQueue("");
+        expectedSubmissionResult.setWorkQueueReason("");
 
         logger.info(gson.toJson(app));
 
@@ -284,7 +285,7 @@ public class PennsylvaniaIntegrationTest extends CQBaseIntegrationTest {
         reviewAndSubmitPage.fillAndSubmit(app);
 
         applicationSubmissionPage.isAt();
-        applicationSubmissionPage.isPending();
+        applicationSubmissionPage.isApproved();
 
         submissionQuery.verifySubmissionData(app, expectedSubmissionResult);
         submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
