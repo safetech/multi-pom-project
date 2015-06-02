@@ -27,7 +27,6 @@ public class WAPlanApplicationQuestions extends PlanApplicationQuestions {
             assertYesNoQuestion(PartBIn6GA_Yes, PartBIn6GA_No, app.getPartBIn6GA());
             assertYesNoQuestion(PlanEffIn6OfEligible_Yes, PlanEffIn6OfEligible_No, app.getPlanEffIn6OfEligible());
             assertBlank(LostCoverage_Yes, LostCoverage_No);
-
             assertBlank(MedSuppReplace_Yes, MedSuppReplace_No);
             assertQuestionCount(TOTAL_POSSIBLE_QUESTION_COUNT);
         }

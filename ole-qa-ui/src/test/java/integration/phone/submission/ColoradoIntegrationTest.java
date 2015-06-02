@@ -7,10 +7,7 @@ import integration.phone.entity.CribSheet;
 import integration.phone.entity.SubmissionResult;
 import integration.phone.pages.*;
 import integration.phone.pages.variations.pastandcurrentcoverage.COPastAndCurrentInsuranceCoveragePage;
-import integration.phone.pages.variations.pastandcurrentcoverage.NVPastAndCurrentInsuranceCoveragePage;
-import integration.phone.pages.variations.pastandcurrentcoverage.PAandNJPastAndCurrentInsuranceCoveragePage;
 import integration.phone.pages.variations.planapplicationpage.OHandMIPlanApplicationQuestions;
-import integration.phone.pages.variations.planapplicationpage.VA_NJ_IL_PlanApplicationQuestions;
 import integration.phone.pages.variations.replacementnotice.RN034andRE073Page;
 import integration.phone.queries.SubmissionQuery;
 import org.fluentlenium.core.annotation.Page;
@@ -118,6 +115,8 @@ public class ColoradoIntegrationTest extends CQBaseIntegrationTest {
         app.setIntentReplace(YES);
         app.setFirstTime(YES);
         app.setDropMedSuppForThisPlan(YES);
+        app.setInvolTerm(YES);
+        app.setOtherInsTerm(YES);
         app.setExistMedSupp(YES);
         app.setMSInsCompany("Blue Cross Blue Shield VA");
         app.setMSPLAN("Medical Supplement VA");
@@ -218,6 +217,8 @@ public class ColoradoIntegrationTest extends CQBaseIntegrationTest {
         app.setIntentReplace("");
         app.setFirstTime("");
         app.setDropMedSuppForThisPlan("");
+        app.setInvolTerm(NO);
+        app.setOtherInsTerm(NO);
         app.setExistMedSupp(NO);
         app.setReplaceExistingMedSup("");
         app.setOtherInsCoverage(YES);

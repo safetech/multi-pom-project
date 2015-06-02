@@ -8,7 +8,7 @@ import integration.phone.entity.SubmissionResult;
 import integration.phone.pages.*;
 import integration.phone.pages.variations.authorizationandverification.GAAuthorizationAndVerificationPage;
 import integration.phone.pages.variations.pastandcurrentcoverage.GAandMIPastAndCurrentInsuranceCoveragePage;
-import integration.phone.pages.variations.planapplicationpage.DEandNVPlanApplicationQuestions;
+import integration.phone.pages.variations.planapplicationpage.DE_NV_IN_PlanApplicationQuestions;
 import integration.phone.pages.variations.replacementnotice.RN034andRE073Page;
 import integration.phone.queries.SubmissionQuery;
 import org.fluentlenium.core.annotation.Page;
@@ -22,7 +22,7 @@ public class GeorgiaIntegrationTest extends CQBaseIntegrationTest {
     @Page public VoiceSignatureInstructionsPage voiceSignatureInstructionsPage;
     @Page public CustomerInformationPage customerInformationPage;
     @Page public PlanSelectionAndStartDatePage planSelectionAndStartDatePage;
-    @Page public DEandNVPlanApplicationQuestions planApplicationQuestionsPage;
+    @Page public DE_NV_IN_PlanApplicationQuestions planApplicationQuestionsPage;
     @Page public EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
     @Page public GAandMIPastAndCurrentInsuranceCoveragePage pastAndCurrentInsuranceCoveragePage;
     @Page public GAAuthorizationAndVerificationPage authorizationAndVerificationPage;

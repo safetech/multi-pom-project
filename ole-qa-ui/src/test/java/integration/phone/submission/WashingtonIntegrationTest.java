@@ -37,7 +37,6 @@ public class WashingtonIntegrationTest extends CQBaseIntegrationTest {
     private SubmissionResult expectedSubmissionResult;
 
     @Before
-
     public void setup() {
         submissionQuery = new SubmissionQuery();
         faker = new Faker();

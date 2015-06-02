@@ -6,30 +6,29 @@ import integration.phone.entity.Application;
 import integration.phone.entity.CribSheet;
 import integration.phone.entity.SubmissionResult;
 import integration.phone.pages.*;
+import integration.phone.pages.variations.replacementnotice.RN034andRE073Page;
+import integration.phone.pages.variations.planapplicationpage.INPlanApplicationQuestions;
 import integration.phone.pages.variations.pastandcurrentcoverage.PA_NJ_IN_PastAndCurrentInsuranceCoveragePage;
-import integration.phone.pages.variations.planapplicationpage.GuranteedIssuePlanApplicationQuestions;
-import integration.phone.pages.variations.planapplicationpage.VA_NJ_IL_PlanApplicationQuestions;
-import integration.phone.pages.variations.replacementnotice.RN078Page;
 import integration.phone.queries.SubmissionQuery;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
 import util.DateUtils;
 
-public class PennsylvaniaIntegrationTest extends CQBaseIntegrationTest {
+
+public class IndianaIntegrationTest extends CQBaseIntegrationTest {
 
     @Page public CheatPage cheatPage;
     @Page public VoiceSignatureInstructionsPage voiceSignatureInstructionsPage;
     @Page public CustomerInformationPage customerInformationPage;
     @Page public PlanSelectionAndStartDatePage planSelectionAndStartDatePage;
-    @Page public VA_NJ_IL_PlanApplicationQuestions planApplicationQuestionsPage;
-    @Page public GuranteedIssuePlanApplicationQuestions GIplanApplicationQuestionsPage;
+    @Page public INPlanApplicationQuestions planApplicationQuestionsPage;
     @Page public EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
     @Page public PA_NJ_IN_PastAndCurrentInsuranceCoveragePage pastAndCurrentInsuranceCoveragePage;
     @Page public AuthorizationAndVerificationPage authorizationAndVerificationPage;
     @Page public HealthHistoryQuestionsPage healthHistoryQuestionsPage;
     @Page public AgentVerificationPage agentVerificationPage;
-    @Page public RN078Page replacementNoticePage;
+    @Page public RN034andRE073Page ReplacementNotice034Page;
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
     @Page public ApplicationSubmissionPage applicationSubmissionPage;
 
@@ -42,54 +41,57 @@ public class PennsylvaniaIntegrationTest extends CQBaseIntegrationTest {
     public void setup() {
         submissionQuery = new SubmissionQuery();
         faker = new Faker();
+
         sheet = new CribSheet(faker);
+        sheet.setRandomNameGenderAndMembershipNumber();
+        sheet.setRandomAddress("IN", "46001");
+        sheet.setRandomContactInfo();
+        sheet.setRandomCallCenterInfo();
+        sheet.setDpsdToFirstDayOfFutureMonth(1);
+        sheet.setPlanCode("F01");
+
+        app = new Application();
+        // Customer Info Page Question
+        app.setMedicareClaimNum(faker.bothify("??#########"));
+        app.setPartABActiveIndicator(YES);
+        app.setPlanCode("F");
+        app.setReqEffectiveDate(DateUtils.getFirstDayOfFutureMonth(1));
+
+        //Eligibility Questions
+        app.setESRD(NO);
+        app.setSurgeryNeeded(NO);
+
+        //Agent Verification Page
+        app.setCommonAgentVerificationAnswers();
+
         expectedSubmissionResult = new SubmissionResult();
     }
 
     @Test
-    public void test_pennsylvania_health_history_underwriting_with_rn() throws Exception {
+    public void test_indiana_full_underwriting_with_rn() throws Exception {
 
-        sheet.setRandomNameGenderAndMembershipNumber();
-        sheet.setRandomAddress("PA", "19002");
-        sheet.setRandomContactInfo();
-        sheet.setRandomCallCenterInfo();
         sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(69));
-        sheet.setMedPartBdate("2012-04-01");
-        sheet.setDpsdToFirstDayOfFutureMonth(1);
-        sheet.setPlanCode("F01");
+        sheet.setMedPartBdate("2010-10-01");
 
-        Application app = new Application(sheet);
+        //Customer Information
+        app.setMPAED("01/01/2011");
+        app.setMPBED("10/01/2010");
 
-        app.setMedicareClaimNum(faker.bothify("??#########"));
-        app.setMPAED("01/01/1999");
-        app.setMPBED("04/01/2012");
-        app.setPartABActiveIndicator(YES);
-        app.setPlanCode("F");
-        app.setReqEffectiveDate(DateUtils.getFirstDayOfFutureMonth(1));
         //Plan Eligibility
         app.setTurned65In6GA(NO); //TODO: Replace these hard coded values with helper function that will determine answer based upon DOB
         app.setPartBIn6GA(NO); //TODO: Replace these hard coded values with helper function that will determine answer based upon MPBED
-        app.setPlanEffIn6OfEligible(NO);  //TODO: Replace these hard coded values with helper function that will determine answer based upon DOB & MPBED
+        app.setPlanEffIn6OfEligible(NO); //TODO: Replace these hard coded values with helper function that will determine answer based upon DOB & MPBED
         app.setLostCoverage(NO);
-        app.setTobaccoUse(NO);
+        app.setTobaccoUse(YES);
+        //Plan application Questions
+        app.setMedSuppReplace(NO);
         //Eligibility Questions
         app.setESRD(NO);
         app.setSurgeryNeeded(NO);
         //Health History
-        app.setEmphysema(YES);
-        app.setOthercancer(YES);
-        app.setPolycystic(YES);
-        app.setCirrhosis(YES);
-        app.setBonemarrow(YES);
-        app.setPancreatitis(YES);
-        app.setAmputation(YES);
-        app.setAlcohol(YES);
-        app.setParaplegia(YES);
-        app.setBipolar(YES);
-        app.setMacular(YES);
-        app.setAlzheimers(YES);
-        app.setHIV(YES);
         //Past And Current Coverage
+        app.setCPATurned65(NO);
+        app.setCPAPartBIn6(NO);
         app.setMedicaidCovered(YES);
         app.setMedicaidSupPremium(YES);
         app.setMedicaidbenefit(YES);
@@ -100,6 +102,8 @@ public class PennsylvaniaIntegrationTest extends CQBaseIntegrationTest {
         app.setFirstTime(YES);
         app.setDropMedSuppForThisPlan(YES);
         app.setExistMedSupp(YES);
+        app.setMSInsCompany("Blue Cross Blue Shield");
+        app.setMSPLAN("Medical Supplement");
         app.setReplaceExistingMedSup(YES);
         app.setOtherInsCoverage(YES);
         app.setOtherInsCompany("Blue Cross Blue Shield");
@@ -123,100 +127,57 @@ public class PennsylvaniaIntegrationTest extends CQBaseIntegrationTest {
 
         expectedSubmissionResult.setAdjudicationStatus("P");
         expectedSubmissionResult.setStatus("C");
-        expectedSubmissionResult.setWorkQueue("UNDERWRITING");
-        expectedSubmissionResult.setWorkQueueReason("REVIEW FOR POSSIBLE ESRD");
+        expectedSubmissionResult.setWorkQueue("ENROLLMENT CPA REVIEW");
+        expectedSubmissionResult.setWorkQueueReason("CPA REVIEW REQUIRED");
 
         logger.info(gson.toJson(app));
 
-        goTo(cheatPage);
-        cheatPage.isAt();
-        cheatPage.fillAndSubmit(sheet);
+        startApp(cheatPage, app, sheet);
 
-        voiceSignatureInstructionsPage.isAt();
         voiceSignatureInstructionsPage.fillAndSubmit(app);
-
-        customerInformationPage.isAt();
         customerInformationPage.fillAndSubmit(app);
-
-        planSelectionAndStartDatePage.isAt();
         planSelectionAndStartDatePage.fillAndSubmit(app);
-
-        planApplicationQuestionsPage.isAt();
+        // The above pages will always appear
         planApplicationQuestionsPage.fillAndSubmit(app);
-
-        eligibilityHealthQuestionsPage.isAt();
         eligibilityHealthQuestionsPage.fillAndSubmit(app);
-
-        healthHistoryQuestionsPage.isAt();
         healthHistoryQuestionsPage.fillAndSubmit(app);
-
-        pastAndCurrentInsuranceCoveragePage.isAt();
         pastAndCurrentInsuranceCoveragePage.fillAndSubmit(app);
-
-        authorizationAndVerificationPage.isAt();
         authorizationAndVerificationPage.fillAndSubmit(app);
-
-        agentVerificationPage.isAt();
         agentVerificationPage.fillAndSubmit(app);
-
-        replacementNoticePage.isAt();
-        replacementNoticePage.fillAndSubmit(app);
-
-        reviewAndSubmitPage.isAt();
+        ReplacementNotice034Page.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
-
         applicationSubmissionPage.isAt();
         applicationSubmissionPage.isPending();
 
         submissionQuery.verifySubmissionData(app, expectedSubmissionResult);
         submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
-
     }
 
+
     @Test
-    public void test_pennsylvania_eligibility_underwriting_without_rn() throws Exception {
+    public void test_indiana_full_underwriting_without_rn() throws Exception {
 
-        sheet.setRandomNameGenderAndMembershipNumber();
-        sheet.setRandomAddress("PA", "19002");
-        sheet.setRandomContactInfo();
-        sheet.setRandomCallCenterInfo();
         sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(65));
-        sheet.setMedPartBdate("2015-03-01");
-        sheet.setDpsdToFirstDayOfFutureMonth(1);
-        sheet.setPlanCode("F01");
+        sheet.setMedPartBdate("2015-05-01");
 
-        Application app = new Application(sheet);
-
-        app.setMedicareClaimNum(faker.bothify("??#########"));
-        app.setMPAED("01/01/1999");
-        app.setMPBED("03/01/2015");
-        app.setPartABActiveIndicator(YES);
-        app.setPlanCode("F");
-        app.setReqEffectiveDate(DateUtils.getFirstDayOfFutureMonth(1));
+        //Customer Information
+        app.setMPAED("01/01/2011");
+        app.setMPBED("05/01/2015");
         //Plan Eligibility
         app.setTurned65In6GA(YES); //TODO: Replace these hard coded values with helper function that will determine answer based upon DOB
         app.setPartBIn6GA(YES); //TODO: Replace these hard coded values with helper function that will determine answer based upon MPBED
         app.setPlanEffIn6OfEligible(YES);  //TODO: Replace these hard coded values with helper function that will determine answer based upon DOB & MPBED
-        app.setLostCoverage(NO);
-        app.setTobaccoUse(NO);
+        app.setTobaccoUse(YES);
+        //Plan application Questions
+        app.setMedSuppReplace(NO);
         //Eligibility Questions
         app.setESRD(NO);
         app.setSurgeryNeeded(NO);
         //Health History
-        app.setEmphysema(YES);
-        app.setOthercancer(YES);
-        app.setPolycystic(YES);
-        app.setCirrhosis(YES);
-        app.setBonemarrow(YES);
-        app.setPancreatitis(YES);
-        app.setAmputation(YES);
-        app.setAlcohol(YES);
-        app.setParaplegia(YES);
-        app.setBipolar(YES);
-        app.setMacular(YES);
-        app.setAlzheimers(YES);
-        app.setHIV(YES);
+
         //Past And Current Coverage
+        app.setCPATurned65(NO);
+        app.setCPAPartBIn6(NO);
         app.setMedicaidCovered(YES);
         app.setMedicaidSupPremium(YES);
         app.setMedicaidbenefit(YES);
@@ -255,34 +216,20 @@ public class PennsylvaniaIntegrationTest extends CQBaseIntegrationTest {
 
         logger.info(gson.toJson(app));
 
-        goTo(cheatPage);
-        cheatPage.isAt();
-        cheatPage.fillAndSubmit(sheet);
+        startApp(cheatPage, app, sheet);
 
         voiceSignatureInstructionsPage.isAt();
         voiceSignatureInstructionsPage.fillAndSubmit(app);
-
-        customerInformationPage.isAt();
         customerInformationPage.fillAndSubmit(app);
-
-        planSelectionAndStartDatePage.isAt();
+        // The above pages will always appear
         planSelectionAndStartDatePage.fillAndSubmit(app);
-
-        GIplanApplicationQuestionsPage.isAt();
-        GIplanApplicationQuestionsPage.fillAndSubmit(app);
-
-        pastAndCurrentInsuranceCoveragePage.isAt();
+        planApplicationQuestionsPage.fillAndSubmit(app);
         pastAndCurrentInsuranceCoveragePage.fillAndSubmit(app);
-
         authorizationAndVerificationPage.isAt();
         authorizationAndVerificationPage.fillAndSubmit(app);
-
         agentVerificationPage.isAt();
         agentVerificationPage.fillAndSubmit(app);
-
-        reviewAndSubmitPage.isAt();
         reviewAndSubmitPage.fillAndSubmit(app);
-
         applicationSubmissionPage.isAt();
         applicationSubmissionPage.isApproved();
 
@@ -292,3 +239,5 @@ public class PennsylvaniaIntegrationTest extends CQBaseIntegrationTest {
     }
 
 }
+
+

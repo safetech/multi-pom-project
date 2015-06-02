@@ -6,7 +6,7 @@ import integration.phone.pages.WizardPage;
 import org.fluentlenium.core.domain.FluentWebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class DEandNVPlanApplicationQuestions extends PlanApplicationQuestions {
+public class DE_NV_IN_PlanApplicationQuestions extends PlanApplicationQuestions {
 
 
     protected int TOTAL_POSSIBLE_QUESTION_COUNT = 10;

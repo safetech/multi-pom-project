@@ -292,6 +292,25 @@ public class Application {
     private String CPAMPBED = "";
     private String SellingAgentSignatureInd = "";
     private String MedSuppReplace = "";
+    private String involTerm = "";
+    private String OtherInsTerm = "";
+
+
+    public String getOtherInsTerm() {
+        return OtherInsTerm;
+    }
+
+    public void setOtherInsTerm(String otherInsTerm) {
+        OtherInsTerm = otherInsTerm;
+    }
+
+    public String getInvolTerm() {
+        return involTerm;
+    }
+
+    public void setInvolTerm(String involTerm) {
+        this.involTerm = involTerm;
+    }
 
     public String getMedSuppReplace() {
         return MedSuppReplace;
