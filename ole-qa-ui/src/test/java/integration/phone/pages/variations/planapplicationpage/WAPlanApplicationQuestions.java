@@ -15,6 +15,7 @@ public class WAPlanApplicationQuestions extends PlanApplicationQuestions {
     @FindBy(css = "#MedSuppReplace_2") FluentWebElement MedSuppReplace_No;
 
     public void verifyInitialStateOfElements(Application app) {
+
         if (app.getTurned65In6GA().equals("yes") || app.getPartBIn6GA().equals("yes") ||app.getPlanEffIn6OfEligible().equals("yes")){
             assertYesNoQuestion(Turned65In6GA_Yes, Turned65In6GA_No, app.getTurned65In6GA());
             assertYesNoQuestion(PartBIn6GA_Yes, PartBIn6GA_No, app.getPartBIn6GA());

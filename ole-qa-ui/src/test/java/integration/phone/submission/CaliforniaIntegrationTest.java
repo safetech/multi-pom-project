@@ -6,11 +6,12 @@ import integration.phone.entity.Application;
 import integration.phone.entity.CribSheet;
 import integration.phone.entity.SubmissionResult;
 import integration.phone.pages.*;
-import integration.phone.pages.variations.healthhistoryquestions.CAHealthHistoryQuestionsPage;
-import integration.phone.pages.variations.eligibilityhealthquestions.CAEligibilityHealthQuestionsPage;
-import integration.phone.pages.variations.pastandcurrentcoverage.PA_NJ_IN_PastAndCurrentInsuranceCoveragePage;
-import integration.phone.pages.variations.planapplicationpage.VA_NJ_IL_PlanApplicationQuestions;
-import integration.phone.pages.variations.replacementnotice.RN078Page;
+import integration.phone.pages.variations.authorizationandverification.*;
+import integration.phone.pages.variations.healthhistoryquestions.*;
+import integration.phone.pages.variations.eligibilityhealthquestions.*;
+import integration.phone.pages.variations.pastandcurrentcoverage.*;
+import integration.phone.pages.variations.planapplicationpage.*;
+import integration.phone.pages.variations.replacementnotice.*;
 import integration.phone.queries.SubmissionQuery;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
@@ -23,13 +24,13 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
     @Page public VoiceSignatureInstructionsPage voiceSignatureInstructionsPage;
     @Page public CustomerInformationPage customerInformationPage;
     @Page public PlanSelectionAndStartDatePage planSelectionAndStartDatePage;
-    @Page public VA_NJ_IL_PlanApplicationQuestions planApplicationQuestionsPage;
+    @Page public CAPlanApplicationQuestions planApplicationQuestionsPage;
     @Page public CAEligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
     @Page public CAHealthHistoryQuestionsPage healthHistoryQuestionsPage;
     @Page public PA_NJ_IN_PastAndCurrentInsuranceCoveragePage pastAndCurrentInsuranceCoveragePage;
-    @Page public AuthorizationAndVerificationPage authorizationAndVerificationPage;
+    @Page public CAAuthorizationAndVerificationPage authorizationAndVerificationPage;
     @Page public AgentVerificationPage agentVerificationPage;
-    @Page public RN078Page replacementNoticePage;
+    @Page public RN040Page replacementNoticePage;
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
     @Page public ApplicationSubmissionPage applicationSubmissionPage;
 
@@ -42,34 +43,47 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
     public void setup() {
         submissionQuery = new SubmissionQuery();
         faker = new Faker();
+
         sheet = new CribSheet(faker);
+        sheet.setRandomNameGenderAndMembershipNumber();
+        sheet.setRandomAddress("CA", "90210");
+        sheet.setRandomContactInfo();
+        sheet.setRandomCallCenterInfo();
+        sheet.setDpsdToFirstDayOfFutureMonth(1);
+        sheet.setPlanCode("F01");
+
+        app = new Application();
+        // Customer Info Page Question
+        app.setMedicareClaimNum(faker.bothify("??#########"));
+        app.setPartABActiveIndicator(YES);
+        app.setPlanCode("F");
+        app.setReqEffectiveDate(DateUtils.getFirstDayOfFutureMonth(1));
+
+        //Eligibility Questions
+        app.setESRD(NO);
+        app.setSurgeryNeeded(NO);
+
+        //Agent Verification Page
+        app.setCommonAgentVerificationAnswers();
+
         expectedSubmissionResult = new SubmissionResult();
     }
 
     @Test
     public void test_california_full_underwriting_with_rn() throws Exception {
 
-        sheet.setRandomNameGenderAndMembershipNumber();
-        sheet.setRandomAddress("CA", "90210");
-        sheet.setRandomContactInfo();
-        sheet.setRandomCallCenterInfo();
         sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(69));
-        sheet.setMedPartBdate(DateUtils.getFirstDayOfFutureMonth(-2));
-        sheet.setDpsdToFirstDayOfFutureMonth(1);
-        sheet.setPlanCode("F01");
+        sheet.setMedPartBdate("2012-10-01");
 
-        Application app = new Application(sheet);
+        //Customer Information
+        app.setMPAED("01/01/2011");
+        app.setMPBED("10/01/2012");
 
         app.setMedicareClaimNum(faker.bothify("??#########"));
-        app.setMPAED("01/01/2013");
-        app.setMPBED(DateUtils.convertDate(sheet.getMedPartBdate(), DateUtils.NORMALIZED_DATE_FORMAT));
-        app.setPartABActiveIndicator(YES);
-        app.setPlanCode("F");
-        app.setReqEffectiveDate(DateUtils.getFirstDayOfFutureMonth(1));
         //Plan Application
         app.setTurned65In6GA(NO); //TODO: Replace these hard coded values with helper function that will determine answer based upon DOB
-        app.setPartBIn6GA(YES); //TODO: Replace these hard coded values with helper function that will determine answer based upon MPBED
-        app.setPlanEffIn6OfEligible(YES);  //TODO: Replace these hard coded values with helper function that will determine answer based upon DOB & MPBED
+        app.setPartBIn6GA(NO); //TODO: Replace these hard coded values with helper function that will determine answer based upon MPBED
+        app.setPlanEffIn6OfEligible(NO);  //TODO: Replace these hard coded values with helper function that will determine answer based upon DOB & MPBED
         app.setLostCoverage(NO);
         app.setTobaccoUse(NO);
         app.setGI30dayBday(NO);
@@ -124,6 +138,7 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         app.setOtherInsEnd("01/01/2014");
         app.setOtherInsReplace(YES);
         app.setCpaSignatureInd(YES);
+        //Authorization Page
         //Agent Verification Page
         app.setAgentOtherInsPoliciesSold("HIP");
         app.setAgentPoliciesInForce("EP");
@@ -145,41 +160,17 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
 
         logger.info(gson.toJson(app));
 
-        goTo(cheatPage);
-        cheatPage.isAt();
-        cheatPage.fillAndSubmit(sheet);
+        startApp(cheatPage, app, sheet);
 
-        voiceSignatureInstructionsPage.isAt();
         voiceSignatureInstructionsPage.fillAndSubmit(app);
-
-        customerInformationPage.isAt();
         customerInformationPage.fillAndSubmit(app);
-
-        planSelectionAndStartDatePage.isAt();
         planSelectionAndStartDatePage.fillAndSubmit(app);
-
-        planApplicationQuestionsPage.isAt();
         planApplicationQuestionsPage.fillAndSubmit(app);
-
-        eligibilityHealthQuestionsPage.isAt();
         eligibilityHealthQuestionsPage.fillAndSubmit(app);
-
-        healthHistoryQuestionsPage.isAt();
-        healthHistoryQuestionsPage.fillAndSubmit(app);
-
-        pastAndCurrentInsuranceCoveragePage.isAt();
         pastAndCurrentInsuranceCoveragePage.fillAndSubmit(app);
-
-        authorizationAndVerificationPage.isAt();
         authorizationAndVerificationPage.fillAndSubmit(app);
-
-        agentVerificationPage.isAt();
         agentVerificationPage.fillAndSubmit(app);
-
-        replacementNoticePage.isAt();
         replacementNoticePage.fillAndSubmit(app);
-
-        reviewAndSubmitPage.isAt();
         reviewAndSubmitPage.fillAndSubmit(app);
 
         applicationSubmissionPage.isAt();
