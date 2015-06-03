@@ -75,5 +75,4 @@ public class CQBaseIntegrationTest extends FluentTest {
         cheatPage.fillAndSubmit(sheet);
     }
 
-
 }

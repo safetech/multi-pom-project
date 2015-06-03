@@ -6,7 +6,7 @@ import integration.phone.entity.Application;
 import integration.phone.entity.CribSheet;
 import integration.phone.entity.SubmissionResult;
 import integration.phone.pages.*;
-import integration.phone.pages.variations.pastandcurrentcoverage.PA_NJ_IN_PastAndCurrentInsuranceCoveragePage;
+import integration.phone.pages.variations.pastandcurrentcoverage.CTPastAndCurrentInsuranceCoveragePage;
 import integration.phone.pages.variations.planapplicationpage.VA_NJ_IL_LA_PlanApplicationQuestions;
 import integration.phone.pages.variations.replacementnotice.RN034andRE073Page;
 import integration.phone.queries.SubmissionQuery;
@@ -15,7 +15,9 @@ import org.junit.Before;
 import org.junit.Test;
 import util.DateUtils;
 
-public class IllinoisIntegrationTest extends CQBaseIntegrationTest {
+import javax.smartcardio.CardTerminal;
+
+public class LouisanaIntegrationTest extends CQBaseIntegrationTest {
 
     @Page public CheatPage cheatPage;
     @Page public VoiceSignatureInstructionsPage voiceSignatureInstructionsPage;
@@ -23,11 +25,11 @@ public class IllinoisIntegrationTest extends CQBaseIntegrationTest {
     @Page public PlanSelectionAndStartDatePage planSelectionAndStartDatePage;
     @Page public VA_NJ_IL_LA_PlanApplicationQuestions planApplicationQuestionsPage;
     @Page public EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
-    @Page public PA_NJ_IN_PastAndCurrentInsuranceCoveragePage pastAndCurrentInsuranceCoveragePage;
+    @Page public CTPastAndCurrentInsuranceCoveragePage pastAndCurrentInsuranceCoveragePage;
     @Page public AuthorizationAndVerificationPage authorizationAndVerificationPage;
     @Page public HealthHistoryQuestionsPage healthHistoryQuestionsPage;
     @Page public AgentVerificationPage agentVerificationPage;
-    @Page public RN034andRE073Page ReplacementNotice034Page;
+    @Page public RN034andRE073Page replacementNoticePage;
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
     @Page public ApplicationSubmissionPage applicationSubmissionPage;
 
@@ -43,13 +45,14 @@ public class IllinoisIntegrationTest extends CQBaseIntegrationTest {
 
         sheet = new CribSheet(faker);
         sheet.setRandomNameGenderAndMembershipNumber();
-        sheet.setRandomAddress("IL", "60050");
+        sheet.setRandomAddress("LA", "70001");
         sheet.setRandomContactInfo();
         sheet.setRandomCallCenterInfo();
         sheet.setDpsdToFirstDayOfFutureMonth(1);
         sheet.setPlanCode("F01");
 
         app = new Application();
+
         // Customer Info Page Question
         app.setMedicareClaimNum(faker.bothify("??#########"));
         app.setPartABActiveIndicator(YES);
@@ -67,42 +70,25 @@ public class IllinoisIntegrationTest extends CQBaseIntegrationTest {
     }
 
     @Test
-    public void test_illinois_full_underwriting_with_rn() throws Exception {
-
-        sheet.setRandomNameGenderAndMembershipNumber();
+    public void test_louisana_health_history_underwriting_with_rn() throws Exception {
 
         sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(69));
-        sheet.setMedPartBdate("2011-10-01");
+        sheet.setMedPartBdate("2012-04-01");
 
-
-        //Customer Information
-        app.setMedicareClaimNum(faker.bothify("??#########"));
-        app.setMPAED("01/01/2011");
-        app.setMPBED("10/01/2011");
+        // Customer Info Page
+        app.setMPAED("01/01/2012");
+        app.setMPBED("04/01/2012");
 
         //Plan Eligibility
         app.setTurned65In6GA(NO); //TODO: Replace these hard coded values with helper function that will determine answer based upon DOB
         app.setPartBIn6GA(NO); //TODO: Replace these hard coded values with helper function that will determine answer based upon MPBED
-        app.setPlanEffIn6OfEligible(NO); //TODO: Replace these hard coded values with helper function that will determine answer based upon DOB & MPBED
+        app.setPlanEffIn6OfEligible(NO);  //TODO: Replace these hard coded values with helper function that will determine answer based upon DOB & MPBED
         app.setLostCoverage(NO);
         app.setTobaccoUse(YES);
-        //Eligibility Questions
-        app.setESRD(NO);
-        app.setSurgeryNeeded(NO);
+
         //Health History
-        app.setEmphysema(YES);
-        app.setOthercancer(YES);
-        app.setPolycystic(YES);
-        app.setCirrhosis(YES);
-        app.setBonemarrow(YES);
-        app.setPancreatitis(YES);
-        app.setAmputation(YES);
-        app.setAlcohol(YES);
-        app.setParaplegia(YES);
-        app.setBipolar(YES);
-        app.setMacular(YES);
-        app.setAlzheimers(YES);
-        app.setHIV(YES);
+        app.setCommonHealthHistoryAnswers();
+
         //Past And Current Coverage
         app.setCPATurned65(NO);
         app.setCPAPartBIn6(NO);
@@ -110,14 +96,14 @@ public class IllinoisIntegrationTest extends CQBaseIntegrationTest {
         app.setMedicaidSupPremium(YES);
         app.setMedicaidbenefit(YES);
         app.setExistingMedicare(YES);
-        app.setOtherMedplanstart("01/01/2000");
+        app.setOtherMedplanstart("01/01/2012");
         app.setOtherMedplanend("01/01/2015");
         app.setIntentReplace(YES);
         app.setFirstTime(YES);
         app.setDropMedSuppForThisPlan(YES);
         app.setExistMedSupp(YES);
-        app.setMSInsCompany("Blue Cross Blue Shield VA");
-        app.setMSPLAN("Medical Supplement VA");
+        app.setMSInsCompany("Blue Cross Blue Shield");
+        app.setMSPLAN("Medical Supplement");
         app.setReplaceExistingMedSup(YES);
         app.setOtherInsCoverage(YES);
         app.setOtherInsCompany("Blue Cross Blue Shield");
@@ -126,25 +112,21 @@ public class IllinoisIntegrationTest extends CQBaseIntegrationTest {
         app.setOtherInsEnd("01/01/2014");
         app.setOtherInsReplace(YES);
         app.setCpaSignatureInd(YES);
-        //Agent Verification Page
-        app.setAgentOtherInsPoliciesSold("HIP");
-        app.setAgentPoliciesInForce("EP");
-        app.setAgentPoliciesSoldNotInForce("EPHIP");
-        app.setAgentSignatureInd(YES);
+
+        //Authorizationa and verififcation page
+        app.setDesignateLapse(NO);
+        app.setAuxFirstName("AuxFirstName");
+        app.setAuxMI("M");
+        app.setAuxLastName("AuxLastName");
+        app.setAuxAddressLine1("AuxAddressLine1");
+        app.setAuxCity("AuxCity");
+        app.setAuxState("NV");
+        app.setAuxZipCode("89101");
+
         //Replacement Notice Page
-        app.setReplacementReason("OtherReason");
-        app.setRNOther("Cheaper");
-        app.setAgentPrintedNameAdd("ProducerName");
-        app.setAgentAddress("ProducerAdd");
-        app.setApplicantPrintedNameAdd("AppName");
-        app.setApplicantAddress("AppAdd");
+        app.setCommonReplacementNoticeAnswersWithApplicantInfo();
 
-        expectedSubmissionResult.setAdjudicationStatus("P");
-        expectedSubmissionResult.setStatus("C");
-        expectedSubmissionResult.setWorkQueue("UNDERWRITING");
-        expectedSubmissionResult.setWorkQueueReason("REVIEW FOR POSSIBLE ESRD");
-
-        logger.info(gson.toJson(app));
+        expectedSubmissionResult.setPendingInfo("UNDERWRITING", "REVIEW FOR POSSIBLE ESRD");
 
         startApp(cheatPage, app, sheet);
 
@@ -157,7 +139,7 @@ public class IllinoisIntegrationTest extends CQBaseIntegrationTest {
         pastAndCurrentInsuranceCoveragePage.fillAndSubmit(app);
         authorizationAndVerificationPage.fillAndSubmit(app);
         agentVerificationPage.fillAndSubmit(app);
-        ReplacementNotice034Page.fillAndSubmit(app);
+        replacementNoticePage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
 
         applicationSubmissionPage.isAt();
@@ -169,40 +151,22 @@ public class IllinoisIntegrationTest extends CQBaseIntegrationTest {
     }
 
     @Test
-    public void test_illinois_full_underwriting_without_rn() throws Exception {
+    public void test_louisana_eligibility_underwriting_without_rn() throws Exception {
 
-        sheet.setRandomNameGenderAndMembershipNumber();
-
-        sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(69));
+        sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(68));
         sheet.setMedPartBdate("2014-01-01");
 
-        //Customer Information
-        app.setMedicareClaimNum(faker.bothify("??#########"));
-        app.setMPAED("01/01/2011");
+        // Customer Info Page
+        app.setMPAED("01/01/2014");
         app.setMPBED("01/01/2014");
+
         //Plan Eligibility
         app.setTurned65In6GA(NO); //TODO: Replace these hard coded values with helper function that will determine answer based upon DOB
         app.setPartBIn6GA(NO); //TODO: Replace these hard coded values with helper function that will determine answer based upon MPBED
         app.setPlanEffIn6OfEligible(NO);  //TODO: Replace these hard coded values with helper function that will determine answer based upon DOB & MPBED
         app.setLostCoverage(NO);
-        app.setTobaccoUse(YES);
-        //Eligibility Questions
-        app.setESRD(NO);
-        app.setSurgeryNeeded(NO);
-        //Health History
-        app.setEmphysema(YES);
-        app.setOthercancer(YES);
-        app.setPolycystic(YES);
-        app.setCirrhosis(YES);
-        app.setBonemarrow(YES);
-        app.setPancreatitis(YES);
-        app.setAmputation(YES);
-        app.setAlcohol(YES);
-        app.setParaplegia(YES);
-        app.setBipolar(YES);
-        app.setMacular(YES);
-        app.setAlzheimers(YES);
-        app.setHIV(YES);
+        app.setTobaccoUse(NO);
+
         //Past And Current Coverage
         app.setCPATurned65(NO);
         app.setCPAPartBIn6(NO);
@@ -210,39 +174,24 @@ public class IllinoisIntegrationTest extends CQBaseIntegrationTest {
         app.setMedicaidSupPremium(YES);
         app.setMedicaidbenefit(YES);
         app.setExistingMedicare(NO);
-        app.setOtherMedplanstart("");
-        app.setOtherMedplanend("");
-        app.setIntentReplace("");
-        app.setFirstTime("");
-        app.setDropMedSuppForThisPlan("");
+        app.setFirstTime(BLANK);
+        app.setDropMedSuppForThisPlan(BLANK);
         app.setExistMedSupp(NO);
-        app.setReplaceExistingMedSup("");
+        app.setMSInsCompany("Blue Cross Blue Shield NV");
+        app.setMSPLAN("Medical Supplement NV");
+        app.setReplaceExistingMedSup(BLANK);
         app.setOtherInsCoverage(YES);
         app.setOtherInsCompany("Blue Cross Blue Shield");
-        app.setOtherInsType("HMO");
+        app.setOtherInsType("HMO");                     
         app.setOtherInsStart("01/01/2001");
         app.setOtherInsEnd("01/01/2014");
         app.setOtherInsReplace(YES);
         app.setCpaSignatureInd(YES);
-        //Agent Verification Page
-        app.setAgentOtherInsPoliciesSold("HIP");
-        app.setAgentPoliciesInForce("EP");
-        app.setAgentPoliciesSoldNotInForce("EPHIP");
-        app.setAgentSignatureInd(YES);
-        //Replacement Notice Page
-        app.setReplacementReason("OtherReason");
-        app.setRNOther("Cheaper");
-        app.setAgentPrintedNameAdd("ProducerName");
-        app.setAgentAddress("ProducerAdd");
-        app.setApplicantPrintedNameAdd("AppName");
-        app.setApplicantAddress("AppAdd");
 
-        expectedSubmissionResult.setAdjudicationStatus("A");
-        expectedSubmissionResult.setStatus("C");
-        expectedSubmissionResult.setWorkQueue("");
-        expectedSubmissionResult.setWorkQueueReason("");
+        //Authorizationa and verififcation page
+        app.setDesignateLapse(YES);
 
-        logger.info(gson.toJson(app));
+        expectedSubmissionResult.setAcceptedInfo();
 
         startApp(cheatPage, app, sheet);
 
@@ -265,5 +214,3 @@ public class IllinoisIntegrationTest extends CQBaseIntegrationTest {
     }
 
 }
-
-
