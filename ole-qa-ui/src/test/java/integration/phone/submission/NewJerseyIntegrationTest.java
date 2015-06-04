@@ -6,11 +6,10 @@ import integration.phone.entity.Application;
 import integration.phone.entity.CribSheet;
 import integration.phone.entity.SubmissionResult;
 import integration.phone.pages.*;
-<<<<<<< HEAD
+
+import integration.phone.pages.AgentVerificationPage;
 import integration.phone.pages.variations.pastandcurrentcoverage.CA_PA_NJ_IN_PastAndCurrentInsuranceCoveragePage;
-=======
-import integration.phone.pages.variations.pastandcurrentcoverage.PA_NJ_IN_PastAndCurrentInsuranceCoveragePage;
->>>>>>> 5293b44c5eab755574b49c8948fee89ee219a367
+
 import integration.phone.pages.variations.planapplicationpage.VA_NJ_IL_LA_PlanApplicationQuestions;
 import integration.phone.pages.variations.replacementnotice.RN034andRE073Page;
 import integration.phone.queries.SubmissionQuery;

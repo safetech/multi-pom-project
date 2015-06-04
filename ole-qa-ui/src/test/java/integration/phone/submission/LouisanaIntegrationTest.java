@@ -6,6 +6,7 @@ import integration.phone.entity.Application;
 import integration.phone.entity.CribSheet;
 import integration.phone.entity.SubmissionResult;
 import integration.phone.pages.*;
+import integration.phone.pages.AgentVerificationPage;
 import integration.phone.pages.variations.pastandcurrentcoverage.CTPastAndCurrentInsuranceCoveragePage;
 import integration.phone.pages.variations.planapplicationpage.VA_NJ_IL_LA_PlanApplicationQuestions;
 import integration.phone.pages.variations.replacementnotice.RN034andRE073Page;
@@ -14,8 +15,6 @@ import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
 import util.DateUtils;
-
-import javax.smartcardio.CardTerminal;
 
 public class LouisanaIntegrationTest extends CQBaseIntegrationTest {
 

@@ -26,8 +26,6 @@ public class FLPastAndCurrentInsuranceCoveragePage extends WizardPage{
     FluentWebElement OtherMedplanend;
     @FindBy(css = "#ExistMedSupp_1") FluentWebElement ExistMedSupp_Yes;
     @FindBy(css = "#ExistMedSupp_2") FluentWebElement ExistMedSupp_No;
-    @FindBy(css = "#IntentReplace_1") FluentWebElement IntentReplace_Yes;
-    @FindBy(css = "#IntentReplace_2") FluentWebElement IntentReplace_No;
     FluentWebElement MSInsCompany;
     FluentWebElement MSPLAN;
     @FindBy(css = "#ReplaceExistingMedSup_1") FluentWebElement ReplaceExistingMedSup_Yes;
@@ -64,7 +62,6 @@ public class FLPastAndCurrentInsuranceCoveragePage extends WizardPage{
             fill(MSInsCompany).with(app.getMSInsCompany());
             fill(MSPLAN).with(app.getMSPLAN());
             fillYesNoQuestion(ReplaceExistingMedSup_Yes, ReplaceExistingMedSup_No, app.getReplaceExistingMedSup());
-            //fillYesNoQuestion(, , app.getIntentReplace());
         }
 
         fillYesNoQuestion(OtherInsCoverage_Yes, OtherInsCoverage_No, app.getOtherInsCoverage());

@@ -7,28 +7,29 @@ import integration.phone.entity.CribSheet;
 import integration.phone.entity.SubmissionResult;
 import integration.phone.pages.*;
 import integration.phone.pages.AgentVerificationPage;
-import integration.phone.pages.variations.pastandcurrentcoverage.GAandMIPastAndCurrentInsuranceCoveragePage;
-import integration.phone.pages.variations.planapplicationpage.WAPlanApplicationQuestions;
-import integration.phone.pages.variations.replacementnotice.RN034andRE073Page;
+import integration.phone.pages.variations.pastandcurrentcoverage.*;
+import integration.phone.pages.variations.planapplicationpage.OH_MI_TX_PlanApplicationQuestions;
+import integration.phone.pages.variations.replacementnotice.RN078Page;
 import integration.phone.queries.SubmissionQuery;
+import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
 import util.DateUtils;
 
-public class WashingtonIntegrationTest extends CQBaseIntegrationTest {
+public class TexasIntegrationTest extends CQBaseIntegrationTest {
 
     @Page public CheatPage cheatPage;
     @Page public VoiceSignatureInstructionsPage voiceSignatureInstructionsPage;
     @Page public CustomerInformationPage customerInformationPage;
     @Page public PlanSelectionAndStartDatePage planSelectionAndStartDatePage;
-    @Page public WAPlanApplicationQuestions planApplicationQuestionsPage;
+    @Page public OH_MI_TX_PlanApplicationQuestions planApplicationQuestionsPage;
     @Page public EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
-    @Page public GAandMIPastAndCurrentInsuranceCoveragePage pastAndCurrentInsuranceCoveragePage;
+    @Page public TXPastAndCurrentInsuranceCoveragePage pastAndCurrentInsuranceCoveragePage;
     @Page public AuthorizationAndVerificationPage authorizationAndVerificationPage;
     @Page public HealthHistoryQuestionsPage healthHistoryQuestionsPage;
     @Page public AgentVerificationPage agentVerificationPage;
-    @Page public RN034andRE073Page ReplacementNotice034Page;
+    @Page public RN078Page ReplacementNotice034Page;
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
     @Page public ApplicationSubmissionPage applicationSubmissionPage;
 
@@ -44,7 +45,7 @@ public class WashingtonIntegrationTest extends CQBaseIntegrationTest {
 
         sheet = new CribSheet(faker);
         sheet.setRandomNameGenderAndMembershipNumber();
-        sheet.setRandomAddress("WA", "98001");
+        sheet.setRandomAddress("TX", "75001");
         sheet.setRandomContactInfo();
         sheet.setRandomCallCenterInfo();
         sheet.setDpsdToFirstDayOfFutureMonth(1);
@@ -52,7 +53,7 @@ public class WashingtonIntegrationTest extends CQBaseIntegrationTest {
 
         app = new Application();
         // Customer Info Page Question
-        app.setMedicareClaimNum(faker.bothify("??#########"));
+        app.setMedicareClaimNum(faker.bothify("#########A"));
         app.setPartABActiveIndicator(YES);
         app.setPlanCode("F");
         app.setReqEffectiveDate(DateUtils.getFirstDayOfFutureMonth(1));
@@ -68,27 +69,39 @@ public class WashingtonIntegrationTest extends CQBaseIntegrationTest {
     }
 
     @Test
-    public void test_washington_full_underwriting_with_rn() throws Exception {
+    public void test_texas_full_underwriting_with_rn() throws Exception {
+
+        sheet.setRandomNameGenderAndMembershipNumber();
 
         sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(69));
-        sheet.setMedPartBdate("2012-10-01");
+        sheet.setMedPartBdate("2011-10-01");
 
         //Customer Information
+
         app.setMPAED("01/01/2011");
-        app.setMPBED("10/01/2012");
+        app.setMPBED("10/01/2011");
 
         //Plan Eligibility
-        app.setTurned65In6GA(NO); //TODO: Replace these hard coded values with helper function that will determine answer based upon DOB
-        app.setPartBIn6GA(NO); //TODO: Replace these hard coded values with helper function that will determine answer based upon MPBED
-        app.setPlanEffIn6OfEligible(NO); //TODO: Replace these hard coded values with helper function that will determine answer based upon DOB & MPBED
+        app.setDefaultPlanEligibilityQuestions(sheet);
         app.setLostCoverage(NO);
         app.setTobaccoUse(YES);
-        //Plan application Questions
-        app.setMedSuppReplace(NO);
         //Eligibility Questions
         app.setESRD(NO);
         app.setSurgeryNeeded(NO);
         //Health History
+        app.setEmphysema(YES);
+        app.setOthercancer(YES);
+        app.setPolycystic(YES);
+        app.setCirrhosis(YES);
+        app.setBonemarrow(YES);
+        app.setPancreatitis(YES);
+        app.setAmputation(YES);
+        app.setAlcohol(YES);
+        app.setParaplegia(YES);
+        app.setBipolar(YES);
+        app.setMacular(YES);
+        app.setAlzheimers(YES);
+        app.setHIV(YES);
         //Past And Current Coverage
         app.setCPATurned65(NO);
         app.setCPAPartBIn6(NO);
@@ -101,9 +114,11 @@ public class WashingtonIntegrationTest extends CQBaseIntegrationTest {
         app.setIntentReplace(YES);
         app.setFirstTime(YES);
         app.setDropMedSuppForThisPlan(YES);
+        app.setInvolTerm(YES);
+        app.setOtherInsTerm(YES);
         app.setExistMedSupp(YES);
-        app.setMSInsCompany("Blue Cross Blue Shield");
-        app.setMSPLAN("Medical Supplement");
+        app.setMSInsCompany("Blue Cross Blue Shield VA");
+        app.setMSPLAN("Medical Supplement VA");
         app.setReplaceExistingMedSup(YES);
         app.setOtherInsCoverage(YES);
         app.setOtherInsCompany("Blue Cross Blue Shield");
@@ -127,8 +142,8 @@ public class WashingtonIntegrationTest extends CQBaseIntegrationTest {
 
         expectedSubmissionResult.setAdjudicationStatus("P");
         expectedSubmissionResult.setStatus("C");
-        expectedSubmissionResult.setWorkQueue("ENROLLMENT CPA REVIEW");
-        expectedSubmissionResult.setWorkQueueReason("CPA REVIEW REQUIRED");
+        expectedSubmissionResult.setWorkQueue("UNDERWRITING");
+        expectedSubmissionResult.setWorkQueueReason("REVIEW FOR POSSIBLE ESRD");
 
         logger.info(gson.toJson(app));
 
@@ -137,14 +152,15 @@ public class WashingtonIntegrationTest extends CQBaseIntegrationTest {
         voiceSignatureInstructionsPage.fillAndSubmit(app);
         customerInformationPage.fillAndSubmit(app);
         planSelectionAndStartDatePage.fillAndSubmit(app);
-        // The above pages will always appear
         planApplicationQuestionsPage.fillAndSubmit(app);
         eligibilityHealthQuestionsPage.fillAndSubmit(app);
+        healthHistoryQuestionsPage.fillAndSubmit(app);
         pastAndCurrentInsuranceCoveragePage.fillAndSubmit(app);
         authorizationAndVerificationPage.fillAndSubmit(app);
         agentVerificationPage.fillAndSubmit(app);
         ReplacementNotice034Page.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
+
         applicationSubmissionPage.isAt();
         applicationSubmissionPage.isPending();
 
@@ -152,29 +168,40 @@ public class WashingtonIntegrationTest extends CQBaseIntegrationTest {
         submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
 
     }
-
     @Test
-    public void test_washington_full_underwriting_without_rn() throws Exception {
+    public void test_texas_full_underwriting_without_rn() throws Exception {
 
-        sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(66));
-        sheet.setMedPartBdate("2015-01-01");
+        sheet.setRandomNameGenderAndMembershipNumber();
+
+        sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(69));
+        sheet.setMedPartBdate("2014-01-01");
 
         //Customer Information
         app.setMPAED("01/01/2011");
-        app.setMPBED("01/01/2015");
+        app.setMPBED("01/01/2014");
         //Plan Eligibility
-        app.setTurned65In6GA(NO); //TODO: Replace these hard coded values with helper function that will determine answer based upon DOB
-        app.setPartBIn6GA(YES); //TODO: Replace these hard coded values with helper function that will determine answer based upon MPBED
-        app.setPlanEffIn6OfEligible(YES);  //TODO: Replace these hard coded values with helper function that will determine answer based upon DOB & MPBED
+        app.setDefaultPlanEligibilityQuestions(sheet); //TODO: Start debugging from Dodd's Eligibility function (seems like the function doesn't work without (app.3questions) inside the test)
         app.setLostCoverage(NO);
         app.setTobaccoUse(YES);
-        //Plan application Questions
-        app.setMedSuppReplace(NO);
+        //Plan Application
+        //app.setPlanEffIn6OfEligible(NO);
         //Eligibility Questions
         app.setESRD(NO);
         app.setSurgeryNeeded(NO);
         //Health History
-
+        app.setEmphysema(YES);
+        app.setOthercancer(YES);
+        app.setPolycystic(YES);
+        app.setCirrhosis(YES);
+        app.setBonemarrow(YES);
+        app.setPancreatitis(YES);
+        app.setAmputation(YES);
+        app.setAlcohol(YES);
+        app.setParaplegia(YES);
+        app.setBipolar(YES);
+        app.setMacular(YES);
+        app.setAlzheimers(YES);
+        app.setHIV(YES);
         //Past And Current Coverage
         app.setCPATurned65(NO);
         app.setCPAPartBIn6(NO);
@@ -185,8 +212,10 @@ public class WashingtonIntegrationTest extends CQBaseIntegrationTest {
         app.setOtherMedplanstart("");
         app.setOtherMedplanend("");
         app.setIntentReplace("");
-        app.setFirstTime("");
-        app.setDropMedSuppForThisPlan("");
+        app.setFirstTime(YES);
+        app.setDropMedSuppForThisPlan(YES);
+        app.setInvolTerm(NO);
+        app.setOtherInsTerm(NO);
         app.setExistMedSupp(NO);
         app.setReplaceExistingMedSup("");
         app.setOtherInsCoverage(YES);
@@ -218,18 +247,16 @@ public class WashingtonIntegrationTest extends CQBaseIntegrationTest {
 
         startApp(cheatPage, app, sheet);
 
-        voiceSignatureInstructionsPage.isAt();
         voiceSignatureInstructionsPage.fillAndSubmit(app);
         customerInformationPage.fillAndSubmit(app);
-        // The above pages will always appear
         planSelectionAndStartDatePage.fillAndSubmit(app);
         planApplicationQuestionsPage.fillAndSubmit(app);
+        eligibilityHealthQuestionsPage.fillAndSubmit(app);
         pastAndCurrentInsuranceCoveragePage.fillAndSubmit(app);
-        authorizationAndVerificationPage.isAt();
         authorizationAndVerificationPage.fillAndSubmit(app);
-        agentVerificationPage.isAt();
         agentVerificationPage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
+
         applicationSubmissionPage.isAt();
         applicationSubmissionPage.isApproved();
 
