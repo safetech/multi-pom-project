@@ -27,7 +27,11 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
     @Page public CAPlanApplicationQuestions planApplicationQuestionsPage;
     @Page public CAEligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
     @Page public CAHealthHistoryQuestionsPage healthHistoryQuestionsPage;
+<<<<<<< HEAD
     @Page public CA_PA_NJ_IN_PastAndCurrentInsuranceCoveragePage pastAndCurrentInsuranceCoveragePage;
+=======
+    @Page public PA_NJ_IN_PastAndCurrentInsuranceCoveragePage pastAndCurrentInsuranceCoveragePage;
+>>>>>>> 5293b44c5eab755574b49c8948fee89ee219a367
     @Page public CAAuthorizationAndVerificationPage authorizationAndVerificationPage;
     @Page public AgentVerificationPage agentVerificationPage;
     @Page public RN040Page replacementNoticePage;
@@ -54,7 +58,11 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
 
         app = new Application();
         // Customer Info Page Question
+<<<<<<< HEAD
         app.setMedicareClaimNum(faker.bothify("3########?"));
+=======
+        app.setMedicareClaimNum(faker.bothify("??#########"));
+>>>>>>> 5293b44c5eab755574b49c8948fee89ee219a367
         app.setPartABActiveIndicator(YES);
         app.setPlanCode("F");
         app.setReqEffectiveDate(DateUtils.getFirstDayOfFutureMonth(1));
@@ -73,12 +81,22 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
     public void test_california_full_underwriting_with_rn() throws Exception {
 
         sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(69));
+<<<<<<< HEAD
         sheet.setMedPartBdate("2012-01-01");
 
         //Customer Information
         app.setMPAED("01/01/2011");
         app.setMPBED("01/01/2012");
 
+=======
+        sheet.setMedPartBdate("2012-10-01");
+
+        //Customer Information
+        app.setMPAED("01/01/2011");
+        app.setMPBED("10/01/2012");
+
+        app.setMedicareClaimNum(faker.bothify("??#########"));
+>>>>>>> 5293b44c5eab755574b49c8948fee89ee219a367
         //Plan Application
         app.setTurned65In6GA(NO); //TODO: Replace these hard coded values with helper function that will determine answer based upon DOB
         app.setPartBIn6GA(NO); //TODO: Replace these hard coded values with helper function that will determine answer based upon MPBED
@@ -170,6 +188,7 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         authorizationAndVerificationPage.fillAndSubmit(app);
         agentVerificationPage.fillAndSubmit(app);
         replacementNoticePage.fillAndSubmit(app);
+<<<<<<< HEAD
         reviewAndSubmitPage.fillAndSubmit(app);
 
         applicationSubmissionPage.isAt();
@@ -251,6 +270,8 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         pastAndCurrentInsuranceCoveragePage.fillAndSubmit(app);
         authorizationAndVerificationPage.fillAndSubmit(app);
         agentVerificationPage.fillAndSubmit(app);
+=======
+>>>>>>> 5293b44c5eab755574b49c8948fee89ee219a367
         reviewAndSubmitPage.fillAndSubmit(app);
 
         applicationSubmissionPage.isAt();
