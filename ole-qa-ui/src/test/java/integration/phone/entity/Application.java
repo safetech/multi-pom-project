@@ -1,9 +1,9 @@
 package integration.phone.entity;
 
-        import org.fluentlenium.core.domain.FluentWebElement;
-        import org.openqa.selenium.support.FindBy;
-        import util.AnswerUtils;
-        import util.DateUtils;
+import util.AnswerUtils;
+import util.DateUtils;
+import util.PlanEligibilityQuestionUtils;
+import java.util.Date;
 
 public class Application {
 
@@ -1329,4 +1329,17 @@ public class Application {
         setPrefix(sheet.getPrefix().toUpperCase());
         setSuffix(sheet.getSuffix().toUpperCase());
     }
+
+    public void setDefaultPlanEligibilityQuestions(CribSheet sheet) {
+
+        Date dob = new Date(DateUtils.convertDate(sheet.getDateOfBirth(), DateUtils.NORMALIZED_DATE_FORMAT));
+        Date dpsd = new Date(DateUtils.convertDate(sheet.getDpsd(), DateUtils.NORMALIZED_DATE_FORMAT));
+        Date mpbed = new Date(DateUtils.convertDate(sheet.getMedPartBdate(), DateUtils.NORMALIZED_DATE_FORMAT));
+
+        setTurned65In6GA(PlanEligibilityQuestionUtils.hasTurned65In6GABasedUponDpsd(dob, dpsd));
+        setPartBIn6GA(PlanEligibilityQuestionUtils.hasPartBIn6GABasedUponDpsd(mpbed, dpsd));
+        setPlanEffIn6OfEligible(PlanEligibilityQuestionUtils.hasPlanEffIn6OfEligibleBasedUponDpsd(dob, mpbed, dpsd));
+
+    }
+
 }
