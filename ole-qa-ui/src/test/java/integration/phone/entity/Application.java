@@ -294,7 +294,7 @@ public class Application {
     private String MedSuppReplace = "";
     private String involTerm = "";
     private String OtherInsTerm = "";
-
+    //private String DidNotAssistAnsweringQuestions = "";
 
     public String getOtherInsTerm() {
         return OtherInsTerm;

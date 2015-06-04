@@ -13,7 +13,7 @@ public class AgentVerificationPage extends WizardPage{
     FluentWebElement AgentPoliciesInForce;
     FluentWebElement AgentPoliciesSoldNotInForce;
     FluentWebElement AgentSignatureInd;
-
+    FluentWebElement DidNotAssistAnsweringQuestions;
     public void fillAndSubmit(Application app) {
 
         isAt();
@@ -22,7 +22,9 @@ public class AgentVerificationPage extends WizardPage{
         fill(AgentPoliciesInForce).with(app.getAgentPoliciesInForce());
         fill(AgentPoliciesSoldNotInForce).with(app.getAgentPoliciesSoldNotInForce());
         AgentSignatureInd.click();
-
+        if (DidNotAssistAnsweringQuestions.isDisplayed()){
+            DidNotAssistAnsweringQuestions.click();
+        }
         clickNextAndWaitForSpinnerToFinish();
 
     }
