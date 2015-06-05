@@ -19,6 +19,7 @@ import org.junit.Before;
 import org.junit.Test;
 import util.DateUtils;
 
+
 public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
 
     @Page public CheatPage cheatPage;
@@ -115,20 +116,6 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         app.setEligCancer(NO);
         app.setEligHeart(NO);
         app.setEligVascular(NO);
-      //TODO  //Health History (Verify that we need the Health History data below
-        app.setEmphysema(YES);
-        app.setOthercancer(YES);
-        app.setPolycystic(YES);
-        app.setCirrhosis(YES);
-        app.setBonemarrow(YES);
-        app.setPancreatitis(YES);
-        app.setAmputation(YES);
-        app.setAlcohol(YES);
-        app.setParaplegia(YES);
-        app.setBipolar(YES);
-        app.setMacular(YES);
-        app.setAlzheimers(YES);
-        app.setHIV(YES);
         //Past And Current Coverage
         app.setMedicaidCovered(YES);
         app.setMedicaidSupPremium(YES);
@@ -165,9 +152,8 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
 
         expectedSubmissionResult.setAdjudicationStatus("A");
         expectedSubmissionResult.setStatus("C");
-        expectedSubmissionResult.setWorkQueue("UNDERWRITING");
-        expectedSubmissionResult.setWorkQueueReason("REVIEW FOR POSSIBLE ESRD");
-
+        expectedSubmissionResult.setWorkQueue("");
+        expectedSubmissionResult.setWorkQueueReason("");
         logger.info(gson.toJson(app));
 
         startApp(cheatPage, app, sheet);
@@ -245,7 +231,6 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         app.setAgentAddress("ProducerAdd");
         app.setApplicantPrintedNameAdd("AppName");
         app.setApplicantAddress("AppAdd");
-
 
         expectedSubmissionResult.setAdjudicationStatus("A");
         expectedSubmissionResult.setStatus("C");

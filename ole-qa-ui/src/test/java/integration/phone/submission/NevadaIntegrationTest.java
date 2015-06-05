@@ -53,7 +53,7 @@ public class NevadaIntegrationTest extends CQBaseIntegrationTest {
 
         app = new Application();
         // Customer Info Page Question
-        app.setMedicareClaimNum(faker.bothify("??#########"));
+        app.setMedicareClaimNum(faker.bothify("#########A"));
         app.setPartABActiveIndicator(YES);
         app.setPlanCode("F");
         app.setReqEffectiveDate(DateUtils.getFirstDayOfFutureMonth(1));

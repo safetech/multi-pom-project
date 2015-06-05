@@ -61,7 +61,7 @@ public class NewJerseyIntegrationTest extends CQBaseIntegrationTest {
 
         Application app = new Application(sheet);
         //Customer Information
-        app.setMedicareClaimNum(faker.bothify("??#########"));
+        app.setMedicareClaimNum(faker.bothify("#########A"));
         app.setMPAED("01/01/2011");
         app.setMPBED("10/01/1999");
         app.setPartABActiveIndicator(YES);

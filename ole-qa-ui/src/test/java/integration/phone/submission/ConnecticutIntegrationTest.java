@@ -66,7 +66,7 @@ public class ConnecticutIntegrationTest extends CQBaseIntegrationTest {
 
         Application app = new Application(sheet);
 
-        app.setMedicareClaimNum(faker.bothify("??#########"));
+        app.setMedicareClaimNum(faker.bothify("#########A"));
         app.setMPAED("01/01/1999");
         app.setMPBED("01/01/1999");
         app.setPlanCode("A");

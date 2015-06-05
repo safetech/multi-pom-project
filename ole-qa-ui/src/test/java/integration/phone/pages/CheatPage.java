@@ -5,7 +5,6 @@ import org.fluentlenium.core.FluentPage;
 import org.fluentlenium.core.domain.FluentWebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
-
 import java.util.concurrent.TimeUnit;
 
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -82,5 +81,6 @@ public class CheatPage extends FluentPage{
     protected void waitForSpinnerToFinish() {
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
     }
+
 
 }

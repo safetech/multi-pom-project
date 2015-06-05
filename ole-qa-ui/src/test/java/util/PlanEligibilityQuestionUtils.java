@@ -42,7 +42,7 @@ public class PlanEligibilityQuestionUtils {
         if(PlanEligibilityQuestionUtils.hasTurned65In6GABasedUponDpsd(dob, dpsd).equals(AnswerUtils.YES)) {
             return AnswerUtils.YES;
         }
-        if(PlanEligibilityQuestionUtils.hasPartBIn6GABasedUponDpsd(mpbed, dpsd).equals(AnswerUtils.NO)) {
+        if(PlanEligibilityQuestionUtils.hasPartBIn6GABasedUponDpsd(mpbed, dpsd).equals(AnswerUtils.YES)) {
             return AnswerUtils.YES;
         }
         return AnswerUtils.NO;

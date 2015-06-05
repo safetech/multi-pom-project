@@ -6,9 +6,7 @@ import integration.phone.entity.Application;
 import integration.phone.entity.CribSheet;
 import integration.phone.entity.SubmissionResult;
 import integration.phone.pages.*;
-import integration.phone.pages.AgentVerificationPage;
-import integration.phone.pages.variations.pastandcurrentcoverage.NVPastAndCurrentInsuranceCoveragePage;
-import integration.phone.pages.variations.planapplicationpage.NCPlanApplicationQuestions;
+import integration.phone.pages.variations.pastandcurrentcoverage.NYPastAndCurrentInsuranceCoveragePage;
 import integration.phone.pages.variations.replacementnotice.RN034andRE073Page;
 import integration.phone.queries.SubmissionQuery;
 import org.fluentlenium.core.annotation.Page;
@@ -16,17 +14,15 @@ import org.junit.Before;
 import org.junit.Test;
 import util.DateUtils;
 
-public class NorthCarolinaIntegrationTest extends CQBaseIntegrationTest {
+public class NewYorkIntegrationTest extends CQBaseIntegrationTest {
 
     @Page public CheatPage cheatPage;
     @Page public VoiceSignatureInstructionsPage voiceSignatureInstructionsPage;
     @Page public CustomerInformationPage customerInformationPage;
     @Page public PlanSelectionAndStartDatePage planSelectionAndStartDatePage;
-    @Page public NCPlanApplicationQuestions planApplicationQuestionsPage;
-    @Page public EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
-    @Page public NVPastAndCurrentInsuranceCoveragePage pastAndCurrentInsuranceCoveragePage;
+    @Page public PlanApplicationQuestions planApplicationQuestionsPage;
+    @Page public NYPastAndCurrentInsuranceCoveragePage pastAndCurrentInsuranceCoveragePage;
     @Page public AuthorizationAndVerificationPage authorizationAndVerificationPage;
-    @Page public HealthHistoryQuestionsPage healthHistoryQuestionsPage;
     @Page public AgentVerificationPage agentVerificationPage;
     @Page public RN034andRE073Page replacementNoticePage;
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
@@ -44,14 +40,13 @@ public class NorthCarolinaIntegrationTest extends CQBaseIntegrationTest {
 
         sheet = new CribSheet(faker);
         sheet.setRandomNameGenderAndMembershipNumber();
-        sheet.setRandomAddress("NC", "27027");
+        sheet.setRandomAddress("NY", "10001");
         sheet.setRandomContactInfo();
         sheet.setRandomCallCenterInfo();
         sheet.setDpsdToFirstDayOfFutureMonth(1);
         sheet.setPlanCode("F01");
 
         app = new Application();
-
         // Customer Info Page Question
         app.setMedicareClaimNum(faker.bothify("#########A"));
         app.setPartABActiveIndicator(YES);
@@ -69,7 +64,7 @@ public class NorthCarolinaIntegrationTest extends CQBaseIntegrationTest {
     }
 
     @Test
-    public void test_north_carolina_health_history_underwriting_with_rn() throws Exception {
+    public void test_newyork_guaranteed_issue_with_rn() throws Exception {
 
         sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(69));
         sheet.setMedPartBdate("2012-04-01");
@@ -79,9 +74,7 @@ public class NorthCarolinaIntegrationTest extends CQBaseIntegrationTest {
         app.setMPBED("04/01/2012");
 
         //Plan Eligibility
-        app.setTurned65In6GA(NO); //TODO: Replace these hard coded values with helper function that will determine answer based upon DOB
-        app.setPartBIn6GA(NO); //TODO: Replace these hard coded values with helper function that will determine answer based upon MPBED
-        app.setPlanEffIn6OfEligible(NO);  //TODO: Replace these hard coded values with helper function that will determine answer based upon DOB & MPBED
+        app.setDefaultPlanEligibilityQuestions(sheet);
         app.setLostCoverage(NO);
         app.setTobaccoUse(YES);
 
@@ -101,8 +94,6 @@ public class NorthCarolinaIntegrationTest extends CQBaseIntegrationTest {
         app.setFirstTime(YES);
         app.setDropMedSuppForThisPlan(YES);
         app.setExistMedSupp(YES);
-        app.setMSInsCompany("Blue Cross Blue Shield");
-        app.setMSPLAN("Medical Supplement");
         app.setReplaceExistingMedSup(YES);
         app.setOtherInsCoverage(YES);
         app.setOtherInsCompany("Blue Cross Blue Shield");
@@ -111,16 +102,6 @@ public class NorthCarolinaIntegrationTest extends CQBaseIntegrationTest {
         app.setOtherInsEnd("01/01/2014");
         app.setOtherInsReplace(YES);
         app.setCpaSignatureInd(YES);
-
-        //Authorizationa and verififcation page
-        app.setDesignateLapse(NO);
-        app.setAuxFirstName("AuxFirstName");
-        app.setAuxMI("M");
-        app.setAuxLastName("AuxLastName");
-        app.setAuxAddressLine1("AuxAddressLine1");
-        app.setAuxCity("AuxCity");
-        app.setAuxState("NV");
-        app.setAuxZipCode("89101");
 
         //Replacement Notice Page
         app.setCommonReplacementNoticeAnswersWithApplicantInfo();
@@ -132,9 +113,6 @@ public class NorthCarolinaIntegrationTest extends CQBaseIntegrationTest {
         voiceSignatureInstructionsPage.fillAndSubmit(app);
         customerInformationPage.fillAndSubmit(app);
         planSelectionAndStartDatePage.fillAndSubmit(app);
-        planApplicationQuestionsPage.fillAndSubmit(app);
-        eligibilityHealthQuestionsPage.fillAndSubmit(app);
-        healthHistoryQuestionsPage.fillAndSubmit(app);
         pastAndCurrentInsuranceCoveragePage.fillAndSubmit(app);
         authorizationAndVerificationPage.fillAndSubmit(app);
         agentVerificationPage.fillAndSubmit(app);
@@ -148,9 +126,8 @@ public class NorthCarolinaIntegrationTest extends CQBaseIntegrationTest {
         submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
 
     }
-
     @Test
-    public void test_north_carolina_eligibility_underwriting_without_rn() throws Exception {
+    public void test_newyork_guaranteed_issue_without_rn() throws Exception {
 
         sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(68));
         sheet.setMedPartBdate("2014-01-01");
@@ -160,9 +137,7 @@ public class NorthCarolinaIntegrationTest extends CQBaseIntegrationTest {
         app.setMPBED("01/01/2014");
 
         //Plan Eligibility
-        app.setTurned65In6GA(NO); //TODO: Replace these hard coded values with helper function that will determine answer based upon DOB
-        app.setPartBIn6GA(NO); //TODO: Replace these hard coded values with helper function that will determine answer based upon MPBED
-        app.setPlanEffIn6OfEligible(NO);  //TODO: Replace these hard coded values with helper function that will determine answer based upon DOB & MPBED
+        app.setDefaultPlanEligibilityQuestions(sheet);
         app.setLostCoverage(NO);
         app.setTobaccoUse(NO);
 
@@ -176,12 +151,10 @@ public class NorthCarolinaIntegrationTest extends CQBaseIntegrationTest {
         app.setFirstTime(BLANK);
         app.setDropMedSuppForThisPlan(BLANK);
         app.setExistMedSupp(NO);
-        app.setMSInsCompany("Blue Cross Blue Shield NV");
-        app.setMSPLAN("Medical Supplement NV");
         app.setReplaceExistingMedSup(BLANK);
         app.setOtherInsCoverage(YES);
         app.setOtherInsCompany("Blue Cross Blue Shield");
-        app.setOtherInsType("HMO");                     
+        app.setOtherInsType("HMO");
         app.setOtherInsStart("01/01/2001");
         app.setOtherInsEnd("01/01/2014");
         app.setOtherInsReplace(YES);
@@ -191,14 +164,11 @@ public class NorthCarolinaIntegrationTest extends CQBaseIntegrationTest {
         app.setDesignateLapse(YES);
 
         expectedSubmissionResult.setAcceptedInfo();
-
         startApp(cheatPage, app, sheet);
 
         voiceSignatureInstructionsPage.fillAndSubmit(app);
         customerInformationPage.fillAndSubmit(app);
         planSelectionAndStartDatePage.fillAndSubmit(app);
-        planApplicationQuestionsPage.fillAndSubmit(app);
-        eligibilityHealthQuestionsPage.fillAndSubmit(app);
         pastAndCurrentInsuranceCoveragePage.fillAndSubmit(app);
         authorizationAndVerificationPage.fillAndSubmit(app);
         agentVerificationPage.fillAndSubmit(app);
@@ -209,6 +179,7 @@ public class NorthCarolinaIntegrationTest extends CQBaseIntegrationTest {
 
         submissionQuery.verifySubmissionData(app, expectedSubmissionResult);
         submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
+
 
     }
 

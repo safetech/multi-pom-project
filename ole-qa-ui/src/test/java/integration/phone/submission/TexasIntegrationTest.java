@@ -173,7 +173,7 @@ public class TexasIntegrationTest extends CQBaseIntegrationTest {
 
         sheet.setRandomNameGenderAndMembershipNumber();
 
-        sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(69));
+        sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(66));
         sheet.setMedPartBdate("2014-01-01");
 
         //Customer Information

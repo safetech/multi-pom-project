@@ -8,7 +8,7 @@ import integration.phone.entity.SubmissionResult;
 import integration.phone.pages.*;
 import integration.phone.pages.AgentVerificationPage;
 import integration.phone.pages.variations.pastandcurrentcoverage.CA_PA_NJ_IN_PastAndCurrentInsuranceCoveragePage;
-import integration.phone.pages.variations.planapplicationpage.DEGuranteedIssuePlanApplicationQuestions;
+import integration.phone.pages.variations.planapplicationpage.DE_PlanApplicationQuestions;
 import integration.phone.pages.variations.planapplicationpage.DE_NV_IN_PlanApplicationQuestions;
 import integration.phone.pages.variations.replacementnotice.RN034andRE073Page;
 import integration.phone.queries.SubmissionQuery;
@@ -24,7 +24,7 @@ public class DelawareIntegrationTest extends CQBaseIntegrationTest {
     @Page public CustomerInformationPage customerInformationPage;
     @Page public PlanSelectionAndStartDatePage planSelectionAndStartDatePage;
     @Page public DE_NV_IN_PlanApplicationQuestions planApplicationQuestionsPage;
-    @Page public DEGuranteedIssuePlanApplicationQuestions GIplanApplicationQuestionsPage;
+    @Page public DE_PlanApplicationQuestions GIplanApplicationQuestionsPage;
     @Page public EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
     @Page public CA_PA_NJ_IN_PastAndCurrentInsuranceCoveragePage pastAndCurrentInsuranceCoveragePage;
     @Page public AuthorizationAndVerificationPage authorizationAndVerificationPage;
@@ -61,7 +61,7 @@ public class DelawareIntegrationTest extends CQBaseIntegrationTest {
 
         Application app = new Application(sheet);
 
-        app.setMedicareClaimNum(faker.bothify("??#########"));
+        app.setMedicareClaimNum(faker.bothify("#########A"));
         app.setMPAED("01/01/2012");
         app.setMPBED("04/01/2012");
         app.setPartABActiveIndicator(YES);

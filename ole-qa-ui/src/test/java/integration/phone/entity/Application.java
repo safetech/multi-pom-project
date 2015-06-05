@@ -900,9 +900,24 @@ public class Application {
     private String SixEmpCovTerm = "";
     private String SixMonMoveOut = "";
     private String SixMonResident = "";
+    private String MOPlanCode = "";
+    private String MOAnniversaryDate = "";
 
+    public String getMOAnniversaryDate() {
+        return MOAnniversaryDate;
+    }
 
+    public void setMOAnniversaryDate(String MOAnniversaryDate) {
+        this.MOAnniversaryDate = MOAnniversaryDate;
+    }
 
+    public String getMOPlanCode() {
+        return MOPlanCode;
+    }
+
+    public void setMOPlanCode(String MOPlanCode) {
+        this.MOPlanCode = MOPlanCode;
+    }
 
     public String getAuxMI() {
         return AuxMI;

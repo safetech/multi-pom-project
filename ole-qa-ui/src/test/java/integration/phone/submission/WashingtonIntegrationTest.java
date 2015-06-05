@@ -52,7 +52,7 @@ public class WashingtonIntegrationTest extends CQBaseIntegrationTest {
 
         app = new Application();
         // Customer Info Page Question
-        app.setMedicareClaimNum(faker.bothify("??#########"));
+        app.setMedicareClaimNum(faker.bothify("#########?"));
         app.setPartABActiveIndicator(YES);
         app.setPlanCode("F");
         app.setReqEffectiveDate(DateUtils.getFirstDayOfFutureMonth(1));
