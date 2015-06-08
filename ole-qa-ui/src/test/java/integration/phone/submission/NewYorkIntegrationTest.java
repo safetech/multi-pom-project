@@ -9,6 +9,7 @@ import integration.phone.pages.*;
 import integration.phone.pages.variations.pastandcurrentcoverage.NYPastAndCurrentInsuranceCoveragePage;
 import integration.phone.pages.variations.replacementnotice.RN034andRE073Page;
 import integration.phone.queries.SubmissionQuery;
+import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
@@ -47,6 +48,7 @@ public class NewYorkIntegrationTest extends CQBaseIntegrationTest {
         sheet.setPlanCode("F01");
 
         app = new Application();
+
         // Customer Info Page Question
         app.setMedicareClaimNum(faker.bothify("#########A"));
         app.setPartABActiveIndicator(YES);
@@ -94,6 +96,8 @@ public class NewYorkIntegrationTest extends CQBaseIntegrationTest {
         app.setFirstTime(YES);
         app.setDropMedSuppForThisPlan(YES);
         app.setExistMedSupp(YES);
+        app.setMSInsCompany("AARP Insurance");
+        app.setMSPLAN("HMO");
         app.setReplaceExistingMedSup(YES);
         app.setOtherInsCoverage(YES);
         app.setOtherInsCompany("Blue Cross Blue Shield");
@@ -106,7 +110,7 @@ public class NewYorkIntegrationTest extends CQBaseIntegrationTest {
         //Replacement Notice Page
         app.setCommonReplacementNoticeAnswersWithApplicantInfo();
 
-        expectedSubmissionResult.setPendingInfo("UNDERWRITING", "REVIEW FOR POSSIBLE ESRD");
+        expectedSubmissionResult.setPendingInfo("", "");
 
         startApp(cheatPage, app, sheet);
 
@@ -120,7 +124,7 @@ public class NewYorkIntegrationTest extends CQBaseIntegrationTest {
         reviewAndSubmitPage.fillAndSubmit(app);
 
         applicationSubmissionPage.isAt();
-        applicationSubmissionPage.isPending();
+        applicationSubmissionPage.isApproved();
 
         submissionQuery.verifySubmissionData(app, expectedSubmissionResult);
         submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
@@ -147,17 +151,17 @@ public class NewYorkIntegrationTest extends CQBaseIntegrationTest {
         app.setMedicaidCovered(YES);
         app.setMedicaidSupPremium(YES);
         app.setMedicaidbenefit(YES);
-        app.setExistingMedicare(NO);
+        app.setExistingMedicare(YES);
         app.setFirstTime(BLANK);
         app.setDropMedSuppForThisPlan(BLANK);
         app.setExistMedSupp(NO);
         app.setReplaceExistingMedSup(BLANK);
-        app.setOtherInsCoverage(YES);
-        app.setOtherInsCompany("Blue Cross Blue Shield");
-        app.setOtherInsType("HMO");
-        app.setOtherInsStart("01/01/2001");
-        app.setOtherInsEnd("01/01/2014");
-        app.setOtherInsReplace(YES);
+        app.setOtherInsCoverage(NO);
+        app.setOtherInsCompany("");
+        app.setOtherInsType("");
+        app.setOtherInsStart("");
+        app.setOtherInsEnd("");
+        app.setOtherInsReplace(NO);
         app.setCpaSignatureInd(YES);
 
         //Authorizationa and verififcation page

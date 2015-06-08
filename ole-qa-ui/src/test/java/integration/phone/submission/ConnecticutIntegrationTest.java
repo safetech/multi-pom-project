@@ -42,7 +42,6 @@ public class ConnecticutIntegrationTest extends CQBaseIntegrationTest {
         expectedSubmissionResult = new SubmissionResult();
     }
 
-    @Ignore
     @Test
     public void test_db() throws Exception {
 
