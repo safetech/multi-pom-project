@@ -9,7 +9,7 @@ import integration.phone.pages.*;
 import integration.phone.pages.AgentVerificationPage;
 import integration.phone.pages.variations.pastandcurrentcoverage.CA_PA_NJ_IN_PastAndCurrentInsuranceCoveragePage;
 import integration.phone.pages.variations.planapplicationpage.DE_PlanApplicationQuestions;
-import integration.phone.pages.variations.planapplicationpage.DE_NV_IN_PlanApplicationQuestions;
+import integration.phone.pages.variations.planapplicationpage.DE_NV_IN_AL_SC_PlanApplicationQuestions;
 import integration.phone.pages.variations.replacementnotice.RN034andRE073Page;
 import integration.phone.queries.SubmissionQuery;
 import org.fluentlenium.core.annotation.Page;
@@ -23,7 +23,7 @@ public class DelawareIntegrationTest extends CQBaseIntegrationTest {
     @Page public VoiceSignatureInstructionsPage voiceSignatureInstructionsPage;
     @Page public CustomerInformationPage customerInformationPage;
     @Page public PlanSelectionAndStartDatePage planSelectionAndStartDatePage;
-    @Page public DE_NV_IN_PlanApplicationQuestions planApplicationQuestionsPage;
+    @Page public DE_NV_IN_AL_SC_PlanApplicationQuestions planApplicationQuestionsPage;
     @Page public DE_PlanApplicationQuestions GIplanApplicationQuestionsPage;
     @Page public EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
     @Page public CA_PA_NJ_IN_PastAndCurrentInsuranceCoveragePage pastAndCurrentInsuranceCoveragePage;

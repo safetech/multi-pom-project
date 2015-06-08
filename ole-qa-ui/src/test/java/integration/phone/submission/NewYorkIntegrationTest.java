@@ -38,7 +38,6 @@ public class NewYorkIntegrationTest extends CQBaseIntegrationTest {
     public void setup() {
         submissionQuery = new SubmissionQuery();
         faker = new Faker();
-
         sheet = new CribSheet(faker);
         sheet.setRandomNameGenderAndMembershipNumber();
         sheet.setRandomAddress("NY", "10001");
@@ -110,7 +109,10 @@ public class NewYorkIntegrationTest extends CQBaseIntegrationTest {
         //Replacement Notice Page
         app.setCommonReplacementNoticeAnswersWithApplicantInfo();
 
-        expectedSubmissionResult.setPendingInfo("", "");
+
+        expectedSubmissionResult.setAdjudicationStatus("A");
+        expectedSubmissionResult.setStatus("C");
+        //expectedSubmissionResult.setPendingInfo("","");
 
         startApp(cheatPage, app, sheet);
 
@@ -151,7 +153,7 @@ public class NewYorkIntegrationTest extends CQBaseIntegrationTest {
         app.setMedicaidCovered(YES);
         app.setMedicaidSupPremium(YES);
         app.setMedicaidbenefit(YES);
-        app.setExistingMedicare(YES);
+        app.setExistingMedicare(NO);
         app.setFirstTime(BLANK);
         app.setDropMedSuppForThisPlan(BLANK);
         app.setExistMedSupp(NO);
@@ -161,7 +163,7 @@ public class NewYorkIntegrationTest extends CQBaseIntegrationTest {
         app.setOtherInsType("");
         app.setOtherInsStart("");
         app.setOtherInsEnd("");
-        app.setOtherInsReplace(NO);
+        app.setOtherInsReplace(YES);
         app.setCpaSignatureInd(YES);
 
         //Authorizationa and verififcation page

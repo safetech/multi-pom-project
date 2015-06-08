@@ -6,30 +6,26 @@ import integration.phone.entity.Application;
 import integration.phone.entity.CribSheet;
 import integration.phone.entity.SubmissionResult;
 import integration.phone.pages.*;
-import integration.phone.pages.AgentVerificationPage;
-import integration.phone.pages.variations.authorizationandverification.NVAuthorizationAndVerificationPage;
-import integration.phone.pages.variations.pastandcurrentcoverage.MAPastAndCurrentInsuranceCoveragePage;
-import integration.phone.pages.variations.pastandcurrentcoverage.NVPastAndCurrentInsuranceCoveragePage;
-import integration.phone.pages.variations.planapplicationpage.DE_NV_IN_AL_SC_PlanApplicationQuestions;
+import integration.phone.pages.variations.pastandcurrentcoverage.CTPastAndCurrentInsuranceCoveragePage;
+import integration.phone.pages.variations.planapplicationpage.NC_KY_PlanApplicationQuestions;
 import integration.phone.pages.variations.replacementnotice.RN034andRE073Page;
 import integration.phone.queries.SubmissionQuery;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import util.DateUtils;
 
-public class MarylandIntegrationTest extends CQBaseIntegrationTest {
+public class KentuckyIntegrationTest extends CQBaseIntegrationTest {
 
     @Page public CheatPage cheatPage;
     @Page public VoiceSignatureInstructionsPage voiceSignatureInstructionsPage;
     @Page public CustomerInformationPage customerInformationPage;
     @Page public PlanSelectionAndStartDatePage planSelectionAndStartDatePage;
-    @Page public DE_NV_IN_AL_SC_PlanApplicationQuestions planApplicationQuestionsPage;
+    @Page public NC_KY_PlanApplicationQuestions planApplicationQuestionsPage;
     @Page public EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
-    @Page public NVPastAndCurrentInsuranceCoveragePage pastAndCurrentInsuranceCoveragePage;
-    @Page public NVAuthorizationAndVerificationPage authorizationAndVerificationPage;
-    @Page public MAPastAndCurrentInsuranceCoveragePage healthHistoryQuestionsPage;
+    @Page public CTPastAndCurrentInsuranceCoveragePage pastAndCurrentInsuranceCoveragePage;
+    @Page public AuthorizationAndVerificationPage authorizationAndVerificationPage;
+    @Page public HealthHistoryQuestionsPage healthHistoryQuestionsPage;
     @Page public AgentVerificationPage agentVerificationPage;
     @Page public RN034andRE073Page replacementNoticePage;
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
@@ -47,7 +43,7 @@ public class MarylandIntegrationTest extends CQBaseIntegrationTest {
 
         sheet = new CribSheet(faker);
         sheet.setRandomNameGenderAndMembershipNumber();
-        sheet.setRandomAddress("MA", "21234");
+        sheet.setRandomAddress("KY", "40205");
         sheet.setRandomContactInfo();
         sheet.setRandomCallCenterInfo();
         sheet.setDpsdToFirstDayOfFutureMonth(1);
@@ -72,7 +68,7 @@ public class MarylandIntegrationTest extends CQBaseIntegrationTest {
     }
 
     @Test
-    public void test_maryland_health_history_underwriting_with_rn() throws Exception {
+    public void test_kentucky_health_history_underwriting_with_rn() throws Exception {
 
         sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(69));
         sheet.setMedPartBdate("2012-04-01");
@@ -135,6 +131,9 @@ public class MarylandIntegrationTest extends CQBaseIntegrationTest {
         voiceSignatureInstructionsPage.fillAndSubmit(app);
         customerInformationPage.fillAndSubmit(app);
         planSelectionAndStartDatePage.fillAndSubmit(app);
+        planApplicationQuestionsPage.fillAndSubmit(app);
+        eligibilityHealthQuestionsPage.fillAndSubmit(app);
+        healthHistoryQuestionsPage.fillAndSubmit(app);
         pastAndCurrentInsuranceCoveragePage.fillAndSubmit(app);
         authorizationAndVerificationPage.fillAndSubmit(app);
         agentVerificationPage.fillAndSubmit(app);
@@ -149,8 +148,8 @@ public class MarylandIntegrationTest extends CQBaseIntegrationTest {
 
     }
 
-    @Ignore
-    public void test_maryland_eligibility_underwriting_without_rn() throws Exception {
+    @Test
+    public void test_kentucky_eligibility_underwriting_without_rn() throws Exception {
 
         sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(68));
         sheet.setMedPartBdate("2014-01-01");
@@ -164,7 +163,7 @@ public class MarylandIntegrationTest extends CQBaseIntegrationTest {
         app.setPartBIn6GA(NO); //TODO: Replace these hard coded values with helper function that will determine answer based upon MPBED
         app.setPlanEffIn6OfEligible(NO);  //TODO: Replace these hard coded values with helper function that will determine answer based upon DOB & MPBED
         app.setLostCoverage(NO);
-        app.setTobaccoUse(NO);
+        app.setTobaccoUse(YES);
 
         //Past And Current Coverage
         app.setCPATurned65(NO);

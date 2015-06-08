@@ -175,8 +175,6 @@ public class NYPastAndCurrentInsuranceCoveragePage extends WizardPage{
             ReplaceExistingMedSup_No,
             MSInsCompany,
             MSPLAN);
-        assertVisible(OtherInsCoverage_Yes, OtherInsCoverage_No);
-        assertYesNoQuestion(OtherInsCoverage_Yes, OtherInsCoverage_No, app.getOtherInsCoverage());
         assertVisibleBasedUpon(app.getOtherInsCoverage().equals("yes"),
             OtherInsCompany,
             OtherInsType,
@@ -188,7 +186,6 @@ public class NYPastAndCurrentInsuranceCoveragePage extends WizardPage{
         assertThat(OtherInsType.getValue(), equalTo(app.getOtherInsType()));
         assertThat(OtherInsStart.getValue(), equalTo(app.getOtherInsStart()));
         assertThat(OtherInsEnd.getValue(), equalTo(app.getOtherInsEnd()));
-        assertYesNoQuestion(OtherInsReplace_Yes, OtherInsReplace_No, app.getOtherInsReplace());
 
         assertThat(CpaSignatureInd.isSelected(), equalTo(true));
 

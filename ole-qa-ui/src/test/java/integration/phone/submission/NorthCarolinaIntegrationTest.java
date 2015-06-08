@@ -8,7 +8,7 @@ import integration.phone.entity.SubmissionResult;
 import integration.phone.pages.*;
 import integration.phone.pages.AgentVerificationPage;
 import integration.phone.pages.variations.pastandcurrentcoverage.NVPastAndCurrentInsuranceCoveragePage;
-import integration.phone.pages.variations.planapplicationpage.NCPlanApplicationQuestions;
+import integration.phone.pages.variations.planapplicationpage.NC_KY_PlanApplicationQuestions;
 import integration.phone.pages.variations.replacementnotice.RN034andRE073Page;
 import integration.phone.queries.SubmissionQuery;
 import org.fluentlenium.core.annotation.Page;
@@ -22,7 +22,7 @@ public class NorthCarolinaIntegrationTest extends CQBaseIntegrationTest {
     @Page public VoiceSignatureInstructionsPage voiceSignatureInstructionsPage;
     @Page public CustomerInformationPage customerInformationPage;
     @Page public PlanSelectionAndStartDatePage planSelectionAndStartDatePage;
-    @Page public NCPlanApplicationQuestions planApplicationQuestionsPage;
+    @Page public NC_KY_PlanApplicationQuestions planApplicationQuestionsPage;
     @Page public EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
     @Page public NVPastAndCurrentInsuranceCoveragePage pastAndCurrentInsuranceCoveragePage;
     @Page public AuthorizationAndVerificationPage authorizationAndVerificationPage;
