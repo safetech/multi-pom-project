@@ -145,7 +145,7 @@ public class ColoradoIntegrationTest extends CQBaseIntegrationTest {
         expectedSubmissionResult.setAdjudicationStatus("P");
         expectedSubmissionResult.setStatus("C");
         expectedSubmissionResult.setWorkQueue("UNDERWRITING");
-        expectedSubmissionResult.setWorkQueueReason("REVIEW FOR POSSIBLE ESRD");
+        expectedSubmissionResult.setWorkQueueReason("REVIEW HIV STATE VARIATIONS");
 
         logger.info(gson.toJson(app));
 

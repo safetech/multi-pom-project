@@ -3,9 +3,7 @@ package integration.phone.pages.variations.pastandcurrentcoverage;
 import integration.phone.entity.Application;
 import integration.phone.pages.WizardPage;
 import org.fluentlenium.core.domain.FluentWebElement;
-import org.openqa.selenium.By;
 import org.openqa.selenium.support.FindBy;
-import java.io.*;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -22,16 +20,17 @@ import static org.hamcrest.MatcherAssert.assertThat;
     @FindBy(css = "#Medicaidbenefit_1") FluentWebElement Medicaidbenefit_Yes;
     @FindBy(css = "#Medicaidbenefit_2") FluentWebElement Medicaidbenefit_No;
 
-    @FindBy(css = "#6monEligEnroll_1") FluentWebElement SixMonEligEnroll_Yes;
-    @FindBy(css = "#6monEligEnroll_2") FluentWebElement SixMonEligEnroll_No;
-    @FindBy(css = "#6monTurn65Enroll_1") FluentWebElement SixMonTurn65Enroll_Yes;
-    @FindBy(css = "#6monTurn65Enroll_2") FluentWebElement SixMonTurn65Enroll_No;
-    @FindBy(css = "#6monEmpCovTerm_1") FluentWebElement SixEmpCovTerm_Yes;
-    @FindBy(css = "#6monEmpCovTerm_2") FluentWebElement SixEmpCovTerm_No;
-    @FindBy(css = "#6monMoveOut_1") FluentWebElement SixMonMoveOut_Yes;
-    @FindBy(css = "#6monMoveOut_2") FluentWebElement SixMonMoveOut_No;
-    @FindBy(css = "#6monResident_1") FluentWebElement SixMonResident_Yes;
-    @FindBy(css = "#6monResident_2") FluentWebElement SixMonResident_No;
+    @FindBy(id = "6monEligEnroll_1") FluentWebElement SixMonEligEnroll_Yes;
+    @FindBy(id = "6monEligEnroll_2") FluentWebElement SixMonEligEnroll_No;
+
+    @FindBy(id = "6monTurn65Enroll_1") FluentWebElement SixMonTurn65Enroll_Yes;
+    @FindBy(id = "6monTurn65Enroll_2") FluentWebElement SixMonTurn65Enroll_No;
+    @FindBy(id = "6monEmpCovTerm_1") FluentWebElement SixEmpCovTerm_Yes;
+    @FindBy(id = "6monEmpCovTerm_2") FluentWebElement SixEmpCovTerm_No;
+    @FindBy(id = "6monMoveOut_1") FluentWebElement SixMonMoveOut_Yes;
+    @FindBy(id = "6monMoveOut_2") FluentWebElement SixMonMoveOut_No;
+    @FindBy(id = "6monResident_1") FluentWebElement SixMonResident_Yes;
+    @FindBy(id = "6monResident_2") FluentWebElement SixMonResident_No;
 
     @FindBy(css = "#ExistingMedicare_1") FluentWebElement ExistingMedicare_Yes;
     @FindBy(css = "#ExistingMedicare_2") FluentWebElement ExistingMedicare_No;
@@ -46,8 +45,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
     @FindBy(css = "#ExistMedSupp_1") FluentWebElement ExistMedSupp_Yes;
     @FindBy(css = "#ExistMedSupp_2") FluentWebElement ExistMedSupp_No;
-    FluentWebElement MSInsCompany;
-    FluentWebElement MSPLAN;
     @FindBy(css = "#ReplaceExistingMedSup_1") FluentWebElement ReplaceExistingMedSup_Yes;
     @FindBy(css = "#ReplaceExistingMedSup_2") FluentWebElement ReplaceExistingMedSup_No;
 
@@ -61,7 +58,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
     @FindBy(css = "#OtherInsReplace_2") FluentWebElement OtherInsReplace_No;
     FluentWebElement CpaSignatureInd;
 
-    protected int TOTAL_POSSIBLE_QUESTION_COUNT = 3;
+    protected int TOTAL_POSSIBLE_QUESTION_COUNT = 41;
 
     public void verifyInitialStateOfElements(Application app) {
 
@@ -95,9 +92,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
         assertBlank(ExistMedSupp_Yes, ExistMedSupp_No);
         assertHidden(ReplaceExistingMedSup_Yes,
-            ReplaceExistingMedSup_No,
-            MSInsCompany,
-            MSPLAN);
+            ReplaceExistingMedSup_No);
 
         assertBlank(OtherInsCoverage_Yes, OtherInsCoverage_No);
         assertHidden(OtherInsCompany,
@@ -143,8 +138,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
         fillYesNoQuestion(ExistMedSupp_Yes, ExistMedSupp_No, app.getExistMedSupp());
         if(app.getExistMedSupp().equals("yes")){
             fillYesNoQuestion(ReplaceExistingMedSup_Yes, ReplaceExistingMedSup_No, app.getReplaceExistingMedSup());
-            fill(MSInsCompany).with(app.getMSInsCompany());
-            fill(MSPLAN).with(app.getMSPLAN());
         }
 
         fillYesNoQuestion(OtherInsCoverage_Yes, OtherInsCoverage_No, app.getOtherInsCoverage());
@@ -202,9 +195,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
         assertYesNoQuestion(ExistMedSupp_Yes, ExistMedSupp_No, app.getExistMedSupp());
         assertVisibleBasedUpon(app.getExistMedSupp().equals("yes"),
             ReplaceExistingMedSup_Yes,
-            ReplaceExistingMedSup_No,
-            MSInsCompany,
-            MSPLAN);
+            ReplaceExistingMedSup_No);
         assertVisible(OtherInsCoverage_Yes, OtherInsCoverage_No);
         assertYesNoQuestion(OtherInsCoverage_Yes, OtherInsCoverage_No, app.getOtherInsCoverage());
         assertVisibleBasedUpon(app.getOtherInsCoverage().equals("yes"),
@@ -228,7 +219,4 @@ import static org.hamcrest.MatcherAssert.assertThat;
     public void isAt() {
         assertThat(pageTitle.getText(), equalTo("Past and Current Insurance Coverage"));
     }
-        private void myNum(int myNum){
-            int nameNum = myNum;
-        }
 }

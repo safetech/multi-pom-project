@@ -1,9 +1,7 @@
 package integration.phone.pages.variations.healthhistoryquestions;
 
 import integration.phone.entity.Application;
-import integration.phone.pages.HealthHistoryQuestionsPage;
 import integration.phone.pages.WizardPage;
-import org.fluentlenium.core.domain.FluentWebElement;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;

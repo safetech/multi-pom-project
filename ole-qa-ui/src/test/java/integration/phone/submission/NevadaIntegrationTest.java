@@ -6,27 +6,30 @@ import integration.phone.entity.Application;
 import integration.phone.entity.CribSheet;
 import integration.phone.entity.SubmissionResult;
 import integration.phone.pages.*;
-import integration.phone.pages.CheatPage;
 import integration.phone.pages.AgentVerificationPage;
-import integration.phone.pages.variations.pastandcurrentcoverage.MAPastAndCurrentInsuranceCoveragePage;
-import integration.phone.pages.variations.replacementnotice.RN040Page;
+import integration.phone.pages.variations.authorizationandverification.NVAuthorizationAndVerificationPage;
+import integration.phone.pages.variations.pastandcurrentcoverage.NVPastAndCurrentInsuranceCoveragePage;
+import integration.phone.pages.variations.planapplicationpage.DE_NV_IN_AL_SC_PlanApplicationQuestions;
+import integration.phone.pages.variations.replacementnotice.RN034andRE073Page;
 import integration.phone.queries.SubmissionQuery;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
 import util.DateUtils;
 
-public class MassachusettsIntegrationTest extends CQBaseIntegrationTest {
+public class NevadaIntegrationTest extends CQBaseIntegrationTest {
 
     @Page public CheatPage cheatPage;
     @Page public VoiceSignatureInstructionsPage voiceSignatureInstructionsPage;
     @Page public CustomerInformationPage customerInformationPage;
     @Page public PlanSelectionAndStartDatePage planSelectionAndStartDatePage;
-    @Page public MAPastAndCurrentInsuranceCoveragePage pastAndCurrentInsuranceCoveragePage;
-    @Page public AuthorizationAndVerificationPage authorizationAndVerificationPage;
+    @Page public DE_NV_IN_AL_SC_PlanApplicationQuestions planApplicationQuestionsPage;
+    @Page public EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
+    @Page public NVPastAndCurrentInsuranceCoveragePage pastAndCurrentInsuranceCoveragePage;
+    @Page public NVAuthorizationAndVerificationPage authorizationAndVerificationPage;
     @Page public HealthHistoryQuestionsPage healthHistoryQuestionsPage;
     @Page public AgentVerificationPage agentVerificationPage;
-    @Page public RN040Page replacementNoticePage;
+    @Page public RN034andRE073Page replacementNoticePage;
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
     @Page public ApplicationSubmissionPage applicationSubmissionPage;
 
@@ -42,17 +45,17 @@ public class MassachusettsIntegrationTest extends CQBaseIntegrationTest {
 
         sheet = new CribSheet(faker);
         sheet.setRandomNameGenderAndMembershipNumber();
-        sheet.setRandomAddress("MA", "01001");
+        sheet.setRandomAddress("NV", "89101");
         sheet.setRandomContactInfo();
         sheet.setRandomCallCenterInfo();
         sheet.setDpsdToFirstDayOfFutureMonth(1);
-        sheet.setPlanCode("MX");
+        sheet.setPlanCode("F01");
 
         app = new Application();
         // Customer Info Page Question
         app.setMedicareClaimNum(faker.bothify("#########A"));
         app.setPartABActiveIndicator(YES);
-        app.setPlanCode("MX");
+        app.setPlanCode("F");
         app.setReqEffectiveDate(DateUtils.getFirstDayOfFutureMonth(1));
 
         //Eligibility Questions
@@ -66,7 +69,7 @@ public class MassachusettsIntegrationTest extends CQBaseIntegrationTest {
     }
 
     @Test
-    public void test_massachusetts_health_history_underwriting_with_rn() throws Exception {
+    public void test_nevada_health_history_underwriting_with_designeeSig_with_rn() throws Exception {
 
         sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(69));
         sheet.setMedPartBdate("2012-04-01");
@@ -76,24 +79,16 @@ public class MassachusettsIntegrationTest extends CQBaseIntegrationTest {
         app.setMPBED("04/01/2012");
 
         //Plan Eligibility
-        app.setTurned65In6GA(NO);
-        app.setPartBIn6GA(NO);
-        app.setPlanEffIn6OfEligible(NO);
+        app.setTurned65In6GA(NO); //TODO: Replace these hard coded values with helper function that will determine answer based upon DOB
+        app.setPartBIn6GA(NO); //TODO: Replace these hard coded values with helper function that will determine answer based upon MPBED
+        app.setPlanEffIn6OfEligible(NO);  //TODO: Replace these hard coded values with helper function that will determine answer based upon DOB & MPBED
         app.setLostCoverage(NO);
         app.setTobaccoUse(YES);
 
-        //Past And Current Coverage
-        app.setSixMonEligEnroll(YES);
-        app.setSixMonEligEnroll(YES);
-        app.setSixMonTurn65Enroll(YES);
-        app.setSixMonTurn65Enroll(YES);
-        app.setSixEmpCovTerm(YES);
-        app.setSixEmpCovTerm(YES);
-        app.setSixMonMoveOut(YES);
-        app.setSixMonMoveOut(YES);
-        app.setSixMonResident(YES);
-        app.setSixMonResident(YES);
+        //Health History
+        app.setCommonHealthHistoryAnswers();
 
+        //Past And Current Coverage
         app.setCPATurned65(NO);
         app.setCPAPartBIn6(NO);
         app.setMedicaidCovered(YES);
@@ -106,8 +101,8 @@ public class MassachusettsIntegrationTest extends CQBaseIntegrationTest {
         app.setFirstTime(YES);
         app.setDropMedSuppForThisPlan(YES);
         app.setExistMedSupp(YES);
-        app.setMSInsCompany("Blue Cross Blue Shield");
-        app.setMSPLAN("Medical Supplement");
+        app.setMSInsCompany("Blue Cross Blue Shield NV");
+        app.setMSPLAN("Medical Supplement NV");
         app.setReplaceExistingMedSup(YES);
         app.setOtherInsCoverage(YES);
         app.setOtherInsCompany("Blue Cross Blue Shield");
@@ -116,19 +111,30 @@ public class MassachusettsIntegrationTest extends CQBaseIntegrationTest {
         app.setOtherInsEnd("01/01/2014");
         app.setOtherInsReplace(YES);
         app.setCpaSignatureInd(YES);
-        app.setApplicantPrintedNameAdd("AppName");
-        app.setApplicantAddress("AppAdd");
-        app.setReplacementReason("OtherReason");
-        app.setRNOther("Cheaper");
 
-        //expectedSubmissionResult.setPendingInfo("", "");
-        expectedSubmissionResult.setAdjudicationStatus("A");
-        expectedSubmissionResult.setStatus("C");
+        //Authorizationa and verififcation page
+        app.setDesignateLapse(NO);
+        app.setAuxFirstName("AuxFirstName");
+        app.setAuxMI("M");
+        app.setAuxLastName("AuxLastName");
+        app.setAuxAddressLine1("AuxAddressLine1");
+        app.setAuxCity("AuxCity");
+        app.setAuxState("NV");
+        app.setAuxZipCode("89101");
+
+        //Replacement Notice Page
+        app.setCommonReplacementNoticeAnswersWithApplicantInfo();
+
+        expectedSubmissionResult.setPendingInfo("UNDERWRITING", "REVIEW FOR POSSIBLE ESRD");
 
         startApp(cheatPage, app, sheet);
+
         voiceSignatureInstructionsPage.fillAndSubmit(app);
         customerInformationPage.fillAndSubmit(app);
         planSelectionAndStartDatePage.fillAndSubmit(app);
+        planApplicationQuestionsPage.fillAndSubmit(app);
+        eligibilityHealthQuestionsPage.fillAndSubmit(app);
+        healthHistoryQuestionsPage.fillAndSubmit(app);
         pastAndCurrentInsuranceCoveragePage.fillAndSubmit(app);
         authorizationAndVerificationPage.fillAndSubmit(app);
         agentVerificationPage.fillAndSubmit(app);
@@ -136,7 +142,7 @@ public class MassachusettsIntegrationTest extends CQBaseIntegrationTest {
         reviewAndSubmitPage.fillAndSubmit(app);
 
         applicationSubmissionPage.isAt();
-        applicationSubmissionPage.isApproved();
+        applicationSubmissionPage.isPending();
 
         submissionQuery.verifySubmissionData(app, expectedSubmissionResult);
         submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
@@ -144,7 +150,7 @@ public class MassachusettsIntegrationTest extends CQBaseIntegrationTest {
     }
 
     @Test
-    public void test_massachusetts_guranteed_issue_without_rn() throws Exception {
+    public void test_nevada_eligibility_underwriting_without_designeeSig_without_rn() throws Exception {
 
         sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(68));
         sheet.setMedPartBdate("2014-01-01");
@@ -161,17 +167,6 @@ public class MassachusettsIntegrationTest extends CQBaseIntegrationTest {
         app.setTobaccoUse(NO);
 
         //Past And Current Coverage
-        app.setSixMonEligEnroll(NO);
-        app.setSixMonEligEnroll(NO);
-        app.setSixMonTurn65Enroll(NO);
-        app.setSixMonTurn65Enroll(NO);
-        app.setSixEmpCovTerm(NO);
-        app.setSixEmpCovTerm(NO);
-        app.setSixMonMoveOut(NO);
-        app.setSixMonMoveOut(NO);
-        app.setSixMonResident(NO);
-        app.setSixMonResident(NO);
-        
         app.setCPATurned65(NO);
         app.setCPAPartBIn6(NO);
         app.setMedicaidCovered(YES);
@@ -181,8 +176,8 @@ public class MassachusettsIntegrationTest extends CQBaseIntegrationTest {
         app.setFirstTime(BLANK);
         app.setDropMedSuppForThisPlan(BLANK);
         app.setExistMedSupp(NO);
-        app.setMSInsCompany("Blue Cross Blue Shield");
-        app.setMSPLAN("Medical Supplement");
+        app.setMSInsCompany("Blue Cross Blue Shield NV");
+        app.setMSPLAN("Medical Supplement NV");
         app.setReplaceExistingMedSup(BLANK);
         app.setOtherInsCoverage(YES);
         app.setOtherInsCompany("Blue Cross Blue Shield");
@@ -202,6 +197,8 @@ public class MassachusettsIntegrationTest extends CQBaseIntegrationTest {
         voiceSignatureInstructionsPage.fillAndSubmit(app);
         customerInformationPage.fillAndSubmit(app);
         planSelectionAndStartDatePage.fillAndSubmit(app);
+        planApplicationQuestionsPage.fillAndSubmit(app);
+        eligibilityHealthQuestionsPage.fillAndSubmit(app);
         pastAndCurrentInsuranceCoveragePage.fillAndSubmit(app);
         authorizationAndVerificationPage.fillAndSubmit(app);
         agentVerificationPage.fillAndSubmit(app);

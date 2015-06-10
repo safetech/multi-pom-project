@@ -18,8 +18,6 @@ public class RN040Page extends WizardPage{
     @FindBy(css = "#ReplacementReason_6") FluentWebElement ReplacementReason_OtherReason;
     FluentWebElement RNOther;
     FluentWebElement AgentRNSignatureInd;
-    FluentWebElement AgentPrintedNameAdd;
-    FluentWebElement AgentAddress;
     FluentWebElement ApplicantRNSignatureInd;
     FluentWebElement ApplicantPrintedNameAdd;
     FluentWebElement ApplicantAddress;
