@@ -896,12 +896,13 @@ public class Application {
     private String AIDS = "";
     private String HIV = "";
     private String SixMonEligEnroll = "";
-    private String SixMonTurn65Enrol = "";
+    private String SixMonTurn65Enroll = "";
     private String SixEmpCovTerm = "";
     private String SixMonMoveOut = "";
     private String SixMonResident = "";
     private String MOPlanCode = "";
     private String MOAnniversaryDate = "";
+
 
     public String getMOAnniversaryDate() {
         return MOAnniversaryDate;
@@ -931,12 +932,12 @@ public class Application {
         SixMonEligEnroll = sixMonEligEnroll;
     }
 
-    public String getSixMonTurn65Enrol() {
-        return SixMonTurn65Enrol;
+    public String getSixMonTurn65Enroll() {
+        return SixMonTurn65Enroll;
     }
 
-    public void setSixMonTurn65Enrol(String sixMonTurn65Enrol) {
-        SixMonTurn65Enrol = sixMonTurn65Enrol;
+    public void setSixMonTurn65Enroll(String sixMonTurn65Enroll) {
+        SixMonTurn65Enroll = sixMonTurn65Enroll;
     }
 
     public String getSixEmpCovTerm() {

@@ -3,12 +3,14 @@ package integration.phone.pages.variations.pastandcurrentcoverage;
 import integration.phone.entity.Application;
 import integration.phone.pages.WizardPage;
 import org.fluentlenium.core.domain.FluentWebElement;
+import org.openqa.selenium.By;
 import org.openqa.selenium.support.FindBy;
-
+import java.io.*;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class MAPastAndCurrentInsuranceCoveragePage extends WizardPage{
+
+    public class MAPastAndCurrentInsuranceCoveragePage extends WizardPage{
 
     @FindBy(css = "#UnderstandPandC_1") FluentWebElement UnderstandPandC_Yes;
     @FindBy(css = "#UnderstandPandC_2") FluentWebElement UnderstandPandC_No;
@@ -19,7 +21,7 @@ public class MAPastAndCurrentInsuranceCoveragePage extends WizardPage{
     @FindBy(css = "#MedicaidSupPremium_2") FluentWebElement MedicaidSupPremium_No;
     @FindBy(css = "#Medicaidbenefit_1") FluentWebElement Medicaidbenefit_Yes;
     @FindBy(css = "#Medicaidbenefit_2") FluentWebElement Medicaidbenefit_No;
-    FluentWebElement CPAMPBED;
+
     @FindBy(css = "#6monEligEnroll_1") FluentWebElement SixMonEligEnroll_Yes;
     @FindBy(css = "#6monEligEnroll_2") FluentWebElement SixMonEligEnroll_No;
     @FindBy(css = "#6monTurn65Enroll_1") FluentWebElement SixMonTurn65Enroll_Yes;
@@ -59,11 +61,20 @@ public class MAPastAndCurrentInsuranceCoveragePage extends WizardPage{
     @FindBy(css = "#OtherInsReplace_2") FluentWebElement OtherInsReplace_No;
     FluentWebElement CpaSignatureInd;
 
-    protected int TOTAL_POSSIBLE_QUESTION_COUNT = 38;
+    protected int TOTAL_POSSIBLE_QUESTION_COUNT = 3;
 
     public void verifyInitialStateOfElements(Application app) {
 
-        assertHidden(CPAMPBED);
+        assertBlank(SixMonEligEnroll_Yes,SixMonEligEnroll_No);
+                assertBlank(
+                SixMonTurn65Enroll_Yes,
+                SixMonTurn65Enroll_No,
+                SixEmpCovTerm_Yes,
+                SixEmpCovTerm_No,
+                SixMonMoveOut_Yes,
+                SixMonMoveOut_No,
+                SixMonResident_Yes,
+                SixMonResident_No);
 
             assertBlank(UnderstandPandC_Yes, UnderstandPandC_No);
         assertBlank(MedicaidCovered_Yes, MedicaidCovered_No);
@@ -103,7 +114,14 @@ public class MAPastAndCurrentInsuranceCoveragePage extends WizardPage{
 
     public void fillAndSubmit(Application app) {
 
+
         verifyInitialStateOfElements(app);
+
+        fillYesNoQuestion(SixMonEligEnroll_Yes, SixMonEligEnroll_No, app.getSixMonEligEnroll());
+        fillYesNoQuestion(SixMonTurn65Enroll_Yes, SixMonTurn65Enroll_No, app.getSixMonTurn65Enroll());
+        fillYesNoQuestion(SixEmpCovTerm_Yes, SixEmpCovTerm_No, app.getSixEmpCovTerm());
+        fillYesNoQuestion(SixMonMoveOut_Yes, SixMonMoveOut_No, app.getSixMonMoveOut());
+        fillYesNoQuestion(SixMonResident_Yes, SixMonResident_No, app.getSixMonResident());
 
         UnderstandPandC_Yes.click();
 
@@ -148,6 +166,12 @@ public class MAPastAndCurrentInsuranceCoveragePage extends WizardPage{
     public void verifyStateOfElementAfterAnswers(Application app) {
 
         assertThat(UnderstandPandC_Yes.isSelected(), equalTo(true));
+
+        assertYesNoQuestion(SixMonEligEnroll_Yes, SixMonEligEnroll_No, app.getSixMonEligEnroll());
+        assertYesNoQuestion(SixMonTurn65Enroll_Yes, SixMonTurn65Enroll_No, app.getSixMonTurn65Enroll());
+        assertYesNoQuestion(SixEmpCovTerm_Yes, SixEmpCovTerm_No, app.getSixEmpCovTerm());
+        assertYesNoQuestion(SixMonMoveOut_Yes, SixMonMoveOut_No, app.getSixMonMoveOut());
+        assertYesNoQuestion(SixMonResident_Yes, SixMonResident_No, app.getSixMonResident());
 
         assertVisible(MedicaidCovered_Yes, MedicaidCovered_No);
         assertYesNoQuestion(MedicaidCovered_Yes, MedicaidCovered_No, app.getMedicaidCovered());
@@ -204,4 +228,7 @@ public class MAPastAndCurrentInsuranceCoveragePage extends WizardPage{
     public void isAt() {
         assertThat(pageTitle.getText(), equalTo("Past and Current Insurance Coverage"));
     }
+        private void myNum(int myNum){
+            int nameNum = myNum;
+        }
 }

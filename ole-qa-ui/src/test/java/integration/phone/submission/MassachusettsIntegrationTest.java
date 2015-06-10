@@ -6,7 +6,9 @@ import integration.phone.entity.Application;
 import integration.phone.entity.CribSheet;
 import integration.phone.entity.SubmissionResult;
 import integration.phone.pages.*;
-import integration.phone.pages.variations.pastandcurrentcoverage.CTPastAndCurrentInsuranceCoveragePage;
+import integration.phone.pages.AgentVerificationPage;
+import integration.phone.pages.variations.authorizationandverification.NVAuthorizationAndVerificationPage;
+import integration.phone.pages.variations.pastandcurrentcoverage.MAPastAndCurrentInsuranceCoveragePage;
 import integration.phone.pages.variations.replacementnotice.RN034andRE073Page;
 import integration.phone.queries.SubmissionQuery;
 import org.fluentlenium.core.annotation.Page;
@@ -20,10 +22,11 @@ public class MassachusettsIntegrationTest extends CQBaseIntegrationTest {
     @Page public VoiceSignatureInstructionsPage voiceSignatureInstructionsPage;
     @Page public CustomerInformationPage customerInformationPage;
     @Page public PlanSelectionAndStartDatePage planSelectionAndStartDatePage;
-    @Page public CTPastAndCurrentInsuranceCoveragePage pastAndCurrentInsuranceCoveragePage;
-    @Page public AuthorizationAndVerificationPage authorizationAndVerificationPage;
+    @Page public MAPastAndCurrentInsuranceCoveragePage pastAndCurrentInsuranceCoveragePage;
+    @Page public NVAuthorizationAndVerificationPage authorizationAndVerificationPage;
+    @Page public HealthHistoryQuestionsPage healthHistoryQuestionsPage;
     @Page public AgentVerificationPage agentVerificationPage;
-    @Page public RN034andRE073Page ReplacementNotice034Page;
+    @Page public RN034andRE073Page replacementNoticePage;
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
     @Page public ApplicationSubmissionPage applicationSubmissionPage;
 
@@ -36,85 +39,98 @@ public class MassachusettsIntegrationTest extends CQBaseIntegrationTest {
     public void setup() {
         submissionQuery = new SubmissionQuery();
         faker = new Faker();
+
         sheet = new CribSheet(faker);
+        sheet.setRandomNameGenderAndMembershipNumber();
+        sheet.setRandomAddress("MA", "01001");
+        sheet.setRandomContactInfo();
+        sheet.setRandomCallCenterInfo();
+        sheet.setDpsdToFirstDayOfFutureMonth(1);
+        sheet.setPlanCode("MX");
+
+        app = new Application();
+        // Customer Info Page Question
+        app.setMedicareClaimNum(faker.bothify("#########A"));
+        app.setPartABActiveIndicator(YES);
+        app.setPlanCode("MX");
+        app.setReqEffectiveDate(DateUtils.getFirstDayOfFutureMonth(1));
+
+        //Eligibility Questions
+        app.setESRD(NO);
+        app.setSurgeryNeeded(NO);
+
+        //Agent Verification Page
+        app.setCommonAgentVerificationAnswers();
+
         expectedSubmissionResult = new SubmissionResult();
     }
 
     @Test
-    public void test_db() throws Exception {
+    public void test_massachusetts_health_history_underwriting_with_rn() throws Exception {
 
-        Application app = new Application();
-        app.setHCSGApplicationId("3-BXRJHQO");
-        SubmissionResult expectedSubmissionResult = new SubmissionResult();
-        submissionQuery.verifySubmissionData(app, expectedSubmissionResult);
-    }
+        sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(69));
+        sheet.setMedPartBdate("2012-04-01");
 
-    @Test
-    public void test_connecticut_guaranteed_issue_without_rn() throws Exception {
+        // Customer Info Page
+        app.setMPAED("01/01/2012");
+        app.setMPBED("04/01/2012");
 
-        sheet.setRandomNameGenderAndMembershipNumber();
-        sheet.setRandomAddress("CT", "06230");
-        sheet.setRandomContactInfo();
-        sheet.setRandomCallCenterInfo();
-        sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(65));
-        sheet.setMedPartBdate("1999-01-01");
-        sheet.setDpsdToFirstDayOfFutureMonth(1);
-        sheet.setPlanCode("A01");
+        //Plan Eligibility
+        app.setTurned65In6GA(NO);
+        app.setPartBIn6GA(NO);
+        app.setPlanEffIn6OfEligible(NO);
+        app.setLostCoverage(NO);
+        app.setTobaccoUse(YES);
 
-        Application app = new Application(sheet);
-
-        app.setMedicareClaimNum(faker.bothify("#########A"));
-        app.setMPAED("01/01/1999");
-        app.setMPBED("01/01/1999");
-        app.setPlanCode("A");
-        app.setReqEffectiveDate(DateUtils.getFirstDayOfFutureMonth(1));
-        app.setCpaSignatureInd(YES);
-        app.setPartABActiveIndicator(YES);
-        app.setCPATurned65(YES);
-        app.setMedicaidSupPremium(YES);
+        //Past And Current Coverage
+        app.setSixMonEligEnroll(YES);
+        app.setSixMonEligEnroll(YES);
+        app.setSixMonTurn65Enroll(YES);
+        app.setSixMonTurn65Enroll(YES);
+        app.setSixEmpCovTerm(YES);
+        app.setSixEmpCovTerm(YES);
+        app.setSixMonMoveOut(YES);
+        app.setSixMonMoveOut(YES);
+        app.setSixMonResident(YES);
+        app.setSixMonResident(YES);
+        
+        app.setCPATurned65(NO);
         app.setCPAPartBIn6(NO);
-        app.setMedicaidCovered(NO);
-        app.setExistingMedicare(NO);
-        app.setExistMedSupp(NO);
-        app.setOtherInsCoverage(NO);
-        app.setTobaccoUse(NO);
-        app.setOtherMedplanstart("");
-        app.setOtherMedplanend("");
-        app.setAgentOtherInsPoliciesSold("HIP");
-        app.setAgentPoliciesInForce("EP");
-        app.setAgentPoliciesSoldNotInForce("EPHIP");
-        app.setAgentSignatureInd(YES);
+        app.setMedicaidCovered(YES);
+        app.setMedicaidSupPremium(YES);
+        app.setMedicaidbenefit(YES);
+        app.setExistingMedicare(YES);
+        app.setOtherMedplanstart("01/01/2012");
+        app.setOtherMedplanend("01/01/2015");
+        app.setIntentReplace(YES);
+        app.setFirstTime(YES);
+        app.setDropMedSuppForThisPlan(YES);
+        app.setExistMedSupp(YES);
+        app.setMSInsCompany("Blue Cross Blue Shield NV");
+        app.setMSPLAN("Medical Supplement NV");
+        app.setReplaceExistingMedSup(YES);
+        app.setOtherInsCoverage(YES);
+        app.setOtherInsCompany("Blue Cross Blue Shield");
+        app.setOtherInsType("HMO");
+        app.setOtherInsStart("01/01/2001");
+        app.setOtherInsEnd("01/01/2014");
+        app.setOtherInsReplace(YES);
+        app.setCpaSignatureInd(YES);
 
-        expectedSubmissionResult.setStatus("C");
-        expectedSubmissionResult.setAdjudicationStatus("A");
+        expectedSubmissionResult.setPendingInfo("UNDERWRITING", "REVIEW FOR POSSIBLE ESRD");
 
-        goTo(cheatPage);
-        cheatPage.isAt();
-        cheatPage.fillAndSubmit(sheet);
-
-        voiceSignatureInstructionsPage.isAt();
+        startApp(cheatPage, app, sheet);
         voiceSignatureInstructionsPage.fillAndSubmit(app);
-
-        customerInformationPage.isAt();
         customerInformationPage.fillAndSubmit(app);
-
-        planSelectionAndStartDatePage.isAt();
         planSelectionAndStartDatePage.fillAndSubmit(app);
-
-        pastAndCurrentInsuranceCoveragePage.isAt();
         pastAndCurrentInsuranceCoveragePage.fillAndSubmit(app);
-
-        authorizationAndVerificationPage.isAt();
         authorizationAndVerificationPage.fillAndSubmit(app);
-
-        agentVerificationPage.isAt();
         agentVerificationPage.fillAndSubmit(app);
-
-        reviewAndSubmitPage.isAt();
+        replacementNoticePage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
 
         applicationSubmissionPage.isAt();
-        applicationSubmissionPage.isApproved();
+        applicationSubmissionPage.isPending();
 
         submissionQuery.verifySubmissionData(app, expectedSubmissionResult);
         submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
@@ -122,74 +138,67 @@ public class MassachusettsIntegrationTest extends CQBaseIntegrationTest {
     }
 
     @Test
-    public void test_connecticut_guaranteed_issue_with_rn() throws Exception {
+    public void test_massachusetts_eligibility_underwriting_without_rn() throws Exception {
 
-        sheet.setRandomNameGenderAndMembershipNumber();
-        sheet.setRandomAddress("CT", "06230");
-        sheet.setRandomContactInfo();
-        sheet.setRandomCallCenterInfo();
-        sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(65));
-        sheet.setMedPartBdate("1999-01-01");
-        sheet.setDpsdToFirstDayOfFutureMonth(1);
-        sheet.setPlanCode("A01");
+        sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(68));
+        sheet.setMedPartBdate("2014-01-01");
 
-        Application app = new Application(sheet);
+        // Customer Info Page
+        app.setMPAED("01/01/2014");
+        app.setMPBED("01/01/2014");
 
-        app.setMedicareClaimNum(faker.bothify("??#########"));
-        app.setMPAED("01/01/1999");
-        app.setMPBED("01/01/1999");
-        app.setPartABActiveIndicator(YES);
-        app.setPlanCode("A");
-        app.setReqEffectiveDate(DateUtils.getFirstDayOfFutureMonth(1));
+        //Plan Eligibility
+        app.setTurned65In6GA(NO); //TODO: Replace these hard coded values with helper function that will determine answer based upon DOB
+        app.setPartBIn6GA(NO); //TODO: Replace these hard coded values with helper function that will determine answer based upon MPBED
+        app.setPlanEffIn6OfEligible(NO);  //TODO: Replace these hard coded values with helper function that will determine answer based upon DOB & MPBED
+        app.setLostCoverage(NO);
         app.setTobaccoUse(NO);
-        app.setCPATurned65(YES);
-        app.setExistingMedicare(NO);
+
+        //Past And Current Coverage
+        app.setSixMonEligEnroll(NO);
+        app.setSixMonEligEnroll(NO);
+        app.setSixMonTurn65Enroll(NO);
+        app.setSixMonTurn65Enroll(NO);
+        app.setSixEmpCovTerm(NO);
+        app.setSixEmpCovTerm(NO);
+        app.setSixMonMoveOut(NO);
+        app.setSixMonMoveOut(NO);
+        app.setSixMonResident(NO);
+        app.setSixMonResident(NO);
+        
+        app.setCPATurned65(NO);
         app.setCPAPartBIn6(NO);
-        app.setMedicaidCovered(NO);
-        app.setOtherMedplanstart("");
-        app.setOtherMedplanend("");
-        app.setExistMedSupp(YES);
-        app.setReplaceExistingMedSup(YES);
-        app.setOtherInsCoverage(NO);
-        app.setAgentSignatureInd(YES);
+        app.setMedicaidCovered(YES);
+        app.setMedicaidSupPremium(YES);
+        app.setMedicaidbenefit(YES);
+        app.setExistingMedicare(NO);
+        app.setFirstTime(BLANK);
+        app.setDropMedSuppForThisPlan(BLANK);
+        app.setExistMedSupp(NO);
+        app.setMSInsCompany("Blue Cross Blue Shield NV");
+        app.setMSPLAN("Medical Supplement NV");
+        app.setReplaceExistingMedSup(BLANK);
+        app.setOtherInsCoverage(YES);
+        app.setOtherInsCompany("Blue Cross Blue Shield");
+        app.setOtherInsType("HMO");
+        app.setOtherInsStart("01/01/2001");
+        app.setOtherInsEnd("01/01/2014");
+        app.setOtherInsReplace(YES);
         app.setCpaSignatureInd(YES);
-        app.setAgentOtherInsPoliciesSold("HIP");
-        app.setAgentPoliciesInForce("EP");
-        app.setAgentPoliciesSoldNotInForce("EPHIP");
-        app.setReplacementReason("OtherReason");
-        app.setApplicantPrintedNameAdd("AppName");
-        app.setApplicantAddress("AppAdd");
-        app.setRNOther("Cheaper");
 
-        expectedSubmissionResult.setStatus("C");
-        expectedSubmissionResult.setAdjudicationStatus("A");
+        //Authorizationa and verififcation page
+        app.setDesignateLapse(YES);
 
-        goTo(cheatPage);
-        cheatPage.isAt();
-        cheatPage.fillAndSubmit(sheet);
+        expectedSubmissionResult.setAcceptedInfo();
 
-        voiceSignatureInstructionsPage.isAt();
+        startApp(cheatPage, app, sheet);
+
         voiceSignatureInstructionsPage.fillAndSubmit(app);
-
-        customerInformationPage.isAt();
         customerInformationPage.fillAndSubmit(app);
-
-        planSelectionAndStartDatePage.isAt();
         planSelectionAndStartDatePage.fillAndSubmit(app);
-
-        pastAndCurrentInsuranceCoveragePage.isAt();
         pastAndCurrentInsuranceCoveragePage.fillAndSubmit(app);
-
-        authorizationAndVerificationPage.isAt();
         authorizationAndVerificationPage.fillAndSubmit(app);
-
-        agentVerificationPage.isAt();
         agentVerificationPage.fillAndSubmit(app);
-
-        ReplacementNotice034Page.isAt();
-        ReplacementNotice034Page.fillAndSubmit(app);
-
-        reviewAndSubmitPage.isAt();
         reviewAndSubmitPage.fillAndSubmit(app);
 
         applicationSubmissionPage.isAt();
