@@ -1,8 +1,7 @@
 package integration.phone.pages.variations.agentverification;
 
-import integration.phone.entity.Application;
+import integration.entity.Application;
 import integration.phone.pages.AgentVerificationPage;
-import integration.phone.pages.WizardPage;
 import org.fluentlenium.core.domain.FluentWebElement;
 
 import static org.hamcrest.CoreMatchers.equalTo;

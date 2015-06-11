@@ -2,9 +2,9 @@ package integration.phone.submission;
 
 import com.github.javafaker.Faker;
 import integration.CQBaseIntegrationTest;
-import integration.phone.entity.Application;
-import integration.phone.entity.CribSheet;
-import integration.phone.entity.SubmissionResult;
+import integration.entity.Application;
+import integration.entity.CribSheet;
+import integration.entity.SubmissionResult;
 import integration.phone.pages.*;
 import integration.phone.pages.variations.pastandcurrentcoverage.CTPastAndCurrentInsuranceCoveragePage;
 import integration.phone.pages.variations.planapplicationpage.DE_NV_IN_AL_SC_PlanApplicationQuestions;

@@ -1,12 +1,12 @@
 package integration.phone.submission;
 
+
 import com.github.javafaker.Faker;
 import integration.CQBaseIntegrationTest;
-import integration.phone.entity.Application;
-import integration.phone.entity.CribSheet;
-import integration.phone.entity.SubmissionResult;
+import integration.entity.Application;
+import integration.entity.CribSheet;
+import integration.entity.SubmissionResult;
 import integration.phone.pages.*;
-import integration.phone.pages.AgentVerificationPage;
 import integration.phone.pages.variations.authorizationandverification.GAAuthorizationAndVerificationPage;
 import integration.phone.pages.variations.pastandcurrentcoverage.GAandMIPastAndCurrentInsuranceCoveragePage;
 import integration.phone.pages.variations.planapplicationpage.DE_NV_IN_AL_SC_PlanApplicationQuestions;

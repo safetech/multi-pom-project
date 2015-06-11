@@ -1,14 +1,13 @@
 package integration.phone.queries;
 
-import integration.phone.entity.Application;
-import integration.phone.entity.SubmissionResult;
-import oracle.jdbc.pool.OracleDataSource;
+
+import integration.entity.Application;
+import integration.entity.SubmissionResult;
 import org.slf4j.Logger;
 import util.DateUtils;
 import util.DbUtils;
 
-import java.sql.*;
-import java.util.ArrayList;
+import java.sql.SQLException;
 import java.util.HashMap;
 
 import static org.hamcrest.CoreMatchers.equalTo;

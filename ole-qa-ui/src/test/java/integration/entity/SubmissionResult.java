@@ -1,4 +1,4 @@
-package integration.dtc.entity;
+package integration.entity;
 
 public class SubmissionResult {
     private String adjudicationStatus = "";

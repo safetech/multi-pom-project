@@ -1,7 +1,6 @@
 package integration.phone.pages;
 
 import org.fluentlenium.core.FluentPage;
-import org.fluentlenium.core.domain.FluentList;
 import org.fluentlenium.core.domain.FluentWebElement;
 import org.openqa.selenium.support.FindBy;
 import util.AnswerUtils;

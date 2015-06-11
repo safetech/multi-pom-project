@@ -1,4 +1,4 @@
-package integration.phone.entity;
+package integration.entity;
 
 import com.github.javafaker.Faker;
 import util.DateUtils;
@@ -6,7 +6,7 @@ import java.util.Random;
 
 import static util.DateUtils.randBetween;
 
-public class CribSheet {
+public class CribSheet{
 
     private Faker faker;
 

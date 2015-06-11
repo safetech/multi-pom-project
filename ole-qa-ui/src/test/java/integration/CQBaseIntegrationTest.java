@@ -2,8 +2,8 @@ package integration;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import integration.phone.entity.Application;
-import integration.phone.entity.CribSheet;
+import integration.entity.Application;
+import integration.entity.CribSheet;
 import integration.phone.pages.CheatPage;
 import org.apache.commons.io.FileUtils;
 import org.fluentlenium.adapter.FluentTest;
@@ -19,6 +19,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.slf4j.Logger;
 import util.AnswerUtils;
+
 import java.io.File;
 import java.io.IOException;
 

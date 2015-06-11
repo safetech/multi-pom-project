@@ -1,11 +1,12 @@
 package integration.phone.pages.variations.authorizationandverification;
 
-import integration.phone.entity.Application;
+import integration.entity.Application;
 import integration.phone.pages.WizardPage;
 import org.fluentlenium.core.domain.FluentWebElement;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.Select;
 
-import static org.fluentlenium.core.filter.FilterConstructor.withText;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -13,6 +14,7 @@ public class NVAuthorizationAndVerificationPage extends WizardPage{
 
     @FindBy(css = "#UnderstandAuth_1") FluentWebElement UnderstandAuth_Yes;
     @FindBy(css = "#UnderstandAuth_2") FluentWebElement UnderstandAuth_No;
+    @FindBy(name = "StateAux") FluentWebElement AuxState;
     FluentWebElement SignatureInd;
     FluentWebElement MedicalReleaseAuthSignatureInd;
     FluentWebElement DesignateLapse;
@@ -41,7 +43,7 @@ public class NVAuthorizationAndVerificationPage extends WizardPage{
             fill(LastNameAux).with(app.getAuxLastName());
             fill(AddressLine1Aux).with(app.getAuxAddressLine1());
             fill(CityAux).with(app.getAuxCity());
-            click("option", withText(app.getAuxState()));
+            (new Select(AuxState.getElement())).selectByValue(app.getAuxState());
             fill(ZipCodeAux).with(app.getAuxZipCode());
             fill(PhoneNumberAux).with(app.getAuxPhonePrimary());
 
@@ -53,7 +55,9 @@ public class NVAuthorizationAndVerificationPage extends WizardPage{
         clickNextAndWaitForSpinnerToFinish();
 
     }
-
+    private Select AuxState(Application app) {
+        return new Select((WebElement) AuxState(app));
+    }
     public void isAt() {
         assertThat(pageTitle.getText(), equalTo("Authorization and Verification"));
     }

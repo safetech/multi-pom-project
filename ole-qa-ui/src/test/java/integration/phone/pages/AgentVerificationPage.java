@@ -1,6 +1,6 @@
 package integration.phone.pages;
 
-import integration.phone.entity.Application;
+import integration.entity.Application;
 import org.fluentlenium.core.domain.FluentWebElement;
 
 import static org.hamcrest.CoreMatchers.equalTo;

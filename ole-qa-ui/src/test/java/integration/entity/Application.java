@@ -1,8 +1,9 @@
-package integration.phone.entity;
+package integration.entity;
 
 import util.AnswerUtils;
 import util.DateUtils;
 import util.PlanEligibilityQuestionUtils;
+
 import java.util.Date;
 
 public class Application {
@@ -294,6 +295,15 @@ public class Application {
     private String MedSuppReplace = "";
     private String involTerm = "";
     private String OtherInsTerm = "";
+    private String ConfirmEmail = "";
+
+    public String getConfirmEmail() {
+        return ConfirmEmail;
+    }
+
+    public void setConfirmEmail(String confirmEmail) {
+        ConfirmEmail = confirmEmail;
+    }
     //private String DidNotAssistAnsweringQuestions = "";
 
     public String getOtherInsTerm() {
@@ -1345,7 +1355,25 @@ public class Application {
         setPrefix(sheet.getPrefix().toUpperCase());
         setSuffix(sheet.getSuffix().toUpperCase());
     }
+    public void setWhatYouNeedBySheetValues(CribSheet sheet) {
+        setAARPMembershipNumber(sheet.getMembershipNumber());
+        setPrefix(sheet.getPrefix().toUpperCase());
+        setFirstName(sheet.getFirstName());
+        setMI(sheet.getMiddleInitial().substring(0, 1));
+        setLastName(sheet.getLastName());
+        setAddressLine1(sheet.getAddressLine1());
+        setAddressLine2(sheet.getAddressLine2());
+        setCity(sheet.getCity());
+        setState(sheet.getState());
+        setZipCode(sheet.getZip());
+        setConfirmEmail(sheet.getConfirmEmail());
+        setPhonePrimary(sheet.getDayPhone());
+        setPhoneEvening(sheet.getEveningPhone());
+        setDOB(DateUtils.convertDate(sheet.getDateOfBirth(), DateUtils.NORMALIZED_DATE_FORMAT));
+        setGender(sheet.getGender().substring(0, 1));
 
+        setSuffix(sheet.getSuffix().toUpperCase());
+    }
     public void setDefaultPlanEligibilityQuestions(CribSheet sheet) {
 
         Date dob = new Date(DateUtils.convertDate(sheet.getDateOfBirth(), DateUtils.NORMALIZED_DATE_FORMAT));

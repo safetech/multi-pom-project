@@ -1,8 +1,7 @@
 package integration.phone.pages.variations.healthhistoryquestions;
 
-import integration.phone.entity.Application;
+import integration.entity.Application;
 import integration.phone.pages.WizardPage;
-
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 

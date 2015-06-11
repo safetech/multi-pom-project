@@ -1,11 +1,10 @@
-package integration.phone.pages;
+package integration.dtc.pages;
 
-import integration.entity.CribSheet;
+import integration.phone.entity.CribSheet;
 import org.fluentlenium.core.FluentPage;
 import org.fluentlenium.core.domain.FluentWebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
-
 import java.util.concurrent.TimeUnit;
 
 import static org.hamcrest.CoreMatchers.equalTo;

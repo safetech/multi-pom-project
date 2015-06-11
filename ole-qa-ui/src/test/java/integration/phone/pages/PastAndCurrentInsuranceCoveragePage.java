@@ -1,8 +1,7 @@
 package integration.phone.pages;
 
-import integration.phone.entity.Application;
+import integration.entity.Application;
 import org.fluentlenium.core.domain.FluentWebElement;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import static org.hamcrest.CoreMatchers.equalTo;

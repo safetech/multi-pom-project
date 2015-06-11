@@ -1,9 +1,7 @@
 package integration.phone.pages;
 
-import integration.phone.entity.Application;
-import org.fluentlenium.core.domain.FluentWebElement;
 
-import java.util.concurrent.TimeUnit;
+import integration.entity.Application;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;

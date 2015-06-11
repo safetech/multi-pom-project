@@ -1,11 +1,12 @@
-package integration.phone.submission;
+package integration.dtc.submission;
 
 import com.github.javafaker.Faker;
 import integration.CQBaseIntegrationTest;
-import integration.entity.Application;
-import integration.entity.CribSheet;
-import integration.entity.SubmissionResult;
+import integration.phone.entity.Application;
+import integration.phone.entity.CribSheet;
+import integration.phone.entity.SubmissionResult;
 import integration.phone.pages.*;
+import integration.phone.pages.AgentVerificationPage;
 import integration.phone.pages.variations.authorizationandverification.NVAuthorizationAndVerificationPage;
 import integration.phone.pages.variations.pastandcurrentcoverage.NVPastAndCurrentInsuranceCoveragePage;
 import integration.phone.pages.variations.planapplicationpage.DE_NV_IN_AL_SC_PlanApplicationQuestions;
@@ -83,7 +84,7 @@ public class NevadaIntegrationTest extends CQBaseIntegrationTest {
         app.setPlanEffIn6OfEligible(NO);  //TODO: Replace these hard coded values with helper function that will determine answer based upon DOB & MPBED
         app.setLostCoverage(NO);
         app.setTobaccoUse(YES);
-        app.setAuxState("NV");
+
         //Health History
         app.setCommonHealthHistoryAnswers();
 

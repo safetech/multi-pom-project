@@ -1,9 +1,11 @@
 package integration.phone.pages.variations.pastandcurrentcoverage;
 
-import integration.phone.entity.Application;
+
+import integration.entity.Application;
 import integration.phone.pages.WizardPage;
 import org.fluentlenium.core.domain.FluentWebElement;
 import org.openqa.selenium.support.FindBy;
+
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
