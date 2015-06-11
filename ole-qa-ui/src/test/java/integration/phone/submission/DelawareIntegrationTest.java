@@ -2,16 +2,16 @@ package integration.phone.submission;
 
 import com.github.javafaker.Faker;
 import integration.CQBaseIntegrationTest;
-import integration.entity.Application;
-import integration.entity.CribSheet;
+import entity.Application;
+import entity.phone.CribSheet;
 
-import integration.entity.SubmissionResult;
-import integration.phone.pages.*;
-import integration.phone.pages.variations.pastandcurrentcoverage.CA_PA_NJ_IN_PastAndCurrentInsuranceCoveragePage;
-import integration.phone.pages.variations.planapplicationpage.DE_NV_IN_AL_SC_PlanApplicationQuestions;
-import integration.phone.pages.variations.planapplicationpage.DE_PlanApplicationQuestions;
-import integration.phone.pages.variations.replacementnotice.RN034andRE073Page;
-import integration.phone.queries.SubmissionQuery;
+import entity.SubmissionResult;
+import pages.phone.*;
+import pages.phone.variations.pastandcurrentcoverage.CA_PA_NJ_IN_PastAndCurrentInsuranceCoveragePage;
+import pages.phone.variations.planapplicationpage.DE_NV_IN_AL_SC_PlanApplicationQuestions;
+import pages.phone.variations.planapplicationpage.DE_PlanApplicationQuestions;
+import pages.phone.variations.replacementnotice.RN034andRE073Page;
+import queries.SubmissionQuery;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;

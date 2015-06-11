@@ -2,13 +2,13 @@ package integration.phone.submission;
 
 import com.github.javafaker.Faker;
 import integration.CQBaseIntegrationTest;
-import integration.entity.Application;
-import integration.entity.CribSheet;
-import integration.entity.SubmissionResult;
-import integration.phone.pages.*;
-import integration.phone.pages.variations.pastandcurrentcoverage.MAPastAndCurrentInsuranceCoveragePage;
-import integration.phone.pages.variations.replacementnotice.RN040Page;
-import integration.phone.queries.SubmissionQuery;
+import entity.Application;
+import entity.phone.CribSheet;
+import entity.SubmissionResult;
+import pages.phone.*;
+import pages.phone.variations.pastandcurrentcoverage.MAPastAndCurrentInsuranceCoveragePage;
+import pages.phone.variations.replacementnotice.RN040Page;
+import queries.SubmissionQuery;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
@@ -119,7 +119,6 @@ public class MassachusettsIntegrationTest extends CQBaseIntegrationTest {
         app.setReplacementReason("OtherReason");
         app.setRNOther("Cheaper");
 
-        //expectedSubmissionResult.setPendingInfo("", "");
         expectedSubmissionResult.setAdjudicationStatus("A");
         expectedSubmissionResult.setStatus("C");
 
