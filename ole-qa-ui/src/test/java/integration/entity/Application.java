@@ -1366,7 +1366,7 @@ public class Application {
         setCity(sheet.getCity());
         setState(sheet.getState());
         setZipCode(sheet.getZip());
-        setConfirmEmail(sheet.getConfirmEmail());
+        //setConfirmEmail(sheet.getConfirmEmail());
         setPhonePrimary(sheet.getDayPhone());
         setPhoneEvening(sheet.getEveningPhone());
         setDOB(DateUtils.convertDate(sheet.getDateOfBirth(), DateUtils.NORMALIZED_DATE_FORMAT));
