@@ -4,8 +4,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import entity.Application;
 import entity.phone.CribSheet;
-import pages.phone.CheatPage;
-import pages.dtc.WhatYouNeedPage;
 import org.apache.commons.io.FileUtils;
 import org.fluentlenium.adapter.FluentTest;
 import org.fluentlenium.adapter.util.SharedDriver;
@@ -19,6 +17,8 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.slf4j.Logger;
+
+import pages.phone.CheatPage;
 import util.AnswerUtils;
 
 import java.io.File;
@@ -75,13 +75,6 @@ public class CQBaseIntegrationTest extends FluentTest {
 
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);
-    }
-    protected void setWhatYouNeedBySheetValues(WhatYouNeedPage whatYouNeedPage, Application app, CribSheet sheet) {
-
-        app.setAnswersWithSheetValues(sheet);
-        logger.info(gson.toJson(app));
-
-        whatYouNeedPage.fillAndSubmit(app);
     }
 
 }

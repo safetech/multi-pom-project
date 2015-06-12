@@ -1375,6 +1375,7 @@ public class Application {
 
         setSuffix(sheet.getSuffix().toUpperCase());
     }
+
     public void setDefaultPlanEligibilityQuestions(CribSheet sheet) {
 
         Date dob = new Date(DateUtils.convertDate(sheet.getDateOfBirth(), DateUtils.NORMALIZED_DATE_FORMAT));

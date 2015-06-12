@@ -78,9 +78,6 @@ public class NewYorkIntegrationTest extends CQBaseIntegrationTest {
         app.setLostCoverage(NO);
         app.setTobaccoUse(YES);
 
-        //Health History
-        app.setCommonHealthHistoryAnswers();
-
         //Past And Current Coverage
         app.setCPATurned65(NO);
         app.setCPAPartBIn6(NO);

@@ -68,7 +68,7 @@ public class NevadaIntegrationTest extends CQBaseIntegrationTest {
     }
 
     @Test
-    public void test_nevada_health_history_underwriting_with_designeeSig_with_rn() throws Exception {
+    public void test_nevada_health_history_underwriting_with_designeeSig_and_rn() throws Exception {
 
         sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(69));
         sheet.setMedPartBdate("2012-04-01");
@@ -149,7 +149,7 @@ public class NevadaIntegrationTest extends CQBaseIntegrationTest {
     }
 
     @Test
-    public void test_nevada_eligibility_underwriting_without_designeeSig_without_rn() throws Exception {
+    public void test_nevada_eligibility_underwriting_without_designeeSig_and_rn() throws Exception {
 
         sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(68));
         sheet.setMedPartBdate("2014-01-01");

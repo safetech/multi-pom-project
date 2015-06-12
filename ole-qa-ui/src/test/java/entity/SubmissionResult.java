@@ -43,7 +43,6 @@ public class SubmissionResult {
         setStatus("C");
         setWorkQueue(workQueue);
         setWorkQueueReason(workQueueReason);
-
     }
 
     public void setAcceptedInfo() {

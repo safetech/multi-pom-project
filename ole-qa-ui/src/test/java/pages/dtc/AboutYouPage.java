@@ -57,7 +57,7 @@ public class AboutYouPage extends WizardPage{
         fill(ConfirmEmail).with(app.getConfirmEmail());
         fill(PhonePrimary).with(app.getPhonePrimary());
         fill(PhoneEvening).with(app.getPhoneEvening());
-        fill(DOB).with(sheet.getDOB());
+        // fill(DOB).with(sheet.getDOB());
         (new Select(Gender.getElement())).selectByValue(app.getGender());
         fill(MedicareClaimNum).with(app.getMedicareClaimNum());
         assertThat(MPBED.getValue(), equalTo(sheet.getEffDate()));

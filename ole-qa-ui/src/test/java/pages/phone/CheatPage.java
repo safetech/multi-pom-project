@@ -83,5 +83,4 @@ public class CheatPage extends FluentPage{
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
     }
 
-
 }

@@ -5,18 +5,18 @@ import entity.Application;
 import entity.SubmissionResult;
 import entity.dtc.CribSheet;
 import integration.CQBaseIntegrationTest;
+import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
 import pages.dtc.*;
+import pages.dtc.variations.pastandcurrentcoverage.FL_PastAndCurrentCoveragePage;
 import pages.dtc.variations.planapplication.NV_MA_PlanApplicationQuestionsPage;
-import pages.dtc.variations.authorization.NV_AuthorizationPage;
-import pages.dtc.variations.pastandcurrentcoverage.NV_PastAndCurrentCoveragePage;
 import pages.dtc.variations.planselectionandstartdate.NV_MA_PlanSelectionAndStartDatePage;
 import queries.SubmissionQuery;
 import util.DateUtils;
 
-public class NevadaIntegrationTest extends CQBaseIntegrationTest {
+public class FloridaIntegrationTest extends CQBaseIntegrationTest {
 
     @Page public CheatPage cheatPage;
     @Page public WhatYouNeedPage whatYouNeedPage;
@@ -25,16 +25,16 @@ public class NevadaIntegrationTest extends CQBaseIntegrationTest {
     @Page public NV_MA_PlanSelectionAndStartDatePage planSelectionAndStartDatePage;
     @Page public NV_MA_PlanApplicationQuestionsPage planApplicationQuestionsPage;
     @Page public EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
-    @Page public NV_PastAndCurrentCoveragePage pastAndCurrentCoveragePage;
-    @Page public NV_AuthorizationPage authorizationPage;
+    @Page public FL_PastAndCurrentCoveragePage pastAndCurrentCoveragePage;
+    @Page public AuthorizationPage authorizationPage;
     @Page public RN034andRE073Page replacementNoticePage;
     @Page public PlanPaymentOptionsPage planPaymentOptionsPage;
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
-    @Page public HealthHistoryQuestionsPage healthHistoryQuestionsPage;
+    @Page public ApplicationSubmissionPage applicationSubmissionPage;
 
     public SubmissionQuery submissionQuery;
     private Faker faker;
-    protected CribSheet sheet;
+    private CribSheet sheet;
     private SubmissionResult expectedSubmissionResult;
 
     @Before
@@ -42,14 +42,21 @@ public class NevadaIntegrationTest extends CQBaseIntegrationTest {
         submissionQuery = new SubmissionQuery();
         faker = new Faker();
         sheet = new CribSheet(faker);
-        sheet.setState("NV");
-        sheet.setZip("89001");
-
         expectedSubmissionResult = new SubmissionResult();
+        sheet.setState("FL");
+        sheet.setZip("32065");
+    }
+
+    @Ignore
+    public void test_db() throws Exception {
+        Application app = new Application();
+        app.setHCSGApplicationId("3-BXRJHQO");
+        SubmissionResult expectedSubmissionResult = new SubmissionResult();
+        submissionQuery.verifySubmissionData(app, expectedSubmissionResult);
     }
 
     @Test
-    public void test_nevada_underwriting_with_health_history_and_designeeSig_with_rn() throws Exception {
+    public void test_florida_eligibility() throws Exception {
 
         sheet.setAarpMemid("y");
         sheet.setDOB(DateUtils.getDOBofPersonTurningAgeToday(69));
@@ -59,6 +66,7 @@ public class NevadaIntegrationTest extends CQBaseIntegrationTest {
         sheet.setReferrer("uLayer");
 
         Application app = new Application();
+
         //TestData
         app.setAARPMembershipNumber("1234567890");
         app.setPrefix("MR");
@@ -83,49 +91,28 @@ public class NevadaIntegrationTest extends CQBaseIntegrationTest {
         //Eligibility Page
         app.setESRD(NO);
         app.setSurgeryNeeded(NO);
+        //Past and Current Coverage
+        app.setCPATurned65(NO);
+        app.setCPAPartBIn6(NO);
+        app.setMedicaidCovered(NO);
+        app.setOtherMedplanstart("");
+        app.setOtherMedplanend("");
+        app.setExistMedSupp(YES);
+        app.setMSInsCompany("US Care");
+        app.setMSPLAN("HMO, P");
+        app.setReplaceExistingMedSup(YES);
+        app.setReplacementReason("OtherReason");
+        app.setApplicantPrintedNameAdd("AppName");
+        app.setApplicantAddress("AppAdd");
+        app.setRNOther("Cheaper");
+        app.setIntentReplace(YES);
+        app.setOtherInsCoverage(NO);
+        app.setCpaSignatureInd(YES);
         //Authorizationa and verififcation page
         app.setDesignateLapse(YES);
 
-        //Past And Current Coverage
-        app.setCPATurned65(NO);
-        app.setCPAPartBIn6(NO);
-        app.setMedicaidCovered(YES);
-        app.setMedicaidSupPremium(YES);
-        app.setMedicaidbenefit(YES);
-        app.setExistingMedicare(YES);
-        app.setOtherMedplanstart("01/01/2012");
-        app.setOtherMedplanend("01/01/2015");
-        app.setIntentReplace(YES);
-        app.setFirstTime(YES);
-        app.setDropMedSuppForThisPlan(YES);
-        app.setExistMedSupp(YES);
-        app.setMSInsCompany("Blue Cross Blue Shield NV");
-        app.setMSPLAN("Medical Supplement NV");
-        app.setReplaceExistingMedSup(YES);
-        app.setOtherInsCoverage(YES);
-        app.setOtherInsCompany("Blue Cross Blue Shield");
-        app.setOtherInsType("HMO");
-        app.setOtherInsStart("01/01/2001");
-        app.setOtherInsEnd("01/01/2014");
-        app.setOtherInsReplace(YES);
-        app.setCpaSignatureInd(YES);
-
-        //Authorizationa and verififcation page
-        app.setDesignateLapse(NO);
-        app.setAuxFirstName("AuxFirstName");
-        app.setAuxMI("M");
-        app.setAuxLastName("AuxLastName");
-        app.setAuxAddressLine1("AuxAddressLine1");
-        app.setAuxCity("AuxCity");
-        app.setAuxState("NV");
-        app.setAuxZipCode("89101");
-
-        //Replacement Notice Page
-        app.setCommonReplacementNoticeAnswersWithApplicantInfo();
-        app.setCommonHealthHistoryAnswers();
-
-        expectedSubmissionResult.setPendingInfo("UNDERWRITING", "REVIEW FOR POSSIBLE ESRD");
-
+        expectedSubmissionResult.setStatus("C");
+        expectedSubmissionResult.setAdjudicationStatus("A");
 
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);
@@ -148,9 +135,6 @@ public class NevadaIntegrationTest extends CQBaseIntegrationTest {
         eligibilityHealthQuestionsPage.isAt();
         eligibilityHealthQuestionsPage.fillAndSubmit(app);
 
-        healthHistoryQuestionsPage.isAt();
-        healthHistoryQuestionsPage.fillAndSubmit(app);
-
         pastAndCurrentCoveragePage.isAt();
         pastAndCurrentCoveragePage.fillAndSubmit(app);
 
@@ -163,13 +147,13 @@ public class NevadaIntegrationTest extends CQBaseIntegrationTest {
         reviewAndSubmitPage.isAt();
         reviewAndSubmitPage.fillAndSubmit(app);
 
-        expectedSubmissionResult.setPendingInfo("UNDERWRITING", "REVIEW FOR POSSIBLE ESRD");
         submissionQuery.verifySubmissionData(app, expectedSubmissionResult);
         submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
 
     }
+
     @Test
-    public void test_nevada_guranteed_issue() throws Exception {
+    public void test_florida_guaranteed_issue() throws Exception {
 
         sheet.setAarpMemid("y");
         sheet.setDOB(DateUtils.getDOBofPersonTurningAgeToday(65));
@@ -197,56 +181,40 @@ public class NevadaIntegrationTest extends CQBaseIntegrationTest {
         app.setMedicareClaimNum("123123123A");
         app.setMPAED("01/01/2010");
         app.setPartABActiveIndicator(YES);
+
         //Plan Application Page
         app.setTobaccoUse(YES);
-        app.setLostCoverage(NO);
-        app.setTurned65In6GA(YES);
-        app.setPartBIn6GA(YES);
-        app.setPlanEffIn6OfEligible(YES);
-        //Eligibility Page
-        app.setESRD(NO);
-        app.setSurgeryNeeded(NO);
-        //Authorizationa and verififcation page
-        app.setDesignateLapse(YES);
+        app.setTurned65In6GA("yes");
+        app.setPartBIn6GA("yes");
+        app.setPlanEffIn6OfEligible("yes");
+        app.setLostCoverage("");
 
-        //Past And Current Coverage
-        app.setCPATurned65(NO);
+        app.setMedicareClaimNum(faker.bothify("??#########"));
+        app.setMPAED("01/01/1999");
+        app.setMPBED("01/01/1999");
+        app.setPartABActiveIndicator(YES);
+        app.setPlanCode("A");
+        app.setReqEffectiveDate(DateUtils.getFirstDayOfFutureMonth(1));
+        app.setTobaccoUse(NO);
+        app.setCPATurned65(YES);
         app.setCPAPartBIn6(NO);
-        app.setMedicaidCovered(YES);
-        app.setMedicaidSupPremium(YES);
-        app.setMedicaidbenefit(YES);
-        app.setExistingMedicare(YES);
-        app.setOtherMedplanstart("01/01/2012");
-        app.setOtherMedplanend("01/01/2015");
-        app.setIntentReplace(YES);
-        app.setFirstTime(YES);
-        app.setDropMedSuppForThisPlan(YES);
+        app.setMedicaidCovered(NO);
+        app.setOtherMedplanstart("");
+        app.setOtherMedplanend("");
         app.setExistMedSupp(YES);
-        app.setMSInsCompany("Blue Cross Blue Shield NV");
-        app.setMSPLAN("Medical Supplement NV");
+        app.setMSInsCompany("US Care");
+        app.setMSPLAN("HMO, P");
         app.setReplaceExistingMedSup(YES);
-        app.setOtherInsCoverage(YES);
-        app.setOtherInsCompany("Blue Cross Blue Shield");
-        app.setOtherInsType("HMO");
-        app.setOtherInsStart("01/01/2001");
-        app.setOtherInsEnd("01/01/2014");
-        app.setOtherInsReplace(YES);
+        app.setReplacementReason("OtherReason");
+        app.setApplicantPrintedNameAdd("AppName");
+        app.setApplicantAddress("AppAdd");
+        app.setRNOther("Cheaper");
+        app.setIntentReplace(YES);
+        app.setOtherInsCoverage(NO);
         app.setCpaSignatureInd(YES);
 
-        //Authorizationa and verififcation page
-        app.setDesignateLapse(NO);
-        app.setAuxFirstName("AuxFirstName");
-        app.setAuxMI("M");
-        app.setAuxLastName("AuxLastName");
-        app.setAuxAddressLine1("AuxAddressLine1");
-        app.setAuxCity("AuxCity");
-        app.setAuxState("NV");
-        app.setAuxZipCode("89101");
-
-        //Replacement Notice Page
-        app.setCommonReplacementNoticeAnswersWithApplicantInfo();
-
-        expectedSubmissionResult.setPendingInfo("UNDERWRITING", "REVIEW FOR POSSIBLE ESRD");
+        expectedSubmissionResult.setStatus("C");
+        expectedSubmissionResult.setAdjudicationStatus("A");
 
 
         goTo(cheatPage);
@@ -279,7 +247,6 @@ public class NevadaIntegrationTest extends CQBaseIntegrationTest {
         reviewAndSubmitPage.isAt();
         reviewAndSubmitPage.fillAndSubmit(app);
 
-        expectedSubmissionResult.setPendingInfo("UNDERWRITING", "REVIEW FOR POSSIBLE ESRD");
         submissionQuery.verifySubmissionData(app, expectedSubmissionResult);
         submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
 
