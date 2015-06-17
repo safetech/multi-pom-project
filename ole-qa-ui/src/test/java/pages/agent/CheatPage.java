@@ -1,6 +1,6 @@
 package pages.agent;
 
-import entity.dtc.CribSheet;
+import entity.agent.CribSheet;
 import org.fluentlenium.core.FluentPage;
 import org.fluentlenium.core.domain.FluentWebElement;
 import org.openqa.selenium.support.FindBy;
@@ -37,17 +37,16 @@ public class CheatPage extends FluentPage{
 
     public void fillAndSubmit(CribSheet sheet) {
         isAt();
-        fill(AgentId).with(sheet.getState());
-        fill(AgentMedSuppStates).with(sheet.getZip());
-        fill(AgentCertificationYears).with("y");
-        fill(marketability_code).with(sheet.getReturnURL());
-        fill(SiteId).with(sheet.getDOB());
-        fill(AgentNPN).with(sheet.getEffDate());
-        fill(AgentName).with(sheet.getPsd());
-        fill(AgentEmail).with(sheet.getPlanCode());
-        fill(AgentPartyId).with(sheet.getMarketability_code());
+        fill(AgentId).with(sheet.getAgentId());
+        fill(AgentMedSuppStates).with(sheet.getAgentMedSuppStates());
+        fill(AgentCertificationYears).with(sheet.getAgentCertificationYears());
+        fill(marketability_code).with(sheet.getMarketability_code());
+        fill(SiteId).with(sheet.getSiteId());
+        fill(AgentNPN).with(sheet.getAgentNPN());
+        fill(AgentName).with(sheet.getAgentName());
+        fill(AgentEmail).with(sheet.getAgentEmail());
+        fill(AgentPartyId).with(sheet.getAgentPartyId());
         fill(referrer).with(sheet.getReferrer());
-        fill(CloakedInd).with(sheet.getApplicationId());
 
         if(!sheet.getCloakedInd().equals(AnswerUtils.BLANK)) {
             CloakedInd.click();

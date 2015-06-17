@@ -1,7 +1,6 @@
 package pages.agent;
 
 import entity.Application;
-import entity.dtc.CribSheet;
 import org.fluentlenium.core.domain.FluentWebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
@@ -33,13 +32,15 @@ public class CustomerInformationPage extends WizardPage{
         FluentWebElement MedicareClaimNum;
         FluentWebElement MPBED;
         FluentWebElement MPAED;
+        FluentWebElement AgentEmail;
+        FluentWebElement AgentEmailConfirm;
 
 
         @FindBy(css = "#PartABActiveIndicator_1") FluentWebElement PartABActiveIndicator_Yes;
         @FindBy(css = "#PartABActiveIndicator_2") FluentWebElement PartABActiveIndicator_No;
 
     
-    public void fillAndSubmit(Application app, CribSheet sheet) {
+    public void fillAndSubmit(Application app) {
         isAt();
 
         fill(AARPMembershipNumber).with(app.getAARPMembershipNumber());
@@ -51,8 +52,7 @@ public class CustomerInformationPage extends WizardPage{
         fill(AddressLine1).with(app.getAddressLine1());
         fill(AddressLine2).with(app.getAddressLine2());
         fill(City).with(app.getCity());
-        assertThat(State.getValue(), equalTo(sheet.getState()));
-        assertThat(ZipCode.getValue(), equalTo(sheet.getZip()));
+        assertThat(State.getValue(), equalTo(app.getState()));
         fill(Email).with(app.getEmail());
         fill(ConfirmEmail).with(app.getConfirmEmail());
         fill(PhonePrimary).with(app.getPhonePrimary());
@@ -60,15 +60,16 @@ public class CustomerInformationPage extends WizardPage{
         // fill(DOB).with(sheet.getDOB());
         (new Select(Gender.getElement())).selectByValue(app.getGender());
         fill(MedicareClaimNum).with(app.getMedicareClaimNum());
-        assertThat(MPBED.getValue(), equalTo(sheet.getEffDate()));
         fill(MPAED).with(app.getMPAED());
         fillYesNoQuestion(PartABActiveIndicator_Yes, PartABActiveIndicator_No, app.getPartABActiveIndicator());
+        fill(AgentEmail).with(app.getAgentEmail());
+        fill(AgentEmailConfirm).with(app.getAgentEmailConfirm());
 
         clickNextAndWaitForSpinnerToFinish();
     }
 
     public void isAt() {
-        assertThat(pageTitle.getText(), equalTo("About You"));
+        assertThat(pageTitle.getText(), equalTo("Customer Information"));
     }
 
 }

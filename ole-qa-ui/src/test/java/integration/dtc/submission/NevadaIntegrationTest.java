@@ -5,6 +5,7 @@ import entity.Application;
 import entity.SubmissionResult;
 import entity.dtc.CribSheet;
 import integration.CQBaseIntegrationTest;
+import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
@@ -27,7 +28,6 @@ public class NevadaIntegrationTest extends CQBaseIntegrationTest {
     @Page public EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
     @Page public NV_PastAndCurrentCoveragePage pastAndCurrentCoveragePage;
     @Page public NV_AuthorizationPage authorizationPage;
-    @Page public RN034andRE073Page replacementNoticePage;
     @Page public PlanPaymentOptionsPage planPaymentOptionsPage;
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
     @Page public HealthHistoryQuestionsPage healthHistoryQuestionsPage;
@@ -48,8 +48,8 @@ public class NevadaIntegrationTest extends CQBaseIntegrationTest {
         expectedSubmissionResult = new SubmissionResult();
     }
 
-    @Test
-    public void test_nevada_underwriting_with_health_history_and_designeeSig_with_rn() throws Exception {
+    @Ignore
+    public void test_nevada_underwriting_with_health_history_and_designeeSig() throws Exception {
 
         sheet.setAarpMemid("y");
         sheet.setDOB(DateUtils.getDOBofPersonTurningAgeToday(69));
@@ -186,9 +186,9 @@ public class NevadaIntegrationTest extends CQBaseIntegrationTest {
         app.setMI("N");
         app.setLastName("Automation");
         app.setSuffix("PHD");
-        app.setAddressLine1("111 Street dr");
+        app.setAddressLine1("123 Street dr");
         app.setAddressLine2("apt #123");
-        app.setCity("Horsham");
+        app.setCity("Las Vegas");
         app.setEmail("test@uhc.com");
         app.setConfirmEmail("test@uhc.com");
         app.setPhonePrimary("9874562345");
@@ -245,9 +245,6 @@ public class NevadaIntegrationTest extends CQBaseIntegrationTest {
 
         //Replacement Notice Page
         app.setCommonReplacementNoticeAnswersWithApplicantInfo();
-
-        expectedSubmissionResult.setPendingInfo("UNDERWRITING", "REVIEW FOR POSSIBLE ESRD");
-
 
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);

@@ -166,6 +166,13 @@ public class CribSheet {
     private String log_level = "";
     private String  AgentId = "";
     private String  AgentMedSuppStates = "";
+    private String  AgentCertificationYears = "";
+    private String  SiteId = "";
+    private String  AgentNPN = "";
+    private String  AgentName = "";
+    private String  AgentEmail = "";
+    private String  AgentPartyId = "";
+    private String  CloakedInd = "";
 
     public String getAgentId() {
         return AgentId;
@@ -231,15 +238,6 @@ public class CribSheet {
         AgentPartyId = agentPartyId;
     }
 
-    private String  AgentCertificationYears = "";
-    private String  SiteId = "";
-    private String  AgentNPN = "";
-    private String  AgentName = "";
-    private String  AgentEmail = "";
-    private String  AgentPartyId = "";
-    private String  CloakedInd = "";
-    
-    
     public String getCloakedInd() {
         return CloakedInd;
     }

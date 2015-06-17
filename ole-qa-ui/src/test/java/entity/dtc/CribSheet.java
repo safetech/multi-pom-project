@@ -164,8 +164,8 @@ public class CribSheet {
     private String readonly = "";
     private String resume = "";
     private String log_level = "";
-    private String  AgentId = "";
-    private String  AgentMedSuppStates = "";
+    private String AgentId = "";
+    private String AgentMedSuppStates = "";
 
     public String getAgentId() {
         return AgentId;
@@ -183,70 +183,7 @@ public class CribSheet {
         AgentMedSuppStates = agentMedSuppStates;
     }
 
-    public String getAgentCertificationYears() {
-        return AgentCertificationYears;
-    }
 
-    public void setAgentCertificationYears(String agentCertificationYears) {
-        AgentCertificationYears = agentCertificationYears;
-    }
-
-    public String getSiteId() {
-        return SiteId;
-    }
-
-    public void setSiteId(String siteId) {
-        SiteId = siteId;
-    }
-
-    public String getAgentNPN() {
-        return AgentNPN;
-    }
-
-    public void setAgentNPN(String agentNPN) {
-        AgentNPN = agentNPN;
-    }
-
-    public String getAgentName() {
-        return AgentName;
-    }
-
-    public void setAgentName(String agentName) {
-        AgentName = agentName;
-    }
-
-    public String getAgentEmail() {
-        return AgentEmail;
-    }
-
-    public void setAgentEmail(String agentEmail) {
-        AgentEmail = agentEmail;
-    }
-
-    public String getAgentPartyId() {
-        return AgentPartyId;
-    }
-
-    public void setAgentPartyId(String agentPartyId) {
-        AgentPartyId = agentPartyId;
-    }
-
-    private String  AgentCertificationYears = "";
-    private String  SiteId = "";
-    private String  AgentNPN = "";
-    private String  AgentName = "";
-    private String  AgentEmail = "";
-    private String  AgentPartyId = "";
-    private String  CloakedInd = "";
-    
-    
-    public String getCloakedInd() {
-        return CloakedInd;
-    }
-
-    public void setCloakedInd(String cloakedInd) {
-        CloakedInd = cloakedInd;
-    }
 
     public void setStateZip(String state, String zip) {
         this.setState(state);
