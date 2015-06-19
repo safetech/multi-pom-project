@@ -171,4 +171,10 @@ public class WizardPage extends FluentPage {
         return find("body > #output").getText();
     }
 
+    protected void fillTouchSignature(String answername, String signatureVector) {
+
+        executeScript(String.format("$('#%s').signature('draw','%s')",answername, signatureVector));
+
+    }
+
 }
