@@ -10,26 +10,21 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class PlanPaymentOptionsPage extends WizardPage {
 
-    @FindBy(css = "#PaymentChoice_1") FluentWebElement CouponBook;
-    @FindBy(css = "#PaymentChoice_1") FluentWebElement AutomaticPayment;
+    @FindBy(css = "#EFTType_1") FluentWebElement EFT1;
+    @FindBy(css = "#EFTType_2") FluentWebElement EFT2;
 
-    protected int TOTAL_POSSIBLE_QUESTION_COUNT = 5;
+    protected int TOTAL_POSSIBLE_QUESTION_COUNT = 2;
 
 
     public void fillAndSubmit(Application app) {
 
+        assertQuestionCount(TOTAL_POSSIBLE_QUESTION_COUNT);
+
         isAt();
 
-        CouponBook.click();
-
-        verifyStateOfElementAfterAnswers(app);
+        EFT1.click();
 
         clickNextAndWaitForSpinnerToFinish();
-    }
-
-    public void verifyStateOfElementAfterAnswers(Application app) {
-
-        assertQuestionCount(TOTAL_POSSIBLE_QUESTION_COUNT);
     }
 
     public void isAt() {

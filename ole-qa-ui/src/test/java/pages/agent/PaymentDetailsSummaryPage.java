@@ -10,17 +10,29 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class PaymentDetailsSummaryPage extends WizardPage{
 
-    @FindBy(css = "#a[data-plancode='F']") FluentWebElement Plan_F;
+    FluentWebElement BankName;
+    FluentWebElement RoutingNumber;
+    FluentWebElement RoutingNumberConfirm;
+    FluentWebElement AccountNumber;
+    FluentWebElement AccountNumberConfirm;
+    @FindBy(css = "#AccountType_1") FluentWebElement AccountTypeChecking;
+    FluentWebElement EftSignatureInd;
     public void fillAndSubmit(Application app) {
 
         isAt();
-        click("a[data-plancode='F']");
-        try{
-            Thread.sleep(3000);
-        }catch(Exception e){
-        }
+
+        fill(BankName).with(app.getBankName());
+        fill(RoutingNumber).with(app.getRoutingNumber());
+        fill(RoutingNumberConfirm).with(app.getRoutingNumberConfirm());
+        fill(AccountNumber).with(app.getAccountNumber());
+        fill(AccountNumberConfirm).with(app.getAccountNumberConfirm());
+        
+        AccountTypeChecking.click();
+        EftSignatureInd.click();
+        fillTouchSignature("EftSignatureIndTouch", app.getEftSignatureIndTouch());
+        clickNextAndWaitForSpinnerToFinish();
     }
     public void isAt() {
-        assertThat(pageTitle.getText(), equalTo("Plan Selection"));
+        assertThat(pageTitle.getText(), equalTo("Payment Details Summary"));
     }
 }

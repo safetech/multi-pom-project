@@ -8,7 +8,7 @@ import pages.WizardPage;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class NV_CurrentInsuranceCoveragePage extends WizardPage{
+public class CA_CurrentInsuranceCoveragePage extends WizardPage{
 
     @FindBy(css = "#MedicaidCovered_1") FluentWebElement MedicaidCovered_Yes;
     @FindBy(css = "#MedicaidCovered_2") FluentWebElement MedicaidCovered_No;
@@ -16,7 +16,6 @@ public class NV_CurrentInsuranceCoveragePage extends WizardPage{
     @FindBy(css = "#MedicaidSupPremium_2") FluentWebElement MedicaidSupPremium_No;
     @FindBy(css = "#Medicaidbenefit_1") FluentWebElement Medicaidbenefit_Yes;
     @FindBy(css = "#Medicaidbenefit_2") FluentWebElement Medicaidbenefit_No;
-
 
     @FindBy(css = "#ExistingMedicare_1") FluentWebElement ExistingMedicare_Yes;
     @FindBy(css = "#ExistingMedicare_2") FluentWebElement ExistingMedicare_No;
@@ -44,10 +43,9 @@ public class NV_CurrentInsuranceCoveragePage extends WizardPage{
     @FindBy(css = "#OtherInsReplace_2") FluentWebElement OtherInsReplace_No;
     FluentWebElement CpaSignatureInd;
 
-    protected int TOTAL_POSSIBLE_QUESTION_COUNT = 34;
+    protected int TOTAL_POSSIBLE_QUESTION_COUNT = 29;
 
     public void fillAndSubmit(Application app) {
-
         isAt();
 
         assertQuestionCount(TOTAL_POSSIBLE_QUESTION_COUNT);
@@ -82,13 +80,12 @@ public class NV_CurrentInsuranceCoveragePage extends WizardPage{
         }
 
         CpaSignatureInd.click();
-        fillTouchSignature("CpaSignatureIndTouch", app.getCpaSignatureIndTouch());
+
         clickNextAndWaitForSpinnerToFinish();
 
-        }
-
-    public void isAt() {
-        assertThat(pageTitle.getText(), equalTo("Current Insurance Coverage"));
     }
 
+    public void isAt() {
+        assertThat(pageTitle.getText(), equalTo("Past and Current Coverage"));
+    }
 }

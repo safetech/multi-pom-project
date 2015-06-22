@@ -3,41 +3,39 @@ package integration.agent.submission;
 import com.github.javafaker.Faker;
 import entity.Application;
 import entity.SubmissionResult;
-import entity.agent.CribSheet;
+import entity.dtc.CribSheet;
 import integration.CQBaseIntegrationTest;
-import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
-import pages.agent.*;
-import pages.agent.variations.authorization.NV_AuthorizationPage;
-import pages.agent.variations.pastandcurrentcoverage.NV_CurrentInsuranceCoveragePage;
-import pages.agent.variations.planapplication.NV_PlanApplicationQuestionsPage;
-import pages.agent.variations.replacenotice.RN034andRE073WithSignaturePage;
+import pages.dtc.*;
+import pages.dtc.variations.authorization.CA_AuthorizationPage;
+import pages.dtc.variations.eligibilityhealthquestions.CA_EligibilityHealthQuestions;
+import pages.dtc.variations.pastandcurrentcoverage.CA_PastAndCurrentCoveragePage;
+import pages.dtc.variations.planapplication.CA_PlanApplicationQuestions;
+import pages.dtc.variations.replacenotice.RN040Page;
 import queries.SubmissionQuery;
 import util.DateUtils;
 
-public class NevadaIntegrationTest extends CQBaseIntegrationTest {
+public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
 
     @Page public CheatPage cheatPage;
-    @Page public PlanSelectionPage planSelectionPage;
-    @Page public CheckEligibilityAndAvailabilityPage checkEligibilityAndAvailabilityPage;
     @Page public WhatYouNeedPage whatYouNeedPage;
-    @Page public CustomerInformationPage customerInformationPage;
-    @Page public NV_PlanApplicationQuestionsPage planApplicationQuestionsPage;
-    @Page public EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
-    @Page public HealthHistoryQuestionsPage healthHistoryQuestionsPage;
-    @Page public NV_CurrentInsuranceCoveragePage currentInsuranceCoveragePage;
-    @Page public NV_AuthorizationPage authorizationPage;
-    @Page public RN034andRE073WithSignaturePage replacementNotice;
-    @Page public AgentVerificationPage agentVerificationPage;
-    @Page public PaymentDetailsSummaryPage paymentDetailsSummaryPage;
+    @Page public ElectronicSignatureAndDocumentConsentPage electronicSignatureAndDocumentConsentPage;
+    @Page public AboutYouPage aboutYouPage;
+    @Page public PlanSelectionAndStartDatePage planSelectionAndStartDatePage;
+    @Page public CA_PlanApplicationQuestions planApplicationQuestionsPage;
+    @Page public CA_EligibilityHealthQuestions eligibilityHealthQuestionsPage;
+    @Page public CA_PastAndCurrentCoveragePage pastAndCurrentCoveragePage;
+    @Page public CA_AuthorizationPage authorizationPage;
+    @Page public RN040Page replacementNoticePage;
     @Page public PlanPaymentOptionsPage planPaymentOptionsPage;
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
+    @Page public HealthHistoryQuestionsPage healthHistoryQuestionsPage;
 
     public SubmissionQuery submissionQuery;
     private Faker faker;
-    protected CribSheet sheet;
+    private CribSheet sheet;
     private SubmissionResult expectedSubmissionResult;
 
     @Before
@@ -45,41 +43,23 @@ public class NevadaIntegrationTest extends CQBaseIntegrationTest {
         submissionQuery = new SubmissionQuery();
         faker = new Faker();
         sheet = new CribSheet(faker);
+        sheet.setState("CA");
+        sheet.setZip("90210");
 
         expectedSubmissionResult = new SubmissionResult();
     }
 
     @Test
-    public void test_nevada_underwriting_with_health_history_and_designeeSig_with_rn() throws Exception {
+    public void test_california_eligibility_underwriting_with_rn() throws Exception {
 
-        sheet.setAgentId("Test");
-        sheet.setAgentMedSuppStates("[NV]");
-        sheet.setAgentCertificationYears("[2014 |2015| 2016]");
-        sheet.setMarketability_code(BLANK);
-        sheet.setSiteId("UHP");
-        sheet.setAgentNPN("");
-        sheet.setAgentName("BOB DOBBS");
-        sheet.setAgentEmail("bob@dobbsco.com");
-        sheet.setAgentPartyId("54321");
-        sheet.setReferrer("ulayer");
 
+        sheet.setDOB(DateUtils.getDOBofPersonTurningAgeToday(69));
+        sheet.setEffDate("01/01/2012");
+        sheet.setPsd(DateUtils.getFirstDayOfFutureMonth(1));
+        sheet.setPlanCode("A");
+        sheet.setReferrer("uLayer");
 
         Application app = new Application();
-        app.setState("NV");
-        app.setZipCode("89101");
-        app.setDOB("06/01/1946");
-        app.setMPBED("01/01/2010");
-
-        app.setCpaSignatureIndTouch(Application.ALL_SIGNATURES[0]);
-        app.setSignatureIndTouch(Application.ALL_SIGNATURES[1]);
-        app.setMedicalReleaseAuthSignatureIndTouch(Application.ALL_SIGNATURES[2]);
-        app.setDesigneeSigTouch(Application.ALL_SIGNATURES[3]);
-        app.setAgentSignatureIndTouch(Application.ALL_SIGNATURES[4]);
-        app.setAgentRNSignatureIndTouch(Application.ALL_SIGNATURES[5]);
-        app.setApplicantRNSignatureIndTouch(Application.ALL_SIGNATURES[6]);
-        app.setEftSignatureIndTouch(Application.ALL_SIGNATURES[7]);
-
-
         //TestData
         app.setAARPMembershipNumber("1234567890");
         app.setPrefix("MR");
@@ -95,19 +75,31 @@ public class NevadaIntegrationTest extends CQBaseIntegrationTest {
         app.setPhonePrimary("9874562345");
         app.setPhoneEvening("1234561234");
         app.setGender("M");
-        app.setMedicareClaimNum("A123123123");
+        app.setMedicareClaimNum("123123123A");
         app.setMPAED("01/01/2010");
         app.setPartABActiveIndicator(YES);
-        app.setAgentEmail("agent@uhc.com");
-        app.setAgentEmailConfirm("agent@uhc.com");
         //Plan Application Page
+        app.setGI30dayBday(NO);
+        app.setGIEmployerCov(NO);
+        app.setGIMediCal(NO);
+        app.setGIMilitary(NO);
+        app.setGILocation(NO);
         app.setTobaccoUse(YES);
         app.setLostCoverage(NO);
-        //Eligibility Page
+        //Eligibility Questions(SPECIFIC TO CA)
         app.setESRD(NO);
         app.setSurgeryNeeded(NO);
-        //Authorizationa and verififcation page
-        app.setDesignateLapse(YES);
+        app.setEligdialysis(NO);
+        app.setEligRecdialysis(NO);
+        app.setEligHospital(NO);
+        app.setEligSurgery(NO);
+        app.setEligOrgan(NO);
+        app.setEligSpine(NO);
+        app.setEligjoint(NO);
+        app.setEligCancer(NO);
+        app.setEligHeart(NO);
+        app.setEligVascular(NO);
+        //Authorizationa
 
         //Past And Current Coverage
         app.setCPATurned65(NO);
@@ -133,45 +125,26 @@ public class NevadaIntegrationTest extends CQBaseIntegrationTest {
         app.setOtherInsReplace(YES);
         app.setCpaSignatureInd(YES);
 
-        //Authorizationa and verififcation page
-        app.setDesignateLapse(NO);
-        app.setAuxFirstName("AuxFirstName");
-        app.setAuxMI("M");
-        app.setAuxLastName("AuxLastName");
-        app.setAuxAddressLine1("AuxAddressLine1");
-        app.setAuxCity("AuxCity");
-        app.setAuxState("NV");
-        app.setAuxZipCode("89101");
-
-        //Agent Verification page
-        app.setAgentOtherInsPoliciesSold("HMO");
-        app.setAgentPoliciesInForce("HMO In Force");
-        app.setAgentPoliciesSoldNotInForce("HMO Not In Force");
-        app.setAgentFirstName("AgnetFirst");
-        app.setAgentMI("A");
-        app.setAgentLastName("AgentLast");
-        app.setAgentPhone("3334445555");
-
         //Replacement Notice Page
         app.setCommonReplacementNoticeAnswersWithApplicantInfo();
         app.setCommonHealthHistoryAnswers();
-        //Payment Details Summary Page
-        app.setPaymentDetailsSummaryPageWithAppValues();
+
+        expectedSubmissionResult.setPendingInfo("UNDERWRITING", "REVIEW FOR POSSIBLE ESRD");
 
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);
 
-        checkEligibilityAndAvailabilityPage.isAt();
-        checkEligibilityAndAvailabilityPage.fillAndSubmit(app);
-
-        planSelectionPage.isAt();
-        planSelectionPage.fillAndSubmit(app);
-
         whatYouNeedPage.isAt();
-        whatYouNeedPage.fillAndSubmit(app);
+        whatYouNeedPage.clickNextAndWaitForSpinnerToFinish();
 
-        customerInformationPage.isAt();
-        customerInformationPage.fillAndSubmit(app);
+        electronicSignatureAndDocumentConsentPage.isAt();
+        electronicSignatureAndDocumentConsentPage.clickNextAndWaitForSpinnerToFinish();
+
+        aboutYouPage.isAt();
+        aboutYouPage.fillAndSubmit(app, sheet);
+
+        planSelectionAndStartDatePage.isAt();
+        planSelectionAndStartDatePage.fillAndSubmit(app);
 
         planApplicationQuestionsPage.isAt();
         planApplicationQuestionsPage.fillAndSubmit(app);
@@ -179,37 +152,25 @@ public class NevadaIntegrationTest extends CQBaseIntegrationTest {
         eligibilityHealthQuestionsPage.isAt();
         eligibilityHealthQuestionsPage.fillAndSubmit(app);
 
-        healthHistoryQuestionsPage.isAt();
-        healthHistoryQuestionsPage.fillAndSubmit(app);
-
-        currentInsuranceCoveragePage.isAt();
-        currentInsuranceCoveragePage.fillAndSubmit(app);
+        pastAndCurrentCoveragePage.isAt();
+        pastAndCurrentCoveragePage.fillAndSubmit(app);
 
         authorizationPage.isAt();
         authorizationPage.fillAndSubmit(app);
 
-        agentVerificationPage.isAt();
-        agentVerificationPage.fillAndSubmit(app);
-
-        replacementNotice.isAt();
-        replacementNotice.fillAndSubmit(app);
-
         planPaymentOptionsPage.isAt();
         planPaymentOptionsPage.fillAndSubmit(app);
-
-        paymentDetailsSummaryPage.isAt();
-        paymentDetailsSummaryPage.fillAndSubmit(app);
 
         reviewAndSubmitPage.isAt();
         reviewAndSubmitPage.fillAndSubmit(app);
 
-        //expectedSubmissionResult.setPendingInfo("UNDERWRITING", "REVIEW FOR POSSIBLE ESRD");
-        //submissionQuery.verifySubmissionData(app, expectedSubmissionResult);
-        //submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
+        expectedSubmissionResult.setPendingInfo("UNDERWRITING", "REVIEW FOR POSSIBLE ESRD");
+        submissionQuery.verifySubmissionData(app, expectedSubmissionResult);
+        submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
 
     }
-    @Ignore
-    public void test_nevada_guranteed_issue() throws Exception {
+    @Test
+    public void test_california_guranteed_issue() throws Exception {
 
         sheet.setAarpMemid("y");
         sheet.setDOB(DateUtils.getDOBofPersonTurningAgeToday(65));
@@ -238,17 +199,20 @@ public class NevadaIntegrationTest extends CQBaseIntegrationTest {
         app.setMPAED("01/01/2010");
         app.setPartABActiveIndicator(YES);
         //Plan Application Page
-        app.setTobaccoUse(YES);
-        app.setLostCoverage(NO);
-        app.setTurned65In6GA(YES);
-        app.setPartBIn6GA(YES);
-        app.setPlanEffIn6OfEligible(YES);
-        //Eligibility Page
+        app.setGI30dayBday(YES);
+        //Eligibility Questions(SPECIFIC TO CA)
         app.setESRD(NO);
         app.setSurgeryNeeded(NO);
-        //Authorizationa and verififcation page
-        app.setDesignateLapse(YES);
-
+        app.setEligdialysis(NO);
+        app.setEligRecdialysis(NO);
+        app.setEligHospital(NO);
+        app.setEligSurgery(NO);
+        app.setEligOrgan(NO);
+        app.setEligSpine(NO);
+        app.setEligjoint(NO);
+        app.setEligCancer(NO);
+        app.setEligHeart(NO);
+        app.setEligVascular(NO);
         //Past And Current Coverage
         app.setCPATurned65(NO);
         app.setCPAPartBIn6(NO);
@@ -291,6 +255,33 @@ public class NevadaIntegrationTest extends CQBaseIntegrationTest {
 
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);
+
+        whatYouNeedPage.isAt();
+        whatYouNeedPage.clickNextAndWaitForSpinnerToFinish();
+
+        electronicSignatureAndDocumentConsentPage.isAt();
+        electronicSignatureAndDocumentConsentPage.clickNextAndWaitForSpinnerToFinish();
+
+        aboutYouPage.isAt();
+        aboutYouPage.fillAndSubmit(app, sheet);
+
+        planSelectionAndStartDatePage.isAt();
+        planSelectionAndStartDatePage.fillAndSubmit(app);
+
+        planApplicationQuestionsPage.isAt();
+        planApplicationQuestionsPage.fillAndSubmit(app);
+
+        pastAndCurrentCoveragePage.isAt();
+        pastAndCurrentCoveragePage.fillAndSubmit(app);
+
+        authorizationPage.isAt();
+        authorizationPage.fillAndSubmit(app);
+
+        planPaymentOptionsPage.isAt();
+        planPaymentOptionsPage.fillAndSubmit(app);
+
+        reviewAndSubmitPage.isAt();
+        reviewAndSubmitPage.fillAndSubmit(app);
 
         expectedSubmissionResult.setPendingInfo("UNDERWRITING", "REVIEW FOR POSSIBLE ESRD");
         submissionQuery.verifySubmissionData(app, expectedSubmissionResult);

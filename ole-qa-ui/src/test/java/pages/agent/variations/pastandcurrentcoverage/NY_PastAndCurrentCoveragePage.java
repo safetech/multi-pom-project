@@ -8,7 +8,7 @@ import pages.WizardPage;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class NV_CurrentInsuranceCoveragePage extends WizardPage{
+public class NY_PastAndCurrentCoveragePage extends WizardPage {
 
     @FindBy(css = "#MedicaidCovered_1") FluentWebElement MedicaidCovered_Yes;
     @FindBy(css = "#MedicaidCovered_2") FluentWebElement MedicaidCovered_No;
@@ -17,7 +17,10 @@ public class NV_CurrentInsuranceCoveragePage extends WizardPage{
     @FindBy(css = "#Medicaidbenefit_1") FluentWebElement Medicaidbenefit_Yes;
     @FindBy(css = "#Medicaidbenefit_2") FluentWebElement Medicaidbenefit_No;
 
-
+    @FindBy(css = "#CPATurned65_1") FluentWebElement CPATurned65_Yes;
+    @FindBy(css = "#CPATurned65_2") FluentWebElement CPATurned65_No;
+    @FindBy(css = "#CPAPartBIn6_1") FluentWebElement CPAPartBIn6_Yes;
+    @FindBy(css = "#CPAPartBIn6_2") FluentWebElement CPAPartBIn6_No;
     @FindBy(css = "#ExistingMedicare_1") FluentWebElement ExistingMedicare_Yes;
     @FindBy(css = "#ExistingMedicare_2") FluentWebElement ExistingMedicare_No;
     FluentWebElement OtherMedplanstart;
@@ -31,6 +34,8 @@ public class NV_CurrentInsuranceCoveragePage extends WizardPage{
 
     @FindBy(css = "#ExistMedSupp_1") FluentWebElement ExistMedSupp_Yes;
     @FindBy(css = "#ExistMedSupp_2") FluentWebElement ExistMedSupp_No;
+    FluentWebElement MSInsCompany;
+    FluentWebElement MSPLAN;
     @FindBy(css = "#ReplaceExistingMedSup_1") FluentWebElement ReplaceExistingMedSup_Yes;
     @FindBy(css = "#ReplaceExistingMedSup_2") FluentWebElement ReplaceExistingMedSup_No;
 
@@ -44,13 +49,9 @@ public class NV_CurrentInsuranceCoveragePage extends WizardPage{
     @FindBy(css = "#OtherInsReplace_2") FluentWebElement OtherInsReplace_No;
     FluentWebElement CpaSignatureInd;
 
-    protected int TOTAL_POSSIBLE_QUESTION_COUNT = 34;
+    protected int TOTAL_POSSIBLE_QUESTION_COUNT = 36;
 
     public void fillAndSubmit(Application app) {
-
-        isAt();
-
-        assertQuestionCount(TOTAL_POSSIBLE_QUESTION_COUNT);
 
         fillYesNoQuestion(MedicaidCovered_Yes, MedicaidCovered_No, app.getMedicaidCovered());
         if(app.getMedicaidCovered().equals("yes")) {
@@ -70,6 +71,8 @@ public class NV_CurrentInsuranceCoveragePage extends WizardPage{
         fillYesNoQuestion(ExistMedSupp_Yes, ExistMedSupp_No, app.getExistMedSupp());
         if(app.getExistMedSupp().equals("yes")){
             fillYesNoQuestion(ReplaceExistingMedSup_Yes, ReplaceExistingMedSup_No, app.getReplaceExistingMedSup());
+            fill(MSInsCompany).with(app.getMSInsCompany());
+            fill(MSPLAN).with(app.getMSPLAN());
         }
 
         fillYesNoQuestion(OtherInsCoverage_Yes, OtherInsCoverage_No, app.getOtherInsCoverage());
@@ -82,13 +85,11 @@ public class NV_CurrentInsuranceCoveragePage extends WizardPage{
         }
 
         CpaSignatureInd.click();
-        fillTouchSignature("CpaSignatureIndTouch", app.getCpaSignatureIndTouch());
+
         clickNextAndWaitForSpinnerToFinish();
-
-        }
-
-    public void isAt() {
-        assertThat(pageTitle.getText(), equalTo("Current Insurance Coverage"));
     }
 
+    public void isAt() {
+        assertThat(pageTitle.getText(), equalTo("Past and Current Coverage"));
+    }
 }
