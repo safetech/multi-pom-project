@@ -374,7 +374,6 @@ public class FloridaIntegrationTest extends CQBaseIntegrationTest {
         reviewAndSubmitPage.isAt();
         reviewAndSubmitPage.fillAndSubmit(app);
 
-
     }
 
 }
