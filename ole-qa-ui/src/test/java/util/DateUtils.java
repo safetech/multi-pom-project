@@ -47,7 +47,10 @@ public class DateUtils {
         Date dob = org.apache.commons.lang3.time.DateUtils.addYears(new Date(), -age);
         return COMPAS_DATE_FORMAT.format(dob);
     }
-
+    public static String getDOBInNormalDateFormat(int age) {
+        Date dob = org.apache.commons.lang3.time.DateUtils.addYears(new Date(), -age);
+        return NORMALIZED_DATE_FORMAT.format(dob);
+    }
     public static String convertDate(String date, SimpleDateFormat format) {
         Date dt;
         if(date.contains("-")){

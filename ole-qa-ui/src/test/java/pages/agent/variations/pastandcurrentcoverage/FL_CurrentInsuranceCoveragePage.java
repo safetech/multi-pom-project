@@ -8,7 +8,7 @@ import pages.WizardPage;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class FL_PastAndCurrentCoveragePage extends WizardPage{
+public class FL_CurrentInsuranceCoveragePage extends WizardPage{
 
     @FindBy(css = "#CPATurned65_1") FluentWebElement CPATurned65_Yes;
     @FindBy(css = "#CPATurned65_2") FluentWebElement CPATurned65_No;
@@ -20,6 +20,10 @@ public class FL_PastAndCurrentCoveragePage extends WizardPage{
     @FindBy(css = "#MedicaidSupPremium_2") FluentWebElement MedicaidSupPremium_No;
     @FindBy(css = "#Medicaidbenefit_1") FluentWebElement Medicaidbenefit_Yes;
     @FindBy(css = "#Medicaidbenefit_2") FluentWebElement Medicaidbenefit_No;
+    @FindBy(css = "#FirstTime_1") FluentWebElement FirstTime_Yes;
+    @FindBy(css = "#FirstTime_2") FluentWebElement FirstTime_No;
+    @FindBy(css = "#DropMedSuppForThisPlan_1") FluentWebElement DropMedSuppForThisPlan_Yes;
+    @FindBy(css = "#DropMedSuppForThisPlan_2") FluentWebElement DropMedSuppForThisPlan_No;
     FluentWebElement OtherMedplanstart;
     FluentWebElement OtherMedplanend;
     @FindBy(css = "#ExistMedSupp_1") FluentWebElement ExistMedSupp_Yes;
@@ -51,7 +55,9 @@ public class FL_PastAndCurrentCoveragePage extends WizardPage{
         }
 
         fill(OtherMedplanstart).with(app.getOtherMedplanstart());
+        fillYesNoQuestion(FirstTime_Yes, FirstTime_No, app.getFirstTime());
         fill(OtherMedplanend).with(app.getOtherMedplanend());
+        fillYesNoQuestion(DropMedSuppForThisPlan_Yes, DropMedSuppForThisPlan_No, app.getDropMedSuppForThisPlan());
 
         fillYesNoQuestion(ExistMedSupp_Yes, ExistMedSupp_No, app.getExistMedSupp());
 
@@ -72,11 +78,12 @@ public class FL_PastAndCurrentCoveragePage extends WizardPage{
         }
 
         CpaSignatureInd.click();
+          fillTouchSignature("CpaSignatureIndTouch", app.getCpaSignatureIndTouch());
 
         clickNextAndWaitForSpinnerToFinish();
     }
 
     public void isAt() {
-        assertThat(pageTitle.getText(), equalTo("Past and Current Coverage"));
+        assertThat(pageTitle.getText(), equalTo("Current Insurance Coverage"));
     }
 }

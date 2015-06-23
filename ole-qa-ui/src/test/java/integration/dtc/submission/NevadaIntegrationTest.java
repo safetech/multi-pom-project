@@ -48,7 +48,7 @@ public class NevadaIntegrationTest extends CQBaseIntegrationTest {
         expectedSubmissionResult = new SubmissionResult();
     }
 
-    @Ignore
+    @Test
     public void test_nevada_underwriting_with_health_history_and_designeeSig() throws Exception {
 
         sheet.setAarpMemid("y");

@@ -56,18 +56,13 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
 
         app = new Application();
         // Customer Info Page Question
-
         app.setMedicareClaimNum(faker.bothify("#########A"));
-
-
         app.setPartABActiveIndicator(YES);
         app.setPlanCode("F");
         app.setReqEffectiveDate(DateUtils.getFirstDayOfFutureMonth(1));
-
         //Eligibility Questions
         app.setESRD(NO);
         app.setSurgeryNeeded(NO);
-
         //Agent Verification Page
         app.setCommonAgentVerificationAnswers();
 

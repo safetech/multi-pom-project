@@ -17,7 +17,6 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.slf4j.Logger;
-
 import pages.phone.CheatPage;
 import util.AnswerUtils;
 
@@ -33,7 +32,6 @@ public class CQBaseIntegrationTest extends FluentTest {
     protected final Logger logger = getLogger(this.getClass());
     protected Gson gson = new GsonBuilder().create();
     protected Application app;
-
     protected String NO = AnswerUtils.NO;
     protected String YES = AnswerUtils.YES;
     protected String UNSURE = AnswerUtils.UNSURE;
@@ -76,5 +74,4 @@ public class CQBaseIntegrationTest extends FluentTest {
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);
     }
-
 }

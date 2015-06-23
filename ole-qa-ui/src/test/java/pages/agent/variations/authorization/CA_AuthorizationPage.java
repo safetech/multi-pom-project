@@ -16,8 +16,15 @@ public class CA_AuthorizationPage extends WizardPage{
     public void fillAndSubmit(Application app) {
 
         SignatureInd.click();
+        fillTouchSignature("SignatureIndTouch",  app.getSignatureIndTouch());
+
         MedicalReleaseClaimSignatureInd.click();
+        fillTouchSignature("MedicalReleaseClaimSignatureIndTouch", app.getMedicalReleaseClaimSignatureIndTouch());
+
         MedicalReleaseAuthSignatureInd.click();
+        fillTouchSignature("MedicalReleaseAuthSignatureIndTouch", app.getMedicalReleaseAuthSignatureIndTouch());
+
+
         clickNextAndWaitForSpinnerToFinish();
 
     }

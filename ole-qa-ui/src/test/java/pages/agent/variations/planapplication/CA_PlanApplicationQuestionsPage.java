@@ -31,8 +31,6 @@ public class CA_PlanApplicationQuestionsPage extends PlanApplicationQuestions {
 
         protected int TOTAL_POSSIBLE_QUESTION_COUNT = 20;
 
-
-
         public void fillAndSubmit(Application app) {
 
             fillYesNoQuestion(GI30Bday_Yes, GI30Bday_No, app.getGI30dayBday());

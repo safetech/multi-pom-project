@@ -5,7 +5,6 @@ import entity.Application;
 import entity.SubmissionResult;
 import entity.agent.CribSheet;
 import integration.CQBaseIntegrationTest;
-import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,7 +14,6 @@ import pages.agent.variations.pastandcurrentcoverage.NV_CurrentInsuranceCoverage
 import pages.agent.variations.planapplication.NV_PlanApplicationQuestionsPage;
 import pages.agent.variations.replacenotice.RN034andRE073WithSignaturePage;
 import queries.SubmissionQuery;
-import util.DateUtils;
 
 public class NevadaIntegrationTest extends CQBaseIntegrationTest {
 
@@ -53,7 +51,7 @@ public class NevadaIntegrationTest extends CQBaseIntegrationTest {
     public void test_nevada_underwriting_with_health_history_and_designeeSig_with_rn() throws Exception {
 
         sheet.setAgentId("Test");
-        sheet.setAgentMedSuppStates("[NV]");
+        sheet.setAgentMedSuppStates("[NV| CA| MA| FL| NY| OH]");
         sheet.setAgentCertificationYears("[2014 |2015| 2016]");
         sheet.setMarketability_code(BLANK);
         sheet.setSiteId("UHP");
@@ -78,7 +76,6 @@ public class NevadaIntegrationTest extends CQBaseIntegrationTest {
         app.setAgentRNSignatureIndTouch(Application.ALL_SIGNATURES[5]);
         app.setApplicantRNSignatureIndTouch(Application.ALL_SIGNATURES[6]);
         app.setEftSignatureIndTouch(Application.ALL_SIGNATURES[7]);
-
 
         //TestData
         app.setAARPMembershipNumber("1234567890");
@@ -203,22 +200,41 @@ public class NevadaIntegrationTest extends CQBaseIntegrationTest {
         reviewAndSubmitPage.isAt();
         reviewAndSubmitPage.fillAndSubmit(app);
 
-        //expectedSubmissionResult.setPendingInfo("UNDERWRITING", "REVIEW FOR POSSIBLE ESRD");
-        //submissionQuery.verifySubmissionData(app, expectedSubmissionResult);
-        //submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
+       // expectedSubmissionResult.setPendingInfo("UNDERWRITING", "REVIEW FOR POSSIBLE ESRD");
+       // submissionQuery.verifySubmissionData(app, expectedSubmissionResult);
+       // submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
 
     }
-    @Ignore
+    @Test
     public void test_nevada_guranteed_issue() throws Exception {
 
-        sheet.setAarpMemid("y");
-        sheet.setDOB(DateUtils.getDOBofPersonTurningAgeToday(65));
-        sheet.setEffDate("04/01/2015");
-        sheet.setPsd(DateUtils.getFirstDayOfFutureMonth(1));
-        sheet.setPlanCode("A");
-        sheet.setReferrer("uLayer");
+        sheet.setAgentId("Test");
+        sheet.setAgentMedSuppStates("[NV| CA| MA| FL| NY| OH]");
+        sheet.setAgentCertificationYears("[2014 |2015| 2016]");
+        sheet.setMarketability_code(BLANK);
+        sheet.setSiteId("UHP");
+        sheet.setAgentNPN(BLANK);
+        sheet.setAgentName("BOB DOBBS");
+        sheet.setAgentEmail("bob@dobbsco.com");
+        sheet.setAgentPartyId("54321");
+        sheet.setReferrer("ulayer");
+
 
         Application app = new Application();
+        app.setState("NV");
+        app.setZipCode("89101");
+        app.setDOB("06/01/1950");
+        app.setMPBED("01/01/2015");
+
+        app.setCpaSignatureIndTouch(Application.ALL_SIGNATURES[0]);
+        app.setSignatureIndTouch(Application.ALL_SIGNATURES[1]);
+        app.setMedicalReleaseAuthSignatureIndTouch(Application.ALL_SIGNATURES[2]);
+        app.setDesigneeSigTouch(Application.ALL_SIGNATURES[3]);
+        app.setAgentSignatureIndTouch(Application.ALL_SIGNATURES[4]);
+        app.setAgentRNSignatureIndTouch(Application.ALL_SIGNATURES[5]);
+        app.setApplicantRNSignatureIndTouch(Application.ALL_SIGNATURES[6]);
+        app.setEftSignatureIndTouch(Application.ALL_SIGNATURES[7]);
+
         //TestData
         app.setAARPMembershipNumber("1234567890");
         app.setPrefix("MR");
@@ -234,15 +250,15 @@ public class NevadaIntegrationTest extends CQBaseIntegrationTest {
         app.setPhonePrimary("9874562345");
         app.setPhoneEvening("1234561234");
         app.setGender("M");
-        app.setMedicareClaimNum("123123123A");
-        app.setMPAED("01/01/2010");
+        app.setMedicareClaimNum("A123123123");
+        app.setMPAED("01/01/2015");
         app.setPartABActiveIndicator(YES);
+        app.setAgentEmail("agent@uhc.com");
+        app.setAgentEmailConfirm("agent@uhc.com");
         //Plan Application Page
         app.setTobaccoUse(YES);
-        app.setLostCoverage(NO);
         app.setTurned65In6GA(YES);
-        app.setPartBIn6GA(YES);
-        app.setPlanEffIn6OfEligible(YES);
+
         //Eligibility Page
         app.setESRD(NO);
         app.setSurgeryNeeded(NO);
@@ -256,7 +272,7 @@ public class NevadaIntegrationTest extends CQBaseIntegrationTest {
         app.setMedicaidSupPremium(YES);
         app.setMedicaidbenefit(YES);
         app.setExistingMedicare(YES);
-        app.setOtherMedplanstart("01/01/2012");
+        app.setOtherMedplanstart("01/01/2015");
         app.setOtherMedplanend("01/01/2015");
         app.setIntentReplace(YES);
         app.setFirstTime(YES);
@@ -283,18 +299,63 @@ public class NevadaIntegrationTest extends CQBaseIntegrationTest {
         app.setAuxState("NV");
         app.setAuxZipCode("89101");
 
+        //Agent Verification page
+        app.setAgentOtherInsPoliciesSold("HMO");
+        app.setAgentPoliciesInForce("HMO In Force");
+        app.setAgentPoliciesSoldNotInForce("HMO Not In Force");
+        app.setAgentFirstName("AgnetFirst");
+        app.setAgentMI("A");
+        app.setAgentLastName("AgentLast");
+        app.setAgentPhone("3334445555");
+
         //Replacement Notice Page
         app.setCommonReplacementNoticeAnswersWithApplicantInfo();
-
-        expectedSubmissionResult.setPendingInfo("UNDERWRITING", "REVIEW FOR POSSIBLE ESRD");
-
+        app.setCommonHealthHistoryAnswers();
+        //Payment Details Summary Page
+        app.setPaymentDetailsSummaryPageWithAppValues();
 
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);
 
-        expectedSubmissionResult.setPendingInfo("UNDERWRITING", "REVIEW FOR POSSIBLE ESRD");
-        submissionQuery.verifySubmissionData(app, expectedSubmissionResult);
-        submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
+        checkEligibilityAndAvailabilityPage.isAt();
+        checkEligibilityAndAvailabilityPage.fillAndSubmit(app);
+
+        planSelectionPage.isAt();
+        planSelectionPage.fillAndSubmit(app);
+
+        whatYouNeedPage.isAt();
+        whatYouNeedPage.fillAndSubmit(app);
+
+        customerInformationPage.isAt();
+        customerInformationPage.fillAndSubmit(app);
+
+        planApplicationQuestionsPage.isAt();
+        planApplicationQuestionsPage.fillAndSubmit(app);
+
+        currentInsuranceCoveragePage.isAt();
+        currentInsuranceCoveragePage.fillAndSubmit(app);
+
+        authorizationPage.isAt();
+        authorizationPage.fillAndSubmit(app);
+
+        agentVerificationPage.isAt();
+        agentVerificationPage.fillAndSubmit(app);
+
+        replacementNotice.isAt();
+        replacementNotice.fillAndSubmit(app);
+
+        planPaymentOptionsPage.isAt();
+        planPaymentOptionsPage.fillAndSubmit(app);
+
+        paymentDetailsSummaryPage.isAt();
+        paymentDetailsSummaryPage.fillAndSubmit(app);
+
+        reviewAndSubmitPage.isAt();
+        reviewAndSubmitPage.fillAndSubmit(app);
+
+       //expectedSubmissionResult.setPendingInfo("UNDERWRITING", "REVIEW FOR POSSIBLE ESRD");
+       //submissionQuery.verifySubmissionData(app, expectedSubmissionResult);
+       //submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
 
     }
 

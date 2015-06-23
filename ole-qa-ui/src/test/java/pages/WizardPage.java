@@ -26,8 +26,8 @@ public class WizardPage extends FluentPage {
 
     private String TEXT_SUB_SELECTOR = "span[data-textsub-id='%s']";
     public String WIZARD_PAGE_NEXT_BTN_SELECTOR = "a.action_next";
-    protected void waitForSpinnerToFinish() {
-        waitForSpinnerToFinish(10);
+
+    protected void waitForSpinnerToFinish() {waitForSpinnerToFinish(10);
     }
 
     protected void waitForSpinnerToFinish(int seconds) {

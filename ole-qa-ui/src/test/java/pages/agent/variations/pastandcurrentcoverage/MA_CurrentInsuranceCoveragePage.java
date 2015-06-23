@@ -10,7 +10,7 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 
-public class MA_PastAndCurrentCoveragePage extends WizardPage {
+public class MA_CurrentInsuranceCoveragePage extends WizardPage {
 
 @FindBy(css = "#MedicaidCovered_1") FluentWebElement MedicaidCovered_Yes;
 @FindBy(css = "#MedicaidCovered_2") FluentWebElement MedicaidCovered_No;
@@ -21,7 +21,6 @@ public class MA_PastAndCurrentCoveragePage extends WizardPage {
 
 @FindBy(id = "6monEligEnroll_1") FluentWebElement SixMonEligEnroll_Yes;
 @FindBy(id = "6monEligEnroll_2") FluentWebElement SixMonEligEnroll_No;
-
 @FindBy(id = "6monTurn65Enroll_1") FluentWebElement SixMonTurn65Enroll_Yes;
 @FindBy(id = "6monTurn65Enroll_2") FluentWebElement SixMonTurn65Enroll_No;
 @FindBy(id = "6monEmpCovTerm_1") FluentWebElement SixEmpCovTerm_Yes;
@@ -99,11 +98,12 @@ public void fillAndSubmit(Application app) {
     }
 
     CpaSignatureInd.click();
+    fillTouchSignature("CpaSignatureIndTouch", app.getCpaSignatureIndTouch());
 
     clickNextAndWaitForSpinnerToFinish();
 }
 
 public void isAt() {
-    assertThat(pageTitle.getText(), equalTo("Past and Current Coverage"));
+    assertThat(pageTitle.getText(), equalTo("Current Insurance Coverage"));
 }
 }

@@ -80,12 +80,12 @@ public class CA_CurrentInsuranceCoveragePage extends WizardPage{
         }
 
         CpaSignatureInd.click();
-
+        fillTouchSignature("CpaSignatureIndTouch", app.getCpaSignatureIndTouch());
         clickNextAndWaitForSpinnerToFinish();
 
     }
 
     public void isAt() {
-        assertThat(pageTitle.getText(), equalTo("Past and Current Coverage"));
+        assertThat(pageTitle.getText(), equalTo("Current Insurance Coverage"));
     }
 }
