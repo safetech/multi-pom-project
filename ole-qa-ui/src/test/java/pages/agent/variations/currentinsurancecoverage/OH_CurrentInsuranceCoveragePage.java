@@ -1,4 +1,4 @@
-package pages.agent.variations.pastandcurrentcoverage;
+package pages.agent.variations.currentinsurancecoverage;
 
 import entity.Application;
 import org.fluentlenium.core.domain.FluentWebElement;
@@ -8,7 +8,7 @@ import pages.WizardPage;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class NY_CurrentInsuranceCoveragePage extends WizardPage {
+public class OH_CurrentInsuranceCoveragePage extends WizardPage {
 
     @FindBy(css = "#MedicaidCovered_1") FluentWebElement MedicaidCovered_Yes;
     @FindBy(css = "#MedicaidCovered_2") FluentWebElement MedicaidCovered_No;
@@ -71,8 +71,7 @@ public class NY_CurrentInsuranceCoveragePage extends WizardPage {
         fillYesNoQuestion(ExistMedSupp_Yes, ExistMedSupp_No, app.getExistMedSupp());
         if(app.getExistMedSupp().equals("yes")){
             fillYesNoQuestion(ReplaceExistingMedSup_Yes, ReplaceExistingMedSup_No, app.getReplaceExistingMedSup());
-            fill(MSInsCompany).with(app.getMSInsCompany());
-            fill(MSPLAN).with(app.getMSPLAN());
+
         }
 
         fillYesNoQuestion(OtherInsCoverage_Yes, OtherInsCoverage_No, app.getOtherInsCoverage());
@@ -85,11 +84,11 @@ public class NY_CurrentInsuranceCoveragePage extends WizardPage {
         }
 
         CpaSignatureInd.click();
-
+        fillTouchSignature("CpaSignatureIndTouch", app.getCpaSignatureIndTouch());
         clickNextAndWaitForSpinnerToFinish();
     }
 
     public void isAt() {
-        assertThat(pageTitle.getText(), equalTo("Past and Current Coverage"));
+        assertThat(pageTitle.getText(), equalTo("Current Insurance Coverage"));
     }
 }

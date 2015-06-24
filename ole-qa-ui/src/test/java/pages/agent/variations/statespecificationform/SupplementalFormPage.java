@@ -24,15 +24,12 @@ public class SupplementalFormPage extends WizardPage {
     public void fillAndSubmit(Application app) {
 
         isAt();
-
         fill(SS_FormDate).with(app.getSS_FormDate());
 
         FL23841.click();
         fillTouchSignature("FL23841Touch",  app.getSS_App_Signature1());
-
         FL23846.click();
         fillTouchSignature("FL23846Touch", app.getSS_Agent_Signature1());
-
 
         fill(AgencyName).with(app.getAgencyName());
         fill(AgencyAddress).with(app.getAgencyAddress());

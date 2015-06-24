@@ -10,7 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 import pages.agent.*;
 import pages.agent.variations.authorization.NV_AuthorizationPage;
-import pages.agent.variations.pastandcurrentcoverage.NV_CurrentInsuranceCoveragePage;
+import pages.agent.variations.currentinsurancecoverage.NV_CurrentInsuranceCoveragePage;
 import pages.agent.variations.planapplication.NV_PlanApplicationQuestionsPage;
 import pages.agent.variations.replacenotice.RN034andRE073WithSignaturePage;
 import queries.SubmissionQuery;

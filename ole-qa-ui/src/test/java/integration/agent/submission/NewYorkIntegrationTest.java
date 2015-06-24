@@ -9,25 +9,23 @@ import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
 import pages.agent.*;
-import pages.agent.variations.authorization.CA_AuthorizationPage;
-import pages.agent.variations.eligibilityhealthquestions.CA_EligibilityHealthQuestionsPage;
-import pages.agent.variations.currentinsurancecoverage.CA_CurrentInsuranceCoveragePage;
-import pages.agent.variations.planapplication.CA_PlanApplicationQuestionsPage;
+import pages.agent.variations.currentinsurancecoverage.NY_CurrentInsuranceCoveragePage;
+import pages.agent.variations.planapplication.NV_PlanApplicationQuestionsPage;
 import pages.agent.variations.replacenotice.RN034andRE073WithSignaturePage;
 import queries.SubmissionQuery;
 import util.DateUtils;
 
-public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
+public class NewYorkIntegrationTest extends CQBaseIntegrationTest {
 
     @Page public CheatPage cheatPage;
     @Page public PlanSelectionPage planSelectionPage;
     @Page public CheckEligibilityAndAvailabilityPage checkEligibilityAndAvailabilityPage;
     @Page public WhatYouNeedPage whatYouNeedPage;
     @Page public CustomerInformationPage customerInformationPage;
-    @Page public CA_PlanApplicationQuestionsPage planApplicationQuestionsPage;
-    @Page public CA_EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
-    @Page public CA_CurrentInsuranceCoveragePage currentInsuranceCoveragePage;
-    @Page public CA_AuthorizationPage authorizationPage;
+    @Page public NV_PlanApplicationQuestionsPage planApplicationQuestionsPage;
+    @Page public EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
+    @Page public NY_CurrentInsuranceCoveragePage currentInsuranceCoveragePage;
+    @Page public AuthorizationPage authorizationPage;
     @Page public RN034andRE073WithSignaturePage replacementNotice;
     @Page public AgentVerificationPage agentVerificationPage;
     @Page public PaymentDetailsSummaryPage paymentDetailsSummaryPage;
@@ -49,7 +47,7 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
     }
 
     @Test
-    public void test_california_eligibility_underwriting_with_rn() throws Exception {
+    public void test_new_york_with_rn() throws Exception {
 
         sheet.setAgentId("Test");
         sheet.setAgentMedSuppStates("[NV| CA| MA| FL| NY| OH]");
@@ -64,10 +62,11 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
 
         Application app = new Application();
 
-        app.setState("CA");
-        app.setZipCode("90210");
-        app.setDOB(DateUtils.getDOBInNormalDateFormat(70));
+        app.setState("NY");
+        app.setZipCode("10001");
+        app.setDOB(DateUtils.getDOBInNormalDateFormat(75));
         app.setMPBED("01/01/2012");
+        //Signatures
         app.setCpaSignatureIndTouch(Application.ALL_SIGNATURES[0]);
         app.setSignatureIndTouch(Application.ALL_SIGNATURES[1]);
         app.setMedicalReleaseAuthSignatureIndTouch(Application.ALL_SIGNATURES[2]);
@@ -77,7 +76,8 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         app.setApplicantRNSignatureIndTouch(Application.ALL_SIGNATURES[6]);
         app.setEftSignatureIndTouch(Application.ALL_SIGNATURES[7]);
         app.setMedicalReleaseClaimSignatureIndTouch(Application.ALL_SIGNATURES[8]);
-
+        app.setSS_App_Signature1(Application.ALL_SIGNATURES[9]);
+        app.setSS_Agent_Signature1(Application.ALL_SIGNATURES[10]);
         //TestData
         app.setAARPMembershipNumber("1234567890");
         app.setPrefix("MR");
@@ -156,6 +156,12 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         //Replacement Notice Page
         app.setCommonReplacementNoticeAnswersWithApplicantInfo();
         app.setCommonHealthHistoryAnswers();
+        //SSForm Page
+        app.setSS_FormDate("01/01/2001");
+        app.setAgencyName("Agency Name");
+        app.setAgencyAddress("Agency Address");
+        app.setAgencyPhone("2346759876");
+
 
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);
@@ -171,12 +177,6 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
 
         customerInformationPage.isAt();
         customerInformationPage.fillAndSubmit(app);
-
-        planApplicationQuestionsPage.isAt();
-        planApplicationQuestionsPage.fillAndSubmit(app);
-
-        eligibilityHealthQuestionsPage.isAt();
-        eligibilityHealthQuestionsPage.fillAndSubmit(app);
 
         currentInsuranceCoveragePage.isAt();
         currentInsuranceCoveragePage.fillAndSubmit(app);
@@ -199,13 +199,10 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         reviewAndSubmitPage.isAt();
         reviewAndSubmitPage.fillAndSubmit(app);
 
-       // expectedSubmissionResult.setPendingInfo("UNDERWRITING", "REVIEW FOR POSSIBLE ESRD");
-       // submissionQuery.verifySubmissionData(app, expectedSubmissionResult);
-       // submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
-
     }
+
     @Test
-    public void test_california_guranteed_issue() throws Exception {
+    public void test_new_york_guranteed_issue_Without_rn() throws Exception {
 
         sheet.setAgentId("Test");
         sheet.setAgentMedSuppStates("[NV| CA| MA| FL| NY| OH]");
@@ -219,8 +216,8 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         sheet.setReferrer("ulayer");
 
         Application app = new Application();
-        app.setState("CA");
-        app.setZipCode("90210");
+        app.setState("NY");
+        app.setZipCode("10001");
         app.setDOB(DateUtils.getDOBInNormalDateFormat(66));
         app.setMPBED("05/01/2015");
 
@@ -233,7 +230,8 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         app.setApplicantRNSignatureIndTouch(Application.ALL_SIGNATURES[6]);
         app.setEftSignatureIndTouch(Application.ALL_SIGNATURES[7]);
         app.setMedicalReleaseClaimSignatureIndTouch(Application.ALL_SIGNATURES[8]);
-
+        app.setSS_App_Signature1(Application.ALL_SIGNATURES[9]);
+        app.setSS_Agent_Signature1(Application.ALL_SIGNATURES[10]);
         //TestData
         app.setAARPMembershipNumber("1234567890");
         app.setPrefix("MR");
@@ -300,7 +298,6 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         app.setOtherInsEnd("01/01/2014");
         app.setOtherInsReplace(YES);
         app.setCpaSignatureInd(YES);
-
         //Agent Verification page
         app.setAgentOtherInsPoliciesSold("HMO");
         app.setAgentPoliciesInForce("HMO In Force");
@@ -309,13 +306,17 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         app.setAgentMI("A");
         app.setAgentLastName("AgentLast");
         app.setAgentPhone("3334445555");
-
         //Payment Details Summary Page
         app.setPaymentDetailsSummaryPageWithAppValues();
-
         //Replacement Notice Page
         app.setCommonReplacementNoticeAnswersWithApplicantInfo();
         app.setCommonHealthHistoryAnswers();
+        //SSForm Page
+        app.setSS_FormDate("01/01/2001");
+        app.setAgencyName("Agency Name");
+        app.setAgencyAddress("Agency Address");
+        app.setAgencyPhone("2346759876");
+
 
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);
@@ -331,9 +332,6 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
 
         customerInformationPage.isAt();
         customerInformationPage.fillAndSubmit(app);
-
-        planApplicationQuestionsPage.isAt();
-        planApplicationQuestionsPage.fillAndSubmit(app);
 
         currentInsuranceCoveragePage.isAt();
         currentInsuranceCoveragePage.fillAndSubmit(app);

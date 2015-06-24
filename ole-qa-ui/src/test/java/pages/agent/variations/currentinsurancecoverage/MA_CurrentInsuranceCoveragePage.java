@@ -1,4 +1,4 @@
-package pages.agent.variations.pastandcurrentcoverage;
+package pages.agent.variations.currentinsurancecoverage;
 
 
 import entity.Application;

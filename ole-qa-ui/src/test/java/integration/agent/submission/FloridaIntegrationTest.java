@@ -9,7 +9,7 @@ import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
 import pages.agent.*;
-import pages.agent.variations.pastandcurrentcoverage.FL_CurrentInsuranceCoveragePage;
+import pages.agent.variations.currentinsurancecoverage.FL_CurrentInsuranceCoveragePage;
 import pages.agent.variations.planapplication.NV_PlanApplicationQuestionsPage;
 import pages.agent.variations.replacenotice.RN034andRE073WithSignaturePage;
 import pages.agent.variations.statespecificationform.SupplementalFormPage;

@@ -951,11 +951,84 @@ public class Application {
     private String SS_FormDate = "";
     private String SS_App_Signature1 = "";
     private String SS_Agent_Signature1 = "";
-    private String  AgencyName = "";
-    private String  AgencyAddress = "";
-    private String  AgencyPhone = "";
+    private String AgencyName = "";
+    private String AgencyAddress = "";
+    private String AgencyPhone = "";
+    private String SS_App_PrintedName = "";
+    private String SS_Agent_PrintedName = "";
+    private String SS_LicenseNumber = "";
+    private String SS_StreetAddress = "";
+    private String SS_City = "";
+    private String SS_Zip = "";
+    private String SS_Phone = "";
+    private String SS_State = "";
+
+    public String getSS_State() {
+        return SS_State;
+    }
+
+    public void setSS_State(String SS_State) {
+        this.SS_State = SS_State;
+    }
 
 
+    public String getSS_Agent_PrintedName() {
+        return SS_Agent_PrintedName;
+    }
+
+    public void setSS_Agent_PrintedName(String SS_Agent_PrintedName) {
+        this.SS_Agent_PrintedName = SS_Agent_PrintedName;
+    }
+
+    public String getSS_LicenseNumber() {
+        return SS_LicenseNumber;
+    }
+
+    public void setSS_LicenseNumber(String SS_LicenseNumber) {
+        this.SS_LicenseNumber = SS_LicenseNumber;
+    }
+
+    public String getSS_StreetAddress() {
+        return SS_StreetAddress;
+    }
+
+    public void setSS_StreetAddress(String SS_StreetAddress) {
+        this.SS_StreetAddress = SS_StreetAddress;
+    }
+
+    public String getSS_City() {
+        return SS_City;
+    }
+
+    public void setSS_City(String SS_City) {
+        this.SS_City = SS_City;
+    }
+
+    public String getSS_Zip() {
+        return SS_Zip;
+    }
+
+    public void setSS_Zip(String SS_Zip) {
+        this.SS_Zip = SS_Zip;
+    }
+
+    public String getSS_Phone() {
+        return SS_Phone;
+    }
+
+    public void setSS_Phone(String SS_Phone) {
+        this.SS_Phone = SS_Phone;
+    }
+
+
+
+    public String getSS_App_PrintedName() {
+        return SS_App_PrintedName;
+    }
+
+    public void setSS_App_PrintedName(String SS_App_PrintedName) {
+        this.SS_App_PrintedName = SS_App_PrintedName;
+    }
 
     public String getAgencyPhone() {
         return AgencyPhone;
