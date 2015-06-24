@@ -8,7 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class CAEligibilityHealthQuestionsPage extends WizardPage {
+public class CA_EligibilityHealthQuestionsPage extends WizardPage {
 
     @FindBy(css = "#ESRD_1") FluentWebElement ESRD_Yes;
     @FindBy(css = "#ESRD_2") FluentWebElement ESRD_No;

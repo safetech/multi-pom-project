@@ -1,20 +1,18 @@
 package integration.phone.submission;
 
 import com.github.javafaker.Faker;
-import integration.CQBaseIntegrationTest;
 import entity.Application;
-import entity.phone.CribSheet;
-
 import entity.SubmissionResult;
-import pages.phone.*;
-import pages.phone.variations.pastandcurrentcoverage.CA_PA_NJ_IN_PastAndCurrentInsuranceCoveragePage;
-import pages.phone.variations.planapplicationpage.DE_NV_IN_AL_SC_PlanApplicationQuestions;
-import pages.phone.variations.planapplicationpage.DE_PlanApplicationQuestions;
-import pages.phone.variations.replacementnotice.RN034andRE073Page;
-import queries.SubmissionQuery;
+import entity.phone.CribSheet;
+import integration.CQBaseIntegrationTest;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
+import pages.phone.*;
+import pages.phone.variations.pastandcurrentcoverage.CA_PA_NJ_IN_PastAndCurrentInsuranceCoveragePage;
+import pages.phone.variations.planapplicationpage.DE_NV_IN_AL_SC_PlanApplicationQuestions;
+import pages.phone.variations.replacementnotice.RN034andRE073Page;
+import queries.SubmissionQuery;
 import util.DateUtils;
 
 public class DelawareIntegrationTest extends CQBaseIntegrationTest {
@@ -24,7 +22,6 @@ public class DelawareIntegrationTest extends CQBaseIntegrationTest {
     @Page public CustomerInformationPage customerInformationPage;
     @Page public PlanSelectionAndStartDatePage planSelectionAndStartDatePage;
     @Page public DE_NV_IN_AL_SC_PlanApplicationQuestions planApplicationQuestionsPage;
-    @Page public DE_PlanApplicationQuestions GIplanApplicationQuestionsPage;
     @Page public EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
     @Page public CA_PA_NJ_IN_PastAndCurrentInsuranceCoveragePage pastAndCurrentInsuranceCoveragePage;
     @Page public AuthorizationAndVerificationPage authorizationAndVerificationPage;
@@ -68,9 +65,9 @@ public class DelawareIntegrationTest extends CQBaseIntegrationTest {
         app.setPlanCode("F");
         app.setReqEffectiveDate(DateUtils.getFirstDayOfFutureMonth(1));
         //Plan Eligibility
-        app.setTurned65In6GA(NO); //TODO: Replace these hard coded values with helper function that will determine answer based upon DOB
-        app.setPartBIn6GA(NO); //TODO: Replace these hard coded values with helper function that will determine answer based upon MPBED
-        app.setPlanEffIn6OfEligible(NO);  //TODO: Replace these hard coded values with helper function that will determine answer based upon DOB & MPBED
+        app.setTurned65In6GA(NO);
+        app.setPartBIn6GA(NO);
+        app.setPlanEffIn6OfEligible(NO);
         app.setLostCoverage(NO);
         app.setTobaccoUse(YES);
         //Eligibility Questions
@@ -195,10 +192,9 @@ public class DelawareIntegrationTest extends CQBaseIntegrationTest {
         app.setPlanCode("F");
         app.setReqEffectiveDate(DateUtils.getFirstDayOfFutureMonth(1));
         //Plan Eligibility
-        app.setTurned65In6GA(YES); //TODO: Replace these hard coded values with helper function that will determine answer based upon DOB
-        app.setPartBIn6GA(YES); //TODO: Replace these hard coded values with helper function that will determine answer based upon MPBED
-        app.setPlanEffIn6OfEligible(YES);  //TODO: Replace these hard coded values with helper function that will determine answer based upon DOB & MPBED
-        app.setLostCoverage(NO);
+        app.setTurned65In6GA(YES);
+        app.setPartBIn6GA(YES);
+        app.setPlanEffIn6OfEligible(YES);
         app.setTobaccoUse(NO);
         //Eligibility Questions
         app.setESRD(NO);
@@ -269,8 +265,8 @@ public class DelawareIntegrationTest extends CQBaseIntegrationTest {
         planSelectionAndStartDatePage.isAt();
         planSelectionAndStartDatePage.fillAndSubmit(app);
 
-        GIplanApplicationQuestionsPage.isAt();
-        GIplanApplicationQuestionsPage.fillAndSubmit(app);
+        planApplicationQuestionsPage.isAt();
+        planApplicationQuestionsPage.fillAndSubmit(app);
 
         pastAndCurrentInsuranceCoveragePage.isAt();
         pastAndCurrentInsuranceCoveragePage.fillAndSubmit(app);

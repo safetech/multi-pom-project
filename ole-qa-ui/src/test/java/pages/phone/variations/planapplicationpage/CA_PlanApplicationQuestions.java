@@ -6,7 +6,7 @@ import pages.phone.PlanApplicationQuestions;
 import org.fluentlenium.core.domain.FluentWebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class CAPlanApplicationQuestions extends PlanApplicationQuestions {
+public class CA_PlanApplicationQuestions extends PlanApplicationQuestions {
 
         @FindBy(css = "#GI30dayBday_1") protected FluentWebElement GI30Bday_Yes;
         @FindBy(css = "#GI30dayBday_2") protected FluentWebElement GI30Bday_No;

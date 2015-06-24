@@ -1,21 +1,19 @@
 package integration.phone.submission;
 
-
 import com.github.javafaker.Faker;
-import integration.CQBaseIntegrationTest;
 import entity.Application;
-import entity.phone.CribSheet;
 import entity.SubmissionResult;
-import pages.phone.*;
-import pages.phone.variations.pastandcurrentcoverage.CA_PA_NJ_IN_PastAndCurrentInsuranceCoveragePage;
-import pages.phone.variations.planapplicationpage.INPlanApplicationQuestions;
-import pages.phone.variations.replacementnotice.RN034andRE073Page;
-import queries.SubmissionQuery;
+import entity.phone.CribSheet;
+import integration.CQBaseIntegrationTest;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
+import pages.phone.*;
+import pages.phone.variations.pastandcurrentcoverage.CA_PA_NJ_IN_PastAndCurrentInsuranceCoveragePage;
+import pages.phone.variations.planapplicationpage.IN_OK_PlanApplicationQuestions;
+import pages.phone.variations.replacementnotice.RN034andRE073Page;
+import queries.SubmissionQuery;
 import util.DateUtils;
-
 
 public class IndianaIntegrationTest extends CQBaseIntegrationTest {
 
@@ -23,7 +21,7 @@ public class IndianaIntegrationTest extends CQBaseIntegrationTest {
     @Page public VoiceSignatureInstructionsPage voiceSignatureInstructionsPage;
     @Page public CustomerInformationPage customerInformationPage;
     @Page public PlanSelectionAndStartDatePage planSelectionAndStartDatePage;
-    @Page public INPlanApplicationQuestions planApplicationQuestionsPage;
+    @Page public IN_OK_PlanApplicationQuestions planApplicationQuestionsPage;
     @Page public EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
     @Page public CA_PA_NJ_IN_PastAndCurrentInsuranceCoveragePage pastAndCurrentInsuranceCoveragePage;
     @Page public AuthorizationAndVerificationPage authorizationAndVerificationPage;
@@ -33,10 +31,10 @@ public class IndianaIntegrationTest extends CQBaseIntegrationTest {
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
     @Page public ApplicationSubmissionPage applicationSubmissionPage;
 
-    public SubmissionQuery submissionQuery;
-    private Faker faker;
-    private CribSheet sheet;
-    private SubmissionResult expectedSubmissionResult;
+          public SubmissionQuery submissionQuery;
+          private Faker faker;
+          private CribSheet sheet;
+          private SubmissionResult expectedSubmissionResult;
 
     @Before
     public void setup() {
@@ -64,14 +62,14 @@ public class IndianaIntegrationTest extends CQBaseIntegrationTest {
 
         //Agent Verification Page
         app.setCommonAgentVerificationAnswers();
-
+        app.setCommonHealthHistoryAnswers();
         expectedSubmissionResult = new SubmissionResult();
     }
 
     @Test
     public void test_indiana_full_underwriting_with_rn() throws Exception {
 
-        sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(69));
+        sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(70));
         sheet.setMedPartBdate("2010-10-01");
 
         //Customer Information
@@ -79,9 +77,9 @@ public class IndianaIntegrationTest extends CQBaseIntegrationTest {
         app.setMPBED("10/01/2010");
 
         //Plan Eligibility
-        app.setTurned65In6GA(NO); //TODO: Replace these hard coded values with helper function that will determine answer based upon DOB
-        app.setPartBIn6GA(NO); //TODO: Replace these hard coded values with helper function that will determine answer based upon MPBED
-        app.setPlanEffIn6OfEligible(NO); //TODO: Replace these hard coded values with helper function that will determine answer based upon DOB & MPBED
+        app.setTurned65In6GA(NO);
+        app.setPartBIn6GA(NO);
+        app.setPlanEffIn6OfEligible(NO);
         app.setLostCoverage(NO);
         app.setTobaccoUse(YES);
         //Plan application Questions
@@ -128,13 +126,12 @@ public class IndianaIntegrationTest extends CQBaseIntegrationTest {
 
         expectedSubmissionResult.setAdjudicationStatus("P");
         expectedSubmissionResult.setStatus("C");
-        expectedSubmissionResult.setWorkQueue("ENROLLMENT CPA REVIEW");
-        expectedSubmissionResult.setWorkQueueReason("CPA REVIEW REQUIRED");
+        expectedSubmissionResult.setWorkQueue("UNDERWRITING");
+        expectedSubmissionResult.setWorkQueueReason("UNDERWRITING REVIEW");
 
         logger.info(gson.toJson(app));
 
         startApp(cheatPage, app, sheet);
-
         voiceSignatureInstructionsPage.fillAndSubmit(app);
         customerInformationPage.fillAndSubmit(app);
         planSelectionAndStartDatePage.fillAndSubmit(app);
@@ -154,9 +151,8 @@ public class IndianaIntegrationTest extends CQBaseIntegrationTest {
         submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
     }
 
-
     @Test
-    public void test_indiana_full_underwriting_without_rn() throws Exception {
+    public void test_indiana_guranteed_issue_without_rn() throws Exception {
 
         sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(65));
         sheet.setMedPartBdate("2015-05-01");
@@ -165,9 +161,9 @@ public class IndianaIntegrationTest extends CQBaseIntegrationTest {
         app.setMPAED("01/01/2011");
         app.setMPBED("05/01/2015");
         //Plan Eligibility
-        app.setTurned65In6GA(YES); //TODO: Replace these hard coded values with helper function that will determine answer based upon DOB
-        app.setPartBIn6GA(YES); //TODO: Replace these hard coded values with helper function that will determine answer based upon MPBED
-        app.setPlanEffIn6OfEligible(YES);  //TODO: Replace these hard coded values with helper function that will determine answer based upon DOB & MPBED
+        app.setTurned65In6GA(YES);
+        app.setPartBIn6GA(YES);
+        app.setPlanEffIn6OfEligible(YES);
         app.setTobaccoUse(YES);
         //Plan application Questions
         app.setMedSuppReplace(NO);
@@ -218,7 +214,6 @@ public class IndianaIntegrationTest extends CQBaseIntegrationTest {
         logger.info(gson.toJson(app));
 
         startApp(cheatPage, app, sheet);
-
         voiceSignatureInstructionsPage.isAt();
         voiceSignatureInstructionsPage.fillAndSubmit(app);
         customerInformationPage.fillAndSubmit(app);

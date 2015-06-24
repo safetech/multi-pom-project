@@ -7,7 +7,7 @@ import entity.phone.CribSheet;
 
 import entity.SubmissionResult;
 import pages.phone.*;
-import pages.phone.variations.pastandcurrentcoverage.CTPastAndCurrentInsuranceCoveragePage;
+import pages.phone.variations.pastandcurrentcoverage.CT_PastAndCurrentInsuranceCoveragePage;
 import pages.phone.variations.planapplicationpage.NC_KY_PlanApplicationQuestions;
 import pages.phone.variations.replacementnotice.RN034andRE073Page;
 import queries.SubmissionQuery;
@@ -24,7 +24,7 @@ public class KentuckyIntegrationTest extends CQBaseIntegrationTest {
     @Page public PlanSelectionAndStartDatePage planSelectionAndStartDatePage;
     @Page public NC_KY_PlanApplicationQuestions planApplicationQuestionsPage;
     @Page public EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
-    @Page public CTPastAndCurrentInsuranceCoveragePage pastAndCurrentInsuranceCoveragePage;
+    @Page public CT_PastAndCurrentInsuranceCoveragePage pastAndCurrentInsuranceCoveragePage;
     @Page public AuthorizationAndVerificationPage authorizationAndVerificationPage;
     @Page public HealthHistoryQuestionsPage healthHistoryQuestionsPage;
     @Page public AgentVerificationPage agentVerificationPage;
@@ -79,9 +79,9 @@ public class KentuckyIntegrationTest extends CQBaseIntegrationTest {
         app.setMPBED("04/01/2012");
 
         //Plan Eligibility
-        app.setTurned65In6GA(NO); //TODO: Replace these hard coded values with helper function that will determine answer based upon DOB
-        app.setPartBIn6GA(NO); //TODO: Replace these hard coded values with helper function that will determine answer based upon MPBED
-        app.setPlanEffIn6OfEligible(NO);  //TODO: Replace these hard coded values with helper function that will determine answer based upon DOB & MPBED
+        app.setTurned65In6GA(NO);
+        app.setPartBIn6GA(NO);
+        app.setPlanEffIn6OfEligible(NO);
         app.setLostCoverage(NO);
         app.setTobaccoUse(YES);
 
@@ -160,9 +160,9 @@ public class KentuckyIntegrationTest extends CQBaseIntegrationTest {
         app.setMPBED("01/01/2014");
 
         //Plan Eligibility
-        app.setTurned65In6GA(NO); //TODO: Replace these hard coded values with helper function that will determine answer based upon DOB
-        app.setPartBIn6GA(NO); //TODO: Replace these hard coded values with helper function that will determine answer based upon MPBED
-        app.setPlanEffIn6OfEligible(NO);  //TODO: Replace these hard coded values with helper function that will determine answer based upon DOB & MPBED
+        app.setTurned65In6GA(NO);
+        app.setPartBIn6GA(NO);
+        app.setPlanEffIn6OfEligible(NO);
         app.setLostCoverage(NO);
         app.setTobaccoUse(YES);
 

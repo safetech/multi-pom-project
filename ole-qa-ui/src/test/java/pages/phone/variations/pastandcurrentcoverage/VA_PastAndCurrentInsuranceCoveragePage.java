@@ -1,5 +1,4 @@
 package pages.phone.variations.pastandcurrentcoverage;
-
 import entity.Application;
 import pages.WizardPage;
 import org.fluentlenium.core.domain.FluentWebElement;
@@ -8,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class NVPastAndCurrentInsuranceCoveragePage extends WizardPage{
+public class VA_PastAndCurrentInsuranceCoveragePage extends WizardPage {
 
     @FindBy(css = "#UnderstandPandC_1") FluentWebElement UnderstandPandC_Yes;
     @FindBy(css = "#UnderstandPandC_2") FluentWebElement UnderstandPandC_No;
@@ -38,6 +37,8 @@ public class NVPastAndCurrentInsuranceCoveragePage extends WizardPage{
 
     @FindBy(css = "#ExistMedSupp_1") FluentWebElement ExistMedSupp_Yes;
     @FindBy(css = "#ExistMedSupp_2") FluentWebElement ExistMedSupp_No;
+    FluentWebElement MSInsCompany;
+    FluentWebElement MSPLAN;
     @FindBy(css = "#ReplaceExistingMedSup_1") FluentWebElement ReplaceExistingMedSup_Yes;
     @FindBy(css = "#ReplaceExistingMedSup_2") FluentWebElement ReplaceExistingMedSup_No;
 
@@ -51,7 +52,7 @@ public class NVPastAndCurrentInsuranceCoveragePage extends WizardPage{
     @FindBy(css = "#OtherInsReplace_2") FluentWebElement OtherInsReplace_No;
     FluentWebElement CpaSignatureInd;
 
-    protected int TOTAL_POSSIBLE_QUESTION_COUNT = 36;
+    protected int TOTAL_POSSIBLE_QUESTION_COUNT = 38;
 
     public void verifyInitialStateOfElements(Application app) {
 
@@ -66,15 +67,21 @@ public class NVPastAndCurrentInsuranceCoveragePage extends WizardPage{
             Medicaidbenefit_Yes,
             Medicaidbenefit_No);
 
-        assertBlank(OtherMedplanstart, OtherMedplanend);
-        assertHidden(FirstTime_Yes,
+        assertBlank(ExistingMedicare_Yes, ExistingMedicare_No);
+        assertHidden(OtherMedplanstart,
+            OtherMedplanend,
+            IntentReplace_Yes,
+            IntentReplace_No,
+            FirstTime_Yes,
             FirstTime_No,
             DropMedSuppForThisPlan_Yes,
             DropMedSuppForThisPlan_No);
 
         assertBlank(ExistMedSupp_Yes, ExistMedSupp_No);
         assertHidden(ReplaceExistingMedSup_Yes,
-            ReplaceExistingMedSup_No);
+            ReplaceExistingMedSup_No,
+            MSInsCompany,
+            MSPLAN);
 
         assertBlank(OtherInsCoverage_Yes, OtherInsCoverage_No);
         assertHidden(OtherInsCompany,
@@ -90,8 +97,6 @@ public class NVPastAndCurrentInsuranceCoveragePage extends WizardPage{
     }
 
     public void fillAndSubmit(Application app) {
-
-        isAt();
 
         verifyInitialStateOfElements(app);
 
@@ -115,6 +120,8 @@ public class NVPastAndCurrentInsuranceCoveragePage extends WizardPage{
         fillYesNoQuestion(ExistMedSupp_Yes, ExistMedSupp_No, app.getExistMedSupp());
         if(app.getExistMedSupp().equals("yes")){
             fillYesNoQuestion(ReplaceExistingMedSup_Yes, ReplaceExistingMedSup_No, app.getReplaceExistingMedSup());
+            fill(MSInsCompany).with(app.getMSInsCompany());
+            fill(MSPLAN).with(app.getMSPLAN());
         }
 
         fillYesNoQuestion(OtherInsCoverage_Yes, OtherInsCoverage_No, app.getOtherInsCoverage());
@@ -166,7 +173,9 @@ public class NVPastAndCurrentInsuranceCoveragePage extends WizardPage{
         assertYesNoQuestion(ExistMedSupp_Yes, ExistMedSupp_No, app.getExistMedSupp());
         assertVisibleBasedUpon(app.getExistMedSupp().equals("yes"),
             ReplaceExistingMedSup_Yes,
-            ReplaceExistingMedSup_No);
+            ReplaceExistingMedSup_No,
+            MSInsCompany,
+            MSPLAN);
         assertVisible(OtherInsCoverage_Yes, OtherInsCoverage_No);
         assertYesNoQuestion(OtherInsCoverage_Yes, OtherInsCoverage_No, app.getOtherInsCoverage());
         assertVisibleBasedUpon(app.getOtherInsCoverage().equals("yes"),

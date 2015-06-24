@@ -8,7 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class VAAuthorizationAndVerificationPage extends WizardPage{
+public class VA_AuthorizationAndVerificationPage extends WizardPage{
 
     @FindBy(css = "#UnderstandAuth_1") FluentWebElement UnderstandAuth_Yes;
     @FindBy(css = "#UnderstandAuth_2") FluentWebElement UnderstandAuth_No;

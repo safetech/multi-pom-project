@@ -6,7 +6,7 @@ import entity.Application;
 import entity.phone.CribSheet;
 import entity.SubmissionResult;
 import pages.phone.*;
-import pages.phone.variations.pastandcurrentcoverage.MAPastAndCurrentInsuranceCoveragePage;
+import pages.phone.variations.pastandcurrentcoverage.MA_PastAndCurrentInsuranceCoveragePage;
 import pages.phone.variations.replacementnotice.RN040Page;
 import queries.SubmissionQuery;
 import org.fluentlenium.core.annotation.Page;
@@ -20,7 +20,7 @@ public class MassachusettsIntegrationTest extends CQBaseIntegrationTest {
     @Page public VoiceSignatureInstructionsPage voiceSignatureInstructionsPage;
     @Page public CustomerInformationPage customerInformationPage;
     @Page public PlanSelectionAndStartDatePage planSelectionAndStartDatePage;
-    @Page public MAPastAndCurrentInsuranceCoveragePage pastAndCurrentInsuranceCoveragePage;
+    @Page public MA_PastAndCurrentInsuranceCoveragePage pastAndCurrentInsuranceCoveragePage;
     @Page public AuthorizationAndVerificationPage authorizationAndVerificationPage;
     @Page public HealthHistoryQuestionsPage healthHistoryQuestionsPage;
     @Page public AgentVerificationPage agentVerificationPage;

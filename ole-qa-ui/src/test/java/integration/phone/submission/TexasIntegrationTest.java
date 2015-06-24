@@ -6,7 +6,7 @@ import entity.Application;
 import entity.phone.CribSheet;
 import entity.SubmissionResult;
 import pages.phone.*;
-import pages.phone.variations.pastandcurrentcoverage.TXPastAndCurrentInsuranceCoveragePage;
+import pages.phone.variations.pastandcurrentcoverage.TX_PastAndCurrentInsuranceCoveragePage;
 import pages.phone.variations.planapplicationpage.OH_MI_TX_PlanApplicationQuestions;
 import pages.phone.variations.replacementnotice.RN078Page;
 import queries.SubmissionQuery;
@@ -23,7 +23,7 @@ public class TexasIntegrationTest extends CQBaseIntegrationTest {
     @Page public PlanSelectionAndStartDatePage planSelectionAndStartDatePage;
     @Page public OH_MI_TX_PlanApplicationQuestions planApplicationQuestionsPage;
     @Page public EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
-    @Page public TXPastAndCurrentInsuranceCoveragePage pastAndCurrentInsuranceCoveragePage;
+    @Page public TX_PastAndCurrentInsuranceCoveragePage pastAndCurrentInsuranceCoveragePage;
     @Page public AuthorizationAndVerificationPage authorizationAndVerificationPage;
     @Page public HealthHistoryQuestionsPage healthHistoryQuestionsPage;
     @Page public AgentVerificationPage agentVerificationPage;

@@ -6,7 +6,7 @@ import entity.Application;
 import entity.phone.CribSheet;
 import entity.SubmissionResult;
 import pages.phone.*;
-import pages.phone.variations.pastandcurrentcoverage.CTPastAndCurrentInsuranceCoveragePage;
+import pages.phone.variations.pastandcurrentcoverage.CT_PastAndCurrentInsuranceCoveragePage;
 import pages.phone.variations.planapplicationpage.DE_NV_IN_AL_SC_PlanApplicationQuestions;
 import pages.phone.variations.replacementnotice.RN034andRE073Page;
 import queries.SubmissionQuery;
@@ -23,7 +23,7 @@ public class SouthCarolinaIntegrationTest extends CQBaseIntegrationTest {
     @Page public PlanSelectionAndStartDatePage planSelectionAndStartDatePage;
     @Page public DE_NV_IN_AL_SC_PlanApplicationQuestions planApplicationQuestionsPage;
     @Page public EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
-    @Page public CTPastAndCurrentInsuranceCoveragePage pastAndCurrentInsuranceCoveragePage;
+    @Page public CT_PastAndCurrentInsuranceCoveragePage pastAndCurrentInsuranceCoveragePage;
     @Page public AuthorizationAndVerificationPage authorizationAndVerificationPage;
     @Page public HealthHistoryQuestionsPage healthHistoryQuestionsPage;
     @Page public AgentVerificationPage agentVerificationPage;

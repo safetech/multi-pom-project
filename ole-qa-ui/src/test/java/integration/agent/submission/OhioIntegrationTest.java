@@ -221,6 +221,7 @@ public class OhioIntegrationTest extends CQBaseIntegrationTest {
 
         reviewAndSubmitPage.isAt();
         reviewAndSubmitPage.fillAndSubmit(app);
+
        // expectedSubmissionResult.setPendingInfo("UNDERWRITING", "REVIEW FOR POSSIBLE ESRD");
        // submissionQuery.verifySubmissionData(app, expectedSubmissionResult);
        // submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
@@ -375,5 +376,5 @@ public class OhioIntegrationTest extends CQBaseIntegrationTest {
         reviewAndSubmitPage.fillAndSubmit(app);
 
     }
-
+//TODO: Work on Query
 }

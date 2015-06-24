@@ -1,5 +1,6 @@
 package pages.phone.variations.pastandcurrentcoverage;
 
+
 import entity.Application;
 import pages.WizardPage;
 import org.fluentlenium.core.domain.FluentWebElement;
@@ -8,7 +9,8 @@ import org.openqa.selenium.support.FindBy;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class COPastAndCurrentInsuranceCoveragePage extends WizardPage{
+
+    public class MA_PastAndCurrentInsuranceCoveragePage extends WizardPage {
 
     @FindBy(css = "#UnderstandPandC_1") FluentWebElement UnderstandPandC_Yes;
     @FindBy(css = "#UnderstandPandC_2") FluentWebElement UnderstandPandC_No;
@@ -20,8 +22,18 @@ public class COPastAndCurrentInsuranceCoveragePage extends WizardPage{
     @FindBy(css = "#Medicaidbenefit_1") FluentWebElement Medicaidbenefit_Yes;
     @FindBy(css = "#Medicaidbenefit_2") FluentWebElement Medicaidbenefit_No;
 
-    @FindBy(css = "#involTerm_1") FluentWebElement involTerm_Yes;
-    @FindBy(css = "#involTerm_2") FluentWebElement involTerm_No;
+    @FindBy(id = "6monEligEnroll_1") FluentWebElement SixMonEligEnroll_Yes;
+    @FindBy(id = "6monEligEnroll_2") FluentWebElement SixMonEligEnroll_No;
+
+    @FindBy(id = "6monTurn65Enroll_1") FluentWebElement SixMonTurn65Enroll_Yes;
+    @FindBy(id = "6monTurn65Enroll_2") FluentWebElement SixMonTurn65Enroll_No;
+    @FindBy(id = "6monEmpCovTerm_1") FluentWebElement SixEmpCovTerm_Yes;
+    @FindBy(id = "6monEmpCovTerm_2") FluentWebElement SixEmpCovTerm_No;
+    @FindBy(id = "6monMoveOut_1") FluentWebElement SixMonMoveOut_Yes;
+    @FindBy(id = "6monMoveOut_2") FluentWebElement SixMonMoveOut_No;
+    @FindBy(id = "6monResident_1") FluentWebElement SixMonResident_Yes;
+    @FindBy(id = "6monResident_2") FluentWebElement SixMonResident_No;
+
     @FindBy(css = "#ExistingMedicare_1") FluentWebElement ExistingMedicare_Yes;
     @FindBy(css = "#ExistingMedicare_2") FluentWebElement ExistingMedicare_No;
     FluentWebElement OtherMedplanstart;
@@ -46,15 +58,24 @@ public class COPastAndCurrentInsuranceCoveragePage extends WizardPage{
     FluentWebElement OtherInsEnd;
     @FindBy(css = "#OtherInsReplace_1") FluentWebElement OtherInsReplace_Yes;
     @FindBy(css = "#OtherInsReplace_2") FluentWebElement OtherInsReplace_No;
-    @FindBy(css = "#OtherInsTerm_1") FluentWebElement OtherInsTerm_Yes;
-    @FindBy(css = "#OtherInsTerm_2") FluentWebElement OtherInsTerm_No;
     FluentWebElement CpaSignatureInd;
 
-    protected int TOTAL_POSSIBLE_QUESTION_COUNT = 35;
+    protected int TOTAL_POSSIBLE_QUESTION_COUNT = 41;
 
     public void verifyInitialStateOfElements(Application app) {
 
-        assertBlank(UnderstandPandC_Yes, UnderstandPandC_No);
+        assertBlank(SixMonEligEnroll_Yes,SixMonEligEnroll_No);
+                assertBlank(
+                SixMonTurn65Enroll_Yes,
+                SixMonTurn65Enroll_No,
+                SixEmpCovTerm_Yes,
+                SixEmpCovTerm_No,
+                SixMonMoveOut_Yes,
+                SixMonMoveOut_No,
+                SixMonResident_Yes,
+                SixMonResident_No);
+
+            assertBlank(UnderstandPandC_Yes, UnderstandPandC_No);
         assertBlank(MedicaidCovered_Yes, MedicaidCovered_No);
         assertHidden(MedicaidSupPremium_Yes,
             MedicaidSupPremium_No,
@@ -70,7 +91,6 @@ public class COPastAndCurrentInsuranceCoveragePage extends WizardPage{
             FirstTime_No,
             DropMedSuppForThisPlan_Yes,
             DropMedSuppForThisPlan_No);
-        assertBlank(involTerm_Yes, involTerm_No);
 
         assertBlank(ExistMedSupp_Yes, ExistMedSupp_No);
         assertHidden(ReplaceExistingMedSup_Yes,
@@ -82,9 +102,7 @@ public class COPastAndCurrentInsuranceCoveragePage extends WizardPage{
             OtherInsStart,
             OtherInsEnd,
             OtherInsReplace_Yes,
-            OtherInsReplace_No,
-            OtherInsTerm_Yes,
-            OtherInsTerm_No);
+            OtherInsReplace_No);
 
         assertBlank(CpaSignatureInd);
 
@@ -93,9 +111,14 @@ public class COPastAndCurrentInsuranceCoveragePage extends WizardPage{
 
     public void fillAndSubmit(Application app) {
 
-        isAt();
 
         verifyInitialStateOfElements(app);
+
+        fillYesNoQuestion(SixMonEligEnroll_Yes, SixMonEligEnroll_No, app.getSixMonEligEnroll());
+        fillYesNoQuestion(SixMonTurn65Enroll_Yes, SixMonTurn65Enroll_No, app.getSixMonTurn65Enroll());
+        fillYesNoQuestion(SixEmpCovTerm_Yes, SixEmpCovTerm_No, app.getSixEmpCovTerm());
+        fillYesNoQuestion(SixMonMoveOut_Yes, SixMonMoveOut_No, app.getSixMonMoveOut());
+        fillYesNoQuestion(SixMonResident_Yes, SixMonResident_No, app.getSixMonResident());
 
         UnderstandPandC_Yes.click();
 
@@ -113,7 +136,7 @@ public class COPastAndCurrentInsuranceCoveragePage extends WizardPage{
             fillYesNoQuestion(FirstTime_Yes, FirstTime_No, app.getFirstTime());
             fillYesNoQuestion(DropMedSuppForThisPlan_Yes, DropMedSuppForThisPlan_No, app.getDropMedSuppForThisPlan());
         }
-        fillYesNoQuestion(involTerm_Yes, involTerm_No, app.getInvolTerm());
+
         fillYesNoQuestion(ExistMedSupp_Yes, ExistMedSupp_No, app.getExistMedSupp());
         if(app.getExistMedSupp().equals("yes")){
             fillYesNoQuestion(ReplaceExistingMedSup_Yes, ReplaceExistingMedSup_No, app.getReplaceExistingMedSup());
@@ -126,7 +149,6 @@ public class COPastAndCurrentInsuranceCoveragePage extends WizardPage{
             fill(OtherInsStart).with(app.getOtherInsStart());
             fill(OtherInsEnd).with(app.getOtherInsEnd());
             fillYesNoQuestion(OtherInsReplace_Yes, OtherInsReplace_No, app.getOtherInsReplace());
-            fillYesNoQuestion(OtherInsTerm_Yes, OtherInsTerm_No, app.getOtherInsTerm());
         }
 
         CpaSignatureInd.click();
@@ -139,6 +161,12 @@ public class COPastAndCurrentInsuranceCoveragePage extends WizardPage{
     public void verifyStateOfElementAfterAnswers(Application app) {
 
         assertThat(UnderstandPandC_Yes.isSelected(), equalTo(true));
+
+        assertYesNoQuestion(SixMonEligEnroll_Yes, SixMonEligEnroll_No, app.getSixMonEligEnroll());
+        assertYesNoQuestion(SixMonTurn65Enroll_Yes, SixMonTurn65Enroll_No, app.getSixMonTurn65Enroll());
+        assertYesNoQuestion(SixEmpCovTerm_Yes, SixEmpCovTerm_No, app.getSixEmpCovTerm());
+        assertYesNoQuestion(SixMonMoveOut_Yes, SixMonMoveOut_No, app.getSixMonMoveOut());
+        assertYesNoQuestion(SixMonResident_Yes, SixMonResident_No, app.getSixMonResident());
 
         assertVisible(MedicaidCovered_Yes, MedicaidCovered_No);
         assertYesNoQuestion(MedicaidCovered_Yes, MedicaidCovered_No, app.getMedicaidCovered());
@@ -165,7 +193,6 @@ public class COPastAndCurrentInsuranceCoveragePage extends WizardPage{
         assertYesNoQuestion(IntentReplace_Yes, IntentReplace_No, app.getIntentReplace());
         assertYesNoQuestion(FirstTime_Yes, FirstTime_No, app.getFirstTime());
         assertYesNoQuestion(DropMedSuppForThisPlan_Yes, DropMedSuppForThisPlan_No, app.getDropMedSuppForThisPlan());
-        assertYesNoQuestion(involTerm_Yes, involTerm_No, app.getInvolTerm());
         assertVisible(ExistMedSupp_Yes, ExistMedSupp_No);
         assertYesNoQuestion(ExistMedSupp_Yes, ExistMedSupp_No, app.getExistMedSupp());
         assertVisibleBasedUpon(app.getExistMedSupp().equals("yes"),
@@ -180,7 +207,6 @@ public class COPastAndCurrentInsuranceCoveragePage extends WizardPage{
             OtherInsEnd,
             OtherInsReplace_Yes,
             OtherInsReplace_No);
-        assertYesNoQuestion(OtherInsTerm_Yes, OtherInsTerm_No, app.getOtherInsTerm());
         assertThat(OtherInsCompany.getValue(), equalTo(app.getOtherInsCompany()));
         assertThat(OtherInsType.getValue(), equalTo(app.getOtherInsType()));
         assertThat(OtherInsStart.getValue(), equalTo(app.getOtherInsStart()));

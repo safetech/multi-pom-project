@@ -7,7 +7,7 @@ import entity.Application;
 import entity.phone.CribSheet;
 import entity.SubmissionResult;
 import pages.phone.*;
-import pages.phone.variations.pastandcurrentcoverage.CTPastAndCurrentInsuranceCoveragePage;
+import pages.phone.variations.pastandcurrentcoverage.CT_PastAndCurrentInsuranceCoveragePage;
 import pages.phone.variations.planapplicationpage.VA_NJ_IL_LA_PlanApplicationQuestions;
 import pages.phone.variations.replacementnotice.RN034andRE073Page;
 import queries.SubmissionQuery;
@@ -24,7 +24,7 @@ public class LouisanaIntegrationTest extends CQBaseIntegrationTest {
     @Page public PlanSelectionAndStartDatePage planSelectionAndStartDatePage;
     @Page public VA_NJ_IL_LA_PlanApplicationQuestions planApplicationQuestionsPage;
     @Page public EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
-    @Page public CTPastAndCurrentInsuranceCoveragePage pastAndCurrentInsuranceCoveragePage;
+    @Page public CT_PastAndCurrentInsuranceCoveragePage pastAndCurrentInsuranceCoveragePage;
     @Page public AuthorizationAndVerificationPage authorizationAndVerificationPage;
     @Page public HealthHistoryQuestionsPage healthHistoryQuestionsPage;
     @Page public AgentVerificationPage agentVerificationPage;

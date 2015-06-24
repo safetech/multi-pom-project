@@ -24,11 +24,11 @@ public class DE_NV_IN_AL_SC_PlanApplicationQuestions extends PlanApplicationQues
     public void fillAndSubmit(Application app) {
 
         isAt();
-        
         verifyInitialStateOfElements(app);
 
         fillYesNoQuestion(TobaccoUse_Yes, TobaccoUse_No, app.getTobaccoUse());
-        fillYesNoQuestion(LostCoverage_Yes, LostCoverage_No, app.getLostCoverage());
+        assertVisibleBasedUpon(app.getTurned65In6GA().equals(NO), LostCoverage_Yes, LostCoverage_No);
+            fillYesNoQuestion(LostCoverage_Yes, LostCoverage_No, app.getLostCoverage());
 
         verifyStateOfElementAfterAnswers(app);
 
@@ -41,14 +41,11 @@ public class DE_NV_IN_AL_SC_PlanApplicationQuestions extends PlanApplicationQues
             PartBIn6GA_Yes,
             PartBIn6GA_No,
             PlanEffIn6OfEligible_Yes,
-            PlanEffIn6OfEligible_No,
-            LostCoverage_Yes,
-            LostCoverage_No);
+            PlanEffIn6OfEligible_No);
         assertYesNoQuestion(Turned65In6GA_Yes, Turned65In6GA_No, app.getTurned65In6GA());
         assertYesNoQuestion(PartBIn6GA_Yes, PartBIn6GA_No, app.getPartBIn6GA());
         assertYesNoQuestion(PlanEffIn6OfEligible_Yes, PlanEffIn6OfEligible_No, app.getPlanEffIn6OfEligible());
-        assertYesNoQuestion(LostCoverage_Yes, LostCoverage_No, app.getLostCoverage());
-        assertVisibleBasedUpon(app.getLostCoverage().equals("no"), TobaccoUse_Yes, TobaccoUse_No);
+        assertVisibleBasedUpon(app.getTurned65In6GA().equals(NO), LostCoverage_Yes, LostCoverage_No);
         assertYesNoQuestion(TobaccoUse_Yes, TobaccoUse_No, app.getTobaccoUse());
         assertQuestionCount(TOTAL_POSSIBLE_QUESTION_COUNT);
     }

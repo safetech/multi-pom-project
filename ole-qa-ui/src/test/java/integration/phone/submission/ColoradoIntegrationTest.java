@@ -6,7 +6,7 @@ import entity.Application;
 import entity.phone.CribSheet;
 import entity.SubmissionResult;
 import pages.phone.*;
-import pages.phone.variations.pastandcurrentcoverage.COPastAndCurrentInsuranceCoveragePage;
+import pages.phone.variations.pastandcurrentcoverage.CO_PastAndCurrentInsuranceCoveragePage;
 import pages.phone.variations.planapplicationpage.OH_MI_TX_PlanApplicationQuestions;
 import pages.phone.variations.replacementnotice.RN034andRE073Page;
 import queries.SubmissionQuery;
@@ -23,7 +23,7 @@ public class ColoradoIntegrationTest extends CQBaseIntegrationTest {
     @Page public PlanSelectionAndStartDatePage planSelectionAndStartDatePage;
     @Page public OH_MI_TX_PlanApplicationQuestions planApplicationQuestionsPage;
     @Page public EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
-    @Page public COPastAndCurrentInsuranceCoveragePage pastAndCurrentInsuranceCoveragePage;
+    @Page public CO_PastAndCurrentInsuranceCoveragePage pastAndCurrentInsuranceCoveragePage;
     @Page public AuthorizationAndVerificationPage authorizationAndVerificationPage;
     @Page public HealthHistoryQuestionsPage healthHistoryQuestionsPage;
     @Page public AgentVerificationPage agentVerificationPage;
