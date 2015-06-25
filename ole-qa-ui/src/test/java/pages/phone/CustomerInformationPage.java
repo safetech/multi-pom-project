@@ -43,12 +43,12 @@ public class CustomerInformationPage extends WizardPage {
         assertThat(MPBED.getValue(), equalTo(app.getMPBED()));
         assertBlank(PartABActiveIndicator_Yes,
             PartABActiveIndicator_No);
-        assertQuestionCount(TOTAL_POSSIBLE_QUESTION_COUNT);
     }
 
     public void fillAndSubmit(Application app) {
 
         isAt();
+        assertQuestionCount(TOTAL_POSSIBLE_QUESTION_COUNT);
         verifyInitialStateOfElements(app);
 
         verifyCustomerInfo(app);

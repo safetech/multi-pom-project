@@ -63,6 +63,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
     protected int TOTAL_POSSIBLE_QUESTION_COUNT = 41;
 
     public void verifyInitialStateOfElements(Application app) {
+        assertQuestionCount(TOTAL_POSSIBLE_QUESTION_COUNT);
 
         assertBlank(SixMonEligEnroll_Yes,SixMonEligEnroll_No);
                 assertBlank(
@@ -106,7 +107,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
         assertBlank(CpaSignatureInd);
 
-        assertQuestionCount(TOTAL_POSSIBLE_QUESTION_COUNT);
     }
 
     public void fillAndSubmit(Application app) {

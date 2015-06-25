@@ -163,39 +163,17 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         checkEligibilityAndAvailabilityPage.isAt();
         checkEligibilityAndAvailabilityPage.fillAndSubmit(app);
 
-        planSelectionPage.isAt();
         planSelectionPage.fillAndSubmit(app);
-
-        whatYouNeedPage.isAt();
         whatYouNeedPage.fillAndSubmit(app);
-
-        customerInformationPage.isAt();
         customerInformationPage.fillAndSubmit(app);
-
-        planApplicationQuestionsPage.isAt();
         planApplicationQuestionsPage.fillAndSubmit(app);
-
-        eligibilityHealthQuestionsPage.isAt();
         eligibilityHealthQuestionsPage.fillAndSubmit(app);
-
-        currentInsuranceCoveragePage.isAt();
         currentInsuranceCoveragePage.fillAndSubmit(app);
-
-        authorizationPage.isAt();
         authorizationPage.fillAndSubmit(app);
-
-        agentVerificationPage.isAt();
         agentVerificationPage.fillAndSubmit(app);
-
-        replacementNotice.isAt();
         replacementNotice.fillAndSubmit(app);
-
-        planPaymentOptionsPage.isAt();
         planPaymentOptionsPage.fillAndSubmit(app);
-
-        paymentDetailsSummaryPage.isAt();
         paymentDetailsSummaryPage.fillAndSubmit(app);
-
         reviewAndSubmitPage.isAt();
         reviewAndSubmitPage.fillAndSubmit(app);
 

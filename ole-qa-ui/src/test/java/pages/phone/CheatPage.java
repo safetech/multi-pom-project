@@ -75,12 +75,12 @@ public class CheatPage extends FluentPage{
         waitForSpinnerToFinish();
     }
 
-    public void isAt() {
-        assertThat(pageTitle.getText(), equalTo("Cheat Page"));
-    }
-
     protected void waitForSpinnerToFinish() {
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
+    }
+
+    public void isAt() {
+        assertThat(pageTitle.getText(), equalTo("Cheat Page"));
     }
 
 }

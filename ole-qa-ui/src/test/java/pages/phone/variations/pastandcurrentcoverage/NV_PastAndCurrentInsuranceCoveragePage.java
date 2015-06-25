@@ -59,8 +59,10 @@ public class NV_PastAndCurrentInsuranceCoveragePage extends WizardPage{
         assertYesNoQuestion(CPAPartBIn6_Yes, CPAPartBIn6_No, app.getCPAPartBIn6());
         assertHidden(CPAMPBED);
 
-            assertBlank(UnderstandPandC_Yes, UnderstandPandC_No);
-        assertBlank(MedicaidCovered_Yes, MedicaidCovered_No);
+        assertBlank(UnderstandPandC_Yes,
+                UnderstandPandC_No,
+                MedicaidCovered_Yes,
+                MedicaidCovered_No);
         assertHidden(MedicaidSupPremium_Yes,
             MedicaidSupPremium_No,
             Medicaidbenefit_Yes,

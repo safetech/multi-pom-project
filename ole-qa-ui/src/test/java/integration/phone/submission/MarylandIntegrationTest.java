@@ -1,21 +1,19 @@
 package integration.phone.submission;
 
 import com.github.javafaker.Faker;
-import integration.CQBaseIntegrationTest;
 import entity.Application;
-import entity.phone.CribSheet;
 import entity.SubmissionResult;
+import entity.phone.CribSheet;
+import integration.CQBaseIntegrationTest;
+import org.fluentlenium.core.annotation.Page;
+import org.junit.Before;
+import org.junit.Test;
 import pages.phone.*;
 import pages.phone.variations.authorizationandverification.NV_AuthorizationAndVerificationPage;
 import pages.phone.variations.pastandcurrentcoverage.MA_PastAndCurrentInsuranceCoveragePage;
-import pages.phone.variations.pastandcurrentcoverage.NV_PastAndCurrentInsuranceCoveragePage;
 import pages.phone.variations.planapplicationpage.DE_NV_IN_AL_SC_PlanApplicationQuestions;
 import pages.phone.variations.replacementnotice.RN034andRE073Page;
 import queries.SubmissionQuery;
-import org.fluentlenium.core.annotation.Page;
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
 import util.DateUtils;
 
 public class MarylandIntegrationTest extends CQBaseIntegrationTest {
@@ -26,9 +24,9 @@ public class MarylandIntegrationTest extends CQBaseIntegrationTest {
     @Page public PlanSelectionAndStartDatePage planSelectionAndStartDatePage;
     @Page public DE_NV_IN_AL_SC_PlanApplicationQuestions planApplicationQuestionsPage;
     @Page public EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
-    @Page public NV_PastAndCurrentInsuranceCoveragePage pastAndCurrentInsuranceCoveragePage;
+    @Page public MA_PastAndCurrentInsuranceCoveragePage pastAndCurrentInsuranceCoveragePage;
     @Page public NV_AuthorizationAndVerificationPage authorizationAndVerificationPage;
-    @Page public MA_PastAndCurrentInsuranceCoveragePage healthHistoryQuestionsPage;
+    @Page public HealthHistoryQuestionsPage healthHistoryQuestionsPage;
     @Page public AgentVerificationPage agentVerificationPage;
     @Page public RN034andRE073Page replacementNoticePage;
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
@@ -46,24 +44,21 @@ public class MarylandIntegrationTest extends CQBaseIntegrationTest {
 
         sheet = new CribSheet(faker);
         sheet.setRandomNameGenderAndMembershipNumber();
-        sheet.setRandomAddress("MA", "21234");
+        sheet.setRandomAddress("MD", "21234");
         sheet.setRandomContactInfo();
         sheet.setRandomCallCenterInfo();
         sheet.setDpsdToFirstDayOfFutureMonth(1);
         sheet.setPlanCode("F01");
 
         app = new Application();
-
         // Customer Info Page Question
         app.setMedicareClaimNum(faker.bothify("#########A"));
         app.setPartABActiveIndicator(YES);
         app.setPlanCode("F");
         app.setReqEffectiveDate(DateUtils.getFirstDayOfFutureMonth(1));
-
         //Eligibility Questions
         app.setESRD(NO);
         app.setSurgeryNeeded(NO);
-
         //Agent Verification Page
         app.setCommonAgentVerificationAnswers();
 
@@ -79,17 +74,14 @@ public class MarylandIntegrationTest extends CQBaseIntegrationTest {
         // Customer Info Page
         app.setMPAED("01/01/2012");
         app.setMPBED("04/01/2012");
-
         //Plan Eligibility
-        app.setTurned65In6GA(NO); //TODO: Replace these hard coded values with helper function that will determine answer based upon DOB
-        app.setPartBIn6GA(NO); //TODO: Replace these hard coded values with helper function that will determine answer based upon MPBED
-        app.setPlanEffIn6OfEligible(NO);  //TODO: Replace these hard coded values with helper function that will determine answer based upon DOB & MPBED
+        app.setTurned65In6GA(NO);
+        app.setPartBIn6GA(NO);
+        app.setPlanEffIn6OfEligible(NO);
         app.setLostCoverage(NO);
         app.setTobaccoUse(YES);
-
         //Health History
         app.setCommonHealthHistoryAnswers();
-
         //Past And Current Coverage
         app.setCPATurned65(NO);
         app.setCPAPartBIn6(NO);
@@ -113,7 +105,6 @@ public class MarylandIntegrationTest extends CQBaseIntegrationTest {
         app.setOtherInsEnd("01/01/2014");
         app.setOtherInsReplace(YES);
         app.setCpaSignatureInd(YES);
-
         //Authorizationa and verififcation page
         app.setDesignateLapse(NO);
         app.setAuxFirstName("AuxFirstName");
@@ -123,14 +114,12 @@ public class MarylandIntegrationTest extends CQBaseIntegrationTest {
         app.setAuxCity("AuxCity");
         app.setAuxState("NV");
         app.setAuxZipCode("89101");
-
         //Replacement Notice Page
         app.setCommonReplacementNoticeAnswersWithApplicantInfo();
 
         expectedSubmissionResult.setPendingInfo("UNDERWRITING", "REVIEW FOR POSSIBLE ESRD");
 
         startApp(cheatPage, app, sheet);
-
         voiceSignatureInstructionsPage.fillAndSubmit(app);
         customerInformationPage.fillAndSubmit(app);
         planSelectionAndStartDatePage.fillAndSubmit(app);
@@ -139,7 +128,6 @@ public class MarylandIntegrationTest extends CQBaseIntegrationTest {
         agentVerificationPage.fillAndSubmit(app);
         replacementNoticePage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
-
         applicationSubmissionPage.isAt();
         applicationSubmissionPage.isPending();
 
@@ -148,7 +136,7 @@ public class MarylandIntegrationTest extends CQBaseIntegrationTest {
 
     }
 
-    @Ignore
+    @Test
     public void test_maryland_eligibility_underwriting_without_rn() throws Exception {
 
         sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(68));
@@ -157,14 +145,12 @@ public class MarylandIntegrationTest extends CQBaseIntegrationTest {
         // Customer Info Page
         app.setMPAED("01/01/2014");
         app.setMPBED("01/01/2014");
-
         //Plan Eligibility
-        app.setTurned65In6GA(NO); //TODO: Replace these hard coded values with helper function that will determine answer based upon DOB
-        app.setPartBIn6GA(NO); //TODO: Replace these hard coded values with helper function that will determine answer based upon MPBED
-        app.setPlanEffIn6OfEligible(NO);  //TODO: Replace these hard coded values with helper function that will determine answer based upon DOB & MPBED
+        app.setTurned65In6GA(NO);
+        app.setPartBIn6GA(NO);
+        app.setPlanEffIn6OfEligible(NO);
         app.setLostCoverage(NO);
         app.setTobaccoUse(NO);
-
         //Past And Current Coverage
         app.setCPATurned65(NO);
         app.setCPAPartBIn6(NO);
@@ -185,14 +171,12 @@ public class MarylandIntegrationTest extends CQBaseIntegrationTest {
         app.setOtherInsEnd("01/01/2014");
         app.setOtherInsReplace(YES);
         app.setCpaSignatureInd(YES);
-
         //Authorizationa and verififcation page
         app.setDesignateLapse(YES);
 
         expectedSubmissionResult.setAcceptedInfo();
 
         startApp(cheatPage, app, sheet);
-
         voiceSignatureInstructionsPage.fillAndSubmit(app);
         customerInformationPage.fillAndSubmit(app);
         planSelectionAndStartDatePage.fillAndSubmit(app);
@@ -202,7 +186,6 @@ public class MarylandIntegrationTest extends CQBaseIntegrationTest {
         authorizationAndVerificationPage.fillAndSubmit(app);
         agentVerificationPage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
-
         applicationSubmissionPage.isAt();
         applicationSubmissionPage.isApproved();
 

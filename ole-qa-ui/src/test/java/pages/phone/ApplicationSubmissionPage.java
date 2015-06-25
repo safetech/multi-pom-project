@@ -13,9 +13,6 @@ public class ApplicationSubmissionPage extends WizardPage {
     @FindBy(css = "#page-title") protected FluentWebElement pageTitle;
     @FindBy(css = "#pageborder") protected FluentWebElement pageBorderContent;
 
-    public void isAt() {
-        assertThat(pageTitle.getText(), equalTo("Application Submission"));
-    }
 
     public void isApproved() {
         assertThat(pageBorderContent.getText(), containsString("APPROVED"));
@@ -23,6 +20,9 @@ public class ApplicationSubmissionPage extends WizardPage {
 
     public void isPending() {
         assertThat(pageBorderContent.getText(), containsString("PENDING"));
+    }
+    public void isAt() {
+        assertThat(pageTitle.getText(), equalTo("Application Submission"));
     }
 
 }

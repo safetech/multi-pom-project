@@ -301,6 +301,15 @@ public class Application {
     private String ConfirmEmail = "";
     private String AgentEmail = "";
     private String AgentEmailConfirm = "";
+    private String GIMPBED = "";
+
+    public String getGIMPBED() {
+        return GIMPBED;
+    }
+
+    public void setGIMPBED(String GIMPBED) {
+        this.GIMPBED = GIMPBED;
+    }
 
     public String getAgentEmail() {
         return AgentEmail;

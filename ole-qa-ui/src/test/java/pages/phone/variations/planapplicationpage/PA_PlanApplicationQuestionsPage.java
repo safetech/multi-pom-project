@@ -1,58 +1,59 @@
 package pages.phone.variations.planapplicationpage;
 
+
 import entity.Application;
+import pages.WizardPage;
 import org.fluentlenium.core.domain.FluentWebElement;
 import org.openqa.selenium.support.FindBy;
-import pages.phone.PlanApplicationQuestions;
 
-public class NM_PlanApplicationQuestions extends PlanApplicationQuestions {
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 
+public class PA_PlanApplicationQuestionsPage extends WizardPage{
 
-    protected int TOTAL_POSSIBLE_QUESTION_COUNT = 11;
+    @FindBy(css = "#Turned65In6GA_1") protected FluentWebElement Turned65In6GA_Yes;
+    @FindBy(css = "#Turned65In6GA_2") protected FluentWebElement Turned65In6GA_No;
+    @FindBy(css = "#PartBIn6GA_1") protected FluentWebElement PartBIn6GA_Yes;
+    @FindBy(css = "#PartBIn6GA_2") protected FluentWebElement PartBIn6GA_No;
+    @FindBy(css = "#PlanEffIn6OfEligible_1") protected FluentWebElement PlanEffIn6OfEligible_Yes;
+    @FindBy(css = "#PlanEffIn6OfEligible_2") protected FluentWebElement PlanEffIn6OfEligible_No;
     @FindBy(css = "#LostCoverage_1") FluentWebElement LostCoverage_Yes;
     @FindBy(css = "#LostCoverage_2") FluentWebElement LostCoverage_No;
-    @FindBy(css = "#GIMPBED") FluentWebElement GIMPBED;
+    protected int TOTAL_POSSIBLE_QUESTION_COUNT = 8;
 
     public void verifyInitialStateOfElements(Application app) {
-        assertBlank(TobaccoUse_Yes, TobaccoUse_No);
         assertYesNoQuestion(Turned65In6GA_Yes, Turned65In6GA_No, app.getTurned65In6GA());
         assertYesNoQuestion(PartBIn6GA_Yes, PartBIn6GA_No, app.getPartBIn6GA());
         assertYesNoQuestion(PlanEffIn6OfEligible_Yes, PlanEffIn6OfEligible_No, app.getPlanEffIn6OfEligible());
         assertBlank(LostCoverage_Yes, LostCoverage_No);
         assertQuestionCount(TOTAL_POSSIBLE_QUESTION_COUNT);
     }
-
     public void fillAndSubmit(Application app) {
+        assertQuestionCount(TOTAL_POSSIBLE_QUESTION_COUNT);
 
-        isAt();
-        verifyInitialStateOfElements(app);
-
-        fillYesNoQuestion(TobaccoUse_Yes, TobaccoUse_No, app.getTobaccoUse());
-        if((app.getMPBED()).equals(YES))
-            fill(GIMPBED).with(app.getGIMPBED());
         fillYesNoQuestion(LostCoverage_Yes, LostCoverage_No, app.getLostCoverage());
-
-        verifyStateOfElementAfterAnswers(app);
 
         clickNextAndWaitForSpinnerToFinish();
     }
-
     public void verifyStateOfElementAfterAnswers(Application app) {
-        assertVisible(TobaccoUse_Yes,
-                TobaccoUse_No,
-                Turned65In6GA_Yes,
-            Turned65In6GA_No,
-            PartBIn6GA_Yes,
-            PartBIn6GA_No,
-            PlanEffIn6OfEligible_Yes,
-            PlanEffIn6OfEligible_No);
-        assertYesNoQuestion(TobaccoUse_Yes, TobaccoUse_No, app.getTobaccoUse());
+
+        assertVisible(Turned65In6GA_Yes,
+                Turned65In6GA_No,
+                PartBIn6GA_Yes,
+                PartBIn6GA_No,
+                PlanEffIn6OfEligible_Yes,
+                PlanEffIn6OfEligible_No,
+                LostCoverage_Yes,
+                LostCoverage_No);
         assertYesNoQuestion(Turned65In6GA_Yes, Turned65In6GA_No, app.getTurned65In6GA());
         assertYesNoQuestion(PartBIn6GA_Yes, PartBIn6GA_No, app.getPartBIn6GA());
         assertYesNoQuestion(PlanEffIn6OfEligible_Yes, PlanEffIn6OfEligible_No, app.getPlanEffIn6OfEligible());
-        assertVisibleBasedUpon(app.getPartBIn6GA().equals(YES), GIMPBED);
         assertYesNoQuestion(LostCoverage_Yes, LostCoverage_No, app.getLostCoverage());
+
         assertQuestionCount(TOTAL_POSSIBLE_QUESTION_COUNT);
     }
-//TODO: Check app.getGIMPBED()
+    public void  isAt() {
+        assertThat(pageTitle.getText(), equalTo("Plan Application Questions"));
+    }
+//TODO: Add "Page" in all the plan application page under variations package
 }

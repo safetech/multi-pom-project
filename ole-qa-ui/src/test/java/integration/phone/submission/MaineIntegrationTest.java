@@ -150,7 +150,7 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
     }
 
     @Test
-    public void test_maine_eligibility_underwriting_without_designeeSig_without_rn() throws Exception {
+    public void test_maine_eligibility_underwriting_designeeSig_without_rn() throws Exception {
 
         sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(68));
         sheet.setMedPartBdate("2014-01-01");
@@ -160,9 +160,9 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
         app.setMPBED("01/01/2014");
 
         //Plan Eligibility
-        app.setTurned65In6GA(NO); //TODO: Replace these hard coded values with helper function that will determine answer based upon DOB
-        app.setPartBIn6GA(NO); //TODO: Replace these hard coded values with helper function that will determine answer based upon MPBED
-        app.setPlanEffIn6OfEligible(NO);  //TODO: Replace these hard coded values with helper function that will determine answer based upon DOB & MPBED
+        app.setTurned65In6GA(NO);
+        app.setPartBIn6GA(NO);
+        app.setPlanEffIn6OfEligible(NO);
         app.setLostCoverage(NO);
         app.setTobaccoUse(NO);
         app.setContinuousCoverage(NO);

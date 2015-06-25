@@ -18,12 +18,13 @@ public class DE_NV_IN_AL_SC_PlanApplicationQuestions extends PlanApplicationQues
         assertYesNoQuestion(PlanEffIn6OfEligible_Yes, PlanEffIn6OfEligible_No, app.getPlanEffIn6OfEligible());
         assertBlank(LostCoverage_Yes, LostCoverage_No);
         assertBlank(TobaccoUse_Yes, TobaccoUse_No);
-        assertQuestionCount(TOTAL_POSSIBLE_QUESTION_COUNT);
     }
 
     public void fillAndSubmit(Application app) {
 
         isAt();
+        assertQuestionCount(TOTAL_POSSIBLE_QUESTION_COUNT);
+
         verifyInitialStateOfElements(app);
 
         fillYesNoQuestion(TobaccoUse_Yes, TobaccoUse_No, app.getTobaccoUse());
