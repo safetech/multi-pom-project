@@ -192,7 +192,6 @@ public class OklahomaIntegrationTest extends CQBaseIntegrationTest {
         expectedSubmissionResult.setAcceptedInfo();
 
         startApp(cheatPage, app, sheet);
-
         voiceSignatureInstructionsPage.fillAndSubmit(app);
         customerInformationPage.fillAndSubmit(app);
         planSelectionAndStartDatePage.fillAndSubmit(app);

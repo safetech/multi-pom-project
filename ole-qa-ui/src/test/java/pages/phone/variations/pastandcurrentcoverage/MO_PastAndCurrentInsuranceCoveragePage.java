@@ -46,6 +46,8 @@ public class MO_PastAndCurrentInsuranceCoveragePage extends WizardPage {
     protected int TOTAL_POSSIBLE_QUESTION_COUNT = 33;
 
     public void verifyInitialStateOfElements(Application app) {
+        isAt();
+        assertQuestionCount(TOTAL_POSSIBLE_QUESTION_COUNT);
 
         assertBlank(UnderstandPandC_Yes, UnderstandPandC_No);
 
@@ -81,7 +83,6 @@ public class MO_PastAndCurrentInsuranceCoveragePage extends WizardPage {
 
         assertBlank(CpaSignatureInd);
 
-        assertQuestionCount(TOTAL_POSSIBLE_QUESTION_COUNT);
     }
 
     public void fillAndSubmit(Application app) {

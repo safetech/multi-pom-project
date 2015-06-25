@@ -10,7 +10,7 @@ import pages.phone.variations.agentverification.CA_AgentVerificationPage;
 import pages.phone.variations.authorizationandverification.CA_AuthorizationAndVerificationPage;
 import pages.phone.variations.eligibilityhealthquestions.CA_EligibilityHealthQuestionsPage;
 import pages.phone.variations.healthhistoryquestions.CA_HealthHistoryQuestionsPage;
-import pages.phone.variations.pastandcurrentcoverage.CA_PA_NJ_IN_PastAndCurrentInsuranceCoveragePage;
+import pages.phone.variations.pastandcurrentcoverage.CA_PA_NJ_IN_OR_PastAndCurrentInsuranceCoveragePage;
 import pages.phone.variations.planapplicationpage.CA_PlanApplicationQuestions;
 import pages.phone.variations.replacementnotice.RN040Page;
 import queries.SubmissionQuery;
@@ -29,7 +29,7 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
     @Page public CA_PlanApplicationQuestions planApplicationQuestionsPage;
     @Page public CA_EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
     @Page public CA_HealthHistoryQuestionsPage healthHistoryQuestionsPage;
-    @Page public CA_PA_NJ_IN_PastAndCurrentInsuranceCoveragePage pastAndCurrentInsuranceCoveragePage;
+    @Page public CA_PA_NJ_IN_OR_PastAndCurrentInsuranceCoveragePage pastAndCurrentInsuranceCoveragePage;
     @Page public CA_AuthorizationAndVerificationPage authorizationAndVerificationPage;
     @Page public CA_AgentVerificationPage agentVerificationPage;
     @Page public RN040Page replacementNoticePage;

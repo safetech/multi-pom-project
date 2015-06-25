@@ -6,7 +6,7 @@ import entity.Application;
 import entity.phone.CribSheet;
 import entity.SubmissionResult;
 import pages.phone.*;
-import pages.phone.variations.pastandcurrentcoverage.CA_PA_NJ_IN_PastAndCurrentInsuranceCoveragePage;
+import pages.phone.variations.pastandcurrentcoverage.CA_PA_NJ_IN_OR_PastAndCurrentInsuranceCoveragePage;
 import pages.phone.variations.planapplicationpage.GuranteedIssuePlanApplicationQuestions;
 import pages.phone.variations.planapplicationpage.VA_NJ_IL_LA_PlanApplicationQuestions;
 import pages.phone.variations.replacementnotice.RN078Page;
@@ -25,7 +25,7 @@ public class PennsylvaniaIntegrationTest extends CQBaseIntegrationTest {
     @Page public VA_NJ_IL_LA_PlanApplicationQuestions planApplicationQuestionsPage;
     @Page public GuranteedIssuePlanApplicationQuestions GIplanApplicationQuestionsPage;
     @Page public EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
-    @Page public CA_PA_NJ_IN_PastAndCurrentInsuranceCoveragePage pastAndCurrentInsuranceCoveragePage;
+    @Page public CA_PA_NJ_IN_OR_PastAndCurrentInsuranceCoveragePage pastAndCurrentInsuranceCoveragePage;
     @Page public AuthorizationAndVerificationPage authorizationAndVerificationPage;
     @Page public HealthHistoryQuestionsPage healthHistoryQuestionsPage;
     @Page public AgentVerificationPage agentVerificationPage;
