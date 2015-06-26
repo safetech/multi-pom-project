@@ -11,7 +11,7 @@ import org.junit.Test;
 import pages.phone.*;
 import pages.phone.variations.authorizationandverification.NV_AuthorizationAndVerificationPage;
 import pages.phone.variations.pastandcurrentcoverage.MA_PastAndCurrentInsuranceCoveragePage;
-import pages.phone.variations.planapplicationpage.DE_NV_IN_AL_SC_PlanApplicationQuestions;
+import pages.phone.variations.planapplicationpage.VA_NJ_IL_LA_PlanApplicationQuestions;
 import pages.phone.variations.replacementnotice.RN034andRE073Page;
 import queries.SubmissionQuery;
 import util.DateUtils;
@@ -22,7 +22,7 @@ public class MarylandIntegrationTest extends CQBaseIntegrationTest {
     @Page public VoiceSignatureInstructionsPage voiceSignatureInstructionsPage;
     @Page public CustomerInformationPage customerInformationPage;
     @Page public PlanSelectionAndStartDatePage planSelectionAndStartDatePage;
-    @Page public DE_NV_IN_AL_SC_PlanApplicationQuestions planApplicationQuestionsPage;
+    @Page public VA_NJ_IL_LA_PlanApplicationQuestions planApplicationQuestionsPage;
     @Page public EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
     @Page public MA_PastAndCurrentInsuranceCoveragePage pastAndCurrentInsuranceCoveragePage;
     @Page public NV_AuthorizationAndVerificationPage authorizationAndVerificationPage;
@@ -123,6 +123,7 @@ public class MarylandIntegrationTest extends CQBaseIntegrationTest {
         voiceSignatureInstructionsPage.fillAndSubmit(app);
         customerInformationPage.fillAndSubmit(app);
         planSelectionAndStartDatePage.fillAndSubmit(app);
+        planApplicationQuestionsPage.fillAndSubmit(app);
         pastAndCurrentInsuranceCoveragePage.fillAndSubmit(app);
         authorizationAndVerificationPage.fillAndSubmit(app);
         agentVerificationPage.fillAndSubmit(app);
@@ -135,7 +136,6 @@ public class MarylandIntegrationTest extends CQBaseIntegrationTest {
         submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
 
     }
-
     @Test
     public void test_maryland_eligibility_underwriting_without_rn() throws Exception {
 

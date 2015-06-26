@@ -27,7 +27,7 @@ public class CheckEligibilityAndAvailabilityPage extends WizardPage {
         }catch(Exception e){
         }
 
-        await().atMost(5, TimeUnit.SECONDS).until("#State").hasAttribute("value", app.getState());
+        await().atMost(10, TimeUnit.SECONDS).until("#State").hasAttribute("value", app.getState());
         fill(DOB).with(app.getDOB());
         fill(MPBED).with(app.getMPBED());
         blur("#MPBED");
@@ -39,7 +39,7 @@ public class CheckEligibilityAndAvailabilityPage extends WizardPage {
 
 
 
-        clickNextAndWaitForSpinnerToFinish(2);
+        clickNextAndWaitForSpinnerToFinish(5);
     }
 
     public void blur(String selector){

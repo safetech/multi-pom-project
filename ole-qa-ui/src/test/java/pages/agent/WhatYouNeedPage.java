@@ -18,7 +18,7 @@ public class WhatYouNeedPage extends WizardPage {
     @FindBy(css = "#text_2_0") FluentWebElement GuideToHealthInsuranceForPeopleWithMedicare;
     @FindBy(css = "#colctrl_showhide>p>a") FluentWebElement ImportantDisclousures;
     @FindBy(css = "#AgentKitProvided") FluentWebElement AgentKitProvided;
-    @FindBy(css = "#signatureType_2") FluentWebElement TouchSign;
+    @FindBy(css = "#signatureType_3") FluentWebElement TouchSign;
 
 
     public void fillAndSubmit(Application app) {

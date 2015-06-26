@@ -51,17 +51,14 @@ public class TennesseeIntegrationTest extends CQBaseIntegrationTest {
         sheet.setPlanCode("F01");
 
         app = new Application();
-
         // Customer Info Page Question
         app.setMedicareClaimNum(faker.bothify("#########A"));
         app.setPartABActiveIndicator(YES);
         app.setPlanCode("F");
         app.setReqEffectiveDate(DateUtils.getFirstDayOfFutureMonth(1));
-
         //Eligibility Questions
         app.setESRD(NO);
         app.setSurgeryNeeded(NO);
-
         //Agent Verification Page
         app.setCommonAgentVerificationAnswers();
 
@@ -77,17 +74,14 @@ public class TennesseeIntegrationTest extends CQBaseIntegrationTest {
         // Customer Info Page
         app.setMPAED("01/01/2012");
         app.setMPBED("04/01/2012");
-
         //Plan Eligibility
         app.setTurned65In6GA(NO);
         app.setPartBIn6GA(NO);
         app.setPlanEffIn6OfEligible(NO);
         app.setLostCoverage(NO);
         app.setTobaccoUse(YES);
-
         //Health History
         app.setCommonHealthHistoryAnswers();
-
         //Past And Current Coverage
         app.setCPATurned65(NO);
         app.setCPAPartBIn6(NO);
@@ -111,7 +105,6 @@ public class TennesseeIntegrationTest extends CQBaseIntegrationTest {
         app.setOtherInsEnd("01/01/2014");
         app.setOtherInsReplace(YES);
         app.setCpaSignatureInd(YES);
-
         //Authorizationa and verififcation page
         app.setDesignateLapse(NO);
         app.setAuxFirstName("AuxFirstName");
@@ -121,7 +114,6 @@ public class TennesseeIntegrationTest extends CQBaseIntegrationTest {
         app.setAuxCity("AuxCity");
         app.setAuxState("NV");
         app.setAuxZipCode("89101");
-
         //Replacement Notice Page
         app.setCommonReplacementNoticeAnswersWithApplicantInfo();
 
@@ -147,7 +139,6 @@ public class TennesseeIntegrationTest extends CQBaseIntegrationTest {
         submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
 
     }
-
     @Test
     public void test_tennessee_eligibility_underwriting_without_rn() throws Exception {
 
@@ -157,14 +148,12 @@ public class TennesseeIntegrationTest extends CQBaseIntegrationTest {
         // Customer Info Page
         app.setMPAED("01/01/2014");
         app.setMPBED("01/01/2014");
-
         //Plan Eligibility
-        app.setTurned65In6GA(NO); //TODO: Replace these hard coded values with helper function that will determine answer based upon DOB
-        app.setPartBIn6GA(NO); //TODO: Replace these hard coded values with helper function that will determine answer based upon MPBED
-        app.setPlanEffIn6OfEligible(NO);  //TODO: Replace these hard coded values with helper function that will determine answer based upon DOB & MPBED
+        app.setTurned65In6GA(NO);
+        app.setPartBIn6GA(NO);
+        app.setPlanEffIn6OfEligible(NO);
         app.setLostCoverage(NO);
         app.setTobaccoUse(NO);
-
         //Past And Current Coverage
         app.setCPATurned65(NO);
         app.setCPAPartBIn6(NO);
@@ -185,10 +174,8 @@ public class TennesseeIntegrationTest extends CQBaseIntegrationTest {
         app.setOtherInsEnd("01/01/2014");
         app.setOtherInsReplace(YES);
         app.setCpaSignatureInd(YES);
-
         //Authorizationa and verififcation page
         app.setDesignateLapse(YES);
-
         expectedSubmissionResult.setAcceptedInfo();
 
         startApp(cheatPage, app, sheet);
@@ -201,7 +188,6 @@ public class TennesseeIntegrationTest extends CQBaseIntegrationTest {
         authorizationAndVerificationPage.fillAndSubmit(app);
         agentVerificationPage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
-
         applicationSubmissionPage.isAt();
         applicationSubmissionPage.isApproved();
 

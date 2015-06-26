@@ -14,7 +14,7 @@ public class CA_AuthorizationPage extends WizardPage{
     FluentWebElement MedicalReleaseAuthSignatureInd;
 
     public void fillAndSubmit(Application app) {
-
+        isAt();
         SignatureInd.click();
         fillTouchSignature("SignatureIndTouch",  app.getSignatureIndTouch());
 

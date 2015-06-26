@@ -111,7 +111,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
     public void fillAndSubmit(Application app) {
 
-
+        isAt();
         verifyInitialStateOfElements(app);
 
         fillYesNoQuestion(SixMonEligEnroll_Yes, SixMonEligEnroll_No, app.getSixMonEligEnroll());

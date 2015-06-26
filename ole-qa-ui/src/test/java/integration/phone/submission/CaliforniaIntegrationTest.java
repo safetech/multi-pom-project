@@ -73,13 +73,10 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
     public void test_california_full_underwriting_with_rn() throws Exception {
 
         sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(69));
-
         sheet.setMedPartBdate("2012-01-01");
-
         //Customer Information
         app.setMPAED("01/01/2011");
         app.setMPBED("01/01/2012");
-
 
         sheet.setMedPartBdate("2012-10-01");
 
@@ -162,9 +159,7 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         authorizationAndVerificationPage.fillAndSubmit(app);
         agentVerificationPage.fillAndSubmit(app);
         replacementNoticePage.fillAndSubmit(app);
-
         reviewAndSubmitPage.fillAndSubmit(app);
-
         applicationSubmissionPage.isAt();
         applicationSubmissionPage.isApproved();
 
@@ -182,11 +177,10 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         //Customer Information
         app.setMPAED("01/01/2015");
         app.setMPBED("01/01/2015");
-
         //Plan Application
-        app.setTurned65In6GA(YES); //TODO: Replace these hard coded values with helper function that will determine answer based upon DOB
-        app.setPartBIn6GA(YES); //TODO: Replace these hard coded values with helper function that will determine answer based upon MPBED
-        app.setPlanEffIn6OfEligible(YES);  //TODO: Replace these hard coded values with helper function that will determine answer based upon DOB & MPBED
+        app.setTurned65In6GA(YES);
+        app.setPartBIn6GA(YES);
+        app.setPlanEffIn6OfEligible(YES);
         app.setLostCoverage(BLANK);
         app.setTobaccoUse(BLANK);
         app.setGI30dayBday(YES);
