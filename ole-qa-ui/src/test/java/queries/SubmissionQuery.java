@@ -17,7 +17,8 @@ import static org.slf4j.LoggerFactory.getLogger;
 public class SubmissionQuery {
     private final Logger logger = getLogger(this.getClass());
 
-    private String COMPAS_SYS1 = "jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=dbslt0014.uhc.com)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=cmpts08.uhc.com)))";
+    //private String COMPAS_SYS1 = "jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=dbslt0014.uhc.com)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=cmpts08.uhc.com)))";
+    private String COMPAS_STAGE = "jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=orass0023.uhc.com)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=cmpst03.uhc.com)))";
     private String ADJUDICATION_QUERY = "\n" +
         "select \n" +
         "  f.hcsg_application_id,\n" +
@@ -92,7 +93,8 @@ public class SubmissionQuery {
 
         logger.info(query);
 
-        HashMap<String, String> row = DbUtils.getSingleRecord(query, COMPAS_SYS1);
+        HashMap<String, String> row = DbUtils.getSingleRecord(query, COMPAS_STAGE);
+        //HashMap<String, String> getSingleRecord(String query, String connectionString)
 
         String currentDate = DateUtils.NORMALIZED_DATE_FORMAT.format(new java.util.Date());
 
@@ -145,7 +147,7 @@ public class SubmissionQuery {
 
         logger.info(query);
 
-        HashMap<String, String> row = DbUtils.getSingleRecord(query, COMPAS_SYS1);
+        HashMap<String, String> row = DbUtils.getSingleRecord(query, COMPAS_STAGE);
         logger.info("query is "+row.get("TYPE_DESC")+" and expected is "+expectedSubmissionResult.getWorkQueue());
         assertThat(row.get("TYPE_DESC"), equalTo(expectedSubmissionResult.getWorkQueue()));
         assertThat(row.get("ITEM_REASON_TYPE_DESC"), equalTo(expectedSubmissionResult.getWorkQueueReason()));

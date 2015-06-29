@@ -140,12 +140,7 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         app.setAgentAddress("ProducerAdd");
         app.setApplicantPrintedNameAdd("AppName");
         app.setApplicantAddress("AppAdd");
-
-
-        expectedSubmissionResult.setAdjudicationStatus("A");
-        expectedSubmissionResult.setStatus("C");
-        expectedSubmissionResult.setWorkQueue("");
-        expectedSubmissionResult.setWorkQueueReason("");
+        
         logger.info(gson.toJson(app));
 
         startApp(cheatPage, app, sheet);
