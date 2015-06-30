@@ -303,6 +303,19 @@ public class Application {
     private String AgentEmailConfirm = "";
     private String GIMPBED = "";
 
+
+
+
+    public String getInsurTermed() {
+        return InsurTermed;
+    }
+
+    public void setInsurTermed(String insurTermed) {
+        InsurTermed = insurTermed;
+    }
+
+    private String InsurTermed = "";
+
     public String getGIMPBED() {
         return GIMPBED;
     }

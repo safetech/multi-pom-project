@@ -125,10 +125,7 @@ public class VirginiaIntegrationTest extends CQBaseIntegrationTest {
         app.setApplicantPrintedNameAdd("AppName");
         app.setApplicantAddress("AppAdd");
 
-        expectedSubmissionResult.setAdjudicationStatus("A");
-        expectedSubmissionResult.setStatus("C");
-        expectedSubmissionResult.setWorkQueue("UNDERWRITING");
-        expectedSubmissionResult.setWorkQueueReason("REVIEW FOR POSSIBLE ESRD");
+        expectedSubmissionResult.setAcceptedInfo();
 
         logger.info(gson.toJson(app));
 
@@ -255,10 +252,7 @@ public class VirginiaIntegrationTest extends CQBaseIntegrationTest {
         app.setApplicantPrintedNameAdd("AppName");
         app.setApplicantAddress("AppAdd");
 
-        expectedSubmissionResult.setAdjudicationStatus("A");
-        expectedSubmissionResult.setStatus("C");
-        expectedSubmissionResult.setWorkQueue("UNDERWRITING");
-        expectedSubmissionResult.setWorkQueueReason("REVIEW FOR POSSIBLE ESRD");
+        expectedSubmissionResult.setAcceptedInfo();
 
         logger.info(gson.toJson(app));
 

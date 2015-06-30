@@ -140,10 +140,8 @@ public class MichiganIntegrationTest extends CQBaseIntegrationTest {
         app.setApplicantPrintedNameAdd("AppName");
         app.setApplicantAddress("AppAdd");
 
-        expectedSubmissionResult.setAdjudicationStatus("P");
-        expectedSubmissionResult.setStatus("C");
-        expectedSubmissionResult.setWorkQueue("UNDERWRITING");
-        expectedSubmissionResult.setWorkQueueReason("REVIEW FOR POSSIBLE ESRD");
+
+        expectedSubmissionResult.setPendingInfo("UNDERWRITING", "REVIEW FOR POSSIBLE ESRD");
 
         logger.info(gson.toJson(app));
 
@@ -249,10 +247,7 @@ public class MichiganIntegrationTest extends CQBaseIntegrationTest {
         app.setApplicantPrintedNameAdd("AppName");
         app.setApplicantAddress("AppAdd");
 
-        expectedSubmissionResult.setAdjudicationStatus("A");
-        expectedSubmissionResult.setStatus("C");
-        expectedSubmissionResult.setWorkQueue("");
-        expectedSubmissionResult.setWorkQueueReason("");
+        expectedSubmissionResult.setAcceptedInfo();
 
         logger.info(gson.toJson(app));
 

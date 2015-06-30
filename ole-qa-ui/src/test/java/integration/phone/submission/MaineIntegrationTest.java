@@ -7,7 +7,7 @@ import entity.phone.CribSheet;
 import entity.SubmissionResult;
 import pages.phone.*;
 import pages.phone.variations.authorizationandverification.NV_AuthorizationAndVerificationPage;
-import pages.phone.variations.pastandcurrentcoverage.NV_PastAndCurrentInsuranceCoveragePage;
+import pages.phone.variations.pastandcurrentcoverage.NV_OH_PastAndCurrentInsuranceCoveragePage;
 import pages.phone.variations.planapplicationpage.ME_PlanApplicationQuestions;
 import pages.phone.variations.replacementnotice.RN034andRE073Page;
 import queries.SubmissionQuery;
@@ -24,7 +24,7 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
     @Page public PlanSelectionAndStartDatePage planSelectionAndStartDatePage;
     @Page public ME_PlanApplicationQuestions planApplicationQuestionsPage;
     @Page public EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
-    @Page public NV_PastAndCurrentInsuranceCoveragePage pastAndCurrentInsuranceCoveragePage;
+    @Page public NV_OH_PastAndCurrentInsuranceCoveragePage pastAndCurrentInsuranceCoveragePage;
     @Page public NV_AuthorizationAndVerificationPage authorizationAndVerificationPage;
     @Page public AgentVerificationPage agentVerificationPage;
     @Page public RN034andRE073Page replacementNoticePage;

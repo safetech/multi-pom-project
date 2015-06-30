@@ -41,16 +41,6 @@ public class FloridaIntegrationTest extends CQBaseIntegrationTest {
         expectedSubmissionResult = new SubmissionResult();
     }
 
-
-    @Test
-    public void test_db() throws Exception {
-
-        Application app = new Application();
-        app.setHCSGApplicationId("3-BXRJHQO");
-        SubmissionResult expectedSubmissionResult = new SubmissionResult();
-        submissionQuery.verifySubmissionData(app, expectedSubmissionResult);
-    }
-
     @Test
     public void test_florida_guaranteed_issue_without_rn() throws Exception {
 

@@ -106,9 +106,7 @@ public class NewYorkIntegrationTest extends CQBaseIntegrationTest {
         app.setCommonReplacementNoticeAnswersWithApplicantInfo();
 
 
-        expectedSubmissionResult.setAdjudicationStatus("A");
-        expectedSubmissionResult.setStatus("C");
-        //expectedSubmissionResult.setPendingInfo("","");
+        expectedSubmissionResult.setAcceptedInfo();
 
         startApp(cheatPage, app, sheet);
 
@@ -166,6 +164,7 @@ public class NewYorkIntegrationTest extends CQBaseIntegrationTest {
         app.setDesignateLapse(YES);
 
         expectedSubmissionResult.setAcceptedInfo();
+
         startApp(cheatPage, app, sheet);
 
         voiceSignatureInstructionsPage.fillAndSubmit(app);

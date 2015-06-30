@@ -124,10 +124,6 @@ public class IndianaIntegrationTest extends CQBaseIntegrationTest {
         app.setApplicantPrintedNameAdd("AppName");
         app.setApplicantAddress("AppAdd");
 
-        expectedSubmissionResult.setAdjudicationStatus("P");
-        expectedSubmissionResult.setStatus("C");
-        expectedSubmissionResult.setWorkQueue("UNDERWRITING");
-        expectedSubmissionResult.setWorkQueueReason("UNDERWRITING REVIEW");
 
         logger.info(gson.toJson(app));
 
@@ -146,6 +142,8 @@ public class IndianaIntegrationTest extends CQBaseIntegrationTest {
         reviewAndSubmitPage.fillAndSubmit(app);
         applicationSubmissionPage.isAt();
         applicationSubmissionPage.isPending();
+
+        expectedSubmissionResult.setPendingInfo("UNDERWRITING", "REVIEW FOR POSSIBLE ESRD");
 
         submissionQuery.verifySubmissionData(app, expectedSubmissionResult);
         submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
@@ -206,10 +204,6 @@ public class IndianaIntegrationTest extends CQBaseIntegrationTest {
         app.setApplicantPrintedNameAdd("AppName");
         app.setApplicantAddress("AppAdd");
 
-        expectedSubmissionResult.setAdjudicationStatus("A");
-        expectedSubmissionResult.setStatus("C");
-        expectedSubmissionResult.setWorkQueue("");
-        expectedSubmissionResult.setWorkQueueReason("");
 
         logger.info(gson.toJson(app));
 
@@ -228,6 +222,8 @@ public class IndianaIntegrationTest extends CQBaseIntegrationTest {
         reviewAndSubmitPage.fillAndSubmit(app);
         applicationSubmissionPage.isAt();
         applicationSubmissionPage.isApproved();
+
+        expectedSubmissionResult.setAcceptedInfo();
 
         submissionQuery.verifySubmissionData(app, expectedSubmissionResult);
         submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);

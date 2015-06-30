@@ -125,10 +125,8 @@ public class MissouriIntegrationTest extends CQBaseIntegrationTest {
         app.setApplicantPrintedNameAdd("AppName");
         app.setApplicantAddress("AppAdd");
 
-        expectedSubmissionResult.setAdjudicationStatus("A");
-        expectedSubmissionResult.setStatus("C");
-        expectedSubmissionResult.setWorkQueue("ENROLLMENT CPA REVIEW");
-        expectedSubmissionResult.setWorkQueueReason("CPA REVIEW REQUIRED");
+        expectedSubmissionResult.setAcceptedInfo();
+
         logger.info(gson.toJson(app));
 
         startApp(cheatPage, app, sheet);
@@ -208,10 +206,7 @@ public class MissouriIntegrationTest extends CQBaseIntegrationTest {
         app.setApplicantPrintedNameAdd("AppName");
         app.setApplicantAddress("AppAdd");
 
-        expectedSubmissionResult.setAdjudicationStatus("A");
-        expectedSubmissionResult.setStatus("C");
-        expectedSubmissionResult.setWorkQueue("");
-        expectedSubmissionResult.setWorkQueueReason("");
+        expectedSubmissionResult.setAcceptedInfo();
 
         logger.info(gson.toJson(app));
 

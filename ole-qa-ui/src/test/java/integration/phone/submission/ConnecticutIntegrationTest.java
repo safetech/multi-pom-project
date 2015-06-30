@@ -5,6 +5,7 @@ import integration.CQBaseIntegrationTest;
 import entity.Application;
 import entity.phone.CribSheet;
 import entity.SubmissionResult;
+import jdk.nashorn.internal.ir.annotations.Ignore;
 import pages.phone.*;
 import pages.phone.variations.pastandcurrentcoverage.CT_PastAndCurrentInsuranceCoveragePage;
 import pages.phone.variations.replacementnotice.RN034andRE073Page;
@@ -40,7 +41,7 @@ public class ConnecticutIntegrationTest extends CQBaseIntegrationTest {
         expectedSubmissionResult = new SubmissionResult();
     }
 
-    @Test
+    @Ignore
     public void test_db() throws Exception {
 
         Application app = new Application();
@@ -91,31 +92,16 @@ public class ConnecticutIntegrationTest extends CQBaseIntegrationTest {
         goTo(cheatPage);
         cheatPage.isAt();
         cheatPage.fillAndSubmit(sheet);
-
-        voiceSignatureInstructionsPage.isAt();
         voiceSignatureInstructionsPage.fillAndSubmit(app);
-
-        customerInformationPage.isAt();
         customerInformationPage.fillAndSubmit(app);
-
-        planSelectionAndStartDatePage.isAt();
         planSelectionAndStartDatePage.fillAndSubmit(app);
-
-        pastAndCurrentInsuranceCoveragePage.isAt();
         pastAndCurrentInsuranceCoveragePage.fillAndSubmit(app);
-
-        authorizationAndVerificationPage.isAt();
         authorizationAndVerificationPage.fillAndSubmit(app);
-
-        agentVerificationPage.isAt();
         agentVerificationPage.fillAndSubmit(app);
-
-        reviewAndSubmitPage.isAt();
         reviewAndSubmitPage.fillAndSubmit(app);
-
-        applicationSubmissionPage.isAt();
         applicationSubmissionPage.isApproved();
 
+        expectedSubmissionResult.setAcceptedInfo();
         submissionQuery.verifySubmissionData(app, expectedSubmissionResult);
         submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
 
@@ -161,43 +147,22 @@ public class ConnecticutIntegrationTest extends CQBaseIntegrationTest {
         app.setApplicantAddress("AppAdd");
         app.setRNOther("Cheaper");
 
-        expectedSubmissionResult.setStatus("C");
-        expectedSubmissionResult.setAdjudicationStatus("A");
-
         goTo(cheatPage);
         cheatPage.isAt();
         cheatPage.fillAndSubmit(sheet);
-
-        voiceSignatureInstructionsPage.isAt();
         voiceSignatureInstructionsPage.fillAndSubmit(app);
-
-        customerInformationPage.isAt();
         customerInformationPage.fillAndSubmit(app);
-
-        planSelectionAndStartDatePage.isAt();
         planSelectionAndStartDatePage.fillAndSubmit(app);
-
-        pastAndCurrentInsuranceCoveragePage.isAt();
         pastAndCurrentInsuranceCoveragePage.fillAndSubmit(app);
-
-        authorizationAndVerificationPage.isAt();
         authorizationAndVerificationPage.fillAndSubmit(app);
-
-        agentVerificationPage.isAt();
         agentVerificationPage.fillAndSubmit(app);
-
-        ReplacementNotice034Page.isAt();
         ReplacementNotice034Page.fillAndSubmit(app);
-
-        reviewAndSubmitPage.isAt();
         reviewAndSubmitPage.fillAndSubmit(app);
-
-        applicationSubmissionPage.isAt();
         applicationSubmissionPage.isApproved();
 
+        expectedSubmissionResult.setAcceptedInfo();
         submissionQuery.verifySubmissionData(app, expectedSubmissionResult);
         submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
-
     }
 
 }

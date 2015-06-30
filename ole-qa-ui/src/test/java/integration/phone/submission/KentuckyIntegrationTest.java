@@ -125,7 +125,7 @@ public class KentuckyIntegrationTest extends CQBaseIntegrationTest {
         //Replacement Notice Page
         app.setCommonReplacementNoticeAnswersWithApplicantInfo();
 
-        expectedSubmissionResult.setPendingInfo("UNDERWRITING", "REVIEW FOR POSSIBLE ESRD");
+        expectedSubmissionResult.setPendingInfo("UNDERWRITING", "REVIEW HIV STATE VARIATIONS");
 
         startApp(cheatPage, app, sheet);
 

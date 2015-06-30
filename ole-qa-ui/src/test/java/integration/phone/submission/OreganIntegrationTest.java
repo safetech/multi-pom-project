@@ -124,10 +124,8 @@ public class OreganIntegrationTest extends CQBaseIntegrationTest {
         app.setApplicantPrintedNameAdd("AppName");
         app.setApplicantAddress("AppAdd");
 
-        expectedSubmissionResult.setAdjudicationStatus("A");
-        expectedSubmissionResult.setStatus("C");
-        expectedSubmissionResult.setWorkQueue("");
-        expectedSubmissionResult.setWorkQueueReason("");
+        expectedSubmissionResult.setAcceptedInfo();
+
         logger.info(gson.toJson(app));
 
         startApp(cheatPage, app, sheet);
@@ -205,10 +203,7 @@ public class OreganIntegrationTest extends CQBaseIntegrationTest {
         app.setApplicantPrintedNameAdd("AppName");
         app.setApplicantAddress("AppAdd");
 
-        expectedSubmissionResult.setAdjudicationStatus("A");
-        expectedSubmissionResult.setStatus("C");
-        expectedSubmissionResult.setWorkQueue("");
-        expectedSubmissionResult.setWorkQueueReason("");
+        expectedSubmissionResult.setAcceptedInfo();
 
         logger.info(gson.toJson(app));
 

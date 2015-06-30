@@ -119,8 +119,7 @@ public class MassachusettsIntegrationTest extends CQBaseIntegrationTest {
         app.setReplacementReason("OtherReason");
         app.setRNOther("Cheaper");
 
-        expectedSubmissionResult.setAdjudicationStatus("A");
-        expectedSubmissionResult.setStatus("C");
+        expectedSubmissionResult.setAcceptedInfo();
 
         startApp(cheatPage, app, sheet);
         voiceSignatureInstructionsPage.fillAndSubmit(app);

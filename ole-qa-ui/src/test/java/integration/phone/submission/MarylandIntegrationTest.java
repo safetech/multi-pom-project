@@ -9,9 +9,8 @@ import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
 import pages.phone.*;
-import pages.phone.variations.authorizationandverification.NV_AuthorizationAndVerificationPage;
-import pages.phone.variations.pastandcurrentcoverage.MA_PastAndCurrentInsuranceCoveragePage;
-import pages.phone.variations.planapplicationpage.VA_NJ_IL_LA_PlanApplicationQuestions;
+import pages.phone.variations.pastandcurrentcoverage.VA_PastAndCurrentInsuranceCoveragePage;
+import pages.phone.variations.planapplicationpage.MD_PlanApplicationQuestionsPage;
 import pages.phone.variations.replacementnotice.RN034andRE073Page;
 import queries.SubmissionQuery;
 import util.DateUtils;
@@ -22,10 +21,10 @@ public class MarylandIntegrationTest extends CQBaseIntegrationTest {
     @Page public VoiceSignatureInstructionsPage voiceSignatureInstructionsPage;
     @Page public CustomerInformationPage customerInformationPage;
     @Page public PlanSelectionAndStartDatePage planSelectionAndStartDatePage;
-    @Page public VA_NJ_IL_LA_PlanApplicationQuestions planApplicationQuestionsPage;
+    @Page public MD_PlanApplicationQuestionsPage planApplicationQuestionsPage;
     @Page public EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
-    @Page public MA_PastAndCurrentInsuranceCoveragePage pastAndCurrentInsuranceCoveragePage;
-    @Page public NV_AuthorizationAndVerificationPage authorizationAndVerificationPage;
+    @Page public VA_PastAndCurrentInsuranceCoveragePage pastAndCurrentInsuranceCoveragePage;
+    @Page public AuthorizationAndVerificationPage authorizationAndVerificationPage;
     @Page public HealthHistoryQuestionsPage healthHistoryQuestionsPage;
     @Page public AgentVerificationPage agentVerificationPage;
     @Page public RN034andRE073Page replacementNoticePage;
@@ -69,12 +68,13 @@ public class MarylandIntegrationTest extends CQBaseIntegrationTest {
     public void test_maryland_health_history_underwriting_with_rn() throws Exception {
 
         sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(69));
-        sheet.setMedPartBdate("2012-04-01");
+        sheet.setMedPartBdate("2014-01-01");
 
         // Customer Info Page
         app.setMPAED("01/01/2012");
-        app.setMPBED("04/01/2012");
-        //Plan Eligibility
+        app.setMPBED("01/01/2014");
+        //PlanApplicationQuestionPage
+        app.setInsurTermed(NO);
         app.setTurned65In6GA(NO);
         app.setPartBIn6GA(NO);
         app.setPlanEffIn6OfEligible(NO);
@@ -106,7 +106,6 @@ public class MarylandIntegrationTest extends CQBaseIntegrationTest {
         app.setOtherInsReplace(YES);
         app.setCpaSignatureInd(YES);
         //Authorizationa and verififcation page
-        app.setDesignateLapse(NO);
         app.setAuxFirstName("AuxFirstName");
         app.setAuxMI("M");
         app.setAuxLastName("AuxLastName");
@@ -146,6 +145,7 @@ public class MarylandIntegrationTest extends CQBaseIntegrationTest {
         app.setMPAED("01/01/2014");
         app.setMPBED("01/01/2014");
         //Plan Eligibility
+        app.setInsurTermed(NO);
         app.setTurned65In6GA(NO);
         app.setPartBIn6GA(NO);
         app.setPlanEffIn6OfEligible(NO);
@@ -171,8 +171,6 @@ public class MarylandIntegrationTest extends CQBaseIntegrationTest {
         app.setOtherInsEnd("01/01/2014");
         app.setOtherInsReplace(YES);
         app.setCpaSignatureInd(YES);
-        //Authorizationa and verififcation page
-        app.setDesignateLapse(YES);
 
         expectedSubmissionResult.setAcceptedInfo();
 
