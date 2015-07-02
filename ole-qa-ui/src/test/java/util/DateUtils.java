@@ -64,5 +64,16 @@ public class DateUtils {
         }
         return format.format(dt);
     }
+    public static String getFirstDayOfPastMonth(int numberOfMonths) {
+
+        Date pastMonth = org.apache.commons.lang3.time.DateUtils.addMonths(new Date(), numberOfMonths);
+
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(pastMonth);
+        String month = Integer.toString(pastMonth.getMonth()+1);//Integer.toString(cal.get(Calendar.MONTH) - numberOfMonths;
+
+        if(month.length()==1) month = "0"+month;
+        return  month + "/01/" + Integer.toString(cal.get(Calendar.YEAR));
+    }
 
 }
