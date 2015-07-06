@@ -9,6 +9,7 @@ import java.util.Date;
 
 public class Application {
 
+
     public String getAARPMembershipNumber() {
         return AARPMembershipNumber;
     }
@@ -302,9 +303,12 @@ public class Application {
     private String AgentEmail = "";
     private String AgentEmailConfirm = "";
     private String GIMPBED = "";
+    private String AARPMemberNumber = "";
 
 
-
+    public String getAARPMemberNumber() {
+        return AARPMemberNumber;
+    }
 
     public String getInsurTermed() {
         return InsurTermed;

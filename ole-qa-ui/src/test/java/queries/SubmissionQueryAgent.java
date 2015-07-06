@@ -10,18 +10,21 @@ import util.DbUtils;
 import java.sql.SQLException;
 import java.util.HashMap;
 
+import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.slf4j.LoggerFactory.getLogger;
 
-public class SubmissionQuery {
+public class SubmissionQueryAgent {
     private final Logger logger = getLogger(this.getClass());
 
-    private String COMPAS_SYS1 = "jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=dbslt0014.uhc.com)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=cmpts08.uhc.com)))";
-    //private String COMPAS_STAGE = "jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=orass0023.uhc.com)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=cmpst03.uhc.com)))";
+    //private String COMPAS_SYS1 = "jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=dbslt0014.uhc.com)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=cmpts08.uhc.com)))";
+    private String COMPAS_STAGE = "jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=orass0023.uhc.com)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=cmpst03.uhc.com)))";
+
     private String ADJUDICATION_QUERY = "\n" +
         "select \n" +
-        "  f.hcsg_application_id,\n" +
+        //"  f.hcsg_application_id,\n" +
+        "  b.MEMBERSHIP_NUMBER,\n" +
         "  f.ole_reference_identifier,\n" +
         "  b.application_id,\n" +
         "  f.status,\n" +
@@ -36,7 +39,7 @@ public class SubmissionQuery {
         "    left outer join work_queue_item e on a.tracking_number = e.tracking_number)\n" +
         "    left outer join work_queue_type g on e.type_id = g.type_id)  \n" +
         "where\n" +
-        "  f.hcsg_application_id = '%s'";
+        "  b.MEMBERSHIP_NUMBER = substr(%s,1, LENGTH(%s) - 1)";
 
     private String SUBMISSION_QUERY = "select" +
         "  TRIM(TO_CHAR(b.MEMBERSHIP_NUMBER, '000000000')) as MEMBERSHIP_NUMBER," +
@@ -84,21 +87,23 @@ public class SubmissionQuery {
         "  left outer join individual c on b.individual_id = c.individual_id)" +
         "  left outer join household_billing_profile d on b.household_id = d.household_id" +
         " where" +
-        "  a.hcsg_application_id = '%s'";
+        "  b.MEMBERSHIP_NUMBER = substr(%s,1, LENGTH(%s) - 1)";
+            //select substr(MEMBERSHIP_NUMBER, 0, LENGTH(MEMBERSHIP_NUMBER) - 1), MEMBERSHIP_NUMBER FROM APPLICATION WHERE ROWNUM < 100
 
+        //" b.MEMBERSHIP_NUMBER = SUBSTR (%s,  0,  LENGTH (%s) – 1)";
+       // "  b.MEMBERSHIP_NUMBER = '%s'";
 
     public void verifySubmissionData(Application app, SubmissionResult expectedSubmissionResult) throws SQLException {
 
-        String query = String.format(SUBMISSION_QUERY, app.getHCSGApplicationId());
+        String query = String.format(SUBMISSION_QUERY, app.getAARPMembershipNumber(), app.getAARPMembershipNumber());
 
         logger.info(query);
 
-        HashMap<String, String> row = DbUtils.getSingleRecord(query, COMPAS_SYS1);
+        HashMap<String, String> row = DbUtils.getSingleRecord(query, COMPAS_STAGE);
         //HashMap<String, String> getSingleRecord(String query, String connectionString)
 
         String currentDate = DateUtils.NORMALIZED_DATE_FORMAT.format(new java.util.Date());
-
-        assertThat(row.get("MEMBERSHIP_NUMBER"), equalTo(app.getAARPMembershipNumber()));
+        assertThat(row.get("MEMBERSHIP_NUMBER"), containsString(app.getAARPMemberNumber()));
 //        assertThat(row.get("NAME_PREFIX_ID"), equalTo(""));
         assertThat(row.get("FIRST_NAME"), equalTo(app.getFirstName().toUpperCase()));
         assertThat(row.get("MIDDLE_NAME"), equalTo(app.getMI().toUpperCase()));
@@ -113,11 +118,11 @@ public class SubmissionQuery {
 //        assertThat(row.get("GENDER_CD"), equalTo(""));
         assertThat(row.get("DAY_PHONE_NUM"), equalTo(app.getPhonePrimary()));
         assertThat(row.get("EVENING_PHONE_NUM"), equalTo(app.getPhoneEvening()));
-        assertThat(row.get("EMAIL_ADDRESS"), equalTo(""));
+        assertThat(row.get("EMAIL_ADDRESS"), equalTo(app.getEmail().toUpperCase()));
 //        assertThat(row.get("PLAN_CD"), equalTo(""));
-        assertThat(row.get("REQUESTED_EFFECTIVE_DATE"), equalTo(app.getReqEffectiveDate()));
+        //assertThat(row.get("REQUESTED_EFFECTIVE_DATE"), equalTo(app.getReqEffectiveDate()));
         assertThat(row.get("MEDICARE_CLAIM_NUMBER"), equalTo(app.getMedicareClaimNum().toUpperCase()));
-        assertThat(row.get("PART_A_EFFECTIVE_DATE"), equalTo(app.getMPAED()));
+        //assertThat(row.get("PART_A_EFFECTIVE_DATE"), equalTo(app.getMPAED())); //Left out for now
         assertThat(row.get("MED_PART_B_DATE"), equalTo(app.getMPBED()));
         assertThat(row.get("BOTH_PARTS_ACTIVE"), equalTo(app.getPartABActiveIndicator() == "yes" ? "Y" : "N"));
         assertThat(row.get("CPA_SIGNATURE_DATE"), equalTo(currentDate));
@@ -125,16 +130,16 @@ public class SubmissionQuery {
         assertThat(row.get("APPL_SIGNATURE_DATE"), equalTo(currentDate));
 //        assertThat(row.get("AGENT_FIRST_NAME"), equalTo(""));
 //        assertThat(row.get("AGENT_LAST_NAME"), equalTo(""));
-        assertThat(row.get("SELLING_AGENT_ID"), equalTo(""));
-        assertThat(row.get("QR_DATE"), equalTo(""));
+        //assertThat(row.get("SELLING_AGENT_ID"), equalTo(""));
+        //assertThat(row.get("QR_DATE"), equalTo(""));
         assertThat(row.get("STATUS"), equalTo(expectedSubmissionResult.getStatus()));
 //        assertThat(row.get("MARKETING_PRODUCT_CODE"), equalTo(""));
-        assertThat(row.get("CHANNEL"), equalTo("1"));
-        assertThat(row.get("ACTOR"), equalTo("2"));
+        assertThat(row.get("CHANNEL"), equalTo("10"));
+        assertThat(row.get("ACTOR"), equalTo("3"));
         assertThat(row.get("MECHANISM"), equalTo("2"));
 //        assertThat(row.get("APPL_COMPONENT_NUMBER"), equalTo(""));
 //        assertThat(row.get("HASH_CD"), equalTo(""));
-        assertThat(row.get("PAYMENT_METHOD_TYPE_ID"), equalTo("2"));
+        assertThat(row.get("PAYMENT_METHOD_TYPE_ID"), equalTo(""));
         assertThat(row.get("ADJUDICATION_CD"), equalTo(expectedSubmissionResult.getAdjudicationStatus()));
 
         logger.info(String.format("Here is the link to the image... https://acesx-stg-alt.uhc.com/appEnroll-web/resources/retrievePDF/v1/%s", row.get("APPL_IMAGE_NUM_ORIG")));
@@ -143,16 +148,17 @@ public class SubmissionQuery {
 
     public void verifyAdjudicationData(Application app, SubmissionResult expectedSubmissionResult) throws SQLException {
 
-        String query = String.format(ADJUDICATION_QUERY, app.getHCSGApplicationId());
-
+        String query = String.format(ADJUDICATION_QUERY, app.getAARPMembershipNumber(), app.getAARPMembershipNumber());
         logger.info(query);
 
-        HashMap<String, String> row = DbUtils.getSingleRecord(query, COMPAS_SYS1);
+        HashMap<String, String> row = DbUtils.getSingleRecord(query, COMPAS_STAGE);
         logger.info("query is "+row.get("TYPE_DESC")+" and expected is "+expectedSubmissionResult.getWorkQueue());
         assertThat(row.get("TYPE_DESC"), equalTo(expectedSubmissionResult.getWorkQueue()));
         assertThat(row.get("ITEM_REASON_TYPE_DESC"), equalTo(expectedSubmissionResult.getWorkQueueReason()));
 
     }
+
+
 
 // Create another Submission Query for Agent
 }

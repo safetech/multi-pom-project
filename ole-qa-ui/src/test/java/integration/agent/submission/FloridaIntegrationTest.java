@@ -13,7 +13,7 @@ import pages.agent.variations.currentinsurancecoverage.FL_CurrentInsuranceCovera
 import pages.agent.variations.planapplication.NV_PlanApplicationQuestionsPage;
 import pages.agent.variations.replacenotice.RN034andRE073WithSignaturePage;
 import pages.agent.variations.statespecificationform.SupplementalFormPage;
-import queries.SubmissionQuery;
+import queries.SubmissionQueryAgent;
 import util.DateUtils;
 
 public class FloridaIntegrationTest extends CQBaseIntegrationTest {
@@ -33,15 +33,16 @@ public class FloridaIntegrationTest extends CQBaseIntegrationTest {
     @Page public PaymentDetailsSummaryPage paymentDetailsSummaryPage;
     @Page public PlanPaymentOptionsPage planPaymentOptionsPage;
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
+    @Page public ApplicationSubmissionPage applicationSubmissionPage;
 
-    public SubmissionQuery submissionQuery;
+    public SubmissionQueryAgent submissionQuery;
     private Faker faker;
     private CribSheet sheet;
     private SubmissionResult expectedSubmissionResult;
 
     @Before
     public void setup() {
-        submissionQuery = new SubmissionQuery();
+        submissionQuery = new SubmissionQueryAgent();
         faker = new Faker();
         sheet = new CribSheet(faker);
 
@@ -63,7 +64,6 @@ public class FloridaIntegrationTest extends CQBaseIntegrationTest {
         sheet.setReferrer("ulayer");
 
         Application app = new Application();
-
         app.setState("FL");
         app.setZipCode("32065");
         app.setDOB(DateUtils.getDOBInNormalDateFormat(70));
@@ -81,13 +81,12 @@ public class FloridaIntegrationTest extends CQBaseIntegrationTest {
         app.setSS_App_Signature1(Application.ALL_SIGNATURES[9]);
         app.setSS_Agent_Signature1(Application.ALL_SIGNATURES[10]);
         //TestData
-        app.setAARPMembershipNumber("1234567890");
+        app.setAARPMembershipNumber(faker.numerify("##########"));
         app.setPrefix("MR");
-        app.setFirstName("Bob");
-        app.setMI("N");
-        app.setLastName("Automation");
+        app.setFirstName("rtyBob");
+        app.setLastName("asAutomation");
         app.setSuffix("PHD");
-        app.setAddressLine1("111 Street dr");
+        app.setAddressLine1("3211 Street dr");
         app.setAddressLine2("apt #123");
         app.setCity("Horsham");
         app.setEmail("test@uhc.com");
@@ -210,9 +209,9 @@ public class FloridaIntegrationTest extends CQBaseIntegrationTest {
         reviewAndSubmitPage.isAt();
         reviewAndSubmitPage.fillAndSubmit(app);
 
-       // expectedSubmissionResult.setPendingInfo("UNDERWRITING", "REVIEW FOR POSSIBLE ESRD");
-       // submissionQuery.verifySubmissionData(app, expectedSubmissionResult);
-       // submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
+        expectedSubmissionResult.setPendingInfo("ENROLLMENT MEMBERSHIP VERIFICATION", "VERIFY MEMBER NUMBER");
+        submissionQuery.verifySubmissionData(app, expectedSubmissionResult);
+        submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
 
     }
     @Test
@@ -247,21 +246,20 @@ public class FloridaIntegrationTest extends CQBaseIntegrationTest {
         app.setSS_App_Signature1(Application.ALL_SIGNATURES[9]);
         app.setSS_Agent_Signature1(Application.ALL_SIGNATURES[10]);
         //TestData
-        app.setAARPMembershipNumber("1234567890");
+        app.setAARPMembershipNumber(faker.numerify("##########"));
         app.setPrefix("MR");
-        app.setFirstName("Bob");
-        app.setMI("N");
-        app.setLastName("Automation");
+        app.setFirstName("trBob");
+        app.setLastName("adAutomation");
         app.setSuffix("PHD");
-        app.setAddressLine1("111 Street dr");
+        app.setAddressLine1("11211 frStreet dr");
         app.setAddressLine2("apt #123");
         app.setCity("Horsham");
         app.setEmail("test@uhc.com");
         app.setConfirmEmail("test@uhc.com");
         app.setPhonePrimary("9874562345");
-        app.setPhoneEvening("1234561234");
+        app.setPhoneEvening("1255561234");
         app.setGender("M");
-        app.setMedicareClaimNum("123123123A");
+        app.setMedicareClaimNum("123443123A");
         app.setMPAED("01/01/2015");
         app.setPartABActiveIndicator(YES);
         app.setAgentEmail("agent@uhc.com");
@@ -331,6 +329,7 @@ public class FloridaIntegrationTest extends CQBaseIntegrationTest {
         app.setAgencyAddress("Agency Address");
         app.setAgencyPhone("2346759876");
 
+        expectedSubmissionResult.setPendingInfo("ENROLLMENT MEMBERSHIP VERIFICATION", "VERIFY MEMBER NUMBER");
 
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);
@@ -373,6 +372,13 @@ public class FloridaIntegrationTest extends CQBaseIntegrationTest {
 
         reviewAndSubmitPage.isAt();
         reviewAndSubmitPage.fillAndSubmit(app);
+
+        applicationSubmissionPage.isAt();
+        applicationSubmissionPage.isPending();
+
+        submissionQuery.verifySubmissionData(app, expectedSubmissionResult);
+        submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
+
 
     }
 

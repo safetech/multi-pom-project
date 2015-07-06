@@ -42,7 +42,6 @@ public class CustomerInformationPage extends WizardPage{
     
     public void fillAndSubmit(Application app) {
         isAt();
-
         fill(AARPMembershipNumber).with(app.getAARPMembershipNumber());
         (new Select(Prefix.getElement())).selectByValue(app.getPrefix());
         fill(FirstName).with(app.getFirstName());

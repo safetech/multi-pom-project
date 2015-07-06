@@ -2,17 +2,17 @@ package pages.agent;
 
 import entity.Application;
 import org.fluentlenium.core.domain.FluentWebElement;
+import org.openqa.selenium.support.FindBy;
 import pages.WizardPage;
 
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.MatcherAssert.assertThat;
-
 public class ReviewAndSubmitPage extends WizardPage {
 
     FluentWebElement requiredlink;
+    @FindBy(css = "#page-title") protected FluentWebElement pageTitle;
+    @FindBy(css = "#pageborder") protected FluentWebElement applicationStatus;
 
     public void fillAndSubmit(Application app) {
 
@@ -21,7 +21,8 @@ public class ReviewAndSubmitPage extends WizardPage {
             closeSpecificBrowser(1);
 
         click(WIZARD_PAGE_NEXT_BTN_SELECTOR);
-        await().atMost(10, TimeUnit.SECONDS);
+        await().atMost(5, TimeUnit.SECONDS);
+        await().atMost(15, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
     }
 
     public void closeSpecificBrowser(int Brow){
@@ -31,7 +32,6 @@ public class ReviewAndSubmitPage extends WizardPage {
         getDriver().close();
         getDriver().switchTo().window(baseWindowHdl);
     }
-    public void isAt() {
-        assertThat(pageTitle.getText(), equalTo("Review and Submit"));
-    }
+
 }
+//Verify how we can get Application status (Find the identifier)

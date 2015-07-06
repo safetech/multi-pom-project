@@ -229,6 +229,7 @@ public class CribSheet{
         this.setMembershipNumber(faker.numerify("#########"));
     }
 
+
     private String getRandomGender() {
         return this.getRandomItemInArray(ALL_GENDERS);
     }
