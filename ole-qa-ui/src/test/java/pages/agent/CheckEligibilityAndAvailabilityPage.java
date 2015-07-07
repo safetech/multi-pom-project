@@ -23,23 +23,33 @@ public class CheckEligibilityAndAvailabilityPage extends WizardPage {
         blur("#ZipCode");
 
         try{
-            Thread.sleep(3000);
+            Thread.sleep(5000);
         }catch(Exception e){
         }
 
-        await().atMost(10, TimeUnit.SECONDS).until("#State").hasAttribute("value", app.getState());
+        await().atMost(20, TimeUnit.SECONDS).until("#State").hasAttribute("value", app.getState());
         fill(DOB).with(app.getDOB());
+        blur("#DOB");
+
+        try{
+            Thread.sleep(300);
+        }catch(Exception e){
+        }
+
         fill(MPBED).with(app.getMPBED());
         blur("#MPBED");
 
-
+        try{
+            Thread.sleep(300);
+        }catch(Exception e){
+        }
 
         await().atMost(5, TimeUnit.SECONDS).until("div.customer_eligibility_form #ReqEffectiveDate option").hasSize(4);
         fillSelect("div.customer_eligibility_form #ReqEffectiveDate").withIndex(1);
 
 
 
-        clickNextAndWaitForSpinnerToFinish(5);
+        clickNextAndWaitForSpinnerToFinish();
     }
 
     public void blur(String selector){

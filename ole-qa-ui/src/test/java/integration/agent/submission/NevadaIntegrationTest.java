@@ -13,7 +13,7 @@ import pages.agent.variations.authorization.NV_AuthorizationPage;
 import pages.agent.variations.currentinsurancecoverage.NV_CurrentInsuranceCoveragePage;
 import pages.agent.variations.planapplication.NV_PlanApplicationQuestionsPage;
 import pages.agent.variations.replacenotice.RN034andRE073WithSignaturePage;
-import queries.SubmissionQuery;
+import queries.SubmissionQueryAgent;
 
 public class NevadaIntegrationTest extends CQBaseIntegrationTest {
 
@@ -33,14 +33,15 @@ public class NevadaIntegrationTest extends CQBaseIntegrationTest {
     @Page public PlanPaymentOptionsPage planPaymentOptionsPage;
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
 
-    public SubmissionQuery submissionQuery;
+
+    public SubmissionQueryAgent submissionQuery;
     private Faker faker;
     protected CribSheet sheet;
     private SubmissionResult expectedSubmissionResult;
 
     @Before
     public void setup() {
-        submissionQuery = new SubmissionQuery();
+        submissionQuery = new SubmissionQueryAgent();
         faker = new Faker();
         sheet = new CribSheet(faker);
 
@@ -78,11 +79,11 @@ public class NevadaIntegrationTest extends CQBaseIntegrationTest {
         app.setEftSignatureIndTouch(Application.ALL_SIGNATURES[7]);
 
         //TestData
-        app.setAARPMembershipNumber("1234567890");
+        app.setAARPMembershipNumber(faker.numerify("##########"));
         app.setPrefix("MR");
-        app.setFirstName("Bob");
-        app.setMI("N");
-        app.setLastName("Automation");
+        app.setFirstName(this.faker.firstName());
+        app.setMI(this.faker.letterify("?"));
+        app.setLastName(this.faker.lastName());
         app.setSuffix("PHD");
         app.setAddressLine1("111 Street dr");
         app.setAddressLine2("apt #123");
@@ -200,9 +201,9 @@ public class NevadaIntegrationTest extends CQBaseIntegrationTest {
         reviewAndSubmitPage.isAt();
         reviewAndSubmitPage.fillAndSubmit(app);
 
-       // expectedSubmissionResult.setPendingInfo("UNDERWRITING", "REVIEW FOR POSSIBLE ESRD");
-       // submissionQuery.verifySubmissionData(app, expectedSubmissionResult);
-       // submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
+       expectedSubmissionResult.setPendingInfo("UNDERWRITING", "REVIEW FOR POSSIBLE ESRD");
+       submissionQuery.verifySubmissionData(app, expectedSubmissionResult);
+       submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
 
     }
     @Test
@@ -236,11 +237,11 @@ public class NevadaIntegrationTest extends CQBaseIntegrationTest {
         app.setEftSignatureIndTouch(Application.ALL_SIGNATURES[7]);
 
         //TestData
-        app.setAARPMembershipNumber("1234567890");
+        app.setAARPMembershipNumber(faker.numerify("##########"));
         app.setPrefix("MR");
-        app.setFirstName("Bob");
-        app.setMI("N");
-        app.setLastName("Automation");
+        app.setFirstName(this.faker.firstName());
+        app.setMI(this.faker.letterify("?"));
+        app.setLastName(this.faker.lastName());
         app.setSuffix("PHD");
         app.setAddressLine1("111 Street dr");
         app.setAddressLine2("apt #123");
@@ -353,9 +354,9 @@ public class NevadaIntegrationTest extends CQBaseIntegrationTest {
         reviewAndSubmitPage.isAt();
         reviewAndSubmitPage.fillAndSubmit(app);
 
-       //expectedSubmissionResult.setPendingInfo("UNDERWRITING", "REVIEW FOR POSSIBLE ESRD");
-       //submissionQuery.verifySubmissionData(app, expectedSubmissionResult);
-       //submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
+       expectedSubmissionResult.setAcceptedInfo();
+       submissionQuery.verifySubmissionData(app, expectedSubmissionResult);
+       submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
 
     }
 

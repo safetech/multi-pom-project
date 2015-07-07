@@ -77,9 +77,9 @@ public class WashingtonIntegrationTest extends CQBaseIntegrationTest {
         app.setMPBED("10/01/2012");
 
         //Plan Eligibility
-        app.setTurned65In6GA(NO); //TODO: Replace these hard coded values with helper function that will determine answer based upon DOB
-        app.setPartBIn6GA(NO); //TODO: Replace these hard coded values with helper function that will determine answer based upon MPBED
-        app.setPlanEffIn6OfEligible(NO); //TODO: Replace these hard coded values with helper function that will determine answer based upon DOB & MPBED
+        app.setTurned65In6GA(NO);
+        app.setPartBIn6GA(NO);
+        app.setPlanEffIn6OfEligible(NO);
         app.setLostCoverage(NO);
         app.setTobaccoUse(YES);
         //Plan application Questions
@@ -124,7 +124,7 @@ public class WashingtonIntegrationTest extends CQBaseIntegrationTest {
         app.setApplicantPrintedNameAdd("AppName");
         app.setApplicantAddress("AppAdd");
 
-        expectedSubmissionResult.setPendingInfo("ENROLLMENT CPA REVIEW", "REVIEW FOR POSSIBLE ESRD");
+        expectedSubmissionResult.setPendingInfo("ENROLLMENT CPA REVIEW", "CPA REVIEW REQUIRED");
 
         logger.info(gson.toJson(app));
 
@@ -153,15 +153,15 @@ public class WashingtonIntegrationTest extends CQBaseIntegrationTest {
     public void test_washington_full_underwriting_without_rn() throws Exception {
 
         sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(66));
-        sheet.setMedPartBdate("2015-01-01");
+        sheet.setMedPartBdate("2015-03-01");
 
         //Customer Information
-        app.setMPAED("01/01/2011");
-        app.setMPBED("01/01/2015");
+        app.setMPAED("03/01/2011");
+        app.setMPBED("03/01/2015");
         //Plan Eligibility
-        app.setTurned65In6GA(NO); //TODO: Replace these hard coded values with helper function that will determine answer based upon DOB
-        app.setPartBIn6GA(YES); //TODO: Replace these hard coded values with helper function that will determine answer based upon MPBED
-        app.setPlanEffIn6OfEligible(YES);  //TODO: Replace these hard coded values with helper function that will determine answer based upon DOB & MPBED
+        app.setTurned65In6GA(NO);
+        app.setPartBIn6GA(YES);
+        app.setPlanEffIn6OfEligible(YES);
         app.setLostCoverage(NO);
         app.setTobaccoUse(YES);
         //Plan application Questions
@@ -205,7 +205,7 @@ public class WashingtonIntegrationTest extends CQBaseIntegrationTest {
         app.setApplicantPrintedNameAdd("AppName");
         app.setApplicantAddress("AppAdd");
 
-        expectedSubmissionResult.setAcceptedInfo();
+        expectedSubmissionResult.setPendingInfo("ENROLLMENT CPA REVIEW","CPA REVIEW REQUIRED");
 
         logger.info(gson.toJson(app));
 
@@ -224,8 +224,8 @@ public class WashingtonIntegrationTest extends CQBaseIntegrationTest {
         agentVerificationPage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
         applicationSubmissionPage.isAt();
-        applicationSubmissionPage.isApproved();
 
+        applicationSubmissionPage.isPending();
         submissionQuery.verifySubmissionData(app, expectedSubmissionResult);
         submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
 

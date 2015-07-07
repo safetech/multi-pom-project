@@ -12,7 +12,7 @@ import pages.dtc.*;
 import pages.dtc.variations.pastandcurrentcoverage.MA_PastAndCurrentCoveragePage;
 import pages.dtc.variations.planapplication.NV_MA_PlanApplicationQuestionsPage;
 import pages.dtc.variations.planselectionandstartdate.NV_MA_PlanSelectionAndStartDatePage;
-import queries.SubmissionQuery;
+import queries.SubmissionQueryDtc;
 import util.DateUtils;
 
 public class MassachusettsIntegrationTest extends CQBaseIntegrationTest {
@@ -31,14 +31,14 @@ public class MassachusettsIntegrationTest extends CQBaseIntegrationTest {
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
     @Page public HealthHistoryQuestionsPage healthHistoryQuestionsPage;
 
-    public SubmissionQuery submissionQuery;
+    public SubmissionQueryDtc submissionQuery;
     private Faker faker;
     protected CribSheet sheet;
     private SubmissionResult expectedSubmissionResult;
 
     @Before
     public void setup() {
-        submissionQuery = new SubmissionQuery();
+        submissionQuery = new SubmissionQueryDtc();
         faker = new Faker();
         sheet = new CribSheet(faker);
         sheet.setState("MA");
@@ -59,11 +59,11 @@ public class MassachusettsIntegrationTest extends CQBaseIntegrationTest {
 
         Application app = new Application();
         //TestData
-        app.setAARPMembershipNumber("1234567890");
+        app.setAARPMembershipNumber(faker.numerify("##########"));
         app.setPrefix("MR");
-        app.setFirstName("Bob");
-        app.setMI("N");
-        app.setLastName("Automation");
+        app.setFirstName(this.faker.firstName());
+        app.setMI(this.faker.letterify("?"));
+        app.setLastName(this.faker.lastName());
         app.setSuffix("PHD");
         app.setAddressLine1("111 Street dr");
         app.setAddressLine2("apt #123");
@@ -124,8 +124,6 @@ public class MassachusettsIntegrationTest extends CQBaseIntegrationTest {
         app.setCommonReplacementNoticeAnswersWithApplicantInfo();
         app.setCommonHealthHistoryAnswers();
 
-        expectedSubmissionResult.setPendingInfo("UNDERWRITING", "REVIEW FOR POSSIBLE ESRD");
-
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);
 
@@ -153,7 +151,7 @@ public class MassachusettsIntegrationTest extends CQBaseIntegrationTest {
         reviewAndSubmitPage.isAt();
         reviewAndSubmitPage.fillAndSubmit(app);
 
-        expectedSubmissionResult.setPendingInfo("UNDERWRITING", "REVIEW FOR POSSIBLE ESRD");
+        expectedSubmissionResult.setAcceptedInfo();
         submissionQuery.verifySubmissionData(app, expectedSubmissionResult);
         submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
 
@@ -170,11 +168,11 @@ public class MassachusettsIntegrationTest extends CQBaseIntegrationTest {
 
         Application app = new Application();
         //TestData
-        app.setAARPMembershipNumber("1234567890");
+        app.setAARPMembershipNumber(faker.numerify("##########"));
         app.setPrefix("MR");
-        app.setFirstName("Bob");
-        app.setMI("N");
-        app.setLastName("Automation");
+        app.setFirstName(this.faker.firstName());
+        app.setMI(this.faker.letterify("?"));
+        app.setLastName(this.faker.lastName());
         app.setSuffix("PHD");
         app.setAddressLine1("111 Street dr");
         app.setAddressLine2("apt #123");
@@ -243,8 +241,6 @@ public class MassachusettsIntegrationTest extends CQBaseIntegrationTest {
         //Replacement Notice Page
         app.setCommonReplacementNoticeAnswersWithApplicantInfo();
 
-        expectedSubmissionResult.setPendingInfo("UNDERWRITING", "REVIEW FOR POSSIBLE ESRD");
-
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);
 
@@ -272,7 +268,7 @@ public class MassachusettsIntegrationTest extends CQBaseIntegrationTest {
         reviewAndSubmitPage.isAt();
         reviewAndSubmitPage.fillAndSubmit(app);
 
-        expectedSubmissionResult.setPendingInfo("UNDERWRITING", "REVIEW FOR POSSIBLE ESRD");
+        expectedSubmissionResult.setAcceptedInfo();
         submissionQuery.verifySubmissionData(app, expectedSubmissionResult);
         submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
 

@@ -23,7 +23,6 @@ public class SubmissionQueryAgent {
 
     private String ADJUDICATION_QUERY = "\n" +
         "select \n" +
-        //"  f.hcsg_application_id,\n" +
         "  b.MEMBERSHIP_NUMBER,\n" +
         "  f.ole_reference_identifier,\n" +
         "  b.application_id,\n" +
@@ -139,7 +138,7 @@ public class SubmissionQueryAgent {
         assertThat(row.get("MECHANISM"), equalTo("2"));
 //        assertThat(row.get("APPL_COMPONENT_NUMBER"), equalTo(""));
 //        assertThat(row.get("HASH_CD"), equalTo(""));
-        assertThat(row.get("PAYMENT_METHOD_TYPE_ID"), equalTo(""));
+        //assertThat(row.get("PAYMENT_METHOD_TYPE_ID"), equalTo(""));
         assertThat(row.get("ADJUDICATION_CD"), equalTo(expectedSubmissionResult.getAdjudicationStatus()));
 
         logger.info(String.format("Here is the link to the image... https://acesx-stg-alt.uhc.com/appEnroll-web/resources/retrievePDF/v1/%s", row.get("APPL_IMAGE_NUM_ORIG")));

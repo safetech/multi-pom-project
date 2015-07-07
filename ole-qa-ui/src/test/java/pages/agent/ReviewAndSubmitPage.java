@@ -21,8 +21,7 @@ public class ReviewAndSubmitPage extends WizardPage {
             closeSpecificBrowser(1);
 
         click(WIZARD_PAGE_NEXT_BTN_SELECTOR);
-        await().atMost(5, TimeUnit.SECONDS);
-        await().atMost(15, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
+        await().atMost(30, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
     }
 
     public void closeSpecificBrowser(int Brow){

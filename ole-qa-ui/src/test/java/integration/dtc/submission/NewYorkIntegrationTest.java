@@ -11,7 +11,7 @@ import org.junit.Before;
 import org.junit.Test;
 import pages.dtc.*;
 import pages.dtc.variations.pastandcurrentcoverage.NY_PastAndCurrentCoveragePage;
-import queries.SubmissionQuery;
+import queries.SubmissionQueryDtc;
 import util.DateUtils;
 
 public class NewYorkIntegrationTest extends CQBaseIntegrationTest {
@@ -30,14 +30,14 @@ public class NewYorkIntegrationTest extends CQBaseIntegrationTest {
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
     @Page public ApplicationSubmissionPage applicationSubmissionPage;
 
-    public SubmissionQuery submissionQuery;
+    public SubmissionQueryDtc submissionQuery;
     private Faker faker;
     private CribSheet sheet;
     private SubmissionResult expectedSubmissionResult;
 
     @Before
     public void setup() {
-        submissionQuery = new SubmissionQuery();
+        submissionQuery = new SubmissionQueryDtc();
         faker = new Faker();
         sheet = new CribSheet(faker);
         expectedSubmissionResult = new SubmissionResult();
@@ -66,11 +66,11 @@ public class NewYorkIntegrationTest extends CQBaseIntegrationTest {
         Application app = new Application();
 
         //TestData
-        app.setAARPMembershipNumber("1234567890");
+        app.setAARPMembershipNumber(faker.numerify("##########"));
         app.setPrefix("MR");
-        app.setFirstName("Bob");
-        app.setMI("N");
-        app.setLastName("Automation");
+        app.setFirstName(this.faker.firstName());
+        app.setMI(this.faker.letterify("?"));
+        app.setLastName(this.faker.lastName());
         app.setSuffix("PHD");
         app.setAddressLine1("111 Street dr");
         app.setAddressLine2("apt #123");
@@ -117,9 +117,6 @@ public class NewYorkIntegrationTest extends CQBaseIntegrationTest {
         //Authorizationa and verififcation page
         app.setDesignateLapse(YES);
 
-        expectedSubmissionResult.setStatus("C");
-        expectedSubmissionResult.setAdjudicationStatus("A");
-
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);
 
@@ -147,6 +144,7 @@ public class NewYorkIntegrationTest extends CQBaseIntegrationTest {
         reviewAndSubmitPage.isAt();
         reviewAndSubmitPage.fillAndSubmit(app);
 
+        expectedSubmissionResult.setAcceptedInfo();
         submissionQuery.verifySubmissionData(app, expectedSubmissionResult);
         submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
 
@@ -164,11 +162,11 @@ public class NewYorkIntegrationTest extends CQBaseIntegrationTest {
 
         Application app = new Application();
         //TestData
-        app.setAARPMembershipNumber("1234567890");
+        app.setAARPMembershipNumber(faker.numerify("##########"));
         app.setPrefix("MR");
-        app.setFirstName("Bob");
-        app.setMI("N");
-        app.setLastName("Automation");
+        app.setFirstName(this.faker.firstName());
+        app.setMI(this.faker.letterify("?"));
+        app.setLastName(this.faker.lastName());
         app.setSuffix("PHD");
         app.setAddressLine1("111 Street dr");
         app.setAddressLine2("apt #123");
@@ -212,8 +210,6 @@ public class NewYorkIntegrationTest extends CQBaseIntegrationTest {
         app.setOtherInsReplace(YES);
         app.setCpaSignatureInd(YES);
 
-        expectedSubmissionResult.setStatus("C");
-        expectedSubmissionResult.setAdjudicationStatus("A");
 
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);
@@ -242,6 +238,7 @@ public class NewYorkIntegrationTest extends CQBaseIntegrationTest {
         reviewAndSubmitPage.isAt();
         reviewAndSubmitPage.fillAndSubmit(app);
 
+        expectedSubmissionResult.setAcceptedInfo();
         submissionQuery.verifySubmissionData(app, expectedSubmissionResult);
         submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
 

@@ -10,11 +10,11 @@ import org.junit.Before;
 import org.junit.Test;
 import pages.agent.*;
 import pages.agent.variations.authorization.CA_AuthorizationPage;
-import pages.agent.variations.eligibilityhealthquestions.CA_EligibilityHealthQuestionsPage;
 import pages.agent.variations.currentinsurancecoverage.CA_CurrentInsuranceCoveragePage;
+import pages.agent.variations.eligibilityhealthquestions.CA_EligibilityHealthQuestionsPage;
 import pages.agent.variations.planapplication.CA_PlanApplicationQuestionsPage;
 import pages.agent.variations.replacenotice.RN034andRE073WithSignaturePage;
-import queries.SubmissionQuery;
+import queries.SubmissionQueryAgent;
 import util.DateUtils;
 
 public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
@@ -34,20 +34,20 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
     @Page public PlanPaymentOptionsPage planPaymentOptionsPage;
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
 
-    public SubmissionQuery submissionQuery;
+
+    public SubmissionQueryAgent submissionQuery;
     private Faker faker;
     private CribSheet sheet;
     private SubmissionResult expectedSubmissionResult;
 
     @Before
     public void setup() {
-        submissionQuery = new SubmissionQuery();
+        submissionQuery = new SubmissionQueryAgent();
         faker = new Faker();
         sheet = new CribSheet(faker);
 
         expectedSubmissionResult = new SubmissionResult();
     }
-
     @Test
     public void test_california_eligibility_underwriting_with_rn() throws Exception {
 
@@ -57,8 +57,6 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         sheet.setMarketability_code(BLANK);
         sheet.setSiteId("UHP");
         sheet.setAgentNPN(BLANK);
-
-
 
         sheet.setAgentName("BOB DOBBS");
         sheet.setAgentEmail("bob@dobbsco.com");
@@ -82,11 +80,11 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         app.setMedicalReleaseClaimSignatureIndTouch(Application.ALL_SIGNATURES[8]);
 
         //TestData
-        app.setAARPMembershipNumber("1234567890");
+        app.setAARPMembershipNumber(faker.numerify("##########"));
         app.setPrefix("MR");
-        app.setFirstName("Bob");
-        app.setMI("N");
-        app.setLastName("Automation");
+        app.setFirstName(this.faker.firstName());
+        app.setMI(this.faker.letterify("?"));
+        app.setLastName(this.faker.lastName());
         app.setSuffix("PHD");
         app.setAddressLine1("111 Street dr");
         app.setAddressLine2("apt #123");
@@ -180,9 +178,9 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         reviewAndSubmitPage.isAt();
         reviewAndSubmitPage.fillAndSubmit(app);
 
-       // expectedSubmissionResult.setPendingInfo("UNDERWRITING", "REVIEW FOR POSSIBLE ESRD");
-       // submissionQuery.verifySubmissionData(app, expectedSubmissionResult);
-       // submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
+        expectedSubmissionResult.setAcceptedInfo();
+        submissionQuery.verifySubmissionData(app, expectedSubmissionResult);
+        submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
 
     }
     @Test
@@ -216,11 +214,11 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         app.setMedicalReleaseClaimSignatureIndTouch(Application.ALL_SIGNATURES[8]);
 
         //TestData
-        app.setAARPMembershipNumber("1234567890");
+        app.setAARPMembershipNumber(faker.numerify("##########"));
         app.setPrefix("MR");
-        app.setFirstName("Bob");
-        app.setMI("N");
-        app.setLastName("Automation");
+        app.setFirstName(this.faker.firstName());
+        app.setMI(this.faker.letterify("?"));
+        app.setLastName(this.faker.lastName());
         app.setSuffix("PHD");
         app.setAddressLine1("111 Street dr");
         app.setAddressLine2("apt #123");
@@ -337,6 +335,9 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         reviewAndSubmitPage.isAt();
         reviewAndSubmitPage.fillAndSubmit(app);
 
+        expectedSubmissionResult.setAcceptedInfo();
+        submissionQuery.verifySubmissionData(app, expectedSubmissionResult);
+        submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
     }
 
 }
