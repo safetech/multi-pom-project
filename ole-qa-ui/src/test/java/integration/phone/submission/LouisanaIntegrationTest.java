@@ -8,7 +8,7 @@ import entity.phone.CribSheet;
 import entity.SubmissionResult;
 import pages.phone.*;
 import pages.phone.variations.pastandcurrentcoverage.CT_PastAndCurrentInsuranceCoveragePage;
-import pages.phone.variations.planapplicationpage.VA_NJ_IL_LA_PlanApplicationQuestions;
+import pages.phone.variations.planapplicationpage.VA_NJ_IL_LA_NC_KY_AR_PlanApplicationQuestions;
 import pages.phone.variations.replacementnotice.RN034andRE073Page;
 import queries.SubmissionQuery;
 import org.fluentlenium.core.annotation.Page;
@@ -22,7 +22,7 @@ public class LouisanaIntegrationTest extends CQBaseIntegrationTest {
     @Page public VoiceSignatureInstructionsPage voiceSignatureInstructionsPage;
     @Page public CustomerInformationPage customerInformationPage;
     @Page public PlanSelectionAndStartDatePage planSelectionAndStartDatePage;
-    @Page public VA_NJ_IL_LA_PlanApplicationQuestions planApplicationQuestionsPage;
+    @Page public VA_NJ_IL_LA_NC_KY_AR_PlanApplicationQuestions planApplicationQuestionsPage;
     @Page public EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
     @Page public CT_PastAndCurrentInsuranceCoveragePage pastAndCurrentInsuranceCoveragePage;
     @Page public AuthorizationAndVerificationPage authorizationAndVerificationPage;

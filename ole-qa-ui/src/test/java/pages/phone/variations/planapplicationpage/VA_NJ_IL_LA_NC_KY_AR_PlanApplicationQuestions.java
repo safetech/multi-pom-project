@@ -5,7 +5,7 @@ import org.fluentlenium.core.domain.FluentWebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.phone.PlanApplicationQuestions;
 
-public class VA_NJ_IL_LA_PlanApplicationQuestions extends PlanApplicationQuestions {
+public class VA_NJ_IL_LA_NC_KY_AR_PlanApplicationQuestions extends PlanApplicationQuestions {
 
 
     protected int TOTAL_POSSIBLE_QUESTION_COUNT = 10;

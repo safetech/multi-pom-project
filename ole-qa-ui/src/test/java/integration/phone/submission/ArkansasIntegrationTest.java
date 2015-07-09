@@ -11,11 +11,11 @@ import org.junit.Test;
 import pages.phone.*;
 import pages.phone.variations.pastandcurrentcoverage.CA_PA_NJ_IN_OR_PastAndCurrentInsuranceCoveragePage;
 import pages.phone.variations.planapplicationpage.VA_NJ_IL_LA_NC_KY_AR_PlanApplicationQuestions;
-import pages.phone.variations.replacementnotice.RN078Page;
+import pages.phone.variations.replacementnotice.RN034ARPage;
 import queries.SubmissionQuery;
 import util.DateUtils;
 
-public class PennsylvaniaIntegrationTest extends CQBaseIntegrationTest {
+public class ArkansasIntegrationTest extends CQBaseIntegrationTest {
 
     @Page public CheatPage cheatPage;
     @Page public VoiceSignatureInstructionsPage voiceSignatureInstructionsPage;
@@ -27,11 +27,12 @@ public class PennsylvaniaIntegrationTest extends CQBaseIntegrationTest {
     @Page public AuthorizationAndVerificationPage authorizationAndVerificationPage;
     @Page public HealthHistoryQuestionsPage healthHistoryQuestionsPage;
     @Page public AgentVerificationPage agentVerificationPage;
-    @Page public RN078Page replacementNoticePage;
+    @Page public RN034ARPage replacementNoticePage;
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
     @Page public ApplicationSubmissionPage applicationSubmissionPage;
 
     public SubmissionQuery submissionQuery;
+
     private Faker faker;
     private CribSheet sheet;
     private SubmissionResult expectedSubmissionResult;
@@ -45,10 +46,10 @@ public class PennsylvaniaIntegrationTest extends CQBaseIntegrationTest {
     }
 
     @Test
-    public void test_pennsylvania_health_history_underwriting_with_rn() throws Exception {
+    public void test_arkansas_health_history_underwriting_with_rn() throws Exception {
 
         sheet.setRandomNameGenderAndMembershipNumber();
-        sheet.setRandomAddress("PA", "19002");
+        sheet.setRandomAddress("AR", "71212");
         sheet.setRandomContactInfo();
         sheet.setRandomCallCenterInfo();
         sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(69));
@@ -146,10 +147,10 @@ public class PennsylvaniaIntegrationTest extends CQBaseIntegrationTest {
     }
 
     @Test
-    public void test_pennsylvania_eligibility_underwriting_without_rn() throws Exception {
+    public void test_arkansas_eligibility_underwriting_without_rn() throws Exception {
 
         sheet.setRandomNameGenderAndMembershipNumber();
-        sheet.setRandomAddress("PA", "19002");
+        sheet.setRandomAddress("AR", "71212");
         sheet.setRandomContactInfo();
         sheet.setRandomCallCenterInfo();
         sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(66));
@@ -220,7 +221,7 @@ public class PennsylvaniaIntegrationTest extends CQBaseIntegrationTest {
         app.setApplicantPrintedNameAdd("AppName");
         app.setApplicantAddress("AppAdd");
 
-        expectedSubmissionResult.setAcceptedInfo();
+        expectedSubmissionResult.setPendingInfo("UNDERWRITING", "REVIEW FOR POSSIBLE ESRD");
 
         logger.info(gson.toJson(app));
 
@@ -232,11 +233,12 @@ public class PennsylvaniaIntegrationTest extends CQBaseIntegrationTest {
         planSelectionAndStartDatePage.fillAndSubmit(app);
         planApplicationQuestionsPage.fillAndSubmit(app);
         eligibilityHealthQuestionsPage.fillAndSubmit(app);
+        healthHistoryQuestionsPage.fillAndSubmit(app);
         pastAndCurrentInsuranceCoveragePage.fillAndSubmit(app);
         authorizationAndVerificationPage.fillAndSubmit(app);
         agentVerificationPage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
-        applicationSubmissionPage.isApproved();
+        applicationSubmissionPage.isPending();
 
         submissionQuery.verifySubmissionData(app, expectedSubmissionResult);
         submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
