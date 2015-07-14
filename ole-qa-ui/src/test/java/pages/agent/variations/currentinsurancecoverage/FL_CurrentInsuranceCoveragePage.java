@@ -41,9 +41,11 @@ public class FL_CurrentInsuranceCoveragePage extends WizardPage{
     @FindBy(css = "#OtherInsReplace_1") FluentWebElement OtherInsReplace_Yes;
     @FindBy(css = "#OtherInsReplace_2") FluentWebElement OtherInsReplace_No;
     FluentWebElement CpaSignatureInd;
+        protected int TOTAL_POSSIBLE_QUESTION_COUNT = 34;
 
     public void fillAndSubmit(Application app) {
 
+        assertQuestionCount(TOTAL_POSSIBLE_QUESTION_COUNT);
 
         fillYesNoQuestion(CPATurned65_Yes, CPATurned65_No, app.getCPATurned65());
         fillYesNoQuestion(CPAPartBIn6_Yes, CPAPartBIn6_No, app.getCPAPartBIn6());

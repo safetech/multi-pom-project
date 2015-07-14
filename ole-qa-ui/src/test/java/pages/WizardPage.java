@@ -27,7 +27,7 @@ public class WizardPage extends FluentPage {
     private String TEXT_SUB_SELECTOR = "span[data-textsub-id='%s']";
     public String WIZARD_PAGE_NEXT_BTN_SELECTOR = "a.action_next";
 
-    protected void waitForSpinnerToFinish() {waitForSpinnerToFinish(10);
+    protected void waitForSpinnerToFinish() {waitForSpinnerToFinish();
     }
 
     protected void waitForSpinnerToFinish(int seconds) {
@@ -43,7 +43,7 @@ public class WizardPage extends FluentPage {
         }
     }
 
-    protected void fillYesUnsureQuestion(FluentWebElement yesRadio, FluentWebElement noRadio, FluentWebElement unsureRadio, String answer) {
+    protected void fillYesNoUnsureQuestion(FluentWebElement yesRadio, FluentWebElement noRadio, FluentWebElement unsureRadio, String answer) {
         if(answer.equals(YES)) {
             yesRadio.click();
         }

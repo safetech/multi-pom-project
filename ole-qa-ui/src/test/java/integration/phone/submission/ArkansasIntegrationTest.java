@@ -49,7 +49,7 @@ public class ArkansasIntegrationTest extends CQBaseIntegrationTest {
     public void test_arkansas_health_history_underwriting_with_rn() throws Exception {
 
         sheet.setRandomNameGenderAndMembershipNumber();
-        sheet.setRandomAddress("AR", "71212");
+        sheet.setRandomAddress("AR", "71601");
         sheet.setRandomContactInfo();
         sheet.setRandomCallCenterInfo();
         sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(69));

@@ -87,17 +87,17 @@ public class CA_EligibilityHealthQuestions extends WizardPage {
 
     public void fillAndSubmit(Application app) {
         verifyInitialStateOfElements(app);
-        fillYesUnsureQuestion(ESRD_Yes, ESRD_No, ESRD_Maybe, app.getESRD());
-        fillYesUnsureQuestion(Eligdialysis_Yes, Eligdialysis_No, Eligdialysis_Maybe, app.getEligdialysis());
-        fillYesUnsureQuestion(EligRecdialysis_Yes, EligRecdialysis_No, EligRecdialysis_Maybe, app.getEligRecdialysis());
-        fillYesUnsureQuestion(EligHospital_Yes, EligHospital_No, EligHospital_Maybe, app.getEligHospital());
-        fillYesUnsureQuestion(EligSurgery_Yes, EligSurgery_No, EligSurgery_Maybe, app.getEligSurgery());
-        fillYesUnsureQuestion(EligOrgan_Yes, EligOrgan_No, EligOrgan_Maybe, app.getEligOrgan());
-        fillYesUnsureQuestion(EligSpine_Yes, EligSpine_No, EligSpine_Maybe, app.getEligSpine());
-        fillYesUnsureQuestion(Eligjoint_Yes, Eligjoint_No, Eligjoint_Maybe, app.getEligjoint());
-        fillYesUnsureQuestion(EligCancer_Yes, EligCancer_No, EligCancer_Maybe, app.getEligCancer());
-        fillYesUnsureQuestion(EligHeart_Yes, EligHeart_No, EligHeart_Maybe, app.getEligHeart());
-        fillYesUnsureQuestion(EligVascular_Yes, EligVascular_No, EligVascular_Maybe, app.getEligVascular());
+        fillYesNoUnsureQuestion(ESRD_Yes, ESRD_No, ESRD_Maybe, app.getESRD());
+        fillYesNoUnsureQuestion(Eligdialysis_Yes, Eligdialysis_No, Eligdialysis_Maybe, app.getEligdialysis());
+        fillYesNoUnsureQuestion(EligRecdialysis_Yes, EligRecdialysis_No, EligRecdialysis_Maybe, app.getEligRecdialysis());
+        fillYesNoUnsureQuestion(EligHospital_Yes, EligHospital_No, EligHospital_Maybe, app.getEligHospital());
+        fillYesNoUnsureQuestion(EligSurgery_Yes, EligSurgery_No, EligSurgery_Maybe, app.getEligSurgery());
+        fillYesNoUnsureQuestion(EligOrgan_Yes, EligOrgan_No, EligOrgan_Maybe, app.getEligOrgan());
+        fillYesNoUnsureQuestion(EligSpine_Yes, EligSpine_No, EligSpine_Maybe, app.getEligSpine());
+        fillYesNoUnsureQuestion(Eligjoint_Yes, Eligjoint_No, Eligjoint_Maybe, app.getEligjoint());
+        fillYesNoUnsureQuestion(EligCancer_Yes, EligCancer_No, EligCancer_Maybe, app.getEligCancer());
+        fillYesNoUnsureQuestion(EligHeart_Yes, EligHeart_No, EligHeart_Maybe, app.getEligHeart());
+        fillYesNoUnsureQuestion(EligVascular_Yes, EligVascular_No, EligVascular_Maybe, app.getEligVascular());
 
         verifyStateOfElementAfterAnswers(app);
         clickNextAndWaitForSpinnerToFinish();
