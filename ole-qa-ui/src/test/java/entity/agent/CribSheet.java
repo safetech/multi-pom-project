@@ -2,7 +2,6 @@ package entity.agent;
 
 import com.github.javafaker.Faker;
 import util.DateUtils;
-
 import java.util.Random;
 
 import static util.DateUtils.randBetween;
@@ -493,18 +492,38 @@ public class CribSheet {
         this.setAddressLine2(faker.secondaryAddress());
         this.setCity(this.getRandomCity());
 
-/*        assertThat(State.getValue(), equalTo(app.getState()));
-        fill(Email).with(app.getEmail());
-        fill(ConfirmEmail).with(app.getConfirmEmail());
-        fill(PhonePrimary).with(app.getPhonePrimary());
-        fill(PhoneEvening).with(app.getPhoneEvening());
-        // fill(DOB).with(sheet.getDOB());
-        fill(MedicareClaimNum).with(app.getMedicareClaimNum());
-        fill(MPAED).with(app.getMPAED());
-        fillYesNoQuestion(PartABActiveIndicator_Yes, PartABActiveIndicator_No, app.getPartABActiveIndicator());
-        fill(AgentEmail).with(app.getAgentEmail());
-        fill(AgentEmailConfirm).with(app.getAgentEmailConfirm());*/
     }
+
+    public void setRandomNameGenderAndMembershipNumber() {
+        this.setPrefix(this.getRandomPrefix());
+        this.setFirstName(this.faker.firstName());
+        this.setMiddleInitial(this.faker.letterify("?"));
+        this.setLastName(this.faker.lastName());
+        this.setSuffix(this.getRandomSuffix());
+        this.setGender(this.getRandomGender());
+        this.setMembershipNumber(faker.numerify("#########"));
+    }
+
+    public void setRandomAddress(String state, String zip) {
+        this.setAddressLine1(faker.streetAddress(false));
+        this.setAddressLine2(faker.secondaryAddress());
+        this.setCity(this.getRandomCity());
+        this.setState(state);
+        this.setZip(zip);
+    }
+
+    public void setRandomContactInfo() {
+        this.setDayPhone(faker.numerify("##########"));
+        this.setEveningPhone(faker.numerify("##########"));
+        this.setEmail(String.format("%s.%s@testmail.com", faker.letterify("????"), faker.letterify("????")));
+    }
+
+    public void setRandomCallCenterInfo() {
+        this.setSourceCode(faker.bothify("???"));
+        this.setHcsgApplicationId(faker.bothify("#-???????").toUpperCase());
+        this.setAgentFullName(String.format("%s %s %s", faker.firstName(), faker.firstName(), faker.lastName()));
+    }
+
     public static String[] ALL_GENDERS = {"M", "F", "U"};
     public static String[] ALL_PREFIXES = {"", "Dr", "Miss", "Mr", "Mrs", "Ms"};
     public static String[] ALL_SUFFIXES = {"", "I", "II", "III", "IV", "Jr", "Sr"};

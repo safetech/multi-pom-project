@@ -18,8 +18,10 @@ public class WizardPage extends FluentPage {
     protected final static String UNSURE = AnswerUtils.UNSURE;
     protected final static String BLANK = AnswerUtils.BLANK;
 
-    @FindBy(css = "section h3:first-of-type")
-    protected FluentWebElement pageTitle;
+    @FindBy(css = "section h3:first-of-type") protected FluentWebElement pageTitle;
+
+
+
 
     @FindBy(css = "a.action_next")
     protected FluentWebElement nextButton;

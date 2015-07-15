@@ -65,5 +65,4 @@ public class CheatPage extends FluentPage{
         assertThat(pageTitle.getText(), equalTo("Cheat Page"));
     }
 
-
 }
