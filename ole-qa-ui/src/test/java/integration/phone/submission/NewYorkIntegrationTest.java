@@ -181,6 +181,68 @@ public class NewYorkIntegrationTest extends CQBaseIntegrationTest {
         submissionQuery.verifySubmissionData(app, expectedSubmissionResult);
         submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
 
+    }
+
+    @Test
+    public void test_newyork_guaranteed_issue_with_rn2() throws Exception {
+
+        sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(69));
+        sheet.setMedPartBdate("2012-04-01");
+
+        // Customer Info Page
+        app.setMPAED("01/01/2012");
+        app.setMPBED("04/01/2012");
+
+        //Plan Eligibility
+        app.setDefaultPlanEligibilityQuestions(sheet);
+        app.setLostCoverage(NO);
+        app.setTobaccoUse(YES);
+
+        //Past And Current Coverage
+        app.setCPATurned65(NO);
+        app.setCPAPartBIn6(NO);
+        app.setMedicaidCovered(YES);
+        app.setMedicaidSupPremium(YES);
+        app.setMedicaidbenefit(YES);
+        app.setExistingMedicare(YES);
+        app.setOtherMedplanstart("01/01/2012");
+        app.setOtherMedplanend("01/01/2015");
+        app.setIntentReplace(YES);
+        app.setFirstTime(YES);
+        app.setDropMedSuppForThisPlan(YES);
+        app.setExistMedSupp(YES);
+        app.setMSInsCompany("AARP Insurance");
+        app.setMSPLAN("HMO");
+        app.setReplaceExistingMedSup(YES);
+        app.setOtherInsCoverage(YES);
+        app.setOtherInsCompany("Blue Cross Blue Shield");
+        app.setOtherInsType("HMO");
+        app.setOtherInsStart("01/01/2001");
+        app.setOtherInsEnd("01/01/2014");
+        app.setOtherInsReplace(NO);
+        app.setCpaSignatureInd(YES);
+
+        //Replacement Notice Page
+        app.setCommonReplacementNoticeAnswersWithApplicantInfo();
+
+        expectedSubmissionResult.setAcceptedInfo();
+
+        startApp(cheatPage, app, sheet);
+
+        voiceSignatureInstructionsPage.fillAndSubmit(app);
+        customerInformationPage.fillAndSubmit(app);
+        planSelectionAndStartDatePage.fillAndSubmit(app);
+        pastAndCurrentInsuranceCoveragePage.fillAndSubmit(app);
+        authorizationAndVerificationPage.fillAndSubmit(app);
+        agentVerificationPage.fillAndSubmit(app);
+        replacementNoticePage.fillAndSubmit(app);
+        reviewAndSubmitPage.fillAndSubmit(app);
+
+        applicationSubmissionPage.isAt();
+        applicationSubmissionPage.isApproved();
+
+        submissionQuery.verifySubmissionData(app, expectedSubmissionResult);
+        submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
 
     }
 
