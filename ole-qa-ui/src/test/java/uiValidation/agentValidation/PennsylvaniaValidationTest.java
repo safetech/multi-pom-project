@@ -1,4 +1,4 @@
-package UserInputValidation.agentValidation;
+package uiValidation.agentValidation;
 
 import com.github.javafaker.Faker;
 import entity.Application;
@@ -13,7 +13,6 @@ import pages.agent.variations.currentinsurancecoverage.FL_CurrentInsuranceCovera
 import pages.agent.variations.planapplication.NV_PlanApplicationQuestionsPage;
 import pages.agent.variations.replacenotice.RN078Page;
 import queries.SubmissionQuery;
-import util.DateUtils;
 
 public class PennsylvaniaValidationTest extends CQBaseIntegrationTest {
     @Page public CheatPage cheatPage;
@@ -40,7 +39,7 @@ public class PennsylvaniaValidationTest extends CQBaseIntegrationTest {
     public void setup() {
         submissionQuery = new SubmissionQuery();
         faker = new Faker();
-        sheet = new CribSheet(faker);
+
         expectedSubmissionResult = new SubmissionResult();
     }
 
@@ -48,14 +47,16 @@ public class PennsylvaniaValidationTest extends CQBaseIntegrationTest {
     @Test
     public void test_pennsylvania_field_business_modals_errors_validations() throws Exception {
 
-        sheet.setRandomNameGenderAndMembershipNumber();
-        sheet.setRandomAddress("PA", "19002");
-        sheet.setRandomContactInfo();
-        sheet.setRandomCallCenterInfo();
-        sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(69));
-        sheet.setMedPartBdate("2012-04-01");
-        sheet.setDpsdToFirstDayOfFutureMonth(1);
-        sheet.setPlanCode("F01");
+        sheet.setAgentId("Test");
+        sheet.setAgentMedSuppStates("[NV| CA| MA| FL| NY| OH]");
+        sheet.setAgentCertificationYears("[2014 |2015| 2016]");
+        sheet.setMarketability_code(BLANK);
+        sheet.setSiteId("UHP");
+        sheet.setAgentNPN(BLANK);
+        sheet.setAgentName("BOB DOBBS");
+        sheet.setAgentEmail("bob@dobbsco.com");
+        sheet.setAgentPartyId("54321");
+        sheet.setReferrer("ulayer");
 
         Application app = new Application();
 
