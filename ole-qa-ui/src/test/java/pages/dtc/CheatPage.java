@@ -35,7 +35,7 @@ public class CheatPage extends FluentPage{
 
 
     public String getUrl() {
-        return "https://aarpsupplementalhealth-stg.uhc.com/ole/ms.html?cheat=true";
+        return "https://aarpsupplementalhealth-tst.uhc.com/ole/ms.html?cheat=true";
     }
 
     public void fillAndSubmit(CribSheet sheet) {
@@ -64,7 +64,30 @@ public class CheatPage extends FluentPage{
         cheatButton.click();
         waitForSpinnerToFinish();
     }
+    public void resumeFillAndSubmit(CribSheet sheet) {
+        isAt();
+        fill(state).with(sheet.getState());
+        fill(zip).with(sheet.getZip());
+        fill(aarpMemid).with("y");
+        fill(DOB).with(sheet.getDOB());
+        fill(effDate).with(sheet.getEffDate());
+        fill(psd).with(sheet.getPsd());
+        fill(planCode).with(sheet.getPlanCode());
+        fill(marketability_code).with(sheet.getMarketability_code());
+        fill(referrer).with(sheet.getReferrer());
+        fill(returnURL).with(sheet.getReturnURL());
+        fill(HASHID).with(sheet.getHASHID());
+        fill(WT_mc_id).with(sheet.getWT_mc_id());
+        fill(applicationId).with(sheet.getApplicationId());
+        if(!sheet.getReadonly().equals(AnswerUtils.BLANK)) {
+            readonly.click();
+        }
+        resume.click();
+        fill(log_level).with(sheet.getLog_level());
 
+        cheatButton.click();
+        waitForSpinnerToFinish();
+    }
     protected void waitForSpinnerToFinish() {
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
     }
@@ -74,3 +97,4 @@ public class CheatPage extends FluentPage{
 
 
 }
+

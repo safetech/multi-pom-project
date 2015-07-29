@@ -36,7 +36,6 @@ public class CQBaseIntegrationTest extends FluentTest {
     protected String YES = AnswerUtils.YES;
     protected String UNSURE = AnswerUtils.UNSURE;
     protected String BLANK = AnswerUtils.BLANK;
-
     @Rule
     public TestRule testWatcher = new TestWatcher() {
         @Override

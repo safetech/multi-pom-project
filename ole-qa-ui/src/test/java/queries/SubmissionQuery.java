@@ -154,5 +154,4 @@ public class SubmissionQuery {
 
     }
 
-// Create another Submission Query for Agent
 }

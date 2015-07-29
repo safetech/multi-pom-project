@@ -176,7 +176,6 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         paymentDetailsSummaryPage.fillAndSubmit(app);
         reviewAndSubmitPage.isAt();
         reviewAndSubmitPage.fillAndSubmit(app);
-
         expectedSubmissionResult.setAcceptedInfo();
         submissionQuery.verifySubmissionData(app, expectedSubmissionResult);
         submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
@@ -201,7 +200,6 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         app.setZipCode("90210");
         app.setDOB(DateUtils.getDOBInNormalDateFormat(66));
         app.setMPBED("05/01/2015");
-
         app.setCpaSignatureIndTouch(Application.ALL_SIGNATURES[0]);
         app.setSignatureIndTouch(Application.ALL_SIGNATURES[1]);
         app.setMedicalReleaseAuthSignatureIndTouch(Application.ALL_SIGNATURES[2]);
@@ -211,7 +209,6 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         app.setApplicantRNSignatureIndTouch(Application.ALL_SIGNATURES[6]);
         app.setEftSignatureIndTouch(Application.ALL_SIGNATURES[7]);
         app.setMedicalReleaseClaimSignatureIndTouch(Application.ALL_SIGNATURES[8]);
-
         //TestData
         app.setAARPMembershipNumber(faker.numerify("##########"));
         app.setPrefix("MR");
@@ -253,7 +250,6 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         app.setEligHeart(NO);
         app.setEligVascular(NO);
         app.setTobaccoUse(YES);
-
         //Past And Current Coverage
         app.setCPATurned65(YES);
         app.setCPAPartBIn6(YES);
@@ -278,7 +274,6 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         app.setOtherInsEnd("01/01/2014");
         app.setOtherInsReplace(YES);
         app.setCpaSignatureInd(YES);
-
         //Agent Verification page
         app.setAgentOtherInsPoliciesSold("HMO");
         app.setAgentPoliciesInForce("HMO In Force");

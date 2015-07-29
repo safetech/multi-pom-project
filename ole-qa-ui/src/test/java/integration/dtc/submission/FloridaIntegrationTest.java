@@ -5,7 +5,6 @@ import entity.Application;
 import entity.SubmissionResult;
 import entity.dtc.CribSheet;
 import integration.CQBaseIntegrationTest;
-import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
@@ -45,14 +44,6 @@ public class FloridaIntegrationTest extends CQBaseIntegrationTest {
         expectedSubmissionResult = new SubmissionResult();
         sheet.setState("FL");
         sheet.setZip("32065");
-    }
-
-    @Ignore
-    public void test_db() throws Exception {
-        Application app = new Application();
-        app.setHCSGApplicationId("3-BXRJHQO");
-        SubmissionResult expectedSubmissionResult = new SubmissionResult();
-        submissionQuery.verifySubmissionData(app, expectedSubmissionResult);
     }
 
     @Test

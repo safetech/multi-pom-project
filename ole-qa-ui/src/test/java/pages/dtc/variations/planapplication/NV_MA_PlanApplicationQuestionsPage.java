@@ -13,6 +13,7 @@ public class NV_MA_PlanApplicationQuestionsPage extends WizardPage {
     @FindBy(css = "#TobaccoUse_2") protected FluentWebElement TobaccoUse_No;
     @FindBy(css = "#LostCoverage_1") FluentWebElement LostCoverage_Yes;
     @FindBy(css = "#LostCoverage_2") FluentWebElement LostCoverage_No;
+
     public void fillAndSubmit(Application app) {
 
         isAt();
@@ -25,12 +26,12 @@ public class NV_MA_PlanApplicationQuestionsPage extends WizardPage {
         } else {
 
             fillYesNoQuestion(LostCoverage_Yes, LostCoverage_No, app.getLostCoverage());
-        }
+                }
 
         clickNextAndWaitForSpinnerToFinish();
     }
 
     public void isAt() {
         assertThat(pageTitle.getText(), equalTo("Plan Application Questions"));
-    }
+     }
 }

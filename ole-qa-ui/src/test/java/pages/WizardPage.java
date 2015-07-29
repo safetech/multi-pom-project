@@ -21,15 +21,30 @@ public class WizardPage extends FluentPage {
     @FindBy(css = "section h3:first-of-type") protected FluentWebElement pageTitle;
 
 
+    public FluentWebElement ZipCode;
+    public FluentWebElement DOB;
+    public FluentWebElement MPBED;
+    public String dtcApplicationId = "";
+
+    public String getDtcApplicationId() {
+        return this.dtcApplicationId;
+    }
+
+    public void setDtcApplicationId(String dtcApplicationId) {
+        this.dtcApplicationId = dtcApplicationId;
+    }
 
 
     @FindBy(css = "a.action_next")
-    protected FluentWebElement nextButton;
+    public FluentWebElement nextButton;
+    public FluentWebElement resume;
+
 
     private String TEXT_SUB_SELECTOR = "span[data-textsub-id='%s']";
     public String WIZARD_PAGE_NEXT_BTN_SELECTOR = "a.action_next";
 
-    protected void waitForSpinnerToFinish() {waitForSpinnerToFinish();
+    protected void waitForSpinnerToFinish() {
+        waitForSpinnerToFinish(10);
     }
 
     protected void waitForSpinnerToFinish(int seconds) {
