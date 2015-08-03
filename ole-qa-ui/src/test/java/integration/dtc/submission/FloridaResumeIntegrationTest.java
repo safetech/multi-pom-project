@@ -9,13 +9,12 @@ import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
 import pages.dtc.*;
-import pages.dtc.variations.pastandcurrentcoverage.FL_PastAndCurrentCoveragePage;
 import pages.dtc.variations.planapplication.NV_MA_PlanApplicationQuestionsPage;
 import pages.dtc.variations.planselectionandstartdate.NV_MA_PlanSelectionAndStartDatePage;
 import queries.SubmissionQueryDtc;
 import util.DateUtils;
 
-public class FloridaResumeTest extends CQBaseIntegrationTest {
+public class FloridaResumeIntegrationTest extends CQBaseIntegrationTest {
 
     @Page public CheatPage cheatPage;
     @Page public WhatYouNeedPage whatYouNeedPage;
@@ -24,13 +23,13 @@ public class FloridaResumeTest extends CQBaseIntegrationTest {
     @Page public NV_MA_PlanSelectionAndStartDatePage planSelectionAndStartDatePage;
     @Page public NV_MA_PlanApplicationQuestionsPage planApplicationQuestionsPage;
     @Page public EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
-    @Page public FL_PastAndCurrentCoveragePage pastAndCurrentCoveragePage;
     @Page public AuthorizationPage authorizationPage;
     @Page public RN034andRE073Page replacementNoticePage;
     @Page public PlanPaymentOptionsPage planPaymentOptionsPage;
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
     @Page public ApplicationSubmissionPage applicationSubmissionPage;
     @Page public UniqueIDEntryPage uniqueIDEntryPage;
+    @Page public ResumeApplicationPage resumeApplicationPage;
 
     public SubmissionQueryDtc submissionQuery;
     private Faker faker;
@@ -125,6 +124,7 @@ public class FloridaResumeTest extends CQBaseIntegrationTest {
 
         uniqueIDEntryPage.isAt();
         uniqueIDEntryPage.fillAndSubmit(app);
+
+        resumeApplicationPage.isAt();
     }
-//TODO: Talk to Holley and Dodd about the delayed time to resume an app
 }

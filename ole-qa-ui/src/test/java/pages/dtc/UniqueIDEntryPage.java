@@ -10,7 +10,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class UniqueIDEntryPage extends WizardPage {
 
-    @FindBy(css = "#block>h3") FluentWebElement pageBorderContent;
     @FindBy(css = "#applicationId") FluentWebElement ApplicationId;
     @FindBy(css = "#DOB") FluentWebElement DOB;
     @FindBy(css = "#ZipCode") FluentWebElement ZipCode;
@@ -23,12 +22,11 @@ public class UniqueIDEntryPage extends WizardPage {
         fill(DOB).with(app.getDOBofPersonTurningAgeToday(69));
         fill(ZipCode).with("32065");
         ResumeApplication.click();
-
+        waitForSpinnerToFinish(10);
     }
 
     public void isAt() {
         assertThat(pageTitle.getText(), equalTo("Unique ID Entry"));
     }
-
 
 }

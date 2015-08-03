@@ -9,6 +9,7 @@ import java.util.GregorianCalendar;
 public class DateUtils {
 
     public static SimpleDateFormat COMPAS_DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
+    public static SimpleDateFormat RESTRICTED_DATE_FORMAT = new SimpleDateFormat("yyyy/MM/dd");
     public static SimpleDateFormat NORMALIZED_DATE_FORMAT = new SimpleDateFormat("MM/dd/yyyy");
 
     public static String getRandomDOB() {
@@ -45,7 +46,7 @@ public class DateUtils {
 
     public static String getDOBofPersonTurningAgeToday(int age) {
         Date dob = org.apache.commons.lang3.time.DateUtils.addYears(new Date(), -age);
-        return COMPAS_DATE_FORMAT.format(dob);
+        return RESTRICTED_DATE_FORMAT.format(dob);
     }
     public static String getDOBInNormalDateFormat(int age) {
         Date dob = org.apache.commons.lang3.time.DateUtils.addYears(new Date(), -age);
