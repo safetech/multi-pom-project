@@ -307,8 +307,6 @@ public class Application {
     private String GIMPBED = "";
     private String AARPMemberNumber = "";
 
-    private Hashtable<String, Object> testData = new Hashtable<String, Object>();
-
 
     public String getAARPMemberNumber() {
         return AARPMemberNumber;
@@ -1699,6 +1697,8 @@ public class Application {
     public void setPartABActiveIndicator(String partABActiveIndicator) {
         PartABActiveIndicator = partABActiveIndicator;
     }
+
+    private Hashtable<String, Object> testData = new Hashtable<String, Object>();
 
     public Hashtable<String, java.lang.Object> getTestData() {
         return testData;

@@ -9,8 +9,30 @@ import java.util.GregorianCalendar;
 public class DateUtils {
 
     public static SimpleDateFormat COMPAS_DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
-    public static SimpleDateFormat RESTRICTED_DATE_FORMAT = new SimpleDateFormat("yyyy/MM/dd");
+    public static SimpleDateFormat COMMON_DATE_FORMAT = new SimpleDateFormat("yyyy/MM/dd");
     public static SimpleDateFormat NORMALIZED_DATE_FORMAT = new SimpleDateFormat("MM/dd/yyyy");
+    public static SimpleDateFormat DD_MMM_YYYY_FORMAT = new SimpleDateFormat("dd-MMM-yyyy");
+
+
+    /* "insert into is_prefs.ecomm_transaction" +
+    " (transaction_id , token , Email_address, transaction_start_date," +
+            " state , Date_of_birth, created_by, Creation_date , last_modified_by, LAst_modified_date,
+*/
+    public static String setTransactionIdTrnStartDateDobCreationDateModifiedDate() {
+
+        GregorianCalendar gc = new GregorianCalendar();
+
+        int year = randBetween(1930, 1950);
+
+        gc.set(gc.YEAR, year);
+
+        int dayOfYear = randBetween(1, gc.getActualMaximum(gc.DAY_OF_YEAR));
+
+        gc.set(gc.DAY_OF_YEAR, dayOfYear);
+
+        return gc.get(gc.MONTH) + "/" + gc.get(gc.DAY_OF_MONTH) + "/" + gc.get(gc.YEAR);
+
+    }
 
     public static String getRandomDOB() {
 
@@ -46,7 +68,7 @@ public class DateUtils {
 
     public static String getDOBofPersonTurningAgeToday(int age) {
         Date dob = org.apache.commons.lang3.time.DateUtils.addYears(new Date(), -age);
-        return RESTRICTED_DATE_FORMAT.format(dob);
+        return COMMON_DATE_FORMAT.format(dob);
     }
     public static String getDOBInNormalDateFormat(int age) {
         Date dob = org.apache.commons.lang3.time.DateUtils.addYears(new Date(), -age);

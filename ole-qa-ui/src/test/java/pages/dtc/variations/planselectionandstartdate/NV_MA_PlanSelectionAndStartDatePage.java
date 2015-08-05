@@ -24,7 +24,6 @@ public class NV_MA_PlanSelectionAndStartDatePage extends WizardPage{
             app.getTestData().put("dtcApplicationId", dtcApplicationId);
             cancel.click();
             endSession.click();
-            //goTo("https://aarpsupplementalhealth-tst.uhc.com/ole/ms.html?cheat=true");
 
         }
 

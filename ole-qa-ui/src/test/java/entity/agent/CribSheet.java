@@ -478,20 +478,6 @@ public class CribSheet {
         this.setPsd(DateUtils.convertDate(DateUtils.getFirstDayOfFutureMonth(numOfMonths), DateUtils.COMPAS_DATE_FORMAT));
     }
 
-    //TODO: Create and enhance a smart function for Customer Info page
-    public void setRandomNamesGenderAarpAddressCity() {
-        this.setPrefix(this.getRandomPrefix());
-        this.setFirstName(this.faker.firstName());
-        this.setMiddleInitial(this.faker.letterify("?"));
-        this.setLastName(this.faker.lastName());
-        this.setSuffix(this.getRandomSuffix());
-        this.setGender(this.getRandomGender());
-        this.setMembershipNumber(faker.numerify("#########"));
-        this.setAddressLine1(faker.streetAddress(false));
-        this.setAddressLine2(faker.secondaryAddress());
-        this.setCity(this.getRandomCity());
-
-    }
 
     public void setRandomNameGenderAndMembershipNumber() {
         this.setPrefix(this.getRandomPrefix());

@@ -81,28 +81,6 @@ public class FloridaResumeIntegrationTest extends CQBaseIntegrationTest {
         //Eligibility Page
         app.setESRD(NO);
         app.setSurgeryNeeded(NO);
-        //Past and Current Coverage
-        app.setCPATurned65(NO);
-        app.setCPAPartBIn6(NO);
-        app.setMedicaidCovered(NO);
-        app.setOtherMedplanstart("");
-        app.setOtherMedplanend("");
-        app.setExistMedSupp(YES);
-        app.setMSInsCompany("US Care");
-        app.setMSPLAN("HMO, P");
-        app.setReplaceExistingMedSup(YES);
-        app.setReplacementReason("OtherReason");
-        app.setApplicantPrintedNameAdd("AppName");
-        app.setApplicantAddress("AppAdd");
-        app.setRNOther("Cheaper");
-        app.setIntentReplace(YES);
-        app.setOtherInsCoverage(NO);
-        app.setCpaSignatureInd(YES);
-        //Authorizationa and verififcation page
-        app.setDesignateLapse(YES);
-        app.setResumeApplication(YES);
-        // Resume Page
-        //app.setResumeZipAndDob();
 
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);
