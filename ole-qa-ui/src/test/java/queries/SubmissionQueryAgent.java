@@ -88,10 +88,6 @@ public class SubmissionQueryAgent {
         "  left outer join household_billing_profile d on b.household_id = d.household_id" +
         " where" +
         "  b.MEMBERSHIP_NUMBER = substr(%s,1, LENGTH(%s) - 1)";
-            //select substr(MEMBERSHIP_NUMBER, 0, LENGTH(MEMBERSHIP_NUMBER) - 1), MEMBERSHIP_NUMBER FROM APPLICATION WHERE ROWNUM < 100
-
-        //" b.MEMBERSHIP_NUMBER = SUBSTR (%s,  0,  LENGTH (%s) – 1)";
-       // "  b.MEMBERSHIP_NUMBER = '%s'";
 
     public void verifySubmissionData(Application app, SubmissionResult expectedSubmissionResult) throws SQLException {
 
@@ -99,7 +95,7 @@ public class SubmissionQueryAgent {
 
         logger.info(query);
 
-        HashMap<String, String> row = DbUtils.getSingleRecord(query, COMPAS_STAGE);
+        HashMap<String, String> row = DbUtils.getSingleRecord(query, COMPAS_SYS1);
         //HashMap<String, String> getSingleRecord(String query, String connectionString)
 
         String currentDate = DateUtils.NORMALIZED_DATE_FORMAT.format(new java.util.Date());
@@ -151,7 +147,7 @@ public class SubmissionQueryAgent {
         String query = String.format(ADJUDICATION_QUERY, app.getAARPMembershipNumber(), app.getAARPMembershipNumber());
         logger.info(query);
 
-        HashMap<String, String> row = DbUtils.getSingleRecord(query, COMPAS_STAGE);
+        HashMap<String, String> row = DbUtils.getSingleRecord(query, COMPAS_SYS1);
         logger.info("query is "+row.get("TYPE_DESC")+" and expected is "+expectedSubmissionResult.getWorkQueue());
         assertThat(row.get("TYPE_DESC"), equalTo(expectedSubmissionResult.getWorkQueue()));
         assertThat(row.get("ITEM_REASON_TYPE_DESC"), equalTo(expectedSubmissionResult.getWorkQueueReason()));

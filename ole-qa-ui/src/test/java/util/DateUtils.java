@@ -1,5 +1,6 @@
 package util;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -13,26 +14,20 @@ public class DateUtils {
     public static SimpleDateFormat NORMALIZED_DATE_FORMAT = new SimpleDateFormat("MM/dd/yyyy");
     public static SimpleDateFormat DD_MMM_YYYY_FORMAT = new SimpleDateFormat("dd-MMM-yyyy");
 
+    public static String setTransactionIdTrnStartDobCreationModifiedDate() {
 
-    /* "insert into is_prefs.ecomm_transaction" +
-    " (transaction_id , token , Email_address, transaction_start_date," +
-            " state , Date_of_birth, created_by, Creation_date , last_modified_by, LAst_modified_date,
-*/
-    public static String setTransactionIdTrnStartDateDobCreationDateModifiedDate() {
-
-        GregorianCalendar gc = new GregorianCalendar();
-
-        int year = randBetween(1930, 1950);
-
-        gc.set(gc.YEAR, year);
-
-        int dayOfYear = randBetween(1, gc.getActualMaximum(gc.DAY_OF_YEAR));
-
-        gc.set(gc.DAY_OF_YEAR, dayOfYear);
-
-        return gc.get(gc.MONTH) + "/" + gc.get(gc.DAY_OF_MONTH) + "/" + gc.get(gc.YEAR);
-
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DATE,+1);
+        return String.valueOf(cal.getTime());
     }
+
+    public static String customizePastOrFutureDates(int numOfDays) {
+        DateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy");
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DATE, numOfDays);
+        return dateFormat.format(cal.getTime());
+    }
+
 
     public static String getRandomDOB() {
 
@@ -68,7 +63,7 @@ public class DateUtils {
 
     public static String getDOBofPersonTurningAgeToday(int age) {
         Date dob = org.apache.commons.lang3.time.DateUtils.addYears(new Date(), -age);
-        return COMMON_DATE_FORMAT.format(dob);
+        return NORMALIZED_DATE_FORMAT.format(dob);
     }
     public static String getDOBInNormalDateFormat(int age) {
         Date dob = org.apache.commons.lang3.time.DateUtils.addYears(new Date(), -age);

@@ -10,6 +10,7 @@ import util.DbUtils;
 import java.sql.SQLException;
 import java.util.HashMap;
 
+import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.slf4j.LoggerFactory.getLogger;
@@ -93,7 +94,7 @@ public class SubmissionQuery {
 
         logger.info(query);
 
-        HashMap<String, String> row = DbUtils.getSingleRecord(query, COMPAS_SYS1);
+        HashMap<String, String> row = DbUtils.getSingleRecord(query, COMPAS_STAGE);
         //HashMap<String, String> getSingleRecord(String query, String connectionString)
 
         String currentDate = DateUtils.NORMALIZED_DATE_FORMAT.format(new java.util.Date());
@@ -137,7 +138,7 @@ public class SubmissionQuery {
         assertThat(row.get("PAYMENT_METHOD_TYPE_ID"), equalTo("2"));
         assertThat(row.get("ADJUDICATION_CD"), equalTo(expectedSubmissionResult.getAdjudicationStatus()));
 
-        logger.info(String.format("Here is the link to the image... https://acesx-tst-alt.uhc.com/appEnroll-web/resources/retrievePDF/v1/%s", row.get("APPL_IMAGE_NUM_ORIG")));
+        logger.info(String.format("Here is the link to the image... https://acesx-stg-alt.uhc.com/appEnroll-web/resources/retrievePDF/v1/%s", row.get("APPL_IMAGE_NUM_ORIG")));
 
     }
 
@@ -147,9 +148,11 @@ public class SubmissionQuery {
 
         logger.info(query);
 
-        HashMap<String, String> row = DbUtils.getSingleRecord(query, COMPAS_SYS1);
+        HashMap<String, String> row = DbUtils.getSingleRecord(query, COMPAS_STAGE);
+
         logger.info("query is "+row.get("TYPE_DESC")+" and expected is "+expectedSubmissionResult.getWorkQueue());
-        assertThat(row.get("TYPE_DESC"), equalTo(expectedSubmissionResult.getWorkQueue()));
+
+        assertThat(row.get("TYPE_DESC"), containsString(expectedSubmissionResult.getWorkQueue()));
         assertThat(row.get("ITEM_REASON_TYPE_DESC"), equalTo(expectedSubmissionResult.getWorkQueueReason()));
 
     }

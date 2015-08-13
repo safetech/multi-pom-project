@@ -161,7 +161,7 @@ public class NevadaIntegrationTest extends CQBaseIntegrationTest {
         reviewAndSubmitPage.fillAndSubmit(app);
 
 
-        expectedSubmissionResult.setPendingInfo("UNDERWRITING", "REVIEW FOR POSSIBLE ESRD");
+        expectedSubmissionResult.setPendingInfo("UNDERWRITING ELIGIBILITY", "REVIEW FOR POSSIBLE ESRD");
         submissionQuery.verifySubmissionData(app, expectedSubmissionResult);
         submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
 

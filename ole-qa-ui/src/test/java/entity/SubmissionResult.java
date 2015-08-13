@@ -49,4 +49,6 @@ public class SubmissionResult {
         setAdjudicationStatus("A");
         setStatus("C");
     }
+
+
 }
