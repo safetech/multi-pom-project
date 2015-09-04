@@ -23,10 +23,10 @@ public class CheckEligibilityAndAvailabilityPage extends WizardPage {
         fill(ZipCode).with(app.getZipCode());
         blur("#ZipCode");
             try{
-                Thread.sleep(5000);
+                Thread.sleep(10000);
             }catch(Exception e){
             }
-        await().atMost(20, TimeUnit.SECONDS).until("#State").hasAttribute("value", app.getState());
+        await().atMost(10, TimeUnit.SECONDS).until("#State").hasAttribute("value", app.getState());
         fill(DOB).with(app.getDOB());
         blur("#DOB");
             try{
@@ -39,7 +39,7 @@ public class CheckEligibilityAndAvailabilityPage extends WizardPage {
                 Thread.sleep(300);
             }catch(Exception e){
             }
-        await().atMost(5, TimeUnit.SECONDS).until("div.customer_eligibility_form #ReqEffectiveDate option").hasSize(4);
+        await().atMost(10, TimeUnit.SECONDS).until("div.customer_eligibility_form #ReqEffectiveDate option").hasSize(4);
         fillSelect("div.customer_eligibility_form #ReqEffectiveDate").withIndex(1);
 
         clickNextAndWaitForSpinnerToFinish();

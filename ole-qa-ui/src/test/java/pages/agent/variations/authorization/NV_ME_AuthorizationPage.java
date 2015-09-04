@@ -9,7 +9,7 @@ import pages.WizardPage;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class NV_AuthorizationPage extends WizardPage {
+public class NV_ME_AuthorizationPage extends WizardPage {
 
     @FindBy(name = "StateAux") FluentWebElement AuxState;
     FluentWebElement SignatureInd;

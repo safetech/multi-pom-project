@@ -82,8 +82,8 @@ public class ArkansasIntegrationTest extends CQBaseIntegrationTest {
         //TestData
         app.setAARPMembershipNumber(faker.numerify("##########"));
         app.setPrefix("MR");
-        app.setFirstName("trBob");
-        app.setLastName("adAutomation");
+        app.setFirstName("Bob");
+        app.setLastName("Automation");
         app.setSuffix("PHD");
         app.setAddressLine1("11211 frStreet dr");
         app.setAddressLine2("apt #123");

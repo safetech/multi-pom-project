@@ -30,7 +30,7 @@ public class NV_MA_PlanSelectionAndStartDatePage extends WizardPage{
     }
 
     public void isAt() {
-        assertThat(pageTitle.getText(), equalTo("Plan Selection and Start Date"));
+        assertThat(pageTitle.getText(), equalTo("Plan Selection and Start "));
     }
 
 }

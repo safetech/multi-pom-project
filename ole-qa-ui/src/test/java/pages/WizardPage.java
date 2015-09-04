@@ -127,6 +127,10 @@ public class WizardPage extends FluentPage {
     public void clickNextAndWaitForSpinnerToFinish() {
         clickNextAndWaitForSpinnerToFinish(10);
     }
+    protected void clickNextAndWaitForSpinnerToFinish(int seconds) {
+        nextButton.click();
+        waitForSpinnerToFinish(seconds);
+    }
 
     protected FluentWebElement getTextSubValue(String answername) {
         return findFirst(String.format(TEXT_SUB_SELECTOR, answername));
@@ -136,10 +140,6 @@ public class WizardPage extends FluentPage {
         assertThat(getTextSubValue(answername).getText(), equalTo(value));
     }
 
-    protected void clickNextAndWaitForSpinnerToFinish(int seconds) {
-        nextButton.click();
-        waitForSpinnerToFinish(seconds);
-    }
 
     protected void assertHidden(FluentWebElement element) {
         assertThat(element.isDisplayed(), equalTo(false));

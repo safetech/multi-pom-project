@@ -49,13 +49,17 @@ public class RN078Page extends WizardPage {
                 break;
         }
 
+
         AgentRNSignatureInd.click();
+        fillTouchSignature("AgentRNSignatureIndTouch",  app.getAgentRNSignatureIndTouch());
         fill(AgentPrintedNameAdd).with(app.getAgentPrintedNameAdd());
         fill(AgentAddress).with(app.getAgentAddress());
-
         ApplicantRNSignatureInd.click();
+        fillTouchSignature("ApplicantRNSignatureIndTouch",  app.getApplicantRNSignatureIndTouch());
         fill(ApplicantPrintedNameAdd).with(app.getApplicantPrintedNameAdd());
         fill(ApplicantAddress).with(app.getApplicantAddress());
+
+
 
         clickNextAndWaitForSpinnerToFinish();
     }
