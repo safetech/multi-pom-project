@@ -1,7 +1,15 @@
 package integration.preferences;
 
 import integration.CQBaseIntegrationTest;
+<<<<<<< HEAD
 import oracle.jdbc.pool.OracleDataSource;
+=======
+//import jdk.nashorn.internal.ir.annotations.Ignore;
+import oracle.jdbc.pool.OracleDataSource;
+import org.fluentlenium.core.annotation.Page;
+import org.junit.Ignore;
+import org.junit.Before;
+>>>>>>> 33ac902f563afcd3dbcccae1e1f6da6d510d43ee
 import org.junit.Test;
 import util.DateUtils;
 

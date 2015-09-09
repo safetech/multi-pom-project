@@ -10,7 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 import pages.dtc.*;
 import pages.dtc.variations.planapplication.NV_MA_PlanApplicationQuestionsPage;
-import pages.dtc.variations.planselectionandstartdate.NV_MA_PlanSelectionAndStartDatePage;
+import pages.dtc.variations.planselectionandstartdate.PA_AR_NV_MA_PlanSelectionAndStartDatePage;
 import queries.SubmissionQueryDtc;
 import util.DateUtils;
 
@@ -20,7 +20,7 @@ public class FloridaResumeIntegrationTest extends CQBaseIntegrationTest {
     @Page public WhatYouNeedPage whatYouNeedPage;
     @Page public ElectronicSignatureAndDocumentConsentPage electronicSignatureAndDocumentConsentPage;
     @Page public AboutYouPage aboutYouPage;
-    @Page public NV_MA_PlanSelectionAndStartDatePage planSelectionAndStartDatePage;
+    @Page public PA_AR_NV_MA_PlanSelectionAndStartDatePage planSelectionAndStartDatePage;
     @Page public NV_MA_PlanApplicationQuestionsPage planApplicationQuestionsPage;
     @Page public EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
     @Page public AuthorizationPage authorizationPage;
