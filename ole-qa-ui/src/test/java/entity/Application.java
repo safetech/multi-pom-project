@@ -992,6 +992,16 @@ public class Application {
     private String oleReffId = "";
     public String resumeApplication = "";
     public String applicationId = "";
+    public String applicationStatus = "";
+
+    public String getApplicationStatus() {
+        return applicationStatus;
+    }
+
+    public void setApplicationStatus(String applicationStatus) {
+        this.applicationStatus = applicationStatus;
+    }
+
 
     public String getDtcApplicationId() {
         return dtcApplicationId;
