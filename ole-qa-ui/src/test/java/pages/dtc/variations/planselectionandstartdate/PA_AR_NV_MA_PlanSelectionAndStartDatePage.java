@@ -8,7 +8,7 @@ import pages.WizardPage;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class NV_MA_PlanSelectionAndStartDatePage extends WizardPage{
+public class PA_AR_NV_MA_PlanSelectionAndStartDatePage extends WizardPage{
 
     @FindBy(xpath = "//b[contains(text(), 'ID ')]") public FluentWebElement applicationId;
     @FindBy(xpath = "//a[contains(text(), 'cancel')]") public FluentWebElement cancel;

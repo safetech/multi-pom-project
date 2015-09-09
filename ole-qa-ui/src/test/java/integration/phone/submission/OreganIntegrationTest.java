@@ -141,8 +141,8 @@ public class OreganIntegrationTest extends CQBaseIntegrationTest {
         ReplacementNotice034Page.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
         applicationSubmissionPage.isAt();
-        applicationSubmissionPage.isApproved();
 
+        applicationSubmissionPage.isApproved();
         submissionQuery.verifySubmissionData(app, expectedSubmissionResult);
         submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
 
