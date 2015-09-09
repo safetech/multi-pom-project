@@ -12,7 +12,7 @@ import pages.agent.*;
 import pages.agent.variations.authorization.NV_ME_AuthorizationPage;
 import pages.agent.variations.currentinsurancecoverage.NV_ME_CurrentInsuranceCoveragePage;
 import pages.agent.variations.planapplication.ME_PlanApplicationQuestionsPage;
-import pages.agent.variations.replacenotice.RN078Page;
+import pages.agent.variations.replacenotice.RN034andRE073WithSignaturePage;
 import queries.SubmissionQueryAgent;
 import util.DateUtils;
 
@@ -27,7 +27,7 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
     @Page public EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
     @Page public NV_ME_CurrentInsuranceCoveragePage currentInsuranceCoveragePage;
     @Page public NV_ME_AuthorizationPage authorizationPage;
-    @Page public RN078Page replacementNotice;
+    @Page public RN034andRE073WithSignaturePage replacementNotice;
     @Page public HealthHistoryQuestionsPage healthHistoryQuestionsPage;
     @Page public AgentVerificationPage agentVerificationPage;
     @Page public PaymentDetailsSummaryPage paymentDetailsSummaryPage;
@@ -269,11 +269,13 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
         //Eligibility Questions
         app.setESRD(NO);
         app.setSurgeryNeeded(NO);
-        //Eligibility Questions
+        //Plan Eligibility
         app.setTurned65In6GA(NO);
+        app.setPartBIn6GA(NO);
         app.setPlanEffIn6OfEligible(NO);
-        app.setTobaccoUse(YES);
         app.setLostCoverage(NO);
+        app.setTobaccoUse(NO);
+        app.setContinuousCoverage(YES);
         //Plan application question
         app.setPartBIn6GA(NO);
         app.setCPAPartBIn6(NO);
@@ -313,7 +315,16 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
         app.setAgentPrintedNameAdd(faker.letterify("??????????"));
         app.setAgentAddress(faker.letterify("??????????"));
 
-        expectedSubmissionResult.setAcceptedInfo();
+        //Agent Authorization page
+        app.setDesignateLapse(NO);
+        app.setAuxFirstName("AuxFirstName");
+        app.setAuxMI("M");
+        app.setAuxLastName("AuxLastName");
+        app.setAuxAddressLine1("AuxAddressLine1");
+        app.setAuxCity("AuxCity");
+        app.setAuxState("NV");
+        app.setAuxZipCode("89101");
+
 
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);
@@ -332,9 +343,6 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
 
         planApplicationQuestionsPage.isAt();
         planApplicationQuestionsPage.fillAndSubmit(app);
-
-        eligibilityHealthQuestionsPage.isAt();
-        eligibilityHealthQuestionsPage.fillAndSubmit(app);
 
         currentInsuranceCoveragePage.isAt();
         currentInsuranceCoveragePage.fillAndSubmit(app);
@@ -357,6 +365,7 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
         reviewAndSubmitPage.isAt();
         reviewAndSubmitPage.fillAndSubmit(app);
 
+        expectedSubmissionResult.setAcceptedInfo();
         submissionQuery.verifySubmissionData(app, expectedSubmissionResult);
         submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
 

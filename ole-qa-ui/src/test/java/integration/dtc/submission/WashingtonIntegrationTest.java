@@ -9,26 +9,24 @@ import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
 import pages.dtc.*;
-import pages.dtc.variations.authorization.NV_AuthorizationPage;
-import pages.dtc.variations.pastandcurrentcoverage.NV_PastAndCurrentCoveragePage;
-import pages.dtc.variations.planapplication.ME_PlanApplicationQuestions;
+import pages.dtc.variations.pastandcurrentcoverage.AR_CA_PA_PastAndCurrentCoveragePage;
+import pages.dtc.variations.planapplication.WA_PlanApplicationQuestionsPage;
 import pages.dtc.variations.planselectionandstartdate.PA_AR_NV_MA_PlanSelectionAndStartDatePage;
 import queries.SubmissionQueryDtc;
 import util.DateUtils;
 
-
-//TODO: to be finished
-public class MaineIntegrationTest extends CQBaseIntegrationTest {
+public class WashingtonIntegrationTest extends CQBaseIntegrationTest {
 
     @Page public CheatPage cheatPage;
     @Page public WhatYouNeedPage whatYouNeedPage;
     @Page public ElectronicSignatureAndDocumentConsentPage electronicSignatureAndDocumentConsentPage;
     @Page public AboutYouPage aboutYouPage;
     @Page public PA_AR_NV_MA_PlanSelectionAndStartDatePage planSelectionAndStartDatePage;
-    @Page public ME_PlanApplicationQuestions planApplicationQuestionsPage;
+    @Page public WA_PlanApplicationQuestionsPage planApplicationQuestionsPage;
     @Page public EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
-    @Page public NV_PastAndCurrentCoveragePage pastAndCurrentCoveragePage;
-    @Page public NV_AuthorizationPage authorizationPage;
+    @Page public AR_CA_PA_PastAndCurrentCoveragePage pastAndCurrentCoveragePage;
+    @Page public AuthorizationPage authorizationPage;
+    @Page public RN034andRE073Page replacementNoticePage;
     @Page public PlanPaymentOptionsPage planPaymentOptionsPage;
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
     @Page public HealthHistoryQuestionsPage healthHistoryQuestionsPage;
@@ -43,14 +41,14 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
         submissionQuery = new SubmissionQueryDtc();
         faker = new Faker();
         sheet = new CribSheet(faker);
-        sheet.setState("ME");
-        sheet.setZip("03901");
+        sheet.setState("WA");
+        sheet.setZip("98001");
 
         expectedSubmissionResult = new SubmissionResult();
     }
 
     @Test
-    public void test_maine_underwriting_with_health_history_and_designeeSig() throws Exception {
+    public void test_washington_underwriting_with_health_history() throws Exception {
 
         sheet.setAarpMemid("y");
         sheet.setDOB(DateUtils.getDOBofPersonTurningAgeToday(69));
@@ -67,7 +65,7 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
         app.setMI(this.faker.letterify("?"));
         app.setLastName(this.faker.lastName());
         app.setSuffix("PHD");
-        app.setAddressLine1("111 Street dr");
+        app.setAddressLine1(faker.bothify("#### ??????????? ??"));
         app.setAddressLine2("apt #123");
         app.setCity("Horsham");
         app.setEmail("test@uhc.com");
@@ -75,7 +73,8 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
         app.setPhonePrimary("9874562345");
         app.setPhoneEvening("1234561234");
         app.setGender("M");
-        app.setMedicareClaimNum("123123123A");
+        app.setMedicareClaimNum(faker.numerify("A#########"));
+       // app.setMedicareClaimNum("123123123A");
         app.setMPAED("01/01/2010");
         app.setPartABActiveIndicator(YES);
         //Plan Application Page
@@ -84,13 +83,23 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
         app.setTurned65In6GA(NO);
         app.setPartBIn6GA(NO);
         app.setPlanEffIn6OfEligible(NO);
-        app.setContinuousCoverage(NO);
+        app.setMedSuppReplace(NO);
         //Eligibility Page
         app.setESRD(NO);
         app.setSurgeryNeeded(NO);
         //Authorizationa and verififcation page
         app.setDesignateLapse(YES);
-
+        //Past And Current Coverage
+        app.setSixMonEligEnroll(YES);
+        app.setSixMonEligEnroll(YES);
+        app.setSixMonTurn65Enroll(YES);
+        app.setSixMonTurn65Enroll(YES);
+        app.setSixEmpCovTerm(YES);
+        app.setSixEmpCovTerm(YES);
+        app.setSixMonMoveOut(YES);
+        app.setSixMonMoveOut(YES);
+        app.setSixMonResident(YES);
+        app.setSixMonResident(YES);
         //Past And Current Coverage
         app.setCPATurned65(NO);
         app.setCPAPartBIn6(NO);
@@ -114,21 +123,9 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
         app.setOtherInsEnd("01/01/2014");
         app.setOtherInsReplace(YES);
         app.setCpaSignatureInd(YES);
-
-        //Authorizationa and verififcation page
-        app.setDesignateLapse(NO);
-        app.setAuxFirstName("AuxFirstName");
-        app.setAuxMI("M");
-        app.setAuxLastName("AuxLastName");
-        app.setAuxAddressLine1("AuxAddressLine1");
-        app.setAuxCity("AuxCity");
-        app.setAuxState("NV");
-        app.setAuxZipCode("89101");
-
         //Replacement Notice Page
         app.setCommonReplacementNoticeAnswersWithApplicantInfo();
         app.setCommonHealthHistoryAnswers();
-
 
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);
@@ -163,17 +160,17 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
         reviewAndSubmitPage.isAt();
         reviewAndSubmitPage.fillAndSubmit(app);
 
-        expectedSubmissionResult.setAcceptedInfo();
+        expectedSubmissionResult.setPendingInfo("ENROLLMENT CPA REVIEW", "CPA REVIEW REQUIRED");
         submissionQuery.verifySubmissionData(app, expectedSubmissionResult);
         submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
 
     }
     @Test
-    public void test_maine_guranteed_issue() throws Exception {
+    public void test_washington_guranteed_issue() throws Exception {
 
         sheet.setAarpMemid("y");
         sheet.setDOB(DateUtils.getDOBofPersonTurningAgeToday(65));
-        sheet.setEffDate("04/01/2015");
+        sheet.setEffDate("09/01/2015");
         sheet.setPsd(DateUtils.getFirstDayOfFutureMonth(1));
         sheet.setPlanCode("A");
         sheet.setReferrer("uLayer");
@@ -186,9 +183,9 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
         app.setMI(this.faker.letterify("?"));
         app.setLastName(this.faker.lastName());
         app.setSuffix("PHD");
-        app.setAddressLine1("123 Street dr");
+        app.setAddressLine1(faker.bothify("#### ??????????? ??"));
         app.setAddressLine2("apt #123");
-        app.setCity("Las Vegas");
+        app.setCity("Horsham");
         app.setEmail("test@uhc.com");
         app.setConfirmEmail("test@uhc.com");
         app.setPhonePrimary("9874562345");
@@ -199,16 +196,27 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
         app.setPartABActiveIndicator(YES);
         //Plan Application Page
         app.setTobaccoUse(YES);
+        app.setLostCoverage(YES);
         app.setTurned65In6GA(YES);
         app.setPartBIn6GA(YES);
         app.setPlanEffIn6OfEligible(YES);
+        app.setMedSuppReplace(NO);
         //Eligibility Page
         app.setESRD(NO);
         app.setSurgeryNeeded(NO);
         //Authorizationa and verififcation page
         app.setDesignateLapse(YES);
-
         //Past And Current Coverage
+        app.setSixMonEligEnroll(NO);
+        app.setSixMonEligEnroll(NO);
+        app.setSixMonTurn65Enroll(NO);
+        app.setSixMonTurn65Enroll(NO);
+        app.setSixEmpCovTerm(NO);
+        app.setSixEmpCovTerm(NO);
+        app.setSixMonMoveOut(NO);
+        app.setSixMonMoveOut(NO);
+        app.setSixMonResident(NO);
+        app.setSixMonResident(NO);
         app.setCPATurned65(NO);
         app.setCPAPartBIn6(NO);
         app.setMedicaidCovered(YES);
@@ -231,7 +239,6 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
         app.setOtherInsEnd("01/01/2014");
         app.setOtherInsReplace(YES);
         app.setCpaSignatureInd(YES);
-
         //Authorizationa and verififcation page
         app.setDesignateLapse(NO);
         app.setAuxFirstName("AuxFirstName");
@@ -241,7 +248,6 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
         app.setAuxCity("AuxCity");
         app.setAuxState("NV");
         app.setAuxZipCode("89101");
-
         //Replacement Notice Page
         app.setCommonReplacementNoticeAnswersWithApplicantInfo();
 
@@ -275,7 +281,7 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
         reviewAndSubmitPage.isAt();
         reviewAndSubmitPage.fillAndSubmit(app);
 
-        expectedSubmissionResult.setAcceptedInfo();
+        expectedSubmissionResult.setPendingInfo("ENROLLMENT CPA REVIEW", "CPA REVIEW REQUIRED");
         submissionQuery.verifySubmissionData(app, expectedSubmissionResult);
         submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
 

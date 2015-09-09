@@ -10,23 +10,23 @@ import org.junit.Before;
 import org.junit.Test;
 import pages.agent.*;
 import pages.agent.variations.currentinsurancecoverage.AR_PA_OR_CurrentInsuranceCoveragePage;
-import pages.agent.variations.planapplication.AR_PA_PlanApplicationQuestionsPage;
-import pages.agent.variations.replacenotice.RN034_AR_Page;
+import pages.agent.variations.planapplication.OR_PlanApplicationQuestions;
+import pages.agent.variations.replacenotice.RN034andRE073WithSignaturePage;
 import queries.SubmissionQueryAgent;
 import util.DateUtils;
 
-public class ArkansasIntegrationTest extends CQBaseIntegrationTest {
+public class OreganIntegrationTest extends CQBaseIntegrationTest {
 
     @Page public CheatPage cheatPage;
     @Page public PlanSelectionPage planSelectionPage;
     @Page public CheckEligibilityAndAvailabilityPage checkEligibilityAndAvailabilityPage;
     @Page public WhatYouNeedPage whatYouNeedPage;
     @Page public CustomerInformationPage customerInformationPage;
-    @Page public AR_PA_PlanApplicationQuestionsPage planApplicationQuestionsPage;
+    @Page public OR_PlanApplicationQuestions planApplicationQuestionsPage;
     @Page public EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
     @Page public AR_PA_OR_CurrentInsuranceCoveragePage currentInsuranceCoveragePage;
     @Page public AuthorizationPage authorizationPage;
-    @Page public RN034_AR_Page replacementNotice;
+    @Page public RN034andRE073WithSignaturePage replacementNotice;
     @Page public HealthHistoryQuestionsPage healthHistoryQuestionsPage;
     @Page public AgentVerificationPage agentVerificationPage;
     @Page public PaymentDetailsSummaryPage paymentDetailsSummaryPage;
@@ -48,10 +48,10 @@ public class ArkansasIntegrationTest extends CQBaseIntegrationTest {
         expectedSubmissionResult = new SubmissionResult();
     }
     @Test
-    public void test_arkansas_health_history_without_rn() throws Exception {
+    public void test_oregan_health_history_without_rn() throws Exception {
 
         sheet.setAgentId("Test");
-        sheet.setAgentMedSuppStates("[NV| CA| MA| FL| NY| OH| AR]");
+        sheet.setAgentMedSuppStates("[NV| CA| MA| FL| NY| OH| AR| PA| WA| OR]");
         sheet.setAgentCertificationYears("[2014 |2015| 2016]");
         sheet.setMarketability_code(BLANK);
         sheet.setSiteId("UHP");
@@ -62,8 +62,8 @@ public class ArkansasIntegrationTest extends CQBaseIntegrationTest {
         sheet.setReferrer("ulayer");
 
         Application app = new Application();
-        app.setState("AR");
-        app.setZipCode("71601");
+        app.setState("OR");
+        app.setZipCode("97001");
         app.setDOB(DateUtils.getDOBInNormalDateFormat(69));
         app.setMPBED("05/01/2012");
 
@@ -82,18 +82,19 @@ public class ArkansasIntegrationTest extends CQBaseIntegrationTest {
         //TestData
         app.setAARPMembershipNumber(faker.numerify("##########"));
         app.setPrefix("MR");
-        app.setFirstName("Bob");
-        app.setLastName("Automation");
+        app.setFirstName(faker.letterify("??????????"));
+        app.setLastName(faker.letterify("??????????"));
         app.setSuffix("PHD");
+        app.setAddressLine1(faker.bothify("### ??????????? ??"));
         app.setAddressLine1("11211 frStreet dr");
         app.setAddressLine2("apt #123");
         app.setCity("Horsham");
         app.setEmail("test@uhc.com");
         app.setConfirmEmail("test@uhc.com");
-        app.setPhonePrimary("9874562345");
+        app.setPhonePrimary(faker.numerify("##########"));
         app.setPhoneEvening("1255561234");
         app.setGender("M");
-        app.setMedicareClaimNum("123443123A");
+        app.setMedicareClaimNum(faker.bothify("?#########"));
         app.setMPAED("01/01/2015");
         app.setPartABActiveIndicator(YES);
         app.setAgentEmail("agent@uhc.com");
@@ -111,12 +112,11 @@ public class ArkansasIntegrationTest extends CQBaseIntegrationTest {
         app.setPlanEffIn6OfEligible(NO);
         app.setLostCoverage(NO);
         app.setTobaccoUse(YES);
-
+        app.setMedSuppReplace(NO);
         //Past And Current Coverage
         app.setCPATurned65(NO);
         app.setTurned65In6GA(NO);
         app.setPartBIn6GA(NO);
-        app.setCPAPartBIn6(NO);
         app.setCPAPartBIn6(NO);
         app.setMedicaidCovered(YES);
         app.setMedicaidSupPremium(YES);
@@ -152,8 +152,6 @@ public class ArkansasIntegrationTest extends CQBaseIntegrationTest {
         app.setCommonReplacementNoticeAnswersWithApplicantInfo();
         app.setCommonHealthHistoryAnswers();
 
-        expectedSubmissionResult.setPendingInfo("ENROLLMENT MEMBERSHIP VERIFICATION", "VERIFY MEMBER NUMBER");
-
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);
 
@@ -175,9 +173,6 @@ public class ArkansasIntegrationTest extends CQBaseIntegrationTest {
         eligibilityHealthQuestionsPage.isAt();
         eligibilityHealthQuestionsPage.fillAndSubmit(app);
 
-        healthHistoryQuestionsPage.isAt();
-        healthHistoryQuestionsPage.fillAndSubmit(app);
-
         currentInsuranceCoveragePage.isAt();
         currentInsuranceCoveragePage.fillAndSubmit(app);
 
@@ -196,18 +191,17 @@ public class ArkansasIntegrationTest extends CQBaseIntegrationTest {
         reviewAndSubmitPage.isAt();
         reviewAndSubmitPage.fillAndSubmit(app);
 
-        applicationSubmissionPage.isAt();
-        applicationSubmissionPage.isPending();
-
+        expectedSubmissionResult.setAcceptedInfo();
         submissionQuery.verifySubmissionData(app, expectedSubmissionResult);
         submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
 
     }
     @Test
-    public void test_arkansas_eligibility_healthhistory_underwriting_with_rn() throws Exception {
+
+    public void test_oregan_eligibility_healthhistory_underwriting_with_rn() throws Exception {
 
         sheet.setAgentId("Test");
-        sheet.setAgentMedSuppStates("[NV| CA| MA| FL| NY| OH| AR]");
+        sheet.setAgentMedSuppStates("[NV| CA| MA| FL| NY| OH| AR| PA| WA| OR]");
         sheet.setAgentCertificationYears("[2014 |2015| 2016]");
         sheet.setMarketability_code(BLANK);
         sheet.setSiteId("UHP");
@@ -218,8 +212,8 @@ public class ArkansasIntegrationTest extends CQBaseIntegrationTest {
         sheet.setReferrer("ulayer");
 
         Application app = new Application();
-        app.setState("AR");
-        app.setZipCode("71601");
+        app.setState("OR");
+        app.setZipCode("97001");
         app.setDOB(DateUtils.getDOBInNormalDateFormat(67));
         app.setMPBED("01/01/2015");
         //Signatures
@@ -235,22 +229,30 @@ public class ArkansasIntegrationTest extends CQBaseIntegrationTest {
         app.setSS_App_Signature1(Application.ALL_SIGNATURES[9]);
         app.setSS_Agent_Signature1(Application.ALL_SIGNATURES[10]);
         app.setReplacementAgentSignInd2Touch(Application.ALL_SIGNATURES[11]);
-
         //TestData
         app.setAARPMembershipNumber(faker.numerify("##########"));
         app.setPrefix("MR");
-        app.setFirstName("rtyBob");
-        app.setLastName("asAutomation");
+        app.setFirstName(faker.letterify("??????????"));
+        app.setLastName(faker.letterify("??????????"));
+        app.setSuffix("PHD");
+        app.setAddressLine1(faker.bothify("#### ??????????? ??"));
+        app.setAddressLine2("apt #123");
+        app.setCity(faker.letterify("??????????"));
+        app.setEmail("test@uhc.com");
+        app.setConfirmEmail("test@uhc.com");
+        app.setPhonePrimary(faker.numerify("##########"));
+        app.setPhoneEvening("1234561234");
+        app.setGender("M");
+        app.setMedicareClaimNum(faker.bothify("#########?"));
+        //TestData
+        app.setAARPMembershipNumber(faker.numerify("##########"));
+        app.setPrefix("MR");
         app.setSuffix("PHD");
         app.setAddressLine1("3211 Street dr");
         app.setAddressLine2("apt #123");
         app.setCity("Horsham");
         app.setEmail("test@uhc.com");
         app.setConfirmEmail("test@uhc.com");
-        app.setPhonePrimary("9874562345");
-        app.setPhoneEvening("1234561234");
-        app.setGender("M");
-        app.setMedicareClaimNum("123123123A");
         app.setMPAED("01/01/2010");
         app.setPartABActiveIndicator(YES);
         app.setAgentEmail("agent@uhc.com");
@@ -258,12 +260,14 @@ public class ArkansasIntegrationTest extends CQBaseIntegrationTest {
         //Eligibility Questions
         app.setESRD(NO);
         app.setSurgeryNeeded(NO);
+        app.setMedSuppReplace(NO);
         //Eligibility Questions
         app.setTurned65In6GA(NO);
         app.setPlanEffIn6OfEligible(NO);
         app.setTobaccoUse(YES);
         app.setLostCoverage(NO);
         //Plan application question
+        app.setGI30dayBday(YES);
         app.setPartBIn6GA(NO);
         app.setCPAPartBIn6(NO);
         app.setMedicaidCovered(YES);
@@ -294,18 +298,18 @@ public class ArkansasIntegrationTest extends CQBaseIntegrationTest {
         app.setAgentMI("A");
         app.setAgentLastName("AgentLast");
         app.setAgentPhone("3334445555");
-
         //Payment Details Summary Page
         app.setPaymentDetailsSummaryPageWithAppValues();
         //Replacement Notice Page
         app.setCommonReplacementNoticeAnswersWithApplicantInfo();
         app.setCommonHealthHistoryAnswers();
+        app.setAgentPrintedNameAdd(faker.letterify("??????????"));
+        app.setAgentAddress(faker.letterify("??????????"));
         //SSForm Page
         app.setSS_FormDate("01/01/2001");
         app.setAgencyName("Agency Name");
         app.setAgencyAddress("Agency Address");
         app.setAgencyPhone("2346759876");
-        expectedSubmissionResult.setPendingInfo("ENROLLMENT MEMBERSHIP VERIFICATION", "VERIFY MEMBER NUMBER");
 
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);
@@ -328,9 +332,6 @@ public class ArkansasIntegrationTest extends CQBaseIntegrationTest {
         eligibilityHealthQuestionsPage.isAt();
         eligibilityHealthQuestionsPage.fillAndSubmit(app);
 
-        healthHistoryQuestionsPage.isAt();
-        healthHistoryQuestionsPage.fillAndSubmit(app);
-
         currentInsuranceCoveragePage.isAt();
         currentInsuranceCoveragePage.fillAndSubmit(app);
 
@@ -352,6 +353,7 @@ public class ArkansasIntegrationTest extends CQBaseIntegrationTest {
         reviewAndSubmitPage.isAt();
         reviewAndSubmitPage.fillAndSubmit(app);
 
+        expectedSubmissionResult.setAcceptedInfo();
         submissionQuery.verifySubmissionData(app, expectedSubmissionResult);
         submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
 

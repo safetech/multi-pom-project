@@ -8,7 +8,7 @@ import pages.WizardPage;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class AR_CurrentInsuranceCoveragePage extends WizardPage{
+public class AR_PA_OR_CurrentInsuranceCoveragePage extends WizardPage{
 
     @FindBy(css = "#MedicaidCovered_1") FluentWebElement MedicaidCovered_Yes;
     @FindBy(css = "#MedicaidCovered_2") FluentWebElement MedicaidCovered_No;

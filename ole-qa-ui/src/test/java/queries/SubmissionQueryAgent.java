@@ -138,7 +138,7 @@ public class SubmissionQueryAgent {
         //assertThat(row.get("PAYMENT_METHOD_TYPE_ID"), equalTo(""));
         assertThat(row.get("ADJUDICATION_CD"), equalTo(expectedSubmissionResult.getAdjudicationStatus()));
 
-        logger.info(String.format("Here is the link to the image... https://acesx-stg-alt.uhc.com/appEnroll-web/resources/retrievePDF/v1/%s", row.get("APPL_IMAGE_NUM_ORIG")));
+        logger.info(String.format("Here is the link to the image... https://acesx-stg-alt.uhc.com/appEnroll-web/resources/retrievePDF/v1/%s", row.get("APPL_IMAGE_NUM_ORIG") +" For the state of --> " + app.getState()));
 
     }
 

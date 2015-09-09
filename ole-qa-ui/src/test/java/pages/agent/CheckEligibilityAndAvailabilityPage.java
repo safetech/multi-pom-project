@@ -39,11 +39,11 @@ public class CheckEligibilityAndAvailabilityPage extends WizardPage {
                 Thread.sleep(300);
             }catch(Exception e){
             }
-<<<<<<< HEAD
+
         await().atMost(10, TimeUnit.SECONDS).until("div.customer_eligibility_form #ReqEffectiveDate option").hasSize(4);
-=======
+
         await().atMost(20, TimeUnit.SECONDS).until("div.customer_eligibility_form #ReqEffectiveDate option").hasSize(4);
->>>>>>> 33ac902f563afcd3dbcccae1e1f6da6d510d43ee
+
         fillSelect("div.customer_eligibility_form #ReqEffectiveDate").withIndex(1);
 
         clickNextAndWaitForSpinnerToFinish();
