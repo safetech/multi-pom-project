@@ -166,7 +166,51 @@ public class CribSheet {
     private String log_level = "";
     private String AgentId = "";
     private String AgentMedSuppStates = "";
+    private String RiderChoice1 = "";
+    private String RiderChoice2 = "";
+    private String RiderChoice3 = "";
+    private String RiderChoice4 = "";
+    private String RiderChoice5 = "";
 
+    public String getRiderChoice1() {
+        return RiderChoice1;
+    }
+
+    public void setRiderChoice1(String riderChoice1) {
+        RiderChoice1 = riderChoice1;
+    }
+
+    public String getRiderChoice2() {
+        return RiderChoice2;
+    }
+
+    public void setRiderChoice2(String riderChoice2) {
+        RiderChoice2 = riderChoice2;
+    }
+
+    public String getRiderChoice3() {
+        return RiderChoice3;
+    }
+
+    public void setRiderChoice3(String riderChoice3) {
+        RiderChoice3 = riderChoice3;
+    }
+
+    public String getRiderChoice4() {
+        return RiderChoice4;
+    }
+
+    public void setRiderChoice4(String riderChoice4) {
+        RiderChoice4 = riderChoice4;
+    }
+
+    public String getRiderChoice5() {
+        return RiderChoice5;
+    }
+
+    public void setRiderChoice5(String riderChoice5) {
+        RiderChoice5 = riderChoice5;
+    }
 
     public String getAgentId() {
         return AgentId;

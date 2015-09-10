@@ -32,6 +32,11 @@ public class CheatPage extends FluentPage{
     FluentWebElement resume;
     FluentWebElement log_level;
     FluentWebElement cheatButton;
+    FluentWebElement RiderChoice1;
+    FluentWebElement RiderChoice2;
+    FluentWebElement RiderChoice3;
+    FluentWebElement RiderChoice4;
+    FluentWebElement RiderChoice5;
 
 
     public String getUrl() {
@@ -53,6 +58,12 @@ public class CheatPage extends FluentPage{
         fill(HASHID).with(sheet.getHASHID());
         fill(WT_mc_id).with(sheet.getWT_mc_id());
         fill(applicationId).with(sheet.getApplicationId());
+        fill(RiderChoice1).with(sheet.getRiderChoice1());
+        fill(RiderChoice2).with(sheet.getRiderChoice2());
+        fill(RiderChoice3).with(sheet.getRiderChoice3());
+        fill(RiderChoice4).with(sheet.getRiderChoice4());
+        fill(RiderChoice5).with(sheet.getRiderChoice5());
+
         if(!sheet.getReadonly().equals(AnswerUtils.BLANK)) {
             readonly.click();
         }
