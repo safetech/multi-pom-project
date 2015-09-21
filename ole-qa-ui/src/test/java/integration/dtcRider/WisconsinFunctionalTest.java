@@ -40,26 +40,29 @@ public class WisconsinFunctionalTest extends CQBaseIntegrationTest {
     public void setup() {
         submissionQuery = new SubmissionQueryDtc();
         faker = new Faker();
+
         sheet = new CribSheet(faker);
         sheet.setState("WI");
         sheet.setZip("54001");
-        sheet.setRiderChoice1("");
-        sheet.setRiderChoice2("");
-        sheet.setRiderChoice3("");
+        sheet.setRiderChoice1("OW");
+        sheet.setRiderChoice2("PW");
+        sheet.setRiderChoice3("QW");
         sheet.setRiderChoice4("");
         sheet.setRiderChoice5("");
-        expectedSubmissionResult = new SubmissionResult();
-    }
-
-    @Test
-    public void test_arkansas_underwriting_with_health_history() throws Exception {
-
         sheet.setAarpMemid("y");
         sheet.setDOB(DateUtils.getDOBofPersonTurningAgeToday(69));
         sheet.setEffDate("01/01/2012");
         sheet.setPsd(DateUtils.getFirstDayOfFutureMonth(1));
         sheet.setPlanCode("A");
         sheet.setReferrer("uLayer");
+
+        expectedSubmissionResult = new SubmissionResult();
+    }
+
+    @Test
+    public void test_wisconsin_underwriting_with_health_history() throws Exception {
+
+
         Application app = new Application();
         //TestData
         app.setAARPMembershipNumber(faker.numerify("##########"));
@@ -81,7 +84,7 @@ public class WisconsinFunctionalTest extends CQBaseIntegrationTest {
         app.setMPAED("01/01/2010");
         app.setPartABActiveIndicator(YES);
         //Plan Application Page
-       app.setTobaccoUse(YES);
+        app.setTobaccoUse(YES);
         app.setLostCoverage(NO);
         //Eligibility Page
         app.setESRD(NO);
@@ -168,7 +171,7 @@ public class WisconsinFunctionalTest extends CQBaseIntegrationTest {
 
     }
     @Test
-    public void test_arkansas_guranteed_issue() throws Exception {
+    public void test_wisconsin_guranteed_issue() throws Exception {
 
         sheet.setAarpMemid("y");
         sheet.setDOB(DateUtils.getDOBofPersonTurningAgeToday(65));

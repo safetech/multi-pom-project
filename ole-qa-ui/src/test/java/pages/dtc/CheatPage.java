@@ -40,7 +40,7 @@ public class CheatPage extends FluentPage{
 
 
     public String getUrl() {
-        return "https://aarpsupplementalhealth-stg.uhc.com/ole/ms.html?cheat=true";
+        return "https://aarpsupplementalhealth-tst.uhc.com/ole/ms.html?cheat=true";
     }
 
     public void fillAndSubmit(CribSheet sheet) {
