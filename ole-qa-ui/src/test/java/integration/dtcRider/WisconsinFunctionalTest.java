@@ -9,6 +9,7 @@ import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
 import pages.dtc.*;
+import pages.dtc.variations.authorization.WI_AuthorizationPage;
 import pages.dtc.variations.pastandcurrentcoverage.AR_CA_PA_PastAndCurrentCoveragePage;
 import pages.dtc.variations.planapplication.AR_PA_PlanApplicationQuestionsPage;
 import pages.dtc.variations.planselectionandstartdate.PA_AR_NV_MA_PlanSelectionAndStartDatePage;
@@ -25,7 +26,7 @@ public class WisconsinFunctionalTest extends CQBaseIntegrationTest {
     @Page public AR_PA_PlanApplicationQuestionsPage planApplicationQuestionsPage;
     @Page public EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
     @Page public AR_CA_PA_PastAndCurrentCoveragePage pastAndCurrentCoveragePage;
-    @Page public AuthorizationPage authorizationPage;
+    @Page public WI_AuthorizationPage authorizationPage;
     @Page public RN034andRE073Page replacementNoticePage;
     @Page public PlanPaymentOptionsPage planPaymentOptionsPage;
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
@@ -40,7 +41,6 @@ public class WisconsinFunctionalTest extends CQBaseIntegrationTest {
     public void setup() {
         submissionQuery = new SubmissionQueryDtc();
         faker = new Faker();
-
         sheet = new CribSheet(faker);
         sheet.setState("WI");
         sheet.setZip("54001");
@@ -53,7 +53,7 @@ public class WisconsinFunctionalTest extends CQBaseIntegrationTest {
         sheet.setDOB(DateUtils.getDOBofPersonTurningAgeToday(69));
         sheet.setEffDate("01/01/2012");
         sheet.setPsd(DateUtils.getFirstDayOfFutureMonth(1));
-        sheet.setPlanCode("A");
+        sheet.setPlanCode("MW");
         sheet.setReferrer("uLayer");
 
         expectedSubmissionResult = new SubmissionResult();
@@ -128,6 +128,12 @@ public class WisconsinFunctionalTest extends CQBaseIntegrationTest {
         //Replacement Notice Page
         app.setCommonReplacementNoticeAnswersWithApplicantInfo();
         app.setCommonHealthHistoryAnswers();
+        app.setReplaceExistingMedSup(YES);
+        app.setReplacementReason("OtherReason");
+        app.setApplicantPrintedNameAdd("AppName");
+        app.setApplicantAddress("AppAdd");
+        app.setRNOther("Cheaper");
+        app.setHIV("NotHidden");
 
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);
@@ -177,7 +183,7 @@ public class WisconsinFunctionalTest extends CQBaseIntegrationTest {
         sheet.setDOB(DateUtils.getDOBofPersonTurningAgeToday(65));
         sheet.setEffDate("04/01/2015");
         sheet.setPsd(DateUtils.getFirstDayOfFutureMonth(1));
-        sheet.setPlanCode("A");
+        sheet.setPlanCode("MW");
         sheet.setReferrer("uLayer");
 
         Application app = new Application();
@@ -253,7 +259,13 @@ public class WisconsinFunctionalTest extends CQBaseIntegrationTest {
         app.setAuxState("NV");
         app.setAuxZipCode("89101");
         //Replacement Notice Page
+        app.setReplaceExistingMedSup(YES);
+        app.setReplacementReason("OtherReason");
+        app.setApplicantPrintedNameAdd("AppName");
+        app.setApplicantAddress("AppAdd");
+        app.setRNOther("Cheaper");
         app.setCommonReplacementNoticeAnswersWithApplicantInfo();
+
 
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);

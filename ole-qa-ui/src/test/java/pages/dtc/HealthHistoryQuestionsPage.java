@@ -95,7 +95,11 @@ public class HealthHistoryQuestionsPage extends WizardPage {
         fillCheckboxQuestion(parkinsons, app.getParkinsons());
         fillCheckboxQuestion(nervous_condition, app.getNervous_condition());
         fillCheckboxQuestion(AIDS, app.getAIDS());
-        fillCheckboxQuestion(HIV, app.getHIV());
+
+        if (!app.getHIV().equals("NotHidden")){
+            fillCheckboxQuestion(HIV, app.getHIV());
+        };
+
 
         clickNextAndWaitForSpinnerToFinish();
 
