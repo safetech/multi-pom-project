@@ -32,7 +32,7 @@ public class CheatPage extends FluentPage{
 
 
     public String getUrl() {
-        return "https://aarpsupplementalhealth-stg.uhc.com/ole/ms-agent.html?cheat=true";
+        return "https://aarpsupplementalhealth-tst.uhc.com/ole/ms-agent.html?cheat=true";
     }
 
     public void fillAndSubmit(CribSheet sheet) {
@@ -59,7 +59,7 @@ public class CheatPage extends FluentPage{
     }
 
     protected void waitForSpinnerToFinish() {
-        await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
+        await().atMost(7, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
     }
     public void isAt() {
         assertThat(pageTitle.getText(), equalTo("Cheat Page"));

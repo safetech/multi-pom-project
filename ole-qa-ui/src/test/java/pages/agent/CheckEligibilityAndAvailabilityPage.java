@@ -23,7 +23,7 @@ public class CheckEligibilityAndAvailabilityPage extends WizardPage {
         fill(ZipCode).with(app.getZipCode());
         blur("#ZipCode");
             try{
-                Thread.sleep(10000);
+                Thread.sleep(5000);
             }catch(Exception e){
             }
         await().atMost(10, TimeUnit.SECONDS).until("#State").hasAttribute("value", app.getState());

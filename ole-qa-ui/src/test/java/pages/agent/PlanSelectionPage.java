@@ -4,6 +4,7 @@ import entity.Application;
 import org.fluentlenium.core.domain.FluentWebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.WizardPage;
+
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -41,4 +42,5 @@ public class PlanSelectionPage extends WizardPage{
     public void isAt() {
         assertThat(pageTitle.getText(), equalTo("Plan Selection"));
     }
+
 }

@@ -62,8 +62,8 @@ public class WisconsinFunctionalTest extends CQBaseIntegrationTest {
     @Test
     public void test_wisconsin_underwriting_with_health_history() throws Exception {
 
-
         Application app = new Application();
+
         //TestData
         app.setAARPMembershipNumber(faker.numerify("##########"));
         app.setPrefix("MR");
