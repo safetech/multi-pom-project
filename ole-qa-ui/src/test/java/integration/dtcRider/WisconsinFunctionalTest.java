@@ -39,7 +39,6 @@ public class WisconsinFunctionalTest extends CQBaseIntegrationTest {
 
     @Before
     public void setup() {
-        submissionQuery = new SubmissionQueryDtc();
         faker = new Faker();
         sheet = new CribSheet(faker);
         sheet.setState("WI");
@@ -55,14 +54,15 @@ public class WisconsinFunctionalTest extends CQBaseIntegrationTest {
         sheet.setPsd(DateUtils.getFirstDayOfFutureMonth(1));
         sheet.setPlanCode("MW");
         sheet.setReferrer("uLayer");
-
-        expectedSubmissionResult = new SubmissionResult();
+        app = new Application();
     }
+
+
+    //TODO: Get update for Riders DTC.. Once ready to automate
 
     @Test
     public void test_wisconsin_underwriting_with_health_history() throws Exception {
 
-        Application app = new Application();
 
         //TestData
         app.setAARPMembershipNumber(faker.numerify("##########"));

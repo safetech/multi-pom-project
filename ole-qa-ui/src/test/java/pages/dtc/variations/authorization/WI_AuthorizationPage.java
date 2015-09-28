@@ -13,6 +13,7 @@ public class WI_AuthorizationPage extends WizardPage{
     FluentWebElement SignatureInd;
     FluentWebElement MedicalReleaseAuthSignatureInd;
     FluentWebElement ApplicantRNSignatureInd;
+    FluentWebElement MedicalReleaseClaimSignatureInd;
 
     @FindBy(css = "#ReplacementReason_1") FluentWebElement ReplacementReason_ReplaceAdditionalBenefits;
     @FindBy(css = "#ReplacementReason_2") FluentWebElement ReplacementReason_SameBenefits;
@@ -52,7 +53,7 @@ public class WI_AuthorizationPage extends WizardPage{
         }
 
         SignatureInd.click();
-        MedicalReleaseAuthSignatureInd.click();
+        MedicalReleaseClaimSignatureInd.click();
         ApplicantRNSignatureInd.click();
 
         clickNextAndWaitForSpinnerToFinish();
