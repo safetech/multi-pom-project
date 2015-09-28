@@ -43,8 +43,6 @@ public class riders_MN_PlanSelectionPage extends WizardPage {
     FluentWebElement ReqEffectiveDate;
 
    public void goodComboBasicPlan(Application app) {
-
-
         //----TC 1******************************************************************************
 
         isAt();

@@ -49,7 +49,7 @@ public class MinnesotaFunctionalTest extends CQBaseIntegrationTest {
         expectedSubmissionResult = new SubmissionResult();
     }
     @Test
-    public void test_minnesota_basic_plan_with_good_combo() throws Exception {
+    public void test_minnesota_basic_plan() throws Exception {
 
         sheet.setAgentId("Test");
         sheet.setAgentMedSuppStates("[NV| CA| MA| FL| NY| OH| AR| WI| MN]");
@@ -82,7 +82,7 @@ public class MinnesotaFunctionalTest extends CQBaseIntegrationTest {
 
     }
     @Test
-    public void test_minnesota_basic_Extendedplan_with_good_combo() throws Exception {
+    public void test_minnesota_extended_plan() throws Exception {
 
         sheet.setAgentId("Test");
         sheet.setAgentMedSuppStates("[NV| CA| MA| FL| NY| OH| AR| WI| MN]");

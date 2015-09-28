@@ -12,12 +12,12 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class riders_WI_PlanSelectionPage extends WizardPage{
 
-    @FindBy(xpath = "(//a[contains(text(),'apply now')])[1]") FluentWebElement First_Plan;
-    @FindBy(xpath = "(//a[contains(text(),'apply now')])[2]") FluentWebElement Second_Plan;
-    @FindBy(xpath = "(//*[contains(text(),'add rider')])[2]") FluentWebElement Add_Rider;
+    @FindBy(xpath = "//*[@id='planCode_1']") FluentWebElement First_Plan;
+    @FindBy(xpath = "//*[@id='planCode_2']") FluentWebElement Second_Plan;
+    @FindBy(xpath = "(//*[contains(text(),'add rider')])[/]") FluentWebElement Add_Rider;
     @FindBy(xpath = "(//*[contains(text(),'continue')])[1]") FluentWebElement Continue;
     @FindBy(xpath = "//*[@id='rider_compatibility_error_WI']/ul[1]/li/a") FluentWebElement Update_Rider_Selection;
-    @FindBy(css = ".button.arrow.left.action_back") FluentWebElement Back;
+    @FindBy(css = ".button.action_back") FluentWebElement Back;
 
     @FindBy(xpath = "//*[@id='RiderChoiceXW']") FluentWebElement RiderChoice_XW;
     @FindBy(xpath = "//*[@id='RiderChoiceYW']") FluentWebElement RiderChoice_YW;
@@ -34,9 +34,6 @@ public class riders_WI_PlanSelectionPage extends WizardPage{
     @FindBy(xpath = "(//*[@id='RiderChoicePW'])[2]") FluentWebElement RiderChoice_PW2;
     @FindBy(xpath = "(//*[@id='RiderChoiceSW'])[2]") FluentWebElement RiderChoice_SW2;
 
-    //html/body/div[3]/div/div[2]/ul[1]/li/a
-//*[@id='rider_compatibility_error_WI']/ul[1]/li/a
-    //*[@id='rider_compatibility_error_WI']/ul[1]/li/a/text()
     public void fillAndSubmit(Application app) {
 
         isAt();
@@ -46,14 +43,14 @@ public class riders_WI_PlanSelectionPage extends WizardPage{
 
 //----TC 0******************************************************************************
 
-        First_Plan.click();
+        clickNextAndWaitForSpinnerToFinish();
         Add_Rider.click();
 //----TC 1******************************************************************************
 
         RiderChoice_OW.click();
-        First_Plan.click();
+        clickNextAndWaitForSpinnerToFinish(); 
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
-        isAtWhatYouNeedPage();
+        isAtPlanApplicationQuestionsPage();
         Back.click();
         isAt();
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
@@ -61,9 +58,9 @@ public class riders_WI_PlanSelectionPage extends WizardPage{
 //----TC 2******************************************************************************
 
         RiderChoice_PW.click();
-        First_Plan.click();
+        clickNextAndWaitForSpinnerToFinish(); 
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
-        isAtWhatYouNeedPage();
+        isAtPlanApplicationQuestionsPage();
         Back.click();
         isAt();
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
@@ -71,9 +68,9 @@ public class riders_WI_PlanSelectionPage extends WizardPage{
 //----TC 3******************************************************************************
 
         RiderChoice_QW.click();
-        First_Plan.click();
+        clickNextAndWaitForSpinnerToFinish(); 
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
-        isAtWhatYouNeedPage();
+        isAtPlanApplicationQuestionsPage();
         Back.click();
         isAt();
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
@@ -81,21 +78,20 @@ public class riders_WI_PlanSelectionPage extends WizardPage{
 //----TC 4******************************************************************************
 
         RiderChoice_SW.click();
-        First_Plan.click();
+        clickNextAndWaitForSpinnerToFinish(); 
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
-        isAtWhatYouNeedPage();
+        isAtPlanApplicationQuestionsPage();
         Back.click();
         isAt();
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
         RiderChoice_SW.click();
 //----TC 5******************************************************************************
 
-
             RiderChoice_OW.click();
             RiderChoice_QW.click();
-            First_Plan.click();
+            clickNextAndWaitForSpinnerToFinish(); 
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
-            isAtWhatYouNeedPage();
+            isAtPlanApplicationQuestionsPage();
             Back.click();
             isAt();
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
@@ -105,9 +101,9 @@ public class riders_WI_PlanSelectionPage extends WizardPage{
 
             RiderChoice_OW.click();
             RiderChoice_SW.click();
-            First_Plan.click();
+            clickNextAndWaitForSpinnerToFinish(); 
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
-            isAtWhatYouNeedPage();
+            isAtPlanApplicationQuestionsPage();
             Back.click();
             isAt();
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
@@ -118,9 +114,9 @@ public class riders_WI_PlanSelectionPage extends WizardPage{
             RiderChoice_OW.click();
             RiderChoice_QW.click();
             RiderChoice_SW.click();
-            First_Plan.click();
+            clickNextAndWaitForSpinnerToFinish(); 
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
-            isAtWhatYouNeedPage();
+            isAtPlanApplicationQuestionsPage();
             Back.click();
             isAt();
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
@@ -131,9 +127,9 @@ public class riders_WI_PlanSelectionPage extends WizardPage{
 
             RiderChoice_PW.click();
             RiderChoice_QW.click();
-            First_Plan.click();
+            clickNextAndWaitForSpinnerToFinish(); 
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
-            isAtWhatYouNeedPage();
+            isAtPlanApplicationQuestionsPage();
             Back.click();
             isAt();
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
@@ -143,9 +139,9 @@ public class riders_WI_PlanSelectionPage extends WizardPage{
 
             RiderChoice_PW.click();
             RiderChoice_SW.click();
-            First_Plan.click();
+            clickNextAndWaitForSpinnerToFinish(); 
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
-            isAtWhatYouNeedPage();
+            isAtPlanApplicationQuestionsPage();
             Back.click();
             isAt();
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
@@ -156,9 +152,9 @@ public class riders_WI_PlanSelectionPage extends WizardPage{
         RiderChoice_PW.click();
         RiderChoice_QW.click();
         RiderChoice_SW.click();
-        First_Plan.click();
+        clickNextAndWaitForSpinnerToFinish(); 
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
-        isAtWhatYouNeedPage();
+        isAtPlanApplicationQuestionsPage();
         Back.click();
         isAt();
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
@@ -169,9 +165,9 @@ public class riders_WI_PlanSelectionPage extends WizardPage{
 
         RiderChoice_QW.click();
         RiderChoice_SW.click();
-        First_Plan.click();
+        clickNextAndWaitForSpinnerToFinish(); 
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
-        isAtWhatYouNeedPage();
+        isAtPlanApplicationQuestionsPage();
         Back.click();
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
         isAt();
@@ -191,7 +187,7 @@ public class riders_WI_PlanSelectionPage extends WizardPage{
 
     RiderChoice_OW.click();
     RiderChoice_PW.click();
-    First_Plan.click();
+    clickNextAndWaitForSpinnerToFinish(); 
         blurAndSleep();
         Update_Rider_Selection.click();
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
@@ -199,21 +195,21 @@ public class riders_WI_PlanSelectionPage extends WizardPage{
     //----TC 1******************************************************************************
 
     RiderChoice_QW.click();
-    First_Plan.click();
+    clickNextAndWaitForSpinnerToFinish(); 
         blurAndSleep();
         Update_Rider_Selection.click();
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
     //----TC 2******************************************************************************
 
     RiderChoice_SW.click();
-    First_Plan.click();
+    clickNextAndWaitForSpinnerToFinish(); 
         blurAndSleep();
     Update_Rider_Selection.click();
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
     //----TC 3******************************************************************************
 
     RiderChoice_QW.click();
-    First_Plan.click();
+    clickNextAndWaitForSpinnerToFinish(); 
         blurAndSleep();
         Update_Rider_Selection.click();
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
@@ -227,16 +223,15 @@ public class riders_WI_PlanSelectionPage extends WizardPage{
     public void goodComboWithCoPay() {
     //----TC 0******************************************************************************
         Second_Plan.click();
+        clickNextAndWaitForSpinnerToFinish();
         Continue.click();
-        await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
         Back.click();
 
     //----TC 1******************************************************************************
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
         RiderChoice_OW2.click();
-        Second_Plan.click();
-        await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
-        isAtWhatYouNeedPage();
+        clickNextAndWaitForSpinnerToFinish();
+        isAtPlanApplicationQuestionsPage();
         Back.click();
         isAt();
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
@@ -246,8 +241,8 @@ public class riders_WI_PlanSelectionPage extends WizardPage{
         RiderChoice_OW2.click();
         RiderChoice_SW2.click();
         Second_Plan.click();
-        await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
-        isAtWhatYouNeedPage();
+        clickNextAndWaitForSpinnerToFinish();
+        isAtPlanApplicationQuestionsPage();
         Back.click();
         isAt();
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
@@ -257,8 +252,8 @@ public class riders_WI_PlanSelectionPage extends WizardPage{
 
         RiderChoice_PW2.click();
         Second_Plan.click();
-        await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
-        isAtWhatYouNeedPage();
+        clickNextAndWaitForSpinnerToFinish();
+        isAtPlanApplicationQuestionsPage();
         Back.click();
         isAt();
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
@@ -268,8 +263,8 @@ public class riders_WI_PlanSelectionPage extends WizardPage{
         RiderChoice_PW2.click();
         RiderChoice_SW2.click();
         Second_Plan.click();
-        await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
-        isAtWhatYouNeedPage();
+        clickNextAndWaitForSpinnerToFinish();
+        isAtPlanApplicationQuestionsPage();
         Back.click();
         isAt();
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
@@ -279,8 +274,8 @@ public class riders_WI_PlanSelectionPage extends WizardPage{
 
         RiderChoice_SW2.click();
         Second_Plan.click();
-        await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
-        isAtWhatYouNeedPage();
+        clickNextAndWaitForSpinnerToFinish();
+        isAtPlanApplicationQuestionsPage();
         Back.click();
         isAt();
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
@@ -288,21 +283,18 @@ public class riders_WI_PlanSelectionPage extends WizardPage{
 
     }
 
-
-
     //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-    public void badComboWithCoPay(){
-
-
+    public void badComboWithCoPay() {
         RiderChoice_OW2.click();
         RiderChoice_PW2.click();
         Second_Plan.click();
+        clickNextAndWaitForSpinnerToFinish();
         blurAndSleep();
         Update_Rider_Selection.click();
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
-
         RiderChoice_SW2.click();
         Second_Plan.click();
+        clickNextAndWaitForSpinnerToFinish();
         blurAndSleep();
 
 
@@ -310,12 +302,12 @@ public class riders_WI_PlanSelectionPage extends WizardPage{
         Update_Rider_Selection.click();
         blurAndSleep();
     }
-    public void isAtWhatYouNeedPage() {
-        assertThat(pageTitle.getText(), equalTo("What You Need"));
+    public void isAtPlanApplicationQuestionsPage() {
+        assertThat(pageTitle.getText(), equalTo("Plan Application Questions"));
     }
 
     public void isAt() {
-        assertThat(pageTitle.getText(), equalTo("Plan Selection"));
+        assertThat(pageTitle.getText(), equalTo("Plan Selection and Start Date"));
     }
 
     public void blurAndSleep() {
