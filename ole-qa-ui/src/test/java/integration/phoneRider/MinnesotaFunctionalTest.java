@@ -3,358 +3,124 @@ package integration.phoneRider;
 import com.github.javafaker.Faker;
 import entity.Application;
 import entity.SubmissionResult;
-import entity.agent.CribSheet;
+import entity.phone.CribSheet;
 import integration.CQBaseIntegrationTest;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
-import pages.agent.*;
-import pages.agent.variations.currentinsurancecoverage.AR_PA_OR_CurrentInsuranceCoveragePage;
-import pages.agent.variations.planapplication.AR_PA_PlanApplicationQuestionsPage;
-import pages.agent.variations.replacenotice.RN034_AR_Page;
-import queries.SubmissionQueryAgent;
+import pages.phone.*;
+import pages.phone.variations.pastandcurrentcoverage.GA_MI_PastAndCurrentInsuranceCoveragePage;
+import pages.phone.variations.planapplicationpage.OH_MI_TX_PlanApplicationQuestions;
+import pages.phone.variations.planselection.riders_MN_PlanSelectionPage;
+import pages.phone.variations.replacementnotice.RN034andRE073Page;
+import queries.SubmissionQuery;
 import util.DateUtils;
 
 public class MinnesotaFunctionalTest extends CQBaseIntegrationTest {
 
     @Page public CheatPage cheatPage;
-    @Page public PlanSelectionPage planSelectionPage;
-    @Page public CheckEligibilityAndAvailabilityPage checkEligibilityAndAvailabilityPage;
-    @Page public WhatYouNeedPage whatYouNeedPage;
+    @Page public VoiceSignatureInstructionsPage voiceSignatureInstructionsPage;
     @Page public CustomerInformationPage customerInformationPage;
-    @Page public AR_PA_PlanApplicationQuestionsPage planApplicationQuestionsPage;
+    @Page public riders_MN_PlanSelectionPage planSelectionAndStartDatePage;
+    @Page public OH_MI_TX_PlanApplicationQuestions planApplicationQuestionsPage;
     @Page public EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
-    @Page public AR_PA_OR_CurrentInsuranceCoveragePage currentInsuranceCoveragePage;
-    @Page public AuthorizationPage authorizationPage;
-    @Page public RN034_AR_Page replacementNotice;
+    @Page public GA_MI_PastAndCurrentInsuranceCoveragePage pastAndCurrentInsuranceCoveragePage;
+    @Page public AuthorizationAndVerificationPage authorizationAndVerificationPage;
     @Page public HealthHistoryQuestionsPage healthHistoryQuestionsPage;
     @Page public AgentVerificationPage agentVerificationPage;
-    @Page public PaymentDetailsSummaryPage paymentDetailsSummaryPage;
-    @Page public PlanPaymentOptionsPage planPaymentOptionsPage;
+    @Page public RN034andRE073Page ReplacementNotice034Page;
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
     @Page public ApplicationSubmissionPage applicationSubmissionPage;
 
-    public SubmissionQueryAgent submissionQuery;
+    public SubmissionQuery submissionQuery;
     private Faker faker;
     private CribSheet sheet;
     private SubmissionResult expectedSubmissionResult;
 
     @Before
     public void setup() {
-        submissionQuery = new SubmissionQueryAgent();
+        submissionQuery = new SubmissionQuery();
         faker = new Faker();
+
         sheet = new CribSheet(faker);
+        sheet.setRandomNameGenderAndMembershipNumber();
+        sheet.setRandomAddress("MN", "55445");
+        sheet.setRandomContactInfo();
+        sheet.setRandomCallCenterInfo();
+        sheet.setDpsdToFirstDayOfFutureMonth(1);
+        sheet.setPlanCode("TW");
+
+
+        app = new Application();
+
+        // Customer Info Page Question
+        app.setMedicareClaimNum(faker.bothify("#########A"));
+        app.setPartABActiveIndicator(YES);
+        app.setPlanCode("TW");
+        app.setReqEffectiveDate(DateUtils.getFirstDayOfFutureMonth(1));
+
+        //Eligibility Questions
+        app.setESRD(NO);
+        app.setSurgeryNeeded(NO);
+
+        //Agent Verification Page
+        app.setCommonAgentVerificationAnswers();
 
         expectedSubmissionResult = new SubmissionResult();
     }
+
     @Test
-    public void test_arkansas_health_history_without_rn() throws Exception {
+    public void test_minnesota_basic_plan_with_good_combo() throws Exception {
+        sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(69));
+        sheet.setMedPartBdate("2011-10-01");
 
-        sheet.setAgentId("Test");
-        sheet.setAgentMedSuppStates("[NV| CA| MA| FL| NY| OH| AR| WI| MN]");
-        sheet.setAgentCertificationYears("[2014 |2015| 2016]");
-        sheet.setMarketability_code(BLANK);
-        sheet.setSiteId("UHP");
-        sheet.setAgentNPN(BLANK);
-        sheet.setAgentName("BOB DOBBS");
-        sheet.setAgentEmail("bob@dobbsco.com");
-        sheet.setAgentPartyId("54321");
-        sheet.setReferrer("ulayer");
-
-        Application app = new Application();
-        app.setState("AR");
-        app.setZipCode("71601");
-        app.setDOB(DateUtils.getDOBInNormalDateFormat(69));
-        app.setMPBED("05/01/2012");
-
-        app.setCpaSignatureIndTouch(Application.ALL_SIGNATURES[0]);
-        app.setSignatureIndTouch(Application.ALL_SIGNATURES[1]);
-        app.setMedicalReleaseAuthSignatureIndTouch(Application.ALL_SIGNATURES[2]);
-        app.setDesigneeSigTouch(Application.ALL_SIGNATURES[3]);
-        app.setAgentSignatureIndTouch(Application.ALL_SIGNATURES[4]);
-        app.setAgentRNSignatureIndTouch(Application.ALL_SIGNATURES[5]);
-        app.setApplicantRNSignatureIndTouch(Application.ALL_SIGNATURES[6]);
-        app.setEftSignatureIndTouch(Application.ALL_SIGNATURES[7]);
-        app.setMedicalReleaseClaimSignatureIndTouch(Application.ALL_SIGNATURES[8]);
-        app.setSS_App_Signature1(Application.ALL_SIGNATURES[9]);
-        app.setSS_Agent_Signature1(Application.ALL_SIGNATURES[10]);
-        app.setReplacementAgentSignInd2Touch(Application.ALL_SIGNATURES[11]);
-        //TestData
-        app.setAARPMembershipNumber(faker.numerify("##########"));
-        app.setPrefix("MR");
-        app.setFirstName("Bob");
-        app.setLastName("Automation");
-        app.setSuffix("PHD");
-        app.setAddressLine1("11211 frStreet dr");
-        app.setAddressLine2("apt #123");
-        app.setCity("Horsham");
-        app.setEmail("test@uhc.com");
-        app.setConfirmEmail("test@uhc.com");
-        app.setPhonePrimary("9874562345");
-        app.setPhoneEvening("1255561234");
-        app.setGender("M");
-        app.setMedicareClaimNum("123443123A");
-        app.setMPAED("01/01/2015");
+        Application app = new Application(sheet);
+        //Customer Information
+        app.setMedicareClaimNum(faker.bothify("??#########"));
+        app.setMPAED("01/01/2011");
+        app.setMPBED("10/01/2011");
         app.setPartABActiveIndicator(YES);
-        app.setAgentEmail("agent@uhc.com");
-        app.setAgentEmailConfirm("agent@uhc.com");
-        //app.setDefaultPlanEligibilityQuestions(sheet);
-        app.setGI30dayBday(YES);
-        app.setGIEmployerCov(NO);
-        app.setGIMediCal(NO);
-        app.setGIMilitary(NO);
-        app.setGILocation(NO);
-        //Eligibility Questions
-        app.setESRD(NO);
-        app.setSurgeryNeeded(NO);
-        app.setTurned65In6GA(NO);
-        app.setPlanEffIn6OfEligible(NO);
-        app.setLostCoverage(NO);
-        app.setTobaccoUse(YES);
+        app.setPlanCode("TW");
+        app.setReqEffectiveDate(DateUtils.getFirstDayOfFutureMonth(1));
 
-        //Past And Current Coverage
-        app.setCPATurned65(NO);
-        app.setTurned65In6GA(NO);
-        app.setPartBIn6GA(NO);
-        app.setCPAPartBIn6(NO);
-        app.setCPAPartBIn6(NO);
-        app.setMedicaidCovered(YES);
-        app.setMedicaidSupPremium(YES);
-        app.setMedicaidbenefit(YES);
-        app.setExistingMedicare(NO);
-        app.setOtherMedplanstart("01/01/2012");
-        app.setOtherMedplanend("01/01/2015");
-        app.setIntentReplace(YES);
-        app.setFirstTime(YES);
-        app.setDropMedSuppForThisPlan(YES);
-        app.setExistMedSupp(NO);
-        app.setMSInsCompany("Blue Cross Blue Shield NV");
-        app.setMSPLAN("Medical Supplement NV");
-        app.setReplaceExistingMedSup(YES);
-        app.setOtherInsCoverage(YES);
-        app.setOtherInsCompany("Blue Cross Blue Shield");
-        app.setOtherInsType("HMO");
-        app.setOtherInsStart("01/01/2001");
-        app.setOtherInsEnd("01/01/2014");
-        app.setOtherInsReplace(YES);
-        app.setCpaSignatureInd(YES);
-        //Agent Verification page
-        app.setAgentOtherInsPoliciesSold("HMO");
-        app.setAgentPoliciesInForce("HMO In Force");
-        app.setAgentPoliciesSoldNotInForce("HMO Not In Force");
-        app.setAgentFirstName("AgnetFirst");
-        app.setAgentMI("A");
-        app.setAgentLastName("AgentLast");
-        app.setAgentPhone("3334445555");
-        //Payment Details Summary Page
-        app.setPaymentDetailsSummaryPageWithAppValues();
-        //Replacement Notice Page
-        app.setCommonReplacementNoticeAnswersWithApplicantInfo();
-        app.setCommonHealthHistoryAnswers();
+        logger.info(gson.toJson(app));
 
-        expectedSubmissionResult.setPendingInfo("ENROLLMENT MEMBERSHIP VERIFICATION", "VERIFY MEMBER NUMBER");
+        startApp(cheatPage, app, sheet);
 
-        goTo(cheatPage);
-        cheatPage.fillAndSubmit(sheet);
-
-        checkEligibilityAndAvailabilityPage.isAt();
-        checkEligibilityAndAvailabilityPage.fillAndSubmit(app);
-
-        planSelectionPage.isAt();
-        planSelectionPage.fillAndSubmit(app);
-
-        whatYouNeedPage.isAt();
-        whatYouNeedPage.fillAndSubmit(app);
-
-        customerInformationPage.isAt();
+        voiceSignatureInstructionsPage.fillAndSubmit(app);
         customerInformationPage.fillAndSubmit(app);
+        planSelectionAndStartDatePage.goodComboBasicPlan(app);
+        planSelectionAndStartDatePage.badComboBasicPlan(app);
 
-        planApplicationQuestionsPage.isAt();
-        planApplicationQuestionsPage.fillAndSubmit(app);
-
-        eligibilityHealthQuestionsPage.isAt();
-        eligibilityHealthQuestionsPage.fillAndSubmit(app);
-
-        healthHistoryQuestionsPage.isAt();
-        healthHistoryQuestionsPage.fillAndSubmit(app);
-
-        currentInsuranceCoveragePage.isAt();
-        currentInsuranceCoveragePage.fillAndSubmit(app);
-
-        authorizationPage.isAt();
-        authorizationPage.fillAndSubmit(app);
-
-        agentVerificationPage.isAt();
-        agentVerificationPage.fillAndSubmit(app);
-
-        planPaymentOptionsPage.isAt();
-        planPaymentOptionsPage.fillAndSubmit(app);
-
-        paymentDetailsSummaryPage.isAt();
-        paymentDetailsSummaryPage.fillAndSubmit(app);
-
-        reviewAndSubmitPage.isAt();
-        reviewAndSubmitPage.fillAndSubmit(app);
-
-        applicationSubmissionPage.isAt();
-        applicationSubmissionPage.isPending();
-
-        submissionQuery.verifySubmissionData(app, expectedSubmissionResult);
-        submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
 
     }
+
     @Test
-    public void test_arkansas_eligibility_healthhistory_underwriting_with_rn() throws Exception {
+    public void test_minnesota_basic_Extendedplan_with_good_combo() throws Exception {
+        sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(66));
+        sheet.setMedPartBdate("2014-10-01");
 
-        sheet.setAgentId("Test");
-        sheet.setAgentMedSuppStates("[NV| CA| MA| FL| NY| OH| AR]");
-        sheet.setAgentCertificationYears("[2014 |2015| 2016]");
-        sheet.setMarketability_code(BLANK);
-        sheet.setSiteId("UHP");
-        sheet.setAgentNPN(BLANK);
-        sheet.setAgentName("BOB DOBBS");
-        sheet.setAgentEmail("bob@dobbsco.com");
-        sheet.setAgentPartyId("54321");
-        sheet.setReferrer("ulayer");
+        Application app = new Application(sheet);
 
-        Application app = new Application();
-        app.setState("AR");
-        app.setZipCode("71601");
-        app.setDOB(DateUtils.getDOBInNormalDateFormat(67));
-        app.setMPBED("01/01/2015");
-        //Signatures
-        app.setCpaSignatureIndTouch(Application.ALL_SIGNATURES[0]);
-        app.setSignatureIndTouch(Application.ALL_SIGNATURES[1]);
-        app.setMedicalReleaseAuthSignatureIndTouch(Application.ALL_SIGNATURES[2]);
-        app.setDesigneeSigTouch(Application.ALL_SIGNATURES[3]);
-        app.setAgentSignatureIndTouch(Application.ALL_SIGNATURES[4]);
-        app.setAgentRNSignatureIndTouch(Application.ALL_SIGNATURES[5]);
-        app.setApplicantRNSignatureIndTouch(Application.ALL_SIGNATURES[6]);
-        app.setEftSignatureIndTouch(Application.ALL_SIGNATURES[7]);
-        app.setMedicalReleaseClaimSignatureIndTouch(Application.ALL_SIGNATURES[8]);
-        app.setSS_App_Signature1(Application.ALL_SIGNATURES[9]);
-        app.setSS_Agent_Signature1(Application.ALL_SIGNATURES[10]);
-        app.setReplacementAgentSignInd2Touch(Application.ALL_SIGNATURES[11]);
-
-        //TestData
-        app.setAARPMembershipNumber(faker.numerify("##########"));
-        app.setPrefix("MR");
-        app.setFirstName("rtyBob");
-        app.setLastName("asAutomation");
-        app.setSuffix("PHD");
-        app.setAddressLine1("3211 Street dr");
-        app.setAddressLine2("apt #123");
-        app.setCity("Horsham");
-        app.setEmail("test@uhc.com");
-        app.setConfirmEmail("test@uhc.com");
-        app.setPhonePrimary("9874562345");
-        app.setPhoneEvening("1234561234");
-        app.setGender("M");
-        app.setMedicareClaimNum("123123123A");
-        app.setMPAED("01/01/2010");
+        app.setMedicareClaimNum(faker.bothify("??#########"));
+        app.setMPAED("01/01/2011");
+        app.setMPBED("10/01/2014");
         app.setPartABActiveIndicator(YES);
-        app.setAgentEmail("agent@uhc.com");
-        app.setAgentEmailConfirm("agent@uhc.com");
-        //Eligibility Questions
-        app.setESRD(NO);
-        app.setSurgeryNeeded(NO);
-        //Eligibility Questions
-        app.setTurned65In6GA(NO);
-        app.setPlanEffIn6OfEligible(NO);
-        app.setTobaccoUse(YES);
-        app.setLostCoverage(NO);
-        //Plan application question
-        app.setPartBIn6GA(NO);
-        app.setCPAPartBIn6(NO);
-        app.setMedicaidCovered(YES);
-        app.setMedicaidSupPremium(YES);
-        app.setMedicaidbenefit(YES);
-        app.setExistingMedicare(YES);
-        app.setOtherMedplanstart("01/01/2012");
-        app.setOtherMedplanend("01/01/2015");
-        app.setIntentReplace(YES);
-        app.setFirstTime(YES);
-        app.setDropMedSuppForThisPlan(YES);
-        app.setExistMedSupp(YES);
-        app.setMSInsCompany("Blue Cross Blue Shield NV");
-        app.setMSPLAN("Medical Supplement NV");
-        app.setReplaceExistingMedSup(YES);
-        app.setOtherInsCoverage(YES);
-        app.setOtherInsCompany("Blue Cross Blue Shield");
-        app.setOtherInsType("HMO");
-        app.setOtherInsStart("01/01/2001");
-        app.setOtherInsEnd("01/01/2014");
-        app.setOtherInsReplace(YES);
-        app.setCpaSignatureInd(YES);
-        //Agent Verification page
-        app.setAgentOtherInsPoliciesSold("HMO");
-        app.setAgentPoliciesInForce("HMO In Force");
-        app.setAgentPoliciesSoldNotInForce("HMO Not In Force");
-        app.setAgentFirstName("AgnetFirst");
-        app.setAgentMI("A");
-        app.setAgentLastName("AgentLast");
-        app.setAgentPhone("3334445555");
+        app.setPlanCode("TW");
+        app.setReqEffectiveDate(DateUtils.getFirstDayOfFutureMonth(1));
 
-        //Payment Details Summary Page
-        app.setPaymentDetailsSummaryPageWithAppValues();
-        //Replacement Notice Page
-        app.setCommonReplacementNoticeAnswersWithApplicantInfo();
-        app.setCommonHealthHistoryAnswers();
-        //SSForm Page
-        app.setSS_FormDate("01/01/2001");
-        app.setAgencyName("Agency Name");
-        app.setAgencyAddress("Agency Address");
-        app.setAgencyPhone("2346759876");
-        expectedSubmissionResult.setPendingInfo("ENROLLMENT MEMBERSHIP VERIFICATION", "VERIFY MEMBER NUMBER");
+        logger.info(gson.toJson(app));
 
-        goTo(cheatPage);
-        cheatPage.fillAndSubmit(sheet);
+        startApp(cheatPage, app, sheet);
 
-        checkEligibilityAndAvailabilityPage.isAt();
-        checkEligibilityAndAvailabilityPage.fillAndSubmit(app);
-
-        planSelectionPage.isAt();
-        planSelectionPage.fillAndSubmit(app);
-
-        whatYouNeedPage.isAt();
-        whatYouNeedPage.fillAndSubmit(app);
-
-        customerInformationPage.isAt();
+        voiceSignatureInstructionsPage.isAt();
+        voiceSignatureInstructionsPage.fillAndSubmit(app);
         customerInformationPage.fillAndSubmit(app);
+        planSelectionAndStartDatePage.goodComboExtendedBasicPlan();
 
-        planApplicationQuestionsPage.isAt();
-        planApplicationQuestionsPage.fillAndSubmit(app);
-
-        eligibilityHealthQuestionsPage.isAt();
-        eligibilityHealthQuestionsPage.fillAndSubmit(app);
-
-        healthHistoryQuestionsPage.isAt();
-        healthHistoryQuestionsPage.fillAndSubmit(app);
-
-        currentInsuranceCoveragePage.isAt();
-        currentInsuranceCoveragePage.fillAndSubmit(app);
-
-        authorizationPage.isAt();
-        authorizationPage.fillAndSubmit(app);
-
-        agentVerificationPage.isAt();
-        agentVerificationPage.fillAndSubmit(app);
-
-        replacementNotice.isAt();
-        replacementNotice.fillAndSubmit(app);
-
-        planPaymentOptionsPage.isAt();
-        planPaymentOptionsPage.fillAndSubmit(app);
-
-        paymentDetailsSummaryPage.isAt();
-        paymentDetailsSummaryPage.fillAndSubmit(app);
-
-        reviewAndSubmitPage.isAt();
-        reviewAndSubmitPage.fillAndSubmit(app);
-
-        submissionQuery.verifySubmissionData(app, expectedSubmissionResult);
-        submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
 
     }
 
 }
+
+

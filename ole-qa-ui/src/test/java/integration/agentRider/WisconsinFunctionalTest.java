@@ -11,7 +11,7 @@ import org.junit.Test;
 import pages.agent.*;
 import pages.agent.variations.currentinsurancecoverage.AR_PA_OR_CurrentInsuranceCoveragePage;
 import pages.agent.variations.planapplication.AR_PA_PlanApplicationQuestionsPage;
-import pages.agent.variations.planselection.riders_PlanSelectionPage;
+import pages.agent.variations.planselection.riders_WI_PlanSelectionPage;
 import pages.agent.variations.replacenotice.RN034_AR_Page;
 import queries.SubmissionQueryAgent;
 import util.DateUtils;
@@ -19,7 +19,7 @@ import util.DateUtils;
 public class WisconsinFunctionalTest extends CQBaseIntegrationTest {
 
     @Page public CheatPage cheatPage;
-    @Page public riders_PlanSelectionPage planSelectionPage;
+    @Page public riders_WI_PlanSelectionPage planSelectionPage;
     @Page public CheckEligibilityAndAvailabilityPage checkEligibilityAndAvailabilityPage;
     @Page public WhatYouNeedPage whatYouNeedPage;
     @Page public CustomerInformationPage customerInformationPage;
