@@ -1266,7 +1266,7 @@ public class Application {
         return MedicalReleaseAuthSignatureIndTouch;
     }
 
-    public void setMedicalReleaseAuthSignatureIndTouch(String medicalReleaseAuthSignatureIndTouch) {
+    public void  setMedicalReleaseAuthSignatureIndTouch(String medicalReleaseAuthSignatureIndTouch) {
         MedicalReleaseAuthSignatureIndTouch = medicalReleaseAuthSignatureIndTouch;
     }
 

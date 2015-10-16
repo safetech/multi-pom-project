@@ -33,4 +33,3 @@ public class ReviewAndSubmitPage extends WizardPage {
     }
 
 }
-//Verify how we can get Application status (Find the identifier)

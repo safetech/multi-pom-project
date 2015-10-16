@@ -35,9 +35,7 @@ public class riders_MN_PlanSelectionPage extends WizardPage{
     @FindBy(xpath = "(//*[@id='RiderChoicePW'])[2]") FluentWebElement RiderChoice_PW2;
     @FindBy(xpath = "(//*[@id='RiderChoiceSW'])[2]") FluentWebElement RiderChoice_SW2;
 
-    //html/body/div[3]/div/div[2]/ul[1]/li/a
-//*[@id='rider_compatibility_error_WI']/ul[1]/li/a
-    //*[@id='rider_compatibility_error_WI']/ul[1]/li/a/text()
+
     public void fillAndSubmit(Application app) {
 
         isAt();
