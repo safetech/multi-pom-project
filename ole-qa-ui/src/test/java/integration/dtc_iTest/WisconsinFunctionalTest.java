@@ -1,4 +1,4 @@
-package integration.dtcRider;
+package integration.dtc_iTest;
 
 import com.github.javafaker.Faker;
 import entity.Application;
@@ -41,20 +41,9 @@ public class WisconsinFunctionalTest extends CQBaseIntegrationTest {
     public void setup() {
         faker = new Faker();
         sheet = new CribSheet(faker);
-        sheet.setState("WI");
-        sheet.setZip("54001");
-        sheet.setRiderChoice1("OW");
-        sheet.setRiderChoice2("PW");
-        sheet.setRiderChoice3("QW");
-        sheet.setRiderChoice4("");
-        sheet.setRiderChoice5("");
-        sheet.setAarpMemid("y");
-        sheet.setDOB(DateUtils.getDOBofPersonTurningAgeToday(69));
-        sheet.setEffDate("01/01/2012");
-        sheet.setPsd(DateUtils.getFirstDayOfFutureMonth(1));
-        sheet.setPlanCode("MW");
-        sheet.setReferrer("uLayer");
         app = new Application();
+        submissionQuery = new SubmissionQueryDtc();
+        expectedSubmissionResult = new SubmissionResult();
     }
 
 
@@ -63,6 +52,19 @@ public class WisconsinFunctionalTest extends CQBaseIntegrationTest {
     @Test
     public void test_wisconsin_underwriting_with_health_history() throws Exception {
 
+        sheet.setState("WI");
+        sheet.setZip("54001");
+        sheet.setRiderChoice1("OW");
+        sheet.setRiderChoice2("");
+        sheet.setRiderChoice3("QW");
+        sheet.setRiderChoice4("");
+        sheet.setRiderChoice5("");
+        sheet.setAarpMemid("y");
+        sheet.setDOB(DateUtils.getDOBofPersonTurningAgeToday(69));
+        sheet.setEffDate(DateUtils.getFirstDayOfFutureMonth(-7));
+        sheet.setPsd(DateUtils.getFirstDayOfFutureMonth(1));
+        sheet.setPlanCode("MW");
+        sheet.setReferrer("uLayer");
 
         //TestData
         app.setAARPMembershipNumber(faker.numerify("##########"));
@@ -138,37 +140,16 @@ public class WisconsinFunctionalTest extends CQBaseIntegrationTest {
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);
 
-        whatYouNeedPage.isAt();
         whatYouNeedPage.clickNextAndWaitForSpinnerToFinish();
-
-        electronicSignatureAndDocumentConsentPage.isAt();
         electronicSignatureAndDocumentConsentPage.clickNextAndWaitForSpinnerToFinish();
-
-        aboutYouPage.isAt();
         aboutYouPage.fillAndSubmit(app, sheet);
-
-        planSelectionAndStartDatePage.isAt();
         planSelectionAndStartDatePage.fillAndSubmit(app);
-
-        planApplicationQuestionsPage.isAt();
         planApplicationQuestionsPage.fillAndSubmit(app);
-
-        eligibilityHealthQuestionsPage.isAt();
         eligibilityHealthQuestionsPage.fillAndSubmit(app);
-
-        healthHistoryQuestionsPage.isAt();
         healthHistoryQuestionsPage.fillAndSubmit(app);
-
-        pastAndCurrentCoveragePage.isAt();
         pastAndCurrentCoveragePage.fillAndSubmit(app);
-
-        authorizationPage.isAt();
         authorizationPage.fillAndSubmit(app);
-
-        planPaymentOptionsPage.isAt();
         planPaymentOptionsPage.fillAndSubmit(app);
-
-        reviewAndSubmitPage.isAt();
         reviewAndSubmitPage.fillAndSubmit(app);
 
         expectedSubmissionResult.setPendingInfo("UNDERWRITING ELIGIBILITY", "REVIEW FOR POSSIBLE ESRD");
@@ -179,9 +160,16 @@ public class WisconsinFunctionalTest extends CQBaseIntegrationTest {
     @Test
     public void test_wisconsin_guranteed_issue() throws Exception {
 
+        sheet.setState("WI");
+        sheet.setZip("54001");
+        sheet.setRiderChoice1("OW");
+        sheet.setRiderChoice2("");
+        sheet.setRiderChoice3("QW");
+        sheet.setRiderChoice4("");
+        sheet.setRiderChoice5("");
         sheet.setAarpMemid("y");
         sheet.setDOB(DateUtils.getDOBofPersonTurningAgeToday(65));
-        sheet.setEffDate("04/01/2015");
+        sheet.setEffDate(DateUtils.getFirstDayOfFutureMonth(1));
         sheet.setPsd(DateUtils.getFirstDayOfFutureMonth(1));
         sheet.setPlanCode("MW");
         sheet.setReferrer("uLayer");
@@ -190,9 +178,9 @@ public class WisconsinFunctionalTest extends CQBaseIntegrationTest {
         //TestData
         app.setAARPMembershipNumber(faker.numerify("##########"));
         app.setPrefix("MR");
-        app.setFirstName(this.faker.firstName());
+        app.setFirstName(this.faker.firstName()+"  twoSpaces");
         app.setMI(this.faker.letterify("?"));
-        app.setLastName(this.faker.lastName());
+        app.setLastName(this.faker.lastName()+" oneSpace");
         app.setSuffix("PHD");
         app.setAddressLine1("111 Street dr");
         app.setAddressLine2("apt #123");
@@ -217,7 +205,7 @@ public class WisconsinFunctionalTest extends CQBaseIntegrationTest {
         //Authorizationa and verififcation page
         app.setDesignateLapse(YES);
         //Past And Current Coverage
-        app.setSixMonEligEnroll(NO);
+/*      app.setSixMonEligEnroll(NO);
         app.setSixMonEligEnroll(NO);
         app.setSixMonTurn65Enroll(NO);
         app.setSixMonTurn65Enroll(NO);
@@ -226,7 +214,8 @@ public class WisconsinFunctionalTest extends CQBaseIntegrationTest {
         app.setSixMonMoveOut(NO);
         app.setSixMonMoveOut(NO);
         app.setSixMonResident(NO);
-        app.setSixMonResident(NO);
+        app.setSixMonResident(NO);*/
+
         app.setCPATurned65(NO);
         app.setCPAPartBIn6(NO);
         app.setMedicaidCovered(YES);
@@ -265,42 +254,23 @@ public class WisconsinFunctionalTest extends CQBaseIntegrationTest {
         app.setApplicantAddress("AppAdd");
         app.setRNOther("Cheaper");
         app.setCommonReplacementNoticeAnswersWithApplicantInfo();
-
+        app.setApplicantRNSignatureIndRequired("");
 
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);
 
-        whatYouNeedPage.isAt();
         whatYouNeedPage.clickNextAndWaitForSpinnerToFinish();
-
-        electronicSignatureAndDocumentConsentPage.isAt();
         electronicSignatureAndDocumentConsentPage.clickNextAndWaitForSpinnerToFinish();
-
-        aboutYouPage.isAt();
         aboutYouPage.fillAndSubmit(app, sheet);
-
-        planSelectionAndStartDatePage.isAt();
         planSelectionAndStartDatePage.fillAndSubmit(app);
-
-        planApplicationQuestionsPage.isAt();
         planApplicationQuestionsPage.fillAndSubmit(app);
-
-        pastAndCurrentCoveragePage.isAt();
         pastAndCurrentCoveragePage.fillAndSubmit(app);
-
-        authorizationPage.isAt();
         authorizationPage.fillAndSubmit(app);
-
-        planPaymentOptionsPage.isAt();
         planPaymentOptionsPage.fillAndSubmit(app);
-
-        reviewAndSubmitPage.isAt();
         reviewAndSubmitPage.fillAndSubmit(app);
 
-        expectedSubmissionResult.setAcceptedInfo();
-        submissionQuery.verifySubmissionData(app, expectedSubmissionResult);
-        submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
+        submissionQuery.verifyPlanAndRiderCodes(sheet, expectedSubmissionResult);
 
     }
-
+//oim pass - im21310997
 }

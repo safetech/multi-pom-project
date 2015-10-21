@@ -18,8 +18,7 @@ public class AR_PA_PlanApplicationQuestionsPage extends WizardPage {
 
         isAt();
 
-
-        if (app.getTurned65In6GA().equals("yes") || app.getPartBIn6GA().equals("yes") ||app.getPlanEffIn6OfEligible().equals("yes")) {
+        if (app.getTurned65In6GA().equals("yes") && app.getPartBIn6GA().equals("yes") && app.getPlanEffIn6OfEligible().equals("yes")) {
                 assertHidden(LostCoverage_Yes, LostCoverage_No);
 
         } else {

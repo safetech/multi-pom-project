@@ -5,6 +5,8 @@ import org.fluentlenium.core.domain.FluentWebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.WizardPage;
 
+import java.util.concurrent.TimeUnit;
+
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -12,8 +14,7 @@ public class WI_AuthorizationPage extends WizardPage{
 
     FluentWebElement SignatureInd;
     FluentWebElement MedicalReleaseAuthSignatureInd;
-    FluentWebElement ApplicantRNSignatureInd;
-    FluentWebElement MedicalReleaseClaimSignatureInd;
+    @FindBy(xpath = "//*[@id='ApplicantRNSignatureInd' and @data-rule-required='true']") FluentWebElement ApplicantRNSignatureInd;
 
     @FindBy(css = "#ReplacementReason_1") FluentWebElement ReplacementReason_ReplaceAdditionalBenefits;
     @FindBy(css = "#ReplacementReason_2") FluentWebElement ReplacementReason_SameBenefits;
@@ -52,9 +53,14 @@ public class WI_AuthorizationPage extends WizardPage{
                 break;
         }
 
+        await().atMost(1, TimeUnit.SECONDS);
         SignatureInd.click();
-        MedicalReleaseClaimSignatureInd.click();
-        ApplicantRNSignatureInd.click();
+        MedicalReleaseAuthSignatureInd.click();
+
+       if(app.getApplicantRNSignatureIndRequired().equals("required")) {
+            ApplicantRNSignatureInd.click();
+        }
+
 
         clickNextAndWaitForSpinnerToFinish();
     }

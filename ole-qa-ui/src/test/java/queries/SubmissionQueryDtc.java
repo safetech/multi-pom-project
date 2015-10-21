@@ -3,6 +3,7 @@ package queries;
 
 import entity.Application;
 import entity.SubmissionResult;
+import entity.dtc.CribSheet;
 import org.slf4j.Logger;
 import util.DateUtils;
 import util.DbUtils;
@@ -76,6 +77,13 @@ public class SubmissionQueryDtc {
             "  a.MARKETING_PRODUCT_CODE," +
             "  a.CHANNEL," +
             "  a.ACTOR," +
+            "  a.PLAN_REQUEST_1," +
+            "  a.PLAN_REQUEST_2," +
+            "  a.RIDER_REQUEST_1," +
+            "  a.RIDER_REQUEST_2," +
+            "  a.RIDER_REQUEST_3," +
+            "  a.RIDER_REQUEST_4," +
+            "  a.RIDER_REQUEST_5," +
             "  a.MECHANISM," +
             "  b.APPL_COMPONENT_NUMBER," +
             "  b.ADJUDICATION_CD," +
@@ -96,7 +104,7 @@ public class SubmissionQueryDtc {
 
         logger.info(query);
 
-        HashMap<String, String> row = DbUtils.getSingleRecord(query, COMPAS_SYS1);
+        HashMap<String, String> row = DbUtils.getSingleRecord(query, COMPAS_STAGE);
 
         String currentDate = DateUtils.NORMALIZED_DATE_FORMAT.format(new java.util.Date());
 
@@ -110,7 +118,6 @@ public class SubmissionQueryDtc {
         assertThat(row.get("DAY_PHONE_NUM"), equalTo(app.getPhonePrimary()));
         assertThat(row.get("EVENING_PHONE_NUM"), equalTo(app.getPhoneEvening()));
         assertThat(row.get("EMAIL_ADDRESS"), equalTo(app.getEmail().toUpperCase()));
-        assertThat(row.get("MEDICARE_CLAIM_NUMBER"), equalTo(app.getMedicareClaimNum().toUpperCase()));
         assertThat(row.get("BOTH_PARTS_ACTIVE"), equalTo(app.getPartABActiveIndicator() == "yes" ? "Y" : "N"));
         assertThat(row.get("CPA_SIGNATURE_DATE"), equalTo(currentDate));
         assertThat(row.get("APPL_RECEIPT_DATE"), equalTo(currentDate));
@@ -130,11 +137,29 @@ public class SubmissionQueryDtc {
         String query = String.format(ADJUDICATION_QUERY, app.getAARPMembershipNumber(), app.getAARPMembershipNumber());
         logger.info(query);
 
-        HashMap<String, String> row = DbUtils.getSingleRecord(query, COMPAS_SYS1);
+        HashMap<String, String> row = DbUtils.getSingleRecord(query, COMPAS_STAGE);
         logger.info("query is "+row.get("TYPE_DESC")+" and expected is "+expectedSubmissionResult.getWorkQueue());
         assertThat(row.get("TYPE_DESC"), equalTo(expectedSubmissionResult.getWorkQueue()));
         assertThat(row.get("ITEM_REASON_TYPE_DESC"), equalTo(expectedSubmissionResult.getWorkQueueReason()));
 
     }
 
+    public void verifyPlanAndRiderCodes(CribSheet sheet, SubmissionResult expectedSubmissionResult) throws SQLException {
+
+        String query = String.format(SUBMISSION_QUERY, sheet.getPlanCode(), sheet.getRiderChoice1(), sheet.getRiderChoice2(), sheet.getRiderChoice3(), sheet.getRiderChoice4(), sheet.getRiderChoice5());
+        logger.info(query);
+
+        HashMap<String, String> row = DbUtils.getSingleRecord(query, COMPAS_STAGE);
+
+        logger.info("query is "+row.get("TYPE_DESC")+" and expected is "+expectedSubmissionResult.getWorkQueue());
+        assertThat(row.get("PLAN_REQUEST_1"), equalTo(sheet.getPlanCode().toUpperCase()));
+        //assertThat(row.get("PLAN_REQUEST_2"), equalTo(app.getPlanCode().toUpperCase()));
+        assertThat(row.get("RIDER_REQUEST_1"), equalTo(sheet.getRiderChoice1().toUpperCase()));
+        assertThat(row.get("RIDER_REQUEST_2"), equalTo(sheet.getRiderChoice2().toUpperCase()));
+        assertThat(row.get("RIDER_REQUEST_3"), equalTo(sheet.getRiderChoice3().toUpperCase()));
+        assertThat(row.get("RIDER_REQUEST_4"), equalTo(sheet.getRiderChoice4().toUpperCase()));
+        assertThat(row.get("RIDER_REQUEST_5"), equalTo(sheet.getRiderChoice5().toUpperCase()));
+
+        logger.info(String.format("Here is the link to the image... https://acesx-stg-alt.uhc.com/appEnroll-web/resources/retrievePDF/v1/%s", row.get("APPL_IMAGE_NUM_ORIG") +" For the state of --> " + row.get("STATE_CD")));
+    }
 }
