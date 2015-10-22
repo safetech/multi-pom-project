@@ -97,6 +97,34 @@ public class SubmissionQueryDtc {
             " where" +
             "  b.MEMBERSHIP_NUMBER = substr(%s,1, LENGTH(%s) - 1)";
 
+    private String RIDERS_QUERY = "select TRIM(TO_CHAR((b.MEMBERSHIP_NUMBER, '000000000'))" +
+
+            " as MEMBERSHIP_NUMBER," + " b.MEMBERSHIP_NUMBER, b.PLAN_REQUEST_1, b.RIDER_REQUEST_1," +
+            " b.RIDER_REQUEST_2, b.RIDER_REQUEST_3, b.RIDER_REQUEST_4" +
+            " from" +
+            " application b  where  b.MEMBERSHIP_NUMBER = substr(%s,1, LENGTH(%s) - 1)" +
+            " and b.PLAN_REQUEST_1 = substr("+"'"+"%s"+"',1, LENGTH(%s) - 1)";
+
+    public void verifyPlanAndRiderCodes(Application app, CribSheet sheet, SubmissionResult expectedSubmissionResult) throws SQLException {
+
+        String query = String.format(RIDERS_QUERY, app.getAARPMembershipNumber(), app.getAARPMembershipNumber(),sheet.getPlanCode(), sheet.getRiderChoice1(), sheet.getRiderChoice2(), sheet.getRiderChoice3(), sheet.getRiderChoice4());
+        logger.info(query);
+
+        HashMap<String, String> row = DbUtils.getSingleRecord(query, COMPAS_STAGE);
+
+        // logger.info("query is "+row.get("TYPE_DESC")+" and expected is "+expectedSubmissionResult.getWorkQueue());
+        assertThat(row.get("PLAN_REQUEST_1"), equalTo(sheet.getPlanCode().toUpperCase()));
+        //assertThat(row.get("PLAN_REQUEST_2"), equalTo(app.getPlanCode().toUpperCase()));
+        assertThat(row.get("RIDER_REQUEST_1"), equalTo(sheet.getRiderChoice1().toUpperCase()));
+        assertThat(row.get("RIDER_REQUEST_2"), equalTo(sheet.getRiderChoice2().toUpperCase()));
+        assertThat(row.get("RIDER_REQUEST_3"), equalTo(sheet.getRiderChoice3().toUpperCase()));
+        assertThat(row.get("RIDER_REQUEST_4"), equalTo(sheet.getRiderChoice4().toUpperCase()));
+        //assertThat(row.get("RIDER_REQUEST_5"), equalTo(sheet.getRiderChoice5().toUpperCase()));
+
+        logger.info(String.format("Here is the link to the image... https://acesx-stg-alt.uhc.com/appEnroll-web/resources/retrievePDF/v1/%s", row.get("APPL_IMAGE_NUM_ORIG") +" For the state of --> " + row.get("STATE_CD")));
+    }
+
+
 
     public void verifySubmissionData(Application app, SubmissionResult expectedSubmissionResult) throws SQLException {
 
@@ -144,22 +172,5 @@ public class SubmissionQueryDtc {
 
     }
 
-    public void verifyPlanAndRiderCodes(CribSheet sheet, SubmissionResult expectedSubmissionResult) throws SQLException {
 
-        String query = String.format(SUBMISSION_QUERY, sheet.getPlanCode(), sheet.getRiderChoice1(), sheet.getRiderChoice2(), sheet.getRiderChoice3(), sheet.getRiderChoice4(), sheet.getRiderChoice5());
-        logger.info(query);
-
-        HashMap<String, String> row = DbUtils.getSingleRecord(query, COMPAS_STAGE);
-
-        logger.info("query is "+row.get("TYPE_DESC")+" and expected is "+expectedSubmissionResult.getWorkQueue());
-        assertThat(row.get("PLAN_REQUEST_1"), equalTo(sheet.getPlanCode().toUpperCase()));
-        //assertThat(row.get("PLAN_REQUEST_2"), equalTo(app.getPlanCode().toUpperCase()));
-        assertThat(row.get("RIDER_REQUEST_1"), equalTo(sheet.getRiderChoice1().toUpperCase()));
-        assertThat(row.get("RIDER_REQUEST_2"), equalTo(sheet.getRiderChoice2().toUpperCase()));
-        assertThat(row.get("RIDER_REQUEST_3"), equalTo(sheet.getRiderChoice3().toUpperCase()));
-        assertThat(row.get("RIDER_REQUEST_4"), equalTo(sheet.getRiderChoice4().toUpperCase()));
-        assertThat(row.get("RIDER_REQUEST_5"), equalTo(sheet.getRiderChoice5().toUpperCase()));
-
-        logger.info(String.format("Here is the link to the image... https://acesx-stg-alt.uhc.com/appEnroll-web/resources/retrievePDF/v1/%s", row.get("APPL_IMAGE_NUM_ORIG") +" For the state of --> " + row.get("STATE_CD")));
-    }
 }

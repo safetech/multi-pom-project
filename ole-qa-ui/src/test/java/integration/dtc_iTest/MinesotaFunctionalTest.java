@@ -17,7 +17,7 @@ import pages.dtc.variations.planselectionandstartdate.PA_AR_NV_MA_PlanSelectionA
 import queries.SubmissionQueryDtc;
 import util.DateUtils;
 
-public class WisconsinFunctionalTest extends CQBaseIntegrationTest {
+public class MinesotaFunctionalTest extends CQBaseIntegrationTest {
 
     @Page public CheatPage cheatPage;
     @Page public WhatYouNeedPage whatYouNeedPage;
@@ -49,11 +49,16 @@ public class WisconsinFunctionalTest extends CQBaseIntegrationTest {
     }
 
 
+    //TODO: Get update for Riders DTC.. Once ready to automate
+
     @Ignore
     public void test_wisconsin_underwriting_with_health_history() throws Exception {
 
-        sheet.setState("WI");
-        sheet.setZip("54001");
+
+
+
+        sheet.setState("MN");
+        sheet.setZip("55001");
         sheet.setRiderChoice1("OW");
         sheet.setRiderChoice2("");
         sheet.setRiderChoice3("QW");
@@ -162,16 +167,16 @@ public class WisconsinFunctionalTest extends CQBaseIntegrationTest {
 
         sheet.setState("WI");
         sheet.setZip("54001");
-        sheet.setRiderChoice1("OW");
+        sheet.setRiderChoice1("OW1");
         sheet.setRiderChoice2("");
-        sheet.setRiderChoice3("QW");
+        sheet.setRiderChoice3("QW1");
         sheet.setRiderChoice4("");
         sheet.setRiderChoice5("");
         sheet.setAarpMemid("y");
         sheet.setDOB(DateUtils.getDOBofPersonTurningAgeToday(65));
         sheet.setEffDate(DateUtils.getFirstDayOfFutureMonth(1));
         sheet.setPsd(DateUtils.getFirstDayOfFutureMonth(1));
-        sheet.setPlanCode("MW");
+        sheet.setPlanCode("MW1");
         sheet.setReferrer("uLayer");
 
         //TestData
@@ -225,6 +230,16 @@ public class WisconsinFunctionalTest extends CQBaseIntegrationTest {
         app.setOtherInsEnd("01/01/2014");
         app.setOtherInsReplace(YES);
         app.setCpaSignatureInd(YES);
+        //Authorizationa and verififcation page
+        app.setDesignateLapse(NO);
+        app.setAuxFirstName("AuxFirstName");
+        app.setAuxMI("M");
+        app.setAuxLastName("AuxLastName");
+        app.setAuxAddressLine1("AuxAddressLine1");
+        app.setAuxCity("AuxCity");
+        app.setAuxState("NV");
+        app.setAuxZipCode("89101");
+        //Replacement Notice Page
         app.setReplaceExistingMedSup(YES);
         app.setReplacementReason("OtherReason");
         app.setApplicantPrintedNameAdd("AppName");
