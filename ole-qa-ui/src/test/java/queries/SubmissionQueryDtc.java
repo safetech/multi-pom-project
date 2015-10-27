@@ -77,13 +77,11 @@ public class SubmissionQueryDtc {
             "  a.MARKETING_PRODUCT_CODE," +
             "  a.CHANNEL," +
             "  a.ACTOR," +
-            "  a.PLAN_REQUEST_1," +
-            "  a.PLAN_REQUEST_2," +
+            "  a.PLAN_CD," +
             "  a.RIDER_REQUEST_1," +
             "  a.RIDER_REQUEST_2," +
             "  a.RIDER_REQUEST_3," +
             "  a.RIDER_REQUEST_4," +
-            "  a.RIDER_REQUEST_5," +
             "  a.MECHANISM," +
             "  b.APPL_COMPONENT_NUMBER," +
             "  b.ADJUDICATION_CD," +
@@ -97,43 +95,101 @@ public class SubmissionQueryDtc {
             " where" +
             "  b.MEMBERSHIP_NUMBER = substr(%s,1, LENGTH(%s) - 1)";
 
-    private String RIDERS_QUERY = "select TRIM(TO_CHAR((b.MEMBERSHIP_NUMBER, '000000000'))" +
 
-            " as MEMBERSHIP_NUMBER," + " b.MEMBERSHIP_NUMBER, b.PLAN_REQUEST_1, b.RIDER_REQUEST_1," +
-            " b.RIDER_REQUEST_2, b.RIDER_REQUEST_3, b.RIDER_REQUEST_4" +
-            " from" +
-            " application b  where  b.MEMBERSHIP_NUMBER = substr(%s,1, LENGTH(%s) - 1)" +
-            " and b.PLAN_REQUEST_1 = substr("+"'"+"%s"+"',1, LENGTH(%s) - 1)";
+    private String WI_RIDERS_QUERY = "select" +
+            "  TRIM(TO_CHAR(b.MEMBERSHIP_NUMBER, '000000000')) as MEMBERSHIP_NUMBER," +
+            "  c.NAME_PREFIX_ID," +
+            "  a.FIRST_NAME," +
+            "  c.MIDDLE_NAME," +
+            "  a.LAST_NAME," +
+            "  c.NAME_SUFFIX_ID," +
+            "  a.ADDRESS_LINE_1," +
+            "  a.ADDRESS_LINE_2," +
+            "  a.CITY," +
+            "  a.STATE_CD," +
+            "  a.ZIP_CD," +
+            "  TO_CHAR(a.DATE_OF_BIRTH, 'MM/DD/YYYY') as DATE_OF_BIRTH," +
+            "  c.GENDER_CD," +
+            "  a.DAY_PHONE_NUM," +
+            "  a.EVENING_PHONE_NUM," +
+            "  a.HCSG_APPLICATION_ID," +
+            "  a.EMAIL_ADDRESS," +
+            "  a.PLAN_CD," +
+            "  TO_CHAR(b.REQUESTED_EFFECTIVE_DATE, 'MM/DD/YYYY') as REQUESTED_EFFECTIVE_DATE," +
+            "  a.MEDICARE_CLAIM_NUMBER," +
+            "  TO_CHAR(c.PART_A_EFFECTIVE_DATE, 'MM/DD/YYYY') as PART_A_EFFECTIVE_DATE," +
+            "  TO_CHAR(a.MED_PART_B_DATE, 'MM/DD/YYYY') as MED_PART_B_DATE," +
+            "  a.BOTH_PARTS_ACTIVE," +
+            "  TO_CHAR(b.CPA_SIGNATURE_DATE, 'MM/DD/YYYY') as CPA_SIGNATURE_DATE," +
+            "  TO_CHAR(b.APPL_RECEIPT_DATE, 'MM/DD/YYYY') as APPL_RECEIPT_DATE," +
+            "  TO_CHAR(b.APPL_SIGNATURE_DATE, 'MM/DD/YYYY') as APPL_SIGNATURE_DATE," +
+            "  a.AGENT_FIRST_NAME," +
+            "  a.AGENT_LAST_NAME," +
+            "  a.SELLING_AGENT_ID," +
+            "  a.QR_DATE," +
+            "  a.STATUS," +
+            "  a.MARKETING_PRODUCT_CODE," +
+            "  a.CHANNEL," +
+            "  a.ACTOR," +
+            "  a.PLAN_CD," +
+            "  a.RIDER_REQUEST_1," +
+            "  a.RIDER_REQUEST_2," +
+            "  a.RIDER_REQUEST_3," +
+            "  a.RIDER_REQUEST_4," +
+            "  a.MECHANISM," +
+            "  b.APPL_COMPONENT_NUMBER," +
+            "  b.ADJUDICATION_CD," +
+            "  b.HASH_CD," +
+            "  d.PAYMENT_METHOD_TYPE_ID," +
+            "  b.APPL_IMAGE_NUM_ORIG" +
+            " from " +
+            "  ((ole_application a left outer join application b on a.application_id = b.application_id)" +
+            "  left outer join individual c on b.individual_id = c.individual_id)" +
+            "  left outer join household_billing_profile d on b.household_id = d.household_id" +
+            " where" +
+            "  b.MEMBERSHIP_NUMBER = substr(%s,1, LENGTH(%s) - 1)";
 
     public void verifyPlanAndRiderCodes(Application app, CribSheet sheet, SubmissionResult expectedSubmissionResult) throws SQLException {
 
-        String query = String.format(RIDERS_QUERY, app.getAARPMembershipNumber(), app.getAARPMembershipNumber(),sheet.getPlanCode(), sheet.getRiderChoice1(), sheet.getRiderChoice2(), sheet.getRiderChoice3(), sheet.getRiderChoice4());
-        logger.info(query);
+            String query = String.format(WI_RIDERS_QUERY, app.getAARPMembershipNumber(), app.getAARPMembershipNumber());
+            logger.info(query);
+        String currentDate = DateUtils.NORMALIZED_DATE_FORMAT.format(new java.util.Date());
+        HashMap<String, String> row = DbUtils.getSingleRecord(query, COMPAS_SYS1);
 
-        HashMap<String, String> row = DbUtils.getSingleRecord(query, COMPAS_STAGE);
+               assertThat(row.get("PLAN_CD"), equalTo(expectedSubmissionResult.getPlanCode()));
+               assertThat(row.get("RIDER_REQUEST_1"), equalTo(expectedSubmissionResult.getRiderOne()));
+               assertThat(row.get("RIDER_REQUEST_2"), equalTo(expectedSubmissionResult.getRiderTwo()));
+               assertThat(row.get("RIDER_REQUEST_3"), equalTo(expectedSubmissionResult.getRiderThree()));
+               assertThat(row.get("RIDER_REQUEST_4"), equalTo(expectedSubmissionResult.getRiderFour()));
+               assertThat(row.get("STATE_CD"), equalTo(sheet.getState()));
+               assertThat(row.get("MEMBERSHIP_NUMBER"), containsString(app.getAARPMemberNumber()));
+               assertThat(row.get("FIRST_NAME"), containsString(app.getFirstName().toUpperCase()));
+               assertThat(row.get("MIDDLE_NAME"), equalTo(app.getMI().toUpperCase()));
+               assertThat(row.get("LAST_NAME"), equalTo(app.getLastName().toUpperCase()));
+               assertThat(row.get("ADDRESS_LINE_1"), equalTo(app.getAddressLine1().toUpperCase()));
+               assertThat(row.get("ADDRESS_LINE_2"), equalTo(app.getAddressLine2().toUpperCase()));
+               assertThat(row.get("CITY"), equalTo(app.getCity().toUpperCase()));
+               assertThat(row.get("DAY_PHONE_NUM"), equalTo(app.getPhonePrimary()));
+               assertThat(row.get("EVENING_PHONE_NUM"), equalTo(app.getPhoneEvening()));
+               assertThat(row.get("EMAIL_ADDRESS"), equalTo(app.getEmail().toUpperCase()));
+               assertThat(row.get("BOTH_PARTS_ACTIVE"), equalTo(app.getPartABActiveIndicator() == "yes" ? "Y" : "N"));
+               assertThat(row.get("CPA_SIGNATURE_DATE"), equalTo(currentDate));
+               assertThat(row.get("APPL_RECEIPT_DATE"), equalTo(currentDate));
+               assertThat(row.get("APPL_SIGNATURE_DATE"), equalTo(currentDate));
+               assertThat(row.get("STATUS"), equalTo(expectedSubmissionResult.getStatus()));
+               assertThat(row.get("CHANNEL"), equalTo("10"));
+               assertThat(row.get("ACTOR"), equalTo("1"));
+               assertThat(row.get("MECHANISM"), equalTo("2"));
+               assertThat(row.get("ADJUDICATION_CD"), equalTo(expectedSubmissionResult.getAdjudicationStatus()));
 
-        // logger.info("query is "+row.get("TYPE_DESC")+" and expected is "+expectedSubmissionResult.getWorkQueue());
-        assertThat(row.get("PLAN_REQUEST_1"), equalTo(sheet.getPlanCode().toUpperCase()));
-        //assertThat(row.get("PLAN_REQUEST_2"), equalTo(app.getPlanCode().toUpperCase()));
-        assertThat(row.get("RIDER_REQUEST_1"), equalTo(sheet.getRiderChoice1().toUpperCase()));
-        assertThat(row.get("RIDER_REQUEST_2"), equalTo(sheet.getRiderChoice2().toUpperCase()));
-        assertThat(row.get("RIDER_REQUEST_3"), equalTo(sheet.getRiderChoice3().toUpperCase()));
-        assertThat(row.get("RIDER_REQUEST_4"), equalTo(sheet.getRiderChoice4().toUpperCase()));
-        //assertThat(row.get("RIDER_REQUEST_5"), equalTo(sheet.getRiderChoice5().toUpperCase()));
-
-        logger.info(String.format("Here is the link to the image... https://acesx-stg-alt.uhc.com/appEnroll-web/resources/retrievePDF/v1/%s", row.get("APPL_IMAGE_NUM_ORIG") +" For the state of --> " + row.get("STATE_CD")));
+        logger.info(String.format("Here is the link to the image... https://acesx-tst-alt.uhc.com/appEnroll-web/resources/retrievePDF/v1/%s", row.get("APPL_IMAGE_NUM_ORIG") +" For the state of --> " + row.get("STATE_CD")));
     }
-
-
 
     public void verifySubmissionData(Application app, SubmissionResult expectedSubmissionResult) throws SQLException {
 
         String query = String.format(SUBMISSION_QUERY, app.getAARPMembershipNumber(), app.getAARPMembershipNumber());
-
         logger.info(query);
-
         HashMap<String, String> row = DbUtils.getSingleRecord(query, COMPAS_STAGE);
-
         String currentDate = DateUtils.NORMALIZED_DATE_FORMAT.format(new java.util.Date());
 
         assertThat(row.get("MEMBERSHIP_NUMBER"), containsString(app.getAARPMemberNumber()));
@@ -157,7 +213,6 @@ public class SubmissionQueryDtc {
         assertThat(row.get("ADJUDICATION_CD"), equalTo(expectedSubmissionResult.getAdjudicationStatus()));
 
         logger.info(String.format("Here is the link to the image... https://acesx-stg-alt.uhc.com/appEnroll-web/resources/retrievePDF/v1/%s", row.get("APPL_IMAGE_NUM_ORIG") +" For the state of --> " + row.get("STATE_CD")));
-
     }
 
     public void verifyAdjudicationData(Application app, SubmissionResult expectedSubmissionResult) throws SQLException {
@@ -171,6 +226,5 @@ public class SubmissionQueryDtc {
         assertThat(row.get("ITEM_REASON_TYPE_DESC"), equalTo(expectedSubmissionResult.getWorkQueueReason()));
 
     }
-
 
 }

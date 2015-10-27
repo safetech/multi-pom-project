@@ -5,6 +5,60 @@ public class SubmissionResult {
     private String status = "";
     private String workQueue = "";
     private String workQueueReason = "";
+    private String riderOne = "";
+    private String riderTwo = "";
+    private String riderThree = "";
+    private String riderFour = "";
+    private String riderFive = "";
+    private String planCode = "";
+
+    public String getRiderFive() {
+        return riderFive;
+    }
+
+    public void setRiderFive(String riderFive) {
+        this.riderFive = riderFive;
+    }
+
+    public String getPlanCode() {
+        return planCode;
+    }
+
+    public void setPlanCode(String planCode) {
+        this.planCode = planCode;
+    }
+
+    public String getRiderOne() {
+        return riderOne;
+    }
+
+    public void setRiderOne(String riderOne) {
+        this.riderOne = riderOne;
+    }
+
+    public String getRiderTwo() {
+        return riderTwo;
+    }
+
+    public void setRiderTwo(String riderTwo) {
+        this.riderTwo = riderTwo;
+    }
+
+    public String getRiderThree() {
+        return riderThree;
+    }
+
+    public void setRiderThree(String riderThree) {
+        this.riderThree = riderThree;
+    }
+
+    public String getRiderFour() {
+        return riderFour;
+    }
+
+    public void setRiderFour(String riderFour) {
+        this.riderFour = riderFour;
+    }
 
     public String getAdjudicationStatus() {
         return adjudicationStatus;
@@ -44,11 +98,29 @@ public class SubmissionResult {
         setWorkQueue(workQueue);
         setWorkQueueReason(workQueueReason);
     }
-
     public void setAcceptedInfo() {
         setAdjudicationStatus("A");
         setStatus("C");
     }
-
+    public void verifyAcceptedPlanAndRiderCodesForWI(String planCode, String riderOne, String riderTwo, String riderThree, String riderFour) {
+        setPlanCode(planCode);
+        setRiderOne(riderOne);
+        setRiderTwo(riderTwo);
+        setRiderThree(riderThree);
+        setRiderFour(riderFour);
+        setStatus("C");
+        setAdjudicationStatus("A");
+    }
+    public void verifyPendingPlanAndRiderCodesForWI(String planCode, String riderOne, String riderTwo, String riderThree, String riderFour, String workQueue, String workQueueReason ) {
+        setPlanCode(planCode);
+        setRiderOne(riderOne);
+        setRiderTwo(riderTwo);
+        setRiderThree(riderThree);
+        setRiderFour(riderFour);
+        setWorkQueue(workQueue);
+        setWorkQueueReason(workQueueReason);
+        setAdjudicationStatus("P");
+        setStatus("C");
+    }
 
 }
