@@ -6,11 +6,11 @@ import entity.Application;
 import entity.phone.CribSheet;
 import entity.SubmissionResult;
 import pages.phone.*;
-import pages.phone.variations.authorizationandverification.NV_AuthorizationAndVerificationPage;
+import pages.phone.variations.authorization.NV_AuthorizationAndVerificationPage;
 import pages.phone.variations.pastandcurrentcoverage.NV_OH_PastAndCurrentInsuranceCoveragePage;
-import pages.phone.variations.planapplicationpage.DE_NV_IN_AL_SC_PlanApplicationQuestions;
+import pages.phone.variations.planapplication.DE_NV_IN_AL_SC_PlanApplicationQuestions;
 import pages.phone.variations.replacementnotice.RN034andRE073Page;
-import queries.SubmissionQuery;
+import queries.SubmissionQueryPhone;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
@@ -32,14 +32,14 @@ public class NevadaIntegrationTest extends CQBaseIntegrationTest {
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
     @Page public ApplicationSubmissionPage applicationSubmissionPage;
 
-    public SubmissionQuery submissionQuery;
+    public SubmissionQueryPhone submissionQueryPhone;
     private Faker faker;
     private CribSheet sheet;
     private SubmissionResult expectedSubmissionResult;
 
     @Before
     public void setup() {
-        submissionQuery = new SubmissionQuery();
+        submissionQueryPhone = new SubmissionQueryPhone();
         faker = new Faker();
 
         sheet = new CribSheet(faker);
@@ -143,8 +143,8 @@ public class NevadaIntegrationTest extends CQBaseIntegrationTest {
         applicationSubmissionPage.isAt();
         applicationSubmissionPage.isPending();
 
-        submissionQuery.verifySubmissionData(app, expectedSubmissionResult);
-        submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
+        submissionQueryPhone.verifySubmissionData(app, expectedSubmissionResult);
+        submissionQueryPhone.verifyAdjudicationData(app, expectedSubmissionResult);
 
     }
 
@@ -206,8 +206,8 @@ public class NevadaIntegrationTest extends CQBaseIntegrationTest {
         applicationSubmissionPage.isAt();
         applicationSubmissionPage.isApproved();
 
-        submissionQuery.verifySubmissionData(app, expectedSubmissionResult);
-        submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
+        submissionQueryPhone.verifySubmissionData(app, expectedSubmissionResult);
+        submissionQueryPhone.verifyAdjudicationData(app, expectedSubmissionResult);
 
     }
 

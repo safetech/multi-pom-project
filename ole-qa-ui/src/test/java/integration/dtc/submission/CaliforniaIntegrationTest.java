@@ -11,7 +11,7 @@ import org.junit.Test;
 import pages.dtc.*;
 import pages.dtc.variations.authorization.CA_AuthorizationPage;
 import pages.dtc.variations.eligibilityhealthquestions.CA_EligibilityHealthQuestions;
-import pages.dtc.variations.pastandcurrentcoverage.AR_CA_PA_PastAndCurrentCoveragePage;
+import pages.dtc.variations.pastandcurrentcoverage.AR_CA_PA_WI_MN_PastAndCurrentCoveragePage;
 import pages.dtc.variations.planapplication.CA_PlanApplicationQuestions;
 import pages.dtc.variations.replacenotice.RN040Page;
 import queries.SubmissionQueryDtc;
@@ -26,7 +26,7 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
     @Page public PlanSelectionAndStartDatePage planSelectionAndStartDatePage;
     @Page public CA_PlanApplicationQuestions planApplicationQuestionsPage;
     @Page public CA_EligibilityHealthQuestions eligibilityHealthQuestionsPage;
-    @Page public AR_CA_PA_PastAndCurrentCoveragePage pastAndCurrentCoveragePage;
+    @Page public AR_CA_PA_WI_MN_PastAndCurrentCoveragePage pastAndCurrentCoveragePage;
     @Page public CA_AuthorizationPage authorizationPage;
     @Page public RN040Page replacementNoticePage;
     @Page public PlanPaymentOptionsPage planPaymentOptionsPage;

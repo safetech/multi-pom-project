@@ -56,6 +56,7 @@ public class CustomerInformationPage extends WizardPage {
         fill(MedicareClaimNum).with(app.getMedicareClaimNum());
         fill(MPAED).with(app.getMPAED());
         fill(MPBED).with(app.getMPBED());
+        fill(Email).with(app.getEmail());
         fillYesNoQuestion(PartABActiveIndicator_Yes, PartABActiveIndicator_No, app.getPartABActiveIndicator());
 
         verifyStateOfElementAfterAnswers(app);
@@ -77,7 +78,6 @@ public class CustomerInformationPage extends WizardPage {
         assertYesNoQuestion(PartABActiveIndicator_Yes, PartABActiveIndicator_No, app.getPartABActiveIndicator());
         assertQuestionCount(TOTAL_POSSIBLE_QUESTION_COUNT);
     }
-
 
     public void isAt() {
         assertThat(pageTitle.getText(), equalTo("Customer Information"));

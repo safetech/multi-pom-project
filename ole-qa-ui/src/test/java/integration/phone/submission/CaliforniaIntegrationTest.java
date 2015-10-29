@@ -7,13 +7,13 @@ import entity.phone.CribSheet;
 import entity.SubmissionResult;
 import pages.phone.*;
 import pages.phone.variations.agentverification.CA_AgentVerificationPage;
-import pages.phone.variations.authorizationandverification.CA_AuthorizationAndVerificationPage;
+import pages.phone.variations.authorization.CA_AuthorizationAndVerificationPage;
 import pages.phone.variations.eligibilityhealthquestions.CA_EligibilityHealthQuestionsPage;
 import pages.phone.variations.healthhistoryquestions.CA_HealthHistoryQuestionsPage;
 import pages.phone.variations.pastandcurrentcoverage.CA_PA_NJ_IN_OR_PastAndCurrentInsuranceCoveragePage;
-import pages.phone.variations.planapplicationpage.CA_PlanApplicationQuestions;
+import pages.phone.variations.planapplication.CA_PlanApplicationQuestions;
 import pages.phone.variations.replacementnotice.RN040Page;
-import queries.SubmissionQuery;
+import queries.SubmissionQueryPhone;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
@@ -36,14 +36,14 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
     @Page public ApplicationSubmissionPage applicationSubmissionPage;
 
-    public SubmissionQuery submissionQuery;
+    public SubmissionQueryPhone submissionQueryPhone;
     private Faker faker;
     private CribSheet sheet;
     private SubmissionResult expectedSubmissionResult;
 
     @Before
     public void setup() {
-        submissionQuery = new SubmissionQuery();
+        submissionQueryPhone = new SubmissionQueryPhone();
         faker = new Faker();
 
         sheet = new CribSheet(faker);
@@ -154,8 +154,8 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         applicationSubmissionPage.isApproved();
 
         expectedSubmissionResult.setAcceptedInfo();
-        submissionQuery.verifySubmissionData(app, expectedSubmissionResult);
-        submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
+        submissionQueryPhone.verifySubmissionData(app, expectedSubmissionResult);
+        submissionQueryPhone.verifyAdjudicationData(app, expectedSubmissionResult);
 
     }
 
@@ -228,8 +228,8 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         applicationSubmissionPage.isApproved();
 
         expectedSubmissionResult.setAcceptedInfo();
-        submissionQuery.verifySubmissionData(app, expectedSubmissionResult);
-        submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
+        submissionQueryPhone.verifySubmissionData(app, expectedSubmissionResult);
+        submissionQueryPhone.verifyAdjudicationData(app, expectedSubmissionResult);
 
     }
 }
