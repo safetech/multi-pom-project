@@ -189,7 +189,7 @@ public class SubmissionQueryDtc {
 
         String query = String.format(SUBMISSION_QUERY, app.getAARPMembershipNumber(), app.getAARPMembershipNumber());
         logger.info(query);
-        HashMap<String, String> row = DbUtils.getSingleRecord(query, COMPAS_STAGE);
+        HashMap<String, String> row = DbUtils.getSingleRecord(query, COMPAS_SYS1);
         String currentDate = DateUtils.NORMALIZED_DATE_FORMAT.format(new java.util.Date());
 
         assertThat(row.get("MEMBERSHIP_NUMBER"), containsString(app.getAARPMemberNumber()));
@@ -220,7 +220,7 @@ public class SubmissionQueryDtc {
         String query = String.format(ADJUDICATION_QUERY, app.getAARPMembershipNumber(), app.getAARPMembershipNumber());
         logger.info(query);
 
-        HashMap<String, String> row = DbUtils.getSingleRecord(query, COMPAS_STAGE);
+        HashMap<String, String> row = DbUtils.getSingleRecord(query, COMPAS_SYS1);
         logger.info("query is "+row.get("TYPE_DESC")+" and expected is "+expectedSubmissionResult.getWorkQueue());
         assertThat(row.get("TYPE_DESC"), equalTo(expectedSubmissionResult.getWorkQueue()));
         assertThat(row.get("ITEM_REASON_TYPE_DESC"), equalTo(expectedSubmissionResult.getWorkQueueReason()));

@@ -11,7 +11,7 @@ import org.junit.Test;
 import pages.phone.*;
 import pages.phone.variations.pastandcurrentcoverage.CA_PA_NJ_IN_OR_PastAndCurrentInsuranceCoveragePage;
 import pages.phone.variations.planapplication.VA_NJ_IL_LA_NC_KY_AR_PlanApplicationQuestions;
-import pages.phone.variations.replacementnotice.RN034ARPage;
+import pages.phone.variations.replacementnotice.AR_RN034Page;
 import queries.SubmissionQueryPhone;
 import util.DateUtils;
 
@@ -27,7 +27,7 @@ public class ArkansasIntegrationTest extends CQBaseIntegrationTest {
     @Page public AuthorizationAndVerificationPage authorizationAndVerificationPage;
     @Page public HealthHistoryQuestionsPage healthHistoryQuestionsPage;
     @Page public AgentVerificationPage agentVerificationPage;
-    @Page public RN034ARPage replacementNoticePage;
+    @Page public AR_RN034Page replacementNoticePage;
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
     @Page public ApplicationSubmissionPage applicationSubmissionPage;
 

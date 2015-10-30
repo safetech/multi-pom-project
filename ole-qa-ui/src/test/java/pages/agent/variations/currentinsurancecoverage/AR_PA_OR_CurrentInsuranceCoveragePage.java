@@ -43,7 +43,7 @@ public class AR_PA_OR_CurrentInsuranceCoveragePage extends WizardPage{
         protected int TOTAL_POSSIBLE_QUESTION_COUNT = 29;
 
     public void fillAndSubmit(Application app) {
-
+        isAt();
         assertQuestionCount(TOTAL_POSSIBLE_QUESTION_COUNT);
 
         fillYesNoQuestion(MedicaidCovered_Yes, MedicaidCovered_No, app.getMedicaidCovered());

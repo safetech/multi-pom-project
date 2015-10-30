@@ -12,8 +12,8 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class WI_iTest_PlanSelectionPage extends WizardPage{
 
-    @FindBy(xpath = "//*[@id='planCode_1']") FluentWebElement First_Plan;
-    @FindBy(xpath = "//*[@id='planCode_2']") FluentWebElement Second_Plan;
+    @FindBy(xpath = "//*[@id='planCode_1']") FluentWebElement basicPlan;
+    @FindBy(xpath = "//*[@id='planCode_2']") FluentWebElement basicPlanWithCoPay;
     @FindBy(xpath = "(//*[contains(text(),'add rider')])[/]") FluentWebElement Add_Rider;
     @FindBy(xpath = "(//*[contains(text(),'continue')])[1]") FluentWebElement Continue;
     @FindBy(xpath = "//*[@id='rider_compatibility_error_WI']/ul[1]/li/a") FluentWebElement Update_Rider_Selection;
@@ -53,7 +53,7 @@ public class WI_iTest_PlanSelectionPage extends WizardPage{
     }
     public void basicPlanRiderOneAndThree() {
         isAt();
-        First_Plan.click();
+        basicPlan.click();
         RiderChoice_OW.click();
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
         RiderChoice_QW.click();
@@ -61,7 +61,7 @@ public class WI_iTest_PlanSelectionPage extends WizardPage{
     }
     public void basicPlanRiderTwoAndFour() {
         isAt();
-        First_Plan.click();
+        basicPlan.click();
         RiderChoice_PW.click();
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
         RiderChoice_SW.click();
@@ -69,7 +69,7 @@ public class WI_iTest_PlanSelectionPage extends WizardPage{
     }
     public void basicPlanCoPayRiderOneAndFour() {
         isAt();
-        Second_Plan.click();
+        basicPlanWithCoPay.click();
         RiderChoice_OW2.click();
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
         RiderChoice_SW2.click();
@@ -77,10 +77,15 @@ public class WI_iTest_PlanSelectionPage extends WizardPage{
     }
     public void basicPlanCoPayRiderTwoAndFour() {
         isAt();
-        Second_Plan.click();
+        basicPlanWithCoPay.click();
         RiderChoice_PW2.click();
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
         RiderChoice_SW2.click();
+        clickNextAndWaitForSpinnerToFinish();
+    }
+    public void basicPlanCoPayNoRiderQr() {
+        isAt();
+        basicPlanWithCoPay.click();
         clickNextAndWaitForSpinnerToFinish();
     }
 }

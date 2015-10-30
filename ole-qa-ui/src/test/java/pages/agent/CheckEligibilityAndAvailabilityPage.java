@@ -41,7 +41,6 @@ public class CheckEligibilityAndAvailabilityPage extends WizardPage {
             }
 
         await().atMost(10, TimeUnit.SECONDS).until("div.customer_eligibility_form #ReqEffectiveDate option").hasSize(4);
-
         await().atMost(20, TimeUnit.SECONDS).until("div.customer_eligibility_form #ReqEffectiveDate option").hasSize(4);
 
         fillSelect("div.customer_eligibility_form #ReqEffectiveDate").withIndex(1);

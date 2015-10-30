@@ -1,29 +1,29 @@
 package integration;
 
 import com.google.gson.Gson;
-        import com.google.gson.GsonBuilder;
-        import entity.Application;
-        import entity.phone.CribSheet;
-        import org.apache.commons.io.FileUtils;
-        import org.fluentlenium.adapter.FluentTest;
-        import org.fluentlenium.adapter.util.SharedDriver;
-        import org.junit.After;
-        import org.junit.Rule;
-        import org.junit.rules.TestRule;
-        import org.junit.rules.TestWatcher;
-        import org.junit.runner.Description;
-        import org.openqa.selenium.OutputType;
-        import org.openqa.selenium.TakesScreenshot;
-        import org.openqa.selenium.WebDriver;
-        import org.openqa.selenium.firefox.FirefoxDriver;
-        import org.slf4j.Logger;
-        import pages.phone.CheatPage;
-        import util.AnswerUtils;
+import com.google.gson.GsonBuilder;
+import entity.Application;
+import entity.phone.CribSheet;
+import org.apache.commons.io.FileUtils;
+import org.fluentlenium.adapter.FluentTest;
+import org.fluentlenium.adapter.util.SharedDriver;
+import org.junit.After;
+import org.junit.Rule;
+import org.junit.rules.TestRule;
+import org.junit.rules.TestWatcher;
+import org.junit.runner.Description;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.slf4j.Logger;
+import pages.phone.CheatPage;
+import util.AnswerUtils;
 
-        import java.io.File;
-        import java.io.IOException;
+import java.io.File;
+import java.io.IOException;
 
-        import static org.slf4j.LoggerFactory.getLogger;
+import static org.slf4j.LoggerFactory.getLogger;
 
 @SharedDriver(type = SharedDriver.SharedType.PER_CLASS)
 public class CQBaseIntegrationTest extends FluentTest {
@@ -74,3 +74,4 @@ public class CQBaseIntegrationTest extends FluentTest {
         cheatPage.fillAndSubmit(sheet);
     }
 }
+

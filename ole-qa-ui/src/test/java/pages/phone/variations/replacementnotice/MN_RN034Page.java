@@ -8,7 +8,7 @@ import pages.WizardPage;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class RN034ARPage extends WizardPage {
+public class MN_RN034Page extends WizardPage {
 
     @FindBy(css = "#ReplacementReason_1") FluentWebElement ReplacementReason_ReplaceAdditionalBenefits;
     @FindBy(css = "#ReplacementReason_2") FluentWebElement ReplacementReason_SameBenefits;
@@ -21,7 +21,6 @@ public class RN034ARPage extends WizardPage {
     FluentWebElement ApplicantRNSignatureInd;
     FluentWebElement ApplicantPrintedNameAdd;
     FluentWebElement ApplicantAddress;
-    FluentWebElement ReplacementAgentSignInd2;
 
     public void fillAndSubmit(Application app) {
 
@@ -53,10 +52,6 @@ public class RN034ARPage extends WizardPage {
         AgentRNSignatureInd.click();
 
         ApplicantRNSignatureInd.click();
-        fill(ApplicantPrintedNameAdd).with(app.getApplicantPrintedNameAdd());
-        fill(ApplicantAddress).with(app.getApplicantAddress());
-
-        ReplacementAgentSignInd2.click();
 
         clickNextAndWaitForSpinnerToFinish();
     }

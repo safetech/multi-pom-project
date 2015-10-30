@@ -13,7 +13,7 @@ public class AuthorizationPage extends WizardPage {
     FluentWebElement MedicalReleaseAuthSignatureInd;
 
     public void fillAndSubmit(Application app) {
-
+        isAt();
         SignatureInd.click();
         fillTouchSignature("SignatureIndTouch",  app.getSignatureIndTouch());
         MedicalReleaseAuthSignatureInd.click();

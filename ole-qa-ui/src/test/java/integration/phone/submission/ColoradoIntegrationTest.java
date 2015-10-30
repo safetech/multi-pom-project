@@ -81,9 +81,9 @@ public class ColoradoIntegrationTest extends CQBaseIntegrationTest {
         app.setMPBED("10/01/2011");
 
         //Plan Eligibility
-        app.setTurned65In6GA(NO); //TODO: Replace these hard coded values with helper function that will determine answer based upon DOB
-        app.setPartBIn6GA(NO); //TODO: Replace these hard coded values with helper function that will determine answer based upon MPBED
-        app.setPlanEffIn6OfEligible(NO); //TODO: Replace these hard coded values with helper function that will determine answer based upon DOB & MPBED
+        app.setTurned65In6GA(NO);
+        app.setPartBIn6GA(NO);
+        app.setPlanEffIn6OfEligible(NO);
         app.setLostCoverage(NO);
         app.setTobaccoUse(YES);
         //Eligibility Questions
@@ -183,9 +183,9 @@ public class ColoradoIntegrationTest extends CQBaseIntegrationTest {
         app.setMPAED("01/01/2011");
         app.setMPBED("01/01/2014");
         //Plan Eligibility
-        app.setTurned65In6GA(NO); //TODO: Replace these hard coded values with helper function that will determine answer based upon DOB
-        app.setPartBIn6GA(NO); //TODO: Replace these hard coded values with helper function that will determine answer based upon MPBED
-        app.setPlanEffIn6OfEligible(NO);  //TODO: Replace these hard coded values with helper function that will determine answer based upon DOB & MPBED
+        app.setTurned65In6GA(NO);
+        app.setPartBIn6GA(NO);
+        app.setPlanEffIn6OfEligible(NO);
         app.setLostCoverage(NO);
         app.setTobaccoUse(YES);
         //Eligibility Questions

@@ -13,8 +13,8 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class MN_Riders_PlanSelectionPage extends WizardPage {
 
-    @FindBy(xpath = "//*[@id='planCode_1']") FluentWebElement planCode_TW;
-     @FindBy(xpath = "//*[@id='planCode_2']") FluentWebElement Second_Plan;
+    @FindBy(xpath = "//*[@id='planCode_1']") FluentWebElement basicPlan;
+     @FindBy(xpath = "//*[@id='planCode_2']") FluentWebElement basicPlanWithCoPay;
     @FindBy(xpath = "(//*[contains(text(),'add rider')])[1]") FluentWebElement Add_Rider;
     @FindBy(xpath = "(//*[contains(text(),'continue')])[1]") FluentWebElement Continue;
     @FindBy(xpath = "//*[@id='rider_compatibility_error_WI']/ul[1]/li/a") FluentWebElement Update_Rider_Selection;
@@ -45,7 +45,7 @@ public class MN_Riders_PlanSelectionPage extends WizardPage {
 
         isAt();
 
-        planCode_TW.click();
+        basicPlan.click();
 
         getReqEffectiveDateSelect().selectByValue(app.getReqEffectiveDate());
         clickNextAndWaitForSpinnerToFinish();
@@ -54,7 +54,7 @@ public class MN_Riders_PlanSelectionPage extends WizardPage {
         //----TC 2******************************************************************************
         isAt();
 
-        planCode_TW.click();
+        basicPlan.click();
         RiderChoice_XW.click();
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
         isAt();
@@ -76,7 +76,7 @@ public class MN_Riders_PlanSelectionPage extends WizardPage {
 
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
 
-        planCode_TW.click();
+        basicPlan.click();
         RiderChoice_YW.click();
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
         isAt();
@@ -99,7 +99,7 @@ public class MN_Riders_PlanSelectionPage extends WizardPage {
 
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
 
-        planCode_TW.click();
+        basicPlan.click();
         RiderChoice_VW.click();
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
         isAt();
@@ -122,7 +122,7 @@ public class MN_Riders_PlanSelectionPage extends WizardPage {
 
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
 
-        planCode_TW.click();
+        basicPlan.click();
         RiderChoice_WW.click();
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
         isAt();
@@ -145,7 +145,7 @@ public class MN_Riders_PlanSelectionPage extends WizardPage {
 
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
 
-        planCode_TW.click();
+        basicPlan.click();
         RiderChoice_ZW.click();
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
         isAt();
@@ -168,7 +168,7 @@ public class MN_Riders_PlanSelectionPage extends WizardPage {
 
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
 
-        planCode_TW.click();
+        basicPlan.click();
         RiderChoice_XW.click();
         RiderChoice_YW.click();
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
@@ -191,7 +191,7 @@ public class MN_Riders_PlanSelectionPage extends WizardPage {
 
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
 
-        planCode_TW.click();
+        basicPlan.click();
         //   RiderChoice_YW.click();
         RiderChoice_VW.click();
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
@@ -214,7 +214,7 @@ public class MN_Riders_PlanSelectionPage extends WizardPage {
 
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
 
-        planCode_TW.click();
+        basicPlan.click();
         RiderChoice_WW.click();
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
         isAt();
@@ -236,7 +236,7 @@ public class MN_Riders_PlanSelectionPage extends WizardPage {
 
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
 
-        planCode_TW.click();
+        basicPlan.click();
         RiderChoice_ZW.click();
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
         isAt();
@@ -258,7 +258,7 @@ public class MN_Riders_PlanSelectionPage extends WizardPage {
 
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
 
-        planCode_TW.click();
+        basicPlan.click();
         RiderChoice_VW.click();
         RiderChoice_WW.click();
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
@@ -281,7 +281,7 @@ public class MN_Riders_PlanSelectionPage extends WizardPage {
 
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
 
-        planCode_TW.click();
+        basicPlan.click();
 
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
         isAt();
@@ -303,7 +303,7 @@ public class MN_Riders_PlanSelectionPage extends WizardPage {
 
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
 
-        planCode_TW.click();
+        basicPlan.click();
         RiderChoice_ZW.click();
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
         isAt();
@@ -325,7 +325,7 @@ public class MN_Riders_PlanSelectionPage extends WizardPage {
 
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
 
-        planCode_TW.click();
+        basicPlan.click();
         RiderChoice_WW.click();
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
         isAt();
@@ -347,7 +347,7 @@ public class MN_Riders_PlanSelectionPage extends WizardPage {
 
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
 
-        planCode_TW.click();
+        basicPlan.click();
         RiderChoice_YW.click();
         RiderChoice_VW.click();
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
@@ -370,7 +370,7 @@ public class MN_Riders_PlanSelectionPage extends WizardPage {
 
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
 
-        planCode_TW.click();
+        basicPlan.click();
         RiderChoice_WW.click();
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
         isAt();
@@ -392,7 +392,7 @@ public class MN_Riders_PlanSelectionPage extends WizardPage {
 
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
 
-        planCode_TW.click();
+        basicPlan.click();
         RiderChoice_VW.click();
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
         isAt();
@@ -413,7 +413,7 @@ public class MN_Riders_PlanSelectionPage extends WizardPage {
 
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
 
-        planCode_TW.click();
+        basicPlan.click();
         RiderChoice_YW.click();
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
         isAt();
@@ -444,7 +444,7 @@ public class MN_Riders_PlanSelectionPage extends WizardPage {
 
          isAt();
 
-         planCode_TW.click();
+         basicPlan.click();
          RiderChoice_XW.click();
          RiderChoice_VW.click();
          await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
@@ -460,7 +460,7 @@ public class MN_Riders_PlanSelectionPage extends WizardPage {
 
          isAt();
 
-         planCode_TW.click();
+         basicPlan.click();
          RiderChoice_WW.click();
          await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
          getReqEffectiveDateSelect().selectByValue(app.getReqEffectiveDate());
@@ -475,7 +475,7 @@ public class MN_Riders_PlanSelectionPage extends WizardPage {
 
          isAt();
 
-         planCode_TW.click();
+         basicPlan.click();
          RiderChoice_ZW.click();
          await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
          getReqEffectiveDateSelect().selectByValue(app.getReqEffectiveDate());
@@ -490,7 +490,7 @@ public class MN_Riders_PlanSelectionPage extends WizardPage {
 
          isAt();
 
-         planCode_TW.click();
+         basicPlan.click();
          RiderChoice_YW.click();
          RiderChoice_VW.click();
          await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
@@ -505,7 +505,7 @@ public class MN_Riders_PlanSelectionPage extends WizardPage {
 
          isAt();
 
-         planCode_TW.click();
+         basicPlan.click();
          RiderChoice_WW.click();
          await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
          getReqEffectiveDateSelect().selectByValue(app.getReqEffectiveDate());
@@ -519,7 +519,7 @@ public class MN_Riders_PlanSelectionPage extends WizardPage {
 
          isAt();
 
-         planCode_TW.click();
+         basicPlan.click();
          RiderChoice_ZW.click();
          await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
          getReqEffectiveDateSelect().selectByValue(app.getReqEffectiveDate());
@@ -533,7 +533,7 @@ public class MN_Riders_PlanSelectionPage extends WizardPage {
 
          isAt();
 
-         planCode_TW.click();
+         basicPlan.click();
          RiderChoice_VW.click();
          RiderChoice_WW.click();
          await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
@@ -547,7 +547,7 @@ public class MN_Riders_PlanSelectionPage extends WizardPage {
 
          isAt();
 
-         planCode_TW.click();
+         basicPlan.click();
          RiderChoice_ZW.click();
          await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
          getReqEffectiveDateSelect().selectByValue(app.getReqEffectiveDate());
@@ -564,7 +564,7 @@ public class MN_Riders_PlanSelectionPage extends WizardPage {
 
          isAt();
 
-         planCode_TW.click();
+         basicPlan.click();
          await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
          getReqEffectiveDateSelect().selectByValue(app.getReqEffectiveDate());
          clickNextAndWaitForSpinnerToFinish();
@@ -580,7 +580,7 @@ public class MN_Riders_PlanSelectionPage extends WizardPage {
 
          isAt();
 
-         planCode_TW.click();
+         basicPlan.click();
          RiderChoice_VW.click();
          await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
          getReqEffectiveDateSelect().selectByValue(app.getReqEffectiveDate());
@@ -596,7 +596,7 @@ public class MN_Riders_PlanSelectionPage extends WizardPage {
 
          isAt();
 
-         planCode_TW.click();
+         basicPlan.click();
          await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
          getReqEffectiveDateSelect().selectByValue(app.getReqEffectiveDate());
          clickNextAndWaitForSpinnerToFinish();
@@ -611,7 +611,7 @@ public class MN_Riders_PlanSelectionPage extends WizardPage {
 
          isAt();
 
-         planCode_TW.click();
+         basicPlan.click();
          RiderChoice_WW.click();
          await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
          getReqEffectiveDateSelect().selectByValue(app.getReqEffectiveDate());
@@ -627,7 +627,7 @@ public class MN_Riders_PlanSelectionPage extends WizardPage {
 
          isAt();
 
-         planCode_TW.click();
+         basicPlan.click();
          RiderChoice_ZW.click();
          await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
          getReqEffectiveDateSelect().selectByValue(app.getReqEffectiveDate());
@@ -642,7 +642,7 @@ public class MN_Riders_PlanSelectionPage extends WizardPage {
 
          isAt();
 
-         planCode_TW.click();
+         basicPlan.click();
          RiderChoice_VW.click();
          await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
          getReqEffectiveDateSelect().selectByValue(app.getReqEffectiveDate());
@@ -666,12 +666,12 @@ public class MN_Riders_PlanSelectionPage extends WizardPage {
 
           blurAndSleep();
 
-          Second_Plan.click();
+          basicPlanWithCoPay.click();
           await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
           clickNextAndWaitForSpinnerToFinish();
           Back.click();
           blurAndSleep();
-          Second_Plan.click();
+          basicPlanWithCoPay.click();
           await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
 
      }

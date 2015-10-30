@@ -22,7 +22,9 @@ public class CA_AuthorizationAndVerificationPage extends WizardPage{
         UnderstandAuth_Yes.click();
         SignatureInd.click();
         MedicalReleaseClaimSignatureInd.click();
+        if(app.getMedicalReleaseAuthSignatureIndRequired().equals("Required")){
         MedicalReleaseAuthSignatureInd.click();
+        }
         clickNextAndWaitForSpinnerToFinish();
 
     }

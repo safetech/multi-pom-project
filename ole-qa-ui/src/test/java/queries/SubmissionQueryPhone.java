@@ -3,6 +3,7 @@ package queries;
 
 import entity.Application;
 import entity.SubmissionResult;
+import entity.phone.CribSheet;
 import org.slf4j.Logger;
 import util.DateUtils;
 import util.DbUtils;
@@ -87,7 +88,98 @@ public class SubmissionQueryPhone {
         " where" +
         "  a.hcsg_application_id = '%s'";
 
+    private String RIDERS_QUERY = "select" +
+            "  TRIM(TO_CHAR(b.MEMBERSHIP_NUMBER, '000000000')) as MEMBERSHIP_NUMBER," +
+            "  c.NAME_PREFIX_ID," +
+            "  a.FIRST_NAME," +
+            "  c.MIDDLE_NAME," +
+            "  a.LAST_NAME," +
+            "  c.NAME_SUFFIX_ID," +
+            "  a.ADDRESS_LINE_1," +
+            "  a.ADDRESS_LINE_2," +
+            "  a.CITY," +
+            "  a.STATE_CD," +
+            "  a.RIDER_REQUEST_1," +
+            "  a.RIDER_REQUEST_2," +
+            "  a.RIDER_REQUEST_3," +
+            "  a.RIDER_REQUEST_4," +
+            "  a.ZIP_CD," +
+            "  TO_CHAR(a.DATE_OF_BIRTH, 'MM/DD/YYYY') as DATE_OF_BIRTH," +
+            "  c.GENDER_CD," +
+            "  a.DAY_PHONE_NUM," +
+            "  a.EVENING_PHONE_NUM," +
+            "  a.HCSG_APPLICATION_ID," +
+            "  a.EMAIL_ADDRESS," +
+            "  a.PLAN_CD," +
+            "  TO_CHAR(b.REQUESTED_EFFECTIVE_DATE, 'MM/DD/YYYY') as REQUESTED_EFFECTIVE_DATE," +
+            "  a.MEDICARE_CLAIM_NUMBER," +
+            "  TO_CHAR(c.PART_A_EFFECTIVE_DATE, 'MM/DD/YYYY') as PART_A_EFFECTIVE_DATE," +
+            "  TO_CHAR(a.MED_PART_B_DATE, 'MM/DD/YYYY') as MED_PART_B_DATE," +
+            "  a.BOTH_PARTS_ACTIVE," +
+            "  TO_CHAR(b.CPA_SIGNATURE_DATE, 'MM/DD/YYYY') as CPA_SIGNATURE_DATE," +
+            "  TO_CHAR(b.APPL_RECEIPT_DATE, 'MM/DD/YYYY') as APPL_RECEIPT_DATE," +
+            "  TO_CHAR(b.APPL_SIGNATURE_DATE, 'MM/DD/YYYY') as APPL_SIGNATURE_DATE," +
+            "  a.AGENT_FIRST_NAME," +
+            "  a.AGENT_LAST_NAME," +
+            "  a.SELLING_AGENT_ID," +
+            "  a.QR_DATE," +
+            "  a.STATUS," +
+            "  a.MARKETING_PRODUCT_CODE," +
+            "  a.CHANNEL," +
+            "  a.ACTOR," +
+            "  a.MECHANISM," +
+            "  b.APPL_COMPONENT_NUMBER," +
+            "  b.ADJUDICATION_CD," +
+            "  b.HASH_CD," +
+            "  d.PAYMENT_METHOD_TYPE_ID," +
+            "  b.APPL_IMAGE_NUM_ORIG" +
+            " from " +
+            "  ((ole_application a left outer join application b on a.application_id = b.application_id)" +
+            "  left outer join individual c on b.individual_id = c.individual_id)" +
+            "  left outer join household_billing_profile d on b.household_id = d.household_id" +
+            " where" +
+            "  a.hcsg_application_id = '%s'";
 
+
+    public void verifyPlanAndRiderCodes(Application app, CribSheet sheet, SubmissionResult expectedSubmissionResult) throws SQLException {
+
+        String query = String.format(RIDERS_QUERY, app.getHCSGApplicationId());
+        logger.info(query);
+        String currentDate = DateUtils.NORMALIZED_DATE_FORMAT.format(new java.util.Date());
+        HashMap<String, String> row = DbUtils.getSingleRecord(query, COMPAS_SYS1);
+
+        assertThat(row.get("PLAN_CD"), equalTo(expectedSubmissionResult.getPlanCode()));
+        assertThat(row.get("RIDER_REQUEST_1"), equalTo(expectedSubmissionResult.getRiderOne()));
+        assertThat(row.get("RIDER_REQUEST_2"), equalTo(expectedSubmissionResult.getRiderTwo()));
+        assertThat(row.get("RIDER_REQUEST_3"), equalTo(expectedSubmissionResult.getRiderThree()));
+        assertThat(row.get("RIDER_REQUEST_4"), equalTo(expectedSubmissionResult.getRiderFour()));
+        assertThat(row.get("STATE_CD"), equalTo(sheet.getState()));
+        assertThat(row.get("MEMBERSHIP_NUMBER"), containsString(app.getAARPMemberNumber()));
+        assertThat(row.get("FIRST_NAME"), containsString(app.getFirstName().toUpperCase()));
+        assertThat(row.get("MIDDLE_NAME"), equalTo(app.getMI().toUpperCase()));
+        assertThat(row.get("LAST_NAME"), equalTo(app.getLastName().toUpperCase()));
+        assertThat(row.get("ADDRESS_LINE_1"), equalTo(app.getAddressLine1().toUpperCase()));
+        assertThat(row.get("ADDRESS_LINE_2"), equalTo(app.getAddressLine2().toUpperCase()));
+        assertThat(row.get("CITY"), equalTo(app.getCity().toUpperCase()));
+        assertThat(row.get("DAY_PHONE_NUM"), equalTo(app.getPhonePrimary()));
+        assertThat(row.get("EVENING_PHONE_NUM"), equalTo(app.getPhoneEvening()));
+        assertThat(row.get("EMAIL_ADDRESS"), equalTo(app.getEmail().toUpperCase()));
+        assertThat(row.get("RIDER_REQUEST_1"), equalTo(sheet.getRiderChoice1()));
+        assertThat(row.get("RIDER_REQUEST_2"), equalTo(sheet.getRiderChoice2()));
+        assertThat(row.get("RIDER_REQUEST_3"), equalTo(sheet.getRiderChoice3()));
+        assertThat(row.get("RIDER_REQUEST_4"), equalTo(sheet.getRiderChoice4()));
+        assertThat(row.get("BOTH_PARTS_ACTIVE"), equalTo(app.getPartABActiveIndicator() == "yes" ? "Y" : "N"));
+        assertThat(row.get("CPA_SIGNATURE_DATE"), equalTo(currentDate));
+        assertThat(row.get("APPL_RECEIPT_DATE"), equalTo(currentDate));
+        assertThat(row.get("APPL_SIGNATURE_DATE"), equalTo(currentDate));
+        assertThat(row.get("STATUS"), equalTo(expectedSubmissionResult.getStatus()));
+        assertThat(row.get("CHANNEL"), equalTo("10"));
+        assertThat(row.get("ACTOR"), equalTo("1"));
+        assertThat(row.get("MECHANISM"), equalTo("2"));
+        assertThat(row.get("ADJUDICATION_CD"), equalTo(expectedSubmissionResult.getAdjudicationStatus()));
+
+        logger.info(String.format("Here is the link to the image... https://acesx-tst-alt.uhc.com/appEnroll-web/resources/retrievePDF/v1/%s", row.get("APPL_IMAGE_NUM_ORIG") +" For the state of --> " + row.get("STATE_CD")));
+    }
     public void verifySubmissionData(Application app, SubmissionResult expectedSubmissionResult) throws SQLException {
 
         String query = String.format(SUBMISSION_QUERY, app.getHCSGApplicationId());
@@ -100,22 +192,17 @@ public class SubmissionQueryPhone {
         String currentDate = DateUtils.NORMALIZED_DATE_FORMAT.format(new java.util.Date());
 
         assertThat(row.get("MEMBERSHIP_NUMBER"), equalTo(app.getAARPMembershipNumber()));
-//        assertThat(row.get("NAME_PREFIX_ID"), equalTo(""));
         assertThat(row.get("FIRST_NAME"), equalTo(app.getFirstName().toUpperCase()));
         assertThat(row.get("MIDDLE_NAME"), equalTo(app.getMI().toUpperCase()));
         assertThat(row.get("LAST_NAME"), equalTo(app.getLastName().toUpperCase()));
-//        assertThat(row.get("NAME_SUFFIX_ID"), equalTo(""));
         assertThat(row.get("ADDRESS_LINE_1"), equalTo(app.getAddressLine1().toUpperCase()));
         assertThat(row.get("ADDRESS_LINE_2"), equalTo(app.getAddressLine2().toUpperCase()));
         assertThat(row.get("CITY"), equalTo(app.getCity().toUpperCase()));
         assertThat(row.get("STATE_CD"), equalTo(app.getState().toUpperCase()));
         assertThat(row.get("ZIP_CD"), equalTo(app.getZipCode()));
-//        assertThat(row.get("DATE_OF_BIRTH"), equalTo(""));
-//        assertThat(row.get("GENDER_CD"), equalTo(""));
         assertThat(row.get("DAY_PHONE_NUM"), equalTo(app.getPhonePrimary()));
         assertThat(row.get("EVENING_PHONE_NUM"), equalTo(app.getPhoneEvening()));
-        assertThat(row.get("EMAIL_ADDRESS"), equalTo(""));
-//        assertThat(row.get("PLAN_CD"), equalTo(""));
+        assertThat(row.get("EMAIL_ADDRESS"), equalTo(app.getEmail().toUpperCase()));
         assertThat(row.get("REQUESTED_EFFECTIVE_DATE"), equalTo(app.getReqEffectiveDate()));
         assertThat(row.get("MEDICARE_CLAIM_NUMBER"), equalTo(app.getMedicareClaimNum().toUpperCase()));
         assertThat(row.get("PART_A_EFFECTIVE_DATE"), equalTo(app.getMPAED()));
@@ -124,17 +211,12 @@ public class SubmissionQueryPhone {
         assertThat(row.get("CPA_SIGNATURE_DATE"), equalTo(currentDate));
         assertThat(row.get("APPL_RECEIPT_DATE"), equalTo(currentDate));
         assertThat(row.get("APPL_SIGNATURE_DATE"), equalTo(currentDate));
-//        assertThat(row.get("AGENT_FIRST_NAME"), equalTo(""));
-//        assertThat(row.get("AGENT_LAST_NAME"), equalTo(""));
         assertThat(row.get("SELLING_AGENT_ID"), equalTo(""));
         assertThat(row.get("QR_DATE"), equalTo(""));
         assertThat(row.get("STATUS"), equalTo(expectedSubmissionResult.getStatus()));
-//        assertThat(row.get("MARKETING_PRODUCT_CODE"), equalTo(""));
         assertThat(row.get("CHANNEL"), equalTo("1"));
         assertThat(row.get("ACTOR"), equalTo("2"));
         assertThat(row.get("MECHANISM"), equalTo("2"));
-//        assertThat(row.get("APPL_COMPONENT_NUMBER"), equalTo(""));
-//        assertThat(row.get("HASH_CD"), equalTo(""));
         assertThat(row.get("PAYMENT_METHOD_TYPE_ID"), equalTo("2"));
         assertThat(row.get("ADJUDICATION_CD"), equalTo(expectedSubmissionResult.getAdjudicationStatus()));
 

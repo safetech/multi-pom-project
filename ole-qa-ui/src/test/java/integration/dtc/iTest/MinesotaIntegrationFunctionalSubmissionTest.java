@@ -149,8 +149,8 @@ public class MinesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrati
         planPaymentOptionsPage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
 
-        expectedSubmissionResult.verifyAcceptedPlanAndRiderCodesForWI("MW1", "PW1", "", "", "");
-        expectedSubmissionResult.verifyPendingPlanAndRiderCodesForWI("MW1", "PW1", "SW1", "", "", "", "");
+        expectedSubmissionResult.verifyAcceptedPlanAndRiderCodes("MW1", "PW1", "", "", "");
+        expectedSubmissionResult.verifyPendingPlanAndRiderCodes("MW1", "PW1", "SW1", "", "", "", "");
 
         submissionQuery.verifyPlanAndRiderCodes(app, sheet, expectedSubmissionResult);
     }
@@ -257,7 +257,7 @@ public class MinesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrati
         planPaymentOptionsPage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
 
-        expectedSubmissionResult.verifyPendingPlanAndRiderCodesForWI("MW1", "PW1", "SW1", "", "", "", "");
+        expectedSubmissionResult.verifyPendingPlanAndRiderCodes("MW1", "PW1", "SW1", "", "", "", "");
         submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
 
     }

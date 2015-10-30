@@ -102,7 +102,7 @@ public class SubmissionResult {
         setAdjudicationStatus("A");
         setStatus("C");
     }
-    public void verifyAcceptedPlanAndRiderCodesForWI(String planCode, String riderOne, String riderTwo, String riderThree, String riderFour) {
+    public void verifyAcceptedPlanAndRiderCodes(String planCode, String riderOne, String riderTwo, String riderThree, String riderFour) {
         setPlanCode(planCode);
         setRiderOne(riderOne);
         setRiderTwo(riderTwo);
@@ -111,7 +111,7 @@ public class SubmissionResult {
         setStatus("C");
         setAdjudicationStatus("A");
     }
-    public void verifyPendingPlanAndRiderCodesForWI(String planCode, String riderOne, String riderTwo, String riderThree, String riderFour, String workQueue, String workQueueReason ) {
+    public void verifyPendingPlanAndRiderCodes(String planCode, String riderOne, String riderTwo, String riderThree, String riderFour, String workQueue, String workQueueReason) {
         setPlanCode(planCode);
         setRiderOne(riderOne);
         setRiderTwo(riderTwo);

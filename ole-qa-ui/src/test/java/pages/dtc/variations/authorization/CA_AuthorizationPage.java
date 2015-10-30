@@ -14,10 +14,14 @@ public class CA_AuthorizationPage extends WizardPage{
     FluentWebElement MedicalReleaseAuthSignatureInd;
 
     public void fillAndSubmit(Application app) {
-
+        isAt();
         SignatureInd.click();
         MedicalReleaseClaimSignatureInd.click();
+
+if(app.getMedicalReleaseAuthSignatureIndRequired().equals("Required")){
         MedicalReleaseAuthSignatureInd.click();
+
+}
         clickNextAndWaitForSpinnerToFinish();
 
     }

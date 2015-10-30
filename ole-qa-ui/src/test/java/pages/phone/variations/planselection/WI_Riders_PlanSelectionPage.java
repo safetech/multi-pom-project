@@ -12,8 +12,8 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class WI_Riders_PlanSelectionPage extends WizardPage{
 
-    @FindBy(xpath = "//*[@id='planCode_1']") FluentWebElement First_Plan;
-    @FindBy(xpath = "//*[@id='planCode_2']") FluentWebElement Second_Plan;
+    @FindBy(xpath = "//*[@id='planCode_1']") FluentWebElement basicPlan;
+    @FindBy(xpath = "//*[@id='planCode_2']") FluentWebElement basicPlanWithCoPay;
     @FindBy(xpath = "(//*[contains(text(),'add rider')])[/]") FluentWebElement Add_Rider;
     @FindBy(xpath = "(//*[contains(text(),'continue')])[1]") FluentWebElement Continue;
     @FindBy(xpath = "//*[@id='rider_compatibility_error_WI']/ul[1]/li/a") FluentWebElement Update_Rider_Selection;
@@ -222,7 +222,7 @@ public class WI_Riders_PlanSelectionPage extends WizardPage{
 //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
     public void goodComboWithCoPay() {
     //----TC 0******************************************************************************
-        Second_Plan.click();
+        basicPlanWithCoPay.click();
         clickNextAndWaitForSpinnerToFinish();
         Continue.click();
         Back.click();
@@ -240,7 +240,7 @@ public class WI_Riders_PlanSelectionPage extends WizardPage{
 
         RiderChoice_OW2.click();
         RiderChoice_SW2.click();
-        Second_Plan.click();
+        basicPlanWithCoPay.click();
         clickNextAndWaitForSpinnerToFinish();
         isAtPlanApplicationQuestionsPage();
         Back.click();
@@ -251,7 +251,7 @@ public class WI_Riders_PlanSelectionPage extends WizardPage{
      //----TC 3******************************************************************************
 
         RiderChoice_PW2.click();
-        Second_Plan.click();
+        basicPlanWithCoPay.click();
         clickNextAndWaitForSpinnerToFinish();
         isAtPlanApplicationQuestionsPage();
         Back.click();
@@ -262,7 +262,7 @@ public class WI_Riders_PlanSelectionPage extends WizardPage{
 
         RiderChoice_PW2.click();
         RiderChoice_SW2.click();
-        Second_Plan.click();
+        basicPlanWithCoPay.click();
         clickNextAndWaitForSpinnerToFinish();
         isAtPlanApplicationQuestionsPage();
         Back.click();
@@ -273,7 +273,7 @@ public class WI_Riders_PlanSelectionPage extends WizardPage{
      //----TC 5******************************************************************************
 
         RiderChoice_SW2.click();
-        Second_Plan.click();
+        basicPlanWithCoPay.click();
         clickNextAndWaitForSpinnerToFinish();
         isAtPlanApplicationQuestionsPage();
         Back.click();
@@ -287,13 +287,13 @@ public class WI_Riders_PlanSelectionPage extends WizardPage{
     public void badComboWithCoPay() {
         RiderChoice_OW2.click();
         RiderChoice_PW2.click();
-        Second_Plan.click();
+        basicPlanWithCoPay.click();
         clickNextAndWaitForSpinnerToFinish();
         blurAndSleep();
         Update_Rider_Selection.click();
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
         RiderChoice_SW2.click();
-        Second_Plan.click();
+        basicPlanWithCoPay.click();
         clickNextAndWaitForSpinnerToFinish();
         blurAndSleep();
 

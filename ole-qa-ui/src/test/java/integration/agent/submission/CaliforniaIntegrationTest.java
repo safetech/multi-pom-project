@@ -151,6 +151,7 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         app.setAgentMI("A");
         app.setAgentLastName("AgentLast");
         app.setAgentPhone("3334445555");
+        app.setMedicalReleaseAuthSignatureIndRequired("Required");
 
         //Payment Details Summary Page
         app.setPaymentDetailsSummaryPageWithAppValues();
@@ -174,7 +175,6 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         replacementNotice.fillAndSubmit(app);
         planPaymentOptionsPage.fillAndSubmit(app);
         paymentDetailsSummaryPage.fillAndSubmit(app);
-        reviewAndSubmitPage.isAt();
         reviewAndSubmitPage.fillAndSubmit(app);
         expectedSubmissionResult.setAcceptedInfo();
         submissionQuery.verifySubmissionData(app, expectedSubmissionResult);

@@ -994,6 +994,15 @@ public class Application {
     public String resumeApplication = "";
     public String applicationId = "";
     public String applicationStatus = "";
+    public String MedicalReleaseAuthSignatureIndRequired = "";
+
+    public String getMedicalReleaseAuthSignatureIndRequired() {
+        return MedicalReleaseAuthSignatureIndRequired;
+    }
+
+    public void setMedicalReleaseAuthSignatureIndRequired(String medicalReleaseAuthSignatureIndRequired) {
+        MedicalReleaseAuthSignatureIndRequired = medicalReleaseAuthSignatureIndRequired;
+    }
 
     public String getApplicationStatus() {
         return applicationStatus;

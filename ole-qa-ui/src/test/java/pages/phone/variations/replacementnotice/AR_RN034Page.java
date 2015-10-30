@@ -1,4 +1,4 @@
-package pages.agent.variations.replacenotice;
+package pages.phone.variations.replacementnotice;
 
 import entity.Application;
 import org.fluentlenium.core.domain.FluentWebElement;
@@ -8,7 +8,7 @@ import pages.WizardPage;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class RN034_AR_Page extends WizardPage{
+public class AR_RN034Page extends WizardPage {
 
     @FindBy(css = "#ReplacementReason_1") FluentWebElement ReplacementReason_ReplaceAdditionalBenefits;
     @FindBy(css = "#ReplacementReason_2") FluentWebElement ReplacementReason_SameBenefits;
@@ -16,15 +16,15 @@ public class RN034_AR_Page extends WizardPage{
     @FindBy(css = "#ReplacementReason_4") FluentWebElement ReplacementReason_EnrolledPartD;
     @FindBy(css = "#ReplacementReason_5") FluentWebElement ReplacementReason_Disenroll;
     @FindBy(css = "#ReplacementReason_6") FluentWebElement ReplacementReason_OtherReason;
-
-    FluentWebElement ReplacementAgentSignInd2;
     FluentWebElement RNOther;
     FluentWebElement AgentRNSignatureInd;
     FluentWebElement ApplicantRNSignatureInd;
     FluentWebElement ApplicantPrintedNameAdd;
     FluentWebElement ApplicantAddress;
+    FluentWebElement ReplacementAgentSignInd2;
 
     public void fillAndSubmit(Application app) {
+
         isAt();
 
         switch (app.getReplacementReason()) {
@@ -51,13 +51,13 @@ public class RN034_AR_Page extends WizardPage{
         }
 
         AgentRNSignatureInd.click();
-        fillTouchSignature("AgentRNSignatureIndTouch",  app.getAgentRNSignatureIndTouch());
+
         ApplicantRNSignatureInd.click();
-        fillTouchSignature("ApplicantRNSignatureIndTouch", app.getApplicantRNSignatureIndTouch());
         fill(ApplicantPrintedNameAdd).with(app.getApplicantPrintedNameAdd());
         fill(ApplicantAddress).with(app.getApplicantAddress());
+
         ReplacementAgentSignInd2.click();
-        fillTouchSignature("ReplacementAgentSignInd2Touch", app.getReplacementAgentSignInd2Touch());
+
         clickNextAndWaitForSpinnerToFinish();
     }
 

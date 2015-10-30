@@ -135,7 +135,7 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         app.setAgentAddress("ProducerAdd");
         app.setApplicantPrintedNameAdd("AppName");
         app.setApplicantAddress("AppAdd");
-        
+        app.setMedicalReleaseAuthSignatureIndRequired("Required");
         logger.info(gson.toJson(app));
 
         startApp(cheatPage, app, sheet);

@@ -12,8 +12,8 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class riders_MN_PlanSelectionPage extends WizardPage{
 
-    @FindBy(xpath = "(//a[contains(text(),'apply now')])[1]") FluentWebElement First_Plan;
-    @FindBy(xpath = "(//a[contains(text(),'apply now')])[2]") FluentWebElement Second_Plan;
+    @FindBy(xpath = "(//a[contains(text(),'apply now')])[1]") FluentWebElement basicPlan;
+    @FindBy(xpath = "(//a[contains(text(),'apply now')])[2]") FluentWebElement basicPlanWithCoPay;
     @FindBy(xpath = "(//*[contains(text(),'add rider')])[2]") FluentWebElement Add_Rider;
     @FindBy(xpath = "(//*[contains(text(),'continue')])[1]") FluentWebElement Continue;
     @FindBy(xpath = "//*[@id='rider_compatibility_error_WI']/ul[1]/li/a") FluentWebElement Update_Rider_Selection;
@@ -45,12 +45,12 @@ public class riders_MN_PlanSelectionPage extends WizardPage{
 
 //----TC 0******************************************************************************
 
-        First_Plan.click();
+        basicPlan.click();
         Add_Rider.click();
 //----TC 1******************************************************************************
 
         RiderChoice_XW.click();
-        First_Plan.click();
+        basicPlan.click();
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
         isAtWhatYouNeedPage();
         Back.click();
@@ -60,7 +60,7 @@ public class riders_MN_PlanSelectionPage extends WizardPage{
 //----TC 2******************************************************************************
 
         RiderChoice_YW.click();
-        First_Plan.click();
+        basicPlan.click();
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
         isAtWhatYouNeedPage();
         Back.click();
@@ -70,7 +70,7 @@ public class riders_MN_PlanSelectionPage extends WizardPage{
 //----TC 3******************************************************************************
 
         RiderChoice_VW.click();
-        First_Plan.click();
+        basicPlan.click();
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
         isAtWhatYouNeedPage();
         Back.click();
@@ -80,7 +80,7 @@ public class riders_MN_PlanSelectionPage extends WizardPage{
 //----TC 4******************************************************************************
 
         RiderChoice_WW.click();
-        First_Plan.click();
+        basicPlan.click();
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
         isAtWhatYouNeedPage();
         Back.click();
@@ -90,7 +90,7 @@ public class riders_MN_PlanSelectionPage extends WizardPage{
 //----TC 5******************************************************************************
 
         RiderChoice_ZW.click();
-        First_Plan.click();
+        basicPlan.click();
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
         isAtWhatYouNeedPage();
         Back.click();
@@ -101,7 +101,7 @@ public class riders_MN_PlanSelectionPage extends WizardPage{
 
             RiderChoice_XW.click();
             RiderChoice_YW.click();
-            First_Plan.click();
+            basicPlan.click();
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
             isAtWhatYouNeedPage();
             Back.click();
@@ -113,7 +113,7 @@ public class riders_MN_PlanSelectionPage extends WizardPage{
 
             RiderChoice_YW.click();
             RiderChoice_VW.click();
-            First_Plan.click();
+            basicPlan.click();
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
             isAtWhatYouNeedPage();
             Back.click();
@@ -125,7 +125,7 @@ public class riders_MN_PlanSelectionPage extends WizardPage{
 
             RiderChoice_YW.click();
             RiderChoice_WW.click();
-            First_Plan.click();
+            basicPlan.click();
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
             isAtWhatYouNeedPage();
             Back.click();
@@ -137,7 +137,7 @@ public class riders_MN_PlanSelectionPage extends WizardPage{
 
             RiderChoice_YW.click();
             RiderChoice_ZW.click();
-            First_Plan.click();
+            basicPlan.click();
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
             isAtWhatYouNeedPage();
             Back.click();
@@ -150,7 +150,7 @@ public class riders_MN_PlanSelectionPage extends WizardPage{
             RiderChoice_YW.click();
             RiderChoice_VW.click();
             RiderChoice_WW.click();
-            First_Plan.click();
+            basicPlan.click();
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
             isAtWhatYouNeedPage();
             Back.click();
@@ -163,7 +163,7 @@ public class riders_MN_PlanSelectionPage extends WizardPage{
 
             RiderChoice_VW.click();
             RiderChoice_WW.click();
-            First_Plan.click();
+            basicPlan.click();
             await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
             isAtWhatYouNeedPage();
             Back.click();
@@ -175,7 +175,7 @@ public class riders_MN_PlanSelectionPage extends WizardPage{
 
             RiderChoice_VW.click();
             RiderChoice_ZW.click();
-            First_Plan.click();
+            basicPlan.click();
             await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
             isAtWhatYouNeedPage();
             Back.click();
@@ -187,7 +187,7 @@ public class riders_MN_PlanSelectionPage extends WizardPage{
 
             RiderChoice_WW.click();
             RiderChoice_ZW.click();
-            First_Plan.click();
+            basicPlan.click();
             await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
             isAtWhatYouNeedPage();
             Back.click();
@@ -200,7 +200,7 @@ public class riders_MN_PlanSelectionPage extends WizardPage{
             RiderChoice_YW.click();
             RiderChoice_VW.click();
             RiderChoice_ZW.click();
-            First_Plan.click();
+            basicPlan.click();
             await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
             isAtWhatYouNeedPage();
             Back.click();
@@ -214,7 +214,7 @@ public class riders_MN_PlanSelectionPage extends WizardPage{
             RiderChoice_YW.click();
             RiderChoice_WW.click();
             RiderChoice_ZW.click();
-            First_Plan.click();
+            basicPlan.click();
             await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
             isAtWhatYouNeedPage();
             Back.click();
@@ -228,7 +228,7 @@ public class riders_MN_PlanSelectionPage extends WizardPage{
             RiderChoice_VW.click();
             RiderChoice_WW.click();
             RiderChoice_ZW.click();
-            First_Plan.click();
+            basicPlan.click();
             await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
             isAtWhatYouNeedPage();
             Back.click();
@@ -243,7 +243,7 @@ public class riders_MN_PlanSelectionPage extends WizardPage{
             RiderChoice_VW.click();
             RiderChoice_WW.click();
             RiderChoice_ZW.click();
-            First_Plan.click();
+            basicPlan.click();
             await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
             isAtWhatYouNeedPage();
             Back.click();
@@ -266,7 +266,7 @@ public class riders_MN_PlanSelectionPage extends WizardPage{
 
         RiderChoice_XW.click();
         RiderChoice_VW.click();
-        First_Plan.click();
+        basicPlan.click();
         blurAndSleep();
         Update_MNRider_Selection.click();
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
@@ -276,7 +276,7 @@ public class riders_MN_PlanSelectionPage extends WizardPage{
     //----TC 2********STILL ACTIVE = XW *********************************************************************
 
         RiderChoice_WW.click();
-        First_Plan.click();
+        basicPlan.click();
         blurAndSleep();
         Update_MNRider_Selection.click();
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
@@ -285,7 +285,7 @@ public class riders_MN_PlanSelectionPage extends WizardPage{
     //----TC 3********STILL ACTIVE = XW **********************************************************************
 
         RiderChoice_ZW.click();
-        First_Plan.click();
+        basicPlan.click();
         blurAndSleep();
         Update_MNRider_Selection.click();
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
@@ -295,7 +295,7 @@ public class riders_MN_PlanSelectionPage extends WizardPage{
 
         RiderChoice_YW.click();
         RiderChoice_VW.click();
-        First_Plan.click();
+        basicPlan.click();
         blurAndSleep();
         Update_MNRider_Selection.click();
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
@@ -306,7 +306,7 @@ public class riders_MN_PlanSelectionPage extends WizardPage{
      //----TC 5**********STILL ACTIVE = XW, YW ********************************************************************
 
         RiderChoice_WW.click();
-        First_Plan.click();
+        basicPlan.click();
         blurAndSleep();
         Update_MNRider_Selection.click();
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
@@ -316,7 +316,7 @@ public class riders_MN_PlanSelectionPage extends WizardPage{
      //----TC 6*********STILL ACTIVE = XW, YW *********************************************************************
 
         RiderChoice_ZW.click();
-        First_Plan.click();
+        basicPlan.click();
         blurAndSleep();
         Update_MNRider_Selection.click();
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
@@ -326,7 +326,7 @@ public class riders_MN_PlanSelectionPage extends WizardPage{
 
         RiderChoice_VW.click();
         RiderChoice_WW.click();
-        First_Plan.click();
+        basicPlan.click();
         blurAndSleep();
         Update_MNRider_Selection.click();
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
@@ -334,7 +334,7 @@ public class riders_MN_PlanSelectionPage extends WizardPage{
      //----TC 8********STILL ACTIVE = XW, YW, WW **********************************************************************
 
         RiderChoice_ZW.click();
-        First_Plan.click();
+        basicPlan.click();
         blurAndSleep();
         Update_MNRider_Selection.click();
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
@@ -345,7 +345,7 @@ public class riders_MN_PlanSelectionPage extends WizardPage{
      //----TC 9******************************************************************************
 
 
-        First_Plan.click();
+        basicPlan.click();
         blurAndSleep();
         Update_MNRider_Selection.click();
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
@@ -355,7 +355,7 @@ public class riders_MN_PlanSelectionPage extends WizardPage{
 
 
         RiderChoice_VW.click();
-        First_Plan.click();
+        basicPlan.click();
         blurAndSleep();
         Update_MNRider_Selection.click();
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
@@ -366,7 +366,7 @@ public class riders_MN_PlanSelectionPage extends WizardPage{
      //----TC 11*************** XW VW ZW *******************************************************
 
 
-        First_Plan.click();
+        basicPlan.click();
         blurAndSleep();
         Update_MNRider_Selection.click();
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
@@ -377,7 +377,7 @@ public class riders_MN_PlanSelectionPage extends WizardPage{
 
 
         RiderChoice_WW.click();
-        First_Plan.click();
+        basicPlan.click();
         blurAndSleep();
         Update_MNRider_Selection.click();
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
@@ -385,7 +385,7 @@ public class riders_MN_PlanSelectionPage extends WizardPage{
     //----TC 13******************************************************************************
 
         RiderChoice_ZW.click();
-        First_Plan.click();
+        basicPlan.click();
         blurAndSleep();
         Update_MNRider_Selection.click();
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
@@ -393,7 +393,7 @@ public class riders_MN_PlanSelectionPage extends WizardPage{
         RiderChoice_VW.click();
     //----TC 14******************************************************************************
 
-        First_Plan.click();
+        basicPlan.click();
         blurAndSleep();
         Update_MNRider_Selection.click();
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
@@ -408,11 +408,11 @@ public class riders_MN_PlanSelectionPage extends WizardPage{
 //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
     public void goodComboExtendedBasicPlan() {
     //----TC 0******************************************************************************
-        Second_Plan.click();
+        basicPlanWithCoPay.click();
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
         Back.click();
         blurAndSleep();
-        Second_Plan.click();
+        basicPlanWithCoPay.click();
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
 
     }
@@ -425,13 +425,13 @@ public class riders_MN_PlanSelectionPage extends WizardPage{
 
   //      RiderChoice_OW2.click();
    //     RiderChoice_PW2.click();
-  //      Second_Plan.click();
+  //      basicPlanWithCoPay.click();
    //     blurAndSleep();
    //     Update_Rider_Selection.click();
    //     await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
 
   //      RiderChoice_SW2.click();
-   //     Second_Plan.click();
+   //     basicPlanWithCoPay.click();
    //     blurAndSleep();
    //     Update_Rider_Selection.click();
    //     blurAndSleep();

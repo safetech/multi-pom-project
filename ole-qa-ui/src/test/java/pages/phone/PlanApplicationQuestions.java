@@ -29,9 +29,11 @@ public class PlanApplicationQuestions extends WizardPage {
     }
 
     public void verifyPrefilledAnswers(Application app) {
+        isAt();
         assertThat(Turned65In6GA_Yes.isSelected(), equalTo(true));
         assertThat(PartBIn6GA_No.isSelected(), equalTo(true));
         assertThat(PlanEffIn6OfEligible_Yes.isSelected(), equalTo(true));
+        clickNextAndWaitForSpinnerToFinish();
     }
     public void isAt() {
         assertThat(pageTitle.getText(), equalTo("Plan Application Questions"));

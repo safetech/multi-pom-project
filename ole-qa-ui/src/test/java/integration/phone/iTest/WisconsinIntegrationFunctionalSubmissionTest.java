@@ -437,4 +437,102 @@ public class WisconsinIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         submissionQueryPhone.verifySubmissionData(app, expectedSubmissionResult);
         submissionQueryPhone.verifyAdjudicationData(app, expectedSubmissionResult);
     }
+    @Test
+    public void WI_WIP6_BaiscPlanWithCoPayWithRnQrNoRider() throws Exception {
+        sheet.setPlanCode("NW");
+        //TestData
+        app.setAARPMembershipNumber(faker.numerify("##########"));
+        app.setPrefix("MR");
+        app.setFirstName(this.faker.firstName());
+        app.setMI(this.faker.letterify("?"));
+        app.setLastName(this.faker.lastName());
+        app.setSuffix("PHD");
+        app.setAddressLine1("111 Street dr");
+        app.setAddressLine2("apt #123");
+        app.setCity("Horsham");
+        app.setEmail("test@uhc.com");
+        app.setConfirmEmail("test@uhc.com");
+        app.setPhonePrimary("9874562345");
+        app.setPhoneEvening("1234561234");
+        app.setGender("M");
+        app.setMedicareClaimNum(faker.bothify("A#########"));
+        // app.setMedicareClaimNum("123123123A");
+        app.setMPAED("01/01/2010");
+        app.setMPBED(DateUtils.getFirstDayOfPastMonth(-7));
+        app.setPartABActiveIndicator(YES);
+        //Plan Application Page
+        app.setTobaccoUse(YES);
+        app.setLostCoverage(NO);
+        app.setTurned65In6GA(NO);
+        app.setPartBIn6GA(NO);
+        app.setPlanEffIn6OfEligible(NO);
+        //Eligibility Page
+        app.setESRD(NO);
+        app.setSurgeryNeeded(NO);
+        //Authorizationa and verififcation page
+        app.setDesignateLapse(YES);
+        //Past And Current Coverage
+        app.setSixMonEligEnroll(YES);
+        app.setSixMonEligEnroll(YES);
+        app.setSixMonTurn65Enroll(YES);
+        app.setSixMonTurn65Enroll(YES);
+        app.setSixEmpCovTerm(YES);
+        app.setSixEmpCovTerm(YES);
+        app.setSixMonMoveOut(YES);
+        app.setSixMonMoveOut(YES);
+        app.setSixMonResident(YES);
+        app.setSixMonResident(YES);
+        //Past And Current Coverage
+        app.setCPATurned65(NO);
+        app.setCPAPartBIn6(NO);
+        app.setMedicaidCovered(YES);
+        app.setMedicaidSupPremium(YES);
+        app.setMedicaidbenefit(YES);
+        app.setExistingMedicare(YES);
+        app.setOtherMedplanstart("01/01/2012");
+        app.setOtherMedplanend("01/01/2015");
+        app.setIntentReplace(YES);
+        app.setFirstTime(YES);
+        app.setDropMedSuppForThisPlan(YES);
+        app.setExistMedSupp(YES);
+        app.setMSInsCompany("Blue Cross Blue Shield NV");
+        app.setMSPLAN("Medical Supplement NV");
+        app.setReplaceExistingMedSup(YES);
+        app.setOtherInsCoverage(YES);
+        app.setOtherInsCompany("Blue Cross Blue Shield");
+        app.setOtherInsType("HMO");
+        app.setOtherInsStart("01/01/2001");
+        app.setOtherInsEnd("01/01/2014");
+        app.setOtherInsReplace(YES);
+        app.setCpaSignatureInd(YES);
+        //Replacement Notice Page
+        app.setCommonReplacementNoticeAnswersWithApplicantInfo();
+        app.setCommonHealthHistoryAnswers();
+        app.setReplaceExistingMedSup(YES);
+        app.setReplacementReason("OtherReason");
+        app.setApplicantPrintedNameAdd("AppName");
+        app.setApplicantAddress("AppAdd");
+        app.setRNOther("Cheaper");
+        app.setHIV("NotHidden");
+        app.setApplicantRNSignatureIndRequired("required");
+
+        startApp(cheatPage, app, sheet);
+
+        voiceSignatureInstructionsPage.fillAndSubmit(app);
+        customerInformationPage.fillAndSubmit(app);
+        planSelectionAndStartDatePage.basicPlanCoPayNoRiderQr();
+        planApplicationQuestionsPage.fillAndSubmit(app);
+        eligibilityHealthQuestionsPage.fillAndSubmit(app);
+        pastAndCurrentInsuranceCoveragePage.fillAndSubmit(app);
+        authorizationAndVerificationPage.fillAndSubmit(app);
+        agentVerificationPage.fillAndSubmit(app);
+        //replacementNoticePage.fillAndSubmit(app);
+        reviewAndSubmitPage.fillAndSubmit(app);
+        applicationSubmissionPage.isAt();
+        applicationSubmissionPage.isApproved();
+
+        expectedSubmissionResult.setAcceptedInfo();
+        submissionQueryPhone.verifySubmissionData(app, expectedSubmissionResult);
+        submissionQueryPhone.verifyAdjudicationData(app, expectedSubmissionResult);
+    }
 }

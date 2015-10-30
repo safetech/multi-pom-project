@@ -128,6 +128,8 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         //Replacement Notice Page
         app.setCommonReplacementNoticeAnswersWithApplicantInfo();
         app.setCommonHealthHistoryAnswers();
+        app.setMedicalReleaseAuthSignatureIndRequired("Required");
+
 
         expectedSubmissionResult.setAcceptedInfo();
         goTo(cheatPage);
@@ -135,32 +137,15 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
 
         whatYouNeedPage.isAt();
         whatYouNeedPage.clickNextAndWaitForSpinnerToFinish();
-
         electronicSignatureAndDocumentConsentPage.isAt();
         electronicSignatureAndDocumentConsentPage.clickNextAndWaitForSpinnerToFinish();
-
-        aboutYouPage.isAt();
         aboutYouPage.fillAndSubmit(app, sheet);
-
-        planSelectionAndStartDatePage.isAt();
         planSelectionAndStartDatePage.fillAndSubmit(app);
-
-        planApplicationQuestionsPage.isAt();
         planApplicationQuestionsPage.fillAndSubmit(app);
-
-        eligibilityHealthQuestionsPage.isAt();
         eligibilityHealthQuestionsPage.fillAndSubmit(app);
-
-        pastAndCurrentCoveragePage.isAt();
         pastAndCurrentCoveragePage.fillAndSubmit(app);
-
-        authorizationPage.isAt();
         authorizationPage.fillAndSubmit(app);
-
-        planPaymentOptionsPage.isAt();
         planPaymentOptionsPage.fillAndSubmit(app);
-
-        reviewAndSubmitPage.isAt();
         reviewAndSubmitPage.fillAndSubmit(app);
 
         expectedSubmissionResult.setAcceptedInfo();
@@ -255,29 +240,14 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
 
         whatYouNeedPage.isAt();
         whatYouNeedPage.clickNextAndWaitForSpinnerToFinish();
-
         electronicSignatureAndDocumentConsentPage.isAt();
         electronicSignatureAndDocumentConsentPage.clickNextAndWaitForSpinnerToFinish();
-
-        aboutYouPage.isAt();
         aboutYouPage.fillAndSubmit(app, sheet);
-
-        planSelectionAndStartDatePage.isAt();
         planSelectionAndStartDatePage.fillAndSubmit(app);
-
-        planApplicationQuestionsPage.isAt();
         planApplicationQuestionsPage.fillAndSubmit(app);
-
-        pastAndCurrentCoveragePage.isAt();
         pastAndCurrentCoveragePage.fillAndSubmit(app);
-
-        authorizationPage.isAt();
         authorizationPage.fillAndSubmit(app);
-
-        planPaymentOptionsPage.isAt();
         planPaymentOptionsPage.fillAndSubmit(app);
-
-        reviewAndSubmitPage.isAt();
         reviewAndSubmitPage.fillAndSubmit(app);
 
         expectedSubmissionResult.setAcceptedInfo();

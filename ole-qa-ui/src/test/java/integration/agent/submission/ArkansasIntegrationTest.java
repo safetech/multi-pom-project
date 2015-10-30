@@ -157,46 +157,19 @@ public class ArkansasIntegrationTest extends CQBaseIntegrationTest {
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);
 
-        checkEligibilityAndAvailabilityPage.isAt();
         checkEligibilityAndAvailabilityPage.fillAndSubmit(app);
-
-        planSelectionPage.isAt();
         planSelectionPage.fillAndSubmit(app);
-
-        whatYouNeedPage.isAt();
         whatYouNeedPage.fillAndSubmit(app);
-
-        customerInformationPage.isAt();
         customerInformationPage.fillAndSubmit(app);
-
-        planApplicationQuestionsPage.isAt();
         planApplicationQuestionsPage.fillAndSubmit(app);
-
-        eligibilityHealthQuestionsPage.isAt();
         eligibilityHealthQuestionsPage.fillAndSubmit(app);
-
-        healthHistoryQuestionsPage.isAt();
         healthHistoryQuestionsPage.fillAndSubmit(app);
-
-        currentInsuranceCoveragePage.isAt();
         currentInsuranceCoveragePage.fillAndSubmit(app);
-
-        authorizationPage.isAt();
         authorizationPage.fillAndSubmit(app);
-
-        agentVerificationPage.isAt();
         agentVerificationPage.fillAndSubmit(app);
-
-        planPaymentOptionsPage.isAt();
         planPaymentOptionsPage.fillAndSubmit(app);
-
-        paymentDetailsSummaryPage.isAt();
         paymentDetailsSummaryPage.fillAndSubmit(app);
-
-        reviewAndSubmitPage.isAt();
         reviewAndSubmitPage.fillAndSubmit(app);
-
-        applicationSubmissionPage.isAt();
         applicationSubmissionPage.isPending();
 
         submissionQuery.verifySubmissionData(app, expectedSubmissionResult);
@@ -310,46 +283,19 @@ public class ArkansasIntegrationTest extends CQBaseIntegrationTest {
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);
 
-        checkEligibilityAndAvailabilityPage.isAt();
         checkEligibilityAndAvailabilityPage.fillAndSubmit(app);
-
-        planSelectionPage.isAt();
         planSelectionPage.fillAndSubmit(app);
-
-        whatYouNeedPage.isAt();
         whatYouNeedPage.fillAndSubmit(app);
-
-        customerInformationPage.isAt();
         customerInformationPage.fillAndSubmit(app);
-
-        planApplicationQuestionsPage.isAt();
         planApplicationQuestionsPage.fillAndSubmit(app);
-
-        eligibilityHealthQuestionsPage.isAt();
         eligibilityHealthQuestionsPage.fillAndSubmit(app);
-
-        healthHistoryQuestionsPage.isAt();
         healthHistoryQuestionsPage.fillAndSubmit(app);
-
-        currentInsuranceCoveragePage.isAt();
         currentInsuranceCoveragePage.fillAndSubmit(app);
-
-        authorizationPage.isAt();
         authorizationPage.fillAndSubmit(app);
-
-        agentVerificationPage.isAt();
         agentVerificationPage.fillAndSubmit(app);
-
-        replacementNotice.isAt();
         replacementNotice.fillAndSubmit(app);
-
-        planPaymentOptionsPage.isAt();
         planPaymentOptionsPage.fillAndSubmit(app);
-
-        paymentDetailsSummaryPage.isAt();
         paymentDetailsSummaryPage.fillAndSubmit(app);
-
-        reviewAndSubmitPage.isAt();
         reviewAndSubmitPage.fillAndSubmit(app);
 
         submissionQuery.verifySubmissionData(app, expectedSubmissionResult);

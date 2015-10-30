@@ -49,12 +49,12 @@ public class WisconsinIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
     @Test
     public void WI_WID2_GARider1And3NoRN() throws Exception {
         Application app = new Application();
-        expectedSubmissionResult.verifyPendingPlanAndRiderCodesForWI("MW1", "PW1", "SW1", "", "", "", "");
+        expectedSubmissionResult.verifyPendingPlanAndRiderCodes("MW1", "PW1", "SW1", "", "", "", "");
         sheet.setState("WI");
         sheet.setZip("54001");
         sheet.setRiderChoice1("OW");
-        sheet.setRiderChoice2("");
-        sheet.setRiderChoice3("QW");
+        sheet.setRiderChoice2("QW");
+        sheet.setRiderChoice3("");
         sheet.setRiderChoice4("");
         sheet.setRiderChoice5("");
         sheet.setAarpMemid("y");
@@ -141,13 +141,13 @@ public class WisconsinIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
 @Test
     public void WI_WID3_BaiscPlanFullUWWithRNRider2And4() throws Exception {
         Application app = new Application();
-        expectedSubmissionResult.verifyPendingPlanAndRiderCodesForWI("MW1", "PW1", "SW1", "", "", "", "");
+        expectedSubmissionResult.verifyPendingPlanAndRiderCodes("MW1", "PW1", "SW1", "", "", "", "");
         sheet.setState("WI");
         sheet.setZip("54001");
-        sheet.setRiderChoice1("");
+        sheet.setRiderChoice1("SW");
         sheet.setRiderChoice2("PW");
         sheet.setRiderChoice3("");
-        sheet.setRiderChoice4("SW");
+        sheet.setRiderChoice4("");
         sheet.setRiderChoice5("");
         sheet.setAarpMemid("y");
         sheet.setDOB(DateUtils.getDOBofPersonTurningAgeToday(69));
@@ -246,13 +246,13 @@ public class WisconsinIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
     @Test
     public void WI_WID5_BaiscPlanWithCoPayFullUWWithRNRider1And4() throws Exception {
         Application app = new Application();
-        expectedSubmissionResult.verifyPendingPlanAndRiderCodesForWI("MW1", "OW1", "SW1", "", "", "", "");
+        expectedSubmissionResult.verifyPendingPlanAndRiderCodes("MW1", "OW1", "SW1", "", "", "", "");
         sheet.setState("WI");
         sheet.setZip("54001");
         sheet.setRiderChoice1("OW");
-        sheet.setRiderChoice2("");
+        sheet.setRiderChoice2("SW");
         sheet.setRiderChoice3("");
-        sheet.setRiderChoice4("SW");
+        sheet.setRiderChoice4("");
         sheet.setRiderChoice5("");
         sheet.setAarpMemid("y");
         sheet.setDOB(DateUtils.getDOBofPersonTurningAgeToday(69));
@@ -352,13 +352,13 @@ public class WisconsinIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
     @Test
     public void WI_WID6_BaiscPlanWithCoPayGANORNRider2And4() throws Exception {
         Application app = new Application();
-        expectedSubmissionResult.verifyPendingPlanAndRiderCodesForWI("MW1", "PW1", "SW1", "", "", "", "");
+        expectedSubmissionResult.verifyPendingPlanAndRiderCodes("MW1", "PW1", "SW1", "", "", "", "");
         sheet.setState("WI");
         sheet.setZip("54001");
         sheet.setRiderChoice1("OW");
-        sheet.setRiderChoice2("");
+        sheet.setRiderChoice2("SW");
         sheet.setRiderChoice3("");
-        sheet.setRiderChoice4("SW");
+        sheet.setRiderChoice4("");
         sheet.setRiderChoice5("");
         sheet.setAarpMemid("y");
         sheet.setDOB(DateUtils.getDOBofPersonTurningAgeToday(69));
@@ -455,4 +455,5 @@ public class WisconsinIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
 
         submissionQuery.verifyPlanAndRiderCodes(app, sheet, expectedSubmissionResult);
     }
+
 }
