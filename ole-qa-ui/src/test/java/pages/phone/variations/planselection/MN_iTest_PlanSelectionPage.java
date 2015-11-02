@@ -14,7 +14,7 @@ public class MN_iTest_PlanSelectionPage extends WizardPage {
      @FindBy(xpath = "//*[@id='planCode_2']") FluentWebElement basicPlanWithCoPay;
      @FindBy(xpath = "(//*[contains(text(),'add rider')])[/]") FluentWebElement Add_Rider;
      @FindBy(xpath = "(//*[contains(text(),'continue')])[1]") FluentWebElement Continue;
-     @FindBy(xpath = "//*[@id='rider_compatibility_error_WI']/ul[1]/li/a") FluentWebElement Update_Rider_Selection;
+     @FindBy(xpath = "//*[@id='rider_compatibility_error_MN']/ul[1]/li/a") FluentWebElement Update_Rider_Selection;
      @FindBy(css = ".button.action_back") FluentWebElement Back;
      @FindBy(xpath = "//*[@id='RiderChoiceXW']") FluentWebElement RiderChoice_XW;
      @FindBy(xpath = "//*[@id='RiderChoiceYW']") FluentWebElement RiderChoice_YW;
@@ -35,12 +35,11 @@ public class MN_iTest_PlanSelectionPage extends WizardPage {
 
      }
 
-    public void     isAt() {
+    public void isAt() {
         assertThat(pageTitle.getText(), equalTo("Plan Selection and Start Date"));
     }
 
      public void blurAndSleep() {
-          blur(".button.yellow.arrow.action_close.btn2");
           try{
                Thread.sleep(1000);
           }catch(Exception e){
@@ -55,17 +54,33 @@ public class MN_iTest_PlanSelectionPage extends WizardPage {
         Continue.click();
         waitForSpinnerToFinish();
     }
-    public void basicPlanGaRider1NoRnNoQr() {
+    public void basicPlanGaRider23And4NoRnNoQr() {
         isAt();
         basicPlan.click();
         RiderChoice_XW.click();
-
+        RiderChoice_YW.click();
+        RiderChoice_VW.click();
+        clickNextAndWaitForSpinnerToFinish();
+        blurAndSleep();
+        Update_Rider_Selection.click();
+        RiderChoice_XW.click();
+        RiderChoice_WW.click();
         clickNextAndWaitForSpinnerToFinish();
     }
     public void extendedPlanFullUwWithRnQr() {
         isAt();
         basicPlanWithCoPay.click();
 
+
+        clickNextAndWaitForSpinnerToFinish();
+    }
+    public void basicPlanGaRider234And5NoRnNoQr() {
+        isAt();
+        basicPlan.click();
+        RiderChoice_YW.click();
+        RiderChoice_VW.click();
+        RiderChoice_WW.click();
+        RiderChoice_ZW.click();
 
         clickNextAndWaitForSpinnerToFinish();
     }

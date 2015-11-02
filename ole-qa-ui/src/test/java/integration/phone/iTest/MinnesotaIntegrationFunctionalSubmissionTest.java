@@ -38,7 +38,7 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
     private SubmissionResult expectedSubmissionResult;
 
     @Before
-    public void setup() {
+      public void setup() {
         submissionQueryPhone = new SubmissionQueryPhone();
         faker = new Faker();
 
@@ -115,8 +115,8 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         app.setFirstTime(YES);
         app.setDropMedSuppForThisPlan(YES);
         app.setExistMedSupp(YES);
-        app.setMSInsCompany("Blue Cross Blue Shield NV");
-        app.setMSPLAN("Medical Supplement NV");
+        app.setMSInsCompany("Blue Cross Blue Shield");
+        app.setMSPLAN("Medical Supplement");
         app.setReplaceExistingMedSup(YES);
         app.setOtherInsCoverage(YES);
         app.setOtherInsCompany("Blue Cross Blue Shield");
@@ -146,7 +146,7 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         reviewAndSubmitPage.fillAndSubmit(app);
         applicationSubmissionPage.isApproved();
 
-        expectedSubmissionResult.verifyPendingPlanAndRiderCodes("TW1", "", "", "", "", "", "");
+        expectedSubmissionResult.verifyAcceptedPlanAndRiderCodes("TW1", "", "", "", "");
         submissionQueryPhone.verifyPlanAndRiderCodes(app, sheet, expectedSubmissionResult);
     }
 
@@ -177,10 +177,10 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         app.setPartABActiveIndicator(YES);
         //Plan Application Page
         app.setTobaccoUse(YES);
-        app.setLostCoverage(NO);
-        app.setTurned65In6GA(NO);
-        app.setPartBIn6GA(NO);
-        app.setPlanEffIn6OfEligible(NO);
+
+        app.setTurned65In6GA(YES);
+        app.setPartBIn6GA(YES);
+        app.setPlanEffIn6OfEligible(YES);
         //Eligibility Page
         app.setESRD(NO);
         app.setSurgeryNeeded(NO);
@@ -220,18 +220,17 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
 
         voiceSignatureInstructionsPage.fillAndSubmit(app);
         customerInformationPage.fillAndSubmit(app);
-        planSelectionAndStartDatePage.basicPlanGaRider1NoRnNoQr();
+        planSelectionAndStartDatePage.basicPlanGaRider23And4NoRnNoQr();
         planApplicationQuestionsPage.fillAndSubmit(app);
-        eligibilityHealthQuestionsPage.fillAndSubmit(app);
         pastAndCurrentInsuranceCoveragePage.fillAndSubmit(app);
         authorizationAndVerificationPage.fillAndSubmit(app);
         agentVerificationPage.fillAndSubmit(app);
-        //replacementNoticePage.fillAndSubmit(app);
         ReplacementNotice034Page.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
         applicationSubmissionPage.isApproved();
 
-        expectedSubmissionResult.verifyPendingPlanAndRiderCodes("UW1", "", "", "", "", "", "");
+        expectedSubmissionResult.verifyAcceptedPlanAndRiderCodes("TW1", "YW1", "VW1", "WW1", "");
+
         submissionQueryPhone.verifyPlanAndRiderCodes(app, sheet, expectedSubmissionResult);
     }
 
@@ -262,10 +261,9 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         app.setPartABActiveIndicator(YES);
         //Plan Application Page
         app.setTobaccoUse(YES);
-        app.setLostCoverage(NO);
-        app.setTurned65In6GA(NO);
-        app.setPartBIn6GA(NO);
-        app.setPlanEffIn6OfEligible(NO);
+        app.setTurned65In6GA(YES);
+        app.setPartBIn6GA(YES);
+        app.setPlanEffIn6OfEligible(YES);
         //Eligibility Page
         app.setESRD(NO);
         app.setSurgeryNeeded(NO);
@@ -305,19 +303,17 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
 
         voiceSignatureInstructionsPage.fillAndSubmit(app);
         customerInformationPage.fillAndSubmit(app);
-        planSelectionAndStartDatePage.basicPlanGaRider1NoRnNoQr();
+        planSelectionAndStartDatePage.basicPlanGaRider23And4NoRnNoQr();
         planApplicationQuestionsPage.fillAndSubmit(app);
-        eligibilityHealthQuestionsPage.fillAndSubmit(app);
         pastAndCurrentInsuranceCoveragePage.fillAndSubmit(app);
         authorizationAndVerificationPage.fillAndSubmit(app);
         agentVerificationPage.fillAndSubmit(app);
-        //replacementNoticePage.fillAndSubmit(app);
         ReplacementNotice034Page.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
         applicationSubmissionPage.isApproved();
 
 
-        expectedSubmissionResult.verifyPendingPlanAndRiderCodes("UW1", "", "", "", "", "", "");
+        expectedSubmissionResult.verifyAcceptedPlanAndRiderCodes("TW1", "YW1", "VW1", "WW1", "");
         submissionQueryPhone.verifyPlanAndRiderCodes(app, sheet, expectedSubmissionResult);
     }
 
@@ -388,7 +384,7 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
 
         voiceSignatureInstructionsPage.fillAndSubmit(app);
         customerInformationPage.fillAndSubmit(app);
-        planSelectionAndStartDatePage.basicPlanGaRider1NoRnNoQr();
+        planSelectionAndStartDatePage.basicPlanGaRider234And5NoRnNoQr();
         planApplicationQuestionsPage.fillAndSubmit(app);
         eligibilityHealthQuestionsPage.fillAndSubmit(app);
         pastAndCurrentInsuranceCoveragePage.fillAndSubmit(app);
@@ -399,12 +395,12 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         reviewAndSubmitPage.fillAndSubmit(app);
         applicationSubmissionPage.isApproved();
 
-        expectedSubmissionResult.verifyPendingPlanAndRiderCodes("UW1", "", "", "", "", "", "");
+        expectedSubmissionResult.verifyAcceptedPlanAndRiderCodes("TW1", "YW1", "VW1", "WW1", "ZW1");
         submissionQueryPhone.verifyPlanAndRiderCodes(app, sheet, expectedSubmissionResult);
     }
     @Test
     public void MN_MNP4_ExtendedPlanFullUwWithRnAndQr() throws Exception {
-        sheet.setPlanCode("TW");
+        sheet.setPlanCode("UW");
         sheet.setQrIndicator("Y");
         //TestData
         app.setAARPMembershipNumber(faker.numerify("##########"));
@@ -476,7 +472,6 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         pastAndCurrentInsuranceCoveragePage.fillAndSubmit(app);
         authorizationAndVerificationPage.fillAndSubmit(app);
         agentVerificationPage.fillAndSubmit(app);
-        //replacementNoticePage.fillAndSubmit(app);
         ReplacementNotice034Page.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
         applicationSubmissionPage.isPending();

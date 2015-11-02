@@ -49,7 +49,6 @@ public class WisconsinIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         sheet.setRandomContactInfo();
         sheet.setRandomCallCenterInfo();
 
-
         sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(69));
         sheet.setMedPartBdate(DateUtils.getFirstDayOfPastMonth(-7));
         sheet.setDpsdToFirstDayOfFutureMonth(1);

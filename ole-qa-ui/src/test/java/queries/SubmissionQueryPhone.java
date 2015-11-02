@@ -164,17 +164,13 @@ public class SubmissionQueryPhone {
         assertThat(row.get("DAY_PHONE_NUM"), equalTo(app.getPhonePrimary()));
         assertThat(row.get("EVENING_PHONE_NUM"), equalTo(app.getPhoneEvening()));
         assertThat(row.get("EMAIL_ADDRESS"), equalTo(app.getEmail().toUpperCase()));
-        assertThat(row.get("RIDER_REQUEST_1"), equalTo(sheet.getRiderChoice1()));
-        assertThat(row.get("RIDER_REQUEST_2"), equalTo(sheet.getRiderChoice2()));
-        assertThat(row.get("RIDER_REQUEST_3"), equalTo(sheet.getRiderChoice3()));
-        assertThat(row.get("RIDER_REQUEST_4"), equalTo(sheet.getRiderChoice4()));
         assertThat(row.get("BOTH_PARTS_ACTIVE"), equalTo(app.getPartABActiveIndicator() == "yes" ? "Y" : "N"));
         assertThat(row.get("CPA_SIGNATURE_DATE"), equalTo(currentDate));
         assertThat(row.get("APPL_RECEIPT_DATE"), equalTo(currentDate));
         assertThat(row.get("APPL_SIGNATURE_DATE"), equalTo(currentDate));
         assertThat(row.get("STATUS"), equalTo(expectedSubmissionResult.getStatus()));
-        assertThat(row.get("CHANNEL"), equalTo("10"));
-        assertThat(row.get("ACTOR"), equalTo("1"));
+        assertThat(row.get("CHANNEL"), equalTo("1"));
+        assertThat(row.get("ACTOR"), equalTo("2"));
         assertThat(row.get("MECHANISM"), equalTo("2"));
         assertThat(row.get("ADJUDICATION_CD"), equalTo(expectedSubmissionResult.getAdjudicationStatus()));
 
