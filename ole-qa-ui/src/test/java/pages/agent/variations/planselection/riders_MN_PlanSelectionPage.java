@@ -256,9 +256,6 @@ public class riders_MN_PlanSelectionPage extends WizardPage{
 
     }
 
-
-
-
 //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
     public void badComboBasicPlan() {
 
@@ -402,9 +399,6 @@ public class riders_MN_PlanSelectionPage extends WizardPage{
 
 }
 
-
-
-
 //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
     public void goodComboExtendedBasicPlan() {
     //----TC 0******************************************************************************
@@ -416,29 +410,6 @@ public class riders_MN_PlanSelectionPage extends WizardPage{
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
 
     }
-
-
-
-    //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
- //   public void badComboWithCoPay(){
-
-
-  //      RiderChoice_OW2.click();
-   //     RiderChoice_PW2.click();
-  //      basicPlanWithCoPay.click();
-   //     blurAndSleep();
-   //     Update_Rider_Selection.click();
-   //     await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
-
-  //      RiderChoice_SW2.click();
-   //     basicPlanWithCoPay.click();
-   //     blurAndSleep();
-   //     Update_Rider_Selection.click();
-   //     blurAndSleep();
-   // }
-
-
-
 
     public void isAtWhatYouNeedPage() {
         assertThat(pageTitle.getText(), equalTo("What You Need"));

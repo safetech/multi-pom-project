@@ -22,16 +22,7 @@ public class WhatYouNeedPage extends WizardPage {
 
 
     public void fillAndSubmit(Application app) {
-
         isAt();
-        /*
-        PlanOverview.click();
-        BenefitsTable.click();
-        RulesAndDisclousures.click();
-        YourGuideToAARPMedicareSupplementInsurancePlans.click();
-        GuideToHealthInsuranceForPeopleWithMedicare.click();
-        ImportantDisclousures.click();
-        */
 
         AgentKitProvided.click();
         TouchSign.click();
@@ -39,7 +30,7 @@ public class WhatYouNeedPage extends WizardPage {
         clickNextAndWaitForSpinnerToFinish();
     }
     public void isAt() {
-        assertThat(pageTitle.getText(), equalTo("What You Need"));
+         assertThat(pageTitle.getText(), equalTo("What You Need"));
     }
 
 }
