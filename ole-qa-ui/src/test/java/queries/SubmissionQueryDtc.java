@@ -96,7 +96,7 @@ public class SubmissionQueryDtc {
             "  b.MEMBERSHIP_NUMBER = substr(%s,1, LENGTH(%s) - 1)";
 
 
-    private String WI_RIDERS_QUERY = "select" +
+    private String RIDERS_QUERY = "select" +
             "  TRIM(TO_CHAR(b.MEMBERSHIP_NUMBER, '000000000')) as MEMBERSHIP_NUMBER," +
             "  c.NAME_PREFIX_ID," +
             "  a.FIRST_NAME," +
@@ -151,7 +151,7 @@ public class SubmissionQueryDtc {
 
     public void verifyPlanAndRiderCodes(Application app, CribSheet sheet, SubmissionResult expectedSubmissionResult) throws SQLException {
 
-            String query = String.format(WI_RIDERS_QUERY, app.getAARPMembershipNumber(), app.getAARPMembershipNumber());
+            String query = String.format(RIDERS_QUERY, app.getAARPMembershipNumber(), app.getAARPMembershipNumber());
             logger.info(query);
         String currentDate = DateUtils.NORMALIZED_DATE_FORMAT.format(new java.util.Date());
         HashMap<String, String> row = DbUtils.getSingleRecord(query, COMPAS_SYS1);

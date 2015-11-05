@@ -36,14 +36,14 @@ public class WisconsinIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
     @Page public ApplicationSubmissionPage applicationSubmissionPage;
 
-    public SubmissionQueryAgent submissionQuery;
+    public SubmissionQueryAgent submissionQueryAgent;
     private Faker faker;
     private CribSheet sheet;
     private SubmissionResult expectedSubmissionResult;
 
     @Before
     public void setup() {
-        submissionQuery = new SubmissionQueryAgent();
+        submissionQueryAgent = new SubmissionQueryAgent();
         faker = new Faker();
         sheet = new CribSheet(faker);
         expectedSubmissionResult = new SubmissionResult();
@@ -92,8 +92,8 @@ public class WisconsinIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         app.setCity(faker.letterify("?????? " + "City"));
         app.setEmail(faker.bothify("??????##" + "@uhc.com"));
         app.setConfirmEmail(app.getEmail());
-        app.setPhonePrimary(faker.numerify("### ### ####"));
-        app.setPhoneEvening(faker.numerify("### ### ####"));
+        app.setPhonePrimary(faker.numerify("##########"));
+        app.setPhoneEvening(faker.numerify("##########"));
         app.setGender("M");
         app.setMedicareClaimNum(faker.numerify("#########A"));
         app.setMPAED("01/01/2010");
@@ -170,6 +170,8 @@ public class WisconsinIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         paymentDetailsSummaryPage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
 
+        expectedSubmissionResult.verifyAcceptedPlanAndRiderCodes("MW1","OW1","QW1","","");
+        submissionQueryAgent.verifyPlanAndRiderCodes(app, expectedSubmissionResult);
     }
     @Test
     public void WI_WIA3_BasicPlanWithCoPayRider2And4GaNoRn() throws Exception {
@@ -279,5 +281,7 @@ public class WisconsinIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         paymentDetailsSummaryPage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
 
+        expectedSubmissionResult.verifyAcceptedPlanAndRiderCodes("NW1","PW1","SW1","","");
+        submissionQueryAgent.verifyPlanAndRiderCodes(app, expectedSubmissionResult);
     }
 }

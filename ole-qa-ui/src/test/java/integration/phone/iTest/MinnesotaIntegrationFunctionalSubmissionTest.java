@@ -390,7 +390,6 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         pastAndCurrentInsuranceCoveragePage.fillAndSubmit(app);
         authorizationAndVerificationPage.fillAndSubmit(app);
         agentVerificationPage.fillAndSubmit(app);
-        //replacementNoticePage.fillAndSubmit(app);
         ReplacementNotice034Page.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
         applicationSubmissionPage.isApproved();
@@ -477,8 +476,7 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         applicationSubmissionPage.isPending();
 
         expectedSubmissionResult.verifyPendingPlanAndRiderCodes("UW1", "", "", "", "", "", "");
-        submissionQueryPhone.verifyPlanAndRiderCodes(app, sheet, expectedSubmissionResult);
-//        submissionQueryPhone.verifyAdjudicationData(app, expectedSubmissionResult);
+        submissionQueryPhone.verifyQrYPendingPlanAndRiderCodes(app, sheet, expectedSubmissionResult);
     }
 }
 

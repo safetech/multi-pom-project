@@ -525,7 +525,6 @@ public class WisconsinIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         pastAndCurrentInsuranceCoveragePage.fillAndSubmit(app);
         authorizationAndVerificationPage.fillAndSubmit(app);
         agentVerificationPage.fillAndSubmit(app);
-        //replacementNoticePage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
         applicationSubmissionPage.isAt();
         applicationSubmissionPage.isApproved();

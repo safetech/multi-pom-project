@@ -119,8 +119,8 @@ public class SubmissionResult {
         setRiderFour(riderFour);
         setWorkQueue(workQueue);
         setWorkQueueReason(workQueueReason);
-        setAdjudicationStatus("P");
-        setStatus("C");
+        setAdjudicationStatus("");
+        setStatus("Q");
     }
 
 }

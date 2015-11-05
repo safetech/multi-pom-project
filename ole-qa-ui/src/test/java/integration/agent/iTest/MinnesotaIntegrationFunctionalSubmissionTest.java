@@ -35,14 +35,14 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
     @Page public ApplicationSubmissionPage applicationSubmissionPage;
 
-    public SubmissionQueryAgent submissionQuery;
+    public SubmissionQueryAgent submissionQueryAgent;
     private Faker faker;
     private CribSheet sheet;
     private SubmissionResult expectedSubmissionResult;
 
     @Before
     public void setup() {
-        submissionQuery = new SubmissionQueryAgent();
+        submissionQueryAgent = new SubmissionQueryAgent();
         faker = new Faker();
         sheet = new CribSheet(faker);
         expectedSubmissionResult = new SubmissionResult();
@@ -90,8 +90,8 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         app.setCity(faker.letterify("?????? " + "City"));
         app.setEmail(faker.bothify("??????##"+"@uhc.com"));
         app.setConfirmEmail(app.getEmail());
-        app.setPhonePrimary(faker.numerify("### ### ####"));
-        app.setPhoneEvening(faker.numerify("### ### ####"));
+        app.setPhonePrimary(faker.numerify("##########"));
+        app.setPhoneEvening(faker.numerify("##########"));
         app.setGender("M");
         app.setMedicareClaimNum(faker.numerify("#########A"));
         app.setMPAED("01/01/2010");
@@ -168,6 +168,8 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         paymentDetailsSummaryPage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
 
+        expectedSubmissionResult.verifyAcceptedPlanAndRiderCodes("TW1","OW1","PW1","","");
+        submissionQueryAgent.verifyPlanAndRiderCodes(app, expectedSubmissionResult);
     }
     @Test
     public void MN_MNA3_BasicPlanWithRider34And5FullUWwithRn() throws Exception {
@@ -187,6 +189,7 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         app.setZipCode("55445");
         app.setDOB(DateUtils.getDOBInNormalDateFormat(67));
         app.setMPBED("05/01/2012");
+        app.setReqEffectiveDate(DateUtils.getFirstDayOfFutureMonth(1));
         //CustomerInformationPage
         app.setAARPMembershipNumber(faker.numerify("##########"));
         app.setPrefix("MR");
@@ -199,8 +202,8 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         app.setCity(faker.letterify("?????? " + "City"));
         app.setEmail(faker.bothify("??????##"+"@uhc.com"));
         app.setConfirmEmail(app.getEmail());
-        app.setPhonePrimary(faker.numerify("### ### ####"));
-        app.setPhoneEvening(faker.numerify("### ### ####"));
+        app.setPhonePrimary(faker.numerify("##########"));
+        app.setPhoneEvening(faker.numerify("##########"));
         app.setGender("M");
         app.setMedicareClaimNum(faker.numerify("#########A"));
         app.setMPAED("01/01/2010");
@@ -276,6 +279,9 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         planPaymentOptionsPage.fillAndSubmit(app);
         paymentDetailsSummaryPage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
+
+        expectedSubmissionResult.verifyAcceptedPlanAndRiderCodes("TW1","VW1","WW1","ZW1","");
+        submissionQueryAgent.verifyPlanAndRiderCodes(app, expectedSubmissionResult);
 
     }
 
