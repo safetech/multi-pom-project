@@ -124,6 +124,7 @@ public class WizardPage extends FluentPage {
         }
     }
 
+
     public void clickNextAndWaitForSpinnerToFinish() {
         clickNextAndWaitForSpinnerToFinish(10);
     }

@@ -60,6 +60,16 @@ public class CQBaseIntegrationTest extends FluentTest {
         return driver;
     }
 
+    /*
+@Override
+    public WebDriver getDefaultDriver() {
+        logger.info(String.format("Using driver: webdriver.chrome.driver=%s", System.getProperty("webdriver.chrome.driver")));
+
+        driver = new ChromeDriver();
+        return driver;
+    }
+*/
+
     @After
     public void teardown(){
         executeScript("window.onbeforeunload = null;");

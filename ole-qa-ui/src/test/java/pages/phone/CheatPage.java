@@ -15,7 +15,6 @@ public class CheatPage extends FluentPage{
 
     @FindBy(css = "#page-title")
     FluentWebElement pageTitle;
-
     FluentWebElement Prefix;
     FluentWebElement FirstName;
     FluentWebElement MI;
@@ -75,6 +74,35 @@ public class CheatPage extends FluentPage{
         waitForSpinnerToFinish();
     }
 
+    public void fillAndSubmitQrTest(CribSheet sheet) {
+        isAt();
+
+        (new Select(Prefix.getElement())).selectByValue(sheet.getPrefix());
+        fill(FirstName).with(sheet.getFirstName());
+        fill(MI).with(sheet.getMiddleInitial());
+        fill(LastName).with(sheet.getLastName());
+        (new Select(Suffix.getElement())).selectByValue(sheet.getSuffix());
+        fill(AddressLine1).with(sheet.getAddressLine1());
+        fill(AddressLine2).with(sheet.getAddressLine2());
+        fill(City).with(sheet.getCity());
+        fill(State).with(sheet.getState());
+        fill(ZipCode).with(sheet.getZip());
+        fill(AARPMembershipNumber).with(sheet.getMembershipNumber());
+        fill(DOB).with(sheet.getDateOfBirth());
+        fill(Gender).with(sheet.getGender());
+        fill(PhonePrimary).with(sheet.getDayPhone());
+        fill(PhoneEvening).with(sheet.getEveningPhone());
+        fill(Email).with(sheet.getEmail());
+        fill(MPBED).with(sheet.getMedPartBdate());
+        fill(ReqEffectiveDate).with(sheet.getDpsd());
+        fill(planCode).with(sheet.getPlanCode());
+        fill(HCSGApplicationId).with(sheet.getHcsgApplicationId());
+        fill(sourceCode).with(sheet.getSourceCode());
+        fill(AgentFullName).with(sheet.getAgentFullName());
+        fill(QRIndicator).with("N");
+        generateXmlAndCheat.click();
+        waitForSpinnerToFinish();
+    }
     protected void waitForSpinnerToFinish() {
         await().atMost(25, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
     }

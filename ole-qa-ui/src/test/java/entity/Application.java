@@ -995,6 +995,114 @@ public class Application {
     public String applicationId = "";
     public String applicationStatus = "";
     public String MedicalReleaseAuthSignatureIndRequired = "";
+    private String MailingAddressLine1 = "";
+    private String MailingAddressLine2 = "";
+    private String MailingCity = "";
+    private String MailingState = "";
+    private String MailingZipCode = "";
+    private String MailingAddressCheck = "";
+    private String KidneyProblem = "";
+    private String EligibilitySurgery = "";
+    private String EligibilityAdmitToHospPast90Days = "";
+    private String NursingFacility = "";
+    private String EligibilityHeartAttackTIAStroke = "";
+    private String EligibilityChronicMedicalConditions = "";
+
+    public String getKidneyProblem() {
+        return KidneyProblem;
+    }
+
+    public void setKidneyProblem(String kidneyProblem) {
+        KidneyProblem = kidneyProblem;
+    }
+
+    public String getEligibilitySurgery() {
+        return EligibilitySurgery;
+    }
+
+    public void setEligibilitySurgery(String eligibilitySurgery) {
+        EligibilitySurgery = eligibilitySurgery;
+    }
+
+    public String getEligibilityAdmitToHospPast90Days() {
+        return EligibilityAdmitToHospPast90Days;
+    }
+
+    public void setEligibilityAdmitToHospPast90Days(String eligibilityAdmitToHospPast90Days) {
+        EligibilityAdmitToHospPast90Days = eligibilityAdmitToHospPast90Days;
+    }
+
+    public String getNursingFacility() {
+        return NursingFacility;
+    }
+
+    public void setNursingFacility(String nursingFacility) {
+        NursingFacility = nursingFacility;
+    }
+
+    public String getEligibilityHeartAttackTIAStroke() {
+        return EligibilityHeartAttackTIAStroke;
+    }
+
+    public void setEligibilityHeartAttackTIAStroke(String eligibilityHeartAttackTIAStroke) {
+        EligibilityHeartAttackTIAStroke = eligibilityHeartAttackTIAStroke;
+    }
+
+    public String getEligibilityChronicMedicalConditions() {
+        return EligibilityChronicMedicalConditions;
+    }
+
+    public void setEligibilityChronicMedicalConditions(String eligibilityChronicMedicalConditions) {
+        EligibilityChronicMedicalConditions = eligibilityChronicMedicalConditions;
+    }
+
+    public String getMailingAddressCheck() {
+        return MailingAddressCheck;
+    }
+
+    public void setMailingAddressCheck(String mailingAddressCheck) {
+        MailingAddressCheck = mailingAddressCheck;
+    }
+
+    public String getMailingAddressLine1() {
+        return MailingAddressLine1;
+    }
+
+    public void setMailingAddressLine1(String mailingAddressLine1) {
+        MailingAddressLine1 = mailingAddressLine1;
+    }
+
+    public String getMailingAddressLine2() {
+        return MailingAddressLine2;
+    }
+
+    public void setMailingAddressLine2(String mailingAddressLine2) {
+        MailingAddressLine2 = mailingAddressLine2;
+    }
+
+    public String getMailingCity() {
+        return MailingCity;
+    }
+
+    public void setMailingCity(String mailingCity) {
+        MailingCity = mailingCity;
+    }
+
+    public String getMailingState() {
+        return MailingState;
+    }
+
+    public void setMailingState(String mailingState) {
+        MailingState = mailingState;
+    }
+
+    public String getMailingZipCode() {
+        return MailingZipCode;
+    }
+
+    public void setMailingZipCode(String mailingZipCode) {
+        MailingZipCode = mailingZipCode;
+    }
 
     public String getMedicalReleaseAuthSignatureIndRequired() {
         return MedicalReleaseAuthSignatureIndRequired;

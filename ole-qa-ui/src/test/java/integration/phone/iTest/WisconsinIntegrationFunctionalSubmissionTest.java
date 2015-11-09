@@ -97,6 +97,7 @@ public class WisconsinIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         app.setTurned65In6GA(NO);
         app.setPartBIn6GA(NO);
         app.setPlanEffIn6OfEligible(NO);
+
         //Eligibility Page
         app.setESRD(NO);
         app.setSurgeryNeeded(NO);

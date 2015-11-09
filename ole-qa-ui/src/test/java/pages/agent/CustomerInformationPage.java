@@ -35,6 +35,11 @@ public class CustomerInformationPage extends WizardPage{
         FluentWebElement AgentEmail;
         FluentWebElement AgentEmailConfirm;
 
+        FluentWebElement MailingAddressLine1;
+        FluentWebElement MailingAddressLine2;
+        FluentWebElement MailingCity;
+        FluentWebElement MailingState;
+        FluentWebElement MailingZipCode;
 
         @FindBy(css = "#PartABActiveIndicator_1") FluentWebElement PartABActiveIndicator_Yes;
         @FindBy(css = "#PartABActiveIndicator_2") FluentWebElement PartABActiveIndicator_No;
@@ -63,6 +68,15 @@ public class CustomerInformationPage extends WizardPage{
         fillYesNoQuestion(PartABActiveIndicator_Yes, PartABActiveIndicator_No, app.getPartABActiveIndicator());
         fill(AgentEmail).with(app.getAgentEmail());
         fill(AgentEmailConfirm).with(app.getAgentEmailConfirm());
+
+        if (app.getMailingAddressCheck().equals(YES)) {
+            fill(MailingAddressLine1).with(app.getAddressLine1());
+            fill(MailingAddressLine2).with(app.getAddressLine2());
+            fill(MailingCity).with(app.getMailingCity());
+            (new Select(MailingState.getElement())).selectByValue(app.getMailingState());
+            fill(MailingZipCode).with(app.getMailingZipCode());
+
+        }
 
         clickNextAndWaitForSpinnerToFinish();
     }

@@ -43,13 +43,13 @@ public class WisconsinIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         sheet = new CribSheet(faker);
         submissionQuery = new SubmissionQueryDtc();
         expectedSubmissionResult = new SubmissionResult();
-
+        app = new Application();
+        logger.info(gson.toJson(app));
     }
 
     @Test
     public void WI_WID2_GARider1And3NoRN() throws Exception {
-        Application app = new Application();
-        expectedSubmissionResult.verifyPendingPlanAndRiderCodes("MW1", "PW1", "SW1", "", "", "", "");
+
         sheet.setState("WI");
         sheet.setZip("54001");
         sheet.setRiderChoice1("OW");
@@ -135,13 +135,12 @@ public class WisconsinIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         authorizationPage.fillAndSubmit(app);
         planPaymentOptionsPage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
-
+        expectedSubmissionResult.verifyPendingPlanAndRiderCodes("MW1", "OW1", "QW1", "", "", "", "");
         submissionQuery.verifyPlanAndRiderCodes(app, sheet, expectedSubmissionResult);
     }
 @Test
     public void WI_WID3_BaiscPlanFullUWWithRNRider2And4() throws Exception {
-        Application app = new Application();
-        expectedSubmissionResult.verifyPendingPlanAndRiderCodes("MW1", "PW1", "SW1", "", "", "", "");
+        logger.info(gson.toJson(app));
         sheet.setState("WI");
         sheet.setZip("54001");
         sheet.setRiderChoice1("SW");
@@ -235,18 +234,16 @@ public class WisconsinIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         planSelectionAndStartDatePage.fillAndSubmit(app);
         planApplicationQuestionsPage.fillAndSubmit(app);
         eligibilityHealthQuestionsPage.fillAndSubmit(app);
-        //healthHistoryQuestionsPage.fillAndSubmit(app); //TODO: Get clarifications about health history questions page
+        //healthHistoryQuestionsPage.fillAndSubmit(app);
         pastAndCurrentCoveragePage.fillAndSubmit(app);
         authorizationPage.fillAndSubmit(app);
         planPaymentOptionsPage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
-
+        expectedSubmissionResult.verifyPendingPlanAndRiderCodes("MW1", "PW1", "SW1", "", "", "", "");
         submissionQuery.verifyPlanAndRiderCodes(app, sheet, expectedSubmissionResult);
     }
     @Test
     public void WI_WID5_BaiscPlanWithCoPayFullUWWithRNRider1And4() throws Exception {
-        Application app = new Application();
-        expectedSubmissionResult.verifyPendingPlanAndRiderCodes("MW1", "OW1", "SW1", "", "", "", "");
         sheet.setState("WI");
         sheet.setZip("54001");
         sheet.setRiderChoice1("OW");
@@ -347,12 +344,12 @@ public class WisconsinIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         planPaymentOptionsPage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
 
+        expectedSubmissionResult.verifyPendingPlanAndRiderCodes("MW1", "OW1", "SW1", "", "", "", "");
         submissionQuery.verifyPlanAndRiderCodes(app, sheet, expectedSubmissionResult);
     }
     @Test
     public void WI_WID6_BaiscPlanWithCoPayGANORNRider2And4() throws Exception {
-        Application app = new Application();
-        expectedSubmissionResult.verifyPendingPlanAndRiderCodes("MW1", "PW1", "SW1", "", "", "", "");
+
         sheet.setState("WI");
         sheet.setZip("54001");
         sheet.setRiderChoice1("OW");
@@ -452,7 +449,7 @@ public class WisconsinIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         planPaymentOptionsPage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
 
-
+        expectedSubmissionResult.verifyPendingPlanAndRiderCodes("MW1", "PW1", "SW1", "", "", "", "");
         submissionQuery.verifyPlanAndRiderCodes(app, sheet, expectedSubmissionResult);
     }
 

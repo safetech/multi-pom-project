@@ -5,6 +5,7 @@ import org.fluentlenium.core.domain.FluentWebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.WizardPage;
 
+import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -43,7 +44,16 @@ public class VoiceSignatureInstructionsPage extends WizardPage {
         assertQuestionCount(TOTAL_POSSIBLE_QUESTION_COUNT);
     }
 
+    public void verifyStateOfElementsAfterQrRetreive() {
+        assertQuestionCount(TOTAL_POSSIBLE_QUESTION_COUNT);
+        assertVisible(VoiceSignatureApproval);
+        assert(VoiceSignatureApproval.isSelected());
+        assertVisible(AppInFrontOfYou_Yes, AppInFrontOfYou_No);
+        clickNextAndWaitForSpinnerToFinish();
+    }
+
+
     public void isAt() {
-        assertThat(pageTitle.getText(), equalTo("Voice Signature Instructions"));
+        assertThat(pageTitle.getText(), containsString("Voice Signature Instructions"));
     }
 }
