@@ -1007,6 +1007,15 @@ public class Application {
     private String NursingFacility = "";
     private String EligibilityHeartAttackTIAStroke = "";
     private String EligibilityChronicMedicalConditions = "";
+    private String ContinuousMedicareCoverageNoGap = "";
+
+    public String getContinuousMedicareCoverageNoGap() {
+        return ContinuousMedicareCoverageNoGap;
+    }
+
+    public void setContinuousMedicareCoverageNoGap(String continuousMedicareCoverageNoGap) {
+        ContinuousMedicareCoverageNoGap = continuousMedicareCoverageNoGap;
+    }
 
     public String getKidneyProblem() {
         return KidneyProblem;

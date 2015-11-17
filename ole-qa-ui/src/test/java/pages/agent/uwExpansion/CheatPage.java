@@ -1,4 +1,4 @@
-package pages.agent;
+package pages.agent.uwExpansion;
 
 import entity.agent.CribSheet;
 import org.fluentlenium.core.FluentPage;

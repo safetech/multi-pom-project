@@ -52,7 +52,7 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
 
         app = new Application();
 
-        // Customer Info Page Question
+        //Customer Info Page Question
         app.setMedicareClaimNum(faker.bothify("#########A"));
         app.setPartABActiveIndicator(YES);
         app.setPlanCode("F");
@@ -61,7 +61,6 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
         //Eligibility Questions
         app.setESRD(NO);
         app.setSurgeryNeeded(NO);
-
         //Agent Verification Page
         app.setCommonAgentVerificationAnswers();
 
@@ -140,8 +139,6 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
         agentVerificationPage.fillAndSubmit(app);
         replacementNoticePage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
-
-        applicationSubmissionPage.isAt();
         applicationSubmissionPage.isApproved();
 
         submissionQueryPhone.verifySubmissionData(app, expectedSubmissionResult);
@@ -204,8 +201,6 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
         authorizationAndVerificationPage.fillAndSubmit(app);
         agentVerificationPage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
-
-        applicationSubmissionPage.isAt();
         applicationSubmissionPage.isApproved();
 
         submissionQueryPhone.verifySubmissionData(app, expectedSubmissionResult);

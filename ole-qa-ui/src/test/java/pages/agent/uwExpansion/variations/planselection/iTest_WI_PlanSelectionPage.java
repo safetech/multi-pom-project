@@ -1,4 +1,4 @@
-package pages.agent.variations.planselection;
+package pages.agent.uwExpansion.variations.planselection;
 
 import entity.Application;
 import org.fluentlenium.core.domain.FluentWebElement;
@@ -8,14 +8,13 @@ import pages.WizardPage;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class iTest_MN_PlanSelectionPage extends WizardPage{
+public class iTest_WI_PlanSelectionPage extends WizardPage{
 
     @FindBy(xpath = "(//a[contains(text(),'apply now')])[1]") FluentWebElement basicPlan;
     @FindBy(xpath = "(//a[contains(text(),'apply now')])[2]") FluentWebElement basicPlanWithCoPay;
     @FindBy(xpath = "(//*[contains(text(),'add rider')])[2]") FluentWebElement Add_Rider;
     @FindBy(xpath = "(//*[contains(text(),'continue')])[1]") FluentWebElement Continue;
     @FindBy(xpath = "//*[@id='rider_compatibility_error_WI']/ul[1]/li/a") FluentWebElement Update_Rider_Selection;
-    @FindBy(xpath = "//*[@id='rider_compatibility_error_MN']/ul[1]/li/a") FluentWebElement Update_MNRider_Selection;
     @FindBy(css = ".button.arrow.left.action_back") FluentWebElement Back;
 
     @FindBy(xpath = "//*[@id='RiderChoiceXW']") FluentWebElement RiderChoice_XW;
@@ -39,22 +38,16 @@ public class iTest_MN_PlanSelectionPage extends WizardPage{
         isAt();
 
     }
-
-    public void selectRider1And2FullUWwithRn() {
-        RiderChoice_XW.click();
-        RiderChoice_YW.click();
+    public void selectRider1And3FullUWwithRn() {
+        isAt();
+        RiderChoice_OW.click();
+        RiderChoice_QW.click();
         basicPlan.click();
         waitForSpinnerToFinish();
     }
+    public void selectBasicCoPayRider2And4GaNoRn() {
 
-    public void selectBasicPlanRider34And5WithFullUWAndRn() {
-        RiderChoice_VW.click();
-        RiderChoice_WW.click();
-        RiderChoice_ZW.click();
-        basicPlan.click();
-        waitForSpinnerToFinish();
     }
-
     public void isAt() {
         assertThat(pageTitle.getText(), equalTo("Plan Selection"));
     }
@@ -70,5 +63,3 @@ public class iTest_MN_PlanSelectionPage extends WizardPage{
         executeScript("$('"+selector+"').blur()");
     }
 }
-
-

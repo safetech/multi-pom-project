@@ -41,7 +41,7 @@ public class CheatPage extends FluentPage{
     FluentWebElement generateXmlAndCheat;
 
     public String getUrl() {
-        return "https://aarpsupplementalhealth-stg.uhc.com/ole/ms-phone.html?cheat=true";
+        return "https://aarpsupplementalhealth-tst.uhc.com/ole/ms-phone.html?cheat=true";
     }
 
     public void fillAndSubmit(CribSheet sheet) {

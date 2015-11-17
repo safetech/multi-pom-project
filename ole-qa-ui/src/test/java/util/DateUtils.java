@@ -21,13 +21,12 @@ public class DateUtils {
         return String.valueOf(cal.getTime());
     }
 
-    public static String customizePastOrFutureDates(int numOfDays) {
+    public static String customizePastOrFutureDays(int numOfDays) {
         DateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy");
         Calendar cal = Calendar.getInstance();
         cal.add(Calendar.DATE, numOfDays);
         return dateFormat.format(cal.getTime());
     }
-
 
     public static String getRandomDOB() {
 

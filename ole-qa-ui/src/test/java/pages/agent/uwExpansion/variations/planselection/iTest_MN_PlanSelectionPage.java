@@ -1,4 +1,4 @@
-package pages.agent.variations.planselection;
+package pages.agent.uwExpansion.variations.planselection;
 
 import entity.Application;
 import org.fluentlenium.core.domain.FluentWebElement;
@@ -72,3 +72,37 @@ public class iTest_MN_PlanSelectionPage extends WizardPage{
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+    public void selectRider1And3FullUWwithRn() {
+        RiderChoice_XW.click();
+        RiderChoice_VW.click();
+                waitForSpinnerToFinish();
+
+    }
+    public void selectRider2And4GaNoRn() {
+        RiderChoice_YW.click();
+        RiderChoice_WW.click();
+        waitForSpinnerToFinish();
+    }*/

@@ -1,4 +1,4 @@
-package pages.agent;
+package pages.agent.uwExpansion;
 
 import entity.Application;
 import org.fluentlenium.core.domain.FluentWebElement;

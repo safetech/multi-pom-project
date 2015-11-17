@@ -43,8 +43,8 @@ public class NV_ME_AuthorizationPage extends WizardPage {
         }else if((app.getDesignateLapse()).equalsIgnoreCase("YES"))
         DesignateLapse.click();
 
-        SignatureInd.click();
-        fillTouchSignature("SignatureIndTouch",  app.getSignatureIndTouch());
+//        SignatureInd.click();
+//        fillTouchSignature("SignatureIndTouch",  app.getSignatureIndTouch());
         MedicalReleaseAuthSignatureInd.click();
         fillTouchSignature("MedicalReleaseAuthSignatureIndTouch", app.getMedicalReleaseAuthSignatureIndTouch());
         DesigneeSig.click();
