@@ -44,7 +44,7 @@ public class CA_EligibilityHealthQuestionsPage extends WizardPage {
     @FindBy(css = "#EligVascular_2") FluentWebElement EligVascular_No;
     @FindBy(css = "#EligVascular_3") FluentWebElement EligVascular_Maybe;
 
-    protected int TOTAL_POSSIBLE_QUESTION_COUNT = 33;
+    protected int TOTAL_POSSIBLE_QUESTION_COUNT = 18;
 
     public void verifyInitialStateOfElements(Application app) {
         assertBlank(

@@ -18,7 +18,7 @@ public class ME_PlanApplicationQuestionsPage extends PlanApplicationQuestions {
     public void verifyInitialStateOfElements(Application app) {
         assertQuestionCount(TOTAL_POSSIBLE_QUESTION_COUNT);
         assertYesNoQuestion(PlanEffIn6OfEligible_Yes, PlanEffIn6OfEligible_No, app.getPlanEffIn6OfEligible());
-        assertHidden(ContinuousCoverage_Yes, ContinuousCoverage_No);
+        assertVisibleBasedUpon(app.getPlanEffIn6OfEligible().equals(NO), ContinuousCoverage_Yes, ContinuousCoverage_No);
         assertHidden(LostCoverage_Yes, LostCoverage_No);
         assertBlank(TobaccoUse_Yes, TobaccoUse_No);
 
@@ -28,6 +28,13 @@ public class ME_PlanApplicationQuestionsPage extends PlanApplicationQuestions {
         isAt();
 
         verifyInitialStateOfElements(app);
+        if(app.getPlanEffIn6OfEligible().equals(NO)) {
+            fillYesNoQuestion(ContinuousCoverage_Yes, ContinuousCoverage_No, app.getContinuousCoverage());
+            if(app.getContinuousCoverage().equals(NO)) {
+                fillYesNoQuestion(LostCoverage_Yes, LostCoverage_No, app.getLostCoverage());
+            }
+
+        }
         fillYesNoQuestion(TobaccoUse_Yes, TobaccoUse_No, app.getTobaccoUse());
         verifyStateOfElementAfterAnswers(app);
 

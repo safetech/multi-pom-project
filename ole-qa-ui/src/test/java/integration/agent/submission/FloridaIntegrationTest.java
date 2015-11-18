@@ -102,7 +102,7 @@ public class FloridaIntegrationTest extends CQBaseIntegrationTest {
         //Eligibility Questions
         app.setESRD(NO);
         app.setSurgeryNeeded(NO);
-        //Eligibility Questions(SPECIFIC TO CA)
+        //Eligibility Questions
         app.setEligdialysis(NO);
         app.setEligRecdialysis(NO);
         app.setEligHospital(NO);

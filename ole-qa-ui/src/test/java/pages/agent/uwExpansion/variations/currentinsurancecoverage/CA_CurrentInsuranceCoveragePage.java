@@ -16,7 +16,6 @@ public class CA_CurrentInsuranceCoveragePage extends WizardPage{
     @FindBy(css = "#MedicaidSupPremium_2") FluentWebElement MedicaidSupPremium_No;
     @FindBy(css = "#Medicaidbenefit_1") FluentWebElement Medicaidbenefit_Yes;
     @FindBy(css = "#Medicaidbenefit_2") FluentWebElement Medicaidbenefit_No;
-
     @FindBy(css = "#ExistingMedicare_1") FluentWebElement ExistingMedicare_Yes;
     @FindBy(css = "#ExistingMedicare_2") FluentWebElement ExistingMedicare_No;
     FluentWebElement OtherMedplanstart;
@@ -27,27 +26,26 @@ public class CA_CurrentInsuranceCoveragePage extends WizardPage{
     @FindBy(css = "#FirstTime_2") FluentWebElement FirstTime_No;
     @FindBy(css = "#DropMedSuppForThisPlan_1") FluentWebElement DropMedSuppForThisPlan_Yes;
     @FindBy(css = "#DropMedSuppForThisPlan_2") FluentWebElement DropMedSuppForThisPlan_No;
-
     @FindBy(css = "#ExistMedSupp_1") FluentWebElement ExistMedSupp_Yes;
     @FindBy(css = "#ExistMedSupp_2") FluentWebElement ExistMedSupp_No;
     @FindBy(css = "#ReplaceExistingMedSup_1") FluentWebElement ReplaceExistingMedSup_Yes;
     @FindBy(css = "#ReplaceExistingMedSup_2") FluentWebElement ReplaceExistingMedSup_No;
-
     @FindBy(css = "#OtherInsCoverage_1") FluentWebElement OtherInsCoverage_Yes;
     @FindBy(css = "#OtherInsCoverage_2") FluentWebElement OtherInsCoverage_No;
     FluentWebElement OtherInsCompany;
     FluentWebElement OtherInsType;
     FluentWebElement OtherInsStart;
     FluentWebElement OtherInsEnd;
+    FluentWebElement MSInsCompany;
+    FluentWebElement MSPLAN;
     @FindBy(css = "#OtherInsReplace_1") FluentWebElement OtherInsReplace_Yes;
     @FindBy(css = "#OtherInsReplace_2") FluentWebElement OtherInsReplace_No;
     FluentWebElement CpaSignatureInd;
 
-    protected int TOTAL_POSSIBLE_QUESTION_COUNT = 29;
+    protected int TOTAL_POSSIBLE_QUESTION_COUNT = 31;
 
     public void fillAndSubmit(Application app) {
         isAt();
-
         assertQuestionCount(TOTAL_POSSIBLE_QUESTION_COUNT);
 
         fillYesNoQuestion(MedicaidCovered_Yes, MedicaidCovered_No, app.getMedicaidCovered());
@@ -68,6 +66,8 @@ public class CA_CurrentInsuranceCoveragePage extends WizardPage{
         fillYesNoQuestion(ExistMedSupp_Yes, ExistMedSupp_No, app.getExistMedSupp());
         if(app.getExistMedSupp().equals("yes")){
             fillYesNoQuestion(ReplaceExistingMedSup_Yes, ReplaceExistingMedSup_No, app.getReplaceExistingMedSup());
+            fill(MSInsCompany).with(app.getMSInsCompany());
+            fill(MSPLAN).with(app.getMSPLAN());
         }
 
         fillYesNoQuestion(OtherInsCoverage_Yes, OtherInsCoverage_No, app.getOtherInsCoverage());

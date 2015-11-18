@@ -305,7 +305,15 @@ public class Application {
     private String AgentEmailConfirm = "";
     private String GIMPBED = "";
     private String AARPMemberNumber = "";
+    private String CAGuaranteedAcceptance = "";
 
+    public String getCAGuaranteedAcceptance() {
+        return CAGuaranteedAcceptance;
+    }
+
+    public void setCAGuaranteedAcceptance(String CAGuaranteedAcceptance) {
+        this.CAGuaranteedAcceptance = CAGuaranteedAcceptance;
+    }
 
     public String getAARPMemberNumber() {
         return AARPMemberNumber;
