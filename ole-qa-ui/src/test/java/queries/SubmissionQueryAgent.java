@@ -120,7 +120,7 @@ public class SubmissionQueryAgent {
         assertThat(row.get("BOTH_PARTS_ACTIVE"), equalTo(app.getPartABActiveIndicator() == "yes" ? "Y" : "N"));
         assertThat(row.get("CPA_SIGNATURE_DATE"), equalTo(currentDate));
         assertThat(row.get("APPL_RECEIPT_DATE"), equalTo(currentDate));
-        assertThat(row.get("APPL_SIGNATURE_DATE"), equalTo(""));
+        assertThat(row.get("APPL_SIGNATURE_DATE"), equalTo(currentDate));
         assertThat(row.get("STATUS"), equalTo(expectedSubmissionResult.getStatus()));
         assertThat(row.get("CHANNEL"), equalTo("10"));
         assertThat(row.get("ACTOR"), equalTo("3"));

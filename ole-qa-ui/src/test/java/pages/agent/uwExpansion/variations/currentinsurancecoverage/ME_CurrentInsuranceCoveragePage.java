@@ -4,7 +4,6 @@ import entity.Application;
 import org.fluentlenium.core.domain.FluentWebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.WizardPage;
-import util.DateUtils;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -56,8 +55,11 @@ public class ME_CurrentInsuranceCoveragePage extends WizardPage {
     public void verifyInitialStateOfElements(Application app) {
         assertYesNoQuestion(CPATurned65_Yes, CPATurned65_No, app.getCPATurned65());
         assertYesNoQuestion(CPAPartBIn6_Yes, CPAPartBIn6_No, app.getCPAPartBIn6());
-        if(app.getCPAPartBIn6().equals(YES)){
-            assertThat(CPAMPBED.getElement().getAttribute("value"), equalTo(DateUtils.getFirstDayOfPastMonth(-1)));
+        if(app.getCPAPartBIn6().equals(YES)) {
+            assertVisible(CPAMPBED);
+        }else if(app.getCPAPartBIn6().equals(NO)){
+            assertHidden(CPAMPBED);
+
         }
 
         assertBlank(MedicaidCovered_Yes, MedicaidCovered_No);

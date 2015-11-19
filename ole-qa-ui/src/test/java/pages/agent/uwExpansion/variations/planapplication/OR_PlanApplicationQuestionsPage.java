@@ -5,20 +5,19 @@ import org.fluentlenium.core.domain.FluentWebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.agent.PlanApplicationQuestions;
 
-public class ME_PlanApplicationQuestionsPage extends PlanApplicationQuestions {
+public class OR_PlanApplicationQuestionsPage extends PlanApplicationQuestions {
 
 
     protected int TOTAL_POSSIBLE_QUESTION_COUNT = 8;
     @FindBy(css = "#LostCoverage_1") FluentWebElement LostCoverage_Yes;
     @FindBy(css = "#LostCoverage_2") FluentWebElement LostCoverage_No;
-    @FindBy(css = "#ContinuousCoverage_1") FluentWebElement ContinuousCoverage_Yes;
-    @FindBy(css = "#ContinuousCoverage_2") FluentWebElement ContinuousCoverage_No;
-    @FindBy(css = "#GIMPBED") FluentWebElement GIMPBED;
+    @FindBy(css = "#GI30dayBday_1") FluentWebElement GI30dayBday_Yes;
+    @FindBy(css = "#GI30dayBday_2") FluentWebElement GI30dayBday_No;
 
     public void verifyInitialStateOfElements(Application app) {
         assertQuestionCount(TOTAL_POSSIBLE_QUESTION_COUNT);
         assertYesNoQuestion(PlanEffIn6OfEligible_Yes, PlanEffIn6OfEligible_No, app.getPlanEffIn6OfEligible());
-        assertVisibleBasedUpon(app.getPlanEffIn6OfEligible().equals(NO), ContinuousCoverage_Yes, ContinuousCoverage_No);
+        assertVisibleBasedUpon(app.getPlanEffIn6OfEligible().equals(NO), GI30dayBday_Yes, GI30dayBday_No);
         assertHidden(LostCoverage_Yes, LostCoverage_No);
         assertBlank(TobaccoUse_Yes, TobaccoUse_No);
 
@@ -29,7 +28,7 @@ public class ME_PlanApplicationQuestionsPage extends PlanApplicationQuestions {
 
         verifyInitialStateOfElements(app);
         if(app.getPlanEffIn6OfEligible().equals(NO)) {
-            fillYesNoQuestion(ContinuousCoverage_Yes, ContinuousCoverage_No, app.getContinuousCoverage());
+            fillYesNoQuestion(GI30dayBday_Yes, GI30dayBday_No, app.getContinuousCoverage());
             if(app.getContinuousCoverage().equals(NO)) {
                 fillYesNoQuestion(LostCoverage_Yes, LostCoverage_No, app.getLostCoverage());
             }
@@ -48,12 +47,11 @@ public class ME_PlanApplicationQuestionsPage extends PlanApplicationQuestions {
                 TobaccoUse_No);
         assertYesNoQuestion(PlanEffIn6OfEligible_Yes, PlanEffIn6OfEligible_No, app.getPlanEffIn6OfEligible());
         assertYesNoQuestion(LostCoverage_Yes, LostCoverage_No, app.getLostCoverage());
-        assertVisibleBasedUpon(app.getPlanEffIn6OfEligible().equals(NO), ContinuousCoverage_Yes, ContinuousCoverage_No);
-        assertVisibleBasedUpon(app.getContinuousCoverage().equals(NO), LostCoverage_Yes, LostCoverage_No);
+        assertVisibleBasedUpon(app.getPlanEffIn6OfEligible().equals(NO), GI30dayBday_Yes, GI30dayBday_No);
+        assertVisibleBasedUpon(app.getGI30dayBday().equals(NO), LostCoverage_Yes, LostCoverage_No);
 
         assertYesNoQuestion(TobaccoUse_Yes, TobaccoUse_No, app.getTobaccoUse());
         assertQuestionCount(TOTAL_POSSIBLE_QUESTION_COUNT);
     }
 
 }
-//GI30dayBday_2

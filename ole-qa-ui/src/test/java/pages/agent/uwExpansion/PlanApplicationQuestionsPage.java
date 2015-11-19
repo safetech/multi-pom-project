@@ -8,7 +8,7 @@ import pages.WizardPage;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class PlanApplicationQuestions extends WizardPage {
+public class PlanApplicationQuestionsPage extends WizardPage {
 
     @FindBy(css = "#Turned65In6GA_1") protected FluentWebElement Turned65In6GA_Yes;
     @FindBy(css = "#Turned65In6GA_2") protected FluentWebElement Turned65In6GA_No;

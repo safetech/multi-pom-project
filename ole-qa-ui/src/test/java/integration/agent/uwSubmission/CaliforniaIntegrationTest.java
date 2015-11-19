@@ -10,9 +10,9 @@ import org.junit.Before;
 import org.junit.Test;
 import pages.agent.uwExpansion.*;
 import pages.agent.uwExpansion.variations.authorization.CA_AuthorizationPage;
-import pages.agent.uwExpansion.variations.checkeligibility.ME_CA_CheckEligibilityAndAvailabilityPage;
+import pages.agent.uwExpansion.variations.checkeligibility.ME_CA_FL_CheckEligibilityAndAvailabilityPage;
 import pages.agent.uwExpansion.variations.currentinsurancecoverage.CA_CurrentInsuranceCoveragePage;
-import pages.agent.uwExpansion.variations.eligibilityhealthquestions.ME_CA_EligibilityHealthQuestionsPage;
+import pages.agent.uwExpansion.variations.eligibilityhealthquestions.ME_CA_FL_EligibilityHealthQuestionsPage;
 import pages.agent.uwExpansion.variations.planapplication.CA_PlanApplicationQuestionsPage;
 import pages.agent.uwExpansion.variations.replacenotice.RN034andRE073WithSignaturePage;
 import queries.SubmissionQueryAgent;
@@ -22,11 +22,11 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
 
     @Page public CheatPage cheatPage;
     @Page public PlanSelectionPage planSelectionPage;
-    @Page public ME_CA_CheckEligibilityAndAvailabilityPage checkEligibilityAndAvailabilityPage;
+    @Page public ME_CA_FL_CheckEligibilityAndAvailabilityPage checkEligibilityAndAvailabilityPage;
     @Page public WhatYouNeedPage whatYouNeedPage;
     @Page public CustomerInformationPage customerInformationPage;
     @Page public CA_PlanApplicationQuestionsPage planApplicationQuestionsPage;
-    @Page public ME_CA_EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
+    @Page public ME_CA_FL_EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
     @Page public CA_CurrentInsuranceCoveragePage currentInsuranceCoveragePage;
     @Page public CA_AuthorizationPage authorizationPage;
     @Page public RN034andRE073WithSignaturePage replacementNotice;
@@ -77,12 +77,11 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         sheet.setAgentEmail("bob@dobbsco.com");
         sheet.setAgentPartyId("54321");
         sheet.setReferrer("ulayer");
-
         app.setState("CA");
         app.setZipCode("90210");
         app.setDOB(DateUtils.getDOBInNormalDateFormat(65));
         app.setMPBED(DateUtils.getFirstDayOfPastMonth(-1));
-
+        app.setMPAED(DateUtils.getFirstDayOfPastMonth(-1));
         //TestData
         app.setAARPMembershipNumber(faker.numerify("##########"));
         app.setPrefix("MR");
@@ -99,11 +98,9 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         app.setPhoneEvening("1234561234");
         app.setGender("M");
         app.setMedicareClaimNum("123123123A");
-        app.setMPAED("01/01/2015");
         app.setPartABActiveIndicator(YES);
         app.setAgentEmail("agent@uhc.com");
         app.setAgentEmailConfirm("agent@uhc.com");
-        //app.setDefaultPlanEligibilityQuestions(sheet);
         app.setGI30dayBday(YES);
         app.setGIEmployerCov(NO);
         app.setGIMediCal(NO);
@@ -113,40 +110,12 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         app.setESRD(NO);
         app.setSurgeryNeeded(NO);
         //Eligibility Questions(SPECIFIC TO CA)
-        app.setEligdialysis(NO);
-        app.setEligRecdialysis(NO);
-        app.setEligHospital(NO);
-        app.setEligSurgery(NO);
-        app.setEligOrgan(NO);
-        app.setEligSpine(NO);
-        app.setEligjoint(NO);
-        app.setEligCancer(NO);
-        app.setEligHeart(NO);
-        app.setEligVascular(NO);
         app.setTobaccoUse(YES);
         //Past And Current Coverage
-        app.setCPATurned65(YES);
-        app.setCPAPartBIn6(YES);
-        app.setPlanEffIn6OfEligible(YES);
-        app.setMedicaidCovered(YES);
-        app.setMedicaidSupPremium(YES);
-        app.setMedicaidbenefit(YES);
-        app.setExistingMedicare(YES);
-        app.setOtherMedplanstart("01/01/2012");
-        app.setOtherMedplanend("01/01/2015");
-        app.setIntentReplace(YES);
-        app.setFirstTime(YES);
-        app.setDropMedSuppForThisPlan(YES);
-        app.setExistMedSupp(YES);
-        app.setMSInsCompany("Blue Cross Blue Shield NV");
-        app.setMSPLAN("Medical Supplement NV");
-        app.setReplaceExistingMedSup(YES);
-        app.setOtherInsCoverage(YES);
-        app.setOtherInsCompany("Blue Cross Blue Shield");
-        app.setOtherInsType("HMO");
-        app.setOtherInsStart("01/01/2001");
-        app.setOtherInsEnd("01/01/2014");
-        app.setOtherInsReplace(YES);
+        app.setMedicaidCovered(NO);
+        app.setExistingMedicare(NO);
+        app.setExistMedSupp(NO);
+        app.setOtherInsCoverage(NO);
         app.setCpaSignatureInd(YES);
         //Agent Verification page
         app.setAgentOtherInsPoliciesSold("HMO");
@@ -166,7 +135,6 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
 
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);
-
         checkEligibilityAndAvailabilityPage.fillAndSubmit(app);
         planSelectionPage.fillAndSubmit(app);
         whatYouNeedPage.fillAndSubmit(app);
@@ -175,11 +143,9 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         currentInsuranceCoveragePage.fillAndSubmit(app);
         authorizationPage.fillAndSubmit(app);
         agentVerificationPage.fillAndSubmit(app);
-        replacementNotice.fillAndSubmit(app);
         planPaymentOptionsPage.fillAndSubmit(app);
         paymentDetailsSummaryPage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
-
         expectedSubmissionResult.setAcceptedInfo();
         submissionQuery.verifyUwExpansionSubmissionData(app, expectedSubmissionResult);
         submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
@@ -193,17 +159,15 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         sheet.setMarketability_code(BLANK);
         sheet.setSiteId("UHP");
         sheet.setAgentNPN(BLANK);
-
         sheet.setAgentName("BOB DOBBS");
         sheet.setAgentEmail("bob@dobbsco.com");
         sheet.setAgentPartyId("54321");
         sheet.setReferrer("ulayer");
-
         app.setState("CA");
         app.setZipCode("90210");
-        app.setDOB(DateUtils.getDOBInNormalDateFormat(70));
-        app.setMPBED("01/01/2012");
-
+        app.setDOB(DateUtils.getDOBInNormalDateFormat(65));
+        app.setMPBED(DateUtils.getFirstDayOfPastMonth(-1));
+        app.setMPAED(DateUtils.getFirstDayOfPastMonth(-1));
         //TestData
         app.setAARPMembershipNumber(faker.numerify("##########"));
         app.setPrefix("MR");
@@ -220,7 +184,6 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         app.setPhoneEvening("1234561234");
         app.setGender("M");
         app.setMedicareClaimNum("123123123A");
-        app.setMPAED("01/01/2010");
         app.setPartABActiveIndicator(YES);
         app.setAgentEmail("agent@uhc.com");
         app.setAgentEmailConfirm("agent@uhc.com");
@@ -231,27 +194,13 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         app.setCAGuaranteedAcceptance(NO);
         app.setLostCoverage(NO);
         app.setTobaccoUse(NO);
-
-        //Eligibility Questions
-
-        app.setSurgeryNeeded(NO);
-        //Eligibility Questions(SPECIFIC TO CA)
-        app.setEligdialysis(NO);
-        app.setEligRecdialysis(NO);
-        app.setEligHospital(NO);
-        app.setEligSurgery(NO);
-        app.setEligOrgan(NO);
-        app.setEligSpine(NO);
-        app.setEligjoint(NO);
-        app.setEligCancer(NO);
-        app.setEligHeart(NO);
-        app.setEligVascular(NO);
-        app.setGI30dayBday(NO);
-        app.setGIEmployerCov(NO);
-        app.setGIMediCal(NO);
-        app.setGIMilitary(NO);
-        app.setGILocation(NO);
-
+        //Eligibility Health Questions
+        app.setKidneyProblem(NO);
+        app.setEligibilitySurgery(NO);
+        app.setEligibilityAdmitToHospPast90Days(NO);
+        app.setNursingFacility(NO);
+        app.setEligibilityHeartAttackTIAStroke(NO);
+        app.setEligibilityChronicMedicalConditions(NO);
         //Current Insurance Coverage
         app.setCPATurned65(NO);
         app.setCPAPartBIn6(NO);
@@ -293,13 +242,7 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         app.setMailingCity(faker.letterify("??????????????"));
         app.setMailingState(faker.letterify("ME"));
         app.setMailingZipCode(faker.numerify("#####"));
-        //Eligibility Health Questions
-        app.setKidneyProblem(NO);
-        app.setEligibilitySurgery(NO);
-        app.setEligibilityAdmitToHospPast90Days(NO);
-        app.setNursingFacility(NO);
-        app.setEligibilityHeartAttackTIAStroke(NO);
-        app.setEligibilityChronicMedicalConditions(NO);
+
         //Sig required
         app.setMedicalReleaseAuthSignatureIndRequired("Required");
         //Payment Details Summary Page
@@ -309,10 +252,7 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
 
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);
-
-        checkEligibilityAndAvailabilityPage.isAt();
         checkEligibilityAndAvailabilityPage.fillAndSubmit(app);
-
         planSelectionPage.fillAndSubmit(app);
         whatYouNeedPage.fillAndSubmit(app);
         customerInformationPage.fillAndSubmit(app);

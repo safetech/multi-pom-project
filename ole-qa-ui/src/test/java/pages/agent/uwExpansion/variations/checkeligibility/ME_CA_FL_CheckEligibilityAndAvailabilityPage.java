@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class ME_CA_CheckEligibilityAndAvailabilityPage extends WizardPage {
+public class ME_CA_FL_CheckEligibilityAndAvailabilityPage extends WizardPage {
 
     public FluentWebElement ZipCode;
     public FluentWebElement DOB;

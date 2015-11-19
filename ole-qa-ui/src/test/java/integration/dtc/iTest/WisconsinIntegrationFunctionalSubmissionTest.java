@@ -16,7 +16,6 @@ import pages.dtc.variations.planselectionandstartdate.PA_AR_NV_MA_PlanSelectionA
 import queries.SubmissionQueryDtc;
 import util.DateUtils;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -50,7 +49,6 @@ public class WisconsinIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         app = new Application();
         logger.info(gson.toJson(app));
     }
-    public static SimpleDateFormat COMPAS_DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
     public static SimpleDateFormat NORMALIZED_DATE_FORMAT = new SimpleDateFormat("MM/dd/yyyy");
 
     @Test
@@ -459,24 +457,6 @@ public class WisconsinIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         submissionQuery.verifyPlanAndRiderCodes(app, sheet, expectedSubmissionResult);
     }
 
-    @Test
-    public void test() throws Exception {
-        logger.info(getDOBInNormalDateFormat(3));
-
-    }
-    public static String convertDate(String date, SimpleDateFormat format) {
-        Date dt;
-        if(date.contains("-")){
-            try {
-                dt = COMPAS_DATE_FORMAT.parse(date);
-            } catch (ParseException e) {
-                return "";
-            }
-        } else {
-            dt = new Date(date);
-        }
-        return format.format(dt);
-    }
     public static String getDOBInNormalDateFormat(int age) {
         Date dob = org.apache.commons.lang3.time.DateUtils.addYears(new Date(), -age);
         return NORMALIZED_DATE_FORMAT.format(dob);
