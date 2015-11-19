@@ -7,7 +7,6 @@ import pages.agent.PlanApplicationQuestions;
 
 public class OR_PlanApplicationQuestionsPage extends PlanApplicationQuestions {
 
-
     protected int TOTAL_POSSIBLE_QUESTION_COUNT = 8;
     @FindBy(css = "#LostCoverage_1") FluentWebElement LostCoverage_Yes;
     @FindBy(css = "#LostCoverage_2") FluentWebElement LostCoverage_No;
@@ -28,8 +27,8 @@ public class OR_PlanApplicationQuestionsPage extends PlanApplicationQuestions {
 
         verifyInitialStateOfElements(app);
         if(app.getPlanEffIn6OfEligible().equals(NO)) {
-            fillYesNoQuestion(GI30dayBday_Yes, GI30dayBday_No, app.getContinuousCoverage());
-            if(app.getContinuousCoverage().equals(NO)) {
+            fillYesNoQuestion(GI30dayBday_Yes, GI30dayBday_No, app.getGI30dayBday());
+            if(app.getGI30dayBday().equals(NO)) {
                 fillYesNoQuestion(LostCoverage_Yes, LostCoverage_No, app.getLostCoverage());
             }
 
@@ -46,7 +45,6 @@ public class OR_PlanApplicationQuestionsPage extends PlanApplicationQuestions {
                 TobaccoUse_Yes,
                 TobaccoUse_No);
         assertYesNoQuestion(PlanEffIn6OfEligible_Yes, PlanEffIn6OfEligible_No, app.getPlanEffIn6OfEligible());
-        assertYesNoQuestion(LostCoverage_Yes, LostCoverage_No, app.getLostCoverage());
         assertVisibleBasedUpon(app.getPlanEffIn6OfEligible().equals(NO), GI30dayBday_Yes, GI30dayBday_No);
         assertVisibleBasedUpon(app.getGI30dayBday().equals(NO), LostCoverage_Yes, LostCoverage_No);
 

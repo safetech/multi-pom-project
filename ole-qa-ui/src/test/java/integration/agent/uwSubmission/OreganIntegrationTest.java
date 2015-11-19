@@ -8,11 +8,12 @@ import integration.CQBaseIntegrationTest;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
-import pages.agent.*;
+import pages.agent.uwExpansion.*;
 import pages.agent.uwExpansion.variations.checkeligibility.ME_CA_FL_CheckEligibilityAndAvailabilityPage;
+import pages.agent.uwExpansion.variations.currentinsurancecoverage.OR_CurrentInsuranceCoveragePage;
+import pages.agent.uwExpansion.variations.eligibilityhealthquestions.ME_CA_FL_EligibilityHealthQuestionsPage;
 import pages.agent.uwExpansion.variations.planapplication.OR_PlanApplicationQuestionsPage;
-import pages.agent.variations.currentinsurancecoverage.AR_PA_OR_CurrentInsuranceCoveragePage;
-import pages.agent.variations.replacenotice.RN034andRE073WithSignaturePage;
+import pages.agent.uwExpansion.variations.replacenotice.RN034andRE073WithSignaturePage;
 import queries.SubmissionQueryAgent;
 import util.DateUtils;
 
@@ -24,8 +25,8 @@ public class OreganIntegrationTest extends CQBaseIntegrationTest {
     @Page public WhatYouNeedPage whatYouNeedPage;
     @Page public CustomerInformationPage customerInformationPage;
     @Page public OR_PlanApplicationQuestionsPage planApplicationQuestionsPage;
-    @Page public EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
-    @Page public AR_PA_OR_CurrentInsuranceCoveragePage currentInsuranceCoveragePage;
+    @Page public ME_CA_FL_EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
+    @Page public OR_CurrentInsuranceCoveragePage currentInsuranceCoveragePage;
     @Page public AuthorizationPage authorizationPage;
     @Page public RN034andRE073WithSignaturePage replacementNotice;
     @Page public HealthHistoryQuestionsPage healthHistoryQuestionsPage;
@@ -77,7 +78,7 @@ public class OreganIntegrationTest extends CQBaseIntegrationTest {
 
         app.setState("OR");
         app.setZipCode("97001");
-        app.setDOB(DateUtils.getDOBInNormalDateFormat(69));
+        app.setDOB(DateUtils.getDOBInNormalDateFormat(65));
         app.setMPBED(DateUtils.getFirstDayOfPastMonth(-1));
         app.setMPAED(DateUtils.getFirstDayOfPastMonth(-1));
         //TestData
@@ -99,46 +100,16 @@ public class OreganIntegrationTest extends CQBaseIntegrationTest {
         app.setPartABActiveIndicator(YES);
         app.setAgentEmail("agent@uhc.com");
         app.setAgentEmailConfirm("agent@uhc.com");
-        //app.setDefaultPlanEligibilityQuestions(sheet);
-//        app.setGI30dayBday(YES);
-//        app.setGIEmployerCov(NO);
-//        app.setGIMediCal(NO);
-//        app.setGIMilitary(NO);
-//        app.setGILocation(NO);
         //Plan ApplicationPage
         app.setPlanEffIn6OfEligible(YES);
         app.setTobaccoUse(YES);
-
-        app.setESRD(NO);
-        app.setSurgeryNeeded(NO);
-        app.setTurned65In6GA(NO);
-        app.setLostCoverage(NO);
-        app.setMedSuppReplace(NO);
         //Past And Current Coverage
-        app.setCPATurned65(NO);
-        app.setTurned65In6GA(NO);
-        app.setPartBIn6GA(NO);
-        app.setCPAPartBIn6(NO);
-        app.setMedicaidCovered(YES);
-        app.setMedicaidSupPremium(YES);
-        app.setMedicaidbenefit(YES);
+        app.setCPATurned65(YES);
+        app.setCPAPartBIn6(YES);
+        app.setMedicaidCovered(NO);
         app.setExistingMedicare(NO);
-        app.setOtherMedplanstart("01/01/2012");
-        app.setOtherMedplanend("01/01/2015");
-        app.setIntentReplace(YES);
-        app.setFirstTime(YES);
-        app.setDropMedSuppForThisPlan(YES);
         app.setExistMedSupp(NO);
-        app.setMSInsCompany("Blue Cross Blue Shield NV");
-        app.setMSPLAN("Medical Supplement NV");
-        app.setReplaceExistingMedSup(YES);
-        app.setOtherInsCoverage(YES);
-        app.setOtherInsCompany("Blue Cross Blue Shield");
-        app.setOtherInsType("HMO");
-        app.setOtherInsStart("01/01/2001");
-        app.setOtherInsEnd("01/01/2014");
-        app.setOtherInsReplace(YES);
-        app.setCpaSignatureInd(YES);
+        app.setOtherInsCoverage(NO);
         //Agent Verification page
         app.setAgentOtherInsPoliciesSold("HMO");
         app.setAgentPoliciesInForce("HMO In Force");
@@ -151,9 +122,6 @@ public class OreganIntegrationTest extends CQBaseIntegrationTest {
         app.setMailingAddressCheck(NO);
         //Payment Details Summary Page
         app.setPaymentDetailsSummaryPageWithAppValues();
-        //Replacement Notice Page
-        app.setCommonReplacementNoticeAnswersWithApplicantInfo();
-        app.setCommonHealthHistoryAnswers();
 
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);
@@ -163,7 +131,6 @@ public class OreganIntegrationTest extends CQBaseIntegrationTest {
         whatYouNeedPage.fillAndSubmit(app);
         customerInformationPage.fillAndSubmit(app);
         planApplicationQuestionsPage.fillAndSubmit(app);
-        eligibilityHealthQuestionsPage.fillAndSubmit(app);
         currentInsuranceCoveragePage.fillAndSubmit(app);
         authorizationPage.fillAndSubmit(app);
         agentVerificationPage.fillAndSubmit(app);
@@ -172,12 +139,11 @@ public class OreganIntegrationTest extends CQBaseIntegrationTest {
         reviewAndSubmitPage.fillAndSubmit(app);
 
         expectedSubmissionResult.setAcceptedInfo();
-        submissionQuery.verifySubmissionData(app, expectedSubmissionResult);
+        submissionQuery.verifyUwExpansionSubmissionData(app, expectedSubmissionResult);
         submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
-
     }
-    @Test
 
+    @Test
     public void test_oregan_eligibility_healthhistory_underwriting_with_rn() throws Exception {
 
         sheet.setAgentId("Test");
@@ -191,11 +157,11 @@ public class OreganIntegrationTest extends CQBaseIntegrationTest {
         sheet.setAgentPartyId("54321");
         sheet.setReferrer("ulayer");
 
-        Application app = new Application();
         app.setState("OR");
         app.setZipCode("97001");
-        app.setDOB(DateUtils.getDOBInNormalDateFormat(67));
-        app.setMPBED("01/01/2015");
+        app.setDOB(DateUtils.getDOBInNormalDateFormat(69));
+        app.setMPBED("01/01/2010");
+        app.setMPAED("01/01/2010");
         //TestData
         app.setAARPMembershipNumber(faker.numerify("##########"));
         app.setPrefix("MR");
@@ -220,22 +186,24 @@ public class OreganIntegrationTest extends CQBaseIntegrationTest {
         app.setCity("Horsham");
         app.setEmail("test@uhc.com");
         app.setConfirmEmail("test@uhc.com");
-        app.setMPAED("01/01/2010");
         app.setPartABActiveIndicator(YES);
         app.setAgentEmail("agent@uhc.com");
         app.setAgentEmailConfirm("agent@uhc.com");
-        //Eligibility Questions
-        app.setESRD(NO);
-        app.setSurgeryNeeded(NO);
-        app.setMedSuppReplace(NO);
-        //Eligibility Questions
+        //Plan application question
         app.setTurned65In6GA(NO);
         app.setPlanEffIn6OfEligible(NO);
-        app.setTobaccoUse(YES);
+        app.setGI30dayBday(NO);
         app.setLostCoverage(NO);
-        //Plan application question
-        app.setGI30dayBday(YES);
-        app.setPartBIn6GA(NO);
+        app.setTobaccoUse(YES);
+        //Eligibility Health Questions
+        app.setKidneyProblem(NO);
+        app.setEligibilitySurgery(NO);
+        app.setEligibilityAdmitToHospPast90Days(NO);
+        app.setNursingFacility(NO);
+        app.setEligibilityHeartAttackTIAStroke(NO);
+        app.setEligibilityChronicMedicalConditions(NO);
+        //Caurrent Insurance Coverage page
+        app.setCPATurned65(NO);
         app.setCPAPartBIn6(NO);
         app.setMedicaidCovered(YES);
         app.setMedicaidSupPremium(YES);
@@ -243,12 +211,13 @@ public class OreganIntegrationTest extends CQBaseIntegrationTest {
         app.setExistingMedicare(YES);
         app.setOtherMedplanstart("01/01/2012");
         app.setOtherMedplanend("01/01/2015");
+        app.setContinuousMedicareCoverageNoGap(YES);
         app.setIntentReplace(YES);
         app.setFirstTime(YES);
         app.setDropMedSuppForThisPlan(YES);
         app.setExistMedSupp(YES);
-        app.setMSInsCompany("Blue Cross Blue Shield NV");
-        app.setMSPLAN("Medical Supplement NV");
+        app.setMSInsCompany("Blue Cross Blue Shield");
+        app.setMSPLAN("Medical Supplement");
         app.setReplaceExistingMedSup(YES);
         app.setOtherInsCoverage(YES);
         app.setOtherInsCompany("Blue Cross Blue Shield");
@@ -256,7 +225,6 @@ public class OreganIntegrationTest extends CQBaseIntegrationTest {
         app.setOtherInsStart("01/01/2001");
         app.setOtherInsEnd("01/01/2014");
         app.setOtherInsReplace(YES);
-        app.setCpaSignatureInd(YES);
         //Agent Verification page
         app.setAgentOtherInsPoliciesSold("HMO");
         app.setAgentPoliciesInForce("HMO In Force");
@@ -288,43 +256,18 @@ public class OreganIntegrationTest extends CQBaseIntegrationTest {
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);
 
-        checkEligibilityAndAvailabilityPage.isAt();
         checkEligibilityAndAvailabilityPage.fillAndSubmit(app);
-
-        planSelectionPage.isAt();
         planSelectionPage.fillAndSubmit(app);
-
-        whatYouNeedPage.isAt();
         whatYouNeedPage.fillAndSubmit(app);
-
-        customerInformationPage.isAt();
         customerInformationPage.fillAndSubmit(app);
-
-        planApplicationQuestionsPage.isAt();
         planApplicationQuestionsPage.fillAndSubmit(app);
-
-        eligibilityHealthQuestionsPage.isAt();
         eligibilityHealthQuestionsPage.fillAndSubmit(app);
-
-        currentInsuranceCoveragePage.isAt();
         currentInsuranceCoveragePage.fillAndSubmit(app);
-
-        authorizationPage.isAt();
         authorizationPage.fillAndSubmit(app);
-
-        agentVerificationPage.isAt();
         agentVerificationPage.fillAndSubmit(app);
-
-        replacementNotice.isAt();
         replacementNotice.fillAndSubmit(app);
-
-        planPaymentOptionsPage.isAt();
         planPaymentOptionsPage.fillAndSubmit(app);
-
-        paymentDetailsSummaryPage.isAt();
         paymentDetailsSummaryPage.fillAndSubmit(app);
-
-        reviewAndSubmitPage.isAt();
         reviewAndSubmitPage.fillAndSubmit(app);
 
         expectedSubmissionResult.setAcceptedInfo();

@@ -133,9 +133,6 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
         app.setAgentPhone("3334445555");
         //Payment Details Summary Page
         app.setPaymentDetailsSummaryPageWithAppValues();
-        //Replacement Notice Page
-        app.setCommonReplacementNoticeAnswersWithApplicantInfo();
-        app.setCommonHealthHistoryAnswers();
 
         expectedSubmissionResult.setAcceptedInfo();
 

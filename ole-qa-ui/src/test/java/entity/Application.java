@@ -332,43 +332,33 @@ public class Application {
     public String getGIMPBED() {
         return GIMPBED;
     }
-
     public void setGIMPBED(String GIMPBED) {
         this.GIMPBED = GIMPBED;
     }
-
     public String getAgentEmail() {
         return AgentEmail;
     }
-
     public void setAgentEmail(String agentEmail) {
         AgentEmail = agentEmail;
     }
-
     public String getAgentEmailConfirm() {
         return AgentEmailConfirm;
     }
-
     public void setAgentEmailConfirm(String agentEmailConfirm) {
         AgentEmailConfirm = agentEmailConfirm;
     }
-
     public String getConfirmEmail() {
         return ConfirmEmail;
     }
-
     public void setConfirmEmail(String confirmEmail) {
         ConfirmEmail = confirmEmail;
     }
-
     public String getOtherInsTerm() {
         return OtherInsTerm;
     }
-
     public void setOtherInsTerm(String otherInsTerm) {
         OtherInsTerm = otherInsTerm;
     }
-
     public String getInvolTerm() {
         return involTerm;
     }
@@ -1253,7 +1243,6 @@ public class Application {
     public void setSS_Phone(String SS_Phone) {
         this.SS_Phone = SS_Phone;
     }
-
 
 
     public String getSS_App_PrintedName() {

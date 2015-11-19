@@ -66,8 +66,8 @@ public class ME_CurrentInsuranceCoveragePage extends WizardPage {
         assertBlank(ExistingMedicare_Yes, ExistingMedicare_No);
         assertBlank(ExistMedSupp_Yes, ExistMedSupp_No);
         assertBlank(OtherInsCoverage_Yes, OtherInsCoverage_No);
-        assertHidden(MedicaidSupPremium_Yes, MedicaidSupPremium_No);
 
+        assertHidden(MedicaidSupPremium_Yes, MedicaidSupPremium_No);
         assertHidden(Medicaidbenefit_Yes, Medicaidbenefit_No);
         assertHidden(OtherMedplanstart, OtherMedplanend);
         assertHidden(IntentReplace_Yes, IntentReplace_No);

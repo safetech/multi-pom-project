@@ -14,8 +14,8 @@ public class AuthorizationPage extends WizardPage {
 
     public void fillAndSubmit(Application app) {
         isAt();
-        SignatureInd.click();
-        fillTouchSignature("SignatureIndTouch",  app.getSignatureIndTouch());
+//        SignatureInd.click();
+//        fillTouchSignature("SignatureIndTouch",  app.getSignatureIndTouch());
         MedicalReleaseAuthSignatureInd.click();
         fillTouchSignature("MedicalReleaseAuthSignatureIndTouch", app.getMedicalReleaseAuthSignatureIndTouch());
 
