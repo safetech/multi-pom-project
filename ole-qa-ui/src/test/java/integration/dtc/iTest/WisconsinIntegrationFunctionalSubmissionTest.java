@@ -11,7 +11,7 @@ import org.junit.Test;
 import pages.dtc.*;
 import pages.dtc.variations.authorization.WI_AuthorizationPage;
 import pages.dtc.variations.pastandcurrentcoverage.AR_CA_PA_WI_MN_PastAndCurrentCoveragePage;
-import pages.dtc.variations.planapplication.AR_PA_PlanApplicationQuestionsPage;
+import pages.dtc.variations.planapplication.AR_PA_WI_PlanApplicationQuestionsPage;
 import pages.dtc.variations.planselectionandstartdate.PA_AR_NV_MA_PlanSelectionAndStartDatePage;
 import queries.SubmissionQueryDtc;
 import util.DateUtils;
@@ -26,7 +26,7 @@ public class WisconsinIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
     @Page public ElectronicSignatureAndDocumentConsentPage electronicSignatureAndDocumentConsentPage;
     @Page public AboutYouPage aboutYouPage;
     @Page public PA_AR_NV_MA_PlanSelectionAndStartDatePage planSelectionAndStartDatePage;
-    @Page public AR_PA_PlanApplicationQuestionsPage planApplicationQuestionsPage;
+    @Page public AR_PA_WI_PlanApplicationQuestionsPage planApplicationQuestionsPage;
     @Page public EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
     @Page public AR_CA_PA_WI_MN_PastAndCurrentCoveragePage pastAndCurrentCoveragePage;
     @Page public WI_AuthorizationPage authorizationPage;
@@ -147,14 +147,14 @@ public class WisconsinIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         logger.info(gson.toJson(app));
         sheet.setState("WI");
         sheet.setZip("54001");
-        sheet.setRiderChoice1("SW");
-        sheet.setRiderChoice2("PW");
+        sheet.setRiderChoice1("PW");
+        sheet.setRiderChoice2("SW");
         sheet.setRiderChoice3("");
         sheet.setRiderChoice4("");
         sheet.setRiderChoice5("");
         sheet.setAarpMemid("y");
         sheet.setDOB(DateUtils.getDOBofPersonTurningAgeToday(69));
-        sheet.setEffDate(DateUtils.getFirstDayOfFutureMonth(-7));
+        sheet.setEffDate("01/01/2012");
         sheet.setPsd(DateUtils.getFirstDayOfFutureMonth(1));
         sheet.setPlanCode("MW");
         sheet.setReferrer("uLayer");
@@ -178,8 +178,11 @@ public class WisconsinIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         app.setMPAED("01/01/2010");
         app.setPartABActiveIndicator(YES);
         //Plan Application Page
-        app.setTobaccoUse(YES);
+        app.setTurned65In6GA(NO);
+        app.setPartBIn6GA(NO);
+        app.setPlanEffIn6OfEligible(NO);
         app.setLostCoverage(NO);
+        app.setTobaccoUse(YES);
         //Eligibility Page
         app.setESRD(NO);
         app.setSurgeryNeeded(NO);
@@ -238,11 +241,12 @@ public class WisconsinIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         planSelectionAndStartDatePage.fillAndSubmit(app);
         planApplicationQuestionsPage.fillAndSubmit(app);
         eligibilityHealthQuestionsPage.fillAndSubmit(app);
-        //healthHistoryQuestionsPage.fillAndSubmit(app);
+        healthHistoryQuestionsPage.fillAndSubmit(app);
         pastAndCurrentCoveragePage.fillAndSubmit(app);
         authorizationPage.fillAndSubmit(app);
         planPaymentOptionsPage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
+
         expectedSubmissionResult.verifyPendingPlanAndRiderCodes("MW1", "PW1", "SW1", "", "", "", "");
         submissionQuery.verifyPlanAndRiderCodes(app, sheet, expectedSubmissionResult);
     }
@@ -257,7 +261,7 @@ public class WisconsinIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         sheet.setRiderChoice5("");
         sheet.setAarpMemid("y");
         sheet.setDOB(DateUtils.getDOBofPersonTurningAgeToday(69));
-        sheet.setEffDate(DateUtils.getFirstDayOfFutureMonth(-3));
+        sheet.setEffDate("01/01/2012");
         sheet.setPsd(DateUtils.getFirstDayOfFutureMonth(1));
         sheet.setPlanCode("MW");
         sheet.setReferrer("uLayer");
@@ -342,7 +346,7 @@ public class WisconsinIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         planSelectionAndStartDatePage.fillAndSubmit(app);
         planApplicationQuestionsPage.fillAndSubmit(app);
         eligibilityHealthQuestionsPage.fillAndSubmit(app);
-        //healthHistoryQuestionsPage.fillAndSubmit(app); //TODO: Get clarifications about health history questions page
+        healthHistoryQuestionsPage.fillAndSubmit(app);
         pastAndCurrentCoveragePage.fillAndSubmit(app);
         authorizationPage.fillAndSubmit(app);
         planPaymentOptionsPage.fillAndSubmit(app);
@@ -356,14 +360,14 @@ public class WisconsinIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
 
         sheet.setState("WI");
         sheet.setZip("54001");
-        sheet.setRiderChoice1("OW");
+        sheet.setRiderChoice1("PW");
         sheet.setRiderChoice2("SW");
         sheet.setRiderChoice3("");
         sheet.setRiderChoice4("");
         sheet.setRiderChoice5("");
         sheet.setAarpMemid("y");
         sheet.setDOB(DateUtils.getDOBofPersonTurningAgeToday(69));
-        sheet.setEffDate(DateUtils.getFirstDayOfFutureMonth(-7));
+        sheet.setEffDate("01/01/2012");
         sheet.setPsd(DateUtils.getFirstDayOfFutureMonth(1));
         sheet.setPlanCode("MW");
         sheet.setReferrer("uLayer");
@@ -453,7 +457,7 @@ public class WisconsinIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         planPaymentOptionsPage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
 
-        expectedSubmissionResult.verifyPendingPlanAndRiderCodes("MW1", "PW1", "SW1", "", "", "", "");
+        expectedSubmissionResult.verifyPendingPlanAndRiderCodes("MW1", "PW1", "SW1", "", "","","");
         submissionQuery.verifyPlanAndRiderCodes(app, sheet, expectedSubmissionResult);
     }
 

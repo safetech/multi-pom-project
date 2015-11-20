@@ -10,7 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 import pages.dtc.*;
 import pages.dtc.variations.pastandcurrentcoverage.AR_CA_PA_WI_MN_PastAndCurrentCoveragePage;
-import pages.dtc.variations.planapplication.AR_PA_PlanApplicationQuestionsPage;
+import pages.dtc.variations.planapplication.AR_PA_WI_PlanApplicationQuestionsPage;
 import pages.dtc.variations.planselectionandstartdate.PA_AR_NV_MA_PlanSelectionAndStartDatePage;
 import queries.SubmissionQueryDtc;
 import util.DateUtils;
@@ -22,7 +22,7 @@ public class PennsylvaniaIntegrationTest extends CQBaseIntegrationTest {
     @Page public ElectronicSignatureAndDocumentConsentPage electronicSignatureAndDocumentConsentPage;
     @Page public AboutYouPage aboutYouPage;
     @Page public PA_AR_NV_MA_PlanSelectionAndStartDatePage planSelectionAndStartDatePage;
-    @Page public AR_PA_PlanApplicationQuestionsPage planApplicationQuestionsPage;
+    @Page public AR_PA_WI_PlanApplicationQuestionsPage planApplicationQuestionsPage;
     @Page public EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
     @Page public AR_CA_PA_WI_MN_PastAndCurrentCoveragePage pastAndCurrentCoveragePage;
     @Page public AuthorizationPage authorizationPage;

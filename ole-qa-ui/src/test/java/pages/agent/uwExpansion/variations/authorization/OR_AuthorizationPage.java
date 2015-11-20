@@ -1,4 +1,4 @@
-package pages.agent.uwExpansion;
+package pages.agent.uwExpansion.variations.authorization;
 
 import entity.Application;
 import org.fluentlenium.core.domain.FluentWebElement;
@@ -7,15 +7,13 @@ import pages.WizardPage;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class AuthorizationPage extends WizardPage {
+public class OR_AuthorizationPage extends WizardPage {
 
     FluentWebElement SignatureInd;
     FluentWebElement MedicalReleaseAuthSignatureInd;
 
     public void fillAndSubmit(Application app) {
         isAt();
-        SignatureInd.click();
-        fillTouchSignature("SignatureIndTouch",  app.getSignatureIndTouch());
         MedicalReleaseAuthSignatureInd.click();
         fillTouchSignature("MedicalReleaseAuthSignatureIndTouch", app.getMedicalReleaseAuthSignatureIndTouch());
 
