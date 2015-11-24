@@ -17,8 +17,6 @@ import pages.dtc.uwExpansion.variations.replacenotice.RN040Page;
 import queries.SubmissionQueryDtc;
 import util.DateUtils;
 
-import static util.DateUtils.getFirstDayOfFutureMonth;
-
 public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
 
     @Page public CheatPage cheatPage;
@@ -60,7 +58,6 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         sheet.setPsd(DateUtils.getFirstDayOfPastOrFutureMonths(3));
         sheet.setPlanCode("A");
         sheet.setReferrer("uLayer");
-
         //TestData
         app.setMPAED(DateUtils.getFirstDayOfPastOrFutureMonths(0));
         app.setAARPMembershipNumber(faker.numerify("##########"));
@@ -129,7 +126,7 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
 
         sheet.setDOB(DateUtils.getDOBofPersonTurningAgeToday(69));
         sheet.setEffDate("01/01/2012");
-        sheet.setPsd(getFirstDayOfFutureMonth(2));
+        sheet.setPsd(DateUtils.getFirstDayOfPastOrFutureMonths(3));
         sheet.setPlanCode("A");
         sheet.setReferrer("uLayer");
 
@@ -153,27 +150,18 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         app.setPartABActiveIndicator(YES);
         //Plan Application Page
         app.setGI30dayBday(NO);
-        app.setGIEmployerCov(NO);
-        app.setGIMediCal(NO);
-        app.setGIMilitary(NO);
-        app.setGILocation(NO);
-        app.setTobaccoUse(YES);
-        app.setLostCoverage(NO);
-        //Eligibility Questions(SPECIFIC TO CA)
         app.setESRD(NO);
-        app.setSurgeryNeeded(NO);
-        app.setEligdialysis(NO);
-        app.setEligRecdialysis(NO);
-        app.setEligHospital(NO);
-        app.setEligSurgery(NO);
-        app.setEligOrgan(NO);
-        app.setEligSpine(NO);
-        app.setEligjoint(NO);
-        app.setEligCancer(NO);
-        app.setEligHeart(NO);
-        app.setEligVascular(NO);
-        //Authorizationa
-
+        app.setPlanEffIn6OfEligible(NO);
+        app.setCAGuaranteedAcceptance(NO);
+        app.setLostCoverage(NO);
+        app.setTobaccoUse(YES);
+        //Eligibility Health Questions
+        app.setKidneyProblem(NO);
+        app.setEligibilitySurgery(NO);
+        app.setEligibilityAdmitToHospPast90Days(NO);
+        app.setNursingFacility(NO);
+        app.setEligibilityHeartAttackTIAStroke(NO);
+        app.setEligibilityChronicMedicalConditions(NO);
         //Past And Current Coverage
         app.setCPATurned65(NO);
         app.setCPAPartBIn6(NO);
@@ -208,8 +196,6 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         app.setCommonReplacementNoticeAnswersWithApplicantInfo();
         app.setCommonHealthHistoryAnswers();
         app.setMedicalReleaseAuthSignatureIndRequired("Required");
-
-
 
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);

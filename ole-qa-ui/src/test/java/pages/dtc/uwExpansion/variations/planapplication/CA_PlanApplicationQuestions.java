@@ -14,9 +14,9 @@ public class CA_PlanApplicationQuestions extends PlanApplicationQuestions {
         @FindBy(css = "#ESRD_2") protected FluentWebElement ESRD_No;
         @FindBy(css = "#ESRD_3") protected FluentWebElement ESRD_NotSure;
         @FindBy(css = "#PlanEffIn6OfEligible_1") protected FluentWebElement PlanEffIn6OfEligible_Yes;
-        @FindBy(css = "#CAGuaranteedAcceptance_2") protected FluentWebElement PlanEffIn6OfEligible_No;
-        @FindBy(css = "#PlanEffIn6OfEligible_2") protected FluentWebElement CAGuaranteedAcceptance_Yes;
-        @FindBy(css = "#CAGuaranteedAcceptance_1") protected FluentWebElement CAGuaranteedAcceptance_No;
+        @FindBy(css = "#PlanEffIn6OfEligible_2") protected FluentWebElement PlanEffIn6OfEligible_No;
+        @FindBy(css = "#CAGuaranteedAcceptance_1") protected FluentWebElement CAGuaranteedAcceptance_Yes;
+        @FindBy(css = "#CAGuaranteedAcceptance_2") protected FluentWebElement CAGuaranteedAcceptance_No;
         @FindBy(css = "#LostCoverage_1") protected FluentWebElement LostCoverage_Yes;
         @FindBy(css = "#LostCoverage_2") protected FluentWebElement LostCoverage_No;
         @FindBy(css = "#TobaccoUse_1") protected FluentWebElement TobaccoUse_Yes;

@@ -165,9 +165,9 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         sheet.setReferrer("ulayer");
         app.setState("CA");
         app.setZipCode("90210");
-        app.setDOB(DateUtils.getDOBInNormalDateFormat(65));
-        app.setMPBED(DateUtils.getFirstDayOfPastOrFutureMonths(-1));
-        app.setMPAED(DateUtils.getFirstDayOfPastOrFutureMonths(-1));
+        app.setDOB(DateUtils.getDOBInNormalDateFormat(75));
+        app.setMPBED(DateUtils.getFirstDayOfPastOrFutureMonths(-9));
+        app.setMPAED(DateUtils.getFirstDayOfPastOrFutureMonths(-9));
         //TestData
         app.setAARPMembershipNumber(faker.numerify("##########"));
         app.setPrefix("MR");
