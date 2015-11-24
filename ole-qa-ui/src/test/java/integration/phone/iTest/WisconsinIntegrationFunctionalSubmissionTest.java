@@ -50,7 +50,7 @@ public class WisconsinIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         sheet.setRandomCallCenterInfo();
 
         sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(69));
-        sheet.setMedPartBdate(DateUtils.getFirstDayOfPastMonth(-7));
+        sheet.setMedPartBdate(DateUtils.getFirstDayOfPastOrFutureMonths(-7));
         sheet.setDpsdToFirstDayOfFutureMonth(1);
         sheet.setRandomNameGenderAndMembershipNumber();
 
@@ -88,8 +88,8 @@ public class WisconsinIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         app.setPhoneEvening("1234561234");
         app.setGender("M");
         app.setMedicareClaimNum(faker.bothify("A#########"));
-        app.setMPAED(DateUtils.getFirstDayOfPastMonth(1));
-        app.setMPBED(DateUtils.getFirstDayOfPastMonth(-7));
+        app.setMPAED(DateUtils.getFirstDayOfPastOrFutureMonths(1));
+        app.setMPBED(DateUtils.getFirstDayOfPastOrFutureMonths(-7));
         app.setPartABActiveIndicator(YES);
         //Plan Application Page
         app.setTobaccoUse(YES);
@@ -173,7 +173,7 @@ public class WisconsinIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         app.setMedicareClaimNum(faker.bothify("A#########"));
         // app.setMedicareClaimNum("123123123A");
         app.setMPAED("01/01/2010");
-        app.setMPBED(DateUtils.getFirstDayOfPastMonth(-7));
+        app.setMPBED(DateUtils.getFirstDayOfPastOrFutureMonths(-7));
         app.setPartABActiveIndicator(YES);
         //Plan Application Page
         app.setTobaccoUse(YES);
@@ -255,7 +255,7 @@ public class WisconsinIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
     public void WI_WIP4_BaiscPlanWithCoPayGAWithRNRider1And4() throws Exception {
         sheet.setPlanCode("NW");
         sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(65));
-        sheet.setMedPartBdate(DateUtils.getFirstDayOfPastMonth(-1));
+        sheet.setMedPartBdate(DateUtils.getFirstDayOfPastOrFutureMonths(-1));
         //TestData
         app.setAARPMembershipNumber(faker.numerify("##########"));
         app.setPrefix("MR");
@@ -274,7 +274,7 @@ public class WisconsinIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         app.setMedicareClaimNum(faker.bothify("A#########"));
         // app.setMedicareClaimNum("123123123A");
         app.setMPAED("01/01/2010");
-        app.setMPBED(DateUtils.getFirstDayOfPastMonth(-1));
+        app.setMPBED(DateUtils.getFirstDayOfPastOrFutureMonths(-1));
         app.setPartABActiveIndicator(YES);
         //Plan Application Page
         app.setTobaccoUse(NO);
@@ -360,7 +360,7 @@ public class WisconsinIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         app.setMedicareClaimNum(faker.bothify("A#########"));
         // app.setMedicareClaimNum("123123123A");
         app.setMPAED("01/01/2010");
-        app.setMPBED(DateUtils.getFirstDayOfPastMonth(-7));
+        app.setMPBED(DateUtils.getFirstDayOfPastOrFutureMonths(-7));
         app.setPartABActiveIndicator(YES);
         //Plan Application Page
         app.setTobaccoUse(YES);
@@ -458,7 +458,7 @@ public class WisconsinIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         app.setMedicareClaimNum(faker.bothify("A#########"));
         // app.setMedicareClaimNum("123123123A");
         app.setMPAED("01/01/2010");
-        app.setMPBED(DateUtils.getFirstDayOfPastMonth(-7));
+        app.setMPBED(DateUtils.getFirstDayOfPastOrFutureMonths(-7));
         app.setPartABActiveIndicator(YES);
         //Plan Application Page
         app.setTobaccoUse(YES);

@@ -80,8 +80,8 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         app.setState("CA");
         app.setZipCode("90210");
         app.setDOB(DateUtils.getDOBInNormalDateFormat(65));
-        app.setMPBED(DateUtils.getFirstDayOfPastMonth(-1));
-        app.setMPAED(DateUtils.getFirstDayOfPastMonth(-1));
+        app.setMPBED(DateUtils.getFirstDayOfPastOrFutureMonths(-1));
+        app.setMPAED(DateUtils.getFirstDayOfPastOrFutureMonths(-1));
         //TestData
         app.setAARPMembershipNumber(faker.numerify("##########"));
         app.setPrefix("MR");
@@ -166,8 +166,8 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         app.setState("CA");
         app.setZipCode("90210");
         app.setDOB(DateUtils.getDOBInNormalDateFormat(65));
-        app.setMPBED(DateUtils.getFirstDayOfPastMonth(-1));
-        app.setMPAED(DateUtils.getFirstDayOfPastMonth(-1));
+        app.setMPBED(DateUtils.getFirstDayOfPastOrFutureMonths(-1));
+        app.setMPAED(DateUtils.getFirstDayOfPastOrFutureMonths(-1));
         //TestData
         app.setAARPMembershipNumber(faker.numerify("##########"));
         app.setPrefix("MR");

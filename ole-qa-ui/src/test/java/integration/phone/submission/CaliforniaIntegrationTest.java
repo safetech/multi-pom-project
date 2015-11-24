@@ -73,10 +73,10 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
     public void test_california_full_underwriting_with_rn() throws Exception {
 
         sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(69));
-        sheet.setMedPartBdate(DateUtils.getFirstDayOfPastMonth(-7));
+        sheet.setMedPartBdate(DateUtils.getFirstDayOfPastOrFutureMonths(-7));
         //Customer Information
-        app.setMPAED(DateUtils.getFirstDayOfPastMonth(-7));
-        app.setMPBED(DateUtils.getFirstDayOfPastMonth(-7));
+        app.setMPAED(DateUtils.getFirstDayOfPastOrFutureMonths(-7));
+        app.setMPBED(DateUtils.getFirstDayOfPastOrFutureMonths(-7));
 
        // sheet.setMedPartBdate("2012-10-01");
 

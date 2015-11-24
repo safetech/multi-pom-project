@@ -49,7 +49,7 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         sheet.setRandomCallCenterInfo();
 
         sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(69));
-        sheet.setMedPartBdate(DateUtils.getFirstDayOfPastMonth(-7));
+        sheet.setMedPartBdate(DateUtils.getFirstDayOfPastOrFutureMonths(-7));
         sheet.setDpsdToFirstDayOfFutureMonth(1);
         sheet.setRandomNameGenderAndMembershipNumber();
         app = new Application();
@@ -71,7 +71,7 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
     @Test
     public void MN_MNP1a_BaiscGaPlanNoRnNoRiderNoQr() throws Exception {
         sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(65));
-        sheet.setMedPartBdate(DateUtils.getFirstDayOfPastMonth(-1));
+        sheet.setMedPartBdate(DateUtils.getFirstDayOfPastOrFutureMonths(-1));
         sheet.setDpsdToFirstDayOfFutureMonth(1);
         sheet.setPlanCode("TW");
         //TestData
@@ -90,8 +90,8 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         app.setPhoneEvening("1234561234");
         app.setGender("M");
         app.setMedicareClaimNum(faker.bothify("A#########"));
-        app.setMPAED(DateUtils.getFirstDayOfPastMonth(1));
-        app.setMPBED(DateUtils.getFirstDayOfPastMonth(-1));
+        app.setMPAED(DateUtils.getFirstDayOfPastOrFutureMonths(1));
+        app.setMPBED(DateUtils.getFirstDayOfPastOrFutureMonths(-1));
         app.setPartABActiveIndicator(YES);
         //Plan Application Page
         app.setTobaccoUse(YES);
@@ -153,7 +153,7 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
     @Test
     public void MN_MNP1b_BaiscGaPlanRider1And3NoRnNoQr() throws Exception {
         sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(65));
-        sheet.setMedPartBdate(DateUtils.getFirstDayOfPastMonth(-1));
+        sheet.setMedPartBdate(DateUtils.getFirstDayOfPastOrFutureMonths(-1));
         sheet.setDpsdToFirstDayOfFutureMonth(1);
         sheet.setPlanCode("TW");
         //TestData
@@ -172,8 +172,8 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         app.setPhoneEvening("1234561234");
         app.setGender("M");
         app.setMedicareClaimNum(faker.bothify("A#########"));
-        app.setMPAED(DateUtils.getFirstDayOfPastMonth(1));
-        app.setMPBED(DateUtils.getFirstDayOfPastMonth(-1));
+        app.setMPAED(DateUtils.getFirstDayOfPastOrFutureMonths(1));
+        app.setMPBED(DateUtils.getFirstDayOfPastOrFutureMonths(-1));
         app.setPartABActiveIndicator(YES);
         //Plan Application Page
         app.setTobaccoUse(YES);
@@ -237,7 +237,7 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
     @Test
     public void MN_MNP2_BaiscGaPlanRider1NoRnNoQr() throws Exception {
         sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(65));
-        sheet.setMedPartBdate(DateUtils.getFirstDayOfPastMonth(-1));
+        sheet.setMedPartBdate(DateUtils.getFirstDayOfPastOrFutureMonths(-1));
         sheet.setDpsdToFirstDayOfFutureMonth(1);
         sheet.setPlanCode("TW");
         //TestData
@@ -256,8 +256,8 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         app.setPhoneEvening("1234561234");
         app.setGender("M");
         app.setMedicareClaimNum(faker.bothify("A#########"));
-        app.setMPAED(DateUtils.getFirstDayOfPastMonth(1));
-        app.setMPBED(DateUtils.getFirstDayOfPastMonth(-1));
+        app.setMPAED(DateUtils.getFirstDayOfPastOrFutureMonths(1));
+        app.setMPBED(DateUtils.getFirstDayOfPastOrFutureMonths(-1));
         app.setPartABActiveIndicator(YES);
         //Plan Application Page
         app.setTobaccoUse(YES);
@@ -336,8 +336,8 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         app.setPhoneEvening("1234561234");
         app.setGender("M");
         app.setMedicareClaimNum(faker.bothify("A#########"));
-        app.setMPAED(DateUtils.getFirstDayOfPastMonth(1));
-        app.setMPBED(DateUtils.getFirstDayOfPastMonth(-7));
+        app.setMPAED(DateUtils.getFirstDayOfPastOrFutureMonths(1));
+        app.setMPBED(DateUtils.getFirstDayOfPastOrFutureMonths(-7));
         app.setPartABActiveIndicator(YES);
         //Plan Application Page
         app.setTobaccoUse(YES);
@@ -417,8 +417,8 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         app.setPhoneEvening("1234561234");
         app.setGender("M");
         app.setMedicareClaimNum(faker.bothify("A#########"));
-        app.setMPAED(DateUtils.getFirstDayOfPastMonth(1));
-        app.setMPBED(DateUtils.getFirstDayOfPastMonth(-7));
+        app.setMPAED(DateUtils.getFirstDayOfPastOrFutureMonths(1));
+        app.setMPBED(DateUtils.getFirstDayOfPastOrFutureMonths(-7));
         app.setPartABActiveIndicator(YES);
         //Plan Application Page
         app.setTobaccoUse(YES);

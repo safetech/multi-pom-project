@@ -81,7 +81,7 @@ public class DateUtils {
         }
         return format.format(dt);
     }
-    public static String getFirstDayOfPastMonth(int numberOfMonths) {
+    public static String getFirstDayOfPastOrFutureMonths(int numberOfMonths) {
 
         Date pastMonth = org.apache.commons.lang3.time.DateUtils.addMonths(new Date(), numberOfMonths);
 

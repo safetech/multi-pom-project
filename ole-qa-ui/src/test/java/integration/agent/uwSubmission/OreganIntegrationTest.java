@@ -80,8 +80,8 @@ public class OreganIntegrationTest extends CQBaseIntegrationTest {
         app.setState("OR");
         app.setZipCode("97001");
         app.setDOB(DateUtils.getDOBInNormalDateFormat(65));
-        app.setMPBED(DateUtils.getFirstDayOfPastMonth(-1));
-        app.setMPAED(DateUtils.getFirstDayOfPastMonth(-1));
+        app.setMPBED(DateUtils.getFirstDayOfPastOrFutureMonths(-1));
+        app.setMPAED(DateUtils.getFirstDayOfPastOrFutureMonths(-1));
         //TestData
         app.setAARPMembershipNumber(faker.numerify("##########"));
         app.setPrefix("MR");
