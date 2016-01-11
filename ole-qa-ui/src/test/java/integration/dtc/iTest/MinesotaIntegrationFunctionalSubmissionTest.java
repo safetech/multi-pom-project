@@ -58,7 +58,7 @@ public class MinesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrati
         sheet.setRiderChoice5("");
         sheet.setAarpMemid("y");
         sheet.setDOB(DateUtils.getDOBofPersonTurningAgeToday(69));
-        sheet.setEffDate(DateUtils.getFirstDayOfFutureMonth(-7));
+        sheet.setEffDate(DateUtils.getFirstDayOfFutureMonth(7));
         sheet.setPsd(DateUtils.getFirstDayOfFutureMonth(1));
         sheet.setPlanCode("MW");
         sheet.setReferrer("uLayer");
@@ -166,7 +166,7 @@ public class MinesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrati
         sheet.setRiderChoice5("");
         sheet.setAarpMemid("y");
         sheet.setDOB(DateUtils.getDOBofPersonTurningAgeToday(69));
-        sheet.setEffDate(DateUtils.getFirstDayOfFutureMonth(-7));
+        sheet.setEffDate(DateUtils.getFirstDayOfFutureMonth(7));
         sheet.setPsd(DateUtils.getFirstDayOfFutureMonth(1));
         sheet.setPlanCode("MW");
         sheet.setReferrer("uLayer");
@@ -260,5 +260,9 @@ public class MinesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrati
         expectedSubmissionResult.verifyPendingPlanAndRiderCodes("MW1", "PW1", "SW1", "", "", "", "");
         submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
 
+    }
+    public void MN_() throws Exception {
+
+        System.out.print(DateUtils.getFirstDayOfFutureMonth(7));
     }
 }

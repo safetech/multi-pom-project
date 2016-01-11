@@ -79,9 +79,8 @@ public class CustomerInformationPage extends WizardPage {
         }else if (app.getMailingAddressCheck().equals(NO)) {
             MailingAddressCheck_No.click();
         } else if (app.getMailingAddressCheck().equals("")) {
-            (new Select(Prefix.getElement())).selectByValue(app.getPrefix());
-            (new Select(Suffix.getElement())).selectByValue(app.getSuffix());
-            fill(PhoneEvening).with(app.getPhoneEvening());
+//            assert(!MailingAddressCheck_No.isDisplayed());
+//            assert(!MailingAddressCheck_Yes.isDisplayed());
         }
 
         clickNextAndWaitForSpinnerToFinish();

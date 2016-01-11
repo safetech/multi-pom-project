@@ -5,14 +5,13 @@ import entity.Application;
 import entity.SubmissionResult;
 import entity.agent.CribSheet;
 import integration.CQBaseIntegrationTest;
-import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
 import pages.agent.*;
 import pages.agent.variations.authorization.WI_AuthorizationPage;
 import pages.agent.variations.currentinsurancecoverage.AR_PA_OR_CurrentInsuranceCoveragePage;
-import pages.agent.variations.planapplication.AR_PA_PlanApplicationQuestionsPage;
+import pages.agent.variations.planapplication.WI_PlanApplicationQuestionsPage;
 import pages.agent.variations.planselection.iTest_WI_PlanSelectionPage;
 import pages.agent.variations.replacenotice.RN034_AR_Page;
 import queries.SubmissionQueryAgent;
@@ -25,7 +24,7 @@ public class WisconsinIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
     @Page public CheckEligibilityAndAvailabilityPage checkEligibilityAndAvailabilityPage;
     @Page public WhatYouNeedPage whatYouNeedPage;
     @Page public CustomerInformationPage customerInformationPage;
-    @Page public AR_PA_PlanApplicationQuestionsPage planApplicationQuestionsPage;
+    @Page public WI_PlanApplicationQuestionsPage planApplicationQuestionsPage;
     @Page public EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
     @Page public AR_PA_OR_CurrentInsuranceCoveragePage currentInsuranceCoveragePage;
     @Page public WI_AuthorizationPage authorizationPage;
@@ -80,7 +79,8 @@ public class WisconsinIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         app.setState("WI");
         app.setZipCode("53001");
         app.setDOB(DateUtils.getDOBInNormalDateFormat(67));
-        app.setMPBED("05/01/2012");
+        app.setReqEffectiveDate(DateUtils.getFirstDayOfFutureMonth(3));
+        app.setMPBED("01/01/2015");
         //CustomerInformationPage
         app.setAARPMembershipNumber(faker.numerify("##########"));
         app.setPrefix("MR");
@@ -153,7 +153,7 @@ public class WisconsinIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         app.setRoutingNumberConfirm("123123123");
         app.setAccountNumber("23456");
         app.setAccountNumberConfirm(app.getAccountNumber());
-
+        app.setMailingAddressCheck("");
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);
 
@@ -174,7 +174,7 @@ public class WisconsinIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         expectedSubmissionResult.verifyAcceptedPlanAndRiderCodes("MW1","OW1","QW1","","");
         submissionQueryAgent.verifyPlanAndRiderCodes(app, expectedSubmissionResult);
     }
-    @Ignore
+    @Test
     public void WI_WIA3_BasicPlanWithCoPayRider2And4GaNoRn() throws Exception {
 
         sheet.setAgentId("Test");
@@ -190,8 +190,8 @@ public class WisconsinIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         app.setState("WI");
         app.setZipCode("54001");
         app.setDOB(DateUtils.getDOBInNormalDateFormat(65));
-        app.setMPBED(DateUtils.getFirstDayOfPastOrFutureMonths(-1));
-        app.setMPAED(DateUtils.getFirstDayOfPastOrFutureMonths(-1));
+        app.setMPBED(DateUtils.getFirstDayOfPastOrFutureMonths(1));
+        app.setMPAED(DateUtils.getFirstDayOfPastOrFutureMonths(1));
         //CustomerInformationPage
         app.setAARPMembershipNumber(faker.numerify("##########"));
         app.setPrefix("MR");
@@ -269,11 +269,11 @@ public class WisconsinIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         whatYouNeedPage.fillAndSubmit(app);
         customerInformationPage.fillAndSubmit(app);
         planApplicationQuestionsPage.fillAndSubmit(app);
-        eligibilityHealthQuestionsPage.fillAndSubmit(app);
+        //eligibilityHealthQuestionsPage.fillAndSubmit(app);
         currentInsuranceCoveragePage.fillAndSubmit(app);
         authorizationPage.fillAndSubmit(app);
         agentVerificationPage.fillAndSubmit(app);
-        replacementNotice.fillAndSubmit(app);
+        //replacementNotice.fillAndSubmit(app);
         planPaymentOptionsPage.fillAndSubmit(app);
         paymentDetailsSummaryPage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);

@@ -9,6 +9,7 @@ import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
 import pages.agent.*;
+import pages.agent.uwExpansion.variations.eligibilityhealthquestions.FL_EligibilityHealthQuestionsPage;
 import pages.agent.variations.currentinsurancecoverage.AR_PA_OR_CurrentInsuranceCoveragePage;
 import pages.agent.variations.planapplication.AR_PA_PlanApplicationQuestionsPage;
 import pages.agent.variations.planselection.iTest_MN_PlanSelectionPage;
@@ -24,7 +25,7 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
     @Page public WhatYouNeedPage whatYouNeedPage;
     @Page public CustomerInformationPage customerInformationPage;
     @Page public AR_PA_PlanApplicationQuestionsPage planApplicationQuestionsPage;
-    @Page public EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
+    @Page public FL_EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
     @Page public AR_PA_OR_CurrentInsuranceCoveragePage currentInsuranceCoveragePage;
     @Page public AuthorizationPage authorizationPage;
     @Page public RN034andRE073WithSignaturePage replacementNotice;
@@ -150,7 +151,7 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         app.setRoutingNumberConfirm("123123123");
         app.setAccountNumber("23456");
         app.setAccountNumberConfirm(app.getAccountNumber());
-
+    //App.setMailingAddressCheck("Yes");
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);
 
