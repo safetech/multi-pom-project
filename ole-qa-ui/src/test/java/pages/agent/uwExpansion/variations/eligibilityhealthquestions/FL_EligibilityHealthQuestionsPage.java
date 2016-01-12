@@ -29,9 +29,11 @@ public class FL_EligibilityHealthQuestionsPage extends WizardPage {
     @FindBy(css = "#EligibilityChronicMedicalConditions_2") FluentWebElement EligibilityChronicMedicalConditions_No;
     @FindBy(css = "#EligibilityChronicMedicalConditions_3") FluentWebElement EligibilityChronicMedicalConditions_Unsure;
 
-    protected int TOTAL_POSSIBLE_QUESTION_COUNT = 33;
+    protected int TOTAL_POSSIBLE_QUESTION_COUNT = 18;
 
     public void verifyInitialStateOfElements(Application app) {
+        assertQuestionCount(TOTAL_POSSIBLE_QUESTION_COUNT);
+
         assertBlank(
             KidneyProblem_Yes,
             KidneyProblem_No,
@@ -52,7 +54,6 @@ public class FL_EligibilityHealthQuestionsPage extends WizardPage {
             EligibilityChronicMedicalConditions_No,
             EligibilityChronicMedicalConditions_Unsure);
 
-        assertQuestionCount(TOTAL_POSSIBLE_QUESTION_COUNT);
     }
 
     public void fillAndSubmit(Application app) {

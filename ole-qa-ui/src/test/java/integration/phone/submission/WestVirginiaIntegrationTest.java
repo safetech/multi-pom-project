@@ -9,6 +9,7 @@ import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
 import pages.phone.*;
+import pages.phone.variations.authorization.WI_AuthorizationAndVerificationPage;
 import pages.phone.variations.pastandcurrentcoverage.GA_MI_PastAndCurrentInsuranceCoveragePage;
 import pages.phone.variations.planapplication.OH_MI_TX_PlanApplicationQuestions;
 import pages.phone.variations.replacementnotice.RN034andRE073Page;
@@ -24,7 +25,7 @@ public class WestVirginiaIntegrationTest extends CQBaseIntegrationTest {
     @Page public OH_MI_TX_PlanApplicationQuestions planApplicationQuestionsPage;
     @Page public EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
     @Page public GA_MI_PastAndCurrentInsuranceCoveragePage pastAndCurrentInsuranceCoveragePage;
-    @Page public AuthorizationAndVerificationPage authorizationAndVerificationPage;
+    @Page public WI_AuthorizationAndVerificationPage authorizationAndVerificationPage;
     @Page public HealthHistoryQuestionsPage healthHistoryQuestionsPage;
     @Page public AgentVerificationPage agentVerificationPage;
     @Page public RN034andRE073Page ReplacementNotice034Page;
@@ -150,7 +151,6 @@ public class WestVirginiaIntegrationTest extends CQBaseIntegrationTest {
         cheatPage.isAt();
         cheatPage.fillAndSubmit(sheet);
 
-
         voiceSignatureInstructionsPage.fillAndSubmit(app);
         customerInformationPage.fillAndSubmit(app);
         planSelectionAndStartDatePage.fillAndSubmit(app);
@@ -175,7 +175,7 @@ public class WestVirginiaIntegrationTest extends CQBaseIntegrationTest {
     public void test_westvirginia_full_underwriting_without_rn() throws Exception {
 
         sheet.setRandomNameGenderAndMembershipNumber();
-        sheet.setRandomAddress("MI", "48001");
+        sheet.setRandomAddress("WI", "25025");
         sheet.setRandomContactInfo();
         sheet.setRandomCallCenterInfo();
         sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(66));

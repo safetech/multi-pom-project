@@ -69,6 +69,7 @@ public class CustomerInformationPage extends WizardPage {
         fill(AgentEmail).with(app.getAgentEmail());
         fill(AgentEmailConfirm).with(app.getAgentEmailConfirm());
 
+<<<<<<< HEAD
 //        if (app.getMailingAddressCheck().equals(YES)) {
 //            MailingAddressCheck_Yes.click();
 //            fill(MailingAddressLine1).with(app.getAddressLine1());
@@ -83,6 +84,21 @@ public class CustomerInformationPage extends WizardPage {
 //            (new Select(Suffix.getElement())).selectByValue(app.getSuffix());
 //            fill(PhoneEvening).with(app.getPhoneEvening());
 //        }
+=======
+        if (app.getMailingAddressCheck().equals(YES)) {
+            MailingAddressCheck_Yes.click();
+            fill(MailingAddressLine1).with(app.getAddressLine1());
+            fill(MailingAddressLine2).with(app.getAddressLine2());
+            fill(MailingCity).with(app.getMailingCity());
+            (new Select(MailingState.getElement())).selectByValue(app.getMailingState());
+            fill(MailingZipCode).with(app.getMailingZipCode());
+        }else if (app.getMailingAddressCheck().equals(NO)) {
+            MailingAddressCheck_No.click();
+        } else if (app.getMailingAddressCheck().equals("")) {
+//            assert(!MailingAddressCheck_No.isDisplayed());
+//            assert(!MailingAddressCheck_Yes.isDisplayed());
+        }
+>>>>>>> 5e0f9f2781d22ac123ca26f074e5951288aeafc1
 
         clickNextAndWaitForSpinnerToFinish();
     }

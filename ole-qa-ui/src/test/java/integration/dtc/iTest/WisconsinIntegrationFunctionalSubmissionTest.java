@@ -125,7 +125,7 @@ public class WisconsinIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         app.setApplicantAddress("AppAdd");
         app.setRNOther("Cheaper");
         app.setCommonReplacementNoticeAnswersWithApplicantInfo();
-        app.setApplicantRNSignatureIndRequired("");
+        app.setApplicantRNSignatureIndRequired("required");
 
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);
@@ -139,7 +139,7 @@ public class WisconsinIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         authorizationPage.fillAndSubmit(app);
         planPaymentOptionsPage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
-        expectedSubmissionResult.verifyPendingPlanAndRiderCodes("MW1", "OW1", "QW1", "", "", "", "");
+        expectedSubmissionResult.verifyAcceptedPlanAndRiderCodes("MW1", "OW1", "QW1", "", "");
         submissionQuery.verifyPlanAndRiderCodes(app, sheet, expectedSubmissionResult);
     }
 @Test
@@ -451,7 +451,7 @@ public class WisconsinIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         planSelectionAndStartDatePage.fillAndSubmit(app);
         planApplicationQuestionsPage.fillAndSubmit(app);
         eligibilityHealthQuestionsPage.fillAndSubmit(app);
-        //healthHistoryQuestionsPage.fillAndSubmit(app);
+        healthHistoryQuestionsPage.fillAndSubmit(app);
         pastAndCurrentCoveragePage.fillAndSubmit(app);
         authorizationPage.fillAndSubmit(app);
         planPaymentOptionsPage.fillAndSubmit(app);

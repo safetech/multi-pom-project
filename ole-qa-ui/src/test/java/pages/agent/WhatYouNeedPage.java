@@ -19,13 +19,15 @@ public class WhatYouNeedPage extends WizardPage {
     @FindBy(css = "#colctrl_showhide>p>a") FluentWebElement ImportantDisclousures;
     @FindBy(css = "#AgentKitProvided") FluentWebElement AgentKitProvided;
     @FindBy(css = "#signatureType_3") FluentWebElement TouchSign;
+    @FindBy(css = "#yesnotest_1") FluentWebElement Yes;
+    @FindBy(css = "#yesnotest_2") FluentWebElement No;
 
 
     public void fillAndSubmit(Application app) {
         isAt();
-
         AgentKitProvided.click();
         TouchSign.click();
+        No.click();
 
         clickNextAndWaitForSpinnerToFinish();
     }

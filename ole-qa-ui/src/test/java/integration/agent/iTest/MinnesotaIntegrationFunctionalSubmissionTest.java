@@ -9,8 +9,12 @@ import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
 import pages.agent.*;
+<<<<<<< HEAD
 import pages.agent.uwExpansion.variations.eligibilityhealthquestions.MN_EligibilityHealthQuestionsPage;
 import pages.agent.variations.authorization.MN_AuthorizationPage;
+=======
+import pages.agent.uwExpansion.variations.eligibilityhealthquestions.FL_EligibilityHealthQuestionsPage;
+>>>>>>> 5e0f9f2781d22ac123ca26f074e5951288aeafc1
 import pages.agent.variations.currentinsurancecoverage.AR_PA_OR_CurrentInsuranceCoveragePage;
 import pages.agent.variations.currentinsurancecoverage.MN_CurrentInsuranceCoveragePage;
 import pages.agent.variations.eligibilityhealthquestions.FL_EligibilityHealthQuestionsPage;
@@ -28,9 +32,15 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
     @Page public WhatYouNeedPage whatYouNeedPage;
     @Page public CustomerInformationPage customerInformationPage;
     @Page public AR_PA_PlanApplicationQuestionsPage planApplicationQuestionsPage;
+<<<<<<< HEAD
     @Page public MN_EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
     @Page public MN_CurrentInsuranceCoveragePage currentInsuranceCoveragePage;
     @Page public MN_AuthorizationPage authorizationPage;
+=======
+    @Page public FL_EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
+    @Page public AR_PA_OR_CurrentInsuranceCoveragePage currentInsuranceCoveragePage;
+    @Page public AuthorizationPage authorizationPage;
+>>>>>>> 5e0f9f2781d22ac123ca26f074e5951288aeafc1
     @Page public RN034andRE073WithSignaturePage replacementNotice;
     @Page public HealthHistoryQuestionsPage healthHistoryQuestionsPage;
     @Page public AgentVerificationPage agentVerificationPage;
@@ -158,7 +168,7 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         app.setRoutingNumberConfirm("123123123");
         app.setAccountNumber("23456");
         app.setAccountNumberConfirm(app.getAccountNumber());
-
+    //App.setMailingAddressCheck("Yes");
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);
 
