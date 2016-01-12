@@ -69,20 +69,20 @@ public class CustomerInformationPage extends WizardPage {
         fill(AgentEmail).with(app.getAgentEmail());
         fill(AgentEmailConfirm).with(app.getAgentEmailConfirm());
 
-        if (app.getMailingAddressCheck().equals(YES)) {
-            MailingAddressCheck_Yes.click();
-            fill(MailingAddressLine1).with(app.getAddressLine1());
-            fill(MailingAddressLine2).with(app.getAddressLine2());
-            fill(MailingCity).with(app.getMailingCity());
-            (new Select(MailingState.getElement())).selectByValue(app.getMailingState());
-            fill(MailingZipCode).with(app.getMailingZipCode());
-        }else if (app.getMailingAddressCheck().equals(NO)) {
-            MailingAddressCheck_No.click();
-        } else if (app.getMailingAddressCheck().equals("")) {
-            (new Select(Prefix.getElement())).selectByValue(app.getPrefix());
-            (new Select(Suffix.getElement())).selectByValue(app.getSuffix());
-            fill(PhoneEvening).with(app.getPhoneEvening());
-        }
+//        if (app.getMailingAddressCheck().equals(YES)) {
+//            MailingAddressCheck_Yes.click();
+//            fill(MailingAddressLine1).with(app.getAddressLine1());
+//            fill(MailingAddressLine2).with(app.getAddressLine2());
+//            fill(MailingCity).with(app.getMailingCity());
+//            (new Select(MailingState.getElement())).selectByValue(app.getMailingState());
+//            fill(MailingZipCode).with(app.getMailingZipCode());
+//        }else if (app.getMailingAddressCheck().equals(NO)) {
+//            MailingAddressCheck_No.click();
+//        } else if (app.getMailingAddressCheck().equals("")) {
+//            (new Select(Prefix.getElement())).selectByValue(app.getPrefix());
+//            (new Select(Suffix.getElement())).selectByValue(app.getSuffix());
+//            fill(PhoneEvening).with(app.getPhoneEvening());
+//        }
 
         clickNextAndWaitForSpinnerToFinish();
     }

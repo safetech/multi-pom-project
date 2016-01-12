@@ -48,11 +48,13 @@ public class GA_MI_PastAndCurrentInsuranceCoveragePage extends WizardPage {
     FluentWebElement OtherInsType;
     FluentWebElement OtherInsStart;
     FluentWebElement OtherInsEnd;
+    FluentWebElement MSInsCompany;
+    FluentWebElement MSPLAN;
     @FindBy(css = "#OtherInsReplace_1") FluentWebElement OtherInsReplace_Yes;
     @FindBy(css = "#OtherInsReplace_2") FluentWebElement OtherInsReplace_No;
     FluentWebElement CpaSignatureInd;
 
-    protected int TOTAL_POSSIBLE_QUESTION_COUNT = 31;
+    protected int TOTAL_POSSIBLE_QUESTION_COUNT = 38;
 
     public void verifyInitialStateOfElements(Application app) {
 
@@ -114,6 +116,8 @@ public class GA_MI_PastAndCurrentInsuranceCoveragePage extends WizardPage {
         fillYesNoQuestion(ExistMedSupp_Yes, ExistMedSupp_No, app.getExistMedSupp());
         if(app.getExistMedSupp().equals("yes")){
             fillYesNoQuestion(ReplaceExistingMedSup_Yes, ReplaceExistingMedSup_No, app.getReplaceExistingMedSup());
+            fill(MSInsCompany).with(app.getOtherInsCompany());
+            fill(MSPLAN).with(app.getOtherInsType());
         }
 
         fillYesNoQuestion(OtherInsCoverage_Yes, OtherInsCoverage_No, app.getOtherInsCoverage());

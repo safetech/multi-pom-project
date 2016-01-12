@@ -12,7 +12,7 @@ import pages.agent.*;
 import pages.agent.variations.authorization.CA_AuthorizationPage;
 import pages.agent.variations.currentinsurancecoverage.CA_CurrentInsuranceCoveragePage;
 import pages.agent.variations.eligibilityhealthquestions.CA_EligibilityHealthQuestionsPage;
-import pages.agent.variations.planapplication.CA_PlanApplicationQuestionsPage;
+import pages.agent.uwExpansion.variations.planapplication.CA_PlanApplicationQuestionsPage;
 import pages.agent.variations.replacenotice.RN034andRE073WithSignaturePage;
 import queries.SubmissionQueryAgent;
 import util.DateUtils;

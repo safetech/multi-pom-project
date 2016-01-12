@@ -9,7 +9,11 @@ import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
 import pages.agent.*;
+import pages.agent.uwExpansion.variations.eligibilityhealthquestions.MN_EligibilityHealthQuestionsPage;
+import pages.agent.variations.authorization.MN_AuthorizationPage;
 import pages.agent.variations.currentinsurancecoverage.AR_PA_OR_CurrentInsuranceCoveragePage;
+import pages.agent.variations.currentinsurancecoverage.MN_CurrentInsuranceCoveragePage;
+import pages.agent.variations.eligibilityhealthquestions.FL_EligibilityHealthQuestionsPage;
 import pages.agent.variations.planapplication.AR_PA_PlanApplicationQuestionsPage;
 import pages.agent.variations.planselection.iTest_MN_PlanSelectionPage;
 import pages.agent.variations.replacenotice.RN034andRE073WithSignaturePage;
@@ -24,9 +28,9 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
     @Page public WhatYouNeedPage whatYouNeedPage;
     @Page public CustomerInformationPage customerInformationPage;
     @Page public AR_PA_PlanApplicationQuestionsPage planApplicationQuestionsPage;
-    @Page public EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
-    @Page public AR_PA_OR_CurrentInsuranceCoveragePage currentInsuranceCoveragePage;
-    @Page public AuthorizationPage authorizationPage;
+    @Page public MN_EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
+    @Page public MN_CurrentInsuranceCoveragePage currentInsuranceCoveragePage;
+    @Page public MN_AuthorizationPage authorizationPage;
     @Page public RN034andRE073WithSignaturePage replacementNotice;
     @Page public HealthHistoryQuestionsPage healthHistoryQuestionsPage;
     @Page public AgentVerificationPage agentVerificationPage;
@@ -105,8 +109,12 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         app.setTobaccoUse(YES);
         app.setLostCoverage(NO);
     //EligibilityHealthQuestionsPage
-        app.setESRD(NO);
-        app.setSurgeryNeeded(NO);
+        app.setKidneyProblem(NO);
+        app.setEligibilitySurgery(NO);
+        app.setEligibilityAdmitToHospPast90Days(NO);
+        app.setNursingFacility(NO);
+        app.setEligibilityHeartAttackTIAStroke(NO);
+        app.setEligibilityChronicMedicalConditions(NO);
     //CurrentInsuranceCoveragePage
         app.setCPATurned65(NO);
         app.setTurned65In6GA(NO);
@@ -217,8 +225,12 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         app.setTobaccoUse(YES);
         app.setLostCoverage(NO);
         //EligibilityHealthQuestionsPage
-        app.setESRD(NO);
-        app.setSurgeryNeeded(NO);
+        app.setKidneyProblem(NO);
+        app.setEligibilitySurgery(NO);
+        app.setEligibilityAdmitToHospPast90Days(NO);
+        app.setNursingFacility(NO);
+        app.setEligibilityHeartAttackTIAStroke(NO);
+        app.setEligibilityChronicMedicalConditions(NO);
         //CurrentInsuranceCoveragePage
         app.setCPATurned65(NO);
         app.setTurned65In6GA(NO);

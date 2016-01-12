@@ -7,6 +7,7 @@ import entity.agent.CribSheet;
 import integration.CQBaseIntegrationTest;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import pages.agent.uwExpansion.*;
 import pages.agent.uwExpansion.variations.authorization.CA_AuthorizationPage;
@@ -101,16 +102,12 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         app.setPartABActiveIndicator(YES);
         app.setAgentEmail("agent@uhc.com");
         app.setAgentEmailConfirm("agent@uhc.com");
-        app.setGI30dayBday(YES);
         app.setGIEmployerCov(NO);
         app.setGIMediCal(NO);
         app.setGIMilitary(NO);
         app.setGILocation(NO);
         //Eligibility Questions
-        app.setESRD(NO);
-        app.setSurgeryNeeded(NO);
-        //Eligibility Questions(SPECIFIC TO CA)
-        app.setTobaccoUse(YES);
+        app.setPlanEffIn6OfEligible(YES);
         //Past And Current Coverage
         app.setMedicaidCovered(NO);
         app.setExistingMedicare(NO);
@@ -188,12 +185,12 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         app.setAgentEmail("agent@uhc.com");
         app.setAgentEmailConfirm("agent@uhc.com");
         //Plan Application Question
+        app.setPlanEffIn6OfEligible(NO);
         app.setGI30dayBday(NO);
         app.setESRD(NO);
-        app.setPlanEffIn6OfEligible(NO);
         app.setCAGuaranteedAcceptance(NO);
         app.setLostCoverage(NO);
-        app.setTobaccoUse(NO);
+        app.setTobaccoUse(YES);
         //Eligibility Health Questions
         app.setKidneyProblem(NO);
         app.setEligibilitySurgery(NO);
@@ -238,7 +235,7 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         app.setMailingAddressLine1(faker.bothify("#### ??????????? ??"));
         app.setMailingAddressLine2(faker.bothify("#### ??????????? ??"));
         app.setMailingCity(faker.letterify("??????????????"));
-        app.setMailingState(faker.letterify("ME"));
+        app.setMailingState(faker.letterify("CA"));
         app.setMailingZipCode(faker.numerify("#####"));
 
         //Sig required

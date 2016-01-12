@@ -146,7 +146,7 @@ public class SubmissionQueryPhone {
         String query = String.format(RIDERS_QUERY, app.getHCSGApplicationId());
         logger.info(query);
         String currentDate = DateUtils.NORMALIZED_DATE_FORMAT.format(new java.util.Date());
-        HashMap<String, String> row = DbUtils.getSingleRecord(query, COMPAS_SYS1);
+        HashMap<String, String> row = DbUtils.getSingleRecord(query, COMPAS_STAGE);
 
         assertThat(row.get("PLAN_CD"), equalTo(expectedSubmissionResult.getPlanCode()));
         assertThat(row.get("RIDER_REQUEST_1"), equalTo(expectedSubmissionResult.getRiderOne()));
@@ -182,7 +182,7 @@ public class SubmissionQueryPhone {
         String query = String.format(RIDERS_QUERY, app.getHCSGApplicationId());
         logger.info(query);
         String currentDate = DateUtils.NORMALIZED_DATE_FORMAT.format(new java.util.Date());
-        HashMap<String, String> row = DbUtils.getSingleRecord(query, COMPAS_SYS1);
+        HashMap<String, String> row = DbUtils.getSingleRecord(query, COMPAS_STAGE);
 
         assertThat(row.get("PLAN_CD"), equalTo(expectedSubmissionResult.getPlanCode()));
         assertThat(row.get("RIDER_REQUEST_1"), equalTo(expectedSubmissionResult.getRiderOne()));
@@ -219,7 +219,7 @@ public class SubmissionQueryPhone {
 
         logger.info(query);
 
-        HashMap<String, String> row = DbUtils.getSingleRecord(query, COMPAS_SYS1);
+        HashMap<String, String> row = DbUtils.getSingleRecord(query, COMPAS_STAGE);
         //HashMap<String, String> getSingleRecord(String query, String connectionString)
 
         String currentDate = DateUtils.NORMALIZED_DATE_FORMAT.format(new java.util.Date());
@@ -263,7 +263,7 @@ public class SubmissionQueryPhone {
 
         logger.info(query);
 
-        HashMap<String, String> row = DbUtils.getSingleRecord(query, COMPAS_SYS1);
+        HashMap<String, String> row = DbUtils.getSingleRecord(query, COMPAS_STAGE);
 
         logger.info("query is "+row.get("TYPE_DESC")+" and expected is "+expectedSubmissionResult.getWorkQueue());
 

@@ -36,7 +36,7 @@ public class MN_iTest_PlanSelectionPage extends WizardPage {
      }
 
     public void isAt() {
-        assertThat(pageTitle.getText(), equalTo("Plan Selection and Start Date"));
+        assertThat(pageTitle.getText(), equalTo("Plan Selection"));
     }
 
      public void blurAndSleep() {

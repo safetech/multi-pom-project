@@ -16,12 +16,14 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.slf4j.Logger;
-import pages.phone.CheatPage;
 import util.AnswerUtils;
-
+import pages.phone.CheatPage;
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 
 import static org.slf4j.LoggerFactory.getLogger;
 
@@ -36,6 +38,12 @@ public class CQBaseIntegrationTest extends FluentTest {
     protected String YES = AnswerUtils.YES;
     protected String UNSURE = AnswerUtils.UNSURE;
     protected String BLANK = AnswerUtils.BLANK;
+    //Comment the below 3 lines if your not using Browser Stack
+//    public static final String USERNAME = "holleyrussell1";
+//    public static final String AUTOMATE_KEY = "e1hxsgqbj5542GMQCAev";
+//    public static final String URL = "http://" + USERNAME + ":" + AUTOMATE_KEY + "@hub.browserstack.com/wd/hub";
+
+
     @Rule
     public TestRule testWatcher = new TestWatcher() {
         @Override
@@ -56,25 +64,31 @@ public class CQBaseIntegrationTest extends FluentTest {
     @Override
     public WebDriver getDefaultDriver() {
         logger.info(String.format("Using driver: webdriver.firefox.bin=%s", System.getProperty("webdriver.firefox.bin")));
+        //Comment the below lines if your not using Browser Stack
+//        DesiredCapabilities caps = new DesiredCapabilities();
+//        caps.setCapability("browser", "IE");
+//        caps.setCapability("browser_version", "8");
+//        caps.setCapability("os", "Windows");
+//        caps.setCapability("os_version", "7");
+//        caps.setCapability("browserstack.debug", "true");
+//        caps.setCapability("browserstack.local", "true");
+//        caps.setCapability("acceptSslCert", "true");
+//
+//        try {
+//            driver = new RemoteWebDriver(new java.net.URL(URL), caps);
+//        } catch (MalformedURLException e) {
+//            e.printStackTrace();
+//        }
+
+        //Comment the below line to run test in browser stack
         driver = new FirefoxDriver();
         return driver;
     }
-
-    /*
-@Override
-    public WebDriver getDefaultDriver() {
-        logger.info(String.format("Using driver: webdriver.chrome.driver=%s", System.getProperty("webdriver.chrome.driver")));
-
-        driver = new ChromeDriver();
-        return driver;
-    }
-*/
 
     @After
     public void teardown(){
         executeScript("window.onbeforeunload = null;");
     }
-
     protected void startApp(CheatPage cheatPage, Application app, CribSheet sheet) {
 
         app.setAnswersWithSheetValues(sheet);
@@ -84,4 +98,8 @@ public class CQBaseIntegrationTest extends FluentTest {
         cheatPage.fillAndSubmit(sheet);
     }
 }
+
+// TODO: Junit Setup
+// -ea -DDBUN=uhg_000921560 -DDBPW=*Hansa2001 -Dwebdriver.Chrome.driver=/Users/sislam13/dev/apps/chrome/Chrome-46/Google\ Chrome.app
+// -ea -DDBUN=uhg_000921560 -DDBPW=*Hansa2001 -Dwebdriver.firefox.bin=/Users/sislam13/dev/apps/Firefox/firefox-29/firefox
 

@@ -39,6 +39,9 @@ public class riders_MN_PlanSelectionPage extends WizardPage{
     public void fillAndSubmit(Application app) {
 
         isAt();
+        basicPlan.click();
+        Continue.click();
+        await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
 
     }
     public void goodComboBasicPlan() {

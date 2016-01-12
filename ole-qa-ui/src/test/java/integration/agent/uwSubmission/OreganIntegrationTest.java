@@ -175,7 +175,7 @@ public class OreganIntegrationTest extends CQBaseIntegrationTest {
         app.setEmail("test@uhc.com");
         app.setConfirmEmail("test@uhc.com");
         app.setPhonePrimary(faker.numerify("##########"));
-        app.setPhoneEvening("1234561234");
+    //    app.setPhoneEvening("1234561234");
         app.setGender("M");
         app.setMedicareClaimNum(faker.bothify("#########?"));
         //TestData
@@ -246,7 +246,7 @@ public class OreganIntegrationTest extends CQBaseIntegrationTest {
         app.setMailingAddressLine1(faker.bothify("#### ??????????? ??"));
         app.setMailingAddressLine2(faker.bothify("#### ??????????? ??"));
         app.setMailingCity(faker.letterify("??????????????"));
-        app.setMailingState(faker.letterify("ME"));
+        app.setMailingState(faker.letterify("OR"));
         app.setMailingZipCode(faker.numerify("#####"));
         //SSForm Page
         app.setSS_FormDate("01/01/2001");

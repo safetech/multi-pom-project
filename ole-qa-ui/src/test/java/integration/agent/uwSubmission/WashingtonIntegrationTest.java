@@ -5,9 +5,9 @@ import entity.Application;
 import entity.SubmissionResult;
 import entity.agent.CribSheet;
 import integration.CQBaseIntegrationTest;
-import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import pages.agent.*;
 import pages.agent.uwExpansion.variations.authorization.OR_AuthorizationPage;
@@ -67,7 +67,7 @@ public class WashingtonIntegrationTest extends CQBaseIntegrationTest {
         app.setZipCode("98001");
         expectedSubmissionResult = new SubmissionResult();
     }
-    @Ignore
+    @Test
     public void test_washington_guranteed_acceptance() throws Exception {
 
         sheet.setAgentId("Test");
@@ -141,7 +141,8 @@ public class WashingtonIntegrationTest extends CQBaseIntegrationTest {
 
         expectedSubmissionResult.setAcceptedInfo();
         submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
-
+//        expectedSubmissionResult.setPendingInfo("ENROLLMENT GI REVIEW","BBA REVIEW REQUIRED");
+//        submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
     }
     @Test
 
@@ -266,7 +267,8 @@ public class WashingtonIntegrationTest extends CQBaseIntegrationTest {
         paymentDetailsSummaryPage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
 
-        expectedSubmissionResult.setPendingInfo("ENROLLMENT MISSING INFORMATION","VERIFY MEMBER NUMBER");
+        expectedSubmissionResult.setAcceptedInfo();
+        //expectedSubmissionResult.setPendingInfo("ENROLLMENT MISSING INFORMATION","CPA REVIEW REQUIRED");
         submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
 
     }
