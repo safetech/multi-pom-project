@@ -49,7 +49,7 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
         expectedSubmissionResult = new SubmissionResult();
     }
     @Test
-    public void test_maine_without_rn() throws Exception {
+    public void AGENT_maine_without_rn() throws Exception {
 
         sheet.setAgentId("Test");
         sheet.setAgentMedSuppStates("[NV| CA| MA| FL| NY| OH| AR| PA| ME]");
@@ -216,7 +216,7 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
 
     }
     @Test
-    public void test_maine_eligibility_underwriting_with_rn() throws Exception {
+    public void AGENT_maine_eligibility_underwriting_with_rn() throws Exception {
 
         sheet.setAgentId("Test");
         sheet.setAgentMedSuppStates("[NV| CA| MA| FL| NY| OH| AR| PA| ME]");

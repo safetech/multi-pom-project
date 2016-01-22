@@ -141,7 +141,7 @@ public class SubmissionQueryPhone {
             "  a.hcsg_application_id = '%s'";
 
 
-    public void     verifyPlanAndRiderCodes(Application app, CribSheet sheet, SubmissionResult expectedSubmissionResult) throws SQLException {
+    public void  verifyPlanAndRiderCodes(Application app, CribSheet sheet, SubmissionResult expectedSubmissionResult) throws SQLException {
 
         String query = String.format(RIDERS_QUERY, app.getHCSGApplicationId());
         logger.info(query);
@@ -162,7 +162,7 @@ public class SubmissionQueryPhone {
         assertThat(row.get("ADDRESS_LINE_2"), equalTo(app.getAddressLine2().toUpperCase()));
         assertThat(row.get("CITY"), equalTo(app.getCity().toUpperCase()));
         assertThat(row.get("DAY_PHONE_NUM"), equalTo(app.getPhonePrimary()));
-        assertThat(row.get("EVENING_PHONE_NUM"), equalTo(app.getPhoneEvening()));
+       // assertThat(row.get("EVENING_PHONE_NUM"), equalTo(app.getPhoneEvening()));
         assertThat(row.get("EMAIL_ADDRESS"), equalTo(app.getEmail().toUpperCase()));
         assertThat(row.get("BOTH_PARTS_ACTIVE"), equalTo(app.getPartABActiveIndicator() == "yes" ? "Y" : "N"));
         assertThat(row.get("CPA_SIGNATURE_DATE"), equalTo(currentDate));
@@ -196,7 +196,7 @@ public class SubmissionQueryPhone {
         assertThat(row.get("ADDRESS_LINE_2"), equalTo(app.getAddressLine2().toUpperCase()));
         assertThat(row.get("CITY"), equalTo(app.getCity().toUpperCase()));
         assertThat(row.get("DAY_PHONE_NUM"), equalTo(app.getPhonePrimary()));
-        assertThat(row.get("EVENING_PHONE_NUM"), equalTo(app.getPhoneEvening()));
+       // assertThat(row.get("EVENING_PHONE_NUM"), equalTo(app.getPhoneEvening()));
         assertThat(row.get("EMAIL_ADDRESS"), equalTo(app.getEmail().toUpperCase()));
         assertThat(row.get("BOTH_PARTS_ACTIVE"), equalTo(app.getPartABActiveIndicator() == "yes" ? "Y" : "N"));
         assertThat(row.get("MEMBERSHIP_NUMBER"), containsString(""));

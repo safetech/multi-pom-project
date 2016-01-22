@@ -9,7 +9,7 @@ import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
 import pages.phone.*;
-import pages.phone.variations.pastandcurrentcoverage.GA_MI_PastAndCurrentInsuranceCoveragePage;
+import pages.phone.variations.pastandcurrentcoverage.MN_GA_MI_PastAndCurrentInsuranceCoveragePage;
 import pages.phone.variations.planapplication.OH_MI_TX_PlanApplicationQuestions;
 import pages.phone.variations.planselection.MN_Riders_PlanSelectionPage;
 import pages.phone.variations.replacementnotice.RN034andRE073Page;
@@ -24,7 +24,7 @@ public class MinnesotaGoodAndBadFunctionalTest extends CQBaseIntegrationTest {
     @Page public MN_Riders_PlanSelectionPage planSelectionAndStartDatePage;
     @Page public OH_MI_TX_PlanApplicationQuestions planApplicationQuestionsPage;
     @Page public EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
-    @Page public GA_MI_PastAndCurrentInsuranceCoveragePage pastAndCurrentInsuranceCoveragePage;
+    @Page public MN_GA_MI_PastAndCurrentInsuranceCoveragePage pastAndCurrentInsuranceCoveragePage;
     @Page public AuthorizationAndVerificationPage authorizationAndVerificationPage;
     @Page public HealthHistoryQuestionsPage healthHistoryQuestionsPage;
     @Page public AgentVerificationPage agentVerificationPage;

@@ -222,8 +222,15 @@ public class CribSheet{
     private String RiderChoice3 = "";
     private String RiderChoice4 = "";
     private String RiderChoice5 = "";
+    public String navigateTo = "";
 
+    public String getNavigateTo() {
+        return navigateTo;
+    }
 
+    public void setNavigateTo(String navigateTo) {
+        this.navigateTo = navigateTo;
+    }
     public Faker getFaker() {
         return faker;
     }

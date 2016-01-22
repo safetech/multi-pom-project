@@ -50,7 +50,7 @@ public class OhioIntegrationTest extends CQBaseIntegrationTest {
     }
 
     @Test
-    public void test_ohio_eligibility_underwriting_with_rn() throws Exception {
+    public void AGENT_ohio_eligibility_underwriting_with_rn() throws Exception {
 
         sheet.setAgentId("Test");
         sheet.setAgentMedSuppStates("[NV| CA| MA| FL| NY| OH]");
@@ -227,7 +227,7 @@ public class OhioIntegrationTest extends CQBaseIntegrationTest {
        submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
     }
     @Test
-    public void test_ohio_guranteed_issue() throws Exception {
+    public void AGENT_ohio_guranteed_issue() throws Exception {
 
         sheet.setAgentId("Test");
         sheet.setAgentMedSuppStates("[NV| CA| MA| FL| NY| OH]");
@@ -243,7 +243,7 @@ public class OhioIntegrationTest extends CQBaseIntegrationTest {
         Application app = new Application();
         app.setState("OH");
         app.setZipCode("44444");
-        app.setDOB(DateUtils.getDOBInNormalDateFormat(66));
+        app.setDOB(DateUtils.getDOBInNormalDateFormat(65));
         app.setMPBED("05/01/2015");
 
         app.setCpaSignatureIndTouch(Application.ALL_SIGNATURES[0]);

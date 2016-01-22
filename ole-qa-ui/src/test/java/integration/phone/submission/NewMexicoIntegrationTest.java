@@ -67,11 +67,11 @@ public class NewMexicoIntegrationTest extends CQBaseIntegrationTest {
     public void test_new_mexico_full_underwriting_with_rn() throws Exception {
 
         sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(69));
-        sheet.setMedPartBdate("2012-10-01");
+        sheet.setMedPartBdate("2013-10-01");
 
         //Customer Information
         app.setMPAED("01/01/2011");
-        app.setMPBED("10/01/2012");
+        app.setMPBED("10/01/2013");
         //Plan Eligibility
         app.setDefaultPlanEligibilityQuestions(sheet);
         app.setLostCoverage(NO);

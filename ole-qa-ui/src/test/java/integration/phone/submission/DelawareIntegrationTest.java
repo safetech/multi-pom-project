@@ -42,6 +42,7 @@ public class DelawareIntegrationTest extends CQBaseIntegrationTest {
         faker = new Faker();
         sheet = new CribSheet(faker);
         expectedSubmissionResult = new SubmissionResult();
+
     }
 
     @Test
@@ -179,7 +180,7 @@ public class DelawareIntegrationTest extends CQBaseIntegrationTest {
         sheet.setRandomContactInfo();
         sheet.setRandomCallCenterInfo();
         sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(65));
-        sheet.setMedPartBdate("2015-03-01");
+        sheet.setMedPartBdate(DateUtils.getFirstDayOfPastOrFutureMonths(1));
         sheet.setDpsdToFirstDayOfFutureMonth(1);
         sheet.setPlanCode("F01");
 
@@ -187,7 +188,7 @@ public class DelawareIntegrationTest extends CQBaseIntegrationTest {
 
         app.setMedicareClaimNum(faker.bothify("??#########"));
         app.setMPAED("01/01/2012");
-        app.setMPBED("03/01/2015");
+        app.setMPBED(DateUtils.getFirstDayOfPastOrFutureMonths(1));
         app.setPartABActiveIndicator(YES);
         app.setPlanCode("F");
         app.setReqEffectiveDate(DateUtils.getFirstDayOfFutureMonth(1));

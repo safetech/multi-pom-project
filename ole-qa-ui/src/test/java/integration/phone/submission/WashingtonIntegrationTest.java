@@ -6,7 +6,7 @@ import entity.Application;
 import entity.phone.CribSheet;
 import entity.SubmissionResult;
 import pages.phone.*;
-import pages.phone.variations.pastandcurrentcoverage.GA_MI_PastAndCurrentInsuranceCoveragePage;
+import pages.phone.variations.pastandcurrentcoverage.MN_GA_MI_PastAndCurrentInsuranceCoveragePage;
 import pages.phone.variations.planapplication.WA_PlanApplicationQuestions;
 import pages.phone.variations.replacementnotice.RN034andRE073Page;
 import queries.SubmissionQueryPhone;
@@ -23,7 +23,7 @@ public class WashingtonIntegrationTest extends CQBaseIntegrationTest {
     @Page public PlanSelectionAndStartDatePage planSelectionAndStartDatePage;
     @Page public WA_PlanApplicationQuestions planApplicationQuestionsPage;
     @Page public EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
-    @Page public GA_MI_PastAndCurrentInsuranceCoveragePage pastAndCurrentInsuranceCoveragePage;
+    @Page public MN_GA_MI_PastAndCurrentInsuranceCoveragePage pastAndCurrentInsuranceCoveragePage;
     @Page public AuthorizationAndVerificationPage authorizationAndVerificationPage;
     @Page public HealthHistoryQuestionsPage healthHistoryQuestionsPage;
     @Page public AgentVerificationPage agentVerificationPage;
@@ -153,11 +153,11 @@ public class WashingtonIntegrationTest extends CQBaseIntegrationTest {
     public void test_washington_full_underwriting_without_rn() throws Exception {
 
         sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(66));
-        sheet.setMedPartBdate("2015-03-01");
+        sheet.setMedPartBdate("2016-01-01");
 
         //Customer Information
         app.setMPAED("03/01/2011");
-        app.setMPBED("03/01/2015");
+        app.setMPBED("01/01/2016");
         //Plan Eligibility
         app.setTurned65In6GA(NO);
         app.setPartBIn6GA(YES);

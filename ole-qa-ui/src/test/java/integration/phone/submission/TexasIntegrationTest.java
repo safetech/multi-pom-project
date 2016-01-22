@@ -1,18 +1,18 @@
 package integration.phone.submission;
 
 import com.github.javafaker.Faker;
-import integration.CQBaseIntegrationTest;
 import entity.Application;
-import entity.phone.CribSheet;
 import entity.SubmissionResult;
-import pages.phone.*;
-import pages.phone.variations.pastandcurrentcoverage.TX_PastAndCurrentInsuranceCoveragePage;
-import pages.phone.variations.planapplication.OH_MI_TX_PlanApplicationQuestions;
-import pages.phone.variations.replacementnotice.RN078Page;
-import queries.SubmissionQueryPhone;
+import entity.phone.CribSheet;
+import integration.CQBaseIntegrationTest;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
+import pages.phone.*;
+import pages.phone.variations.pastandcurrentcoverage.TX_PastAndCurrentInsuranceCoveragePage;
+import pages.phone.variations.planapplication.OH_MI_TX_PlanApplicationQuestions;
+import pages.phone.variations.replacementnotice.RN035Page;
+import queries.SubmissionQueryPhone;
 import util.DateUtils;
 
 public class TexasIntegrationTest extends CQBaseIntegrationTest {
@@ -27,7 +27,7 @@ public class TexasIntegrationTest extends CQBaseIntegrationTest {
     @Page public AuthorizationAndVerificationPage authorizationAndVerificationPage;
     @Page public HealthHistoryQuestionsPage healthHistoryQuestionsPage;
     @Page public AgentVerificationPage agentVerificationPage;
-    @Page public RN078Page ReplacementNotice034Page;
+    @Page public RN035Page ReplacementNotice034Page;
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
     @Page public ApplicationSubmissionPage applicationSubmissionPage;
 

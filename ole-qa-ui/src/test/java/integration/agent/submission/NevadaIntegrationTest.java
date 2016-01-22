@@ -49,7 +49,7 @@ public class NevadaIntegrationTest extends CQBaseIntegrationTest {
     }
 
     @Test
-    public void test_nevada_underwriting_with_health_history_and_designeeSig_with_rn() throws Exception {
+    public void AGENT_nevada_underwriting_with_health_history_and_designeeSig_with_rn() throws Exception {
 
         sheet.setAgentId("Test");
         sheet.setAgentMedSuppStates("[NV| CA| MA| FL| NY| OH]");
@@ -207,7 +207,7 @@ public class NevadaIntegrationTest extends CQBaseIntegrationTest {
 
     }
     @Test
-    public void test_nevada_guranteed_issue() throws Exception {
+    public void AGENT_nevada_guranteed_issue() throws Exception {
 
         sheet.setAgentId("Test");
         sheet.setAgentMedSuppStates("[NV| CA| MA| FL| NY| OH]");

@@ -87,5 +87,7 @@ public class WI_iTest_PlanSelectionPage extends WizardPage{
         isAt();
         basicPlanWithCoPay.click();
         clickNextAndWaitForSpinnerToFinish();
+        Continue.click();
+        clickNextAndWaitForSpinnerToFinish();
     }
 }

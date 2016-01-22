@@ -16,7 +16,7 @@ public class PlanSelectionAndStartDatePage extends WizardPage {
 
        // isAt();
         getPlanCodeRadio(app.getPlanCode()).click();
-        getReqEffectiveDateSelect().selectByValue(app.getReqEffectiveDate());
+        //getReqEffectiveDateSelect().selectByValue(app.getReqEffectiveDate());
 
         clickNextAndWaitForSpinnerToFinish();
     }
@@ -30,6 +30,6 @@ public class PlanSelectionAndStartDatePage extends WizardPage {
     }
 
     public void isAt() {
-        assertThat(pageTitle.getText(), equalTo("Plan Selection and Start Date"));
+        assertThat(pageTitle.getText(), equalTo("Plan Selection"));
     }
 }

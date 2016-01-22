@@ -48,7 +48,7 @@ public class PennsylvaniaIntegrationTest extends CQBaseIntegrationTest {
         expectedSubmissionResult = new SubmissionResult();
     }
     @Test
-    public void test_pennsylvania_health_history_without_rn() throws Exception {
+    public void AGENT_pennsylvania_health_history_without_rn() throws Exception {
 
         sheet.setAgentId("Test");
         sheet.setAgentMedSuppStates("[NV| CA| MA| FL| NY| OH| AR| PA]");
@@ -205,7 +205,7 @@ public class PennsylvaniaIntegrationTest extends CQBaseIntegrationTest {
     }
     @Test
 
-    public void test_pennsylvania_eligibility_healthhistory_underwriting_with_rn() throws Exception {
+    public void AGENT_pennsylvania_eligibility_healthhistory_underwriting_with_rn() throws Exception {
 
         sheet.setAgentId("Test");
         sheet.setAgentMedSuppStates("[NV| CA| MA| FL| NY| OH| AR| PA]");

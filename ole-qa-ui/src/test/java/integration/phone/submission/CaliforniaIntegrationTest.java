@@ -163,11 +163,11 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
     public void test_california_full_underwriting_without_rn() throws Exception {
 
         sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(65));
-        sheet.setMedPartBdate("2015-06-01");
+        sheet.setMedPartBdate(DateUtils.getFirstDayOfPastOrFutureMonths(-2));
 
         //Customer Information
         app.setMPAED("01/01/2015");
-        app.setMPBED("06/01/2015");
+        app.setMPBED(DateUtils.getFirstDayOfPastOrFutureMonths(-2));
         //Plan Application
         app.setTurned65In6GA(YES);
         app.setPartBIn6GA(YES);
@@ -198,7 +198,6 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         app.setOtherInsEnd("01/01/2014");
         app.setOtherInsReplace(YES);
         app.setCpaSignatureInd(YES);
-        //Authorization Page
         //Agent Verification Page
         app.setAgentOtherInsPoliciesSold("HMO");
         app.setAgentPoliciesInForce("EP");

@@ -1,4 +1,4 @@
-package pages.phone.variations.planapplication;
+package pages.agent.variations.planapplication;
 
 import entity.Application;
 import org.fluentlenium.core.domain.FluentWebElement;

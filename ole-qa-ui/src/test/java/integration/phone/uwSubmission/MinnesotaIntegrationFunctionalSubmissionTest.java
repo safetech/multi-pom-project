@@ -1,4 +1,4 @@
-package integration.phone.iTest;
+package integration.phone.uwSubmission;
 
 import com.github.javafaker.Faker;
 import entity.Application;
@@ -10,7 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 import pages.phone.*;
 import pages.phone.variations.eligibilityhealthquestions.MN_EligibilityHealthQuestionsPage;
-import pages.phone.variations.pastandcurrentcoverage.GA_MI_PastAndCurrentInsuranceCoveragePage;
+import pages.phone.variations.pastandcurrentcoverage.MN_GA_MI_PastAndCurrentInsuranceCoveragePage;
 import pages.phone.variations.planapplication.MN_PlanApplicationQuestions;
 import pages.phone.variations.planselection.MN_iTest_PlanSelectionPage;
 import pages.phone.variations.replacementnotice.MN_RN034Page;
@@ -25,7 +25,7 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
     @Page public MN_iTest_PlanSelectionPage planSelectionAndStartDatePage;
     @Page public MN_PlanApplicationQuestions planApplicationQuestionsPage;
     @Page public MN_EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
-    @Page public GA_MI_PastAndCurrentInsuranceCoveragePage pastAndCurrentInsuranceCoveragePage;
+    @Page public MN_GA_MI_PastAndCurrentInsuranceCoveragePage pastAndCurrentInsuranceCoveragePage;
     @Page public AuthorizationAndVerificationPage authorizationAndVerificationPage;
     @Page public HealthHistoryQuestionsPage healthHistoryQuestionsPage;
     @Page public AgentVerificationPage agentVerificationPage;
@@ -72,7 +72,7 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
     @Test
     public void MN_MNP1a_BaiscGaPlanNoRnNoRiderNoQr() throws Exception {
         sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(65));
-        sheet.setMedPartBdate(DateUtils.getFirstDayOfPastOrFutureMonths(-1));
+        sheet.setMedPartBdate(DateUtils.getFirstDayOfPastOrFutureMonths(1));
         sheet.setDpsdToFirstDayOfFutureMonth(1);
         sheet.setPlanCode("TW");
         //TestData
@@ -92,7 +92,7 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         app.setGender("M");
         app.setMedicareClaimNum(faker.bothify("A#########"));
         app.setMPAED(DateUtils.getFirstDayOfPastOrFutureMonths(1));
-        app.setMPBED(DateUtils.getFirstDayOfPastOrFutureMonths(-1));
+        app.setMPBED(DateUtils.getFirstDayOfPastOrFutureMonths(1));
         app.setPartABActiveIndicator(YES);
         //Plan Application Page
         app.setTobaccoUse(YES);
@@ -331,7 +331,6 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         reviewAndSubmitPage.fillAndSubmit(app);
         applicationSubmissionPage.isApproved();
 
-
         expectedSubmissionResult.verifyAcceptedPlanAndRiderCodes("TW1", "YW1", "VW1", "WW1", "");
         submissionQueryPhone.verifyPlanAndRiderCodes(app, sheet, expectedSubmissionResult);
     }
@@ -423,7 +422,7 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
     }
     @Test
     public void MN_MNP4_ExtendedPlanFullUwWithRnAndQr() throws Exception {
-        sheet.setPlanCode("UW");
+        sheet.setPlanCode("TW");
         sheet.setQrIndicator("Y");
         //TestData
         app.setAARPMembershipNumber(faker.numerify("##########"));
@@ -505,7 +504,7 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         reviewAndSubmitPage.fillAndSubmit(app);
         applicationSubmissionPage.isPending();
 
-        expectedSubmissionResult.verifyPendingPlanAndRiderCodes("UW1", "", "", "", "", "", "");
+        expectedSubmissionResult.verifyPendingAndWorkQPlanAndRiderCodes("UW1", "", "", "", "", "", "");
         submissionQueryPhone.verifyQrYPendingPlanAndRiderCodes(app, sheet, expectedSubmissionResult);
     }
 }

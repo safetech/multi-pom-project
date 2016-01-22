@@ -9,20 +9,14 @@ import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
 import pages.agent.*;
-<<<<<<< HEAD
-import pages.agent.uwExpansion.variations.eligibilityhealthquestions.MN_EligibilityHealthQuestionsPage;
 import pages.agent.variations.authorization.MN_AuthorizationPage;
-=======
-import pages.agent.uwExpansion.variations.eligibilityhealthquestions.FL_EligibilityHealthQuestionsPage;
->>>>>>> 5e0f9f2781d22ac123ca26f074e5951288aeafc1
-import pages.agent.variations.currentinsurancecoverage.AR_PA_OR_CurrentInsuranceCoveragePage;
 import pages.agent.variations.currentinsurancecoverage.MN_CurrentInsuranceCoveragePage;
-import pages.agent.variations.eligibilityhealthquestions.FL_EligibilityHealthQuestionsPage;
-import pages.agent.variations.planapplication.AR_PA_PlanApplicationQuestionsPage;
+import pages.agent.variations.planapplication.MN_PlanApplicationQuestions;
 import pages.agent.variations.planselection.iTest_MN_PlanSelectionPage;
 import pages.agent.variations.replacenotice.RN034andRE073WithSignaturePage;
 import queries.SubmissionQueryAgent;
 import util.DateUtils;
+
 
 public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrationTest {
 
@@ -31,16 +25,10 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
     @Page public CheckEligibilityAndAvailabilityPage checkEligibilityAndAvailabilityPage;
     @Page public WhatYouNeedPage whatYouNeedPage;
     @Page public CustomerInformationPage customerInformationPage;
-    @Page public AR_PA_PlanApplicationQuestionsPage planApplicationQuestionsPage;
-<<<<<<< HEAD
-    @Page public MN_EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
+    @Page public MN_PlanApplicationQuestions planApplicationQuestionsPage;
+    @Page public EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
     @Page public MN_CurrentInsuranceCoveragePage currentInsuranceCoveragePage;
     @Page public MN_AuthorizationPage authorizationPage;
-=======
-    @Page public FL_EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
-    @Page public AR_PA_OR_CurrentInsuranceCoveragePage currentInsuranceCoveragePage;
-    @Page public AuthorizationPage authorizationPage;
->>>>>>> 5e0f9f2781d22ac123ca26f074e5951288aeafc1
     @Page public RN034andRE073WithSignaturePage replacementNotice;
     @Page public HealthHistoryQuestionsPage healthHistoryQuestionsPage;
     @Page public AgentVerificationPage agentVerificationPage;
@@ -91,8 +79,10 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         app.setState("MN");
         app.setZipCode("55445");
         app.setDOB(DateUtils.getDOBInNormalDateFormat(67));
-        app.setMPBED("05/01/2012");
-    //CustomerInformationPage
+        app.setReqEffectiveDate(DateUtils.getFirstDayOfFutureMonth(1));
+        app.setMPBED("05/01/2014");
+        app.setMPAED("05/01/2015");
+        //CustomerInformationPage
         app.setAARPMembershipNumber(faker.numerify("##########"));
         app.setPrefix("MR");
         app.setFirstName(faker.letterify("?????????? ?????"));
@@ -108,7 +98,6 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         app.setPhoneEvening(faker.numerify("##########"));
         app.setGender("M");
         app.setMedicareClaimNum(faker.numerify("#########A"));
-        app.setMPAED("01/01/2010");
         app.setPartABActiveIndicator(YES);
         app.setAgentEmail(faker.letterify("??????"+"@uhc.com"));
         app.setAgentEmailConfirm(app.getAgentEmail());
@@ -119,12 +108,8 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         app.setTobaccoUse(YES);
         app.setLostCoverage(NO);
     //EligibilityHealthQuestionsPage
-        app.setKidneyProblem(NO);
-        app.setEligibilitySurgery(NO);
-        app.setEligibilityAdmitToHospPast90Days(NO);
-        app.setNursingFacility(NO);
-        app.setEligibilityHeartAttackTIAStroke(NO);
-        app.setEligibilityChronicMedicalConditions(NO);
+        app.setESRD(NO);
+        app.setSurgeryNeeded(NO);
     //CurrentInsuranceCoveragePage
         app.setCPATurned65(NO);
         app.setTurned65In6GA(NO);
@@ -234,14 +219,10 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         app.setPartBIn6GA(NO);
         app.setTobaccoUse(YES);
         app.setLostCoverage(NO);
-        //EligibilityHealthQuestionsPage
-        app.setKidneyProblem(NO);
-        app.setEligibilitySurgery(NO);
-        app.setEligibilityAdmitToHospPast90Days(NO);
-        app.setNursingFacility(NO);
-        app.setEligibilityHeartAttackTIAStroke(NO);
-        app.setEligibilityChronicMedicalConditions(NO);
-        //CurrentInsuranceCoveragePage
+    //EligibilityHealthQuestionsPage
+        app.setESRD(NO);
+        app.setSurgeryNeeded(NO);
+    //CurrentInsuranceCoveragePage
         app.setCPATurned65(NO);
         app.setTurned65In6GA(NO);
         app.setPartBIn6GA(NO);
@@ -267,7 +248,7 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         app.setOtherInsEnd("01/01/2014");
         app.setOtherInsReplace(YES);
         app.setCpaSignatureInd(YES);
-        //AgentVerificationPage
+    //AgentVerificationPage
         app.setAgentOtherInsPoliciesSold("HMO");
         app.setAgentPoliciesInForce("HMO In Force");
         app.setAgentPoliciesSoldNotInForce("HMO Not In Force");
@@ -275,10 +256,10 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         app.setAgentMI("A");
         app.setAgentLastName("AgentLast");
         app.setAgentPhone("333 444 5555");
-        //Replacement Notice Page
+    //Replacement Notice Page
         app.setCommonReplacementNoticeAnswersWithApplicantInfo();
         app.setApplicantPrintedNameAdd("");
-        //PaymentDetailsSummaryPage
+    //PaymentDetailsSummaryPage
         app.setBankName("Bank of America");
         app.setRoutingNumber("123123123");
         app.setRoutingNumberConfirm("123123123");

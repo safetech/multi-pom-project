@@ -48,7 +48,7 @@ public class ArkansasIntegrationTest extends CQBaseIntegrationTest {
         expectedSubmissionResult = new SubmissionResult();
     }
     @Test
-    public void test_arkansas_health_history_without_rn() throws Exception {
+    public void AGENT_arkansas_health_history_without_rn() throws Exception {
 
         sheet.setAgentId("Test");
         sheet.setAgentMedSuppStates("[NV| CA| MA| FL| NY| OH| AR]");
@@ -177,7 +177,7 @@ public class ArkansasIntegrationTest extends CQBaseIntegrationTest {
 
     }
     @Test
-    public void test_arkansas_eligibility_healthhistory_underwriting_with_rn() throws Exception {
+    public void AGENT_arkansas_eligibility_healthhistory_underwriting_with_rn() throws Exception {
 
         sheet.setAgentId("Test");
         sheet.setAgentMedSuppStates("[NV| CA| MA| FL| NY| OH| AR]");

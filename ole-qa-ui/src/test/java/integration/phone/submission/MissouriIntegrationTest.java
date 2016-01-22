@@ -70,11 +70,11 @@ public class MissouriIntegrationTest extends CQBaseIntegrationTest {
     public void test_missouri_full_underwriting_with_rn() throws Exception {
 
         sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(69));
-        sheet.setMedPartBdate("2012-10-01");
+        sheet.setMedPartBdate("2013-10-01");
 
         //Customer Information
         app.setMPAED("01/01/2011");
-        app.setMPBED("10/01/2012");
+        app.setMPBED("10/01/2013");
 
         //Plan Eligibility
         app.setDefaultPlanEligibilityQuestions(sheet);
@@ -86,7 +86,6 @@ public class MissouriIntegrationTest extends CQBaseIntegrationTest {
         //Eligibility Questions
         app.setESRD(NO);
         app.setSurgeryNeeded(NO);
-        //Health History
         //Past And Current Coverage
         app.setCPATurned65(NO);
         app.setCPAPartBIn6(NO);
@@ -126,8 +125,6 @@ public class MissouriIntegrationTest extends CQBaseIntegrationTest {
         app.setApplicantAddress("AppAdd");
 
         expectedSubmissionResult.setAcceptedInfo();
-
-       // logger.info(gson.toJson(app));
 
         startApp(cheatPage, app, sheet);
         voiceSignatureInstructionsPage.fillAndSubmit(app);

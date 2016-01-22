@@ -158,6 +158,4 @@ public class PennsylvaniaIntegrationAndQRTest extends CQBaseIntegrationTest {
         submissionQueryPhone.verifyAdjudicationData(app, expectedSubmissionResult);
 
     }
-//TODO:Add Cancel button to this Test
-//TODO: Debug to see why the ole_application table isn't populated
   }

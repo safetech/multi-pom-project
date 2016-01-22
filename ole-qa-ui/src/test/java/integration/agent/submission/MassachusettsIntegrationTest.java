@@ -48,7 +48,7 @@ public class MassachusettsIntegrationTest extends CQBaseIntegrationTest {
     }
 
     @Test
-    public void test_massachusetts_underwriting_with_health_history_and_with_rn() throws Exception {
+    public void AGENT_massachusetts_underwriting_with_health_history_and_with_rn() throws Exception {
 
         sheet.setAgentId("Test");
         sheet.setAgentMedSuppStates("[NV| CA| MA| FL| NY| OH]");
@@ -208,7 +208,7 @@ public class MassachusettsIntegrationTest extends CQBaseIntegrationTest {
 
     }
     @Test
-    public void test_massachusetts_guranteed_issue() throws Exception {
+    public void AGENT_massachusetts_guranteed_issue() throws Exception {
 
         sheet.setAgentId("Test");
         sheet.setAgentMedSuppStates("[NV| CA| MA| FL| NY| OH]");
@@ -365,8 +365,8 @@ public class MassachusettsIntegrationTest extends CQBaseIntegrationTest {
         reviewAndSubmitPage.fillAndSubmit(app);
 
         expectedSubmissionResult.setAcceptedInfo();
-       submissionQuery.verifySubmissionData(app, expectedSubmissionResult);
-       submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
+        submissionQuery.verifySubmissionData(app, expectedSubmissionResult);
+        submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
 
     }
 

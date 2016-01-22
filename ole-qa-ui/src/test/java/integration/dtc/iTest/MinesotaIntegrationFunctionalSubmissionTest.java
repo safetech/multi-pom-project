@@ -12,7 +12,6 @@ import pages.dtc.*;
 import pages.dtc.variations.aboutyourpage.MN_AboutYouPage;
 import pages.dtc.variations.authorization.MN_AuthorizationPage;
 import pages.dtc.variations.pastandcurrentcoverage.MN_PastAndCurrentCoveragePage;
-import pages.dtc.variations.planapplication.AR_PA_WI_PlanApplicationQuestionsPage;
 import pages.dtc.variations.planapplication.MN_PlanApplicationQuestionsPage;
 import pages.dtc.variations.planselectionandstartdate.PA_AR_NV_MA_PlanSelectionAndStartDatePage;
 import queries.SubmissionQueryDtc;
@@ -46,7 +45,7 @@ public class MinesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrati
         app = new Application();
         submissionQuery = new SubmissionQueryDtc();
         expectedSubmissionResult = new SubmissionResult();
-
+        logger.info(gson.toJson(app));
     }
 
     @Test
@@ -54,20 +53,17 @@ public class MinesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrati
 
         sheet.setState("MN");
         sheet.setZip("55001");
-        sheet.setRiderChoice1("OW");
+        sheet.setPlanCode("TW");
+        sheet.setRiderChoice1("XW");
         sheet.setRiderChoice2("");
         sheet.setRiderChoice3("");
         sheet.setRiderChoice4("");
         sheet.setRiderChoice5("");
         sheet.setAarpMemid("y");
         sheet.setDOB(DateUtils.getDOBofPersonTurningAgeToday(69));
-<<<<<<< HEAD
-        sheet.setEffDate("03/01/2016");
-=======
-        sheet.setEffDate(DateUtils.getFirstDayOfFutureMonth(7));
->>>>>>> 5e0f9f2781d22ac123ca26f074e5951288aeafc1
+        //sheet.setEffDate("03/01/2016");
+        sheet.setEffDate(DateUtils.getFirstDayOfFutureMonth(1));
         sheet.setPsd(DateUtils.getFirstDayOfFutureMonth(1));
-        sheet.setPlanCode("MW");
         sheet.setReferrer("uLayer");
 
         //TestData
@@ -90,6 +86,7 @@ public class MinesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrati
         app.setMPAED("01/01/2010");
         app.setPartABActiveIndicator(YES);
         //Plan Application Page
+        app.setPlanEffIn6OfEligible(NO);
         app.setTobaccoUse(YES);
         app.setLostCoverage(NO);
         //Eligibility Page
@@ -156,8 +153,7 @@ public class MinesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrati
         planPaymentOptionsPage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
 
-        expectedSubmissionResult.verifyAcceptedPlanAndRiderCodes("MW1", "PW1", "", "", "");
-        expectedSubmissionResult.verifyPendingPlanAndRiderCodes("MW1", "PW1", "SW1", "", "", "", "");
+        expectedSubmissionResult.verifyAcceptedPlanAndRiderCodes("TW1", "XW1", "", "", "");
 
         submissionQuery.verifyPlanAndRiderCodes(app, sheet, expectedSubmissionResult);
     }
@@ -166,20 +162,17 @@ public class MinesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrati
 
         sheet.setState("MN");
         sheet.setZip("55001");
-        sheet.setRiderChoice1("OW");
-        sheet.setRiderChoice2("");
-        sheet.setRiderChoice3("QW");
-        sheet.setRiderChoice4("");
+        sheet.setPlanCode("TW");
+        sheet.setRiderChoice1("YW");
+        sheet.setRiderChoice2("VW");
+        sheet.setRiderChoice3("WW");
+        sheet.setRiderChoice4("ZW");
         sheet.setRiderChoice5("");
         sheet.setAarpMemid("y");
         sheet.setDOB(DateUtils.getDOBofPersonTurningAgeToday(69));
-<<<<<<< HEAD
-        sheet.setEffDate("03/01/2016");
-=======
-        sheet.setEffDate(DateUtils.getFirstDayOfFutureMonth(7));
->>>>>>> 5e0f9f2781d22ac123ca26f074e5951288aeafc1
+        //sheet.setEffDate("03/01/2016");
+        sheet.setEffDate(DateUtils.getFirstDayOfFutureMonth(1));
         sheet.setPsd(DateUtils.getFirstDayOfFutureMonth(1));
-        sheet.setPlanCode("MW");
         sheet.setReferrer("uLayer");
 
         //TestData
@@ -198,10 +191,10 @@ public class MinesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrati
         app.setPhoneEvening("1234561234");
         app.setGender("M");
         app.setMedicareClaimNum(faker.bothify("A#########"));
-        // app.setMedicareClaimNum("123123123A");
         app.setMPAED("01/01/2010");
         app.setPartABActiveIndicator(YES);
         //Plan Application Page
+        app.setPlanEffIn6OfEligible(NO);
         app.setTobaccoUse(YES);
         app.setLostCoverage(NO);
         //Eligibility Page
@@ -268,7 +261,7 @@ public class MinesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrati
         planPaymentOptionsPage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
 
-        expectedSubmissionResult.verifyPendingPlanAndRiderCodes("MW1", "PW1", "SW1", "", "", "", "");
+        expectedSubmissionResult.verifyPendingPlanAndRiderCodes("TW1", "YW1", "VW1", "WW1", "ZW1", "", "");
         submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
 
     }

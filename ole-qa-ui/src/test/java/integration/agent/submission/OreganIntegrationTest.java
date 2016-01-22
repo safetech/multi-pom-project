@@ -48,7 +48,7 @@ public class OreganIntegrationTest extends CQBaseIntegrationTest {
         expectedSubmissionResult = new SubmissionResult();
     }
     @Test
-    public void test_oregan_health_history_without_rn() throws Exception {
+    public void AGENT_oregan_health_history_without_rn() throws Exception {
 
         sheet.setAgentId("Test");
         sheet.setAgentMedSuppStates("[NV| CA| MA| FL| NY| OH| AR| PA| WA| OR]");
@@ -65,7 +65,7 @@ public class OreganIntegrationTest extends CQBaseIntegrationTest {
         app.setState("OR");
         app.setZipCode("97001");
         app.setDOB(DateUtils.getDOBInNormalDateFormat(69));
-        app.setMPBED("05/01/2012");
+        app.setMPBED("05/01/2013");
 
         app.setCpaSignatureIndTouch(Application.ALL_SIGNATURES[0]);
         app.setSignatureIndTouch(Application.ALL_SIGNATURES[1]);
@@ -198,7 +198,7 @@ public class OreganIntegrationTest extends CQBaseIntegrationTest {
     }
     @Test
 
-    public void test_oregan_eligibility_healthhistory_underwriting_with_rn() throws Exception {
+    public void AGENT_oregan_eligibility_healthhistory_underwriting_with_rn() throws Exception {
 
         sheet.setAgentId("Test");
         sheet.setAgentMedSuppStates("[NV| CA| MA| FL| NY| OH| AR| PA| WA| OR]");

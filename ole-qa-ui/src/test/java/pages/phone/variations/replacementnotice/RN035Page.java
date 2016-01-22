@@ -1,13 +1,14 @@
 package pages.phone.variations.replacementnotice;
+
 import entity.Application;
-import pages.WizardPage;
 import org.fluentlenium.core.domain.FluentWebElement;
 import org.openqa.selenium.support.FindBy;
+import pages.WizardPage;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class RN078Page extends WizardPage {
+public class RN035Page extends WizardPage {
 
     @FindBy(css = "#ReplacementReason_1") FluentWebElement ReplacementReason_ReplaceAdditionalBenefits;
     @FindBy(css = "#ReplacementReason_2") FluentWebElement ReplacementReason_SameBenefits;
@@ -18,7 +19,7 @@ public class RN078Page extends WizardPage {
     FluentWebElement RNOther;
     FluentWebElement AgentRNSignatureInd;
     FluentWebElement AgentPrintedNameAdd;
-    FluentWebElement AgentAddress;
+    //FluentWebElement AgentAddress;
     FluentWebElement ApplicantRNSignatureInd;
     FluentWebElement ApplicantPrintedNameAdd;
     FluentWebElement ApplicantAddress;
@@ -50,7 +51,6 @@ public class RN078Page extends WizardPage {
 
         AgentRNSignatureInd.click();
         fill(AgentPrintedNameAdd).with(app.getAgentPrintedNameAdd());
-        //fill(AgentAddress).with(app.getAgentAddress());
 
         ApplicantRNSignatureInd.click();
         fill(ApplicantPrintedNameAdd).with(app.getApplicantPrintedNameAdd());

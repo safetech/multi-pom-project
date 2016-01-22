@@ -8,7 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class GA_MI_PastAndCurrentInsuranceCoveragePage extends WizardPage {
+public class MN_GA_MI_PastAndCurrentInsuranceCoveragePage extends WizardPage {
 
     @FindBy(css = "#UnderstandPandC_1") FluentWebElement UnderstandPandC_Yes;
     @FindBy(css = "#UnderstandPandC_2") FluentWebElement UnderstandPandC_No;
@@ -54,7 +54,7 @@ public class GA_MI_PastAndCurrentInsuranceCoveragePage extends WizardPage {
     @FindBy(css = "#OtherInsReplace_2") FluentWebElement OtherInsReplace_No;
     FluentWebElement CpaSignatureInd;
 
-    protected int TOTAL_POSSIBLE_QUESTION_COUNT = 38;
+    protected int TOTAL_POSSIBLE_QUESTION_COUNT = 31;
 
     public void verifyInitialStateOfElements(Application app) {
 
@@ -116,8 +116,6 @@ public class GA_MI_PastAndCurrentInsuranceCoveragePage extends WizardPage {
         fillYesNoQuestion(ExistMedSupp_Yes, ExistMedSupp_No, app.getExistMedSupp());
         if(app.getExistMedSupp().equals("yes")){
             fillYesNoQuestion(ReplaceExistingMedSup_Yes, ReplaceExistingMedSup_No, app.getReplaceExistingMedSup());
-            fill(MSInsCompany).with(app.getOtherInsCompany());
-            fill(MSPLAN).with(app.getOtherInsType());
         }
 
         fillYesNoQuestion(OtherInsCoverage_Yes, OtherInsCoverage_No, app.getOtherInsCoverage());

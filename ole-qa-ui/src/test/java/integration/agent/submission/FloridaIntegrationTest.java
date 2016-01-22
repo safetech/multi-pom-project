@@ -50,7 +50,7 @@ public class FloridaIntegrationTest extends CQBaseIntegrationTest {
     }
 
     @Test
-    public void test_florida_eligibility_underwriting_with_rn() throws Exception {
+    public void AGENT_florida_eligibility_underwriting_with_rn() throws Exception {
 
         sheet.setAgentId("Test");
         sheet.setAgentMedSuppStates("[NV| CA| MA| FL| NY| OH]");
@@ -67,7 +67,7 @@ public class FloridaIntegrationTest extends CQBaseIntegrationTest {
         app.setState("FL");
         app.setZipCode("32065");
         app.setDOB(DateUtils.getDOBInNormalDateFormat(70));
-        app.setMPBED("01/01/2012");
+        app.setMPBED("01/01/2014");
         //Signatures
         app.setCpaSignatureIndTouch(Application.ALL_SIGNATURES[0]);
         app.setSignatureIndTouch(Application.ALL_SIGNATURES[1]);
@@ -215,7 +215,7 @@ public class FloridaIntegrationTest extends CQBaseIntegrationTest {
 
     }
     @Test
-    public void test_florida_guranteed_issue() throws Exception {
+    public void AGENT_florida_guranteed_issue() throws Exception {
 
         sheet.setAgentId("Test");
         sheet.setAgentMedSuppStates("[NV| CA| MA| FL| NY| OH]");
@@ -232,7 +232,7 @@ public class FloridaIntegrationTest extends CQBaseIntegrationTest {
         app.setState("FL");
         app.setZipCode("32065");
         app.setDOB(DateUtils.getDOBInNormalDateFormat(66));
-        app.setMPBED("05/01/2015");
+        app.setMPBED("02/01/2016");
 
         app.setCpaSignatureIndTouch(Application.ALL_SIGNATURES[0]);
         app.setSignatureIndTouch(Application.ALL_SIGNATURES[1]);

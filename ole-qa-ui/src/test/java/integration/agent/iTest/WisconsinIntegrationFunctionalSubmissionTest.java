@@ -7,7 +7,6 @@ import entity.agent.CribSheet;
 import integration.CQBaseIntegrationTest;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import pages.agent.*;
 import pages.agent.variations.authorization.WI_AuthorizationPage;
@@ -167,7 +166,7 @@ public class WisconsinIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         currentInsuranceCoveragePage.fillAndSubmit(app);
         authorizationPage.fillAndSubmit(app);
         agentVerificationPage.fillAndSubmit(app);
-        replacementNotice.fillAndSubmit(app);
+       // replacementNotice.fillAndSubmit(app);
         planPaymentOptionsPage.fillAndSubmit(app);
         paymentDetailsSummaryPage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
@@ -205,8 +204,8 @@ public class WisconsinIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         app.setCity(faker.letterify("?????? " + "City"));
         app.setEmail(faker.bothify("??????##" + "@uhc.com"));
         app.setConfirmEmail(app.getEmail());
-        app.setPhonePrimary(faker.numerify("### ### ####"));
-        app.setPhoneEvening(faker.numerify("### ### ####"));
+        app.setPhonePrimary(faker.numerify("##########"));
+        app.setPhoneEvening(faker.numerify("##########"));
         app.setGender("M");
         app.setMedicareClaimNum(faker.numerify("#########A"));
         app.setPartABActiveIndicator(YES);
@@ -270,16 +269,14 @@ public class WisconsinIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         whatYouNeedPage.fillAndSubmit(app);
         customerInformationPage.fillAndSubmit(app);
         planApplicationQuestionsPage.fillAndSubmit(app);
-        //eligibilityHealthQuestionsPage.fillAndSubmit(app);
         currentInsuranceCoveragePage.fillAndSubmit(app);
         authorizationPage.fillAndSubmit(app);
         agentVerificationPage.fillAndSubmit(app);
-        //replacementNotice.fillAndSubmit(app);
         planPaymentOptionsPage.fillAndSubmit(app);
         paymentDetailsSummaryPage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
 
-        expectedSubmissionResult.verifyAcceptedPlanAndRiderCodes("NW1","PW1","SW1","","");
+        expectedSubmissionResult.verifyAcceptedPlanAndRiderCodes("MW1","PW1","SW1","","");
         submissionQueryAgent.verifyPlanAndRiderCodes(app, expectedSubmissionResult);
     }
 }

@@ -153,11 +153,11 @@ public class IndianaIntegrationTest extends CQBaseIntegrationTest {
     public void test_indiana_guranteed_issue_without_rn() throws Exception {
 
         sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(65));
-        sheet.setMedPartBdate("2015-05-01");
+        sheet.setMedPartBdate(DateUtils.getFirstDayOfPastOrFutureMonths(1));
 
         //Customer Information
         app.setMPAED("01/01/2011");
-        app.setMPBED("05/01/2015");
+        app.setMPBED(DateUtils.getFirstDayOfPastOrFutureMonths(1));
         //Plan Eligibility
         app.setTurned65In6GA(YES);
         app.setPartBIn6GA(YES);

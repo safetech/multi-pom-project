@@ -78,9 +78,9 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
         app.setMPBED("04/01/2010");
 
         //Plan Eligibility
-        app.setTurned65In6GA(NO); //TODO: Replace these hard coded values with helper function that will determine answer based upon DOB
-        app.setPartBIn6GA(NO); //TODO: Replace these hard coded values with helper function that will determine answer based upon MPBED
-        app.setPlanEffIn6OfEligible(NO);  //TODO: Replace these hard coded values with helper function that will determine answer based upon DOB & MPBED
+        app.setTurned65In6GA(NO);
+        app.setPartBIn6GA(NO);
+        app.setPlanEffIn6OfEligible(NO);
         app.setTobaccoUse(NO);
         app.setLostCoverage(NO);
         app.setContinuousCoverage(NO);

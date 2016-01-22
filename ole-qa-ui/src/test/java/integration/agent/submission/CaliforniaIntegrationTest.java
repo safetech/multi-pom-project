@@ -12,7 +12,7 @@ import pages.agent.*;
 import pages.agent.variations.authorization.CA_AuthorizationPage;
 import pages.agent.variations.currentinsurancecoverage.CA_CurrentInsuranceCoveragePage;
 import pages.agent.variations.eligibilityhealthquestions.CA_EligibilityHealthQuestionsPage;
-import pages.agent.uwExpansion.variations.planapplication.CA_PlanApplicationQuestionsPage;
+import pages.agent.variations.planapplication.CA_PlanApplicationQuestions;
 import pages.agent.variations.replacenotice.RN034andRE073WithSignaturePage;
 import queries.SubmissionQueryAgent;
 import util.DateUtils;
@@ -24,7 +24,7 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
     @Page public CheckEligibilityAndAvailabilityPage checkEligibilityAndAvailabilityPage;
     @Page public WhatYouNeedPage whatYouNeedPage;
     @Page public CustomerInformationPage customerInformationPage;
-    @Page public CA_PlanApplicationQuestionsPage planApplicationQuestionsPage;
+    @Page public CA_PlanApplicationQuestions planApplicationQuestionsPage;
     @Page public CA_EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
     @Page public CA_CurrentInsuranceCoveragePage currentInsuranceCoveragePage;
     @Page public CA_AuthorizationPage authorizationPage;
@@ -49,7 +49,7 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         expectedSubmissionResult = new SubmissionResult();
     }
     @Test
-    public void test_california_eligibility_underwriting_with_rn() throws Exception {
+    public void AGENT_california_eligibility_underwriting_with_rn() throws Exception {
 
         sheet.setAgentId("Test");
         sheet.setAgentMedSuppStates("[NV| CA| MA| FL| NY| OH]");
@@ -99,10 +99,20 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         app.setPartABActiveIndicator(YES);
         app.setAgentEmail("agent@uhc.com");
         app.setAgentEmailConfirm("agent@uhc.com");
-        //Eligibility Questions
+
+        //Plan Application questions page
+        app.setGI30dayBday(YES);
+        app.setTurned65In6GA(NO);
+        app.setPartBIn6GA(NO);
+        app.setPlanEffIn6OfEligible(NO);
+
+        //Eligibility Questions(SPECIFIC TO CA)
+        app.setGIEmployerCov(NO);
+        app.setGIMediCal(NO);
+        app.setGIMilitary(NO);
+        app.setGILocation(NO);
         app.setESRD(NO);
         app.setSurgeryNeeded(NO);
-        //Eligibility Questions(SPECIFIC TO CA)
         app.setEligdialysis(NO);
         app.setEligRecdialysis(NO);
         app.setEligHospital(NO);
@@ -198,6 +208,7 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         Application app = new Application();
         app.setState("CA");
         app.setZipCode("90210");
+        app.setMPBED(DateUtils.getFirstDayOfPastOrFutureMonths(-2));
         app.setDOB(DateUtils.getDOBInNormalDateFormat(66));
         app.setMPBED(DateUtils.getFirstDayOfPastOrFutureMonths(-1));
         app.setCpaSignatureIndTouch(Application.ALL_SIGNATURES[0]);
@@ -229,15 +240,20 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         app.setPartABActiveIndicator(YES);
         app.setAgentEmail("agent@uhc.com");
         app.setAgentEmailConfirm("agent@uhc.com");
-        //app.setDefaultPlanEligibilityQuestions(sheet);
+//      Plan Application questions page
         app.setGI30dayBday(YES);
+        app.setTurned65In6GA(NO);
+        app.setPartBIn6GA(YES);
+        app.setPlanEffIn6OfEligible(YES);
+
+
+        //Eligibility Questions
+        app.setESRD(NO);
+        app.setSurgeryNeeded(NO);
         app.setGIEmployerCov(NO);
         app.setGIMediCal(NO);
         app.setGIMilitary(NO);
         app.setGILocation(NO);
-        //Eligibility Questions
-        app.setESRD(NO);
-        app.setSurgeryNeeded(NO);
         //Eligibility Questions(SPECIFIC TO CA)
         app.setEligdialysis(NO);
         app.setEligRecdialysis(NO);
@@ -253,7 +269,7 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         //Past And Current Coverage
         app.setCPATurned65(YES);
         app.setCPAPartBIn6(YES);
-        app.setPlanEffIn6OfEligible(YES);
+
         app.setMedicaidCovered(YES);
         app.setMedicaidSupPremium(YES);
         app.setMedicaidbenefit(YES);

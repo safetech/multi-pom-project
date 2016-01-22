@@ -47,7 +47,7 @@ public class NewYorkIntegrationTest extends CQBaseIntegrationTest {
     }
 
     @Test
-    public void test_new_york_with_rn() throws Exception {
+    public void AGENT_new_york_with_rn() throws Exception {
 
         sheet.setAgentId("Test");
         sheet.setAgentMedSuppStates("[NV| CA| MA| FL| NY| OH]");
@@ -206,7 +206,7 @@ public class NewYorkIntegrationTest extends CQBaseIntegrationTest {
     }
 
     @Test
-    public void test_new_york_guranteed_issue_Without_rn() throws Exception {
+    public void AGENT_new_york_guranteed_issue_Without_rn() throws Exception {
 
         sheet.setAgentId("Test");
         sheet.setAgentMedSuppStates("[NV| CA| MA| FL| NY| OH]");
