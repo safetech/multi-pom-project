@@ -190,6 +190,7 @@ public class WisconsinIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         app.setState("WI");
         app.setZipCode("54001");
         app.setDOB(DateUtils.getDOBInNormalDateFormat(65));
+        app.setReqEffectiveDate(DateUtils.getFirstDayOfFutureMonth(3));
         app.setMPBED(DateUtils.getFirstDayOfPastOrFutureMonths(1));
         app.setMPAED(DateUtils.getFirstDayOfPastOrFutureMonths(1));
         //CustomerInformationPage

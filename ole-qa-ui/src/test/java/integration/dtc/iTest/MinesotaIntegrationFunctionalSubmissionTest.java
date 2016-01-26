@@ -62,7 +62,7 @@ public class MinesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrati
         sheet.setAarpMemid("y");
         sheet.setDOB(DateUtils.getDOBofPersonTurningAgeToday(69));
         //sheet.setEffDate("03/01/2016");
-        sheet.setEffDate(DateUtils.getFirstDayOfFutureMonth(1));
+        sheet.setEffDate(DateUtils.getFirstDayOfPastOrFutureMonths(-7));
         sheet.setPsd(DateUtils.getFirstDayOfFutureMonth(1));
         sheet.setReferrer("uLayer");
 
@@ -146,7 +146,7 @@ public class MinesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrati
         aboutYouPage.fillAndSubmit(app, sheet);
         planSelectionAndStartDatePage.fillAndSubmit(app);
         planApplicationQuestionsPage.fillAndSubmit(app);
-      //  eligibilityHealthQuestionsPage.fillAndSubmit(app);
+        eligibilityHealthQuestionsPage.fillAndSubmit(app);
        // healthHistoryQuestionsPage.fillAndSubmit(app);
         pastAndCurrentCoveragePage.fillAndSubmit(app);
         authorizationPage.fillAndSubmit(app);
@@ -169,9 +169,9 @@ public class MinesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrati
         sheet.setRiderChoice4("ZW");
         sheet.setRiderChoice5("");
         sheet.setAarpMemid("y");
-        sheet.setDOB(DateUtils.getDOBofPersonTurningAgeToday(69));
-        //sheet.setEffDate("03/01/2016");
-        sheet.setEffDate(DateUtils.getFirstDayOfFutureMonth(1));
+        sheet.setDOB(DateUtils.getDOBofPersonTurningAgeToday(71));
+        sheet.setEffDate("01/01/2012");
+        //sheet.setEffDate(DateUtils.getFirstDayOfPastOrFutureMonths(-9));
         sheet.setPsd(DateUtils.getFirstDayOfFutureMonth(1));
         sheet.setReferrer("uLayer");
 
@@ -254,8 +254,7 @@ public class MinesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrati
         aboutYouPage.fillAndSubmit(app, sheet);
         planSelectionAndStartDatePage.fillAndSubmit(app);
         planApplicationQuestionsPage.fillAndSubmit(app);
-//        eligibilityHealthQuestionsPage.fillAndSubmit(app);
-//        healthHistoryQuestionsPage.fillAndSubmit(app);
+        eligibilityHealthQuestionsPage.fillAndSubmit(app);
         pastAndCurrentCoveragePage.fillAndSubmit(app);
         authorizationPage.fillAndSubmit(app);
         planPaymentOptionsPage.fillAndSubmit(app);

@@ -146,14 +146,14 @@ public class WisconsinIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
        // replacementNoticePage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
         applicationSubmissionPage.isAt();
-        applicationSubmissionPage.isApproved();
+//        applicationSubmissionPage.isApproved();
 
         expectedSubmissionResult.setAcceptedInfo();
         submissionQueryPhone.verifySubmissionData(app, expectedSubmissionResult);
         submissionQueryPhone.verifyAdjudicationData(app, expectedSubmissionResult);
     }
     @Test
-    public void WI_WIP3_BaiscPlanFullUWWithRNRider2And4() throws Exception {
+    public void MWWI_WIP3_BaiscPlanFullUWWithRNRider2And4() throws Exception {
         sheet.setPlanCode("MW");
         //TestData
         app.setAARPMembershipNumber(faker.numerify("##########"));
@@ -245,7 +245,7 @@ public class WisconsinIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         //replacementNoticePage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
         applicationSubmissionPage.isAt();
-        applicationSubmissionPage.isApproved();
+//        applicationSubmissionPage.isApproved();
 
         expectedSubmissionResult.setAcceptedInfo();
         submissionQueryPhone.verifySubmissionData(app, expectedSubmissionResult);
@@ -333,7 +333,7 @@ public class WisconsinIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         //replacementNoticePage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
         applicationSubmissionPage.isAt();
-        applicationSubmissionPage.isApproved();
+//        applicationSubmissionPage.isApproved();
 
         expectedSubmissionResult.setAcceptedInfo();
         submissionQueryPhone.verifySubmissionData(app, expectedSubmissionResult);
@@ -431,7 +431,7 @@ public class WisconsinIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         //replacementNoticePage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
         applicationSubmissionPage.isAt();
-        applicationSubmissionPage.isApproved();
+//        applicationSubmissionPage.isApproved();
 
         expectedSubmissionResult.setAcceptedInfo();
         submissionQueryPhone.verifySubmissionData(app, expectedSubmissionResult);
@@ -530,7 +530,7 @@ public class WisconsinIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         agentVerificationPage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
         applicationSubmissionPage.isAt();
-        applicationSubmissionPage.isApproved();
+//        applicationSubmissionPage.isApproved();
 
         expectedSubmissionResult.setAcceptedInfo();
         submissionQueryPhone.verifySubmissionData(app, expectedSubmissionResult);

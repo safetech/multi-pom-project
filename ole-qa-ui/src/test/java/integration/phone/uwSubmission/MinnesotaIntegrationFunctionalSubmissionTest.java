@@ -51,7 +51,7 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
 
         sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(69));
         sheet.setMedPartBdate(DateUtils.getFirstDayOfPastOrFutureMonths(-7));
-        sheet.setDpsdToFirstDayOfFutureMonth(1);
+        sheet.setDpsdToFirstDayOfFutureMonth(3);
         sheet.setRandomNameGenderAndMembershipNumber();
         app = new Application();
 
@@ -73,7 +73,6 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
     public void MN_MNP1a_BaiscGaPlanNoRnNoRiderNoQr() throws Exception {
         sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(65));
         sheet.setMedPartBdate(DateUtils.getFirstDayOfPastOrFutureMonths(1));
-        sheet.setDpsdToFirstDayOfFutureMonth(1);
         sheet.setPlanCode("TW");
         //TestData
         app.setAARPMembershipNumber(faker.numerify("##########"));
@@ -161,7 +160,6 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
     public void MN_MNP1b_BaiscGaPlanRider1And3NoRnNoQr() throws Exception {
         sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(65));
         sheet.setMedPartBdate(DateUtils.getFirstDayOfPastOrFutureMonths(-1));
-        sheet.setDpsdToFirstDayOfFutureMonth(1);
         sheet.setPlanCode("TW");
         //TestData
         app.setAARPMembershipNumber(faker.numerify("##########"));
@@ -251,7 +249,6 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
     public void MN_MNP2_BaiscGaPlanRider1NoRnNoQr() throws Exception {
         sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(65));
         sheet.setMedPartBdate(DateUtils.getFirstDayOfPastOrFutureMonths(-1));
-        sheet.setDpsdToFirstDayOfFutureMonth(1);
         sheet.setPlanCode("TW");
         //TestData
         app.setAARPMembershipNumber(faker.numerify("##########"));

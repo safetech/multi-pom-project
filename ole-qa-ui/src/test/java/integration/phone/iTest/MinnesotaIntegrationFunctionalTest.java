@@ -151,7 +151,7 @@ public class MinnesotaIntegrationFunctionalTest extends CQBaseIntegrationTest {
         agentVerificationPage.fillAndSubmit(app);
         ReplacementNotice034Page.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
-        applicationSubmissionPage.isApproved();
+//        applicationSubmissionPage.isApproved();
 
         expectedSubmissionResult.verifyAcceptedPlanAndRiderCodes("TW1", "", "", "", "");
         submissionQueryPhone.verifyPlanAndRiderCodes(app, sheet, expectedSubmissionResult);
@@ -238,7 +238,7 @@ public class MinnesotaIntegrationFunctionalTest extends CQBaseIntegrationTest {
         agentVerificationPage.fillAndSubmit(app);
         ReplacementNotice034Page.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
-        applicationSubmissionPage.isApproved();
+//        applicationSubmissionPage.isApproved();
 
         expectedSubmissionResult.verifyAcceptedPlanAndRiderCodes("TW1", "YW1", "VW1", "WW1", "");
 
@@ -326,7 +326,7 @@ public class MinnesotaIntegrationFunctionalTest extends CQBaseIntegrationTest {
         agentVerificationPage.fillAndSubmit(app);
         ReplacementNotice034Page.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
-        applicationSubmissionPage.isApproved();
+//        applicationSubmissionPage.isApproved();
 
         expectedSubmissionResult.verifyAcceptedPlanAndRiderCodes("TW1", "YW1", "VW1", "WW1", "");
         submissionQueryPhone.verifyPlanAndRiderCodes(app, sheet, expectedSubmissionResult);
@@ -335,6 +335,7 @@ public class MinnesotaIntegrationFunctionalTest extends CQBaseIntegrationTest {
     public void MN_MNP3_BaiscPlanRider234And5FullUwWithRnNoQr() throws Exception {
         sheet.setPlanCode("TW");
         sheet.setMedPartBdate(DateUtils.getFirstDayOfPastOrFutureMonths(-7));
+        sheet.setDpsdToFirstDayOfFutureMonth(1);
 
         //TestData
         app.setAARPMembershipNumber(faker.numerify("##########"));
@@ -414,7 +415,7 @@ public class MinnesotaIntegrationFunctionalTest extends CQBaseIntegrationTest {
         agentVerificationPage.fillAndSubmit(app);
         ReplacementNotice034Page.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
-        applicationSubmissionPage.isPending();
+//        applicationSubmissionPage.isPending();
         expectedSubmissionResult.verifyAcceptedPlanAndRiderCodes("TW1", "YW1", "VW1", "WW1", "ZW1");
         submissionQueryPhone.verifyPlanAndRiderCodes(app, sheet, expectedSubmissionResult);
     }
@@ -423,6 +424,7 @@ public class MinnesotaIntegrationFunctionalTest extends CQBaseIntegrationTest {
         sheet.setPlanCode("UW");
         sheet.setMedPartBdate(DateUtils.getFirstDayOfPastOrFutureMonths(-7));
         sheet.setQrIndicator("Y");
+        sheet.setDpsdToFirstDayOfFutureMonth(1);
         //TestData
         app.setAARPMembershipNumber(faker.numerify("##########"));
         app.setPrefix("MR");
@@ -501,7 +503,7 @@ public class MinnesotaIntegrationFunctionalTest extends CQBaseIntegrationTest {
         agentVerificationPage.fillAndSubmit(app);
         ReplacementNotice034Page.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
-        applicationSubmissionPage.isPending();
+//        applicationSubmissionPage.isPending();
 
         expectedSubmissionResult.verifyPendingAndWorkQPlanAndRiderCodes("UW1", "", "", "", "", "", "");
         submissionQueryPhone.verifyQrYPendingPlanAndRiderCodes(app, sheet, expectedSubmissionResult);

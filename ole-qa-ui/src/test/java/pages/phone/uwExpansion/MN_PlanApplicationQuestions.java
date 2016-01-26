@@ -1,4 +1,4 @@
-package pages.phone.variations.planapplication;
+package pages.phone.uwExpansion;
 
 import entity.Application;
 import org.fluentlenium.core.domain.FluentWebElement;
@@ -14,12 +14,12 @@ public class MN_PlanApplicationQuestions extends PlanApplicationQuestions {
 
     public void verifyInitialStateOfElements(Application app) {
         assertQuestionCount(TOTAL_POSSIBLE_QUESTION_COUNT);
+
         assertYesNoQuestion(Turned65In6GA_Yes, Turned65In6GA_No, app.getTurned65In6GA());
         assertYesNoQuestion(PartBIn6GA_Yes, PartBIn6GA_No, app.getPartBIn6GA());
         assertYesNoQuestion(PlanEffIn6OfEligible_Yes, PlanEffIn6OfEligible_No, app.getPlanEffIn6OfEligible());
         assertBlank(LostCoverage_Yes, LostCoverage_No);
         assertBlank(TobaccoUse_Yes, TobaccoUse_No);
-
     }
 
     public void fillAndSubmit(Application app) {
