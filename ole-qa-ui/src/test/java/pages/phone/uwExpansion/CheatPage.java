@@ -1,4 +1,4 @@
-package pages.phone;
+package pages.phone.uwExpansion;
 
 import entity.phone.CribSheet;
 import org.fluentlenium.core.FluentPage;

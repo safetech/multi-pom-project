@@ -47,7 +47,7 @@ public class AlabamaIntegrationTest extends CQBaseIntegrationTest {
         sheet.setRandomAddress("AL", "35004");
         sheet.setRandomContactInfo();
         sheet.setRandomCallCenterInfo();
-        sheet.setDpsdToFirstDayOfFutureMonth(1);
+        sheet.setDpsdToFirstDayOfFutureMonth(2);
         sheet.setPlanCode("F01");
 
         app = new Application();
@@ -56,7 +56,7 @@ public class AlabamaIntegrationTest extends CQBaseIntegrationTest {
         app.setMedicareClaimNum(faker.bothify("#########A"));
         app.setPartABActiveIndicator(YES);
         app.setPlanCode("F");
-        app.setReqEffectiveDate(DateUtils.getFirstDayOfFutureMonth(1));
+       // app.setReqEffectiveDate(DateUtils.getFirstDayOfFutureMonth(1));
 
         //Eligibility Questions
         app.setESRD(NO);

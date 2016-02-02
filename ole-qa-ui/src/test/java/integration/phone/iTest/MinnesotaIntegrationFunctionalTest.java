@@ -151,7 +151,6 @@ public class MinnesotaIntegrationFunctionalTest extends CQBaseIntegrationTest {
         agentVerificationPage.fillAndSubmit(app);
         ReplacementNotice034Page.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
-//        applicationSubmissionPage.isApproved();
 
         expectedSubmissionResult.verifyAcceptedPlanAndRiderCodes("TW1", "", "", "", "");
         submissionQueryPhone.verifyPlanAndRiderCodes(app, sheet, expectedSubmissionResult);
@@ -238,7 +237,6 @@ public class MinnesotaIntegrationFunctionalTest extends CQBaseIntegrationTest {
         agentVerificationPage.fillAndSubmit(app);
         ReplacementNotice034Page.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
-//        applicationSubmissionPage.isApproved();
 
         expectedSubmissionResult.verifyAcceptedPlanAndRiderCodes("TW1", "YW1", "VW1", "WW1", "");
 
@@ -326,7 +324,6 @@ public class MinnesotaIntegrationFunctionalTest extends CQBaseIntegrationTest {
         agentVerificationPage.fillAndSubmit(app);
         ReplacementNotice034Page.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
-//        applicationSubmissionPage.isApproved();
 
         expectedSubmissionResult.verifyAcceptedPlanAndRiderCodes("TW1", "YW1", "VW1", "WW1", "");
         submissionQueryPhone.verifyPlanAndRiderCodes(app, sheet, expectedSubmissionResult);
@@ -415,7 +412,7 @@ public class MinnesotaIntegrationFunctionalTest extends CQBaseIntegrationTest {
         agentVerificationPage.fillAndSubmit(app);
         ReplacementNotice034Page.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
-//        applicationSubmissionPage.isPending();
+
         expectedSubmissionResult.verifyAcceptedPlanAndRiderCodes("TW1", "YW1", "VW1", "WW1", "ZW1");
         submissionQueryPhone.verifyPlanAndRiderCodes(app, sheet, expectedSubmissionResult);
     }
@@ -503,7 +500,6 @@ public class MinnesotaIntegrationFunctionalTest extends CQBaseIntegrationTest {
         agentVerificationPage.fillAndSubmit(app);
         ReplacementNotice034Page.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
-//        applicationSubmissionPage.isPending();
 
         expectedSubmissionResult.verifyPendingAndWorkQPlanAndRiderCodes("UW1", "", "", "", "", "", "");
         submissionQueryPhone.verifyQrYPendingPlanAndRiderCodes(app, sheet, expectedSubmissionResult);

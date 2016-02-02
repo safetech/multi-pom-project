@@ -16,16 +16,18 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
 import org.slf4j.Logger;
-import util.AnswerUtils;
+//import pages.phone.uwExpansion.CheatPage;
 import pages.phone.CheatPage;
+
+import util.AnswerUtils;
+
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
 
 import static org.slf4j.LoggerFactory.getLogger;
+
+//import pages.phone.uwExpansion;
 
 @SharedDriver(type = SharedDriver.SharedType.PER_CLASS)
 public class CQBaseIntegrationTest extends FluentTest {
@@ -39,9 +41,9 @@ public class CQBaseIntegrationTest extends FluentTest {
     protected String UNSURE = AnswerUtils.UNSURE;
     protected String BLANK = AnswerUtils.BLANK;
     //Comment the below 3 lines if your not using Browser Stack
-//    public static final String USERNAME = "holleyrussell1";
-//    public static final String AUTOMATE_KEY = "e1hxsgqbj5542GMQCAev";
-//    public static final String URL = "http://" + USERNAME + ":" + AUTOMATE_KEY + "@hub.browserstack.com/wd/hub";
+    public static final String USERNAME = "holleyrussell1";
+    public static final String AUTOMATE_KEY = "e1hxsgqbj5542GMQCAev";
+    public static final String URL = "http://" + USERNAME + ":" + AUTOMATE_KEY + "@hub.browserstack.com/wd/hub";
 
 
     @Rule
@@ -66,13 +68,14 @@ public class CQBaseIntegrationTest extends FluentTest {
         logger.info(String.format("Using driver: webdriver.firefox.bin=%s", System.getProperty("webdriver.firefox.bin")));
         //Comment the below lines if your not using Browser Stack
 //        DesiredCapabilities caps = new DesiredCapabilities();
-//        caps.setCapability("browser", "IE");
-//        caps.setCapability("browser_version", "8");
+//        caps.setCapability("browser", "Chrome");
+//        caps.setCapability("browser_version", "45");
 //        caps.setCapability("os", "Windows");
 //        caps.setCapability("os_version", "7");
 //        caps.setCapability("browserstack.debug", "true");
-//        caps.setCapability("browserstack.local", "true");
+//        //caps.setCapability("local", "true");
 //        caps.setCapability("acceptSslCert", "true");
+//        caps.setCapability("checkURL", "false");
 //
 //        try {
 //            driver = new RemoteWebDriver(new java.net.URL(URL), caps);
@@ -81,7 +84,7 @@ public class CQBaseIntegrationTest extends FluentTest {
 //        }
 
         //Comment the below line to run test in browser stack
-        driver = new FirefoxDriver();
+       driver = new FirefoxDriver();
         return driver;
     }
 
@@ -89,6 +92,16 @@ public class CQBaseIntegrationTest extends FluentTest {
     public void teardown(){
         executeScript("window.onbeforeunload = null;");
     }
+
+    protected void startApp(pages.phone.uwExpansion.CheatPage cheatPage, Application app, CribSheet sheet) {
+
+        app.setAnswersWithSheetValues(sheet);
+        logger.info(gson.toJson(app));
+
+        goTo(cheatPage);
+        cheatPage.fillAndSubmit(sheet);
+    }
+
     protected void startApp(CheatPage cheatPage, Application app, CribSheet sheet) {
 
         app.setAnswersWithSheetValues(sheet);

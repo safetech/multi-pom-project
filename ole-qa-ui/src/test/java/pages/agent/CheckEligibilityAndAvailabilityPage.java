@@ -2,6 +2,8 @@ package pages.agent;
 
 import entity.Application;
 import org.fluentlenium.core.domain.FluentWebElement;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import pages.WizardPage;
 
 import java.util.concurrent.TimeUnit;
@@ -21,12 +23,15 @@ public class CheckEligibilityAndAvailabilityPage extends WizardPage {
 
         isAt();
         fill(ZipCode).with(app.getZipCode());
-        blur("#ZipCode");
-            try{
-                Thread.sleep(5000);
-            }catch(Exception e){
-            }
-        await().atMost(10, TimeUnit.SECONDS).until("#State").hasAttribute("value", app.getState());
+
+            blur("#ZipCode");
+        try{
+            Thread.sleep(5000);
+        }catch(Exception e){
+        }
+        getDriver().findElement(By.id("ZipCode")).sendKeys(Keys.TAB);
+
+        await().atMost(30, TimeUnit.SECONDS).until("#State").hasAttribute("value", app.getState());
         fill(DOB).with(app.getDOB());
         blur("#DOB");
             try{
@@ -40,7 +45,7 @@ public class CheckEligibilityAndAvailabilityPage extends WizardPage {
             }catch(Exception e){
             }
 
-        await().atMost(20, TimeUnit.SECONDS).until("div.customer_eligibility_form #ReqEffectiveDate option").hasSize(4);
+       // await().atMost(20, TimeUnit.SECONDS).until("div.customer_eligibility_form #ReqEffectiveDate option").hasSize(4);
 
         fillSelect("div.customer_eligibility_form #ReqEffectiveDate").withIndex(1);
         blur("#ReqEffectiveDate");

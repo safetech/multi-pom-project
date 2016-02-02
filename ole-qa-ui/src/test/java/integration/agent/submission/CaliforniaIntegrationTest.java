@@ -246,7 +246,6 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         app.setPartBIn6GA(YES);
         app.setPlanEffIn6OfEligible(YES);
 
-
         //Eligibility Questions
         app.setESRD(NO);
         app.setSurgeryNeeded(NO);

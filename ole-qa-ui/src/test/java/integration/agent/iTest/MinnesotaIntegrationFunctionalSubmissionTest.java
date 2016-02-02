@@ -146,7 +146,7 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         app.setAgentPhone("333 444 5555");
     //Replacement Notice Page
         app.setCommonReplacementNoticeAnswersWithApplicantInfo();
-        app.setApplicantPrintedNameAdd("");
+        app.setApplicantPrintedNameAdd("ApplicantPrinted Name");
     //PaymentDetailsSummaryPage
         app.setBankName("Bank of America");
         app.setRoutingNumber("123123123");
@@ -258,7 +258,8 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         app.setAgentPhone("333 444 5555");
     //Replacement Notice Page
         app.setCommonReplacementNoticeAnswersWithApplicantInfo();
-        app.setApplicantPrintedNameAdd("");
+        app.setApplicantPrintedNameAdd("ApplicantPrinted Name");
+        app.setApplicantAddress("121 OneTwoOne st");
     //PaymentDetailsSummaryPage
         app.setBankName("Bank of America");
         app.setRoutingNumber("123123123");

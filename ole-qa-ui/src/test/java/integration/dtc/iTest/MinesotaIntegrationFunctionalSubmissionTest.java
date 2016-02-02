@@ -149,7 +149,7 @@ public class MinesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrati
         eligibilityHealthQuestionsPage.fillAndSubmit(app);
        // healthHistoryQuestionsPage.fillAndSubmit(app);
         pastAndCurrentCoveragePage.fillAndSubmit(app);
-        authorizationPage.fillAndSubmit(app);
+        authorizationPage.fillAndSubmit();
         planPaymentOptionsPage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
 
@@ -256,7 +256,7 @@ public class MinesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrati
         planApplicationQuestionsPage.fillAndSubmit(app);
         eligibilityHealthQuestionsPage.fillAndSubmit(app);
         pastAndCurrentCoveragePage.fillAndSubmit(app);
-        authorizationPage.fillAndSubmit(app);
+        authorizationPage.fillAndSubmit();
         planPaymentOptionsPage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
 
@@ -264,8 +264,5 @@ public class MinesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrati
         submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
 
     }
-    public void MN_() throws Exception {
 
-        System.out.print(DateUtils.getFirstDayOfFutureMonth(7));
-    }
 }

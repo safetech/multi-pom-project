@@ -1,6 +1,5 @@
 package pages.dtc.variations.authorization;
 
-import entity.Application;
 import org.fluentlenium.core.domain.FluentWebElement;
 import pages.WizardPage;
 
@@ -12,8 +11,9 @@ public class MN_AuthorizationPage extends WizardPage {
     FluentWebElement SignatureInd;
     FluentWebElement MedicalReleaseAuthSignatureInd;
 
-    public void fillAndSubmit(Application app) {
+    public void fillAndSubmit() {
 
+        SignatureInd.click();
         MedicalReleaseAuthSignatureInd.click();
 
         clickNextAndWaitForSpinnerToFinish();
