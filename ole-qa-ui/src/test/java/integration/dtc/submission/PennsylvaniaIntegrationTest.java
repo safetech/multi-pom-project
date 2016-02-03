@@ -15,6 +15,9 @@ import pages.dtc.variations.planselectionandstartdate.PA_AR_NV_MA_PlanSelectionA
 import queries.SubmissionQueryDtc;
 import util.DateUtils;
 
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+
 public class PennsylvaniaIntegrationTest extends CQBaseIntegrationTest {
 
     @Page public CheatPage cheatPage;
@@ -130,6 +133,9 @@ public class PennsylvaniaIntegrationTest extends CQBaseIntegrationTest {
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);
 
+        String marketibilityError = getScriptResult("controller.model.getQuestionValue('marketabilityCode')");
+        assertThat(marketibilityError, equalTo("M01R43AGMMPA01_02B"));
+        
         whatYouNeedPage.isAt();
         whatYouNeedPage.clickNextAndWaitForSpinnerToFinish();
 

@@ -24,6 +24,7 @@ import util.AnswerUtils;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 import static org.slf4j.LoggerFactory.getLogger;
 
@@ -109,6 +110,15 @@ public class CQBaseIntegrationTest extends FluentTest {
 
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);
+    }
+    public String getScriptResult(String script) {
+        if (find("body > #output").size() == 0) {
+            executeScript("$('body').append('<div id=\"output\"/>');");
+            await().atMost(10, TimeUnit.SECONDS).until("body > #output").isPresent();
+        }
+        executeScript("$('#output').text('');");
+        executeScript("$('#output').text(" + script + ");");
+        return find("body > #output").getText();
     }
 }
 
