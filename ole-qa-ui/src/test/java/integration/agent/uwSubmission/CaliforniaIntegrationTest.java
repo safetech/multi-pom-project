@@ -65,7 +65,7 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
     }
 
     @Test
-    public void test_california_guranteed_issue() throws Exception {
+    public void AGENT_california_guranteed_issue() throws Exception {
 
         sheet.setAgentId("Test");
         sheet.setAgentMedSuppStates("[NV| CA| MA| FL| NY| OH]");
@@ -147,7 +147,7 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
     }
     @Test
-    public void test_california_eligibility_underwriting_with_rn() throws Exception {
+    public void AGENT_california_eligibility_underwriting_with_rn() throws Exception {
 
         sheet.setAgentId("Test");
         sheet.setAgentMedSuppStates("[NV| CA| MA| FL| NY| OH]");

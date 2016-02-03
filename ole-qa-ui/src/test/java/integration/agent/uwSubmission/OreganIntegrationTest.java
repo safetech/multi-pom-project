@@ -64,7 +64,7 @@ public class OreganIntegrationTest extends CQBaseIntegrationTest {
         expectedSubmissionResult = new SubmissionResult();
     }
     @Test
-    public void test_oregan_guranteed_acceptance() throws Exception {
+    public void AGENT_oregan_guranteed_acceptance() throws Exception {
 
         sheet.setAgentId("Test");
         sheet.setAgentMedSuppStates("[NV| CA| MA| FL| NY| OH| AR| PA| WA| OR]");
@@ -145,7 +145,7 @@ public class OreganIntegrationTest extends CQBaseIntegrationTest {
     }
 
     @Test
-    public void test_oregan_eligibility_healthhistory_underwriting_with_rn() throws Exception {
+    public void AGENT_oregan_eligibility_healthhistory_underwriting_with_rn() throws Exception {
 
         sheet.setAgentId("Test");
         sheet.setAgentMedSuppStates("[NV| CA| MA| FL| NY| OH| AR| PA| WA| OR]");

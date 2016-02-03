@@ -7,7 +7,6 @@ import entity.agent.CribSheet;
 import integration.CQBaseIntegrationTest;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import pages.agent.*;
 import pages.agent.uwExpansion.variations.authorization.OR_AuthorizationPage;
@@ -68,7 +67,7 @@ public class WashingtonIntegrationTest extends CQBaseIntegrationTest {
         expectedSubmissionResult = new SubmissionResult();
     }
     @Test
-    public void test_washington_guranteed_acceptance() throws Exception {
+    public void AGENT_washington_guranteed_acceptance() throws Exception {
 
         sheet.setAgentId("Test");
         sheet.setAgentMedSuppStates("[NV| CA| MA| FL| NY| OH| AR| PA| WA]");
@@ -141,12 +140,10 @@ public class WashingtonIntegrationTest extends CQBaseIntegrationTest {
 
         expectedSubmissionResult.setAcceptedInfo();
         submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
-//        expectedSubmissionResult.setPendingInfo("ENROLLMENT GI REVIEW","BBA REVIEW REQUIRED");
-//        submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
     }
     @Test
 
-    public void test_washington_eligibility_healthhistory_underwriting_with_rn() throws Exception {
+    public void AGENT_washington_eligibility_healthhistory_underwriting_with_rn() throws Exception {
 
         sheet.setAgentId("Test");
         sheet.setAgentMedSuppStates("[NV| CA| MA| FL| NY| OH| AR| PA| WA]");
@@ -268,7 +265,6 @@ public class WashingtonIntegrationTest extends CQBaseIntegrationTest {
         reviewAndSubmitPage.fillAndSubmit(app);
 
         expectedSubmissionResult.setAcceptedInfo();
-        //expectedSubmissionResult.setPendingInfo("ENROLLMENT MISSING INFORMATION","CPA REVIEW REQUIRED");
         submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
 
     }

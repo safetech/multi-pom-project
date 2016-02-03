@@ -32,6 +32,8 @@ public class CA_PlanApplicationQuestions extends PlanApplicationQuestions {
         protected int TOTAL_POSSIBLE_QUESTION_COUNT = 20;
 
         public void verifyInitialStateOfElements(Application app) {
+            isAt();
+            assertQuestionCount(TOTAL_POSSIBLE_QUESTION_COUNT);
 
             assertBlank(GI30Bday_Yes, GI30Bday_No);
             assertYesNoQuestion(Turned65In6GA_Yes, Turned65In6GA_No, app.getTurned65In6GA());
@@ -50,7 +52,6 @@ public class CA_PlanApplicationQuestions extends PlanApplicationQuestions {
                 TobaccoUse_Yes,
                 TobaccoUse_No);
 
-            assertQuestionCount(TOTAL_POSSIBLE_QUESTION_COUNT);
         }
 
         public void fillAndSubmit(Application app) {

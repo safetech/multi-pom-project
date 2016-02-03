@@ -50,7 +50,7 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
     }
 
     @Test
-    public void test_california_guranteed_issue() throws Exception {
+    public void DTC_california_guranteed_issue() throws Exception {
 
         sheet.setAarpMemid("y");
         sheet.setDOB(DateUtils.getDOBofPersonTurningAgeToday(65));
@@ -122,7 +122,7 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
 
     }
     @Test
-    public void test_california_eligibility_underwriting_with_rn() throws Exception {
+    public void DTC_california_eligibility_underwriting_with_rn() throws Exception {
 
         sheet.setDOB(DateUtils.getDOBofPersonTurningAgeToday(69));
         sheet.setEffDate("01/01/2012");

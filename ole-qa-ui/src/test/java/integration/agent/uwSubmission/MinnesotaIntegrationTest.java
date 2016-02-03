@@ -7,7 +7,6 @@ import entity.agent.CribSheet;
 import integration.CQBaseIntegrationTest;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import pages.agent.*;
 import pages.agent.uwExpansion.variations.authorization.OR_AuthorizationPage;
@@ -18,7 +17,9 @@ import pages.agent.uwExpansion.variations.planapplication.MN_PlanApplicationQues
 import pages.agent.uwExpansion.variations.planselection.riders_MN_PlanSelectionPage;
 import pages.agent.variations.replacenotice.RN034andRE073WithSignaturePage;
 import queries.SubmissionQueryAgent;
-import util.DateUtils;;
+import util.DateUtils;
+
+;
 
 public class MinnesotaIntegrationTest extends CQBaseIntegrationTest {
 
@@ -69,7 +70,7 @@ public class MinnesotaIntegrationTest extends CQBaseIntegrationTest {
         expectedSubmissionResult = new SubmissionResult();
     }
     @Test
-    public void test_minnesota_guranteed_acceptance() throws Exception {
+    public void AGENT_minnesota_guranteed_acceptance() throws Exception {
 
         sheet.setAgentId("Test");
         sheet.setAgentMedSuppStates("[NV| CA| MA| FL| NY| OH| AR| PA| WA| MN]");
@@ -146,7 +147,7 @@ public class MinnesotaIntegrationTest extends CQBaseIntegrationTest {
 //        submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
     }
     @Test
-    public void test_minnesota_eligibility_healthhistory_underwriting_with_rn() throws Exception {
+    public void AGENT_minnesota_eligibility_healthhistory_underwriting_with_rn() throws Exception {
 
         sheet.setAgentId("Test");
         sheet.setAgentMedSuppStates("[NV| CA| MA| FL| NY| OH| AR| PA| WA]");
