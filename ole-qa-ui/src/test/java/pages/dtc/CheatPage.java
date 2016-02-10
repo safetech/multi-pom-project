@@ -74,6 +74,7 @@ public class CheatPage extends FluentPage{
 
         cheatButton.click();
         waitForSpinnerToFinish();
+
     }
     public void resumeFillAndSubmit(CribSheet sheet) {
         isAt();

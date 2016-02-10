@@ -15,11 +15,11 @@ public class VoiceSignatureInstructionsPage extends WizardPage {
     @FindBy(css = "#AppInFrontOfYou_1") FluentWebElement AppInFrontOfYou_Yes;
     @FindBy(css = "#AppInFrontOfYou_2") FluentWebElement AppInFrontOfYou_No;
 
-    protected int TOTAL_POSSIBLE_QUESTION_COUNT = 4;
+    protected int TOTAL_POSSIBLE_QUESTION_COUNT = 3;
 
     public void fillAndSubmit(Application app) {
 
-        isAt();
+        //isAt();
         verifyInitialStateOfElements();
 
         VoiceSignatureApproval.click();

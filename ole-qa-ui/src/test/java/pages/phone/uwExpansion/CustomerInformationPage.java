@@ -37,6 +37,7 @@ public class CustomerInformationPage extends WizardPage {
     }
 
     public void verifyInitialStateOfElements(Application app) {
+        isAt();
         assertBlank(MedicareClaimNum,
             Email,
             MPAED);

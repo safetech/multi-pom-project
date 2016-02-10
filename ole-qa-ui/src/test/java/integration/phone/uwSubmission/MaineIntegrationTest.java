@@ -9,30 +9,26 @@ import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
 import pages.phone.uwExpansion.*;
-import pages.phone.uwExpansion.variations.agentverification.CA_AgentVerificationPage;
-import pages.phone.uwExpansion.variations.authorization.CA_AuthorizationAndVerificationPage;
+import pages.phone.uwExpansion.variations.authorization.NV_AuthorizationAndVerificationPage;
 import pages.phone.uwExpansion.variations.eligibilityhealthquestions.CA_EligibilityHealthQuestionsPage;
-import pages.phone.uwExpansion.variations.healthhistoryquestions.CA_HealthHistoryQuestionsPage;
-import pages.phone.uwExpansion.variations.pastandcurrentcoverage.CA_PA_NJ_IN_OR_PastAndCurrentInsuranceCoveragePage;
-import pages.phone.uwExpansion.variations.planapplication.CA_PlanApplicationQuestions;
-import pages.phone.uwExpansion.variations.replacementnotice.RN040Page;
+import pages.phone.uwExpansion.variations.pastandcurrentcoverage.NV_OH_PastAndCurrentInsuranceCoveragePage;
+import pages.phone.uwExpansion.variations.planapplication.ME_PlanApplicationQuestions;
+import pages.phone.uwExpansion.variations.replacementnotice.RN034andRE073Page;
 import queries.SubmissionQueryPhone;
 import util.DateUtils;
 
-
-public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
+public class MaineIntegrationTest extends CQBaseIntegrationTest {
 
     @Page public CheatPage cheatPage;
     @Page public VoiceSignatureInstructionsPage voiceSignatureInstructionsPage;
     @Page public CustomerInformationPage customerInformationPage;
     @Page public PlanSelectionAndStartDatePage planSelectionAndStartDatePage;
-    @Page public CA_PlanApplicationQuestions planApplicationQuestionsPage;
+    @Page public ME_PlanApplicationQuestions planApplicationQuestionsPage;
     @Page public CA_EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
-    @Page public CA_HealthHistoryQuestionsPage healthHistoryQuestionsPage;
-    @Page public CA_PA_NJ_IN_OR_PastAndCurrentInsuranceCoveragePage pastAndCurrentInsuranceCoveragePage;
-    @Page public CA_AuthorizationAndVerificationPage authorizationAndVerificationPage;
-    @Page public CA_AgentVerificationPage agentVerificationPage;
-    @Page public RN040Page replacementNoticePage;
+    @Page public NV_OH_PastAndCurrentInsuranceCoveragePage pastAndCurrentInsuranceCoveragePage;
+    @Page public NV_AuthorizationAndVerificationPage authorizationAndVerificationPage;
+    @Page public AgentVerificationPage agentVerificationPage;
+    @Page public RN034andRE073Page replacementNoticePage;
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
     @Page public ApplicationSubmissionPage applicationSubmissionPage;
 
@@ -40,6 +36,7 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
     private Faker faker;
     private CribSheet sheet;
     private SubmissionResult expectedSubmissionResult;
+    private Application app;
 
     @Before
     public void setup() {
@@ -48,17 +45,20 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
 
         sheet = new CribSheet(faker);
         sheet.setRandomNameGenderAndMembershipNumber();
-        sheet.setRandomAddress("CA", "90210");
+        sheet.setRandomAddress("ME", "04001");
         sheet.setRandomContactInfo();
         sheet.setRandomCallCenterInfo();
+        sheet.setDpsdToFirstDayOfFutureMonth(3);
         sheet.setPlanCode("F01");
 
         app = new Application();
-        // Customer Info Page Question
+
+        //Customer Info Page Question
         app.setMedicareClaimNum(faker.bothify("#########A"));
         app.setPartABActiveIndicator(YES);
         app.setPlanCode("F");
         app.setReqEffectiveDate(DateUtils.getFirstDayOfFutureMonth(3));
+
         //Eligibility Questions
         app.setESRD(NO);
         app.setSurgeryNeeded(NO);
@@ -69,57 +69,46 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
     }
 
     @Test
-    public void PHONE_california_full_underwriting_with_rn() throws Exception {
+    public void PHONE_maine_health_history_underwriting_with_designeeSig_with_rn() throws Exception {
 
-        sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(69));
-        sheet.setMedPartBdate(DateUtils.getFirstDayOfPastOrFutureMonths(-7));
-        sheet.setDpsdToFirstDayOfFutureMonth(3);
+        sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(71));
+        sheet.setMedPartBdate("2010-04-01");
 
-        //Customer Information
-        app.setMPAED(DateUtils.getFirstDayOfPastOrFutureMonths(-7));
-        app.setMPBED(DateUtils.getFirstDayOfPastOrFutureMonths(-7));
+        // Customer Info Page
+        app.setMPAED("01/01/2010");
+        app.setMPBED("04/01/2010");
 
-        //Plan Application
-        app.setDefaultPlanEligibilityQuestions(sheet);
-        app.setLostCoverage(NO);
+        //Plan Application Questions Page
+        app.setPlanEffIn6OfEligible(NO);
         app.setTobaccoUse(NO);
-        app.setGI30dayBday(NO);
-        app.setGIEmployerCov(NO);
-        app.setGIMediCal(NO);
-        app.setGIMilitary(NO);
-        app.setGILocation(NO);
+        app.setLostCoverage(NO);
+        app.setContinuousCoverage(NO);
+
         //Eligibility Questions
         app.setKidneyProblem(NO);
         app.setEligibilitySurgery(NO);
         app.setEligibilityAdmitToHospPast90Days(NO);
         app.setNursingFacility(NO);
-        app.setCAGuaranteedAcceptance(NO);
         app.setEligibilityHeartAttackTIAStroke(NO);
         app.setEligibilityChronicMedicalConditions(NO);
-        //Eligibility Questions(SPECIFIC TO CA)
-        app.setEligdialysis(NO);
-        app.setEligRecdialysis(NO);
-        app.setEligHospital(NO);
-        app.setEligSurgery(NO);
-        app.setEligOrgan(NO);
-        app.setEligSpine(NO);
-        app.setEligjoint(NO);
-        app.setEligCancer(NO);
-        app.setEligHeart(NO);
-        app.setEligVascular(NO);
+        //Health History
+        app.setCommonHealthHistoryAnswers();
+
         //Past And Current Coverage
+        app.setCPATurned65(NO);
+        app.setCPAPartBIn6(NO);
         app.setMedicaidCovered(YES);
         app.setMedicaidSupPremium(YES);
         app.setMedicaidbenefit(YES);
         app.setExistingMedicare(YES);
-        app.setOtherMedplanstart("01/01/2000");
+        app.setOtherMedplanstart("01/01/2012");
         app.setOtherMedplanend("01/01/2015");
         app.setIntentReplace(YES);
         app.setFirstTime(YES);
         app.setDropMedSuppForThisPlan(YES);
         app.setExistMedSupp(YES);
-        app.setMSInsCompany("Meds supp");
-        app.setMSPLAN("Ms Plan");
+        app.setMSInsCompany("Blue Cross Blue Shield ME");
+        app.setMSPLAN("Medical Supplement ME");
         app.setReplaceExistingMedSup(YES);
         app.setOtherInsCoverage(YES);
         app.setOtherInsCompany("Blue Cross Blue Shield");
@@ -128,25 +117,25 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         app.setOtherInsEnd("01/01/2014");
         app.setOtherInsReplace(YES);
         app.setCpaSignatureInd(YES);
-        //Authorization Page
-        //Agent Verification Page
-        app.setAgentOtherInsPoliciesSold("HIP");
-        app.setAgentPoliciesInForce("EP");
-        app.setAgentPoliciesSoldNotInForce("EPHIP");
-        app.setAgentSignatureInd(YES);
+
+        //Authorizationa and verififcation page
+        app.setDesignateLapse(NO);
+        app.setAuxFirstName("AuxFirstName");
+        app.setAuxMI("M");
+        app.setAuxLastName("AuxLastName");
+        app.setAuxAddressLine1("AuxAddressLine1");
+        app.setAuxCity("AuxCity");
+        app.setAuxState("ME");
+        app.setAuxZipCode("04010");
+
         //Replacement Notice Page
-        app.setReplacementReason("OtherReason");
-        app.setRNOther("Cheaper");
-        app.setAgentPrintedNameAdd("ProducerName");
-        app.setAgentAddress("ProducerAdd");
-        app.setApplicantPrintedNameAdd("AppName");
-        app.setApplicantAddress("AppAdd");
-        app.setMedicalReleaseAuthSignatureIndRequired("Required");
-        logger.info(gson.toJson(app));
+        app.setCommonReplacementNoticeAnswersWithApplicantInfo();
+
+        expectedSubmissionResult.setAcceptedInfo();
 
         startApp(cheatPage, app, sheet);
 
-        voiceSignatureInstructionsPage.checkMarketabilityCode("M14M43AGMMCA01_01D");
+        voiceSignatureInstructionsPage.checkMarketabilityCode("M13T43AGMMME01_01E");
         voiceSignatureInstructionsPage.fillAndSubmit(app);
         customerInformationPage.fillAndSubmit(app);
         planSelectionAndStartDatePage.fillAndSubmit(app);
@@ -157,48 +146,43 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         agentVerificationPage.fillAndSubmit(app);
         replacementNoticePage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
+        applicationSubmissionPage.isApproved();
 
-        expectedSubmissionResult.setAcceptedInfo();
         submissionQueryPhone.verifySubmissionData(app, expectedSubmissionResult);
         submissionQueryPhone.verifyAdjudicationData(app, expectedSubmissionResult);
 
     }
 
     @Test
-    public void PHONE_california_full_underwriting_without_rn() throws Exception {
+    public void PHONE_maine_eligibility_underwriting_designeeSig_without_rn() throws Exception {
 
-        sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(65));
-        sheet.setMedPartBdate(DateUtils.getFirstDayOfPastOrFutureMonths(2));
-        sheet.setDpsdToFirstDayOfFutureMonth(3);
-        //Customer Information
-        app.setMPAED("01/01/2015");
-        app.setMPBED(DateUtils.getFirstDayOfPastOrFutureMonths(2));
-        //Eligibility Questions
-        app.setKidneyProblem(NO);
-        app.setEligibilitySurgery(NO);
-        app.setEligibilityAdmitToHospPast90Days(NO);
-        app.setNursingFacility(NO);
-        app.setEligibilityHeartAttackTIAStroke(NO);
-        app.setEligibilityChronicMedicalConditions(NO);
-        //Plan Application
-        app.setTurned65In6GA(BLANK);
-        app.setPartBIn6GA(BLANK);
-        app.setPlanEffIn6OfEligible(YES);
-        app.setLostCoverage(BLANK);
-        app.setCAGuaranteedAcceptance(BLANK);
-        app.setTobaccoUse(YES);
-        app.setGI30dayBday(BLANK);
+        sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(68));
+        sheet.setMedPartBdate("2014-01-01");
+
+        // Customer Info Page
+        app.setMPAED("01/01/2014");
+        app.setMPBED("01/01/2014");
+
+        //Plan Eligibility
+        app.setTurned65In6GA(NO);
+        app.setPartBIn6GA(NO);
+        app.setPlanEffIn6OfEligible(NO);
+        app.setLostCoverage(NO);
+        app.setTobaccoUse(NO);
+        app.setContinuousCoverage(NO);
+
         //Past And Current Coverage
+        app.setCPATurned65(NO);
+        app.setCPAPartBIn6(NO);
         app.setMedicaidCovered(YES);
         app.setMedicaidSupPremium(YES);
         app.setMedicaidbenefit(YES);
         app.setExistingMedicare(NO);
-        app.setOtherMedplanstart(BLANK);
-        app.setOtherMedplanend(BLANK);
-        app.setIntentReplace(BLANK);
         app.setFirstTime(BLANK);
         app.setDropMedSuppForThisPlan(BLANK);
         app.setExistMedSupp(NO);
+        app.setMSInsCompany("Blue Cross Blue Shield NV");
+        app.setMSPLAN("Medical Supplement NV");
         app.setReplaceExistingMedSup(BLANK);
         app.setOtherInsCoverage(YES);
         app.setOtherInsCompany("Blue Cross Blue Shield");
@@ -207,38 +191,29 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         app.setOtherInsEnd("01/01/2014");
         app.setOtherInsReplace(YES);
         app.setCpaSignatureInd(YES);
-        //Agent Verification Page
-        app.setAgentOtherInsPoliciesSold("HMO");
-        app.setAgentPoliciesInForce("EP");
-        app.setAgentPoliciesSoldNotInForce("EP-HIP");
-        app.setAgentSignatureInd(YES);
-        //Replacement Notice Page
-        app.setReplacementReason("OtherReason");
-        app.setRNOther("Cheaper");
-        app.setAgentPrintedNameAdd("ProducerName");
-        app.setAgentAddress("ProducerAdd");
-        app.setApplicantPrintedNameAdd("AppName");
-        app.setApplicantAddress("AppAdd");
 
-        logger.info(gson.toJson(app));
+        //Authorizationa and verififcation page
+        app.setDesignateLapse(YES);
+
+        expectedSubmissionResult.setAcceptedInfo();
 
         startApp(cheatPage, app, sheet);
 
-        voiceSignatureInstructionsPage.checkMarketabilityCode("M14M43AGMMCA01_01D");
+        voiceSignatureInstructionsPage.checkMarketabilityCode("M13T43AGMMME01_01E");
         voiceSignatureInstructionsPage.fillAndSubmit(app);
         customerInformationPage.fillAndSubmit(app);
         planSelectionAndStartDatePage.fillAndSubmit(app);
         planApplicationQuestionsPage.fillAndSubmit(app);
+        eligibilityHealthQuestionsPage.fillAndSubmit(app);
         pastAndCurrentInsuranceCoveragePage.fillAndSubmit(app);
         authorizationAndVerificationPage.fillAndSubmit(app);
         agentVerificationPage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
-        applicationSubmissionPage.isAt();
         applicationSubmissionPage.isApproved();
 
-        expectedSubmissionResult.setAcceptedInfo();
         submissionQueryPhone.verifySubmissionData(app, expectedSubmissionResult);
         submissionQueryPhone.verifyAdjudicationData(app, expectedSubmissionResult);
 
     }
+
 }

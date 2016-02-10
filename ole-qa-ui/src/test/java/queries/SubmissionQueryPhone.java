@@ -146,7 +146,7 @@ public class SubmissionQueryPhone {
         String query = String.format(RIDERS_QUERY, app.getHCSGApplicationId());
         logger.info(query);
         String currentDate = DateUtils.NORMALIZED_DATE_FORMAT.format(new java.util.Date());
-        HashMap<String, String> row = DbUtils.getSingleRecord(query, COMPAS_STAGE);
+        HashMap<String, String> row = DbUtils.getSingleRecord(query, COMPAS_SYS1);
 
         assertThat(row.get("PLAN_CD"), equalTo(expectedSubmissionResult.getPlanCode()));
         assertThat(row.get("RIDER_REQUEST_1"), equalTo(expectedSubmissionResult.getRiderOne()));
@@ -181,7 +181,7 @@ public class SubmissionQueryPhone {
         String query = String.format(RIDERS_QUERY, app.getHCSGApplicationId());
         logger.info(query);
         String currentDate = DateUtils.NORMALIZED_DATE_FORMAT.format(new java.util.Date());
-        HashMap<String, String> row = DbUtils.getSingleRecord(query, COMPAS_STAGE);
+        HashMap<String, String> row = DbUtils.getSingleRecord(query, COMPAS_SYS1);
 
         assertThat(row.get("PLAN_CD"), equalTo(expectedSubmissionResult.getPlanCode()));
         assertThat(row.get("RIDER_REQUEST_1"), equalTo(expectedSubmissionResult.getRiderOne()));
@@ -250,9 +250,9 @@ public class SubmissionQueryPhone {
         assertThat(row.get("ACTOR"), equalTo("2"));
         assertThat(row.get("MECHANISM"), equalTo("2"));
         assertThat(row.get("PAYMENT_METHOD_TYPE_ID"), equalTo("2"));
-        assertThat(row.get("ADJUDICATION_CD"), equalTo(expectedSubmissionResult.getAdjudicationStatus()));
-
         logger.info(String.format("Here is the link to the image... https://acesx-tst-alt.uhc.com/appEnroll-web/resources/retrievePDF/v1/%s", row.get("APPL_IMAGE_NUM_ORIG") +" For the state of --> " + app.getState()));
+
+        assertThat(row.get("ADJUDICATION_CD"), containsString(expectedSubmissionResult.getAdjudicationStatus()));
 
     }
 
@@ -262,7 +262,7 @@ public class SubmissionQueryPhone {
 
         logger.info(query);
 
-        HashMap<String, String> row = DbUtils.getSingleRecord(query, COMPAS_STAGE);
+        HashMap<String, String> row = DbUtils.getSingleRecord(query, COMPAS_SYS1);
 
         logger.info("query is "+row.get("TYPE_DESC")+" and expected is "+expectedSubmissionResult.getWorkQueue());
 

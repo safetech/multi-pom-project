@@ -10,148 +10,92 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class CA_EligibilityHealthQuestionsPage extends WizardPage {
 
-    @FindBy(css = "#ESRD_1") FluentWebElement ESRD_Yes;
-    @FindBy(css = "#ESRD_2") FluentWebElement ESRD_No;
-    @FindBy(css = "#ESRD_3") FluentWebElement ESRD_Maybe;
-    @FindBy(css = "#Eligdialysis_1") FluentWebElement Eligdialysis_Yes;
-    @FindBy(css = "#Eligdialysis_2") FluentWebElement Eligdialysis_No;
-    @FindBy(css = "#Eligdialysis_3") FluentWebElement Eligdialysis_Maybe;
-    @FindBy(css = "#EligRecdialysis_1") FluentWebElement EligRecdialysis_Yes;
-    @FindBy(css = "#EligRecdialysis_2") FluentWebElement EligRecdialysis_No;
-    @FindBy(css = "#EligRecdialysis_3") FluentWebElement EligRecdialysis_Maybe;
-    @FindBy(css = "#EligHospital_1") FluentWebElement EligHospital_Yes;
-    @FindBy(css = "#EligHospital_2") FluentWebElement EligHospital_No;
-    @FindBy(css = "#EligHospital_3") FluentWebElement EligHospital_Maybe;
-    @FindBy(css = "#EligSurgery_1") FluentWebElement EligSurgery_Yes;
-    @FindBy(css = "#EligSurgery_2") FluentWebElement EligSurgery_No;
-    @FindBy(css = "#EligSurgery_3") FluentWebElement EligSurgery_Maybe;
-    @FindBy(css = "#EligOrgan_1") FluentWebElement EligOrgan_Yes;
-    @FindBy(css = "#EligOrgan_2") FluentWebElement EligOrgan_No;
-    @FindBy(css = "#EligOrgan_3") FluentWebElement EligOrgan_Maybe;
-    @FindBy(css = "#EligSpine_1") FluentWebElement EligSpine_Yes;
-    @FindBy(css = "#EligSpine_2") FluentWebElement EligSpine_No;
-    @FindBy(css = "#EligSpine_3") FluentWebElement EligSpine_Maybe;
-    @FindBy(css = "#Eligjoint_1") FluentWebElement Eligjoint_Yes;
-    @FindBy(css = "#Eligjoint_2") FluentWebElement Eligjoint_No;
-    @FindBy(css = "#Eligjoint_3") FluentWebElement Eligjoint_Maybe;
-    @FindBy(css = "#EligCancer_1") FluentWebElement EligCancer_Yes;
-    @FindBy(css = "#EligCancer_2") FluentWebElement EligCancer_No;
-    @FindBy(css = "#EligCancer_3") FluentWebElement EligCancer_Maybe;
-    @FindBy(css = "#EligHeart_1") FluentWebElement EligHeart_Yes;
-    @FindBy(css = "#EligHeart_2") FluentWebElement EligHeart_No;
-    @FindBy(css = "#EligHeart_3") FluentWebElement EligHeart_Maybe;
-    @FindBy(css = "#EligVascular_1") FluentWebElement EligVascular_Yes;
-    @FindBy(css = "#EligVascular_2") FluentWebElement EligVascular_No;
-    @FindBy(css = "#EligVascular_3") FluentWebElement EligVascular_Maybe;
+    @FindBy(css = "#KidneyProblem_1") FluentWebElement KidneyProblem_Yes;
+    @FindBy(css = "#KidneyProblem_2") FluentWebElement KidneyProblem_No;
+    @FindBy(css = "#KidneyProblem_3") FluentWebElement KidneyProblem_Unsure;
+    @FindBy(css = "#EligibilitySurgery_1") FluentWebElement EligibilitySurgery_Yes;
+    @FindBy(css = "#EligibilitySurgery_2") FluentWebElement EligibilitySurgery_No;
+    @FindBy(css = "#EligibilitySurgery_3") FluentWebElement EligibilitySurgery_Unsure;
+    @FindBy(css = "#EligibilityAdmitToHospPast90Days_1") FluentWebElement AdmitToHospPast90Days_Yes;
+    @FindBy(css = "#EligibilityAdmitToHospPast90Days_2") FluentWebElement AdmitToHospPast90Days_No;
+    @FindBy(css = "#EligibilityAdmitToHospPast90Days_3") FluentWebElement AdmitToHospPast90Days_Unsure;
+    @FindBy(css = "#NursingFacility_1") FluentWebElement NursingFacility_Yes;
+    @FindBy(css = "#NursingFacility_2") FluentWebElement NursingFacility_No;
+    @FindBy(css = "#NursingFacility_3") FluentWebElement NursingFacility_Unsure;
+    @FindBy(css = "#EligibilityHeartAttackTIAStroke_1") FluentWebElement EligibilityHeartAttackTIAStroke_Yes;
+    @FindBy(css = "#EligibilityHeartAttackTIAStroke_2") FluentWebElement EligibilityHeartAttackTIAStroke_No;
+    @FindBy(css = "#EligibilityHeartAttackTIAStroke_3") FluentWebElement EligibilityHeartAttackTIAStroke_Unsure;
+    @FindBy(css = "#EligibilityChronicMedicalConditions_1") FluentWebElement EligibilityChronicMedicalConditions_Yes;
+    @FindBy(css = "#EligibilityChronicMedicalConditions_2") FluentWebElement EligibilityChronicMedicalConditions_No;
+    @FindBy(css = "#EligibilityChronicMedicalConditions_3") FluentWebElement EligibilityChronicMedicalConditions_Unsure;
 
-    protected int TOTAL_POSSIBLE_QUESTION_COUNT = 33;
+    protected int TOTAL_POSSIBLE_QUESTION_COUNT = 18;
 
-    public void verifyInitialStateOfElements(Application app) {
-        assertBlank(
-            ESRD_Yes,
-            ESRD_No,
-            ESRD_Maybe,
-            Eligdialysis_Yes,
-            Eligdialysis_No,
-            Eligdialysis_Maybe,
-            EligRecdialysis_Yes,
-            EligRecdialysis_No,
-            EligRecdialysis_Maybe,
-            EligHospital_Yes,
-            EligHospital_No,
-            EligHospital_Maybe,
-            EligSurgery_Yes,
-            EligSurgery_No,
-            EligSurgery_Maybe,
-            EligOrgan_Yes,
-            EligOrgan_No,
-            EligOrgan_Maybe,
-            EligSpine_Yes,
-            EligSpine_No,
-            EligSpine_Maybe,
-            Eligjoint_Yes,
-            Eligjoint_No,
-            Eligjoint_Maybe,
-            EligCancer_Yes,
-            EligCancer_No,
-            EligCancer_Maybe,
-            EligHeart_Yes,
-            EligHeart_No,
-            EligHeart_Maybe,
-            EligVascular_Yes,
-            EligVascular_No,
-            EligVascular_Maybe);
-
+    public void verifyInitialStateOfElements() {
         assertQuestionCount(TOTAL_POSSIBLE_QUESTION_COUNT);
+        assertBlank(
+                KidneyProblem_Yes,
+                KidneyProblem_No,
+                KidneyProblem_Unsure,
+                EligibilitySurgery_Yes,
+                EligibilitySurgery_No,
+                EligibilitySurgery_Unsure,
+                AdmitToHospPast90Days_Yes,
+                AdmitToHospPast90Days_No,
+                AdmitToHospPast90Days_Unsure,
+                NursingFacility_Yes,
+                NursingFacility_No,
+                NursingFacility_Unsure,
+                EligibilityHeartAttackTIAStroke_Yes,
+                EligibilityHeartAttackTIAStroke_No,
+                EligibilityHeartAttackTIAStroke_Unsure,
+                EligibilityChronicMedicalConditions_Yes,
+                EligibilityChronicMedicalConditions_No,
+                EligibilityChronicMedicalConditions_Unsure);
     }
 
     public void fillAndSubmit(Application app) {
-        verifyInitialStateOfElements(app);
-        fillYesNoUnsureQuestion(ESRD_Yes, ESRD_No, ESRD_Maybe, app.getESRD());
-        fillYesNoUnsureQuestion(Eligdialysis_Yes, Eligdialysis_No, Eligdialysis_Maybe, app.getEligdialysis());
-        fillYesNoUnsureQuestion(EligRecdialysis_Yes, EligRecdialysis_No, EligRecdialysis_Maybe, app.getEligRecdialysis());
-        fillYesNoUnsureQuestion(EligHospital_Yes, EligHospital_No, EligHospital_Maybe, app.getEligHospital());
-        fillYesNoUnsureQuestion(EligSurgery_Yes, EligSurgery_No, EligSurgery_Maybe, app.getEligSurgery());
-        fillYesNoUnsureQuestion(EligOrgan_Yes, EligOrgan_No, EligOrgan_Maybe, app.getEligOrgan());
-        fillYesNoUnsureQuestion(EligSpine_Yes, EligSpine_No, EligSpine_Maybe, app.getEligSpine());
-        fillYesNoUnsureQuestion(Eligjoint_Yes, Eligjoint_No, Eligjoint_Maybe, app.getEligjoint());
-        fillYesNoUnsureQuestion(EligCancer_Yes, EligCancer_No, EligCancer_Maybe, app.getEligCancer());
-        fillYesNoUnsureQuestion(EligHeart_Yes, EligHeart_No, EligHeart_Maybe, app.getEligHeart());
-        fillYesNoUnsureQuestion(EligVascular_Yes, EligVascular_No, EligVascular_Maybe, app.getEligVascular());
+        verifyInitialStateOfElements();
+
+        fillYesNoUnsureQuestion(KidneyProblem_Yes, KidneyProblem_No, KidneyProblem_Unsure, app.getKidneyProblem());
+        fillYesNoUnsureQuestion(EligibilitySurgery_Yes, EligibilitySurgery_No, EligibilitySurgery_Unsure, app.getEligibilitySurgery());
+        fillYesNoUnsureQuestion(AdmitToHospPast90Days_Yes, AdmitToHospPast90Days_No, AdmitToHospPast90Days_Unsure, app.getEligibilityAdmitToHospPast90Days());
+        fillYesNoUnsureQuestion(NursingFacility_Yes, NursingFacility_No, NursingFacility_Unsure, app.getNursingFacility());
+        fillYesNoUnsureQuestion(EligibilityHeartAttackTIAStroke_Yes, EligibilityHeartAttackTIAStroke_No, EligibilityHeartAttackTIAStroke_Unsure, app.getEligibilityHeartAttackTIAStroke());
+        fillYesNoUnsureQuestion(EligibilityChronicMedicalConditions_Yes, EligibilityChronicMedicalConditions_No, EligibilityChronicMedicalConditions_Unsure, app.getEligibilityChronicMedicalConditions());
 
         verifyStateOfElementAfterAnswers(app);
         clickNextAndWaitForSpinnerToFinish();
-
 
     }
 
     public void verifyStateOfElementAfterAnswers(Application app) {
 
         assertVisible(
-            ESRD_Yes,
-            ESRD_No,
-            ESRD_Maybe,
-            Eligdialysis_Yes,
-            Eligdialysis_No,
-            Eligdialysis_Maybe,
-            EligRecdialysis_Yes,
-            EligRecdialysis_No,
-            EligRecdialysis_Maybe,
-            EligHospital_Yes,
-            EligHospital_No,
-            EligHospital_Maybe,
-            EligSurgery_Yes,
-            EligSurgery_No,
-            EligSurgery_Maybe,
-            EligOrgan_Yes,
-            EligOrgan_No,
-            EligOrgan_Maybe,
-            EligSpine_Yes,
-            EligSpine_No,
-            EligSpine_Maybe,
-            Eligjoint_Yes,
-            Eligjoint_No,
-            Eligjoint_Maybe,
-            EligCancer_Yes,
-            EligCancer_No,
-            EligCancer_Maybe,
-            EligHeart_Yes,
-            EligHeart_No,
-            EligHeart_Maybe,
-            EligVascular_Yes,
-            EligVascular_No,
-            EligVascular_Maybe);
-        assertYesNoUnsureQuestion(ESRD_Yes, ESRD_No, ESRD_Maybe, app.getESRD());
-        assertYesNoUnsureQuestion(Eligdialysis_Yes, Eligdialysis_No, Eligdialysis_Maybe, app.getEligdialysis());
-        assertYesNoUnsureQuestion(EligRecdialysis_Yes, EligRecdialysis_No, EligRecdialysis_Maybe, app.getEligRecdialysis());
-        assertYesNoUnsureQuestion(EligHospital_Yes, EligHospital_No, EligHospital_Maybe, app.getEligHospital());
-        assertYesNoUnsureQuestion(EligSurgery_Yes, EligSurgery_No, EligSurgery_Maybe, app.getEligSurgery());
-        assertYesNoUnsureQuestion(EligOrgan_Yes, EligOrgan_No, EligOrgan_Maybe, app.getEligOrgan());
-        assertYesNoUnsureQuestion(EligSpine_Yes, EligSpine_No, EligSpine_Maybe, app.getEligSpine());
-        assertYesNoUnsureQuestion(Eligjoint_Yes, Eligjoint_No, Eligjoint_Maybe, app.getEligjoint());
-        assertYesNoUnsureQuestion(EligCancer_Yes, EligCancer_No, EligCancer_Maybe, app.getEligCancer());
-        assertYesNoUnsureQuestion(EligHeart_Yes, EligHeart_No, EligHeart_Maybe, app.getEligHeart());
-        assertYesNoUnsureQuestion(EligVascular_Yes, EligVascular_No, EligVascular_Maybe, app.getEligVascular());
+                KidneyProblem_Yes,
+                KidneyProblem_No,
+                KidneyProblem_Unsure,
+                EligibilitySurgery_Yes,
+                EligibilitySurgery_No,
+                EligibilitySurgery_Unsure,
+                AdmitToHospPast90Days_Yes,
+                AdmitToHospPast90Days_No,
+                AdmitToHospPast90Days_Unsure,
+                NursingFacility_Yes,
+                NursingFacility_No,
+                NursingFacility_Unsure,
+                EligibilityHeartAttackTIAStroke_Yes,
+                EligibilityHeartAttackTIAStroke_No,
+                EligibilityHeartAttackTIAStroke_Unsure,
+                EligibilityChronicMedicalConditions_Yes,
+                EligibilityChronicMedicalConditions_No,
+                EligibilityChronicMedicalConditions_Unsure);
+        assertYesNoUnsureQuestion(KidneyProblem_Yes, KidneyProblem_No, KidneyProblem_Unsure, app.getKidneyProblem());
+        assertYesNoUnsureQuestion(EligibilitySurgery_Yes, EligibilitySurgery_No, EligibilitySurgery_Unsure, app.getEligibilitySurgery());
+        assertYesNoUnsureQuestion(AdmitToHospPast90Days_Yes, AdmitToHospPast90Days_No, AdmitToHospPast90Days_Unsure, app.getEligibilityAdmitToHospPast90Days());
+        assertYesNoUnsureQuestion(NursingFacility_Yes, NursingFacility_No, NursingFacility_Unsure, app.getNursingFacility());
+        assertYesNoUnsureQuestion(EligibilityHeartAttackTIAStroke_Yes, EligibilityHeartAttackTIAStroke_No, EligibilityHeartAttackTIAStroke_Unsure, app.getEligibilityHeartAttackTIAStroke());
+        assertYesNoUnsureQuestion(EligibilityChronicMedicalConditions_Yes, EligibilityChronicMedicalConditions_No, EligibilityChronicMedicalConditions_Unsure, app.getEligibilityChronicMedicalConditions());
 
         assertQuestionCount(TOTAL_POSSIBLE_QUESTION_COUNT);
     }

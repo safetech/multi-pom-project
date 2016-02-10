@@ -136,6 +136,7 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
 
         startApp(cheatPage, app, sheet);
 
+        voiceSignatureInstructionsPage.checkMarketabilityCode("M13T43AGMMME01_01E");
         voiceSignatureInstructionsPage.fillAndSubmit(app);
         customerInformationPage.fillAndSubmit(app);
         planSelectionAndStartDatePage.basicPlanGaNoRiderNoRnNoQr();
@@ -225,6 +226,7 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
 
         startApp(cheatPage, app, sheet);
 
+        voiceSignatureInstructionsPage.checkMarketabilityCode("M13T43AGMMME01_01E");
         voiceSignatureInstructionsPage.fillAndSubmit(app);
         customerInformationPage.fillAndSubmit(app);
         planSelectionAndStartDatePage.basicPlanGaRider23And4NoRnNoQr();
@@ -314,6 +316,7 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
 
         startApp(cheatPage, app, sheet);
 
+        voiceSignatureInstructionsPage.checkMarketabilityCode("M13T43AGMMME01_01E");
         voiceSignatureInstructionsPage.fillAndSubmit(app);
         customerInformationPage.fillAndSubmit(app);
         planSelectionAndStartDatePage.basicPlanGaRider23And4NoRnNoQr();
@@ -403,6 +406,7 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
 
         startApp(cheatPage, app, sheet);
 
+        voiceSignatureInstructionsPage.checkMarketabilityCode("M13T43AGMMME01_01E");
         voiceSignatureInstructionsPage.fillAndSubmit(app);
         customerInformationPage.fillAndSubmit(app);
         planSelectionAndStartDatePage.basicPlanGaRider234And5NoRnNoQr();
@@ -412,7 +416,7 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         agentVerificationPage.fillAndSubmit(app);
         ReplacementNotice034Page.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
-        applicationSubmissionPage.isPending();
+
         expectedSubmissionResult.verifyAcceptedPlanAndRiderCodes("TW1", "YW1", "VW1", "WW1", "ZW1");
         submissionQueryPhone.verifyPlanAndRiderCodes(app, sheet, expectedSubmissionResult);
     }
@@ -493,6 +497,7 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
 
         startApp(cheatPage, app, sheet);
 
+        voiceSignatureInstructionsPage.checkMarketabilityCode("M13T43AGMMME01_01E");
         voiceSignatureInstructionsPage.fillAndSubmit(app);
         customerInformationPage.fillAndSubmit(app);
         planSelectionAndStartDatePage.extendedPlanFullUwWithRnQr();

@@ -30,8 +30,10 @@ public class WhatYouNeedPage extends WizardPage {
 
         clickNextAndWaitForSpinnerToFinish();
     }
+
     public void isAt() {
         assertThat(pageTitle.getText(), equalTo("What You Need"));
+
     }
 
 }

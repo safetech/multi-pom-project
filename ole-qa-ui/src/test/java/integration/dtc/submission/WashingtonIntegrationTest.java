@@ -130,7 +130,7 @@ public class WashingtonIntegrationTest extends CQBaseIntegrationTest {
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);
 
-        whatYouNeedPage.isAt();
+        whatYouNeedPage.checkMarketabilityCode("S87543AGMMWA02_02B");
         whatYouNeedPage.clickNextAndWaitForSpinnerToFinish();
 
         electronicSignatureAndDocumentConsentPage.isAt();
@@ -254,7 +254,7 @@ public class WashingtonIntegrationTest extends CQBaseIntegrationTest {
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);
 
-        whatYouNeedPage.isAt();
+        whatYouNeedPage.checkMarketabilityCode("S87543AGMMWA02_02B");
         whatYouNeedPage.clickNextAndWaitForSpinnerToFinish();
 
         electronicSignatureAndDocumentConsentPage.isAt();

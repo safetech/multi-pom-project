@@ -16,7 +16,7 @@ public class ApplicationSubmissionPage extends WizardPage {
 
     public void isApproved() {
         isAt();
-        assertThat(pageBorderContent.getText(), containsString("APPROVED"));
+        assertThat(pageBorderContent.getText(), containsString("APPROVED PENDING"));
     }
     public void isPending() {
         assertThat(pageBorderContent.getText(), containsString("PENDING"));

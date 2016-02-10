@@ -17,15 +17,15 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.slf4j.Logger;
-//import pages.phone.uwExpansion.CheatPage;
 import pages.phone.CheatPage;
-
 import util.AnswerUtils;
 
 import java.io.File;
 import java.io.IOException;
 
 import static org.slf4j.LoggerFactory.getLogger;
+
+//import pages.phone.uwExpansion.CheatPage;
 
 //import pages.phone.uwExpansion;
 
@@ -68,8 +68,9 @@ public class CQBaseIntegrationTest extends FluentTest {
         logger.info(String.format("Using driver: webdriver.firefox.bin=%s", System.getProperty("webdriver.firefox.bin")));
         //Comment the below lines if your not using Browser Stack
 //        DesiredCapabilities caps = new DesiredCapabilities();
-//        caps.setCapability("browser", "Chrome");
-//        caps.setCapability("browser_version", "45");
+//        caps.setCapability("browser", "IE");
+////        caps.setCapability("browser", "Chrome");
+//        caps.setCapability("browser_version", "8");
 //        caps.setCapability("os", "Windows");
 //        caps.setCapability("os_version", "7");
 //        caps.setCapability("browserstack.debug", "true");
@@ -110,6 +111,7 @@ public class CQBaseIntegrationTest extends FluentTest {
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);
     }
+
 }
 
 // TODO: Junit Setup

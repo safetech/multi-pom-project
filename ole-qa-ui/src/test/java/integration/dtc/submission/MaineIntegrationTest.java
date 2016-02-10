@@ -133,7 +133,7 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);
 
-        whatYouNeedPage.isAt();
+        whatYouNeedPage.checkMarketabilityCode("M08O43AGMMME01_02C");
         whatYouNeedPage.clickNextAndWaitForSpinnerToFinish();
 
         electronicSignatureAndDocumentConsentPage.isAt();
@@ -248,7 +248,7 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);
 
-        whatYouNeedPage.isAt();
+        whatYouNeedPage.checkMarketabilityCode("M08O43AGMMME01_02C");
         whatYouNeedPage.clickNextAndWaitForSpinnerToFinish();
 
         electronicSignatureAndDocumentConsentPage.isAt();

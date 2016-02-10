@@ -85,7 +85,7 @@ public class FloridaResumeIntegrationTest extends CQBaseIntegrationTest {
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);
 
-        whatYouNeedPage.isAt();
+        whatYouNeedPage.checkMarketabilityCode("S03Q43AGMMFL02_02B");
         whatYouNeedPage.clickNextAndWaitForSpinnerToFinish();
 
         electronicSignatureAndDocumentConsentPage.isAt();

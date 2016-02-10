@@ -130,7 +130,7 @@ public class ArkansasIntegrationTest extends CQBaseIntegrationTest {
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);
 
-        whatYouNeedPage.isAt();
+        whatYouNeedPage.checkMarketabilityCode("S93143AGMMAR01_02B");
         whatYouNeedPage.clickNextAndWaitForSpinnerToFinish();
 
         electronicSignatureAndDocumentConsentPage.isAt();
@@ -256,7 +256,7 @@ public class ArkansasIntegrationTest extends CQBaseIntegrationTest {
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);
 
-        whatYouNeedPage.isAt();
+        whatYouNeedPage.checkMarketabilityCode("S93143AGMMAR01_02B");
         whatYouNeedPage.clickNextAndWaitForSpinnerToFinish();
 
         electronicSignatureAndDocumentConsentPage.isAt();

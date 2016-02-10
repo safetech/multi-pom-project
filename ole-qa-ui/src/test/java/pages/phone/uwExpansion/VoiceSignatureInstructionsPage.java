@@ -15,7 +15,7 @@ public class VoiceSignatureInstructionsPage extends WizardPage {
     @FindBy(css = "#AppInFrontOfYou_1") FluentWebElement AppInFrontOfYou_Yes;
     @FindBy(css = "#AppInFrontOfYou_2") FluentWebElement AppInFrontOfYou_No;
 
-    protected int TOTAL_POSSIBLE_QUESTION_COUNT = 4;
+    protected int TOTAL_POSSIBLE_QUESTION_COUNT = 3;
 
     public void fillAndSubmit(Application app) {
 
@@ -54,6 +54,7 @@ public class VoiceSignatureInstructionsPage extends WizardPage {
 
 
     public void isAt() {
-        assertThat(pageTitle.getText(), containsString("Voice Signature Instructions and Start Date"));
+        assertThat(pageTitle.getText(), containsString("Voice Signature Instructions"));
+        //assertThat(pageTitle.getText(), containsString("Voice Signature Instructions"));
     }
 }

@@ -40,13 +40,13 @@ public class ME_PlanApplicationQuestions extends PlanApplicationQuestions {
 
     public void verifyStateOfElementAfterAnswers(Application app) {
         assertVisible(Turned65In6GA_Yes,
-            Turned65In6GA_No,
-            PartBIn6GA_Yes,
-            PartBIn6GA_No,
-            PlanEffIn6OfEligible_Yes,
-            PlanEffIn6OfEligible_No,
-            LostCoverage_Yes,
-            LostCoverage_No);
+                Turned65In6GA_No,
+                PartBIn6GA_Yes,
+                PartBIn6GA_No,
+                PlanEffIn6OfEligible_Yes,
+                PlanEffIn6OfEligible_No,
+                LostCoverage_Yes,
+                LostCoverage_No);
         assertYesNoQuestion(TobaccoUse_Yes, TobaccoUse_No, app.getTobaccoUse());
         assertYesNoQuestion(Turned65In6GA_Yes, Turned65In6GA_No, app.getTurned65In6GA());
         assertYesNoQuestion(PartBIn6GA_Yes, PartBIn6GA_No, app.getPartBIn6GA());

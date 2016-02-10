@@ -131,13 +131,13 @@ public class OragonIntegrationTest extends CQBaseIntegrationTest {
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);
 
-        whatYouNeedPage.isAt();
+        whatYouNeedPage.checkMarketabilityCode("S09Q43AGMMOR01_01C");
         whatYouNeedPage.clickNextAndWaitForSpinnerToFinish();
 
         electronicSignatureAndDocumentConsentPage.isAt();
         electronicSignatureAndDocumentConsentPage.clickNextAndWaitForSpinnerToFinish();
 
-        aboutYouPage.isAt();
+        whatYouNeedPage.checkMarketabilityCode("M14M43AGMMCA01_01D");
         aboutYouPage.fillAndSubmit(app, sheet);
 
         planSelectionAndStartDatePage.isAt();
@@ -255,7 +255,7 @@ public class OragonIntegrationTest extends CQBaseIntegrationTest {
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);
 
-        whatYouNeedPage.isAt();
+        whatYouNeedPage.checkMarketabilityCode("S09Q43AGMMOR01_01C");
         whatYouNeedPage.clickNextAndWaitForSpinnerToFinish();
 
         electronicSignatureAndDocumentConsentPage.isAt();

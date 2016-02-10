@@ -194,5 +194,13 @@ public class WizardPage extends FluentPage {
         executeScript(String.format("$('#%s').signature('draw','%s')",answername, signatureVector));
 
     }
+    public void isAt() {
+        assertThat(pageTitle.getText(), equalTo("What You Need"));
 
+    }
+    public void checkMarketabilityCode(String marketCode){
+        isAt();
+        String marketibilityError = getScriptResult("controller.model.getQuestionValue('marketabilityCode')");
+        assertThat(marketibilityError, equalTo(marketCode));
+    }
 }

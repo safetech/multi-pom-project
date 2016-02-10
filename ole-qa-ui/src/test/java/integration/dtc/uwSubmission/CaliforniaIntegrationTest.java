@@ -104,7 +104,7 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);
 
-        whatYouNeedPage.isAt();
+        whatYouNeedPage.checkMarketabilityCode("M14M43AGMMCA01_01D");
         whatYouNeedPage.clickNextAndWaitForSpinnerToFinish();
         electronicSignatureAndDocumentConsentPage.isAt();
         electronicSignatureAndDocumentConsentPage.clickNextAndWaitForSpinnerToFinish();
@@ -200,7 +200,7 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);
 
-        whatYouNeedPage.isAt();
+        whatYouNeedPage.checkMarketabilityCode("M14M43AGMMCA01_01D");
         whatYouNeedPage.clickNextAndWaitForSpinnerToFinish();
         electronicSignatureAndDocumentConsentPage.isAt();
         electronicSignatureAndDocumentConsentPage.clickNextAndWaitForSpinnerToFinish();

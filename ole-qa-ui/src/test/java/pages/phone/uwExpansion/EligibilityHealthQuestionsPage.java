@@ -17,8 +17,8 @@ public class EligibilityHealthQuestionsPage extends WizardPage {
     protected int TOTAL_POSSIBLE_QUESTION_COUNT = 4;
 
     public void verifyInitialStateOfElements(Application app) {
-        assertBlank(ESRD_Yes, ESRD_No, SurgeryNeeded_Yes, SurgeryNeeded_No);
         assertQuestionCount(TOTAL_POSSIBLE_QUESTION_COUNT);
+        assertBlank(ESRD_Yes, ESRD_No, SurgeryNeeded_Yes, SurgeryNeeded_No);
     }
 
     public void fillAndSubmit(Application app) {

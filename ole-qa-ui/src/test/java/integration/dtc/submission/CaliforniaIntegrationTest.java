@@ -55,7 +55,7 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
 
         sheet.setDOB(DateUtils.getDOBofPersonTurningAgeToday(69));
         sheet.setEffDate("01/01/2012");
-        sheet.setPsd(DateUtils.getFirstDayOfFutureMonth(1));
+        sheet.setPsd(DateUtils.getFirstDayOfFutureMonth(2));
         sheet.setPlanCode("A");
         sheet.setReferrer("uLayer");
 
@@ -79,7 +79,7 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         app.setMPAED("01/01/2010");
         app.setPartABActiveIndicator(YES);
         //Plan Application Page
-        app.setGI30dayBday(NO);
+        app.setGI30dayBday(YES);
         app.setGIEmployerCov(NO);
         app.setGIMediCal(NO);
         app.setGIMilitary(NO);
@@ -131,11 +131,10 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         app.setMedicalReleaseAuthSignatureIndRequired("Required");
 
 
-        expectedSubmissionResult.setAcceptedInfo();
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);
 
-        whatYouNeedPage.isAt();
+        whatYouNeedPage.checkMarketabilityCode("M05V43AGMMCA01_02C");
         whatYouNeedPage.clickNextAndWaitForSpinnerToFinish();
         electronicSignatureAndDocumentConsentPage.isAt();
         electronicSignatureAndDocumentConsentPage.clickNextAndWaitForSpinnerToFinish();
@@ -158,7 +157,7 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
 
         sheet.setAarpMemid("y");
         sheet.setDOB(DateUtils.getDOBofPersonTurningAgeToday(65));
-        sheet.setEffDate("04/01/2015");
+        sheet.setEffDate(DateUtils.getFirstDayOfFutureMonth(2));
         sheet.setPsd(DateUtils.getFirstDayOfFutureMonth(1));
         sheet.setPlanCode("A");
         sheet.setReferrer("uLayer");
@@ -238,7 +237,7 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);
 
-        whatYouNeedPage.isAt();
+        whatYouNeedPage.checkMarketabilityCode("M05V43AGMMCA01_02C");
         whatYouNeedPage.clickNextAndWaitForSpinnerToFinish();
         electronicSignatureAndDocumentConsentPage.isAt();
         electronicSignatureAndDocumentConsentPage.clickNextAndWaitForSpinnerToFinish();

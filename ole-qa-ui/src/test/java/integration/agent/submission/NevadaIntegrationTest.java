@@ -14,6 +14,7 @@ import pages.agent.variations.currentinsurancecoverage.NV_ME_CurrentInsuranceCov
 import pages.agent.variations.planapplication.NV_PlanApplicationQuestionsPage;
 import pages.agent.variations.replacenotice.RN034andRE073WithSignaturePage;
 import queries.SubmissionQueryAgent;
+import util.DateUtils;
 
 public class NevadaIntegrationTest extends CQBaseIntegrationTest {
 
@@ -224,9 +225,9 @@ public class NevadaIntegrationTest extends CQBaseIntegrationTest {
         Application app = new Application();
         app.setState("NV");
         app.setZipCode("89101");
-        app.setDOB("06/01/1950");
-        app.setMPBED("01/01/2015");
-
+        app.setDOB(DateUtils.getDOBofPersonTurningAgeToday(65));
+        app.setMPBED(DateUtils.getFirstDayOfPastOrFutureMonths(1));
+        //Signatures
         app.setCpaSignatureIndTouch(Application.ALL_SIGNATURES[0]);
         app.setSignatureIndTouch(Application.ALL_SIGNATURES[1]);
         app.setMedicalReleaseAuthSignatureIndTouch(Application.ALL_SIGNATURES[2]);

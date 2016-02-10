@@ -8,6 +8,5 @@ target
 *.project
 *.pdf
 *.DS_Store
-
 *.brackets.json
 *.fpr

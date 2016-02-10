@@ -33,6 +33,9 @@ public class CA_PA_NJ_IN_OR_PastAndCurrentInsuranceCoveragePage extends WizardPa
 
     @FindBy(css = "#ExistMedSupp_1") FluentWebElement ExistMedSupp_Yes;
     @FindBy(css = "#ExistMedSupp_2") FluentWebElement ExistMedSupp_No;
+    FluentWebElement MSInsCompany;
+    FluentWebElement MSPLAN;
+
     @FindBy(css = "#ReplaceExistingMedSup_1") FluentWebElement ReplaceExistingMedSup_Yes;
     @FindBy(css = "#ReplaceExistingMedSup_2") FluentWebElement ReplaceExistingMedSup_No;
 
@@ -46,7 +49,7 @@ public class CA_PA_NJ_IN_OR_PastAndCurrentInsuranceCoveragePage extends WizardPa
     @FindBy(css = "#OtherInsReplace_2") FluentWebElement OtherInsReplace_No;
     FluentWebElement CpaSignatureInd;
 
-    protected int TOTAL_POSSIBLE_QUESTION_COUNT = 31;
+    protected int TOTAL_POSSIBLE_QUESTION_COUNT = 33;
 
     public void verifyInitialStateOfElements(Application app) {
 
@@ -109,6 +112,8 @@ public class CA_PA_NJ_IN_OR_PastAndCurrentInsuranceCoveragePage extends WizardPa
         fillYesNoQuestion(ExistMedSupp_Yes, ExistMedSupp_No, app.getExistMedSupp());
         if(app.getExistMedSupp().equals("yes")){
             fillYesNoQuestion(ReplaceExistingMedSup_Yes, ReplaceExistingMedSup_No, app.getReplaceExistingMedSup());
+            fill(MSInsCompany).with(app.getMSInsCompany());
+            fill(MSPLAN).with(app.getMSPLAN());
         }
 
         fillYesNoQuestion(OtherInsCoverage_Yes, OtherInsCoverage_No, app.getOtherInsCoverage());
