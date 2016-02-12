@@ -8,12 +8,12 @@ import integration.CQBaseIntegrationTest;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
-import pages.dtc.uwExpansion.*;
-import pages.dtc.uwExpansion.variations.authorization.CA_AuthorizationPage;
-import pages.dtc.uwExpansion.variations.eligibilityhealthquestions.CA_EligibilityHealthQuestions;
-import pages.dtc.uwExpansion.variations.pastandcurrentcoverage.AR_CA_PA_WI_MN_PastAndCurrentCoveragePage;
-import pages.dtc.uwExpansion.variations.planapplication.CA_PlanApplicationQuestions;
-import pages.dtc.uwExpansion.variations.replacenotice.RN040Page;
+import integration.dtc.dtcPages.uwExpansionPages.*;
+import integration.dtc.dtcPages.uwExpansionPages.variations.authorization.CA_AuthorizationPage;
+import integration.dtc.dtcPages.uwExpansionPages.variations.eligibilityhealthquestions.CA_EligibilityHealthQuestions;
+import integration.dtc.dtcPages.uwExpansionPages.variations.pastandcurrentcoverage.AR_CA_PA_WI_MN_PastAndCurrentCoveragePage;
+import integration.dtc.dtcPages.uwExpansionPages.variations.planapplication.CA_PlanApplicationQuestions;
+import integration.dtc.dtcPages.uwExpansionPages.variations.replacenotice.RN040Page;
 import queries.SubmissionQueryDtc;
 import util.DateUtils;
 

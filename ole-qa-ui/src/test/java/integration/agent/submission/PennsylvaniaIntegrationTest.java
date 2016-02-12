@@ -5,13 +5,13 @@ import entity.Application;
 import entity.SubmissionResult;
 import entity.agent.CribSheet;
 import integration.CQBaseIntegrationTest;
+import integration.agent.agentPages.oldOlePages.*;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
-import pages.agent.*;
-import pages.agent.variations.currentinsurancecoverage.AR_PA_OR_CurrentInsuranceCoveragePage;
-import pages.agent.variations.planapplication.AR_PA_PlanApplicationQuestionsPage;
-import pages.agent.variations.replacenotice.RN078Page;
+import integration.agent.agentPages.oldOlePages.variations.currentinsurancecoverage.AR_PA_OR_CurrentInsuranceCoveragePage;
+import integration.agent.agentPages.oldOlePages.variations.planapplication.AR_PA_PlanApplicationQuestionsPage;
+import integration.agent.agentPages.oldOlePages.variations.replacenotice.RN078Page;
 import queries.SubmissionQueryAgent;
 import util.DateUtils;
 
@@ -96,8 +96,8 @@ public class PennsylvaniaIntegrationTest extends CQBaseIntegrationTest {
         app.setPhoneEvening("1255561234");
         app.setMPAED("01/01/2015");
         app.setPartABActiveIndicator(YES);
-        app.setAgentEmail("agent@uhc.com");
-        app.setAgentEmailConfirm("agent@uhc.com");
+        app.setAgentEmail("agentPages@uhc.com");
+        app.setAgentEmailConfirm("agentPages@uhc.com");
         //app.setDefaultPlanEligibilityQuestions(sheet);
         app.setGI30dayBday(YES);
         app.setGIEmployerCov(NO);
@@ -255,8 +255,8 @@ public class PennsylvaniaIntegrationTest extends CQBaseIntegrationTest {
         app.setCity("Horsham");
         app.setMPAED("01/01/2010");
         app.setPartABActiveIndicator(YES);
-        app.setAgentEmail("agent@uhc.com");
-        app.setAgentEmailConfirm("agent@uhc.com");
+        app.setAgentEmail("agentPages@uhc.com");
+        app.setAgentEmailConfirm("agentPages@uhc.com");
         //Eligibility Questions
         app.setESRD(NO);
         app.setSurgeryNeeded(NO);

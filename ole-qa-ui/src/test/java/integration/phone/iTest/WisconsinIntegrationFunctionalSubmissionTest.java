@@ -5,15 +5,15 @@ import entity.Application;
 import entity.SubmissionResult;
 import entity.phone.CribSheet;
 import integration.CQBaseIntegrationTest;
+import integration.phone.phonePages.oldOlePages.*;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
-import pages.phone.*;
-import pages.phone.variations.authorization.WI_AuthorizationAndVerificationPage;
-import pages.phone.variations.pastandcurrentcoverage.CT_PastAndCurrentInsuranceCoveragePage;
-import pages.phone.variations.planapplication.WI_PlanApplicationQuestions;
-import pages.phone.variations.planselection.WI_iTest_PlanSelectionPage;
-import pages.phone.variations.replacementnotice.RN034andRE073Page;
+import integration.phone.phonePages.oldOlePages.variations.authorization.WI_AuthorizationAndVerificationPage;
+import integration.phone.phonePages.oldOlePages.variations.pastandcurrentcoverage.CT_PastAndCurrentInsuranceCoveragePage;
+import integration.phone.phonePages.oldOlePages.variations.planapplication.WI_PlanApplicationQuestions;
+import integration.phone.phonePages.oldOlePages.variations.planselection.WI_iTest_PlanSelectionPage;
+import integration.phone.phonePages.oldOlePages.variations.replacementnotice.RN034andRE073Page;
 import queries.SubmissionQueryPhone;
 import util.DateUtils;
 
@@ -146,7 +146,7 @@ public class WisconsinIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
        // replacementNoticePage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
         applicationSubmissionPage.isAt();
-//        applicationSubmissionPage.isApproved();
+//        applicationSubmissionPage.isApprovedOrPending();
 
         expectedSubmissionResult.setAcceptedInfo();
         submissionQueryPhone.verifySubmissionData(app, expectedSubmissionResult);
@@ -245,7 +245,7 @@ public class WisconsinIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         //replacementNoticePage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
         applicationSubmissionPage.isAt();
-//        applicationSubmissionPage.isApproved();
+//        applicationSubmissionPage.isApprovedOrPending();
 
         expectedSubmissionResult.setAcceptedInfo();
         submissionQueryPhone.verifySubmissionData(app, expectedSubmissionResult);
@@ -333,7 +333,7 @@ public class WisconsinIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         //replacementNoticePage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
         applicationSubmissionPage.isAt();
-//        applicationSubmissionPage.isApproved();
+//        applicationSubmissionPage.isApprovedOrPending();
 
         expectedSubmissionResult.setAcceptedInfo();
         submissionQueryPhone.verifySubmissionData(app, expectedSubmissionResult);
@@ -431,7 +431,7 @@ public class WisconsinIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         //replacementNoticePage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
         applicationSubmissionPage.isAt();
-//        applicationSubmissionPage.isApproved();
+//        applicationSubmissionPage.isApprovedOrPending();
 
         expectedSubmissionResult.setAcceptedInfo();
         submissionQueryPhone.verifySubmissionData(app, expectedSubmissionResult);
@@ -530,7 +530,7 @@ public class WisconsinIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         agentVerificationPage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
         applicationSubmissionPage.isAt();
-//        applicationSubmissionPage.isApproved();
+//        applicationSubmissionPage.isApprovedOrPending();
 
         expectedSubmissionResult.setAcceptedInfo();
         submissionQueryPhone.verifySubmissionData(app, expectedSubmissionResult);

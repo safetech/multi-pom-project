@@ -5,13 +5,13 @@ import entity.Application;
 import entity.SubmissionResult;
 import entity.agent.CribSheet;
 import integration.CQBaseIntegrationTest;
+import integration.agent.agentPages.oldOlePages.*;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
-import pages.agent.*;
-import pages.agent.variations.currentinsurancecoverage.AR_PA_OR_CurrentInsuranceCoveragePage;
-import pages.agent.variations.planapplication.OR_PlanApplicationQuestions;
-import pages.agent.variations.replacenotice.RN034andRE073WithSignaturePage;
+import integration.agent.agentPages.oldOlePages.variations.currentinsurancecoverage.AR_PA_OR_CurrentInsuranceCoveragePage;
+import integration.agent.agentPages.oldOlePages.variations.planapplication.OR_PlanApplicationQuestions;
+import integration.agent.agentPages.oldOlePages.variations.replacenotice.RN034andRE073WithSignaturePage;
 import queries.SubmissionQueryAgent;
 import util.DateUtils;
 
@@ -97,8 +97,8 @@ public class OreganIntegrationTest extends CQBaseIntegrationTest {
         app.setMedicareClaimNum(faker.bothify("?#########"));
         app.setMPAED("01/01/2015");
         app.setPartABActiveIndicator(YES);
-        app.setAgentEmail("agent@uhc.com");
-        app.setAgentEmailConfirm("agent@uhc.com");
+        app.setAgentEmail("agentPages@uhc.com");
+        app.setAgentEmailConfirm("agentPages@uhc.com");
         //app.setDefaultPlanEligibilityQuestions(sheet);
         app.setGI30dayBday(YES);
         app.setGIEmployerCov(NO);
@@ -255,8 +255,8 @@ public class OreganIntegrationTest extends CQBaseIntegrationTest {
         app.setConfirmEmail("test@uhc.com");
         app.setMPAED("01/01/2010");
         app.setPartABActiveIndicator(YES);
-        app.setAgentEmail("agent@uhc.com");
-        app.setAgentEmailConfirm("agent@uhc.com");
+        app.setAgentEmail("agentPages@uhc.com");
+        app.setAgentEmailConfirm("agentPages@uhc.com");
         //Eligibility Questions
         app.setESRD(NO);
         app.setSurgeryNeeded(NO);

@@ -17,7 +17,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.slf4j.Logger;
-import pages.phone.CheatPage;
+import integration.phone.phonePages.oldOlePages.CheatPage;
 import util.AnswerUtils;
 
 import java.io.File;
@@ -25,9 +25,9 @@ import java.io.IOException;
 
 import static org.slf4j.LoggerFactory.getLogger;
 
-//import pages.phone.uwExpansion.CheatPage;
+//import integration.phone.phonePages.uwExpansionPages.CheatPage;
 
-//import pages.phone.uwExpansion;
+//import integration.phone.phonePages.uwExpansionPages;
 
 @SharedDriver(type = SharedDriver.SharedType.PER_CLASS)
 public class CQBaseIntegrationTest extends FluentTest {
@@ -94,7 +94,7 @@ public class CQBaseIntegrationTest extends FluentTest {
         executeScript("window.onbeforeunload = null;");
     }
 
-    protected void startApp(pages.phone.uwExpansion.CheatPage cheatPage, Application app, CribSheet sheet) {
+    protected void startApp(integration.phone.phonePages.uwExpansionPages.CheatPage cheatPage, Application app, CribSheet sheet) {
 
         app.setAnswersWithSheetValues(sheet);
         logger.info(gson.toJson(app));

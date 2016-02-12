@@ -6,12 +6,12 @@ import entity.SubmissionResult;
 import entity.dtc.CribSheet;
 import integration.CQBaseIntegrationTest;
 //import jdk.nashorn.internal.ir.annotations.Ignore;
+import integration.dtc.dtcPages.oldOlePages.*;
 import org.junit.Ignore;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
-import pages.dtc.*;
-import pages.dtc.variations.pastandcurrentcoverage.NY_PastAndCurrentCoveragePage;
+import integration.dtc.dtcPages.oldOlePages.variations.pastandcurrentcoverage.NY_PastAndCurrentCoveragePage;
 import queries.SubmissionQueryDtc;
 import util.DateUtils;
 

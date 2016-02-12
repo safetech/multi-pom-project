@@ -5,13 +5,13 @@ import entity.Application;
 import entity.SubmissionResult;
 import entity.dtc.CribSheet;
 import integration.CQBaseIntegrationTest;
+import integration.dtc.dtcPages.oldOlePages.*;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
-import pages.dtc.*;
-import pages.dtc.variations.pastandcurrentcoverage.AR_CA_PA_WI_MN_PastAndCurrentCoveragePage;
-import pages.dtc.variations.planapplication.OR_PlanApplicationQuestionsPage;
-import pages.dtc.variations.planselectionandstartdate.PA_AR_NV_MA_PlanSelectionAndStartDatePage;
+import integration.dtc.dtcPages.oldOlePages.variations.pastandcurrentcoverage.AR_CA_PA_WI_MN_PastAndCurrentCoveragePage;
+import integration.dtc.dtcPages.oldOlePages.variations.planapplication.OR_PlanApplicationQuestionsPage;
+import integration.dtc.dtcPages.oldOlePages.variations.planselectionandstartdate.PA_AR_NV_MA_PlanSelectionAndStartDatePage;
 import queries.SubmissionQueryDtc;
 import util.DateUtils;
 

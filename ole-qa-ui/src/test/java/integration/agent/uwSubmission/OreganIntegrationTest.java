@@ -8,13 +8,13 @@ import integration.CQBaseIntegrationTest;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
-import pages.agent.uwExpansion.*;
-import pages.agent.uwExpansion.variations.authorization.OR_AuthorizationPage;
-import pages.agent.uwExpansion.variations.checkeligibility.ME_CA_FL_CheckEligibilityAndAvailabilityPage;
-import pages.agent.uwExpansion.variations.currentinsurancecoverage.OR_CurrentInsuranceCoveragePage;
-import pages.agent.uwExpansion.variations.eligibilityhealthquestions.ME_CA_FL_EligibilityHealthQuestionsPage;
-import pages.agent.uwExpansion.variations.planapplication.OR_PlanApplicationQuestionsPage;
-import pages.agent.uwExpansion.variations.replacenotice.RN034andRE073WithSignaturePage;
+import integration.agent.agentPages.uwExpansionPages.*;
+import integration.agent.agentPages.uwExpansionPages.variations.authorization.OR_AuthorizationPage;
+import integration.agent.agentPages.uwExpansionPages.variations.checkeligibility.ME_CA_FL_CheckEligibilityAndAvailabilityPage;
+import integration.agent.agentPages.uwExpansionPages.variations.currentinsurancecoverage.OR_CurrentInsuranceCoveragePage;
+import integration.agent.agentPages.uwExpansionPages.variations.eligibilityhealthquestions.ME_CA_FL_EligibilityHealthQuestionsPage;
+import integration.agent.agentPages.uwExpansionPages.variations.planapplication.OR_PlanApplicationQuestionsPage;
+import integration.agent.agentPages.uwExpansionPages.variations.replacenotice.RN034andRE073WithSignaturePage;
 import queries.SubmissionQueryAgent;
 import util.DateUtils;
 
@@ -99,8 +99,8 @@ public class OreganIntegrationTest extends CQBaseIntegrationTest {
         app.setGender("M");
         app.setMedicareClaimNum(faker.bothify("?#########"));
         app.setPartABActiveIndicator(YES);
-        app.setAgentEmail("agent@uhc.com");
-        app.setAgentEmailConfirm("agent@uhc.com");
+        app.setAgentEmail("agentPages@uhc.com");
+        app.setAgentEmailConfirm("agentPages@uhc.com");
         //Plan ApplicationPage
         app.setPlanEffIn6OfEligible(YES);
         app.setTobaccoUse(YES);
@@ -188,8 +188,8 @@ public class OreganIntegrationTest extends CQBaseIntegrationTest {
         app.setEmail("test@uhc.com");
         app.setConfirmEmail("test@uhc.com");
         app.setPartABActiveIndicator(YES);
-        app.setAgentEmail("agent@uhc.com");
-        app.setAgentEmailConfirm("agent@uhc.com");
+        app.setAgentEmail("agentPages@uhc.com");
+        app.setAgentEmailConfirm("agentPages@uhc.com");
         //Plan application question
         app.setTurned65In6GA(NO);
         app.setPlanEffIn6OfEligible(NO);

@@ -5,17 +5,17 @@ import entity.Application;
 import entity.SubmissionResult;
 import entity.agent.CribSheet;
 import integration.CQBaseIntegrationTest;
+import integration.agent.agentPages.oldOlePages.*;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
-import pages.agent.*;
-import pages.agent.uwExpansion.variations.authorization.OR_AuthorizationPage;
-import pages.agent.uwExpansion.variations.checkeligibility.ME_CA_FL_CheckEligibilityAndAvailabilityPage;
-import pages.agent.uwExpansion.variations.currentinsurancecoverage.WA_CurrentInsuranceCoveragePage;
-import pages.agent.uwExpansion.variations.eligibilityhealthquestions.ME_CA_FL_EligibilityHealthQuestionsPage;
-import pages.agent.uwExpansion.variations.planapplication.MN_PlanApplicationQuestionsPage;
-import pages.agent.uwExpansion.variations.planselection.riders_MN_PlanSelectionPage;
-import pages.agent.variations.replacenotice.RN034andRE073WithSignaturePage;
+import integration.agent.agentPages.uwExpansionPages.variations.authorization.OR_AuthorizationPage;
+import integration.agent.agentPages.uwExpansionPages.variations.checkeligibility.ME_CA_FL_CheckEligibilityAndAvailabilityPage;
+import integration.agent.agentPages.uwExpansionPages.variations.currentinsurancecoverage.WA_CurrentInsuranceCoveragePage;
+import integration.agent.agentPages.uwExpansionPages.variations.eligibilityhealthquestions.ME_CA_FL_EligibilityHealthQuestionsPage;
+import integration.agent.agentPages.uwExpansionPages.variations.planapplication.MN_PlanApplicationQuestionsPage;
+import integration.agent.agentPages.uwExpansionPages.variations.planselection.riders_MN_PlanSelectionPage;
+import integration.agent.agentPages.oldOlePages.variations.replacenotice.RN034andRE073WithSignaturePage;
 import queries.SubmissionQueryAgent;
 import util.DateUtils;
 
@@ -102,8 +102,8 @@ public class MinnesotaIntegrationTest extends CQBaseIntegrationTest {
         app.setMedicareClaimNum(faker.bothify("?#########"));
         app.setGender("M");
         app.setPartABActiveIndicator(YES);
-        app.setAgentEmail("agent@uhc.com");
-        app.setAgentEmailConfirm("agent@uhc.com");
+        app.setAgentEmail("agentPages@uhc.com");
+        app.setAgentEmailConfirm("agentPages@uhc.com");
         //Plan ApplicationPage
         app.setPlanEffIn6OfEligible(YES);
         //Past And Current Coverage
@@ -183,8 +183,8 @@ public class MinnesotaIntegrationTest extends CQBaseIntegrationTest {
         app.setConfirmEmail("test@uhc.com");
         app.setMPAED("01/01/2010");
         app.setPartABActiveIndicator(YES);
-        app.setAgentEmail("agent@uhc.com");
-        app.setAgentEmailConfirm("agent@uhc.com");
+        app.setAgentEmail("agentPages@uhc.com");
+        app.setAgentEmailConfirm("agentPages@uhc.com");
         //Plan application question\
         app.setESRD(NO);
         app.setSurgeryNeeded(NO);

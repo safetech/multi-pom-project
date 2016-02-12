@@ -5,14 +5,14 @@ import entity.Application;
 import entity.SubmissionResult;
 import entity.agent.CribSheet;
 import integration.CQBaseIntegrationTest;
+import integration.agent.agentPages.oldOlePages.*;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
-import pages.agent.*;
-import pages.agent.variations.authorization.NV_ME_AuthorizationPage;
-import pages.agent.variations.currentinsurancecoverage.NV_ME_CurrentInsuranceCoveragePage;
-import pages.agent.variations.planapplication.ME_PlanApplicationQuestionsPage;
-import pages.agent.variations.replacenotice.RN034andRE073WithSignaturePage;
+import integration.agent.agentPages.oldOlePages.variations.authorization.NV_ME_AuthorizationPage;
+import integration.agent.agentPages.oldOlePages.variations.currentinsurancecoverage.NV_ME_CurrentInsuranceCoveragePage;
+import integration.agent.agentPages.oldOlePages.variations.planapplication.ME_PlanApplicationQuestionsPage;
+import integration.agent.agentPages.oldOlePages.variations.replacenotice.RN034andRE073WithSignaturePage;
 import queries.SubmissionQueryAgent;
 import util.DateUtils;
 
@@ -96,8 +96,8 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
         app.setMedicareClaimNum(faker.bothify("?#########"));
         app.setMPAED("01/01/2015");
         app.setPartABActiveIndicator(YES);
-        app.setAgentEmail("agent@uhc.com");
-        app.setAgentEmailConfirm("agent@uhc.com");
+        app.setAgentEmail("agentPages@uhc.com");
+        app.setAgentEmailConfirm("agentPages@uhc.com");
         app.setGI30dayBday(YES);
         app.setGIEmployerCov(NO);
         app.setGIMediCal(NO);
@@ -264,8 +264,8 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
         app.setMedicareClaimNum(faker.bothify("#########?"));
         app.setMPAED("01/01/2010");
         app.setPartABActiveIndicator(YES);
-        app.setAgentEmail("agent@uhc.com");
-        app.setAgentEmailConfirm("agent@uhc.com");
+        app.setAgentEmail("agentPages@uhc.com");
+        app.setAgentEmailConfirm("agentPages@uhc.com");
         //Eligibility Questions
         app.setESRD(NO);
         app.setSurgeryNeeded(NO);

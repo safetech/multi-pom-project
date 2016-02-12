@@ -5,15 +5,15 @@ import entity.Application;
 import entity.SubmissionResult;
 import entity.agent.CribSheet;
 import integration.CQBaseIntegrationTest;
+import integration.agent.agentPages.oldOlePages.*;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
-import pages.agent.*;
-import pages.agent.variations.authorization.CA_AuthorizationPage;
-import pages.agent.variations.currentinsurancecoverage.CA_CurrentInsuranceCoveragePage;
-import pages.agent.variations.eligibilityhealthquestions.CA_EligibilityHealthQuestionsPage;
-import pages.agent.variations.planapplication.CA_PlanApplicationQuestions;
-import pages.agent.variations.replacenotice.RN034andRE073WithSignaturePage;
+import integration.agent.agentPages.oldOlePages.variations.authorization.CA_AuthorizationPage;
+import integration.agent.agentPages.oldOlePages.variations.currentinsurancecoverage.CA_CurrentInsuranceCoveragePage;
+import integration.agent.agentPages.oldOlePages.variations.eligibilityhealthquestions.CA_EligibilityHealthQuestionsPage;
+import integration.agent.agentPages.oldOlePages.variations.planapplication.CA_PlanApplicationQuestions;
+import integration.agent.agentPages.oldOlePages.variations.replacenotice.RN034andRE073WithSignaturePage;
 import queries.SubmissionQueryAgent;
 import util.DateUtils;
 
@@ -97,8 +97,8 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         app.setMedicareClaimNum("123123123A");
         app.setMPAED("01/01/2010");
         app.setPartABActiveIndicator(YES);
-        app.setAgentEmail("agent@uhc.com");
-        app.setAgentEmailConfirm("agent@uhc.com");
+        app.setAgentEmail("agentPages@uhc.com");
+        app.setAgentEmailConfirm("agentPages@uhc.com");
 
         //Plan Application questions page
         app.setGI30dayBday(YES);
@@ -238,8 +238,8 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         app.setMedicareClaimNum("123123123A");
         app.setMPAED("01/01/2015");
         app.setPartABActiveIndicator(YES);
-        app.setAgentEmail("agent@uhc.com");
-        app.setAgentEmailConfirm("agent@uhc.com");
+        app.setAgentEmail("agentPages@uhc.com");
+        app.setAgentEmailConfirm("agentPages@uhc.com");
 //      Plan Application questions page
         app.setGI30dayBday(YES);
         app.setTurned65In6GA(NO);

@@ -8,12 +8,12 @@ import integration.CQBaseIntegrationTest;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
-import pages.phone.uwExpansion.*;
-import pages.phone.uwExpansion.variations.authorization.NV_AuthorizationAndVerificationPage;
-import pages.phone.uwExpansion.variations.eligibilityhealthquestions.CA_EligibilityHealthQuestionsPage;
-import pages.phone.uwExpansion.variations.pastandcurrentcoverage.NV_OH_PastAndCurrentInsuranceCoveragePage;
-import pages.phone.uwExpansion.variations.planapplication.ME_PlanApplicationQuestions;
-import pages.phone.uwExpansion.variations.replacementnotice.RN034andRE073Page;
+import integration.phone.phonePages.uwExpansionPages.*;
+import integration.phone.phonePages.uwExpansionPages.variations.authorization.ME_AuthorizationAndVerificationPage;
+import integration.phone.phonePages.uwExpansionPages.variations.eligibilityhealthquestions.CA_ME_OR_EligibilityHealthQuestionsPage;
+import integration.phone.phonePages.uwExpansionPages.variations.pastandcurrentcoverage.ME_PastAndCurrentInsuranceCoveragePage;
+import integration.phone.phonePages.uwExpansionPages.variations.planapplication.ME_PlanApplicationQuestions;
+import integration.phone.phonePages.uwExpansionPages.variations.replacementnotice.RN034andRE073Page;
 import queries.SubmissionQueryPhone;
 import util.DateUtils;
 
@@ -24,9 +24,9 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
     @Page public CustomerInformationPage customerInformationPage;
     @Page public PlanSelectionAndStartDatePage planSelectionAndStartDatePage;
     @Page public ME_PlanApplicationQuestions planApplicationQuestionsPage;
-    @Page public CA_EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
-    @Page public NV_OH_PastAndCurrentInsuranceCoveragePage pastAndCurrentInsuranceCoveragePage;
-    @Page public NV_AuthorizationAndVerificationPage authorizationAndVerificationPage;
+    @Page public CA_ME_OR_EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
+    @Page public ME_PastAndCurrentInsuranceCoveragePage pastAndCurrentInsuranceCoveragePage;
+    @Page public ME_AuthorizationAndVerificationPage authorizationAndVerificationPage;
     @Page public AgentVerificationPage agentVerificationPage;
     @Page public RN034andRE073Page replacementNoticePage;
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
@@ -115,6 +115,7 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
         app.setOtherInsType("HMO");
         app.setOtherInsStart("01/01/2001");
         app.setOtherInsEnd("01/01/2014");
+        app.setContinuousMedicareCoverageNoGap(YES);
         app.setOtherInsReplace(YES);
         app.setCpaSignatureInd(YES);
 
@@ -131,7 +132,7 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
         //Replacement Notice Page
         app.setCommonReplacementNoticeAnswersWithApplicantInfo();
 
-        expectedSubmissionResult.setAcceptedInfo();
+        expectedSubmissionResult.setPendingInfo("ENROLLMENT GI REVIEW","MANUAL GUARANTEED ISSUE REVIEW REQUIRED");
 
         startApp(cheatPage, app, sheet);
 
@@ -146,8 +147,7 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
         agentVerificationPage.fillAndSubmit(app);
         replacementNoticePage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
-        applicationSubmissionPage.isApproved();
-
+        applicationSubmissionPage.isApprovedOrPending();
         submissionQueryPhone.verifySubmissionData(app, expectedSubmissionResult);
         submissionQueryPhone.verifyAdjudicationData(app, expectedSubmissionResult);
 
@@ -163,13 +163,19 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
         app.setMPAED("01/01/2014");
         app.setMPBED("01/01/2014");
 
-        //Plan Eligibility
-        app.setTurned65In6GA(NO);
-        app.setPartBIn6GA(NO);
+        //Eligibility Questions
+        app.setKidneyProblem(NO);
+        app.setEligibilitySurgery(NO);
+        app.setEligibilityAdmitToHospPast90Days(NO);
+        app.setNursingFacility(NO);
+        app.setEligibilityHeartAttackTIAStroke(NO);
+        app.setEligibilityChronicMedicalConditions(NO);
+
+//        //Plan Application
         app.setPlanEffIn6OfEligible(NO);
+        app.setContinuousCoverage(NO);
         app.setLostCoverage(NO);
         app.setTobaccoUse(NO);
-        app.setContinuousCoverage(NO);
 
         //Past And Current Coverage
         app.setCPATurned65(NO);
@@ -181,21 +187,22 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
         app.setFirstTime(BLANK);
         app.setDropMedSuppForThisPlan(BLANK);
         app.setExistMedSupp(NO);
-        app.setMSInsCompany("Blue Cross Blue Shield NV");
-        app.setMSPLAN("Medical Supplement NV");
+        app.setMSInsCompany("Blue Cross Blue Shield");
+        app.setMSPLAN("Medical Supplement");
         app.setReplaceExistingMedSup(BLANK);
         app.setOtherInsCoverage(YES);
         app.setOtherInsCompany("Blue Cross Blue Shield");
         app.setOtherInsType("HMO");
         app.setOtherInsStart("01/01/2001");
         app.setOtherInsEnd("01/01/2014");
+        app.setContinuousMedicareCoverageNoGap(YES);
         app.setOtherInsReplace(YES);
         app.setCpaSignatureInd(YES);
 
         //Authorizationa and verififcation page
         app.setDesignateLapse(YES);
 
-        expectedSubmissionResult.setAcceptedInfo();
+        expectedSubmissionResult.setPendingInfo("ENROLLMENT GI REVIEW","MANUAL GUARANTEED ISSUE REVIEW REQUIRED");
 
         startApp(cheatPage, app, sheet);
 
@@ -209,7 +216,7 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
         authorizationAndVerificationPage.fillAndSubmit(app);
         agentVerificationPage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
-        applicationSubmissionPage.isApproved();
+        applicationSubmissionPage.isApprovedOrPending();
 
         submissionQueryPhone.verifySubmissionData(app, expectedSubmissionResult);
         submissionQueryPhone.verifyAdjudicationData(app, expectedSubmissionResult);

@@ -8,13 +8,13 @@ import integration.CQBaseIntegrationTest;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
-import pages.agent.uwExpansion.*;
-import pages.agent.uwExpansion.variations.checkeligibility.ME_CA_FL_CheckEligibilityAndAvailabilityPage;
-import pages.agent.uwExpansion.variations.currentinsurancecoverage.ME_CurrentInsuranceCoveragePage;
-import pages.agent.uwExpansion.variations.eligibilityhealthquestions.ME_CA_FL_EligibilityHealthQuestionsPage;
-import pages.agent.uwExpansion.variations.planapplication.ME_PlanApplicationQuestionsPage;
-import pages.agent.uwExpansion.variations.replacenotice.RN034andRE073WithSignaturePage;
-import pages.agent.variations.authorization.NV_ME_AuthorizationPage;
+import integration.agent.agentPages.uwExpansionPages.*;
+import integration.agent.agentPages.uwExpansionPages.variations.checkeligibility.ME_CA_FL_CheckEligibilityAndAvailabilityPage;
+import integration.agent.agentPages.uwExpansionPages.variations.currentinsurancecoverage.ME_CurrentInsuranceCoveragePage;
+import integration.agent.agentPages.uwExpansionPages.variations.eligibilityhealthquestions.ME_CA_FL_EligibilityHealthQuestionsPage;
+import integration.agent.agentPages.uwExpansionPages.variations.planapplication.ME_PlanApplicationQuestionsPage;
+import integration.agent.agentPages.uwExpansionPages.variations.replacenotice.RN034andRE073WithSignaturePage;
+import integration.agent.agentPages.oldOlePages.variations.authorization.NV_ME_AuthorizationPage;
 import queries.SubmissionQueryAgent;
 import util.DateUtils;
 
@@ -99,8 +99,8 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
         app.setMedicareClaimNum(faker.bothify("?#########"));
         app.setMPAED("01/01/2015");
         app.setPartABActiveIndicator(YES);
-        app.setAgentEmail("agent@uhc.com");
-        app.setAgentEmailConfirm("agent@uhc.com");
+        app.setAgentEmail("agentPages@uhc.com");
+        app.setAgentEmailConfirm("agentPages@uhc.com");
 
         //Plan ApplicationPage
         app.setPlanEffIn6OfEligible(YES);
@@ -187,8 +187,8 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
         app.setGender("M");
         app.setMedicareClaimNum(faker.bothify("#########?"));
         app.setPartABActiveIndicator(YES);
-        app.setAgentEmail("agent@uhc.com");
-        app.setAgentEmailConfirm("agent@uhc.com");
+        app.setAgentEmail("agentPages@uhc.com");
+        app.setAgentEmailConfirm("agentPages@uhc.com");
         //Plan application question
         app.setPlanEffIn6OfEligible(NO);
         app.setLostCoverage(NO);

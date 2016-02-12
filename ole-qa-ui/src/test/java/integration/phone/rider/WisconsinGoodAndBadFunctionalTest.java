@@ -4,14 +4,14 @@ import com.github.javafaker.Faker;
 import entity.Application;
 import entity.phone.CribSheet;
 import integration.CQBaseIntegrationTest;
+import integration.phone.phonePages.oldOlePages.*;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
-import pages.phone.*;
-import pages.phone.variations.pastandcurrentcoverage.MN_GA_MI_PastAndCurrentInsuranceCoveragePage;
-import pages.phone.variations.planapplication.OH_MI_TX_PlanApplicationQuestions;
-import pages.phone.variations.planselection.WI_Riders_PlanSelectionPage;
-import pages.phone.variations.replacementnotice.RN034andRE073Page;
+import integration.phone.phonePages.oldOlePages.variations.pastandcurrentcoverage.MN_GA_MI_PastAndCurrentInsuranceCoveragePage;
+import integration.phone.phonePages.oldOlePages.variations.planapplication.OH_MI_TX_PlanApplicationQuestions;
+import integration.phone.phonePages.oldOlePages.variations.planselection.WI_Riders_PlanSelectionPage;
+import integration.phone.phonePages.oldOlePages.variations.replacementnotice.RN034andRE073Page;
 import util.DateUtils;
 
 public class WisconsinGoodAndBadFunctionalTest extends CQBaseIntegrationTest {

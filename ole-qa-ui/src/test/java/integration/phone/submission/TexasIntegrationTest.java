@@ -5,13 +5,13 @@ import entity.Application;
 import entity.SubmissionResult;
 import entity.phone.CribSheet;
 import integration.CQBaseIntegrationTest;
+import integration.phone.phonePages.oldOlePages.*;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
-import pages.phone.*;
-import pages.phone.variations.pastandcurrentcoverage.TX_PastAndCurrentInsuranceCoveragePage;
-import pages.phone.variations.planapplication.OH_MI_TX_PlanApplicationQuestions;
-import pages.phone.variations.replacementnotice.RN035Page;
+import integration.phone.phonePages.oldOlePages.variations.pastandcurrentcoverage.TX_PastAndCurrentInsuranceCoveragePage;
+import integration.phone.phonePages.oldOlePages.variations.planapplication.OH_MI_TX_PlanApplicationQuestions;
+import integration.phone.phonePages.oldOlePages.variations.replacementnotice.RN035Page;
 import queries.SubmissionQueryPhone;
 import util.DateUtils;
 

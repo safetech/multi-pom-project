@@ -8,13 +8,13 @@ import integration.CQBaseIntegrationTest;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
-import pages.agent.uwExpansion.*;
-import pages.agent.uwExpansion.variations.authorization.CA_AuthorizationPage;
-import pages.agent.uwExpansion.variations.checkeligibility.ME_CA_FL_CheckEligibilityAndAvailabilityPage;
-import pages.agent.uwExpansion.variations.currentinsurancecoverage.CA_CurrentInsuranceCoveragePage;
-import pages.agent.uwExpansion.variations.eligibilityhealthquestions.ME_CA_FL_EligibilityHealthQuestionsPage;
-import pages.agent.uwExpansion.variations.planapplication.CA_PlanApplicationQuestions;
-import pages.agent.uwExpansion.variations.replacenotice.RN034andRE073WithSignaturePage;
+import integration.agent.agentPages.uwExpansionPages.*;
+import integration.agent.agentPages.uwExpansionPages.variations.authorization.CA_AuthorizationPage;
+import integration.agent.agentPages.uwExpansionPages.variations.checkeligibility.ME_CA_FL_CheckEligibilityAndAvailabilityPage;
+import integration.agent.agentPages.uwExpansionPages.variations.currentinsurancecoverage.CA_CurrentInsuranceCoveragePage;
+import integration.agent.agentPages.uwExpansionPages.variations.eligibilityhealthquestions.ME_CA_FL_EligibilityHealthQuestionsPage;
+import integration.agent.agentPages.uwExpansionPages.variations.planapplication.CA_PlanApplicationQuestions;
+import integration.agent.agentPages.uwExpansionPages.variations.replacenotice.RN034andRE073WithSignaturePage;
 import queries.SubmissionQueryAgent;
 import util.DateUtils;
 
@@ -99,8 +99,8 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         app.setGender("M");
         app.setMedicareClaimNum("123123123A");
         app.setPartABActiveIndicator(YES);
-        app.setAgentEmail("agent@uhc.com");
-        app.setAgentEmailConfirm("agent@uhc.com");
+        app.setAgentEmail("agentPages@uhc.com");
+        app.setAgentEmailConfirm("agentPages@uhc.com");
         app.setGIEmployerCov(NO);
         app.setGIMediCal(NO);
         app.setGIMilitary(NO);
@@ -181,8 +181,8 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         app.setGender("M");
         app.setMedicareClaimNum("123123123A");
         app.setPartABActiveIndicator(YES);
-        app.setAgentEmail("agent@uhc.com");
-        app.setAgentEmailConfirm("agent@uhc.com");
+        app.setAgentEmail("agentPages@uhc.com");
+        app.setAgentEmailConfirm("agentPages@uhc.com");
         //Plan Application Question
         app.setPlanEffIn6OfEligible(NO);
         app.setGI30dayBday(NO);

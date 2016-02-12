@@ -8,14 +8,14 @@ import integration.CQBaseIntegrationTest;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
-import pages.phone.uwExpansion.*;
-import pages.phone.uwExpansion.variations.agentverification.CA_AgentVerificationPage;
-import pages.phone.uwExpansion.variations.authorization.CA_AuthorizationAndVerificationPage;
-import pages.phone.uwExpansion.variations.eligibilityhealthquestions.CA_EligibilityHealthQuestionsPage;
-import pages.phone.uwExpansion.variations.healthhistoryquestions.CA_HealthHistoryQuestionsPage;
-import pages.phone.uwExpansion.variations.pastandcurrentcoverage.CA_PA_NJ_IN_OR_PastAndCurrentInsuranceCoveragePage;
-import pages.phone.uwExpansion.variations.planapplication.CA_PlanApplicationQuestions;
-import pages.phone.uwExpansion.variations.replacementnotice.RN040Page;
+import integration.phone.phonePages.uwExpansionPages.*;
+import integration.phone.phonePages.uwExpansionPages.variations.agentverification.CA_AgentVerificationPage;
+import integration.phone.phonePages.uwExpansionPages.variations.authorization.CA_AuthorizationAndVerificationPage;
+import integration.phone.phonePages.uwExpansionPages.variations.eligibilityhealthquestions.CA_ME_OR_EligibilityHealthQuestionsPage;
+import integration.phone.phonePages.uwExpansionPages.variations.healthhistoryquestions.CA_HealthHistoryQuestionsPage;
+import integration.phone.phonePages.uwExpansionPages.variations.pastandcurrentcoverage.CA_PA_NJ_IN_PastAndCurrentInsuranceCoveragePage;
+import integration.phone.phonePages.uwExpansionPages.variations.planapplication.CA_PlanApplicationQuestions;
+import integration.phone.phonePages.uwExpansionPages.variations.replacementnotice.RN040Page;
 import queries.SubmissionQueryPhone;
 import util.DateUtils;
 
@@ -27,9 +27,9 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
     @Page public CustomerInformationPage customerInformationPage;
     @Page public PlanSelectionAndStartDatePage planSelectionAndStartDatePage;
     @Page public CA_PlanApplicationQuestions planApplicationQuestionsPage;
-    @Page public CA_EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
+    @Page public CA_ME_OR_EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
     @Page public CA_HealthHistoryQuestionsPage healthHistoryQuestionsPage;
-    @Page public CA_PA_NJ_IN_OR_PastAndCurrentInsuranceCoveragePage pastAndCurrentInsuranceCoveragePage;
+    @Page public CA_PA_NJ_IN_PastAndCurrentInsuranceCoveragePage pastAndCurrentInsuranceCoveragePage;
     @Page public CA_AuthorizationAndVerificationPage authorizationAndVerificationPage;
     @Page public CA_AgentVerificationPage agentVerificationPage;
     @Page public RN040Page replacementNoticePage;
@@ -234,7 +234,7 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         agentVerificationPage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
         applicationSubmissionPage.isAt();
-        applicationSubmissionPage.isApproved();
+        applicationSubmissionPage.isApprovedOrPending();
 
         expectedSubmissionResult.setAcceptedInfo();
         submissionQueryPhone.verifySubmissionData(app, expectedSubmissionResult);
