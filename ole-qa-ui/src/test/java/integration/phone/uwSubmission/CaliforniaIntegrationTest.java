@@ -11,7 +11,7 @@ import org.junit.Test;
 import integration.phone.phonePages.uwExpansionPages.*;
 import integration.phone.phonePages.uwExpansionPages.variations.agentverification.CA_AgentVerificationPage;
 import integration.phone.phonePages.uwExpansionPages.variations.authorization.CA_AuthorizationAndVerificationPage;
-import integration.phone.phonePages.uwExpansionPages.variations.eligibilityhealthquestions.CA_ME_OR_EligibilityHealthQuestionsPage;
+import integration.phone.phonePages.uwExpansionPages.variations.eligibilityhealthquestions.CA_ME_OR_WA_EligibilityHealthQuestionsPage;
 import integration.phone.phonePages.uwExpansionPages.variations.healthhistoryquestions.CA_HealthHistoryQuestionsPage;
 import integration.phone.phonePages.uwExpansionPages.variations.pastandcurrentcoverage.CA_PA_NJ_IN_PastAndCurrentInsuranceCoveragePage;
 import integration.phone.phonePages.uwExpansionPages.variations.planapplication.CA_PlanApplicationQuestions;
@@ -27,7 +27,7 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
     @Page public CustomerInformationPage customerInformationPage;
     @Page public PlanSelectionAndStartDatePage planSelectionAndStartDatePage;
     @Page public CA_PlanApplicationQuestions planApplicationQuestionsPage;
-    @Page public CA_ME_OR_EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
+    @Page public CA_ME_OR_WA_EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
     @Page public CA_HealthHistoryQuestionsPage healthHistoryQuestionsPage;
     @Page public CA_PA_NJ_IN_PastAndCurrentInsuranceCoveragePage pastAndCurrentInsuranceCoveragePage;
     @Page public CA_AuthorizationAndVerificationPage authorizationAndVerificationPage;

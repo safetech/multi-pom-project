@@ -62,7 +62,7 @@ public class CustomerInformationPage extends WizardPage {
 
         verifyStateOfElementAfterAnswers(app);
 
-        clickNextAndWaitForSpinnerToFinish();
+        clickNextAndWaitForSpinnerToFinish(8);
     }
 
     public void verifyStateOfElementAfterAnswers(Application app) {

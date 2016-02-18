@@ -81,8 +81,8 @@ public class WashingtonIntegrationTest extends CQBaseIntegrationTest {
         sheet.setReferrer("ulayer");
 
         app.setDOB(DateUtils.getDOBInNormalDateFormat(65));
-        app.setMPBED(DateUtils.getFirstDayOfPastOrFutureMonths(-1));
-        app.setMPAED(DateUtils.getFirstDayOfPastOrFutureMonths(-1));
+        app.setMPBED(DateUtils.getFirstDayOfPastOrFutureMonths(1));
+        app.setMPAED(DateUtils.getFirstDayOfPastOrFutureMonths(1));
         //TestData
         app.setAARPMembershipNumber(faker.numerify("##########"));
         app.setPrefix("MR");

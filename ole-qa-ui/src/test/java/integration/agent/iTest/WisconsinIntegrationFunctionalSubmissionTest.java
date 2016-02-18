@@ -171,7 +171,7 @@ public class WisconsinIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         paymentDetailsSummaryPage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
 
-        expectedSubmissionResult.verifyAcceptedPlanAndRiderCodes("MW1","OW1","QW1","","");
+        expectedSubmissionResult.verifyPendingAndWorkQPlanAndRiderCodes("MW1", "OW1", "QW1", "", "", "","");
         submissionQueryAgent.verifyPlanAndRiderCodes(app, expectedSubmissionResult);
     }
     @Test

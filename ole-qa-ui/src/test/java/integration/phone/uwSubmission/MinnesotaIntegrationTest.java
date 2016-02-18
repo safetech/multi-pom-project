@@ -136,7 +136,7 @@ public class MinnesotaIntegrationTest extends CQBaseIntegrationTest {
 
         startApp(cheatPage, app, sheet);
 
-        voiceSignatureInstructionsPage.checkMarketabilityCode("M13T43AGMMME01_01E");
+        voiceSignatureInstructionsPage.checkMarketabilityCode("M13Z43AGMMMN01_01D");
         voiceSignatureInstructionsPage.fillAndSubmit(app);
         customerInformationPage.fillAndSubmit(app);
         planSelectionAndStartDatePage.basicPlanGaNoRiderNoRnNoQr();
@@ -226,7 +226,7 @@ public class MinnesotaIntegrationTest extends CQBaseIntegrationTest {
 
         startApp(cheatPage, app, sheet);
 
-        voiceSignatureInstructionsPage.checkMarketabilityCode("M13T43AGMMME01_01E");
+        voiceSignatureInstructionsPage.checkMarketabilityCode("M05Y43AGMMMN01_02C");
         voiceSignatureInstructionsPage.fillAndSubmit(app);
         customerInformationPage.fillAndSubmit(app);
         planSelectionAndStartDatePage.basicPlanGaRider23And4NoRnNoQr();

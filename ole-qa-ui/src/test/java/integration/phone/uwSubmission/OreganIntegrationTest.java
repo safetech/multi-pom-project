@@ -6,8 +6,8 @@ import entity.SubmissionResult;
 import entity.phone.CribSheet;
 import integration.CQBaseIntegrationTest;
 import integration.phone.phonePages.uwExpansionPages.*;
-import integration.phone.phonePages.uwExpansionPages.variations.authorization.OR_AuthorizationAndVerificationPage;
-import integration.phone.phonePages.uwExpansionPages.variations.eligibilityhealthquestions.CA_ME_OR_EligibilityHealthQuestionsPage;
+import integration.phone.phonePages.uwExpansionPages.variations.authorization.OR_WA_AuthorizationAndVerificationPage;
+import integration.phone.phonePages.uwExpansionPages.variations.eligibilityhealthquestions.CA_ME_OR_WA_EligibilityHealthQuestionsPage;
 import integration.phone.phonePages.uwExpansionPages.variations.pastandcurrentcoverage.MN_GA_MI_PastAndCurrentInsuranceCoveragePage;
 import integration.phone.phonePages.uwExpansionPages.variations.planapplication.OR_PlanApplicationQuestions;
 import integration.phone.phonePages.uwExpansionPages.variations.replacementnotice.RN034andRE073Page;
@@ -24,9 +24,9 @@ public class OreganIntegrationTest extends CQBaseIntegrationTest {
     @Page public CustomerInformationPage customerInformationPage;
     @Page public PlanSelectionAndStartDatePage planSelectionAndStartDatePage;
     @Page public OR_PlanApplicationQuestions planApplicationQuestionsPage;
-    @Page public CA_ME_OR_EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
+    @Page public CA_ME_OR_WA_EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
     @Page public MN_GA_MI_PastAndCurrentInsuranceCoveragePage pastAndCurrentInsuranceCoveragePage;
-    @Page public OR_AuthorizationAndVerificationPage authorizationAndVerificationPage;
+    @Page public OR_WA_AuthorizationAndVerificationPage authorizationAndVerificationPage;
     @Page public HealthHistoryQuestionsPage healthHistoryQuestionsPage;
     @Page public AgentVerificationPage agentVerificationPage;
     @Page public RN034andRE073Page ReplacementNotice034Page;
@@ -175,6 +175,12 @@ public class OreganIntegrationTest extends CQBaseIntegrationTest {
         //Eligibility Questions
         app.setESRD(NO);
         app.setSurgeryNeeded(NO);
+        app.setKidneyProblem(NO);
+        app.setEligibilitySurgery(NO);
+        app.setEligibilityAdmitToHospPast90Days(NO);
+        app.setNursingFacility(NO);
+        app.setEligibilityHeartAttackTIAStroke(NO);
+        app.setEligibilityChronicMedicalConditions(NO);
         //Past And Current Coverage
         app.setCPATurned65(NO);
         app.setCPAPartBIn6(NO);

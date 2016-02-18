@@ -131,6 +131,6 @@ public class SubmissionResult {
         setWorkQueue(workQueue);
         setWorkQueueReason(workQueueReason);
         setAdjudicationStatus("P");
-        setStatus("Q");
+        setStatus("C");
     }
 }

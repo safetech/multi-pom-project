@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import entity.Application;
 import entity.phone.CribSheet;
+import integration.phone.phonePages.oldOlePages.CheatPage;
 import org.apache.commons.io.FileUtils;
 import org.fluentlenium.adapter.FluentTest;
 import org.fluentlenium.adapter.util.SharedDriver;
@@ -17,7 +18,6 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.slf4j.Logger;
-import integration.phone.phonePages.oldOlePages.CheatPage;
 import util.AnswerUtils;
 
 import java.io.File;
@@ -66,11 +66,11 @@ public class CQBaseIntegrationTest extends FluentTest {
     @Override
     public WebDriver getDefaultDriver() {
         logger.info(String.format("Using driver: webdriver.firefox.bin=%s", System.getProperty("webdriver.firefox.bin")));
-        //Comment the below lines if your not using Browser Stack
+//        Comment the below lines if your not using Browser Stack
 //        DesiredCapabilities caps = new DesiredCapabilities();
 //        caps.setCapability("browser", "IE");
 ////        caps.setCapability("browser", "Chrome");
-//        caps.setCapability("browser_version", "8");
+//        caps.setCapability("browser_version", "11");
 //        caps.setCapability("os", "Windows");
 //        caps.setCapability("os_version", "7");
 //        caps.setCapability("browserstack.debug", "true");

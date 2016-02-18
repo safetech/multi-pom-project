@@ -79,7 +79,7 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         app.setState("MN");
         app.setZipCode("55445");
         app.setDOB(DateUtils.getDOBInNormalDateFormat(67));
-        app.setReqEffectiveDate(DateUtils.getFirstDayOfFutureMonth(1));
+        app.setReqEffectiveDate(DateUtils.getFirstDayOfFutureMonth(2));
         app.setMPBED("05/01/2014");
         app.setMPAED("05/01/2015");
         //CustomerInformationPage
@@ -171,7 +171,7 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         paymentDetailsSummaryPage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
 
-        expectedSubmissionResult.verifyAcceptedPlanAndRiderCodes("TW1","OW1","PW1","","");
+        expectedSubmissionResult.verifyPendingPlanAndRiderCodes("TW1","OW1","PW1","","","","");
         submissionQueryAgent.verifyPlanAndRiderCodes(app, expectedSubmissionResult);
     }
     @Test

@@ -204,7 +204,6 @@ public class SubmissionQueryAgent {
         assertThat(row.get("DATE_OF_BIRTH"), equalTo(app.getDOB()));
         assertThat(row.get("GENDER_CD"), equalTo(app.getGender()));
         assertThat(row.get("DAY_PHONE_NUM"), containsString(app.getPhonePrimary()));
-        //assertThat(row.get("EVENING_PHONE_NUM"), containsString(app.getPhoneEvening()));
         assertThat(row.get("EMAIL_ADDRESS"), equalTo(app.getEmail().toUpperCase()));
         assertThat(row.get("PLAN_CD"), equalTo(expectedSubmissionResult.getPlanCode()));
         assertThat(row.get("REQUESTED_EFFECTIVE_DATE"), equalTo(DateUtils.getFirstDayOfFutureMonth(1)));
@@ -234,44 +233,30 @@ public class SubmissionQueryAgent {
 
         HashMap<String, String> row = DbUtils.getSingleRecord(query, COMPAS_STAGE);
         //HashMap<String, String> getSingleRecord(String query, String connectionString)
-
         String currentDate = DateUtils.NORMALIZED_DATE_FORMAT.format(new java.util.Date());
         assertThat(row.get("MEMBERSHIP_NUMBER"), containsString(app.getAARPMemberNumber()));
-//        assertThat(row.get("NAME_PREFIX_ID"), equalTo(""));
         assertThat(row.get("FIRST_NAME"), equalTo(app.getFirstName().toUpperCase()));
         assertThat(row.get("MIDDLE_NAME"), equalTo(app.getMI().toUpperCase()));
         assertThat(row.get("LAST_NAME"), equalTo(app.getLastName().toUpperCase()));
-//        assertThat(row.get("NAME_SUFFIX_ID"), equalTo(""));
         assertThat(row.get("ADDRESS_LINE_1"), equalTo(app.getAddressLine1().toUpperCase()));
         assertThat(row.get("ADDRESS_LINE_2"), equalTo(app.getAddressLine2().toUpperCase()));
         assertThat(row.get("CITY"), equalTo(app.getCity().toUpperCase()));
         assertThat(row.get("STATE_CD"), equalTo(app.getState().toUpperCase()));
         assertThat(row.get("ZIP_CD"), equalTo(app.getZipCode()));
         assertThat(row.get("DAY_PHONE_NUM"), equalTo(app.getPhonePrimary()));
-//        assertThat(row.get("EVENING_PHONE_NUM"), equalTo(app.getPhoneEvening()));
         assertThat(row.get("EMAIL_ADDRESS"), equalTo(app.getEmail().toUpperCase()));
-
-        //assertThat(row.get("REQUESTED_EFFECTIVE_DATE"), equalTo(app.getReqEffectiveDate()));
         assertThat(row.get("MEDICARE_CLAIM_NUMBER"), equalTo(app.getMedicareClaimNum().toUpperCase()));
-        //assertThat(row.get("PART_A_EFFECTIVE_DATE"), equalTo(app.getMPAED())); //Left out for now
         assertThat(row.get("MED_PART_B_DATE"), equalTo(app.getMPBED()));
         assertThat(row.get("BOTH_PARTS_ACTIVE"), equalTo(app.getPartABActiveIndicator() == "yes" ? "Y" : "N"));
         assertThat(row.get("CPA_SIGNATURE_DATE"), equalTo(currentDate));
         assertThat(row.get("APPL_RECEIPT_DATE"), equalTo(currentDate));
         assertThat(row.get("APPL_SIGNATURE_DATE"), equalTo(currentDate));
-        //assertThat(row.get("AGENT_FIRST_NAME"), equalTo(""));
-        //assertThat(row.get("AGENT_LAST_NAME"), equalTo(""));
-        //assertThat(row.get("SELLING_AGENT_ID"), equalTo(""));
-        //assertThat(row.get("QR_DATE"), equalTo(""));
         assertThat(row.get("STATUS"), equalTo(expectedSubmissionResult.getStatus()));
-//        assertThat(row.get("MARKETING_PRODUCT_CODE"), equalTo(""));
         assertThat(row.get("CHANNEL"), equalTo("10"));
         assertThat(row.get("ACTOR"), equalTo("3"));
         assertThat(row.get("MECHANISM"), equalTo("2"));
-//        assertThat(row.get("APPL_COMPONENT_NUMBER"), equalTo(""));
-//        assertThat(row.get("HASH_CD"), equalTo(""));
-        //assertThat(row.get("PAYMENT_METHOD_TYPE_ID"), equalTo(""));
-        assertThat(row.get("ADJUDICATION_CD"), equalTo(expectedSubmissionResult.getAdjudicationStatus()));
+
+        assertThat(expectedSubmissionResult.getAdjudicationStatus(), equalTo(row.get("ADJUDICATION_CD")));
 
         logger.info(String.format("Here is the link to the image... https://acesx-stg-alt.uhc.com/appEnroll-web/resources/retrievePDF/v1/%s", row.get("APPL_IMAGE_NUM_ORIG") +" For the state of --> " + app.getState()));
 
