@@ -2,19 +2,22 @@ package integration.phone.phonePages.uwExpansionPages.variations.authorization;
 
 import entity.Application;
 import org.fluentlenium.core.domain.FluentWebElement;
+import org.openqa.selenium.support.FindBy;
 import pages.WizardPage;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class OR_AuthorizationAndVerificationPage extends WizardPage {
-
+public class OR_WA_AuthorizationAndVerificationPage extends WizardPage {
+    @FindBy(css = "#UnderstandAuth_1") FluentWebElement UnderstandAuth_Yes;
+    @FindBy(css = "#UnderstandAuth_2") FluentWebElement UnderstandAuth_No;
     FluentWebElement SignatureInd;
     FluentWebElement MedicalReleaseAuthSignatureInd;
 
     public void fillAndSubmit(Application app) {
         isAt();
-        MedicalReleaseAuthSignatureInd.click();
+        UnderstandAuth_Yes.click();
+        SignatureInd.click();
 
         clickNextAndWaitForSpinnerToFinish();
 
