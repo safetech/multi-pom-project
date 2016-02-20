@@ -3,8 +3,8 @@ package entity;
 public class SubmissionResult {
     private String adjudicationStatus = "";
     private String status = "";
-    private String workQueue = "ENROLLMENT MISSING INFORMATION";
-    private String workQueueReason = "INVALID COMPONENT NUMBER";
+    private String workQueue = "";
+    private String workQueueReason = "";
     private String riderOne = "";
     private String riderTwo = "";
     private String riderThree = "";
@@ -130,7 +130,13 @@ public class SubmissionResult {
         setRiderFour(riderFour);
         setWorkQueue(workQueue);
         setWorkQueueReason(workQueueReason);
-        setAdjudicationStatus("P");
+        setAdjudicationStatus("");
+        setStatus("Q");
+    }
+    public void setAcceptedOrPendingInfo(String workQueue, String workQueueReason) {
+        setAdjudicationStatus("A P");
         setStatus("C");
+        setWorkQueue(workQueue);
+        setWorkQueueReason(workQueueReason);
     }
 }

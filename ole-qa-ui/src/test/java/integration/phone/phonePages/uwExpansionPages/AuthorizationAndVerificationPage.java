@@ -18,7 +18,7 @@ public class AuthorizationAndVerificationPage extends WizardPage {
     public void fillAndSubmit(Application app) {
 
         UnderstandAuth_Yes.click();
-        MedicalReleaseAuthSignatureInd.click();
+        SignatureInd.click();
 
         clickNextAndWaitForSpinnerToFinish();
 

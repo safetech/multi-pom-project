@@ -133,14 +133,11 @@ public class PennsylvaniaIntegrationTest extends CQBaseIntegrationTest {
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);
 
-<<<<<<< HEAD
         whatYouNeedPage.checkMarketabilityCode("M01R43AGMMPA01_02B");
-=======
         String marketibilityError = getScriptResult("controller.model.getQuestionValue('marketabilityCode')");
         assertThat(marketibilityError, equalTo("M01R43AGMMPA01_02B"));
         
         whatYouNeedPage.isAt();
->>>>>>> da650c72c73fb882242a1dbabf9244f26c2269e8
         whatYouNeedPage.clickNextAndWaitForSpinnerToFinish();
 
         electronicSignatureAndDocumentConsentPage.isAt();

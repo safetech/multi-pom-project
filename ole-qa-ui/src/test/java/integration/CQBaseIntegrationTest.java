@@ -112,9 +112,7 @@ public class CQBaseIntegrationTest extends FluentTest {
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);
     }
-<<<<<<< HEAD
 
-=======
     public String getScriptResult(String script) {
         if (find("body > #output").size() == 0) {
             executeScript("$('body').append('<div id=\"output\"/>');");
@@ -124,7 +122,6 @@ public class CQBaseIntegrationTest extends FluentTest {
         executeScript("$('#output').text(" + script + ");");
         return find("body > #output").getText();
     }
->>>>>>> da650c72c73fb882242a1dbabf9244f26c2269e8
 }
 
 // TODO: Junit Setup

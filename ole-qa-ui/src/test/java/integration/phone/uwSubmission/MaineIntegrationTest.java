@@ -132,8 +132,7 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
         //Replacement Notice Page
         app.setCommonReplacementNoticeAnswersWithApplicantInfo();
 
-        expectedSubmissionResult.setPendingInfo("ENROLLMENT GI REVIEW","MANUAL GUARANTEED ISSUE REVIEW REQUIRED");
-
+        expectedSubmissionResult.setPendingInfo("UW - PENDING HEALTH PROFILE","UNDERWRITING REQUIRED");
         startApp(cheatPage, app, sheet);
 
         voiceSignatureInstructionsPage.checkMarketabilityCode("M13T43AGMMME01_01E");
@@ -202,7 +201,7 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
         //Authorizationa and verififcation page
         app.setDesignateLapse(YES);
 
-        expectedSubmissionResult.setPendingInfo("ENROLLMENT GI REVIEW","MANUAL GUARANTEED ISSUE REVIEW REQUIRED");
+        expectedSubmissionResult.setPendingInfo("UW - PENDING HEALTH PROFILE","UNDERWRITING REQUIRED");
 
         startApp(cheatPage, app, sheet);
 

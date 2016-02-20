@@ -50,8 +50,11 @@ public class MN_RN034Page extends WizardPage {
         }
 
         AgentRNSignatureInd.click();
-
         ApplicantRNSignatureInd.click();
+        if(!app.getApplicantPrintedNameAdd().isEmpty()) {
+            fill(ApplicantPrintedNameAdd).with(app.getApplicantPrintedNameAdd());
+            fill(ApplicantAddress).with(app.getApplicantAddress());
+        }
 
         clickNextAndWaitForSpinnerToFinish();
     }

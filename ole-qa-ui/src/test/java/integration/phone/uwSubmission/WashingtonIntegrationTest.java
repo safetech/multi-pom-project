@@ -132,7 +132,7 @@ public class WashingtonIntegrationTest extends CQBaseIntegrationTest {
         app.setApplicantPrintedNameAdd("AppName");
         app.setApplicantAddress("AppAdd");
 
-        expectedSubmissionResult.setPendingInfo("ENROLLMENT CPA REVIEW", "CPA REVIEW REQUIRED");
+        expectedSubmissionResult.setPendingInfo("ENROLLMENT MISSING INFORMATION", "CPA REVIEW REQUIRED");
 
         logger.info(gson.toJson(app));
 
@@ -235,7 +235,7 @@ public class WashingtonIntegrationTest extends CQBaseIntegrationTest {
         applicationSubmissionPage.isAt();
 
         submissionQueryPhone.verifySubmissionData(app, expectedSubmissionResult);
-        submissionQueryPhone.verifyAdjudicationData(app, expectedSubmissionResult);
+        submissionQueryPhone.verifyAdjudicationAndWorkQReasons(app, expectedSubmissionResult);
 
     }
 
