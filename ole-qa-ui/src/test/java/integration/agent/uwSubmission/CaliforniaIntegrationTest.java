@@ -80,8 +80,8 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         app.setState("CA");
         app.setZipCode("90210");
         app.setDOB(DateUtils.getDOBInNormalDateFormat(65));
-        app.setMPBED(DateUtils.getFirstDayOfPastOrFutureMonths(-1));
-        app.setMPAED(DateUtils.getFirstDayOfPastOrFutureMonths(-1));
+        app.setMPBED(DateUtils.getFirstDayOfPastOrFutureMonths(0));
+        app.setMPAED(DateUtils.getFirstDayOfPastOrFutureMonths(0));
         //TestData
         app.setAARPMembershipNumber(faker.numerify("##########"));
         app.setPrefix("MR");
@@ -132,6 +132,7 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);
         checkEligibilityAndAvailabilityPage.fillAndSubmit(app);
+        planSelectionPage.checkMarketabilityCode("M14M43AGMMCA01_01D");
         planSelectionPage.fillAndSubmit(app);
         whatYouNeedPage.fillAndSubmit(app);
         customerInformationPage.fillAndSubmit(app);
@@ -142,6 +143,7 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         planPaymentOptionsPage.fillAndSubmit(app);
         paymentDetailsSummaryPage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
+       // reviewAndSubmitPage.isAt();
         expectedSubmissionResult.setAcceptedInfo();
         submissionQuery.verifyUwExpansionSubmissionData(app, expectedSubmissionResult);
         submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);

@@ -137,6 +137,8 @@ public class OreganIntegrationTest extends CQBaseIntegrationTest {
         logger.info(gson.toJson(app));
 
         startApp(cheatPage, app, sheet);
+
+        voiceSignatureInstructionsPage.checkMarketabilityCode("S12Z43AGMMOR01_01D");
         voiceSignatureInstructionsPage.fillAndSubmit(app);
         customerInformationPage.fillAndSubmit(app);
         planSelectionAndStartDatePage.fillAndSubmit(app);
@@ -222,7 +224,7 @@ public class OreganIntegrationTest extends CQBaseIntegrationTest {
         logger.info(gson.toJson(app));
 
         startApp(cheatPage, app, sheet);
-        voiceSignatureInstructionsPage.isAt();
+        voiceSignatureInstructionsPage.checkMarketabilityCode("S12Z43AGMMOR01_01D");
         voiceSignatureInstructionsPage.fillAndSubmit(app);
         customerInformationPage.fillAndSubmit(app);
         // The above pages will always appear

@@ -55,6 +55,5 @@ public class VoiceSignatureInstructionsPage extends WizardPage {
 
     public void isAt() {
         assertThat(pageTitle.getText(), containsString("Voice Signature Instructions"));
-        //assertThat(pageTitle.getText(), containsString("Voice Signature Instructions"));
     }
 }

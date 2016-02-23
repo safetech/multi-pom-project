@@ -19,7 +19,6 @@ public class MN_PlanApplicationQuestionsPage extends PlanApplicationQuestions {
         assertQuestionCount(TOTAL_POSSIBLE_QUESTION_COUNT);
         assertYesNoQuestion(PlanEffIn6OfEligible_Yes, PlanEffIn6OfEligible_No, app.getPlanEffIn6OfEligible());
         assertVisibleBasedUpon(app.getPlanEffIn6OfEligible().equals(NO), LostCoverage_Yes, LostCoverage_No);
-        assertHidden(LostCoverage_Yes, LostCoverage_No);
         assertBlank(TobaccoUse_Yes, TobaccoUse_No);
 
     }
@@ -29,17 +28,15 @@ public class MN_PlanApplicationQuestionsPage extends PlanApplicationQuestions {
 
         verifyInitialStateOfElements(app);
         if(app.getPlanEffIn6OfEligible().equals(NO)) {
-            fillYesNoQuestion(ContinuousCoverage_Yes, ContinuousCoverage_No, app.getContinuousCoverage());
-            if(app.getContinuousCoverage().equals(NO)) {
-                fillYesNoQuestion(LostCoverage_Yes, LostCoverage_No, app.getLostCoverage());
-            }
-
+            fillYesNoQuestion(LostCoverage_Yes, LostCoverage_No, app.getLostCoverage());
         }
+
         fillYesNoQuestion(TobaccoUse_Yes, TobaccoUse_No, app.getTobaccoUse());
         verifyStateOfElementAfterAnswers(app);
 
         clickNextAndWaitForSpinnerToFinish();
     }
+
 
     public void verifyStateOfElementAfterAnswers(Application app) {
         assertVisible(PlanEffIn6OfEligible_Yes,
@@ -47,13 +44,11 @@ public class MN_PlanApplicationQuestionsPage extends PlanApplicationQuestions {
                 TobaccoUse_Yes,
                 TobaccoUse_No);
         assertYesNoQuestion(PlanEffIn6OfEligible_Yes, PlanEffIn6OfEligible_No, app.getPlanEffIn6OfEligible());
-        assertYesNoQuestion(LostCoverage_Yes, LostCoverage_No, app.getLostCoverage());
         assertVisibleBasedUpon(app.getPlanEffIn6OfEligible().equals(NO), LostCoverage_Yes, LostCoverage_No);
-        assertVisibleBasedUpon(app.getContinuousCoverage().equals(NO), LostCoverage_Yes, LostCoverage_No);
 
         assertYesNoQuestion(TobaccoUse_Yes, TobaccoUse_No, app.getTobaccoUse());
         assertQuestionCount(TOTAL_POSSIBLE_QUESTION_COUNT);
     }
 
 }
-//GI30dayBday_2
+

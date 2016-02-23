@@ -168,6 +168,7 @@ public class FloridaIntegrationTest extends CQBaseIntegrationTest {
 
         checkEligibilityAndAvailabilityPage.isAt();
         checkEligibilityAndAvailabilityPage.fillAndSubmit(app);
+        planSelectionPage.checkMarketabilityCode("M14M43AGMMCA01_01D");
         planSelectionPage.fillAndSubmit(app);
         whatYouNeedPage.fillAndSubmit(app);
         customerInformationPage.fillAndSubmit(app);
@@ -296,6 +297,7 @@ public class FloridaIntegrationTest extends CQBaseIntegrationTest {
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);
         checkEligibilityAndAvailabilityPage.fillAndSubmit(app);
+        planSelectionPage.checkMarketabilityCode("M14M43AGMMCA01_01D");
         planSelectionPage.fillAndSubmit(app);
         whatYouNeedPage.fillAndSubmit(app);
         customerInformationPage.fillAndSubmit(app);

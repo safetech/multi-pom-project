@@ -138,6 +138,7 @@ public class WashingtonIntegrationTest extends CQBaseIntegrationTest {
 
         startApp(cheatPage, app, sheet);
 
+        voiceSignatureInstructionsPage.checkMarketabilityCode("S13J43AGMMWA02_01D");
         voiceSignatureInstructionsPage.fillAndSubmit(app);
         customerInformationPage.fillAndSubmit(app);
         planSelectionAndStartDatePage.fillAndSubmit(app);
@@ -222,7 +223,7 @@ public class WashingtonIntegrationTest extends CQBaseIntegrationTest {
 
         startApp(cheatPage, app, sheet);
 
-        voiceSignatureInstructionsPage.isAt();
+        voiceSignatureInstructionsPage.checkMarketabilityCode("S13J43AGMMWA02_01D");
         voiceSignatureInstructionsPage.fillAndSubmit(app);
         customerInformationPage.fillAndSubmit(app);
         // The above pages will always appear

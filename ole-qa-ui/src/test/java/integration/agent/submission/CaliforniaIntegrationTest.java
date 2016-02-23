@@ -209,8 +209,8 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         app.setState("CA");
         app.setZipCode("90210");
         app.setMPBED(DateUtils.getFirstDayOfPastOrFutureMonths(-2));
-        app.setDOB(DateUtils.getDOBInNormalDateFormat(66));
         app.setMPBED(DateUtils.getFirstDayOfPastOrFutureMonths(-1));
+        app.setDOB(DateUtils.getDOBInNormalDateFormat(66));
         app.setCpaSignatureIndTouch(Application.ALL_SIGNATURES[0]);
         app.setSignatureIndTouch(Application.ALL_SIGNATURES[1]);
         app.setMedicalReleaseAuthSignatureIndTouch(Application.ALL_SIGNATURES[2]);

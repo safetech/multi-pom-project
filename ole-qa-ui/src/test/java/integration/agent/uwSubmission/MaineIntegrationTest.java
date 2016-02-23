@@ -5,16 +5,16 @@ import entity.Application;
 import entity.SubmissionResult;
 import entity.agent.CribSheet;
 import integration.CQBaseIntegrationTest;
-import org.fluentlenium.core.annotation.Page;
-import org.junit.Before;
-import org.junit.Test;
 import integration.agent.agentPages.uwExpansionPages.*;
+import integration.agent.agentPages.uwExpansionPages.variations.authorization.ME_AuthorizationPage;
 import integration.agent.agentPages.uwExpansionPages.variations.checkeligibility.ME_CA_FL_CheckEligibilityAndAvailabilityPage;
 import integration.agent.agentPages.uwExpansionPages.variations.currentinsurancecoverage.ME_CurrentInsuranceCoveragePage;
 import integration.agent.agentPages.uwExpansionPages.variations.eligibilityhealthquestions.ME_CA_FL_EligibilityHealthQuestionsPage;
 import integration.agent.agentPages.uwExpansionPages.variations.planapplication.ME_PlanApplicationQuestionsPage;
 import integration.agent.agentPages.uwExpansionPages.variations.replacenotice.RN034andRE073WithSignaturePage;
-import integration.agent.agentPages.oldOlePages.variations.authorization.NV_ME_AuthorizationPage;
+import org.fluentlenium.core.annotation.Page;
+import org.junit.Before;
+import org.junit.Test;
 import queries.SubmissionQueryAgent;
 import util.DateUtils;
 
@@ -28,7 +28,7 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
     @Page public ME_PlanApplicationQuestionsPage planApplicationQuestionsPage;
     @Page public ME_CA_FL_EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
     @Page public ME_CurrentInsuranceCoveragePage currentInsuranceCoveragePage;
-    @Page public NV_ME_AuthorizationPage authorizationPage;
+    @Page public ME_AuthorizationPage authorizationPage;
     @Page public RN034andRE073WithSignaturePage replacementNotice;
     @Page public HealthHistoryQuestionsPage healthHistoryQuestionsPage;
     @Page public AgentVerificationPage agentVerificationPage;
@@ -139,6 +139,7 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);
         checkEligibilityAndAvailabilityPage.fillAndSubmit(app);
+        planSelectionPage.checkMarketabilityCode("M13T43AGMMME01_01E");
         planSelectionPage.fillAndSubmit(app);
         whatYouNeedPage.fillAndSubmit(app);
         customerInformationPage.fillAndSubmit(app);
@@ -259,7 +260,7 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
         cheatPage.fillAndSubmit(sheet);
 
         checkEligibilityAndAvailabilityPage.fillAndSubmit(app);
-
+        planSelectionPage.checkMarketabilityCode("M13T43AGMMME01_01E");
         planSelectionPage.fillAndSubmit(app);
         whatYouNeedPage.fillAndSubmit(app);
         customerInformationPage.fillAndSubmit(app);
@@ -273,7 +274,7 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
         paymentDetailsSummaryPage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
 
-        expectedSubmissionResult.setAcceptedInfo();
+        expectedSubmissionResult.setPendingInfo("INFORMATION","REQUIRED");
         submissionQuery.verifyUwExpansionSubmissionData(app, expectedSubmissionResult);
         submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
 

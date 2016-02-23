@@ -9,7 +9,7 @@ import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
 import integration.agent.agentPages.uwExpansionPages.*;
-import integration.agent.agentPages.uwExpansionPages.variations.authorization.MN_OR_AuthorizationPage;
+import integration.agent.agentPages.uwExpansionPages.variations.authorization.MN_AuthorizationPage;
 import integration.agent.agentPages.uwExpansionPages.variations.checkeligibility.ME_CA_FL_CheckEligibilityAndAvailabilityPage;
 import integration.agent.agentPages.uwExpansionPages.variations.currentinsurancecoverage.OR_CurrentInsuranceCoveragePage;
 import integration.agent.agentPages.uwExpansionPages.variations.eligibilityhealthquestions.ME_CA_FL_EligibilityHealthQuestionsPage;
@@ -28,7 +28,7 @@ public class OreganIntegrationTest extends CQBaseIntegrationTest {
     @Page public OR_PlanApplicationQuestionsPage planApplicationQuestionsPage;
     @Page public ME_CA_FL_EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
     @Page public OR_CurrentInsuranceCoveragePage currentInsuranceCoveragePage;
-    @Page public MN_OR_AuthorizationPage authorizationPage;
+    @Page public MN_AuthorizationPage authorizationPage;
     @Page public RN034andRE073WithSignaturePage replacementNotice;
     @Page public HealthHistoryQuestionsPage healthHistoryQuestionsPage;
     @Page public AgentVerificationPage agentVerificationPage;

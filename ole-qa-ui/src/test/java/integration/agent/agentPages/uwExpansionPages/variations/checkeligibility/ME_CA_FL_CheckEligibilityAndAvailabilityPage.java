@@ -2,6 +2,7 @@ package integration.agent.agentPages.uwExpansionPages.variations.checkeligibilit
 
 import entity.Application;
 import org.fluentlenium.core.domain.FluentWebElement;
+import org.openqa.selenium.support.FindBy;
 import pages.WizardPage;
 
 import java.util.concurrent.TimeUnit;
@@ -16,6 +17,9 @@ public class ME_CA_FL_CheckEligibilityAndAvailabilityPage extends WizardPage {
     public FluentWebElement MPBED;
     public FluentWebElement ReqEffectiveDate;
     public FluentWebElement State;
+
+    //.tooltip
+    @FindBy(xpath = "//*[@id='block']/div[3]/div/div[5]/a") FluentWebElement helpToolTip;
 
     public void fillAndSubmit(Application app) {
 
@@ -36,19 +40,17 @@ public class ME_CA_FL_CheckEligibilityAndAvailabilityPage extends WizardPage {
         fill(MPBED).with(app.getMPBED());
         blur("#MPBED");
             try{
-                Thread.sleep(300);
+                Thread.sleep(3000);
             }catch(Exception e){
             }
 
-
         fillSelect("div.customer_eligibility_form #ReqEffectiveDate").withIndex(3);
+        helpToolTip.click();
         blur("#ReqEffectiveDate");
         try{
             Thread.sleep(1000);
         }catch(Exception e){
         }
-        blur("#ReqEffectiveDate");
-        getDriver().manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         clickNextAndWaitForSpinnerToFinish();
     }
 

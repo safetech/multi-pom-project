@@ -38,6 +38,9 @@ public class WizardPage extends FluentPage {
     @FindBy(css = "a.action_next")
     public FluentWebElement nextButton;
     public FluentWebElement resume;
+    public void blur(String selector){
+        executeScript("$('"+selector+"').blur()");
+    }
 
 
     private String TEXT_SUB_SELECTOR = "span[data-textsub-id='%s']";
@@ -128,6 +131,7 @@ public class WizardPage extends FluentPage {
     public void clickNextAndWaitForSpinnerToFinish() {
         clickNextAndWaitForSpinnerToFinish(10);
     }
+
     protected void clickNextAndWaitForSpinnerToFinish(int seconds) {
         nextButton.click();
         waitForSpinnerToFinish(seconds);

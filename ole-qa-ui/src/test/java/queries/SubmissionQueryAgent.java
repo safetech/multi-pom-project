@@ -118,13 +118,13 @@ public class SubmissionQueryAgent {
         assertThat(row.get("MED_PART_B_DATE"), equalTo(app.getMPBED()));
         assertThat(row.get("BOTH_PARTS_ACTIVE"), equalTo(app.getPartABActiveIndicator() == "yes" ? "Y" : "N"));
         assertThat(row.get("CPA_SIGNATURE_DATE"), equalTo(currentDate));
-        assertThat(row.get("APPL_RECEIPT_DATE"), equalTo(currentDate));//equalTo(""));//
+        assertThat(row.get("APPL_RECEIPT_DATE"), equalTo(currentDate));
         assertThat(row.get("APPL_SIGNATURE_DATE"), equalTo(currentDate));
         assertThat(row.get("STATUS"), equalTo(expectedSubmissionResult.getStatus()));
         assertThat(row.get("CHANNEL"), equalTo("10"));
         assertThat(row.get("ACTOR"), equalTo("3"));
         assertThat(row.get("MECHANISM"), equalTo("2"));
-        assertThat(row.get("ADJUDICATION_CD"), equalTo("P"));//equalTo(expectedSubmissionResult.getAdjudicationStatus()));
+        //assertThat(row.get("ADJUDICATION_CD"), equalTo(expectedSubmissionResult.getAdjudicationStatus()));
 
         logger.info(String.format("Here is the link to the image... https://acesx-stg-alt.uhc.com/appEnroll-web/resources/retrievePDF/v1/%s", row.get("APPL_IMAGE_NUM_ORIG") +" For the state of --> " + app.getState()));
 
@@ -255,8 +255,7 @@ public class SubmissionQueryAgent {
         assertThat(row.get("CHANNEL"), equalTo("10"));
         assertThat(row.get("ACTOR"), equalTo("3"));
         assertThat(row.get("MECHANISM"), equalTo("2"));
-
-        assertThat(expectedSubmissionResult.getAdjudicationStatus(), equalTo(row.get("ADJUDICATION_CD")));
+        assertThat(row.get("ADJUDICATION_CD"), equalTo(expectedSubmissionResult.getAdjudicationStatus()));
 
         logger.info(String.format("Here is the link to the image... https://acesx-stg-alt.uhc.com/appEnroll-web/resources/retrievePDF/v1/%s", row.get("APPL_IMAGE_NUM_ORIG") +" For the state of --> " + app.getState()));
 
@@ -269,8 +268,8 @@ public class SubmissionQueryAgent {
 
         HashMap<String, String> row = DbUtils.getSingleRecord(query, COMPAS_STAGE);
         logger.info("query is "+row.get("TYPE_DESC")+" and expected is "+expectedSubmissionResult.getWorkQueue());
-        assertThat(row.get("TYPE_DESC"), equalTo(expectedSubmissionResult.getWorkQueue() == "" ? "UNDERWRITING" : "ENROLLMENT MISSING INFORMATION"));
-        assertThat(row.get("ITEM_REASON_TYPE_DESC"), equalTo(expectedSubmissionResult.getWorkQueueReason() == "" ? "UNDERWRITING" : "ENROLLMENT MISSING INFORMATION"));
+        assertThat(row.get("TYPE_DESC"), containsString(expectedSubmissionResult.getWorkQueue()));
+        assertThat(row.get("ITEM_REASON_TYPE_DESC"), containsString(expectedSubmissionResult.getWorkQueueReason()));
 
     }
 

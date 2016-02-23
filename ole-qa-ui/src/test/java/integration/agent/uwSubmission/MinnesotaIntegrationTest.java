@@ -9,7 +9,7 @@ import integration.agent.agentPages.oldOlePages.*;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
-import integration.agent.agentPages.uwExpansionPages.variations.authorization.MN_OR_AuthorizationPage;
+import integration.agent.agentPages.uwExpansionPages.variations.authorization.MN_AuthorizationPage;
 import integration.agent.agentPages.uwExpansionPages.variations.checkeligibility.ME_CA_FL_CheckEligibilityAndAvailabilityPage;
 import integration.agent.agentPages.uwExpansionPages.variations.currentinsurancecoverage.WA_CurrentInsuranceCoveragePage;
 import integration.agent.agentPages.uwExpansionPages.variations.eligibilityhealthquestions.ME_CA_FL_EligibilityHealthQuestionsPage;
@@ -31,7 +31,7 @@ public class MinnesotaIntegrationTest extends CQBaseIntegrationTest {
     @Page public MN_PlanApplicationQuestionsPage planApplicationQuestionsPage;
     @Page public ME_CA_FL_EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
     @Page public WA_CurrentInsuranceCoveragePage currentInsuranceCoveragePage;
-    @Page public MN_OR_AuthorizationPage authorizationPage;
+    @Page public MN_AuthorizationPage authorizationPage;
     @Page public RN034andRE073WithSignaturePage replacementNotice;
     @Page public HealthHistoryQuestionsPage healthHistoryQuestionsPage;
     @Page public AgentVerificationPage agentVerificationPage;
@@ -106,6 +106,7 @@ public class MinnesotaIntegrationTest extends CQBaseIntegrationTest {
         app.setAgentEmailConfirm("agentPages@uhc.com");
         //Plan ApplicationPage
         app.setPlanEffIn6OfEligible(YES);
+        app.setTobaccoUse(YES);
         //Past And Current Coverage
         app.setCPATurned65(YES);
         app.setCPAPartBIn6(YES);
@@ -130,6 +131,7 @@ public class MinnesotaIntegrationTest extends CQBaseIntegrationTest {
         cheatPage.fillAndSubmit(sheet);
 
         checkEligibilityAndAvailabilityPage.fillAndSubmit(app);
+        planSelectionPage.checkMarketabilityCode("M13Z43AGMMMN01_01D");
         planSelectionPage.fillAndSubmit(app);
         whatYouNeedPage.fillAndSubmit(app);
         customerInformationPage.fillAndSubmit(app);
@@ -150,7 +152,7 @@ public class MinnesotaIntegrationTest extends CQBaseIntegrationTest {
     public void AGENT_minnesota_eligibility_healthhistory_underwriting_with_rn() throws Exception {
 
         sheet.setAgentId("Test");
-        sheet.setAgentMedSuppStates("[NV| CA| MA| FL| NY| OH| AR| PA| WA]");
+        sheet.setAgentMedSuppStates("[NV| CA| MA| FL| NY| OH| AR| PA| WA| MN]");
         sheet.setAgentCertificationYears("[2014 |2015| 2016]");
         sheet.setMarketability_code(BLANK);
         sheet.setSiteId("UHP");
@@ -185,13 +187,21 @@ public class MinnesotaIntegrationTest extends CQBaseIntegrationTest {
         app.setPartABActiveIndicator(YES);
         app.setAgentEmail("agentPages@uhc.com");
         app.setAgentEmailConfirm("agentPages@uhc.com");
-        //Plan application question\
+        //Eligibility Page
         app.setESRD(NO);
         app.setSurgeryNeeded(NO);
+        app.setKidneyProblem(NO);
+        app.setEligibilitySurgery(NO);
+        app.setEligibilityAdmitToHospPast90Days(NO);
+        app.setNursingFacility(NO);
+        app.setEligibilityHeartAttackTIAStroke(NO);
+        app.setEligibilityChronicMedicalConditions(NO);
+        //Plan application question\
         app.setMedSuppReplace(NO);
         app.setTurned65In6GA(NO);
         app.setPlanEffIn6OfEligible(NO);
         app.setLostCoverage(NO);
+        app.setTobaccoUse(YES);
         //Past And Current Coverage
         app.setCPATurned65(NO);
         app.setCPAPartBIn6(NO);
@@ -215,7 +225,6 @@ public class MinnesotaIntegrationTest extends CQBaseIntegrationTest {
         app.setOtherInsEnd("01/01/2014");
         app.setOtherInsReplace(YES);
         app.setCpaSignatureInd(YES);
-        app.setTobaccoUse(YES);
         //Eligibility Health Questions
         app.setKidneyProblem(NO);
         app.setEligibilitySurgery(NO);
@@ -255,6 +264,7 @@ public class MinnesotaIntegrationTest extends CQBaseIntegrationTest {
         cheatPage.fillAndSubmit(sheet);
 
         checkEligibilityAndAvailabilityPage.fillAndSubmit(app);
+        planSelectionPage.checkMarketabilityCode("M13Z43AGMMMN01_01D");
         planSelectionPage.fillAndSubmit(app);
         whatYouNeedPage.fillAndSubmit(app);
         customerInformationPage.fillAndSubmit(app);
@@ -268,8 +278,7 @@ public class MinnesotaIntegrationTest extends CQBaseIntegrationTest {
         paymentDetailsSummaryPage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
 
-        expectedSubmissionResult.setAcceptedInfo();
-        //expectedSubmissionResult.setPendingInfo("ENROLLMENT MISSING INFORMATION","CPA REVIEW REQUIRED");
+        expectedSubmissionResult.setPendingInfo("INFORMATION","REQUIRED");
         submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
 
     }

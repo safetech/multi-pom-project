@@ -5,6 +5,8 @@ import org.fluentlenium.core.domain.FluentWebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.WizardPage;
 
+import java.util.concurrent.TimeUnit;
+
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -26,10 +28,12 @@ public class WhatYouNeedPage extends WizardPage {
 
         AgentKitProvided.click();
         TouchSign.click();
+        await().atMost(5, TimeUnit.SECONDS).until(".right").withText().startsWith("*An enrollment kit").isPresent();
 
         clickNextAndWaitForSpinnerToFinish();
     }
     public void isAt() {
+
          assertThat(pageTitle.getText(), equalTo("What You Need"));
     }
 
