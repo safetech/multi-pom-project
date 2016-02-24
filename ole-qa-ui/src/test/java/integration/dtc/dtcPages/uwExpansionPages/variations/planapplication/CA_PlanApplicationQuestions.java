@@ -26,23 +26,32 @@ public class CA_PlanApplicationQuestions extends PlanApplicationQuestions {
 
         public void fillAndSubmit(Application app) {
 
+            isAt();
             assertQuestionCount(TOTAL_POSSIBLE_QUESTION_COUNT);
-            fillYesNoQuestion(GI30Bday_Yes, GI30Bday_No, app.getGI30dayBday());
-            if(app.getGI30dayBday().equals(NO)) {
-                fillYesNoUnsureQuestion(ESRD_Yes, ESRD_No, ESRD_NotSure, app.getESRD());
-                if(app.getESRD().equals(NO)) {
-                    fillYesNoQuestion(PlanEffIn6OfEligible_Yes, PlanEffIn6OfEligible_No, app.getPlanEffIn6OfEligible());
-                    if(app.getPlanEffIn6OfEligible().equals(NO)) {
-                        fillYesNoQuestion(CAGuaranteedAcceptance_Yes, CAGuaranteedAcceptance_No, app.getCAGuaranteedAcceptance());
-                        if(app.getCAGuaranteedAcceptance().equals(NO)) {
-                            fillYesNoQuestion(LostCoverage_Yes, LostCoverage_No, app.getLostCoverage());
-                        }
+            assertVisible(PlanEffIn6OfEligible_Yes, PlanEffIn6OfEligible_No);
+            if(app.getPlanEffIn6OfEligible().equals(NO)){
+                fillYesNoQuestion(GI30Bday_Yes, GI30Bday_No, app.getGI30dayBday());
+                if(app.getGI30dayBday().equals(NO)) {
+                    fillYesNoQuestion(CAGuaranteedAcceptance_Yes, CAGuaranteedAcceptance_No, app.getCAGuaranteedAcceptance());
+                    if(app.getCAGuaranteedAcceptance().equals(NO)) {
+                        fillYesNoQuestion(LostCoverage_Yes, LostCoverage_No, app.getLostCoverage());
                     }
                 }
-            }
                 fillYesNoQuestion(TobaccoUse_Yes, TobaccoUse_No, app.getTobaccoUse());
+            }
 
+            verifyStateOfElementAfterAnswers(app);
             clickNextAndWaitForSpinnerToFinish();
         }
+
+    public void verifyStateOfElementAfterAnswers(Application app) {
+
+        assertYesNoQuestion(PlanEffIn6OfEligible_Yes, PlanEffIn6OfEligible_No, app.getPlanEffIn6OfEligible());
+        assertVisibleBasedUpon(app.getPlanEffIn6OfEligible().equals(NO), GI30Bday_Yes, GI30Bday_No);
+        assertVisibleBasedUpon(app.getGI30dayBday().equals(NO), CAGuaranteedAcceptance_Yes, CAGuaranteedAcceptance_No);
+        assertVisibleBasedUpon(app.getCAGuaranteedAcceptance().equals(NO), LostCoverage_Yes, LostCoverage_No);
+        assertVisibleBasedUpon(app.getPlanEffIn6OfEligible().equals(NO), TobaccoUse_Yes, TobaccoUse_No);
+
     }
+}
 

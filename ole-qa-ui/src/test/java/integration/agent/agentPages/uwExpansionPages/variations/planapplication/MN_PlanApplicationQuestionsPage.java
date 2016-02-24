@@ -11,8 +11,6 @@ public class MN_PlanApplicationQuestionsPage extends PlanApplicationQuestions {
     protected int TOTAL_POSSIBLE_QUESTION_COUNT = 6;
     @FindBy(css = "#LostCoverage_1") FluentWebElement LostCoverage_Yes;
     @FindBy(css = "#LostCoverage_2") FluentWebElement LostCoverage_No;
-    @FindBy(css = "#ContinuousCoverage_1") FluentWebElement ContinuousCoverage_Yes;
-    @FindBy(css = "#ContinuousCoverage_2") FluentWebElement ContinuousCoverage_No;
     @FindBy(css = "#GIMPBED") FluentWebElement GIMPBED;
 
     public void verifyInitialStateOfElements(Application app) {

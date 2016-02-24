@@ -180,7 +180,6 @@ public class SubmissionQueryDtc {
                assertThat(row.get("CHANNEL"), equalTo("10"));
                assertThat(row.get("ACTOR"), equalTo("1"));
                assertThat(row.get("MECHANISM"), equalTo("2"));
-               assertThat(row.get("ADJUDICATION_CD"), equalTo(expectedSubmissionResult.getAdjudicationStatus()));
 
         logger.info(String.format("Here is the link to the image... https://acesx-tst-alt.uhc.com/appEnroll-web/resources/retrievePDF/v1/%s", row.get("APPL_IMAGE_NUM_ORIG") +" For the state of --> " + row.get("STATE_CD")));
     }
@@ -200,7 +199,7 @@ public class SubmissionQueryDtc {
         assertThat(row.get("ADDRESS_LINE_2"), equalTo(app.getAddressLine2().toUpperCase()));
         assertThat(row.get("CITY"), equalTo(app.getCity().toUpperCase()));
         assertThat(row.get("DAY_PHONE_NUM"), equalTo(app.getPhonePrimary()));
-        assertThat(row.get("EVENING_PHONE_NUM"), equalTo(app.getPhoneEvening()));
+//        assertThat(row.get("EVENING_PHONE_NUM"), equalTo(app.getPhoneEvening()));
         assertThat(row.get("EMAIL_ADDRESS"), equalTo(app.getEmail().toUpperCase()));
         assertThat(row.get("BOTH_PARTS_ACTIVE"), equalTo(app.getPartABActiveIndicator() == "yes" ? "Y" : "N"));
         assertThat(row.get("CPA_SIGNATURE_DATE"), equalTo(currentDate));
@@ -222,6 +221,7 @@ public class SubmissionQueryDtc {
 
         HashMap<String, String> row = DbUtils.getSingleRecord(query, COMPAS_STAGE);
         logger.info("query is "+row.get("TYPE_DESC")+" and expected is "+expectedSubmissionResult.getWorkQueue());
+        assertThat(row.get("ADJUDICATION_CD"), equalTo(expectedSubmissionResult.getAdjudicationStatus()));
         assertThat(row.get("TYPE_DESC"), containsString(expectedSubmissionResult.getWorkQueue()));
         assertThat(row.get("ITEM_REASON_TYPE_DESC"), containsString(expectedSubmissionResult.getWorkQueueReason()));
 

@@ -207,4 +207,5 @@ public class WizardPage extends FluentPage {
         String marketibilityError = getScriptResult("controller.model.getQuestionValue('marketabilityCode')");
         assertThat(marketibilityError, equalTo(marketCode));
     }
+
 }

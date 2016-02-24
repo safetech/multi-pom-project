@@ -266,4 +266,5 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
 
     }
+
 }

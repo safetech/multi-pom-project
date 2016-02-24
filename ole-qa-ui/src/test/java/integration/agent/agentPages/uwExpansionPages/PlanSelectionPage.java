@@ -38,7 +38,7 @@ public class PlanSelectionPage extends WizardPage{
         clickNextAndWaitForSpinnerToFinish();
 
         getDriver().manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
-
+        await().atMost(10, TimeUnit.SECONDS).until("#OleRateTable tbody tr").isPresent();
         await().atMost(5, TimeUnit.SECONDS).until(".OleRateTable").withText("Plan").hasSize();
         Second_Plan.click();
 
