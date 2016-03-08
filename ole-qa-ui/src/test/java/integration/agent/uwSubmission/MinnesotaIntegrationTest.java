@@ -9,7 +9,7 @@ import integration.agent.agentPages.oldOlePages.*;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
-import integration.agent.agentPages.uwExpansionPages.variations.authorization.MN_AuthorizationPage;
+import integration.agent.agentPages.uwExpansionPages.variations.authorization.MN_WA_AuthorizationPage;
 import integration.agent.agentPages.uwExpansionPages.variations.checkeligibility.ME_CA_FL_CheckEligibilityAndAvailabilityPage;
 import integration.agent.agentPages.uwExpansionPages.variations.currentinsurancecoverage.WA_CurrentInsuranceCoveragePage;
 import integration.agent.agentPages.uwExpansionPages.variations.eligibilityhealthquestions.ME_CA_FL_EligibilityHealthQuestionsPage;
@@ -31,7 +31,7 @@ public class MinnesotaIntegrationTest extends CQBaseIntegrationTest {
     @Page public MN_PlanApplicationQuestionsPage planApplicationQuestionsPage;
     @Page public ME_CA_FL_EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
     @Page public WA_CurrentInsuranceCoveragePage currentInsuranceCoveragePage;
-    @Page public MN_AuthorizationPage authorizationPage;
+    @Page public MN_WA_AuthorizationPage authorizationPage;
     @Page public RN034andRE073WithSignaturePage replacementNotice;
     @Page public HealthHistoryQuestionsPage healthHistoryQuestionsPage;
     @Page public AgentVerificationPage agentVerificationPage;
@@ -89,7 +89,7 @@ public class MinnesotaIntegrationTest extends CQBaseIntegrationTest {
         //TestData
         app.setAARPMembershipNumber(faker.numerify("##########"));
         app.setPrefix("MR");
-        app.setFirstName(faker.letterify("??????????"));
+        app.setFirstName(app.getState()+"Agent_GA_InteliJ");
         app.setLastName(faker.letterify("??????????"));
         app.setSuffix("PHD");
         app.setAddressLine1(faker.bothify("#### ??????????? ??"));
@@ -169,7 +169,7 @@ public class MinnesotaIntegrationTest extends CQBaseIntegrationTest {
         //TestData
         app.setAARPMembershipNumber(faker.numerify("##########"));
         app.setPrefix("MR");
-        app.setFirstName(faker.letterify("??????????"));
+        app.setFirstName(app.getState()+"Agent_FU_InteliJ");
         app.setLastName(faker.letterify("??????????"));
         app.setSuffix("PHD");
         app.setAddressLine1(faker.bothify("#### ??????????? ??"));

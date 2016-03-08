@@ -49,11 +49,11 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
     }
 
     @Test
-    public void DTC_maine_underwriting_with_health_history_and_designeeSig() throws Exception {
+    public void DTC_Maine_FU_With_HH_And_DesigneeSig() throws Exception {
 
         sheet.setAarpMemid("y");
         sheet.setDOB(DateUtils.getDOBofPersonTurningAgeToday(69));
-        sheet.setEffDate("01/01/2012");
+        sheet.setEffDate(DateUtils.getFirstDayOfPastOrFutureMonths(-7));
         sheet.setPsd(DateUtils.getFirstDayOfPastOrFutureMonths(3));
         sheet.setPlanCode("A");
         sheet.setReferrer("uLayer");
@@ -62,7 +62,7 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
         //TestData
         app.setAARPMembershipNumber(faker.numerify("##########"));
         app.setPrefix("MR");
-        app.setFirstName(this.faker.firstName());
+        app.setFirstName(app.getState()+"DTC_FU_InteliJ");
         app.setMI(this.faker.letterify("?"));
         app.setLastName(this.faker.lastName());
         app.setSuffix("PHD");
@@ -93,7 +93,6 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
         app.setEligibilityChronicMedicalConditions(NO);
         //Authorizationa and verififcation page
         app.setDesignateLapse(YES);
-
         //Past And Current Coverage
         app.setCPATurned65(NO);
         app.setCPAPartBIn6(NO);
@@ -155,11 +154,11 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
 
     }
     @Test
-    public void DTC_maine_guranteed_issue() throws Exception {
+    public void DTC_Maine_GI() throws Exception {
 
         sheet.setAarpMemid("y");
         sheet.setDOB(DateUtils.getDOBofPersonTurningAgeToday(65));
-        sheet.setEffDate("04/01/2015");
+        sheet.setEffDate(DateUtils.getFirstDayOfPastOrFutureMonths(0));
         sheet.setPsd(DateUtils.getFirstDayOfPastOrFutureMonths(3));
         sheet.setPlanCode("A");
         sheet.setReferrer("uLayer");
@@ -168,7 +167,7 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
         //TestData
         app.setAARPMembershipNumber(faker.numerify("##########"));
         app.setPrefix("MR");
-        app.setFirstName(this.faker.firstName());
+        app.setFirstName(app.getState()+"DTC_GA_InteliJ");
         app.setMI(this.faker.letterify("?"));
         app.setLastName(this.faker.lastName());
         app.setSuffix("PHD");
@@ -196,7 +195,7 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
 
         //Past And Current Coverage
         app.setCPATurned65(YES);
-        app.setCPAPartBIn6(NO);
+        app.setCPAPartBIn6(YES);
         app.setMedicaidCovered(YES);
         app.setMedicaidSupPremium(YES);
         app.setMedicaidbenefit(YES);

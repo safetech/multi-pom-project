@@ -6,7 +6,7 @@ import entity.SubmissionResult;
 import entity.dtc.CribSheet;
 import integration.CQBaseIntegrationTest;
 import integration.dtc.dtcPages.uwExpansionPages.*;
-import integration.dtc.dtcPages.uwExpansionPages.variations.authorization.MN_AuthorizationPage;
+import integration.dtc.dtcPages.uwExpansionPages.variations.authorization.MN_OR_QA_AuthorizationPage;
 import integration.dtc.dtcPages.uwExpansionPages.variations.eligibilityhealthquestions.CA_EligibilityHealthQuestions;
 import integration.dtc.dtcPages.uwExpansionPages.variations.pastandcurrentcoverage.MN_PastAndCurrentCoveragePage;
 import integration.dtc.dtcPages.uwExpansionPages.variations.planapplication.MN_PlanApplicationQuestionsPage;
@@ -29,7 +29,7 @@ public class MinesotaIntegrationTest extends CQBaseIntegrationTest {
     @Page public MN_PlanApplicationQuestionsPage planApplicationQuestionsPage;
     @Page public CA_EligibilityHealthQuestions eligibilityHealthQuestionsPage;
     @Page public MN_PastAndCurrentCoveragePage pastAndCurrentCoveragePage;
-    @Page public MN_AuthorizationPage authorizationPage;
+    @Page public MN_OR_QA_AuthorizationPage authorizationPage;
     @Page public RN034andRE073Page replacementNoticePage;
     @Page public PlanPaymentOptionsPage planPaymentOptionsPage;
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
@@ -51,7 +51,7 @@ public class MinesotaIntegrationTest extends CQBaseIntegrationTest {
     }
 
     @Test
-    public void DTC_Fullunderwriting() throws Exception {
+    public void DTC_FullunderwritingWithEligibility() throws Exception {
 
         sheet.setState("MN");
         sheet.setZip("55001");
@@ -70,7 +70,7 @@ public class MinesotaIntegrationTest extends CQBaseIntegrationTest {
         //TestData
         app.setAARPMembershipNumber(faker.numerify("##########"));
         app.setPrefix("MR");
-        app.setFirstName(this.faker.firstName());
+        app.setFirstName(app.getState()+"DTC_FU_InteliJ");
         app.setMI(this.faker.letterify("?"));
         app.setLastName(this.faker.lastName());
         app.setSuffix("PHD");
@@ -170,7 +170,6 @@ public class MinesotaIntegrationTest extends CQBaseIntegrationTest {
         planSelectionAndStartDatePage.fillAndSubmit(app);
         planApplicationQuestionsPage.fillAndSubmit(app);
         eligibilityHealthQuestionsPage.fillAndSubmit(app);
-       // healthHistoryQuestionsPage.fillAndSubmit(app);
         pastAndCurrentCoveragePage.fillAndSubmit(app);
         authorizationPage.fillAndSubmit();
         planPaymentOptionsPage.fillAndSubmit(app);
@@ -180,7 +179,7 @@ public class MinesotaIntegrationTest extends CQBaseIntegrationTest {
         submissionQuery.verifyPlanAndRiderCodes(app, sheet, expectedSubmissionResult);
     }
     @Test
-    public void MN_MND3_FullUWWithHH() throws Exception {
+    public void DTC_GuranteedIssueNoEliginility() throws Exception {
 
         sheet.setState("MN");
         sheet.setZip("55001");
@@ -191,15 +190,15 @@ public class MinesotaIntegrationTest extends CQBaseIntegrationTest {
         sheet.setRiderChoice4("ZW");
         sheet.setRiderChoice5("");
         sheet.setAarpMemid("y");
-        sheet.setDOB(DateUtils.getDOBofPersonTurningAgeToday(71));
-        sheet.setEffDate("01/01/2012");
+        sheet.setDOB(DateUtils.getDOBofPersonTurningAgeToday(65));
+        sheet.setEffDate(DateUtils.getFirstDayOfPastOrFutureMonths(1));
         sheet.setPsd(DateUtils.getFirstDayOfFutureMonth(3));
         sheet.setReferrer("uLayer");
 
         //TestData
         app.setAARPMembershipNumber(faker.numerify("##########"));
         app.setPrefix("MR");
-        app.setFirstName(this.faker.firstName());
+        app.setFirstName(app.getState()+"DTC_GA_InteliJ");
         app.setMI(this.faker.letterify("?"));
         app.setLastName(this.faker.lastName());
         app.setSuffix("PHD");
@@ -215,7 +214,7 @@ public class MinesotaIntegrationTest extends CQBaseIntegrationTest {
         app.setMPAED("01/01/2010");
         app.setPartABActiveIndicator(YES);
         //Plan Application Page
-        app.setPlanEffIn6OfEligible(NO);
+        app.setPlanEffIn6OfEligible(YES);
         app.setTobaccoUse(YES);
         app.setLostCoverage(NO);
         //Eligibility Page
@@ -230,38 +229,12 @@ public class MinesotaIntegrationTest extends CQBaseIntegrationTest {
         //Authorizationa and verififcation page
         app.setDesignateLapse(YES);
         //Past And Current Coverage
-        app.setSixMonEligEnroll(YES);
-        app.setSixMonEligEnroll(YES);
-        app.setSixMonTurn65Enroll(YES);
-        app.setSixMonTurn65Enroll(YES);
-        app.setSixEmpCovTerm(YES);
-        app.setSixEmpCovTerm(YES);
-        app.setSixMonMoveOut(YES);
-        app.setSixMonMoveOut(YES);
-        app.setSixMonResident(YES);
-        app.setSixMonResident(YES);
-        //Past And Current Coverage
-        app.setCPATurned65(NO);
-        app.setCPAPartBIn6(NO);
-        app.setMedicaidCovered(YES);
-        app.setMedicaidSupPremium(YES);
-        app.setMedicaidbenefit(YES);
-        app.setExistingMedicare(YES);
-        app.setOtherMedplanstart("01/01/2012");
-        app.setOtherMedplanend("01/01/2015");
-        app.setIntentReplace(YES);
-        app.setFirstTime(YES);
-        app.setDropMedSuppForThisPlan(YES);
-        app.setExistMedSupp(YES);
-        app.setMSInsCompany("Blue Cross Blue Shield NV");
-        app.setMSPLAN("Medical Supplement NV");
-        app.setReplaceExistingMedSup(YES);
-        app.setOtherInsCoverage(YES);
-        app.setOtherInsCompany("Blue Cross Blue Shield");
-        app.setOtherInsType("HMO");
-        app.setOtherInsStart("01/01/2001");
-        app.setOtherInsEnd("01/01/2014");
-        app.setOtherInsReplace(YES);
+        app.setCPATurned65(YES);
+        app.setCPAPartBIn6(YES);
+        app.setMedicaidCovered(NO);
+        app.setExistingMedicare(NO);
+        app.setExistMedSupp(NO);
+        app.setOtherInsCoverage(NO);
         app.setCpaSignatureInd(YES);
         //Replacement Notice Page
         app.setCommonReplacementNoticeAnswersWithApplicantInfo();
@@ -281,13 +254,13 @@ public class MinesotaIntegrationTest extends CQBaseIntegrationTest {
         aboutYouPage.fillAndSubmit(app, sheet);
         planSelectionAndStartDatePage.fillAndSubmit(app);
         planApplicationQuestionsPage.fillAndSubmit(app);
-        eligibilityHealthQuestionsPage.fillAndSubmit(app);
+       // eligibilityHealthQuestionsPage.fillAndSubmit(app);
         pastAndCurrentCoveragePage.fillAndSubmit(app);
         authorizationPage.fillAndSubmit();
         planPaymentOptionsPage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
 
-        expectedSubmissionResult.verifyPendingPlanAndRiderCodes("TW1", "YW1", "VW1", "WW1", "ZW1", "", "");
+        expectedSubmissionResult.verifyAcceptedPlanAndRiderCodes("TW1", "YW1", "VW1", "WW1", "ZW1");
         submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
 
     }

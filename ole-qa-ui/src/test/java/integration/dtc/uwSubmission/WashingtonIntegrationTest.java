@@ -1,41 +1,40 @@
-package integration.dtc.submission;
+package integration.dtc.uwSubmission;
 
 import com.github.javafaker.Faker;
 import entity.Application;
 import entity.SubmissionResult;
 import entity.dtc.CribSheet;
 import integration.CQBaseIntegrationTest;
-import integration.dtc.dtcPages.oldOlePages.*;
+import integration.dtc.dtcPages.uwExpansionPages.*;
+import integration.dtc.dtcPages.uwExpansionPages.variations.authorization.MN_OR_QA_AuthorizationPage;
+import integration.dtc.dtcPages.uwExpansionPages.variations.pastandcurrentcoverage.WA_PastAndCurrentCoveragePage;
+import integration.dtc.dtcPages.uwExpansionPages.variations.planapplication.WA_PlanApplicationQuestionsPage;
+import integration.dtc.dtcPages.uwExpansionPages.variations.planselectionandstartdate.PA_AR_NV_MA_PlanSelectionAndStartDatePage;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
-import integration.dtc.dtcPages.oldOlePages.variations.authorization.CA_AuthorizationPage;
-import integration.dtc.dtcPages.oldOlePages.variations.eligibilityhealthquestions.CA_EligibilityHealthQuestions;
-import integration.dtc.dtcPages.oldOlePages.variations.pastandcurrentcoverage.AR_CA_PA_WI_MN_PastAndCurrentCoveragePage;
-import integration.dtc.dtcPages.oldOlePages.variations.planapplication.CA_PlanApplicationQuestions;
-import integration.dtc.dtcPages.oldOlePages.variations.replacenotice.RN040Page;
 import queries.SubmissionQueryDtc;
 import util.DateUtils;
 
-public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
+public class WashingtonIntegrationTest extends CQBaseIntegrationTest {
 
     @Page public CheatPage cheatPage;
     @Page public WhatYouNeedPage whatYouNeedPage;
     @Page public ElectronicSignatureAndDocumentConsentPage electronicSignatureAndDocumentConsentPage;
     @Page public AboutYouPage aboutYouPage;
-    @Page public PlanSelectionAndStartDatePage planSelectionAndStartDatePage;
-    @Page public CA_PlanApplicationQuestions planApplicationQuestionsPage;
-    @Page public CA_EligibilityHealthQuestions eligibilityHealthQuestionsPage;
-    @Page public AR_CA_PA_WI_MN_PastAndCurrentCoveragePage pastAndCurrentCoveragePage;
-    @Page public CA_AuthorizationPage authorizationPage;
-    @Page public RN040Page replacementNoticePage;
+    @Page public PA_AR_NV_MA_PlanSelectionAndStartDatePage planSelectionAndStartDatePage;
+    @Page public WA_PlanApplicationQuestionsPage planApplicationQuestionsPage;
+    @Page public EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
+    @Page public WA_PastAndCurrentCoveragePage pastAndCurrentCoveragePage;
+    @Page public MN_OR_QA_AuthorizationPage authorizationPage;
+    @Page public RN034andRE073Page replacementNoticePage;
     @Page public PlanPaymentOptionsPage planPaymentOptionsPage;
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
     @Page public HealthHistoryQuestionsPage healthHistoryQuestionsPage;
 
     public SubmissionQueryDtc submissionQuery;
     private Faker faker;
-    private CribSheet sheet;
+    protected CribSheet sheet;
     private SubmissionResult expectedSubmissionResult;
 
     @Before
@@ -43,19 +42,19 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         submissionQuery = new SubmissionQueryDtc();
         faker = new Faker();
         sheet = new CribSheet(faker);
-        sheet.setState("CA");
-        sheet.setZip("90210");
+        sheet.setState("WA");
+        sheet.setZip("98001");
 
         expectedSubmissionResult = new SubmissionResult();
     }
 
     @Test
-    public void test_california_eligibility_underwriting_with_rn() throws Exception {
+    public void DTC_Washington_FU_With_HH() throws Exception {
 
-
-        sheet.setDOB(DateUtils.getDOBofPersonTurningAgeToday(69));
-        sheet.setEffDate("01/01/2012");
-        sheet.setPsd(DateUtils.getFirstDayOfFutureMonth(1));
+        sheet.setAarpMemid("y");
+        sheet.setDOB(DateUtils.getDOBofPersonTurningAgeToday(70));
+        sheet.setEffDate(DateUtils.getFirstDayOfPastOrFutureMonths(-9));
+        sheet.setPsd(DateUtils.getFirstDayOfPastOrFutureMonths(3));
         sheet.setPlanCode("A");
         sheet.setReferrer("uLayer");
 
@@ -63,11 +62,11 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         //TestData
         app.setAARPMembershipNumber(faker.numerify("##########"));
         app.setPrefix("MR");
-        app.setFirstName(this.faker.firstName());
+        app.setFirstName(app.getState()+"DTC_FU_InteliJ");
         app.setMI(this.faker.letterify("?"));
         app.setLastName(this.faker.lastName());
         app.setSuffix("PHD");
-        app.setAddressLine1("111 Street dr");
+        app.setAddressLine1(faker.bothify("#### ??????????? ??"));
         app.setAddressLine2("apt #123");
         app.setCity("Horsham");
         app.setEmail("test@uhc.com");
@@ -75,32 +74,36 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         app.setPhonePrimary("9874562345");
         app.setPhoneEvening("1234561234");
         app.setGender("M");
-        app.setMedicareClaimNum("123123123A");
+        app.setMedicareClaimNum(faker.numerify("A#########"));
+        //Mailing Address
+        app.setMailingAddressCheck(YES);
+        app.setMailingAddressLine1(faker.bothify("#### ??????????? ??"));
+        app.setMailingAddressLine2(faker.bothify("#### ??????????? ??"));
+        app.setMailingCity(faker.letterify("??????????????"));
+        app.setMailingState(faker.letterify("ME"));
+        app.setMailingZipCode(faker.numerify("#####"));
+       // app.setMedicareClaimNum("123123123A");
         app.setMPAED("01/01/2010");
         app.setPartABActiveIndicator(YES);
         //Plan Application Page
-        app.setGI30dayBday(YES);
-        app.setGIEmployerCov(NO);
-        app.setGIMediCal(NO);
-        app.setGIMilitary(NO);
-        app.setGILocation(NO);
         app.setTobaccoUse(YES);
         app.setLostCoverage(NO);
-        //Eligibility Questions(SPECIFIC TO CA)
+        app.setTurned65In6GA(NO);
+        app.setPartBIn6GA(NO);
+        app.setPlanEffIn6OfEligible(NO);
+        app.setMedSuppReplace(NO);
+        //Eligibility Page
         app.setESRD(NO);
         app.setSurgeryNeeded(NO);
-        app.setEligdialysis(NO);
-        app.setEligRecdialysis(NO);
-        app.setEligHospital(NO);
-        app.setEligSurgery(NO);
-        app.setEligOrgan(NO);
-        app.setEligSpine(NO);
-        app.setEligjoint(NO);
-        app.setEligCancer(NO);
-        app.setEligHeart(NO);
-        app.setEligVascular(NO);
-        //Authorizationa
-
+        //Authorizationa and verififcation page
+        app.setDesignateLapse(YES);
+        //Eligibility Health Questions
+        app.setKidneyProblem(NO);
+        app.setEligibilitySurgery(NO);
+        app.setEligibilityAdmitToHospPast90Days(NO);
+        app.setNursingFacility(NO);
+        app.setEligibilityHeartAttackTIAStroke(NO);
+        app.setEligibilityChronicMedicalConditions(NO);
         //Past And Current Coverage
         app.setCPATurned65(NO);
         app.setCPAPartBIn6(NO);
@@ -124,41 +127,37 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         app.setOtherInsEnd("01/01/2014");
         app.setOtherInsReplace(YES);
         app.setCpaSignatureInd(YES);
-
         //Replacement Notice Page
         app.setCommonReplacementNoticeAnswersWithApplicantInfo();
         app.setCommonHealthHistoryAnswers();
-        app.setMedicalReleaseAuthSignatureIndRequired("Required");
-
 
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);
 
-        whatYouNeedPage.checkMarketabilityCode("M05V43AGMMCA01_02C");
+        whatYouNeedPage.checkMarketabilityCode("S13J43AGMMWA02_01D");
         whatYouNeedPage.clickNextAndWaitForSpinnerToFinish();
-        electronicSignatureAndDocumentConsentPage.isAt();
         electronicSignatureAndDocumentConsentPage.clickNextAndWaitForSpinnerToFinish();
         aboutYouPage.fillAndSubmit(app, sheet);
         planSelectionAndStartDatePage.fillAndSubmit(app);
         planApplicationQuestionsPage.fillAndSubmit(app);
         eligibilityHealthQuestionsPage.fillAndSubmit(app);
         pastAndCurrentCoveragePage.fillAndSubmit(app);
-        authorizationPage.fillAndSubmit(app);
+        authorizationPage.fillAndSubmit();
         planPaymentOptionsPage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
 
-        expectedSubmissionResult.setAcceptedInfo();
+        expectedSubmissionResult.setPendingInfo("REVIEW", "REQUIRED");
         submissionQuery.verifySubmissionData(app, expectedSubmissionResult);
         submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
 
     }
     @Test
-    public void test_california_guranteed_issue() throws Exception {
+    public void DTC_Washington_GI() throws Exception {
 
         sheet.setAarpMemid("y");
         sheet.setDOB(DateUtils.getDOBofPersonTurningAgeToday(65));
-        sheet.setEffDate(DateUtils.getFirstDayOfFutureMonth(2));
-        sheet.setPsd(DateUtils.getFirstDayOfFutureMonth(1));
+        sheet.setEffDate(DateUtils.getFirstDayOfPastOrFutureMonths(0));
+        sheet.setPsd(DateUtils.getFirstDayOfPastOrFutureMonths(3));
         sheet.setPlanCode("A");
         sheet.setReferrer("uLayer");
 
@@ -166,11 +165,11 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         //TestData
         app.setAARPMembershipNumber(faker.numerify("##########"));
         app.setPrefix("MR");
-        app.setFirstName(this.faker.firstName());
+        app.setFirstName(app.getState()+"DTC_GA_InteliJ");
         app.setMI(this.faker.letterify("?"));
         app.setLastName(this.faker.lastName());
         app.setSuffix("PHD");
-        app.setAddressLine1("111 Street dr");
+        app.setAddressLine1(faker.bothify("#### ??????????? ??"));
         app.setAddressLine2("apt #123");
         app.setCity("Horsham");
         app.setEmail("test@uhc.com");
@@ -181,24 +180,30 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         app.setMedicareClaimNum("123123123A");
         app.setMPAED("01/01/2010");
         app.setPartABActiveIndicator(YES);
+        //Mailing Address
+        app.setMailingAddressCheck(NO);
         //Plan Application Page
-        app.setGI30dayBday(YES);
-        //Eligibility Questions(SPECIFIC TO CA)
+        app.setTobaccoUse(YES);
+        app.setLostCoverage(YES);
+        app.setTurned65In6GA(YES);
+        app.setPartBIn6GA(YES);
+        app.setPlanEffIn6OfEligible(YES);
+        app.setMedSuppReplace(NO);
+        //Eligibility Page
         app.setESRD(NO);
         app.setSurgeryNeeded(NO);
-        app.setEligdialysis(NO);
-        app.setEligRecdialysis(NO);
-        app.setEligHospital(NO);
-        app.setEligSurgery(NO);
-        app.setEligOrgan(NO);
-        app.setEligSpine(NO);
-        app.setEligjoint(NO);
-        app.setEligCancer(NO);
-        app.setEligHeart(NO);
-        app.setEligVascular(NO);
-        //Past And Current Coverage
-        app.setCPATurned65(NO);
-        app.setCPAPartBIn6(NO);
+        //Authorizationa and verififcation page
+        app.setDesignateLapse(YES);
+        //Eligibility Health Questions
+        app.setKidneyProblem(NO);
+        app.setEligibilitySurgery(NO);
+        app.setEligibilityAdmitToHospPast90Days(NO);
+        app.setNursingFacility(NO);
+        app.setEligibilityHeartAttackTIAStroke(NO);
+        app.setEligibilityChronicMedicalConditions(NO);
+        //Past and Current coverage
+        app.setCPATurned65(YES);
+        app.setCPAPartBIn6(YES);
         app.setMedicaidCovered(YES);
         app.setMedicaidSupPremium(YES);
         app.setMedicaidbenefit(YES);
@@ -219,7 +224,6 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         app.setOtherInsEnd("01/01/2014");
         app.setOtherInsReplace(YES);
         app.setCpaSignatureInd(YES);
-
         //Authorizationa and verififcation page
         app.setDesignateLapse(NO);
         app.setAuxFirstName("AuxFirstName");
@@ -229,23 +233,20 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         app.setAuxCity("AuxCity");
         app.setAuxState("NV");
         app.setAuxZipCode("89101");
-
         //Replacement Notice Page
         app.setCommonReplacementNoticeAnswersWithApplicantInfo();
-
 
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);
 
-        whatYouNeedPage.checkMarketabilityCode("M05V43AGMMCA01_02C");
+        whatYouNeedPage.checkMarketabilityCode("S13J43AGMMWA02_01D");
         whatYouNeedPage.clickNextAndWaitForSpinnerToFinish();
-        electronicSignatureAndDocumentConsentPage.isAt();
         electronicSignatureAndDocumentConsentPage.clickNextAndWaitForSpinnerToFinish();
         aboutYouPage.fillAndSubmit(app, sheet);
         planSelectionAndStartDatePage.fillAndSubmit(app);
         planApplicationQuestionsPage.fillAndSubmit(app);
         pastAndCurrentCoveragePage.fillAndSubmit(app);
-        authorizationPage.fillAndSubmit(app);
+        authorizationPage.fillAndSubmit();
         planPaymentOptionsPage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
 

@@ -79,7 +79,7 @@ public class FloridaIntegrationTest extends CQBaseIntegrationTest {
         cheatPage.isAt();
         cheatPage.fillAndSubmit(sheet);
 
-        voiceSignatureInstructionsPage.isAt();
+        voiceSignatureInstructionsPage.checkMarketabilityCode("S03Q43AGMMFL03_02B");
         voiceSignatureInstructionsPage.fillAndSubmit(app);
 
         customerInformationPage.isAt();
@@ -157,7 +157,7 @@ public class FloridaIntegrationTest extends CQBaseIntegrationTest {
         cheatPage.isAt();
         cheatPage.fillAndSubmit(sheet);
 
-        voiceSignatureInstructionsPage.isAt();
+        voiceSignatureInstructionsPage.checkMarketabilityCode("S03Q43AGMMFL03_02B");
         voiceSignatureInstructionsPage.fillAndSubmit(app);
 
         customerInformationPage.isAt();

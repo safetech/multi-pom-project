@@ -5,10 +5,6 @@ import entity.Application;
 import entity.SubmissionResult;
 import entity.agent.CribSheet;
 import integration.CQBaseIntegrationTest;
-import org.fluentlenium.core.annotation.Page;
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
 import integration.agent.agentPages.uwExpansionPages.*;
 import integration.agent.agentPages.uwExpansionPages.variations.checkeligibility.ME_CA_FL_CheckEligibilityAndAvailabilityPage;
 import integration.agent.agentPages.uwExpansionPages.variations.currentinsurancecoverage.FL_CurrentInsuranceCoveragePage;
@@ -16,6 +12,9 @@ import integration.agent.agentPages.uwExpansionPages.variations.eligibilityhealt
 import integration.agent.agentPages.uwExpansionPages.variations.planapplication.FL_PlanApplicationQuestionsPage;
 import integration.agent.agentPages.uwExpansionPages.variations.replacenotice.RN034andRE073WithSignaturePage;
 import integration.agent.agentPages.uwExpansionPages.variations.statespecificationform.SupplementalFormPage;
+import org.fluentlenium.core.annotation.Page;
+import org.junit.Before;
+import org.junit.Test;
 import queries.SubmissionQueryAgent;
 import util.DateUtils;
 
@@ -65,7 +64,7 @@ public class FloridaIntegrationTest extends CQBaseIntegrationTest {
     }
 
     @Test
-    public void test_florida_eligibility_underwriting_with_rn() throws Exception {
+    public void AGENT_Florida_Eligibility_FU_With_RN() throws Exception {
 
         sheet.setAgentId("Test");
         sheet.setAgentMedSuppStates("[NV| CA| MA| FL| NY| OH]");
@@ -85,7 +84,7 @@ public class FloridaIntegrationTest extends CQBaseIntegrationTest {
         //TestData
         app.setAARPMembershipNumber(faker.numerify("##########"));
         app.setPrefix("MR");
-        app.setFirstName("rtyBob");
+        app.setFirstName(app.getState()+"Agent_FU_InteliJ");
         app.setLastName("asAutomation");
         app.setSuffix("PHD");
         app.setAddressLine1("3211 Street dr");
@@ -188,8 +187,8 @@ public class FloridaIntegrationTest extends CQBaseIntegrationTest {
         submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
 
     }
-    @Ignore
-    public void test_florida_guranteed_issue() throws Exception {
+    @Test
+    public void AGENT_Florida_GI() throws Exception {
 
         sheet.setAgentId("Test");
         sheet.setAgentMedSuppStates("[NV| CA| MA| FL| NY| OH]");
@@ -210,7 +209,7 @@ public class FloridaIntegrationTest extends CQBaseIntegrationTest {
         //TestData
         app.setAARPMembershipNumber(faker.numerify("##########"));
         app.setPrefix("MR");
-        app.setFirstName("trBob");
+        app.setFirstName(app.getState()+"Agent_GA_InteliJ");
         app.setMI("A");
         app.setLastName("adAutomation");
         app.setSuffix("PHD");

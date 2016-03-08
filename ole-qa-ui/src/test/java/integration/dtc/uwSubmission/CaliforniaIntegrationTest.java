@@ -50,7 +50,7 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
     }
 
     @Test
-    public void DTC_california_guranteed_issue() throws Exception {
+    public void DTC_California_GI() throws Exception {
 
         sheet.setAarpMemid("y");
         sheet.setDOB(DateUtils.getDOBofPersonTurningAgeToday(65));
@@ -62,7 +62,7 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         app.setMPAED(DateUtils.getFirstDayOfPastOrFutureMonths(0));
         app.setAARPMembershipNumber(faker.numerify("##########"));
         app.setPrefix("MR");
-        app.setFirstName(this.faker.firstName());
+        app.setFirstName(app.getState()+"DTC_GA_InteliJ");
         app.setMI(this.faker.letterify("?"));
         app.setLastName(this.faker.lastName());
         app.setSuffix("PHD");
@@ -104,7 +104,7 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);
 
-        whatYouNeedPage.checkMarketabilityCode("M14M43AGMMCA01_01D");
+        whatYouNeedPage.checkMarketabilityCode("M14M43AGMMCA02_01D");
         whatYouNeedPage.clickNextAndWaitForSpinnerToFinish();
         electronicSignatureAndDocumentConsentPage.isAt();
         electronicSignatureAndDocumentConsentPage.clickNextAndWaitForSpinnerToFinish();
@@ -122,7 +122,7 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
 
     }
     @Test
-    public void DTC_california_eligibility_underwriting_with_rn() throws Exception {
+    public void DTC_California_Eligibility_Underwriting_With_RN() throws Exception {
 
         sheet.setDOB(DateUtils.getDOBofPersonTurningAgeToday(69));
         sheet.setEffDate("01/01/2012");
@@ -133,7 +133,7 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         //TestData
         app.setAARPMembershipNumber(faker.numerify("##########"));
         app.setPrefix("MR");
-        app.setFirstName(this.faker.firstName());
+        app.setFirstName(app.getState()+"DTC_FU_InteliJ");
         app.setMI(this.faker.letterify("?"));
         app.setLastName(this.faker.lastName());
         app.setSuffix("PHD");
@@ -200,7 +200,7 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);
 
-        whatYouNeedPage.checkMarketabilityCode("M14M43AGMMCA01_01D");
+        whatYouNeedPage.checkMarketabilityCode("M14M43AGMMCA02_01D");
         whatYouNeedPage.clickNextAndWaitForSpinnerToFinish();
         electronicSignatureAndDocumentConsentPage.isAt();
         electronicSignatureAndDocumentConsentPage.clickNextAndWaitForSpinnerToFinish();

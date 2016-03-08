@@ -66,7 +66,7 @@ public class OreganIntegrationTest extends CQBaseIntegrationTest {
     }
 
     @Test
-    public void test_oregon_full_underwriting_with_rn() throws Exception {
+    public void PHONE_Oregon_FU_With_RN() throws Exception {
 
         sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(69));
         sheet.setMedPartBdate("2013-10-01");
@@ -159,7 +159,7 @@ public class OreganIntegrationTest extends CQBaseIntegrationTest {
     }
 
     @Test
-    public void test_oregon_full_underwriting_without_rn() throws Exception {
+    public void PHONE_Oregon_FU_Without_RN() throws Exception {
 
         sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(68));
         sheet.setMedPartBdate("2012-01-01");

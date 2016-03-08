@@ -66,7 +66,7 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
         app.setReplacementAgentSignInd2Touch(Application.ALL_SIGNATURES[11]);
     }
     @Test
-    public void AGENT_maine_guranteed_issue_without_rn() throws Exception {
+    public void AGENT_Maine_GI_Without_RN() throws Exception {
 
         sheet.setAgentId("Test");
         sheet.setAgentMedSuppStates("[AR| PA| ME]");
@@ -85,7 +85,7 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
 
         //TestData
         app.setAARPMembershipNumber(faker.numerify("##########"));
-        app.setFirstName(faker.letterify("??????????"));
+        app.setFirstName(app.getState()+"Agent_GA_InteliJ");
         app.setMI(faker.letterify("?"));
         app.setLastName(faker.letterify("??????????"));
         app.setAddressLine1(faker.bothify("#### ??????????? ??"));
@@ -156,7 +156,7 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
 
     }
     @Test
-    public void AGENT_maine_eligibility_underwriting_with_rn() throws Exception {
+    public void AGENT_Maine_Eligibility_FU_With_RN() throws Exception {
 
         sheet.setAgentId("Test");
         sheet.setAgentMedSuppStates("[NV| CA| MA| FL| NY| OH| AR| PA| ME]");
@@ -175,7 +175,7 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
         //TestData
         app.setAARPMembershipNumber(faker.numerify("###########"));
         app.setPrefix("MR");
-        app.setFirstName(faker.letterify("??????????"));
+        app.setFirstName(app.getState()+"Agent_FU_InteliJ");
         app.setLastName(faker.letterify("??????????"));
         app.setSuffix("PHD");
         app.setAddressLine1(faker.bothify("#### ??????????? ??"));

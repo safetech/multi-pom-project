@@ -69,7 +69,7 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
     }
 
     @Test
-    public void PHONE_maine_health_history_underwriting_with_designeeSig_with_rn() throws Exception {
+    public void PHONE_Maine_HH_FU_With_DesigneeSig_And_RN() throws Exception {
 
         sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(71));
         sheet.setMedPartBdate("2010-04-01");
@@ -153,7 +153,7 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
     }
 
     @Test
-    public void PHONE_maine_eligibility_underwriting_designeeSig_without_rn() throws Exception {
+    public void PHONE_Maine_Eligibility_FU_DesigneeSig_Without_RN() throws Exception {
 
         sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(68));
         sheet.setMedPartBdate("2014-01-01");

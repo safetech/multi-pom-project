@@ -9,7 +9,7 @@ import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
 import integration.agent.agentPages.uwExpansionPages.*;
-import integration.agent.agentPages.uwExpansionPages.variations.authorization.MN_AuthorizationPage;
+import integration.agent.agentPages.uwExpansionPages.variations.authorization.MN_WA_AuthorizationPage;
 import integration.agent.agentPages.uwExpansionPages.variations.checkeligibility.ME_CA_FL_CheckEligibilityAndAvailabilityPage;
 import integration.agent.agentPages.uwExpansionPages.variations.currentinsurancecoverage.OR_CurrentInsuranceCoveragePage;
 import integration.agent.agentPages.uwExpansionPages.variations.eligibilityhealthquestions.ME_CA_FL_EligibilityHealthQuestionsPage;
@@ -28,7 +28,7 @@ public class OreganIntegrationTest extends CQBaseIntegrationTest {
     @Page public OR_PlanApplicationQuestionsPage planApplicationQuestionsPage;
     @Page public ME_CA_FL_EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
     @Page public OR_CurrentInsuranceCoveragePage currentInsuranceCoveragePage;
-    @Page public MN_AuthorizationPage authorizationPage;
+    @Page public MN_WA_AuthorizationPage authorizationPage;
     @Page public RN034andRE073WithSignaturePage replacementNotice;
     @Page public HealthHistoryQuestionsPage healthHistoryQuestionsPage;
     @Page public AgentVerificationPage agentVerificationPage;
@@ -64,7 +64,7 @@ public class OreganIntegrationTest extends CQBaseIntegrationTest {
         expectedSubmissionResult = new SubmissionResult();
     }
     @Test
-    public void AGENT_oregan_guranteed_acceptance() throws Exception {
+    public void AGENT_Rregan_GI() throws Exception {
 
         sheet.setAgentId("Test");
         sheet.setAgentMedSuppStates("[NV| CA| MA| FL| NY| OH| AR| PA| WA| OR]");
@@ -85,7 +85,7 @@ public class OreganIntegrationTest extends CQBaseIntegrationTest {
         //TestData
         app.setAARPMembershipNumber(faker.numerify("##########"));
         app.setPrefix("MR");
-        app.setFirstName(faker.letterify("??????????"));
+        app.setFirstName(app.getState()+"Agent_GA_InteliJ_"+faker.letterify("??????????"));
         app.setLastName(faker.letterify("??????????"));
         app.setSuffix("PHD");
         app.setAddressLine1(faker.bothify("### ??????????? ??"));
@@ -145,7 +145,7 @@ public class OreganIntegrationTest extends CQBaseIntegrationTest {
     }
 
     @Test
-    public void AGENT_oregan_eligibility_healthhistory_underwriting_with_rn() throws Exception {
+    public void AGENT_Oregan_Eligibility_HH_FU_With_RN() throws Exception {
 
         sheet.setAgentId("Test");
         sheet.setAgentMedSuppStates("[NV| CA| MA| FL| NY| OH| AR| PA| WA| OR]");
@@ -166,7 +166,7 @@ public class OreganIntegrationTest extends CQBaseIntegrationTest {
         //TestData
         app.setAARPMembershipNumber(faker.numerify("##########"));
         app.setPrefix("MR");
-        app.setFirstName(faker.letterify("??????????"));
+        app.setFirstName(app.getState()+"Agent_FU_InteliJ_"+faker.letterify("??????????"));
         app.setLastName(faker.letterify("??????????"));
         app.setSuffix("PHD");
         app.setAddressLine1(faker.bothify("#### ??????????? ??"));

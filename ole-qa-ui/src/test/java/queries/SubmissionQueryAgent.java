@@ -264,10 +264,10 @@ public class SubmissionQueryAgent {
     public void verifyAdjudicationData(Application app, SubmissionResult expectedSubmissionResult) throws SQLException {
 
         String query = String.format(ADJUDICATION_QUERY, app.getAARPMembershipNumber(), app.getAARPMembershipNumber());
-        logger.info(query);
 
         HashMap<String, String> row = DbUtils.getSingleRecord(query, COMPAS_STAGE);
-        logger.info("query is "+row.get("TYPE_DESC")+" and expected is "+expectedSubmissionResult.getWorkQueue());
+        logger.info("query is " +row.get("TYPE_DESC")+ " and expected is " +expectedSubmissionResult.getWorkQueue());
+        logger.info(query);
         assertThat(row.get("TYPE_DESC"), containsString(expectedSubmissionResult.getWorkQueue()));
         assertThat(row.get("ITEM_REASON_TYPE_DESC"), containsString(expectedSubmissionResult.getWorkQueueReason()));
 

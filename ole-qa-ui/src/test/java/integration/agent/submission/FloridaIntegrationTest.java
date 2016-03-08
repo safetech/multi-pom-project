@@ -173,7 +173,7 @@ public class FloridaIntegrationTest extends CQBaseIntegrationTest {
         planSelectionPage.isAt();
         planSelectionPage.fillAndSubmit(app);
 
-        whatYouNeedPage.isAt();
+        whatYouNeedPage.checkMarketabilityCode("S03Q43AGMMFL03_02B");
         whatYouNeedPage.fillAndSubmit(app);
 
         customerInformationPage.isAt();
@@ -340,7 +340,7 @@ public class FloridaIntegrationTest extends CQBaseIntegrationTest {
         planSelectionPage.isAt();
         planSelectionPage.fillAndSubmit(app);
 
-        whatYouNeedPage.isAt();
+        whatYouNeedPage.checkMarketabilityCode("S03Q43AGMMFL03_02B");
         whatYouNeedPage.fillAndSubmit(app);
 
         customerInformationPage.isAt();

@@ -8,7 +8,7 @@ import pages.WizardPage;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class MN_AuthorizationPage extends WizardPage {
+public class MN_WA_AuthorizationPage extends WizardPage {
 
     @FindBy(css = "#UnderstandAuth_1") FluentWebElement UnderstandAuth_Yes;
     @FindBy(css = "#UnderstandAuth_2") FluentWebElement UnderstandAuth_No;

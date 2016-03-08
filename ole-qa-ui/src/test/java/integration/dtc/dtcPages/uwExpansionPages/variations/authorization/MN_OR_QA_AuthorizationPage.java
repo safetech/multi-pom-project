@@ -6,7 +6,7 @@ import pages.WizardPage;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class MN_AuthorizationPage extends WizardPage {
+public class MN_OR_QA_AuthorizationPage extends WizardPage {
 
     FluentWebElement SignatureInd;
     FluentWebElement MedicalReleaseAuthSignatureInd;

@@ -7,38 +7,28 @@ import integration.phone.phonePages.oldOlePages.PlanApplicationQuestions;
 
 public class WA_PlanApplicationQuestionsPage extends PlanApplicationQuestions {
 
-
-    protected int TOTAL_POSSIBLE_QUESTION_COUNT = 10;
+    protected int TOTAL_POSSIBLE_QUESTION_COUNT = 6;
     @FindBy(css = "#LostCoverage_1") FluentWebElement LostCoverage_Yes;
     @FindBy(css = "#LostCoverage_2") FluentWebElement LostCoverage_No;
-    @FindBy(id = "MedSuppReplace_1") FluentWebElement MedSuppReplace_Yes;
-    @FindBy(id = "MedSuppReplace_2") FluentWebElement MedSuppReplace_No;
+    @FindBy(css = "#MedSuppReplace_1") FluentWebElement MedSuppReplace_Yes;
+    @FindBy(css = "#MedSuppReplace_2") FluentWebElement MedSuppReplace_No;
 
     public void verifyInitialStateOfElements(Application app) {
         assertQuestionCount(TOTAL_POSSIBLE_QUESTION_COUNT);
-        assertYesNoQuestion(Turned65In6GA_Yes, Turned65In6GA_No, app.getTurned65In6GA());
-        assertYesNoQuestion(PartBIn6GA_Yes, PartBIn6GA_No, app.getPartBIn6GA());
         assertYesNoQuestion(PlanEffIn6OfEligible_Yes, PlanEffIn6OfEligible_No, app.getPlanEffIn6OfEligible());
-        assertBlank(MedSuppReplace_Yes, MedSuppReplace_No);
-        assertBlank(LostCoverage_Yes, LostCoverage_No);
+        assertVisibleBasedUpon(app.getPlanEffIn6OfEligible().equals(NO), MedSuppReplace_Yes, MedSuppReplace_No);
+        assertHidden(LostCoverage_Yes, LostCoverage_No);
+
     }
 
     public void fillAndSubmit(Application app) {
         isAt();
 
         verifyInitialStateOfElements(app);
-
-        if (app.getTurned65In6GA().equals("yes") || app.getPartBIn6GA().equals("yes") ||app.getPlanEffIn6OfEligible().equals("yes")) {
-            assertBlank(MedSuppReplace_Yes, MedSuppReplace_No);
-            assertHidden(LostCoverage_Yes, LostCoverage_No);
-        } else {
-
+        if(app.getPlanEffIn6OfEligible().equals(NO)) {
+            fillYesNoQuestion(MedSuppReplace_Yes, MedSuppReplace_No, app.getMedSuppReplace());
             fillYesNoQuestion(LostCoverage_Yes, LostCoverage_No, app.getLostCoverage());
-
         }
-
-        fillYesNoQuestion(MedSuppReplace_Yes, MedSuppReplace_No, app.getMedSuppReplace());
-       // fillYesNoQuestion(LostCoverage_Yes, LostCoverage_No, app.getLostCoverage());
 
         verifyStateOfElementAfterAnswers(app);
 
@@ -46,17 +36,15 @@ public class WA_PlanApplicationQuestionsPage extends PlanApplicationQuestions {
     }
 
     public void verifyStateOfElementAfterAnswers(Application app) {
-        assertVisible(Turned65In6GA_Yes,
-                Turned65In6GA_No,
-                PartBIn6GA_Yes,
-                PartBIn6GA_No,
-                PlanEffIn6OfEligible_Yes,
+        assertVisible(PlanEffIn6OfEligible_Yes,
                 PlanEffIn6OfEligible_No);
-        assertYesNoQuestion(Turned65In6GA_Yes, Turned65In6GA_No, app.getTurned65In6GA());
-        assertYesNoQuestion(PartBIn6GA_Yes, PartBIn6GA_No, app.getPartBIn6GA());
         assertYesNoQuestion(PlanEffIn6OfEligible_Yes, PlanEffIn6OfEligible_No, app.getPlanEffIn6OfEligible());
-        assertYesNoQuestion(MedSuppReplace_Yes, MedSuppReplace_No, app.getMedSuppReplace());
-        assertQuestionCount(TOTAL_POSSIBLE_QUESTION_COUNT);
+        if(app.getPlanEffIn6OfEligible().equals(NO)){
+            assertVisible(MedSuppReplace_Yes, MedSuppReplace_No, LostCoverage_Yes, LostCoverage_No);
+            assertYesNoQuestion(MedSuppReplace_Yes, MedSuppReplace_No, app.getMedSuppReplace());
+            assertYesNoQuestion(LostCoverage_Yes, LostCoverage_No, app.getLostCoverage());
+
+        }
     }
 
 }

@@ -150,6 +150,7 @@ public class ColoradoIntegrationTest extends CQBaseIntegrationTest {
 
         startApp(cheatPage, app, sheet);
 
+        voiceSignatureInstructionsPage.checkMarketabilityCode("M78243AGMMCO02_02B");
         voiceSignatureInstructionsPage.fillAndSubmit(app);
         customerInformationPage.fillAndSubmit(app);
         planSelectionAndStartDatePage.fillAndSubmit(app);
@@ -250,6 +251,7 @@ public class ColoradoIntegrationTest extends CQBaseIntegrationTest {
 
         startApp(cheatPage, app, sheet);
 
+        voiceSignatureInstructionsPage.checkMarketabilityCode("M78243AGMMCO02_02B");
         voiceSignatureInstructionsPage.fillAndSubmit(app);
         customerInformationPage.fillAndSubmit(app);
         planSelectionAndStartDatePage.fillAndSubmit(app);

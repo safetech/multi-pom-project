@@ -277,7 +277,7 @@ public class CribSheet{
 
     public void setRandomNameGenderAndMembershipNumber() {
         this.setPrefix(this.getRandomPrefix());
-        this.setFirstName(this.faker.firstName());
+        this.setFirstName(this.getState()+"Phone_"+this.faker.firstName());
         this.setMiddleInitial(this.faker.letterify("?"));
         this.setLastName(this.faker.lastName());
         this.setSuffix(this.getRandomSuffix());

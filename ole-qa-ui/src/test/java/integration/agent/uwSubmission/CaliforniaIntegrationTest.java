@@ -65,7 +65,7 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
     }
 
     @Test
-    public void AGENT_california_guranteed_issue() throws Exception {
+    public void AGENT_California_GI() throws Exception {
 
         sheet.setAgentId("Test");
         sheet.setAgentMedSuppStates("[NV| CA| MA| FL| NY| OH]");
@@ -74,7 +74,7 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         sheet.setSiteId("UHP");
         sheet.setAgentNPN(BLANK);
         sheet.setAgentName("BOB DOBBS");
-        sheet.setAgentEmail("bob@dobbsco.com");
+        sheet.setAgentEmail(this.faker.letterify("??????????")+"@"+this.faker.letterify("gmail")+".com");
         sheet.setAgentPartyId("54321");
         sheet.setReferrer("ulayer");
         app.setState("CA");
@@ -85,15 +85,15 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         //TestData
         app.setAARPMembershipNumber(faker.numerify("##########"));
         app.setPrefix("MR");
-        app.setFirstName(this.faker.firstName());
+        app.setFirstName(app.getState()+"Agent_GA_InteliJ");
         app.setMI(this.faker.letterify("?"));
         app.setLastName(this.faker.lastName());
         app.setSuffix("PHD");
         app.setAddressLine1("111 Street dr");
         app.setAddressLine2("apt #123");
         app.setCity("Horsham");
-        app.setEmail("test@uhc.com");
-        app.setConfirmEmail("test@uhc.com");
+        app.setEmail(this.faker.letterify("??????????")+"@"+this.faker.letterify("gmail")+".com");
+        app.setConfirmEmail(app.getEmail());
         app.setPhonePrimary("9874562345");
         app.setPhoneEvening("1234561234");
         app.setGender("M");
@@ -132,7 +132,7 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);
         checkEligibilityAndAvailabilityPage.fillAndSubmit(app);
-        planSelectionPage.checkMarketabilityCode("M14M43AGMMCA01_01D");
+        planSelectionPage.checkMarketabilityCode("M14M43AGMMCA02_01D");
         planSelectionPage.fillAndSubmit(app);
         whatYouNeedPage.fillAndSubmit(app);
         customerInformationPage.fillAndSubmit(app);
@@ -143,13 +143,13 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         planPaymentOptionsPage.fillAndSubmit(app);
         paymentDetailsSummaryPage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
-       // reviewAndSubmitPage.isAt();
+
         expectedSubmissionResult.setAcceptedInfo();
         submissionQuery.verifyUwExpansionSubmissionData(app, expectedSubmissionResult);
         submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
     }
     @Test
-    public void AGENT_california_eligibility_underwriting_with_rn() throws Exception {
+    public void AGENT_California_Eligibility_FU_With_RN() throws Exception {
 
         sheet.setAgentId("Test");
         sheet.setAgentMedSuppStates("[NV| CA| MA| FL| NY| OH]");
@@ -169,7 +169,7 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         //TestData
         app.setAARPMembershipNumber(faker.numerify("##########"));
         app.setPrefix("MR");
-        app.setFirstName(this.faker.firstName());
+        app.setFirstName(app.getState()+"Agent_FU_InteliJ");
         app.setMI(this.faker.letterify("?"));
         app.setLastName(this.faker.lastName());
         app.setSuffix("PHD");
@@ -249,6 +249,7 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);
         checkEligibilityAndAvailabilityPage.fillAndSubmit(app);
+        planSelectionPage.checkMarketabilityCode("M14M43AGMMCA02_01D");
         planSelectionPage.fillAndSubmit(app);
         whatYouNeedPage.fillAndSubmit(app);
         customerInformationPage.fillAndSubmit(app);

@@ -108,7 +108,7 @@ public class FloridaIntegrationTest extends CQBaseIntegrationTest {
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);
 
-        whatYouNeedPage.checkMarketabilityCode("S03Q43AGMMFL02_02B");
+        whatYouNeedPage.checkMarketabilityCode("S03Q43AGMMFL03_02B");
         whatYouNeedPage.clickNextAndWaitForSpinnerToFinish();
 
         electronicSignatureAndDocumentConsentPage.isAt();
@@ -139,7 +139,7 @@ public class FloridaIntegrationTest extends CQBaseIntegrationTest {
         reviewAndSubmitPage.fillAndSubmit(app);
 
 
-        expectedSubmissionResult.setAcceptedInfo();
+        expectedSubmissionResult.setPendingInfo("UW - PENDING", "REQUIRED");
         submissionQuery.verifySubmissionData(app, expectedSubmissionResult);
         submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
 
@@ -209,11 +209,10 @@ public class FloridaIntegrationTest extends CQBaseIntegrationTest {
         expectedSubmissionResult.setStatus("C");
         expectedSubmissionResult.setAdjudicationStatus("A");
 
-
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);
 
-        whatYouNeedPage.checkMarketabilityCode("S03Q43AGMMFL02_02B");
+        whatYouNeedPage.checkMarketabilityCode("S03Q43AGMMFL03_02B");
         whatYouNeedPage.clickNextAndWaitForSpinnerToFinish();
 
         electronicSignatureAndDocumentConsentPage.isAt();

@@ -69,7 +69,7 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
     }
 
     @Test
-    public void PHONE_california_full_underwriting_with_rn() throws Exception {
+    public void PHONE_California_FW_With_RN() throws Exception {
 
         sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(69));
         sheet.setMedPartBdate(DateUtils.getFirstDayOfPastOrFutureMonths(-7));
@@ -146,7 +146,7 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
 
         startApp(cheatPage, app, sheet);
 
-        voiceSignatureInstructionsPage.checkMarketabilityCode("M14M43AGMMCA01_01D");
+        voiceSignatureInstructionsPage.checkMarketabilityCode("M14M43AGMMCA02_01D");
         voiceSignatureInstructionsPage.fillAndSubmit(app);
         customerInformationPage.fillAndSubmit(app);
         planSelectionAndStartDatePage.fillAndSubmit(app);
@@ -165,7 +165,7 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
     }
 
     @Test
-    public void PHONE_california_full_underwriting_without_rn() throws Exception {
+    public void PHONE_California_FU_Without_RN() throws Exception {
 
         sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(65));
         sheet.setMedPartBdate(DateUtils.getFirstDayOfPastOrFutureMonths(2));
@@ -224,7 +224,7 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
 
         startApp(cheatPage, app, sheet);
 
-        voiceSignatureInstructionsPage.checkMarketabilityCode("M14M43AGMMCA01_01D");
+        voiceSignatureInstructionsPage.checkMarketabilityCode("M14M43AGMMCA02_01D");
         voiceSignatureInstructionsPage.fillAndSubmit(app);
         customerInformationPage.fillAndSubmit(app);
         planSelectionAndStartDatePage.fillAndSubmit(app);

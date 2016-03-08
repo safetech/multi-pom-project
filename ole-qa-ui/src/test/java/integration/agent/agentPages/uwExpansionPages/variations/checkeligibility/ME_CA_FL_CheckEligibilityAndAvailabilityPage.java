@@ -45,13 +45,20 @@ public class ME_CA_FL_CheckEligibilityAndAvailabilityPage extends WizardPage {
             }
 
         fillSelect("div.customer_eligibility_form #ReqEffectiveDate").withIndex(3);
+        try{
+            Thread.sleep(5000);
+        }catch(Exception e){
+        }
+
         helpToolTip.click();
         blur("#ReqEffectiveDate");
         try{
-            Thread.sleep(1000);
+            Thread.sleep(5000);
         }catch(Exception e){
         }
-        clickNextAndWaitForSpinnerToFinish();
+            waitForSpinnerToFinish(10);
+            clickNextAndWaitForSpinnerToFinish();
+
     }
 
     public void blur(String selector){

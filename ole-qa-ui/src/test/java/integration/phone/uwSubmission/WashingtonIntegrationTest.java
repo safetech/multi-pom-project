@@ -69,7 +69,7 @@ public class WashingtonIntegrationTest extends CQBaseIntegrationTest {
     }
 
     @Test
-    public void test_washington_full_underwriting_with_rn() throws Exception {
+    public void PHONE_Washington_FU_With_RN() throws Exception {
 
         sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(69));
         sheet.setMedPartBdate("2012-10-01");
@@ -158,7 +158,7 @@ public class WashingtonIntegrationTest extends CQBaseIntegrationTest {
     }
 
     @Test
-    public void test_washington_full_underwriting_without_rn() throws Exception {
+    public void PHONE_Washington_FU_Without_RN() throws Exception {
 
         sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(66));
         sheet.setMedPartBdate("2016-01-01");

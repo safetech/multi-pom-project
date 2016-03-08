@@ -31,10 +31,14 @@ public class PlanSelectionPage extends WizardPage{
     public void fillAndSubmit(Application app) {
 
         isAt();
+        try{
+            Thread.sleep(6000);
+        }catch(Exception e){
+        }
         First_Plan.click();
 
         try{
-            Thread.sleep(3000);
+            Thread.sleep(2000);
         }catch(Exception e){
         }
     }

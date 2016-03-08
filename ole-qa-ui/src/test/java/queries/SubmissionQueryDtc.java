@@ -221,7 +221,7 @@ public class SubmissionQueryDtc {
 
         HashMap<String, String> row = DbUtils.getSingleRecord(query, COMPAS_STAGE);
         logger.info("query is "+row.get("TYPE_DESC")+" and expected is "+expectedSubmissionResult.getWorkQueue());
-        assertThat(row.get("ADJUDICATION_CD"), equalTo(expectedSubmissionResult.getAdjudicationStatus()));
+        assertThat(row.get("ADJUDICATION_CD"), containsString(expectedSubmissionResult.getAdjudicationStatus()));
         assertThat(row.get("TYPE_DESC"), containsString(expectedSubmissionResult.getWorkQueue()));
         assertThat(row.get("ITEM_REASON_TYPE_DESC"), containsString(expectedSubmissionResult.getWorkQueueReason()));
 
