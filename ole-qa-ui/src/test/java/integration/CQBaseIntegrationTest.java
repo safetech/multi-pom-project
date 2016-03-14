@@ -26,10 +26,6 @@ import java.util.concurrent.TimeUnit;
 
 import static org.slf4j.LoggerFactory.getLogger;
 
-//import integration.phone.phonePages.uwExpansionPages.CheatPage;
-
-//import integration.phone.phonePages.uwExpansionPages;
-
 @SharedDriver(type = SharedDriver.SharedType.PER_CLASS)
 public class CQBaseIntegrationTest extends FluentTest {
 

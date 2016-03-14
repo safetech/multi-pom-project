@@ -64,7 +64,7 @@ public class OreganIntegrationTest extends CQBaseIntegrationTest {
         expectedSubmissionResult = new SubmissionResult();
     }
     @Test
-    public void AGENT_Rregan_GI() throws Exception {
+    public void AGENT_Oregan_GI() throws Exception {
 
         sheet.setAgentId("Test");
         sheet.setAgentMedSuppStates("[NV| CA| MA| FL| NY| OH| AR| PA| WA| OR]");
@@ -85,7 +85,7 @@ public class OreganIntegrationTest extends CQBaseIntegrationTest {
         //TestData
         app.setAARPMembershipNumber(faker.numerify("##########"));
         app.setPrefix("MR");
-        app.setFirstName(app.getState()+"Agent_GA_InteliJ_"+faker.letterify("??????????"));
+        app.setFirstName(app.getState()+"_Agent_GA_"+faker.letterify("??????????"));
         app.setLastName(faker.letterify("??????????"));
         app.setSuffix("PHD");
         app.setAddressLine1(faker.bothify("### ??????????? ??"));
@@ -166,7 +166,7 @@ public class OreganIntegrationTest extends CQBaseIntegrationTest {
         //TestData
         app.setAARPMembershipNumber(faker.numerify("##########"));
         app.setPrefix("MR");
-        app.setFirstName(app.getState()+"Agent_FU_InteliJ_"+faker.letterify("??????????"));
+        app.setFirstName(app.getState()+"_Agent_FU_"+faker.letterify("??????????"));
         app.setLastName(faker.letterify("??????????"));
         app.setSuffix("PHD");
         app.setAddressLine1(faker.bothify("#### ??????????? ??"));

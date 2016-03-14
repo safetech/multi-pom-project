@@ -44,6 +44,11 @@ public class CheatPage extends FluentPage{
         return "https://aarpsupplementalhealth-stg.uhc.com/ole/ms-phone.html?cheat=true";
     }
     public void fillAndSubmit(CribSheet sheet) {
+
+        try{
+            Thread.sleep(1000);
+        }catch(Exception e){
+        }
         isAt();
 
         (new Select(Prefix.getElement())).selectByValue(sheet.getPrefix());

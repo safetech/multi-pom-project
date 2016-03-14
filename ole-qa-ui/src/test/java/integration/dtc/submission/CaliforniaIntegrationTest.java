@@ -128,8 +128,6 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         //Replacement Notice Page
         app.setCommonReplacementNoticeAnswersWithApplicantInfo();
         app.setCommonHealthHistoryAnswers();
-        app.setMedicalReleaseAuthSignatureIndRequired("Required");
-
 
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);
@@ -141,7 +139,6 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         aboutYouPage.fillAndSubmit(app, sheet);
         planSelectionAndStartDatePage.fillAndSubmit(app);
         planApplicationQuestionsPage.fillAndSubmit(app);
-        eligibilityHealthQuestionsPage.fillAndSubmit(app);
         pastAndCurrentCoveragePage.fillAndSubmit(app);
         authorizationPage.fillAndSubmit(app);
         planPaymentOptionsPage.fillAndSubmit(app);

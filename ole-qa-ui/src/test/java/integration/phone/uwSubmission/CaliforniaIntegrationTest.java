@@ -69,7 +69,7 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
     }
 
     @Test
-    public void PHONE_California_FW_With_RN() throws Exception {
+    public void PHONE_California_FU_With_RN() throws Exception {
 
         sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(69));
         sheet.setMedPartBdate(DateUtils.getFirstDayOfPastOrFutureMonths(-7));

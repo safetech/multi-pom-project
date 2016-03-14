@@ -37,34 +37,33 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
     @Page public ApplicationSubmissionPage applicationSubmissionPage;
 
     public SubmissionQueryPhone submissionQueryPhone;
-    private Faker faker;
     private CribSheet sheet;
     private SubmissionResult expectedSubmissionResult;
 
     @Before
     public void setup() {
         submissionQueryPhone = new SubmissionQueryPhone();
-        faker = new Faker();
+        Faker faker = new Faker();
 
         sheet = new CribSheet(faker);
-        sheet.setRandomNameGenderAndMembershipNumber();
-        sheet.setRandomAddress("CA", "90210");
-        sheet.setRandomContactInfo();
-        sheet.setRandomCallCenterInfo();
-        sheet.setDpsdToFirstDayOfFutureMonth(1);
-        sheet.setPlanCode("F01");
+            sheet.setRandomNameGenderAndMembershipNumber();
+            sheet.setRandomAddress("CA", "90210");
+            sheet.setRandomContactInfo();
+            sheet.setRandomCallCenterInfo();
+            sheet.setDpsdToFirstDayOfFutureMonth(1);
+            sheet.setPlanCode("F01");
 
         app = new Application();
-        // Customer Info Page Question
-        app.setMedicareClaimNum(faker.bothify("#########A"));
-        app.setPartABActiveIndicator(YES);
-        app.setPlanCode("F");
-        app.setReqEffectiveDate(DateUtils.getFirstDayOfFutureMonth(1));
-        //Eligibility Questions
-        app.setESRD(NO);
-        app.setSurgeryNeeded(NO);
-        //Agent Verification Page
-        app.setCommonAgentVerificationAnswers();
+            // Customer Info Page Question
+            app.setMedicareClaimNum(faker.bothify("#########A"));
+            app.setPartABActiveIndicator(YES);
+            app.setPlanCode("F");
+            app.setReqEffectiveDate(DateUtils.getFirstDayOfFutureMonth(1));
+            //Eligibility Questions
+            app.setESRD(NO);
+            app.setSurgeryNeeded(NO);
+            //Agent Verification Page
+            app.setCommonAgentVerificationAnswers();
 
         expectedSubmissionResult = new SubmissionResult();
     }
@@ -77,8 +76,6 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         //Customer Information
         app.setMPAED(DateUtils.getFirstDayOfPastOrFutureMonths(-7));
         app.setMPBED(DateUtils.getFirstDayOfPastOrFutureMonths(-7));
-
-       // sheet.setMedPartBdate("2012-10-01");
 
         //Plan Application
         app.setDefaultPlanEligibilityQuestions(sheet);
@@ -122,7 +119,6 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         app.setOtherInsEnd("01/01/2014");
         app.setOtherInsReplace(YES);
         app.setCpaSignatureInd(YES);
-        //Authorization Page
         //Agent Verification Page
         app.setAgentOtherInsPoliciesSold("HIP");
         app.setAgentPoliciesInForce("EP");
@@ -161,7 +157,6 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
 
     @Test
     public void test_california_full_underwriting_without_rn() throws Exception {
-
         sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(65));
         sheet.setMedPartBdate(DateUtils.getFirstDayOfPastOrFutureMonths(-2));
 
