@@ -10,6 +10,10 @@
         <version>2.0.2</version>
         <relativePath/>
     </parent>
+    <modules>
+        <module>ole-qa-ui</module>
+        <module>ole-qa-api</module>
+    </modules>
 
     <groupId>com.uhc.is.wcm.ole-qa</groupId>
     <artifactId>ole-qa-multi</artifactId>
