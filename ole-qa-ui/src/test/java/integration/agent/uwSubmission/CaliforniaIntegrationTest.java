@@ -5,9 +5,6 @@ import entity.Application;
 import entity.SubmissionResult;
 import entity.agent.CribSheet;
 import integration.CQBaseIntegrationTest;
-import org.fluentlenium.core.annotation.Page;
-import org.junit.Before;
-import org.junit.Test;
 import integration.agent.agentPages.uwExpansionPages.*;
 import integration.agent.agentPages.uwExpansionPages.variations.authorization.CA_AuthorizationPage;
 import integration.agent.agentPages.uwExpansionPages.variations.checkeligibility.ME_CA_FL_CheckEligibilityAndAvailabilityPage;
@@ -15,6 +12,9 @@ import integration.agent.agentPages.uwExpansionPages.variations.currentinsurance
 import integration.agent.agentPages.uwExpansionPages.variations.eligibilityhealthquestions.ME_CA_FL_EligibilityHealthQuestionsPage;
 import integration.agent.agentPages.uwExpansionPages.variations.planapplication.CA_PlanApplicationQuestions;
 import integration.agent.agentPages.uwExpansionPages.variations.replacenotice.RN034andRE073WithSignaturePage;
+import org.fluentlenium.core.annotation.Page;
+import org.junit.Before;
+import org.junit.Test;
 import queries.SubmissionQueryAgent;
 import util.DateUtils;
 

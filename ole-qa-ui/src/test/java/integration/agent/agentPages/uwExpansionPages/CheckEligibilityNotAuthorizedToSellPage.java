@@ -1,9 +1,7 @@
-package integration.agent.agentPages.oldOlePages;
+package integration.agent.agentPages.uwExpansionPages;
 
 import entity.Application;
 import org.fluentlenium.core.domain.FluentWebElement;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import pages.WizardPage;
 
 import java.util.concurrent.TimeUnit;
@@ -11,7 +9,7 @@ import java.util.concurrent.TimeUnit;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class CheckEligibilityAndAvailabilityPage extends WizardPage {
+public class CheckEligibilityNotAuthorizedToSellPage extends WizardPage {
 
     public FluentWebElement ZipCode;
     public FluentWebElement DOB;
@@ -23,15 +21,12 @@ public class CheckEligibilityAndAvailabilityPage extends WizardPage {
 
         isAt();
         fill(ZipCode).with(app.getZipCode());
-
-            blur("#ZipCode");
-        try{
-            Thread.sleep(5000);
-        }catch(Exception e){
-        }
-        getDriver().findElement(By.id("ZipCode")).sendKeys(Keys.TAB);
-
-        await().atMost(30, TimeUnit.SECONDS).until("#State").hasAttribute("value", app.getState());
+        blur("#ZipCode");
+            try{
+                Thread.sleep(5000);
+            }catch(Exception e){
+            }
+        await().atMost(10, TimeUnit.SECONDS).until("#State").hasAttribute("value", app.getState());
         fill(DOB).with(app.getDOB());
         blur("#DOB");
             try{
@@ -45,7 +40,7 @@ public class CheckEligibilityAndAvailabilityPage extends WizardPage {
             }catch(Exception e){
             }
 
-       // await().atMost(20, TimeUnit.SECONDS).until("div.customer_eligibility_form #ReqEffectiveDate option").hasSize(4);
+        await().atMost(20, TimeUnit.SECONDS).until("div.customer_eligibility_form #ReqEffectiveDate option").hasSize(4);
 
         fillSelect("div.customer_eligibility_form #ReqEffectiveDate").withIndex(1);
         blur("#ReqEffectiveDate");
@@ -66,10 +61,7 @@ public class CheckEligibilityAndAvailabilityPage extends WizardPage {
         assertThat(pageTitle.getText(), equalTo("Check Eligibility and Availability"));
 
     }
-    public void isNotAuthorizedToSell() {
-        assertThat(pageTitle.getText(), equalTo("You are not authorized to sell AARP Medicare Supplement insurance Plans in this state"));
 
-    }
 }
 
 

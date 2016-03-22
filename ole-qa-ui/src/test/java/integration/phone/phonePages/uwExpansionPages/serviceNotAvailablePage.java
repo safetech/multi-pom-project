@@ -1,4 +1,4 @@
-package integration.phone.phonePages;
+package integration.phone.phonePages.uwExpansionPages;
 
 import entity.Application;
 import org.fluentlenium.core.domain.FluentWebElement;

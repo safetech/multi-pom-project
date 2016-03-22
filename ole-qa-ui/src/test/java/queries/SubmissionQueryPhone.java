@@ -173,7 +173,7 @@ public class SubmissionQueryPhone {
         assertThat(row.get("MECHANISM"), equalTo("2"));
         assertThat(row.get("ADJUDICATION_CD"), equalTo(expectedSubmissionResult.getAdjudicationStatus()));
 
-        logger.info(String.format("Here is the link to the image... https://acesx-tst-alt.uhc.com/appEnroll-web/resources/retrievePDF/v1/%s", row.get("APPL_IMAGE_NUM_ORIG") + " For the state of --> " + row.get("STATE_CD")));
+        logger.info(String.format("Here is the link to the image... https://acesx-stg-alt.uhc.com/appEnroll-web/resources/retrievePDF/v1/%s", row.get("APPL_IMAGE_NUM_ORIG") + " For the state of --> " + row.get("STATE_CD")));
     }
 
     public void verifyQrYPendingPlanAndRiderCodes(Application app, CribSheet sheet, SubmissionResult expectedSubmissionResult) throws SQLException {
@@ -222,6 +222,7 @@ public class SubmissionQueryPhone {
         //HashMap<String, String> getSingleRecord(String query, String connectionString)
 
         String currentDate = DateUtils.NORMALIZED_DATE_FORMAT.format(new java.util.Date());
+        String currentDateWithZeroTime = DateUtils.YY_MM_DD_ZERO_TIME.format(new java.util.Date());
 
         assertThat(row.get("MEMBERSHIP_NUMBER"), equalTo(app.getAARPMembershipNumber()));
         assertThat(row.get("FIRST_NAME"), equalTo(app.getFirstName().toUpperCase()));
@@ -244,7 +245,7 @@ public class SubmissionQueryPhone {
         assertThat(row.get("APPL_RECEIPT_DATE"), equalTo(currentDate));
         assertThat(row.get("APPL_SIGNATURE_DATE"), equalTo(currentDate));
         assertThat(row.get("SELLING_AGENT_ID"), equalTo(""));
-        assertThat(row.get("QR_DATE"), equalTo(""));
+        assertThat(row.get("QR_DATE"), equalTo(currentDateWithZeroTime+" 00:00:00"));
         assertThat(row.get("STATUS"), equalTo(expectedSubmissionResult.getStatus()));
         assertThat(row.get("CHANNEL"), equalTo("1"));
         assertThat(row.get("ACTOR"), equalTo("2"));

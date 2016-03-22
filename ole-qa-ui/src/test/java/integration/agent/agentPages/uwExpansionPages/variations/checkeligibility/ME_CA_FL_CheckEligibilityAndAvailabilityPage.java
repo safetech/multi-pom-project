@@ -18,7 +18,6 @@ public class ME_CA_FL_CheckEligibilityAndAvailabilityPage extends WizardPage {
     public FluentWebElement ReqEffectiveDate;
     public FluentWebElement State;
 
-    //.tooltip
     @FindBy(xpath = "//*[@id='block']/div[3]/div/div[5]/a") FluentWebElement helpToolTip;
 
     public void fillAndSubmit(Application app) {
@@ -56,8 +55,7 @@ public class ME_CA_FL_CheckEligibilityAndAvailabilityPage extends WizardPage {
             Thread.sleep(5000);
         }catch(Exception e){
         }
-            waitForSpinnerToFinish(10);
-            clickNextAndWaitForSpinnerToFinish();
+        clickNextAndWaitForSpinnerToFinish();
 
     }
 

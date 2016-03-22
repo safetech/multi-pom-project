@@ -54,7 +54,7 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
 
         sheet.setAarpMemid("y");
         sheet.setDOB(DateUtils.getDOBofPersonTurningAgeToday(69));
-        sheet.setEffDate("01/01/2012");
+        sheet.setEffDate(DateUtils.getFirstDayOfPastOrFutureMonths(-7));
         sheet.setPsd(DateUtils.getFirstDayOfFutureMonth(1));
         sheet.setPlanCode("A");
         sheet.setReferrer("uLayer");
@@ -173,7 +173,7 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
 
         sheet.setAarpMemid("y");
         sheet.setDOB(DateUtils.getDOBofPersonTurningAgeToday(65));
-        sheet.setEffDate("04/01/2015");
+        sheet.setEffDate(DateUtils.getFirstDayOfPastOrFutureMonths(-2));
         sheet.setPsd(DateUtils.getFirstDayOfFutureMonth(1));
         sheet.setPlanCode("A");
         sheet.setReferrer("uLayer");

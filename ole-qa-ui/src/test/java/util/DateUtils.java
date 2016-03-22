@@ -13,6 +13,8 @@ public class DateUtils {
     public static SimpleDateFormat COMMON_DATE_FORMAT = new SimpleDateFormat("yyyy/MM/dd");
     public static SimpleDateFormat NORMALIZED_DATE_FORMAT = new SimpleDateFormat("MM/dd/yyyy");
     public static SimpleDateFormat DD_MMM_YYYY_FORMAT = new SimpleDateFormat("dd-MMM-yyyy");
+    public static SimpleDateFormat MMMM_D_YYYY_FORMAT = new SimpleDateFormat("MMMM 1, yyyy");
+    public static SimpleDateFormat YY_MM_DD_ZERO_TIME = new SimpleDateFormat("yyyy-MM-dd");
 
     public static String setTransactionIdTrnStartDobCreationModifiedDate() {
 
@@ -64,6 +66,12 @@ public class DateUtils {
         Date dob = org.apache.commons.lang3.time.DateUtils.addYears(new Date(), -age);
         return NORMALIZED_DATE_FORMAT.format(dob);
     }
+
+    public static String getAgentDPSDDateFormat(int age) {
+        Date dpsd = org.apache.commons.lang3.time.DateUtils.addMonths(new Date(), -age);
+        return MMMM_D_YYYY_FORMAT.format(dpsd);
+    }
+
     public static String getDOBInNormalDateFormat(int age) {
         Date dob = org.apache.commons.lang3.time.DateUtils.addYears(new Date(), -age);
         return NORMALIZED_DATE_FORMAT.format(dob);

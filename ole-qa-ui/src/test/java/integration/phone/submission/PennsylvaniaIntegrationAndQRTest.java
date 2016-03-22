@@ -48,6 +48,7 @@ public class PennsylvaniaIntegrationAndQRTest extends CQBaseIntegrationTest {
     public void test_pennsylvania_health_history_underwriting_with_rn() throws Exception {
 
         sheet.setRandomNameGenderAndMembershipNumber();
+        sheet.setFirstName("QR-Ret"+this.faker.firstName());
         sheet.setRandomAddress("PA", "19002");
         sheet.setRandomContactInfo();
         sheet.setRandomCallCenterInfo();
@@ -140,7 +141,7 @@ public class PennsylvaniaIntegrationAndQRTest extends CQBaseIntegrationTest {
         reviewAndSubmitPage.fillAndSubmit(app);
         applicationSubmissionPage.isPending();
 
-        goTo(cheatPage);
+        goTo(cheatPage).alert().accept();
         cheatPage.fillAndSubmitQrTest(sheet);
         voiceSignatureInstructionsPage.verifyStateOfElementsAfterQrRetreive();
         customerInformationPage.clickNextAndWaitForSpinnerToFinish();

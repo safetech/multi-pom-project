@@ -3,7 +3,7 @@ package integration.smokeTest;
 import com.github.javafaker.Faker;
 import entity.dtc.CribSheet;
 import integration.CQBaseIntegrationTest;
-import integration.dtc.dtcPages.serviceNotAvailablePage;
+import integration.dtc.dtcPages.uwExpansionPages.serviceNotAvailablePage;
 import integration.dtc.dtcPages.uwExpansionPages.CheatPage;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
@@ -85,6 +85,22 @@ public class DtcOnlineEnrollmentNotAvailableTest extends CQBaseIntegrationTest {
         sheet.setReferrer("uLayer");
         sheet.setState("VI");
         sheet.setZip("00801");
+
+        goTo(cheatPage);
+        cheatPage.fillAndSubmit(sheet);
+        ServiceNotAvailablePage.isAt();
+    }
+    @Test
+    public void DtcPuertoRicoNotAvailableTest() throws Exception {
+
+        sheet.setAarpMemid("y");
+        sheet.setDOB(DateUtils.getDOBofPersonTurningAgeToday(65));
+        sheet.setEffDate(DateUtils.getFirstDayOfPastOrFutureMonths(0));
+        sheet.setPsd(DateUtils.getFirstDayOfPastOrFutureMonths(3));
+        sheet.setPlanCode("A");
+        sheet.setReferrer("uLayer");
+        sheet.setState("PR");
+        sheet.setZip("00901");
 
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);

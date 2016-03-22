@@ -84,6 +84,7 @@ public class CQBaseIntegrationTest extends FluentTest {
         //Comment the below line to run test in browser stack
        driver = new FirefoxDriver();
         return driver;
+
     }
 
     @After

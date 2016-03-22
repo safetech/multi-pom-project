@@ -147,7 +147,6 @@ public class MinesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrati
         planSelectionAndStartDatePage.fillAndSubmit(app);
         planApplicationQuestionsPage.fillAndSubmit(app);
         eligibilityHealthQuestionsPage.fillAndSubmit(app);
-       // healthHistoryQuestionsPage.fillAndSubmit(app);
         pastAndCurrentCoveragePage.fillAndSubmit(app);
         authorizationPage.fillAndSubmit();
         planPaymentOptionsPage.fillAndSubmit(app);

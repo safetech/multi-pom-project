@@ -6,13 +6,13 @@ import entity.SubmissionResult;
 import entity.phone.CribSheet;
 import integration.CQBaseIntegrationTest;
 import integration.phone.phonePages.oldOlePages.*;
-import org.fluentlenium.core.annotation.Page;
-import org.junit.Before;
-import org.junit.Test;
 import integration.phone.phonePages.oldOlePages.variations.pastandcurrentcoverage.MN_GA_MI_PastAndCurrentInsuranceCoveragePage;
 import integration.phone.phonePages.oldOlePages.variations.planapplication.MN_PlanApplicationQuestions;
 import integration.phone.phonePages.oldOlePages.variations.planselection.MN_iTest_PlanSelectionPage;
-import integration.phone.phonePages.oldOlePages.variations.replacementnotice.MN_RN034Page;
+import integration.phone.phonePages.oldOlePages.variations.replacementnotice.RN034andRE073Page;
+import org.fluentlenium.core.annotation.Page;
+import org.junit.Before;
+import org.junit.Test;
 import queries.SubmissionQueryPhone;
 import util.DateUtils;
 
@@ -28,7 +28,7 @@ public class MinnesotaIntegrationFunctionalTest extends CQBaseIntegrationTest {
     @Page public AuthorizationAndVerificationPage authorizationAndVerificationPage;
     @Page public HealthHistoryQuestionsPage healthHistoryQuestionsPage;
     @Page public AgentVerificationPage agentVerificationPage;
-    @Page public MN_RN034Page ReplacementNotice034Page;
+    @Page public RN034andRE073Page ReplacementNotice034Page;
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
     @Page public ApplicationSubmissionPage applicationSubmissionPage;
 
@@ -133,7 +133,7 @@ public class MinnesotaIntegrationFunctionalTest extends CQBaseIntegrationTest {
         app.setCpaSignatureInd(YES);
         app.setReplaceExistingMedSup(YES);
         app.setReplacementReason("Disenroll");
-        app.setApplicantPrintedNameAdd("AppName");
+        app.setApplicantPrintedNameAdd(app.getFirstName()+app.getLastName());
         app.setApplicantAddress("AppAdd");
         app.setRNOther("Cheaper");
         app.setCommonReplacementNoticeAnswersWithApplicantInfo();
