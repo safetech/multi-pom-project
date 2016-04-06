@@ -1,12 +1,12 @@
 package queries;
 
 
-import entity.Application;
-import entity.SubmissionResult;
-import entity.dtc.CribSheet;
+import resources.entity.Application;
+import resources.entity.SubmissionResult;
+import resources.entity.dtc.CribSheet;
 import org.slf4j.Logger;
-import util.DateUtils;
-import util.DbUtils;
+import resources.utils.DateUtils;
+import resources.utils.DbUtils;
 
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -22,6 +22,7 @@ public class SubmissionQueryDtc {
 
     private String COMPAS_SYS1 = "jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=dbslt0014.uhc.com)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=cmpts08.uhc.com)))";
     private String COMPAS_STAGE = "jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=orass0023.uhc.com)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=cmpst03.uhc.com)))";
+    private String COMPAS_PERF = "jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=orass0023.uhc.com)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=cmpst01.uhc.com)))";
 
     private String ADJUDICATION_QUERY = "\n" +
             "select \n" +
@@ -154,7 +155,7 @@ public class SubmissionQueryDtc {
             String query = String.format(RIDERS_QUERY, app.getAARPMembershipNumber(), app.getAARPMembershipNumber());
             logger.info(query);
         String currentDate = DateUtils.NORMALIZED_DATE_FORMAT.format(new java.util.Date());
-        HashMap<String, String> row = DbUtils.getSingleRecord(query, COMPAS_STAGE);
+        HashMap<String, String> row = DbUtils.getSingleRecord(query, COMPAS_PERF);
 
                assertThat(row.get("PLAN_CD"), equalTo(expectedSubmissionResult.getPlanCode()));
                assertThat(row.get("RIDER_REQUEST_1"), equalTo(expectedSubmissionResult.getRiderOne()));
@@ -188,7 +189,7 @@ public class SubmissionQueryDtc {
 
         String query = String.format(SUBMISSION_QUERY, app.getAARPMembershipNumber(), app.getAARPMembershipNumber());
         logger.info(query);
-        HashMap<String, String> row = DbUtils.getSingleRecord(query, COMPAS_STAGE);
+        HashMap<String, String> row = DbUtils.getSingleRecord(query, COMPAS_PERF);
         String currentDate = DateUtils.NORMALIZED_DATE_FORMAT.format(new java.util.Date());
 
         assertThat(row.get("MEMBERSHIP_NUMBER"), containsString(app.getAARPMemberNumber()));
@@ -219,7 +220,7 @@ public class SubmissionQueryDtc {
         String query = String.format(ADJUDICATION_QUERY, app.getAARPMembershipNumber(), app.getAARPMembershipNumber());
         logger.info(query);
 
-        HashMap<String, String> row = DbUtils.getSingleRecord(query, COMPAS_STAGE);
+        HashMap<String, String> row = DbUtils.getSingleRecord(query, COMPAS_PERF);
         logger.info("query is "+row.get("TYPE_DESC")+" and expected is "+expectedSubmissionResult.getWorkQueue());
         assertThat(row.get("ADJUDICATION_CD"), containsString(expectedSubmissionResult.getAdjudicationStatus()));
         assertThat(row.get("TYPE_DESC"), containsString(expectedSubmissionResult.getWorkQueue()));

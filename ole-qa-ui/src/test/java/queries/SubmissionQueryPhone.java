@@ -1,12 +1,12 @@
 package queries;
 
 
-import entity.Application;
-import entity.SubmissionResult;
-import entity.phone.CribSheet;
+import resources.entity.Application;
+import resources.entity.SubmissionResult;
+import resources.entity.phone.CribSheet;
 import org.slf4j.Logger;
-import util.DateUtils;
-import util.DbUtils;
+import resources.utils.DateUtils;
+import resources.utils.DbUtils;
 
 import java.sql.SQLException;
 import java.util.HashMap;
