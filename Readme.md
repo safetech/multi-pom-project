@@ -1,4 +1,4 @@
-# Required Environment Variables
+ # Required Environment Variables
 
 ## DB Queries
 Need to set two environment variables

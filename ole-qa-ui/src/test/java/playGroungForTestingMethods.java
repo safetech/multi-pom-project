@@ -8,10 +8,7 @@ public class playGroungForTestingMethods {
     public void testExercise() {
 
         System.out.print(DateUtils.getAgentDPSDDateFormat(5));
-
-
-//TODO:SubmissionQueryPhone
-
+        //TODO:SubmissionQueryPhone
     }
 
 }
