@@ -20,6 +20,7 @@ public class SubmissionQueryAgent {
 
     private String COMPAS_SYS1 = "jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=dbslt0014.uhc.com)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=cmpts08.uhc.com)))";
     private String COMPAS_STAGE = "jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=orass0023.uhc.com)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=cmpst03.uhc.com)))";
+    private String COMPAS_PERF = "jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=orass0023.uhc.com)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=cmpst01.uhc.com)))";
 
     private String ADJUDICATION_QUERY = "\n" +
         " select \n" +
@@ -95,7 +96,7 @@ public class SubmissionQueryAgent {
 
         logger.info(query);
 
-        HashMap<String, String> row = DbUtils.getSingleRecord(query, COMPAS_STAGE);
+        HashMap<String, String> row = DbUtils.getSingleRecord(query, COMPAS_PERF);
 
         String currentDate = DateUtils.NORMALIZED_DATE_FORMAT.format(new java.util.Date());
         assertThat(row.get("MEMBERSHIP_NUMBER"), containsString(app.getAARPMemberNumber()));
@@ -189,7 +190,7 @@ public class SubmissionQueryAgent {
 
         logger.info(query);
 
-        HashMap<String, String> row = DbUtils.getSingleRecord(query, COMPAS_STAGE);
+        HashMap<String, String> row = DbUtils.getSingleRecord(query, COMPAS_PERF);
 
         String currentDate = DateUtils.NORMALIZED_DATE_FORMAT.format(new java.util.Date());
         assertThat(row.get("MEMBERSHIP_NUMBER"), containsString(app.getAARPMemberNumber()));
@@ -231,7 +232,7 @@ public class SubmissionQueryAgent {
 
         logger.info(query);
 
-        HashMap<String, String> row = DbUtils.getSingleRecord(query, COMPAS_STAGE);
+        HashMap<String, String> row = DbUtils.getSingleRecord(query, COMPAS_PERF);
         //HashMap<String, String> getSingleRecord(String query, String connectionString)
         String currentDate = DateUtils.NORMALIZED_DATE_FORMAT.format(new java.util.Date());
         assertThat(row.get("MEMBERSHIP_NUMBER"), containsString(app.getAARPMemberNumber()));
@@ -265,7 +266,7 @@ public class SubmissionQueryAgent {
 
         String query = String.format(ADJUDICATION_QUERY, app.getAARPMembershipNumber(), app.getAARPMembershipNumber());
 
-        HashMap<String, String> row = DbUtils.getSingleRecord(query, COMPAS_STAGE);
+        HashMap<String, String> row = DbUtils.getSingleRecord(query, COMPAS_PERF);
         logger.info("query is " +row.get("TYPE_DESC")+ " and expected is " +expectedSubmissionResult.getWorkQueue());
         logger.info(query);
         assertThat(row.get("TYPE_DESC"), containsString(expectedSubmissionResult.getWorkQueue()));
