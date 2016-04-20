@@ -101,5 +101,61 @@
                 </configuration>
             </plugin>
         </plugins>
+        <testResources>
+            <testResource>
+                <directory>src/test/java</directory>
+                <filtering>true</filtering>
+            </testResource>
+        </testResources>
+        <filters>
+            <filter>src/test/java/application.properties</filter>
+        </filters>
     </build>
+    <profiles>
+        <profile>
+            <id>AgentStageUrl</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <base.url>https://aarpsupplementalhealth-stg.uhc.com/ole/ms-agent.html?cheat=true</base.url>
+            </properties>
+        </profile>
+        <profile>
+            <id>AgentTestUrl</id>
+            <properties>
+                <base.url>https://aarpsupplementalhealth-tst.uhc.com/ole/ms-agent.html?cheat=true</base.url>
+            </properties>
+        </profile>
+        <profile>
+            <id>DtcStageUrl</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <base.url>https://aarpsupplementalhealth-stg.uhc.com/ole/ms.html?cheat=true</base.url>
+            </properties>
+        </profile>
+        <profile>
+            <id>DtcTestUrl</id>
+            <properties>
+                <base.url>https://aarpsupplementalhealth-tst.uhc.com/ole/ms.html?cheat=true</base.url>
+            </properties>
+        </profile>
+        <profile>
+            <id>PhoneStageUrl</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <base.url>https://aarpsupplementalhealth-stg.uhc.com/ole/ms.html?cheat=true</base.url>
+            </properties>
+        </profile>
+        <profile>
+            <id>PhoneTestUrl</id>
+            <properties>
+                <base.url>https://aarpsupplementalhealth-tst.uhc.com/ole/ms.html?cheat=true</base.url>
+            </properties>
+        </profile>
+    </profiles>
 </project>

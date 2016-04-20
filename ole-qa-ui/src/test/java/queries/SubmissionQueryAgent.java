@@ -1,15 +1,14 @@
 package queries;
 
-
 import resources.entity.Application;
 import resources.entity.SubmissionResult;
 import org.slf4j.Logger;
 import resources.utils.DateUtils;
 import resources.utils.DbUtils;
-
+import resources.utils.PropertyUtils;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.HashMap;
-
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -17,80 +16,102 @@ import static org.slf4j.LoggerFactory.getLogger;
 
 public class SubmissionQueryAgent {
     private final Logger logger = getLogger(this.getClass());
-
+    private String SELECTED_COMPAS_ENVIRONMENT;
     private String COMPAS_SYS1 = "jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=dbslt0014.uhc.com)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=cmpts08.uhc.com)))";
     private String COMPAS_STAGE = "jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=orass0023.uhc.com)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=cmpst03.uhc.com)))";
     private String COMPAS_PERF = "jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=orass0023.uhc.com)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=cmpst01.uhc.com)))";
 
-    private String ADJUDICATION_QUERY = "\n" +
-        " select \n" +
-        " b.MEMBERSHIP_NUMBER,\n" +
-        " f.ole_reference_identifier,\n" +
-        " b.application_id,\n" +
-        " f.status,\n" +
-        " b.adjudication_cd,\n" +
-        " g.type_desc,\n" +
-        " d.item_reason_type_desc\n" +
-        " from \n" +
-        " ((((((ole_application f left outer join application b on f.application_id = b.application_id) \n" +
-        " left outer join work_queue_rec_id a on (a.identifier_value = b.application_id and a.identifier_type_id = 2011))\n" +
-        " left outer join work_queue_item_reason c on a.tracking_number = c.tracking_number)\n" +
-        " left outer join work_queue_item_reason_type d on c.item_reason_type_id = d.item_reason_type_id)\n" +
-        " left outer join work_queue_item e on a.tracking_number = e.tracking_number)\n" +
-        " left outer join work_queue_type g on e.type_id = g.type_id)  \n" +
-        " where\n" +
-        " b.MEMBERSHIP_NUMBER = substr(%s,1,9)";
 
-    private String SUBMISSION_QUERY = "select" +
-        " TRIM(TO_CHAR(b.MEMBERSHIP_NUMBER, '000000000')) as MEMBERSHIP_NUMBER," +
-        " c.NAME_PREFIX_ID," +
-        " a.FIRST_NAME," +
-        " c.MIDDLE_NAME," +
-        " a.LAST_NAME," +
-        " c.NAME_SUFFIX_ID," +
-        " a.ADDRESS_LINE_1," +
-        " a.ADDRESS_LINE_2," +
-        " a.CITY," +
-        " a.STATE_CD," +
-        " a.ZIP_CD," +
-        " TO_CHAR(a.DATE_OF_BIRTH, 'MM/DD/YYYY') as DATE_OF_BIRTH," +
-        " c.GENDER_CD," +
-        " a.DAY_PHONE_NUM," +
-        " a.EVENING_PHONE_NUM," +
-        " a.HCSG_APPLICATION_ID," +
-        " a.EMAIL_ADDRESS," +
-        " a.PLAN_CD," +
-        " TO_CHAR(b.REQUESTED_EFFECTIVE_DATE, 'MM/DD/YYYY') as REQUESTED_EFFECTIVE_DATE," +
-        " a.MEDICARE_CLAIM_NUMBER," +
-        " TO_CHAR(c.PART_A_EFFECTIVE_DATE, 'MM/DD/YYYY') as PART_A_EFFECTIVE_DATE," +
-        " TO_CHAR(a.MED_PART_B_DATE, 'MM/DD/YYYY') as MED_PART_B_DATE," +
-        " a.BOTH_PARTS_ACTIVE," +
-        " TO_CHAR(b.CPA_SIGNATURE_DATE, 'MM/DD/YYYY') as CPA_SIGNATURE_DATE," +
-        " TO_CHAR(b.APPL_RECEIPT_DATE, 'MM/DD/YYYY') as APPL_RECEIPT_DATE," +
-        " TO_CHAR(b.APPL_SIGNATURE_DATE, 'MM/DD/YYYY') as APPL_SIGNATURE_DATE," +
-        " a.AGENT_FIRST_NAME," +
-        " a.AGENT_LAST_NAME," +
-        " a.SELLING_AGENT_ID," +
-        " a.QR_DATE," +
-        " a.STATUS," +
-        " a.MARKETING_PRODUCT_CODE," +
-        " a.CHANNEL," +
-        " a.ACTOR," +
-        " a.MECHANISM," +
-        " b.APPL_COMPONENT_NUMBER," +
-        " b.ADJUDICATION_CD," +
-        " b.HASH_CD," +
-        " d.PAYMENT_METHOD_TYPE_ID," +
-        " b.APPL_IMAGE_NUM_ORIG" +
-        " from " +
-        " ((ole_application a left outer join application b on a.application_id = b.application_id)" +
-        " left outer join individual c on b.individual_id = c.individual_id)" +
-        " left outer join household_billing_profile d on b.household_id = d.household_id" +
-        " where" +
-        " b.MEMBERSHIP_NUMBER = substr(%s,1,9)";
+
+
+        private String ADJUDICATION_QUERY = "\n" +
+                " select \n" +
+                " b.MEMBERSHIP_NUMBER,\n" +
+                " f.ole_reference_identifier,\n" +
+                " b.application_id,\n" +
+                " f.status,\n" +
+                " b.adjudication_cd,\n" +
+                " g.type_desc,\n" +
+                " d.item_reason_type_desc\n" +
+                " from \n" +
+                " ((((((ole_application f left outer join application b on f.application_id = b.application_id) \n" +
+                " left outer join work_queue_rec_id a on (a.identifier_value = b.application_id and a.identifier_type_id = 2011))\n" +
+                " left outer join work_queue_item_reason c on a.tracking_number = c.tracking_number)\n" +
+                " left outer join work_queue_item_reason_type d on c.item_reason_type_id = d.item_reason_type_id)\n" +
+                " left outer join work_queue_item e on a.tracking_number = e.tracking_number)\n" +
+                " left outer join work_queue_type g on e.type_id = g.type_id)  \n" +
+                " where\n" +
+                " b.MEMBERSHIP_NUMBER = substr(%s,1,9)";
+
+        private String SUBMISSION_QUERY = "select" +
+                " TRIM(TO_CHAR(b.MEMBERSHIP_NUMBER, '000000000')) as MEMBERSHIP_NUMBER," +
+                " c.NAME_PREFIX_ID," +
+                " a.FIRST_NAME," +
+                " c.MIDDLE_NAME," +
+                " a.LAST_NAME," +
+                " c.NAME_SUFFIX_ID," +
+                " a.ADDRESS_LINE_1," +
+                " a.ADDRESS_LINE_2," +
+                " a.CITY," +
+                " a.STATE_CD," +
+                " a.ZIP_CD," +
+                " TO_CHAR(a.DATE_OF_BIRTH, 'MM/DD/YYYY') as DATE_OF_BIRTH," +
+                " c.GENDER_CD," +
+                " a.DAY_PHONE_NUM," +
+                " a.EVENING_PHONE_NUM," +
+                " a.HCSG_APPLICATION_ID," +
+                " a.EMAIL_ADDRESS," +
+                " a.PLAN_CD," +
+                " TO_CHAR(b.REQUESTED_EFFECTIVE_DATE, 'MM/DD/YYYY') as REQUESTED_EFFECTIVE_DATE," +
+                " a.MEDICARE_CLAIM_NUMBER," +
+                " TO_CHAR(c.PART_A_EFFECTIVE_DATE, 'MM/DD/YYYY') as PART_A_EFFECTIVE_DATE," +
+                " TO_CHAR(a.MED_PART_B_DATE, 'MM/DD/YYYY') as MED_PART_B_DATE," +
+                " a.BOTH_PARTS_ACTIVE," +
+                " TO_CHAR(b.CPA_SIGNATURE_DATE, 'MM/DD/YYYY') as CPA_SIGNATURE_DATE," +
+                " TO_CHAR(b.APPL_RECEIPT_DATE, 'MM/DD/YYYY') as APPL_RECEIPT_DATE," +
+                " TO_CHAR(b.APPL_SIGNATURE_DATE, 'MM/DD/YYYY') as APPL_SIGNATURE_DATE," +
+                " a.AGENT_FIRST_NAME," +
+                " a.AGENT_LAST_NAME," +
+                " a.SELLING_AGENT_ID," +
+                " a.QR_DATE," +
+                " a.STATUS," +
+                " a.MARKETING_PRODUCT_CODE," +
+                " a.CHANNEL," +
+                " a.ACTOR," +
+                " a.MECHANISM," +
+                " b.APPL_COMPONENT_NUMBER," +
+                " b.ADJUDICATION_CD," +
+                " b.HASH_CD," +
+                " d.PAYMENT_METHOD_TYPE_ID," +
+                " b.APPL_IMAGE_NUM_ORIG" +
+                " from " +
+                " ((ole_application a left outer join application b on a.application_id = b.application_id)" +
+                " left outer join individual c on b.individual_id = c.individual_id)" +
+                " left outer join household_billing_profile d on b.household_id = d.household_id" +
+                " where" +
+                " b.MEMBERSHIP_NUMBER = substr(%s,1,9)";
 
 
     public void verifyUwExpansionSubmissionData(Application app, SubmissionResult expectedSubmissionResult) throws SQLException {
+
+        String Test = "https://aarpsupplementalhealth-tst.uhc.com/ole/ms-agent.html?cheat=true";
+        String Stage = "https://aarpsupplementalhealth-stg.uhc.com/ole/ms-agent.html?cheat=true";
+        String Perf = "www.aarpsupplementalhealth.com/ole/ms-agent.html?cheat=true";
+
+        if (PropertyUtils.getProperty("agent.url").equals(Test)) {
+
+            COMPAS_SYS1 = "jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=dbslt0014.uhc.com)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=cmpts08.uhc.com)))";
+            SELECTED_COMPAS_ENVIRONMENT = COMPAS_SYS1;
+            System.out.print("----____----_____SYS1-----EXECUTED____-----_____-----");
+
+        } else if(PropertyUtils.getProperty("agent.url").equals(Stage)) {
+            COMPAS_STAGE = "jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=orass0023.uhc.com)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=cmpst03.uhc.com)))";
+            SELECTED_COMPAS_ENVIRONMENT = COMPAS_STAGE;
+
+        } else if(PropertyUtils.getProperty("agent.url").equals(Perf)){
+            COMPAS_PERF = "jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=orass0023.uhc.com)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=cmpst01.uhc.com)))";
+            SELECTED_COMPAS_ENVIRONMENT = COMPAS_PERF;
+        }
 
         String query = String.format(SUBMISSION_QUERY, app.getAARPMembershipNumber(), app.getAARPMembershipNumber());
 
@@ -127,7 +148,7 @@ public class SubmissionQueryAgent {
         assertThat(row.get("MECHANISM"), equalTo("2"));
         //assertThat(row.get("ADJUDICATION_CD"), equalTo(expectedSubmissionResult.getAdjudicationStatus()));
 
-        logger.info(String.format("Here is the link to the image... https://acesx-stg-alt.uhc.com/appEnroll-web/resources/retrievePDF/v1/%s", row.get("APPL_IMAGE_NUM_ORIG") +" For the state of --> " + app.getState()));
+        logger.info(String.format("Here is the link to the image... https://acesx-stg-alt.uhc.com/appEnroll-web/resources/retrievePDF/v1/%s", row.get("APPL_IMAGE_NUM_ORIG") + " For the state of --> " + app.getState()));
 
     }
 
@@ -186,7 +207,26 @@ public class SubmissionQueryAgent {
 
     public void verifyPlanAndRiderCodes(Application app, SubmissionResult expectedSubmissionResult) throws SQLException {
 
-        String query = String.format(RIDERS_QUERY, app.getAARPMembershipNumber(),app.getAARPMembershipNumber());
+        String Test = "https://aarpsupplementalhealth-tst.uhc.com/ole/ms-agent.html?cheat=true";
+        String Stage = "https://aarpsupplementalhealth-stg.uhc.com/ole/ms-agent.html?cheat=true";
+        String Perf = "www.aarpsupplementalhealth.com/ole/ms-agent.html?cheat=true";
+
+        if (PropertyUtils.getProperty("agent.url").equals(Test)) {
+
+            COMPAS_SYS1 = "jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=dbslt0014.uhc.com)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=cmpts08.uhc.com)))";
+            SELECTED_COMPAS_ENVIRONMENT = COMPAS_SYS1;
+            System.out.print("----____----_____SYS1-----EXECUTED____-----_____-----");
+
+        } else if(PropertyUtils.getProperty("agent.url").equals(Stage)) {
+            COMPAS_STAGE = "jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=orass0023.uhc.com)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=cmpst03.uhc.com)))";
+            SELECTED_COMPAS_ENVIRONMENT = COMPAS_STAGE;
+
+        } else if(PropertyUtils.getProperty("agent.url").equals(Perf)){
+            COMPAS_PERF = "jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=orass0023.uhc.com)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=cmpst01.uhc.com)))";
+            SELECTED_COMPAS_ENVIRONMENT = COMPAS_PERF;
+        }
+
+        String query = String.format(RIDERS_QUERY, app.getAARPMembershipNumber(), app.getAARPMembershipNumber());
 
         logger.info(query);
 
@@ -222,19 +262,36 @@ public class SubmissionQueryAgent {
         assertThat(row.get("MECHANISM"), equalTo("2"));
         assertThat(row.get("ADJUDICATION_CD"), equalTo(expectedSubmissionResult.getAdjudicationStatus()));
 
-        logger.info(String.format("Here is the link to the image... https://acesx-stg-alt.uhc.com/appEnroll-web/resources/retrievePDF/v1/%s", row.get("APPL_IMAGE_NUM_ORIG") +" For the state of --> " + app.getState()));
+        logger.info(String.format("Here is the link to the image... https://acesx-stg-alt.uhc.com/appEnroll-web/resources/retrievePDF/v1/%s", row.get("APPL_IMAGE_NUM_ORIG") + " For the state of --> " + app.getState()));
 
     }
 
     public void verifySubmissionData(Application app, SubmissionResult expectedSubmissionResult) throws SQLException {
+        String Test = "https://aarpsupplementalhealth-tst.uhc.com/ole/ms-agent.html?cheat=true";
+        String Stage = "https://aarpsupplementalhealth-stg.uhc.com/ole/ms-agent.html?cheat=true";
+        String Perf = "www.aarpsupplementalhealth.com/ole/ms-agent.html?cheat=true";
+
+        if (PropertyUtils.getProperty("agent.url").equals(Test)) {
+
+            COMPAS_SYS1 = "jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=dbslt0014.uhc.com)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=cmpts08.uhc.com)))";
+            SELECTED_COMPAS_ENVIRONMENT = COMPAS_SYS1;
+            System.out.print("----____----_____SYS1-----EXECUTED____-----_____-----");
+
+        } else if(PropertyUtils.getProperty("agent.url").equals(Stage)) {
+            COMPAS_STAGE = "jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=orass0023.uhc.com)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=cmpst03.uhc.com)))";
+            SELECTED_COMPAS_ENVIRONMENT = COMPAS_STAGE;
+
+        } else if(PropertyUtils.getProperty("agent.url").equals(Perf)){
+            COMPAS_PERF = "jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=orass0023.uhc.com)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=cmpst01.uhc.com)))";
+            SELECTED_COMPAS_ENVIRONMENT = COMPAS_PERF;
+        }
 
         String query = String.format(SUBMISSION_QUERY, app.getAARPMembershipNumber(), app.getAARPMembershipNumber());
 
         logger.info(query);
 
-        HashMap<String, String> row = DbUtils.getSingleRecord(query, COMPAS_PERF);
-        //HashMap<String, String> getSingleRecord(String query, String connectionString)
-        String currentDate = DateUtils.NORMALIZED_DATE_FORMAT.format(new java.util.Date());
+        HashMap<String, String> row = DbUtils.getSingleRecord(query, SELECTED_COMPAS_ENVIRONMENT);
+        String currentDate = DateUtils.NORMALIZED_DATE_FORMAT.format(new Date());
         assertThat(row.get("MEMBERSHIP_NUMBER"), containsString(app.getAARPMemberNumber()));
         assertThat(row.get("FIRST_NAME"), equalTo(app.getFirstName().toUpperCase()));
         assertThat(row.get("MIDDLE_NAME"), equalTo(app.getMI().toUpperCase()));
@@ -258,20 +315,38 @@ public class SubmissionQueryAgent {
         assertThat(row.get("MECHANISM"), equalTo("2"));
         assertThat(row.get("ADJUDICATION_CD"), equalTo(expectedSubmissionResult.getAdjudicationStatus()));
 
-        logger.info(String.format("Here is the link to the image... https://acesx-stg-alt.uhc.com/appEnroll-web/resources/retrievePDF/v1/%s", row.get("APPL_IMAGE_NUM_ORIG") +" For the state of --> " + app.getState()));
+        logger.info(String.format("Here is the link to the image... https://acesx-stg-alt.uhc.com/appEnroll-web/resources/retrievePDF/v1/%s", row.get("APPL_IMAGE_NUM_ORIG") + " For the state of --> " + app.getState()));
 
     }
 
     public void verifyAdjudicationData(Application app, SubmissionResult expectedSubmissionResult) throws SQLException {
+         String Test = "https://aarpsupplementalhealth-tst.uhc.com/ole/ms-agent.html?cheat=true";
+         String Stage = "https://aarpsupplementalhealth-stg.uhc.com/ole/ms-agent.html?cheat=true";
+         String Perf = "www.aarpsupplementalhealth.com/ole/ms-agent.html?cheat=true";
 
-        String query = String.format(ADJUDICATION_QUERY, app.getAARPMembershipNumber(), app.getAARPMembershipNumber());
+        if (PropertyUtils.getProperty("agent.url").equals(Test)) {
 
-        HashMap<String, String> row = DbUtils.getSingleRecord(query, COMPAS_PERF);
-        logger.info("query is " +row.get("TYPE_DESC")+ " and expected is " +expectedSubmissionResult.getWorkQueue());
-        logger.info(query);
-        assertThat(row.get("TYPE_DESC"), containsString(expectedSubmissionResult.getWorkQueue()));
-        assertThat(row.get("ITEM_REASON_TYPE_DESC"), containsString(expectedSubmissionResult.getWorkQueueReason()));
+            COMPAS_SYS1 = "jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=dbslt0014.uhc.com)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=cmpts08.uhc.com)))";
+            SELECTED_COMPAS_ENVIRONMENT = COMPAS_SYS1;
+            System.out.print("----____----_____SYS1-----EXECUTED____-----_____-----");
+
+        } else if(PropertyUtils.getProperty("agent.url").equals(Stage)) {
+            COMPAS_STAGE = "jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=orass0023.uhc.com)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=cmpst03.uhc.com)))";
+            SELECTED_COMPAS_ENVIRONMENT = COMPAS_STAGE;
+
+        } else if(PropertyUtils.getProperty("agent.url").equals(Perf)){
+            COMPAS_PERF = "jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=orass0023.uhc.com)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=cmpst01.uhc.com)))";
+            SELECTED_COMPAS_ENVIRONMENT = COMPAS_PERF;
+        }
+
+                String query = String.format(ADJUDICATION_QUERY, app.getAARPMembershipNumber(), app.getAARPMembershipNumber());
+                HashMap<String, String> row = DbUtils.getSingleRecord(query, SELECTED_COMPAS_ENVIRONMENT);
+                logger.info("query is " + row.get("TYPE_DESC") + " and expected is " + expectedSubmissionResult.getWorkQueue());
+                logger.info(query);
+                assertThat(row.get("TYPE_DESC"), containsString(expectedSubmissionResult.getWorkQueue()));
+                assertThat(row.get("ITEM_REASON_TYPE_DESC"), containsString(expectedSubmissionResult.getWorkQueueReason()));
 
     }
+
 
 }

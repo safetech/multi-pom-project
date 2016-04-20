@@ -12,7 +12,6 @@
     </parent>
     <modules>
         <module>ole-qa-ui</module>
-        <module>ole-qa-api</module>
     </modules>
 
     <groupId>com.uhc.is.wcm.ole-qa</groupId>

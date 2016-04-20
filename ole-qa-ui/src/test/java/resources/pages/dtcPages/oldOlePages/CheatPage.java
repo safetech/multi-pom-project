@@ -5,6 +5,7 @@ import org.fluentlenium.core.FluentPage;
 import org.fluentlenium.core.domain.FluentWebElement;
 import org.openqa.selenium.support.FindBy;
 import resources.utils.AnswerUtils;
+import resources.utils.PropertyUtils;
 
 import java.util.concurrent.TimeUnit;
 
@@ -40,7 +41,7 @@ public class CheatPage extends FluentPage{
 
 
     public String getUrl() {
-        return "https://aarpsupplementalhealth-stg.uhc.com/ole/ms.html?cheat=true";
+        return PropertyUtils.getProperty("dtc.url");
     }
 
     public void fillAndSubmit(CribSheet sheet) {
