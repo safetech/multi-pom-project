@@ -1,15 +1,15 @@
-package functionalTests.dtc.uwSubmissionTests;
+package functionaltests.dtc.uwSubmissionTests;
 
 import com.github.javafaker.Faker;
 import resources.entity.Application;
 import resources.entity.SubmissionResult;
 import resources.entity.dtc.CribSheet;
-import functionalTests.CQBaseIntegrationTest;
-import resources.pages.dtcPages.uwExpansionPages.*;
-import resources.pages.dtcPages.uwExpansionPages.variations.authorization.MN_OR_QA_AuthorizationPage;
-import resources.pages.dtcPages.uwExpansionPages.variations.pastandcurrentcoverage.WA_PastAndCurrentCoveragePage;
-import resources.pages.dtcPages.uwExpansionPages.variations.planapplication.WA_PlanApplicationQuestionsPage;
-import resources.pages.dtcPages.uwExpansionPages.variations.planselectionandstartdate.PA_AR_NV_MA_PlanSelectionAndStartDatePage;
+import functionaltests.CQBaseIntegrationTest;
+import resources.pages.dtcpages.uwExpansionPages.*;
+import resources.pages.dtcpages.uwExpansionPages.variations.authorization.MN_OR_QA_AuthorizationPage;
+import resources.pages.dtcpages.uwExpansionPages.variations.pastandcurrentcoverage.WA_PastAndCurrentCoveragePage;
+import resources.pages.dtcpages.uwExpansionPages.variations.planapplication.WA_PlanApplicationQuestionsPage;
+import resources.pages.dtcpages.uwExpansionPages.variations.planselectionandstartdate.PA_AR_NV_MA_PlanSelectionAndStartDatePage;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;

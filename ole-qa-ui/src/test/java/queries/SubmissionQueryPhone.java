@@ -7,6 +7,7 @@ import resources.entity.phone.CribSheet;
 import org.slf4j.Logger;
 import resources.utils.DateUtils;
 import resources.utils.DbUtils;
+import resources.utils.PropertyUtils;
 
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -19,8 +20,8 @@ import static org.slf4j.LoggerFactory.getLogger;
 public class SubmissionQueryPhone {
     private final Logger logger = getLogger(this.getClass());
 
-    private String COMPAS_SYS1 = "jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=dbslt0014.uhc.com)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=cmpts08.uhc.com)))";
-    private String COMPAS_STAGE = "jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=orass0023.uhc.com)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=cmpst03.uhc.com)))";
+    private String SELECTED_COMPAS_ENVIRONMENT;
+
     private String ADJUDICATION_QUERY = "\n" +
             "select \n" +
             "  f.hcsg_application_id,\n" +
@@ -40,113 +41,116 @@ public class SubmissionQueryPhone {
             "where\n" +
             "  f.hcsg_application_id = '%s'";
 
-    private String SUBMISSION_QUERY = "select" +
-            "  TRIM(TO_CHAR(b.MEMBERSHIP_NUMBER, '000000000')) as MEMBERSHIP_NUMBER," +
-            "  c.NAME_PREFIX_ID," +
-            "  a.FIRST_NAME," +
-            "  c.MIDDLE_NAME," +
-            "  a.LAST_NAME," +
-            "  c.NAME_SUFFIX_ID," +
-            "  a.ADDRESS_LINE_1," +
-            "  a.ADDRESS_LINE_2," +
-            "  a.CITY," +
-            "  a.STATE_CD," +
-            "  a.ZIP_CD," +
-            "  TO_CHAR(a.DATE_OF_BIRTH, 'MM/DD/YYYY') as DATE_OF_BIRTH," +
-            "  c.GENDER_CD," +
-            "  a.DAY_PHONE_NUM," +
-            "  a.EVENING_PHONE_NUM," +
-            "  a.HCSG_APPLICATION_ID," +
-            "  a.EMAIL_ADDRESS," +
-            "  a.PLAN_CD," +
-            "  TO_CHAR(b.REQUESTED_EFFECTIVE_DATE, 'MM/DD/YYYY') as REQUESTED_EFFECTIVE_DATE," +
-            "  a.MEDICARE_CLAIM_NUMBER," +
-            "  TO_CHAR(c.PART_A_EFFECTIVE_DATE, 'MM/DD/YYYY') as PART_A_EFFECTIVE_DATE," +
-            "  TO_CHAR(a.MED_PART_B_DATE, 'MM/DD/YYYY') as MED_PART_B_DATE," +
-            "  a.BOTH_PARTS_ACTIVE," +
-            "  TO_CHAR(b.CPA_SIGNATURE_DATE, 'MM/DD/YYYY') as CPA_SIGNATURE_DATE," +
-            "  TO_CHAR(b.APPL_RECEIPT_DATE, 'MM/DD/YYYY') as APPL_RECEIPT_DATE," +
-            "  TO_CHAR(b.APPL_SIGNATURE_DATE, 'MM/DD/YYYY') as APPL_SIGNATURE_DATE," +
-            "  a.AGENT_FIRST_NAME," +
-            "  a.AGENT_LAST_NAME," +
-            "  a.SELLING_AGENT_ID," +
-            "  a.QR_DATE," +
-            "  a.STATUS," +
-            "  a.MARKETING_PRODUCT_CODE," +
-            "  a.CHANNEL," +
-            "  a.ACTOR," +
+    private String SUBMISSION_QUERY = "\n"+
+            "select\n" +
+            "  TRIM(TO_CHAR(b.MEMBERSHIP_NUMBER, '000000000')) as MEMBERSHIP_NUMBER,\n" +
+            "  c.NAME_PREFIX_ID,\n" +
+            "  a.FIRST_NAME,\n" +
+            "  c.MIDDLE_NAME,\n" +
+            "  a.LAST_NAME,\n" +
+            "  c.NAME_SUFFIX_ID,\n" +
+            "  a.ADDRESS_LINE_1,\n" +
+            "  a.ADDRESS_LINE_2,\n" +
+            "  a.CITY,\n" +
+            "  a.STATE_CD,\n" +
+            "  a.ZIP_CD,\n" +
+            "  TO_CHAR(a.DATE_OF_BIRTH, 'MM/DD/YYYY') as DATE_OF_BIRTH,\n" +
+            "  c.GENDER_CD,\n" +
+            "  a.DAY_PHONE_NUM,\n" +
+            "  a.EVENING_PHONE_NUM,\n" +
+            "  a.HCSG_APPLICATION_ID,\n" +
+            "  a.EMAIL_ADDRESS,\n" +
+            "  a.PLAN_CD,\n" +
+            "  TO_CHAR(b.REQUESTED_EFFECTIVE_DATE, 'MM/DD/YYYY') as REQUESTED_EFFECTIVE_DATE,\n" +
+            "  a.MEDICARE_CLAIM_NUMBER,\n" +
+            "  TO_CHAR(c.PART_A_EFFECTIVE_DATE, 'MM/DD/YYYY') as PART_A_EFFECTIVE_DATE,\n" +
+            "  TO_CHAR(a.MED_PART_B_DATE, 'MM/DD/YYYY') as MED_PART_B_DATE,\n" +
+            "  a.BOTH_PARTS_ACTIVE,\n" +
+            "  TO_CHAR(b.CPA_SIGNATURE_DATE, 'MM/DD/YYYY') as CPA_SIGNATURE_DATE,\n" +
+            "  TO_CHAR(b.APPL_RECEIPT_DATE, 'MM/DD/YYYY') as APPL_RECEIPT_DATE,\n" +
+            "  TO_CHAR(b.APPL_SIGNATURE_DATE, 'MM/DD/YYYY') as APPL_SIGNATURE_DATE,\n" +
+            "  a.AGENT_FIRST_NAME,\n" +
+            "  a.AGENT_LAST_NAME,\n" +
+            "  a.SELLING_AGENT_ID,\n" +
+            "  a.QR_DATE,\n" +
+            "  a.STATUS,\n" +
+            "  a.MARKETING_PRODUCT_CODE,\n" +
+            "  a.CHANNEL,\n" +
+            "  a.ACTOR,\n" +
             "  a.MECHANISM," +
-            "  b.APPL_COMPONENT_NUMBER," +
-            "  b.ADJUDICATION_CD," +
+            "  b.APPL_COMPONENT_NUMBER,\n" +
+            "  b.ADJUDICATION_CD,\n" +
             "  b.HASH_CD," +
-            "  d.PAYMENT_METHOD_TYPE_ID," +
-            "  b.APPL_IMAGE_NUM_ORIG" +
-            " from " +
-            "  ((ole_application a left outer join application b on a.application_id = b.application_id)" +
-            "  left outer join individual c on b.individual_id = c.individual_id)" +
-            "  left outer join household_billing_profile d on b.household_id = d.household_id" +
-            " where" +
+            "  d.PAYMENT_METHOD_TYPE_ID,\n" +
+            "  b.APPL_IMAGE_NUM_ORIG\n" +
+            " from \n" +
+            "  ((ole_application a left outer join application b on a.application_id = b.application_id)\n" +
+            "  left outer join individual c on b.individual_id = c.individual_id)\n" +
+            "  left outer join household_billing_profile d on b.household_id = d.household_id\n" +
+            " where\n" +
             "  a.hcsg_application_id = '%s'";
 
-    private String RIDERS_QUERY = "select" +
-            "  TRIM(TO_CHAR(b.MEMBERSHIP_NUMBER, '000000000')) as MEMBERSHIP_NUMBER," +
-            "  c.NAME_PREFIX_ID," +
-            "  a.FIRST_NAME," +
-            "  c.MIDDLE_NAME," +
+    private String RIDERS_QUERY = "\n"+
+            "select\n" +
+            "  TRIM(TO_CHAR(b.MEMBERSHIP_NUMBER, '000000000')) as MEMBERSHIP_NUMBER,\n" +
+            "  c.NAME_PREFIX_ID,\n" +
+            "  a.FIRST_NAME,\n" +
+            "  c.MIDDLE_NAME,\n" +
             "  a.LAST_NAME," +
-            "  c.NAME_SUFFIX_ID," +
-            "  a.ADDRESS_LINE_1," +
-            "  a.ADDRESS_LINE_2," +
-            "  a.CITY," +
-            "  a.STATE_CD," +
-            "  a.RIDER_REQUEST_1," +
-            "  a.RIDER_REQUEST_2," +
-            "  a.RIDER_REQUEST_3," +
-            "  a.RIDER_REQUEST_4," +
-            "  a.ZIP_CD," +
-            "  TO_CHAR(a.DATE_OF_BIRTH, 'MM/DD/YYYY') as DATE_OF_BIRTH," +
-            "  c.GENDER_CD," +
-            "  a.DAY_PHONE_NUM," +
-            "  a.EVENING_PHONE_NUM," +
-            "  a.HCSG_APPLICATION_ID," +
-            "  a.EMAIL_ADDRESS," +
-            "  a.PLAN_CD," +
-            "  TO_CHAR(b.REQUESTED_EFFECTIVE_DATE, 'MM/DD/YYYY') as REQUESTED_EFFECTIVE_DATE," +
-            "  a.MEDICARE_CLAIM_NUMBER," +
-            "  TO_CHAR(c.PART_A_EFFECTIVE_DATE, 'MM/DD/YYYY') as PART_A_EFFECTIVE_DATE," +
-            "  TO_CHAR(a.MED_PART_B_DATE, 'MM/DD/YYYY') as MED_PART_B_DATE," +
-            "  a.BOTH_PARTS_ACTIVE," +
-            "  TO_CHAR(b.CPA_SIGNATURE_DATE, 'MM/DD/YYYY') as CPA_SIGNATURE_DATE," +
-            "  TO_CHAR(b.APPL_RECEIPT_DATE, 'MM/DD/YYYY') as APPL_RECEIPT_DATE," +
-            "  TO_CHAR(b.APPL_SIGNATURE_DATE, 'MM/DD/YYYY') as APPL_SIGNATURE_DATE," +
-            "  a.AGENT_FIRST_NAME," +
-            "  a.AGENT_LAST_NAME," +
-            "  a.SELLING_AGENT_ID," +
-            "  a.QR_DATE," +
-            "  a.STATUS," +
-            "  a.MARKETING_PRODUCT_CODE," +
-            "  a.CHANNEL," +
-            "  a.ACTOR," +
-            "  a.MECHANISM," +
-            "  b.APPL_COMPONENT_NUMBER," +
-            "  b.ADJUDICATION_CD," +
-            "  b.HASH_CD," +
-            "  d.PAYMENT_METHOD_TYPE_ID," +
-            "  b.APPL_IMAGE_NUM_ORIG" +
-            " from " +
-            "  ((ole_application a left outer join application b on a.application_id = b.application_id)" +
-            "  left outer join individual c on b.individual_id = c.individual_id)" +
-            "  left outer join household_billing_profile d on b.household_id = d.household_id" +
-            " where" +
+            "  c.NAME_SUFFIX_ID,\n" +
+            "  a.ADDRESS_LINE_1,\n" +
+            "  a.ADDRESS_LINE_2,\n" +
+            "  a.CITY,\n" +
+            "  a.STATE_CD,\n" +
+            "  a.RIDER_REQUEST_1,\n" +
+            "  a.RIDER_REQUEST_2,\n" +
+            "  a.RIDER_REQUEST_3,\n" +
+            "  a.RIDER_REQUEST_4,\n" +
+            "  a.ZIP_CD,\n" +
+            "  TO_CHAR(a.DATE_OF_BIRTH, 'MM/DD/YYYY') as DATE_OF_BIRTH,\n" +
+            "  c.GENDER_CD,\n" +
+            "  a.DAY_PHONE_NUM,\n" +
+            "  a.EVENING_PHONE_NUM,\n" +
+            "  a.HCSG_APPLICATION_ID,\n" +
+            "  a.EMAIL_ADDRESS,\n" +
+            "  a.PLAN_CD,\n" +
+            "  TO_CHAR(b.REQUESTED_EFFECTIVE_DATE, 'MM/DD/YYYY') as REQUESTED_EFFECTIVE_DATE,\n" +
+            "  a.MEDICARE_CLAIM_NUMBER,\n" +
+            "  TO_CHAR(c.PART_A_EFFECTIVE_DATE, 'MM/DD/YYYY') as PART_A_EFFECTIVE_DATE,\n" +
+            "  TO_CHAR(a.MED_PART_B_DATE, 'MM/DD/YYYY') as MED_PART_B_DATE,\n" +
+            "  a.BOTH_PARTS_ACTIVE,\n" +
+            "  TO_CHAR(b.CPA_SIGNATURE_DATE, 'MM/DD/YYYY') as CPA_SIGNATURE_DATE,\n" +
+            "  TO_CHAR(b.APPL_RECEIPT_DATE, 'MM/DD/YYYY') as APPL_RECEIPT_DATE,\n" +
+            "  TO_CHAR(b.APPL_SIGNATURE_DATE, 'MM/DD/YYYY') as APPL_SIGNATURE_DATE,\n" +
+            "  a.AGENT_FIRST_NAME,\n" +
+            "  a.AGENT_LAST_NAME,\n" +
+            "  a.SELLING_AGENT_ID,\n" +
+            "  a.QR_DATE,\n" +
+            "  a.STATUS,\n" +
+            "  a.MARKETING_PRODUCT_CODE,\n" +
+            "  a.CHANNEL,\n" +
+            "  a.ACTOR,\n" +
+            "  a.MECHANISM,\n" +
+            "  b.APPL_COMPONENT_NUMBER,\n" +
+            "  b.ADJUDICATION_CD,\n" +
+            "  b.HASH_CD,\n" +
+            "  d.PAYMENT_METHOD_TYPE_ID,\n" +
+            "  b.APPL_IMAGE_NUM_ORIG\n" +
+            " from \n" +
+            "  ((ole_application a left outer join application b on a.application_id = b.application_id)\n" +
+            "  left outer join individual c on b.individual_id = c.individual_id)\n" +
+            "  left outer join household_billing_profile d on b.household_id = d.household_id\n" +
+            " where\n" +
             "  a.hcsg_application_id = '%s'";
 
 
     public void verifyPlanAndRiderCodes(Application app, CribSheet sheet, SubmissionResult expectedSubmissionResult) throws SQLException {
-
+        SELECTED_COMPAS_ENVIRONMENT = PropertyUtils.getProperty("compas.db");
         String query = String.format(RIDERS_QUERY, app.getHCSGApplicationId());
         logger.info(query);
         String currentDate = DateUtils.NORMALIZED_DATE_FORMAT.format(new java.util.Date());
-        HashMap<String, String> row = DbUtils.getSingleRecord(query, COMPAS_STAGE);
+
+        HashMap<String, String> row = DbUtils.getSingleRecord(query, SELECTED_COMPAS_ENVIRONMENT);
 
         assertThat(row.get("PLAN_CD"), equalTo(expectedSubmissionResult.getPlanCode()));
         assertThat(row.get("RIDER_REQUEST_1"), equalTo(expectedSubmissionResult.getRiderOne()));
@@ -177,11 +181,12 @@ public class SubmissionQueryPhone {
     }
 
     public void verifyQrYPendingPlanAndRiderCodes(Application app, CribSheet sheet, SubmissionResult expectedSubmissionResult) throws SQLException {
-
+        SELECTED_COMPAS_ENVIRONMENT = PropertyUtils.getProperty("compas.db");
         String query = String.format(RIDERS_QUERY, app.getHCSGApplicationId());
         logger.info(query);
         String currentDate = DateUtils.NORMALIZED_DATE_FORMAT.format(new java.util.Date());
-        HashMap<String, String> row = DbUtils.getSingleRecord(query, COMPAS_STAGE);
+
+        HashMap<String, String> row = DbUtils.getSingleRecord(query, SELECTED_COMPAS_ENVIRONMENT);
 
         assertThat(row.get("PLAN_CD"), equalTo(expectedSubmissionResult.getPlanCode()));
         assertThat(row.get("RIDER_REQUEST_1"), equalTo(expectedSubmissionResult.getRiderOne()));
@@ -213,17 +218,14 @@ public class SubmissionQueryPhone {
     }
 
     public void verifySubmissionData(Application app, SubmissionResult expectedSubmissionResult) throws SQLException {
-
+        SELECTED_COMPAS_ENVIRONMENT = PropertyUtils.getProperty("compas.db");
         String query = String.format(SUBMISSION_QUERY, app.getHCSGApplicationId());
-
         logger.info(query);
 
-        HashMap<String, String> row = DbUtils.getSingleRecord(query, COMPAS_STAGE);
-        //HashMap<String, String> getSingleRecord(String query, String connectionString)
+        HashMap<String, String> row = DbUtils.getSingleRecord(query, SELECTED_COMPAS_ENVIRONMENT);
 
         String currentDate = DateUtils.NORMALIZED_DATE_FORMAT.format(new java.util.Date());
         String currentDateWithZeroTime = DateUtils.YY_MM_DD_ZERO_TIME.format(new java.util.Date());
-
         assertThat(row.get("MEMBERSHIP_NUMBER"), equalTo(app.getAARPMembershipNumber()));
         assertThat(row.get("FIRST_NAME"), equalTo(app.getFirstName().toUpperCase()));
         assertThat(row.get("MIDDLE_NAME"), equalTo(app.getMI().toUpperCase()));
@@ -256,35 +258,17 @@ public class SubmissionQueryPhone {
     }
 
     public void verifyAdjudicationData(Application app, SubmissionResult expectedSubmissionResult) throws SQLException {
+        SELECTED_COMPAS_ENVIRONMENT = PropertyUtils.getProperty("compas.db");
 
         String query = String.format(ADJUDICATION_QUERY, app.getHCSGApplicationId());
 
         logger.info(query);
-        HashMap<String, String> row = DbUtils.getSingleRecord(query, COMPAS_STAGE);
+        HashMap<String, String> row = DbUtils.getSingleRecord(query, SELECTED_COMPAS_ENVIRONMENT);
         logger.info("query is " + row.get("TYPE_DESC") + " and expected is " + expectedSubmissionResult.getWorkQueue());
 
         assertThat(row.get("ADJUDICATION_CD"), containsString(expectedSubmissionResult.getAdjudicationStatus()));
         assertThat(row.get("TYPE_DESC"), containsString(expectedSubmissionResult.getWorkQueue()));
-        assertThat(row.get("ITEM_REASON_TYPE_DESC") + "MANUAL GUARANTEED ISSUE REVIEW REQUIRED" + "UW -", containsString(expectedSubmissionResult.getWorkQueueReason()));
+        assertThat(row.get("ITEM_REASON_TYPE_DESC\n") + "MANUAL GUARANTEED ISSUE REVIEW REQUIRED" + "UW -", containsString(expectedSubmissionResult.getWorkQueueReason()));
     }
 
-    public void verifyAdjudicationAndWorkQReasons(Application app, SubmissionResult expectedSubmissionResult) throws SQLException, AssertionError {
-        String query = String.format(ADJUDICATION_QUERY, app.getHCSGApplicationId());
-
-        logger.info(query);
-        final HashMap<String, String> row = DbUtils.getSingleRecord(query, COMPAS_STAGE);
-        logger.info("query is " + row.get("TYPE_DESC") + " and expected is " + expectedSubmissionResult.getWorkQueue());
-
-        if (!row.get("ADJUDICATION_CD").contains(expectedSubmissionResult.getAdjudicationStatus())){
-            System.out.print("exptected results didn't match");
-                if (!row.get("ADJUDICATION_CD").contains("A"));
-                 if (!row.get("ADJUDICATION_CD").contains("P"));
-                 if (!row.get("ADJUDICATION_CD").contains("C")) {
-                     ;
-                 }
-
-        };
-
-
-    }
 }

@@ -1,7 +1,7 @@
-package resources.pages.phonePages.oldOlePages.variations.agentverification;
+package resources.pages.phonepages.oldOlePages.variations.agentverification;
 
 import resources.entity.Application;
-import resources.pages.phonePages.oldOlePages.AgentVerificationPage;
+import resources.pages.phonepages.oldOlePages.AgentVerificationPage;
 import org.fluentlenium.core.domain.FluentWebElement;
 
 import static org.hamcrest.CoreMatchers.equalTo;

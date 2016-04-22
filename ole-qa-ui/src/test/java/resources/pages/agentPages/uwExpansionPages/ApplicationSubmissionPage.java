@@ -1,4 +1,4 @@
-package resources.pages.agentPages.uwExpansionPages;
+package resources.pages.agentpages.uwExpansionPages;
 
 import org.fluentlenium.core.domain.FluentWebElement;
 import org.openqa.selenium.support.FindBy;

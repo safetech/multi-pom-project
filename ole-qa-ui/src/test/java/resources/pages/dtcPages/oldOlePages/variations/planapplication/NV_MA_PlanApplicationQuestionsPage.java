@@ -1,4 +1,4 @@
-package resources.pages.dtcPages.oldOlePages.variations.planapplication;
+package resources.pages.dtcpages.oldOlePages.variations.planapplication;
 
 import resources.entity.Application;
 import org.fluentlenium.core.domain.FluentWebElement;

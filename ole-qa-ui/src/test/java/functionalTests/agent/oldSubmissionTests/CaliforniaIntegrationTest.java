@@ -1,19 +1,19 @@
-package functionalTests.agent.oldSubmissionTests;
+package functionaltests.agent.oldSubmissiontests;
 
 import com.github.javafaker.Faker;
 import resources.entity.Application;
 import resources.entity.SubmissionResult;
 import resources.entity.agent.CribSheet;
-import functionalTests.CQBaseIntegrationTest;
-import resources.pages.agentPages.oldOlePages.*;
+import functionaltests.CQBaseIntegrationTest;
+import resources.pages.agentpages.oldOlePages.*;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
-import resources.pages.agentPages.oldOlePages.variations.authorization.CA_AuthorizationPage;
-import resources.pages.agentPages.oldOlePages.variations.currentinsurancecoverage.CA_CurrentInsuranceCoveragePage;
-import resources.pages.agentPages.oldOlePages.variations.eligibilityhealthquestions.CA_EligibilityHealthQuestionsPage;
-import resources.pages.agentPages.oldOlePages.variations.planapplication.CA_PlanApplicationQuestions;
-import resources.pages.agentPages.oldOlePages.variations.replacenotice.RN034andRE073WithSignaturePage;
+import resources.pages.agentpages.oldOlePages.variations.authorization.CA_AuthorizationPage;
+import resources.pages.agentpages.oldOlePages.variations.currentinsurancecoverage.CA_CurrentInsuranceCoveragePage;
+import resources.pages.agentpages.oldOlePages.variations.eligibilityhealthquestions.CA_EligibilityHealthQuestionsPage;
+import resources.pages.agentpages.oldOlePages.variations.planapplication.CA_PlanApplicationQuestions;
+import resources.pages.agentpages.oldOlePages.variations.replacenotice.RN034andRE073WithSignaturePage;
 import queries.SubmissionQueryAgent;
 import resources.utils.DateUtils;
 
@@ -97,8 +97,8 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         app.setMedicareClaimNum("123123123A");
         app.setMPAED("01/01/2010");
         app.setPartABActiveIndicator(YES);
-        app.setAgentEmail("agentPages@uhc.com");
-        app.setAgentEmailConfirm("agentPages@uhc.com");
+        app.setAgentEmail("agentpages@uhc.com");
+        app.setAgentEmailConfirm("agentpages@uhc.com");
 
         //Plan Application questions page
         app.setGI30dayBday(YES);
@@ -238,8 +238,8 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         app.setMedicareClaimNum("123123123A");
         app.setMPAED("01/01/2015");
         app.setPartABActiveIndicator(YES);
-        app.setAgentEmail("agentPages@uhc.com");
-        app.setAgentEmailConfirm("agentPages@uhc.com");
+        app.setAgentEmail("agentpages@uhc.com");
+        app.setAgentEmailConfirm("agentpages@uhc.com");
 //      Plan Application questions page
         app.setGI30dayBday(YES);
         app.setTurned65In6GA(NO);

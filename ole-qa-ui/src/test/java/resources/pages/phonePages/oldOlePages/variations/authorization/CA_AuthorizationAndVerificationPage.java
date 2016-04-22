@@ -1,4 +1,4 @@
-package resources.pages.phonePages.oldOlePages.variations.authorization;
+package resources.pages.phonepages.oldOlePages.variations.authorization;
 import resources.entity.Application;
 import resources.pages.WizardPage;
 import org.fluentlenium.core.domain.FluentWebElement;

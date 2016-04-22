@@ -1,19 +1,19 @@
-package functionalTests.dtc.oldSubmissionTests;
+package functionaltests.dtc.oldSubmissionTests;
 
 import com.github.javafaker.Faker;
 import resources.entity.Application;
 import resources.entity.SubmissionResult;
 import resources.entity.dtc.CribSheet;
-import functionalTests.CQBaseIntegrationTest;
-import resources.pages.dtcPages.oldOlePages.*;
+import functionaltests.CQBaseIntegrationTest;
+import resources.pages.dtcpages.oldOlePages.*;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
-import resources.pages.dtcPages.oldOlePages.variations.authorization.CA_AuthorizationPage;
-import resources.pages.dtcPages.oldOlePages.variations.eligibilityhealthquestions.CA_EligibilityHealthQuestions;
-import resources.pages.dtcPages.oldOlePages.variations.pastandcurrentcoverage.AR_CA_PA_WI_MN_PastAndCurrentCoveragePage;
-import resources.pages.dtcPages.oldOlePages.variations.planapplication.CA_PlanApplicationQuestions;
-import resources.pages.dtcPages.oldOlePages.variations.replacenotice.RN040Page;
+import resources.pages.dtcpages.oldOlePages.variations.authorization.CA_AuthorizationPage;
+import resources.pages.dtcpages.oldOlePages.variations.eligibilityhealthquestions.CA_EligibilityHealthQuestions;
+import resources.pages.dtcpages.oldOlePages.variations.pastandcurrentcoverage.AR_CA_PA_WI_MN_PastAndCurrentCoveragePage;
+import resources.pages.dtcpages.oldOlePages.variations.planapplication.CA_PlanApplicationQuestions;
+import resources.pages.dtcpages.oldOlePages.variations.replacenotice.RN040Page;
 import queries.SubmissionQueryDtc;
 import resources.utils.DateUtils;
 

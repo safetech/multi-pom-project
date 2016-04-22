@@ -2,9 +2,9 @@ package smokeTest;
 
 import com.github.javafaker.Faker;
 import resources.entity.dtc.CribSheet;
-import functionalTests.CQBaseIntegrationTest;
-import resources.pages.dtcPages.uwExpansionPages.serviceNotAvailablePage;
-import resources.pages.dtcPages.uwExpansionPages.CheatPage;
+import functionaltests.CQBaseIntegrationTest;
+import resources.pages.dtcpages.uwExpansionPages.serviceNotAvailablePage;
+import resources.pages.dtcpages.uwExpansionPages.CheatPage;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;

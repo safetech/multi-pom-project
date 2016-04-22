@@ -1,17 +1,17 @@
-package functionalTests.agent.uwSubmissionTests;
+package functionaltests.agent.uwSubmissiontests;
 
 import com.github.javafaker.Faker;
 import resources.entity.Application;
 import resources.entity.SubmissionResult;
 import resources.entity.agent.CribSheet;
-import functionalTests.CQBaseIntegrationTest;
-import resources.pages.agentPages.uwExpansionPages.*;
-import resources.pages.agentPages.uwExpansionPages.variations.checkeligibility.ME_CA_FL_CheckEligibilityAndAvailabilityPage;
-import resources.pages.agentPages.uwExpansionPages.variations.currentinsurancecoverage.FL_CurrentInsuranceCoveragePage;
-import resources.pages.agentPages.uwExpansionPages.variations.eligibilityhealthquestions.ME_CA_FL_EligibilityHealthQuestionsPage;
-import resources.pages.agentPages.uwExpansionPages.variations.planapplication.FL_PlanApplicationQuestionsPage;
-import resources.pages.agentPages.uwExpansionPages.variations.replacenotice.RN034andRE073WithSignaturePage;
-import resources.pages.agentPages.uwExpansionPages.variations.statespecificationform.SupplementalFormPage;
+import functionaltests.CQBaseIntegrationTest;
+import resources.pages.agentpages.uwExpansionPages.*;
+import resources.pages.agentpages.uwExpansionPages.variations.checkeligibility.ME_CA_FL_CheckEligibilityAndAvailabilityPage;
+import resources.pages.agentpages.uwExpansionPages.variations.currentinsurancecoverage.FL_CurrentInsuranceCoveragePage;
+import resources.pages.agentpages.uwExpansionPages.variations.eligibilityhealthquestions.ME_CA_FL_EligibilityHealthQuestionsPage;
+import resources.pages.agentpages.uwExpansionPages.variations.planapplication.FL_PlanApplicationQuestionsPage;
+import resources.pages.agentpages.uwExpansionPages.variations.replacenotice.RN034andRE073WithSignaturePage;
+import resources.pages.agentpages.uwExpansionPages.variations.statespecificationform.SupplementalFormPage;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
@@ -98,8 +98,8 @@ public class FloridaIntegrationTest extends CQBaseIntegrationTest {
         app.setMedicareClaimNum("123123123A");
         app.setMPAED("01/01/2010");
         app.setPartABActiveIndicator(YES);
-        app.setAgentEmail("agentPages@uhc.com");
-        app.setAgentEmailConfirm("agentPages@uhc.com");
+        app.setAgentEmail("agentpages@uhc.com");
+        app.setAgentEmailConfirm("agentpages@uhc.com");
         //Plan Application Question
         app.setPlanEffIn6OfEligible(NO);
         app.setESRD(NO);
@@ -223,8 +223,8 @@ public class FloridaIntegrationTest extends CQBaseIntegrationTest {
         app.setGender("M");
         app.setMedicareClaimNum("123443123A");
         app.setPartABActiveIndicator(YES);
-        app.setAgentEmail("agentPages@uhc.com");
-        app.setAgentEmailConfirm("agentPages@uhc.com");
+        app.setAgentEmail("agentpages@uhc.com");
+        app.setAgentEmailConfirm("agentpages@uhc.com");
         //app.setDefaultPlanEligibilityQuestions(sheet);
         app.setGI30dayBday(YES);
         app.setGIEmployerCov(NO);

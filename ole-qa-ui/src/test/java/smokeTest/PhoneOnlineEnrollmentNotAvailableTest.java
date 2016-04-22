@@ -3,14 +3,14 @@ package smokeTest;
 import com.github.javafaker.Faker;
 import resources.entity.phone.CribSheet;
 import resources.entity.Application;
-import resources.pages.phonePages.uwExpansionPages.CheatPage;
-import resources.pages.phonePages.uwExpansionPages.CustomerInformationPage;
-import resources.pages.phonePages.uwExpansionPages.VoiceSignatureInstructionsPage;
+import resources.pages.phonepages.uwExpansionPages.CheatPage;
+import resources.pages.phonepages.uwExpansionPages.CustomerInformationPage;
+import resources.pages.phonepages.uwExpansionPages.VoiceSignatureInstructionsPage;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
 import resources.utils.DateUtils;
-import functionalTests.CQBaseIntegrationTest;
+import functionaltests.CQBaseIntegrationTest;
 
 public class PhoneOnlineEnrollmentNotAvailableTest extends CQBaseIntegrationTest {
 

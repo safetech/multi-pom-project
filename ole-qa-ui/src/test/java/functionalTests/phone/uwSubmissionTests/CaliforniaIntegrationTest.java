@@ -1,21 +1,21 @@
-package functionalTests.phone.uwSubmissionTests;
+package functionaltests.phone.uwSubmissionTests;
 
 import com.github.javafaker.Faker;
 import resources.entity.Application;
 import resources.entity.SubmissionResult;
 import resources.entity.phone.CribSheet;
-import functionalTests.CQBaseIntegrationTest;
+import functionaltests.CQBaseIntegrationTest;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
-import resources.pages.phonePages.uwExpansionPages.*;
-import resources.pages.phonePages.uwExpansionPages.variations.agentverification.CA_AgentVerificationPage;
-import resources.pages.phonePages.uwExpansionPages.variations.authorization.CA_AuthorizationAndVerificationPage;
-import resources.pages.phonePages.uwExpansionPages.variations.eligibilityhealthquestions.CA_ME_OR_WA_EligibilityHealthQuestionsPage;
-import resources.pages.phonePages.uwExpansionPages.variations.healthhistoryquestions.CA_HealthHistoryQuestionsPage;
-import resources.pages.phonePages.uwExpansionPages.variations.pastandcurrentcoverage.CA_PA_NJ_IN_PastAndCurrentInsuranceCoveragePage;
-import resources.pages.phonePages.uwExpansionPages.variations.planapplication.CA_PlanApplicationQuestions;
-import resources.pages.phonePages.uwExpansionPages.variations.replacementnotice.RN040Page;
+import resources.pages.phonepages.uwExpansionPages.*;
+import resources.pages.phonepages.uwExpansionPages.variations.agentverification.CA_AgentVerificationPage;
+import resources.pages.phonepages.uwExpansionPages.variations.authorization.CA_AuthorizationAndVerificationPage;
+import resources.pages.phonepages.uwExpansionPages.variations.eligibilityhealthquestions.CA_ME_OR_WA_EligibilityHealthQuestionsPage;
+import resources.pages.phonepages.uwExpansionPages.variations.healthhistoryquestions.CA_HealthHistoryQuestionsPage;
+import resources.pages.phonepages.uwExpansionPages.variations.pastandcurrentcoverage.CA_PA_NJ_IN_PastAndCurrentInsuranceCoveragePage;
+import resources.pages.phonepages.uwExpansionPages.variations.planapplication.CA_PlanApplicationQuestions;
+import resources.pages.phonepages.uwExpansionPages.variations.replacementnotice.RN040Page;
 import queries.SubmissionQueryPhone;
 import resources.utils.DateUtils;
 

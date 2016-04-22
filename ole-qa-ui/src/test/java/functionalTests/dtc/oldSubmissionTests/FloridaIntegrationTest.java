@@ -1,17 +1,17 @@
-package functionalTests.dtc.oldSubmissionTests;
+package functionaltests.dtc.oldSubmissionTests;
 
 import com.github.javafaker.Faker;
 import resources.entity.Application;
 import resources.entity.SubmissionResult;
 import resources.entity.dtc.CribSheet;
-import functionalTests.CQBaseIntegrationTest;
-import resources.pages.dtcPages.oldOlePages.*;
+import functionaltests.CQBaseIntegrationTest;
+import resources.pages.dtcpages.oldOlePages.*;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
-import resources.pages.dtcPages.oldOlePages.variations.pastandcurrentcoverage.FL_PastAndCurrentCoveragePage;
-import resources.pages.dtcPages.oldOlePages.variations.planapplication.NV_MA_PlanApplicationQuestionsPage;
-import resources.pages.dtcPages.oldOlePages.variations.planselectionandstartdate.PA_AR_NV_MA_PlanSelectionAndStartDatePage;
+import resources.pages.dtcpages.oldOlePages.variations.pastandcurrentcoverage.FL_PastAndCurrentCoveragePage;
+import resources.pages.dtcpages.oldOlePages.variations.planapplication.NV_MA_PlanApplicationQuestionsPage;
+import resources.pages.dtcpages.oldOlePages.variations.planselectionandstartdate.PA_AR_NV_MA_PlanSelectionAndStartDatePage;
 import queries.SubmissionQueryDtc;
 import resources.utils.DateUtils;
 

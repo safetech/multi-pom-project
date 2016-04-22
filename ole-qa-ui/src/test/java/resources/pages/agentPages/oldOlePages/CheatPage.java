@@ -1,4 +1,4 @@
-package resources.pages.agentPages.oldOlePages;
+package resources.pages.agentpages.oldOlePages;
 
 import resources.entity.agent.CribSheet;
 import org.fluentlenium.core.FluentPage;
@@ -34,6 +34,7 @@ public class CheatPage extends FluentPage{
 
     public String getUrl() {
         return PropertyUtils.getProperty("agent.url");
+
     }
 
     public void fillAndSubmit(CribSheet sheet) {

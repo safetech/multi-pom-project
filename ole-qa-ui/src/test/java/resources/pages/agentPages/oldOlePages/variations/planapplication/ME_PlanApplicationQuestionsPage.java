@@ -1,9 +1,9 @@
-package resources.pages.agentPages.oldOlePages.variations.planapplication;
+package resources.pages.agentpages.oldOlePages.variations.planapplication;
 
 import resources.entity.Application;
 import org.fluentlenium.core.domain.FluentWebElement;
 import org.openqa.selenium.support.FindBy;
-import resources.pages.agentPages.oldOlePages.PlanApplicationQuestions;
+import resources.pages.agentpages.oldOlePages.PlanApplicationQuestions;
 
 public class ME_PlanApplicationQuestionsPage extends PlanApplicationQuestions {
 

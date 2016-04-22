@@ -1,4 +1,4 @@
-package resources.pages.agentPages.uwExpansionPages.variations.planselection;
+package resources.pages.agentpages.uwExpansionPages.variations.planselection;
 
 import resources.entity.Application;
 import org.fluentlenium.core.domain.FluentWebElement;
@@ -14,7 +14,7 @@ public class riders_WI_PlanSelectionPage extends WizardPage{
 
     @FindBy(xpath = "(//a[contains(text(),'apply now')])[1]") FluentWebElement First_Plan;
     @FindBy(xpath = "(//a[contains(text(),'apply now')])[2]") FluentWebElement Second_Plan;
-    @FindBy(xpath = "(//*[contains(text(),'add ridersSubmissionTests')])[2]") FluentWebElement Add_Rider;
+    @FindBy(xpath = "(//*[contains(text(),'add ridersSubmissiontests')])[2]") FluentWebElement Add_Rider;
     @FindBy(xpath = "(//*[contains(text(),'continue')])[1]") FluentWebElement Continue;
     @FindBy(xpath = "//*[@id='rider_compatibility_error_WI']/ul[1]/li/a") FluentWebElement Update_Rider_Selection;
     @FindBy(css = ".button.arrow.left.action_back") FluentWebElement Back;

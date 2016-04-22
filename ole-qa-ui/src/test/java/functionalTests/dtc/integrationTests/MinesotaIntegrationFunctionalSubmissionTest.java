@@ -1,19 +1,19 @@
-package functionalTests.dtc.integrationTests;
+package functionaltests.dtc.integrationTests;
 
 import com.github.javafaker.Faker;
 import resources.entity.Application;
 import resources.entity.SubmissionResult;
 import resources.entity.dtc.CribSheet;
-import functionalTests.CQBaseIntegrationTest;
-import resources.pages.dtcPages.oldOlePages.*;
+import functionaltests.CQBaseIntegrationTest;
+import resources.pages.dtcpages.oldOlePages.*;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
-import resources.pages.dtcPages.oldOlePages.variations.aboutyourpage.MN_AboutYouPage;
-import resources.pages.dtcPages.oldOlePages.variations.authorization.MN_AuthorizationPage;
-import resources.pages.dtcPages.oldOlePages.variations.pastandcurrentcoverage.MN_PastAndCurrentCoveragePage;
-import resources.pages.dtcPages.oldOlePages.variations.planapplication.MN_PlanApplicationQuestionsPage;
-import resources.pages.dtcPages.oldOlePages.variations.planselectionandstartdate.PA_AR_NV_MA_PlanSelectionAndStartDatePage;
+import resources.pages.dtcpages.oldOlePages.variations.aboutyourpage.MN_AboutYouPage;
+import resources.pages.dtcpages.oldOlePages.variations.authorization.MN_AuthorizationPage;
+import resources.pages.dtcpages.oldOlePages.variations.pastandcurrentcoverage.MN_PastAndCurrentCoveragePage;
+import resources.pages.dtcpages.oldOlePages.variations.planapplication.MN_PlanApplicationQuestionsPage;
+import resources.pages.dtcpages.oldOlePages.variations.planselectionandstartdate.PA_AR_NV_MA_PlanSelectionAndStartDatePage;
 import queries.SubmissionQueryDtc;
 import resources.utils.DateUtils;
 

@@ -1,4 +1,4 @@
-package resources.pages.phonePages.oldOlePages.variations.healthhistoryquestions;
+package resources.pages.phonepages.oldOlePages.variations.healthhistoryquestions;
 
 import resources.entity.Application;
 import resources.pages.WizardPage;

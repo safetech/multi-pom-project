@@ -1,17 +1,17 @@
-package functionalTests.phone.oldSubmissionTests;
+package functionaltests.phone.oldSubmissionTests;
 
 import com.github.javafaker.Faker;
 import resources.entity.Application;
 import resources.entity.SubmissionResult;
 import resources.entity.phone.CribSheet;
-import functionalTests.CQBaseIntegrationTest;
-import resources.pages.phonePages.oldOlePages.*;
+import functionaltests.CQBaseIntegrationTest;
+import resources.pages.phonepages.oldOlePages.*;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
-import resources.pages.phonePages.oldOlePages.variations.pastandcurrentcoverage.CA_PA_NJ_IN_OR_PastAndCurrentInsuranceCoveragePage;
-import resources.pages.phonePages.oldOlePages.variations.planapplication.NM_PlanApplicationQuestions;
-import resources.pages.phonePages.oldOlePages.variations.replacementnotice.RN034andRE073Page;
+import resources.pages.phonepages.oldOlePages.variations.pastandcurrentcoverage.CA_PA_NJ_IN_OR_PastAndCurrentInsuranceCoveragePage;
+import resources.pages.phonepages.oldOlePages.variations.planapplication.NM_PlanApplicationQuestions;
+import resources.pages.phonepages.oldOlePages.variations.replacementnotice.RN034andRE073Page;
 import queries.SubmissionQueryPhone;
 import resources.utils.DateUtils;
 

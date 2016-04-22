@@ -3,15 +3,18 @@ package resources.utils;
 import oracle.jdbc.pool.OracleDataSource;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class DbUtils {
+
     public static HashMap<String, String> getSingleRecord(String query, String connectionString) throws SQLException {
 
         OracleDataSource ods = new OracleDataSource();
         ods.setURL(connectionString);
-        ods.setUser(System.getProperty("DBUN"));
-        ods.setPassword(System.getProperty("DBPW"));
+        ods.setUser(PropertyUtils.getProperty("username"));
+        ods.setPassword(PropertyUtils.getProperty("password"));
 
         HashMap<String, String> row = null;
 
@@ -37,5 +40,5 @@ public class DbUtils {
         return row;
 
     }
-
 }
+//TODO:Created conn string in pom.xml and contunuing to improve

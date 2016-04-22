@@ -1,4 +1,4 @@
-package resources.pages.dtcPages.uwExpansionPages;
+package resources.pages.dtcpages.uwExpansionPages;
 
 import resources.entity.Application;
 import org.fluentlenium.core.domain.FluentWebElement;

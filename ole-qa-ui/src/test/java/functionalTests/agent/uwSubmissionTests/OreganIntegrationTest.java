@@ -1,20 +1,20 @@
-package functionalTests.agent.uwSubmissionTests;
+package functionaltests.agent.uwSubmissiontests;
 
 import com.github.javafaker.Faker;
 import resources.entity.Application;
 import resources.entity.SubmissionResult;
 import resources.entity.agent.CribSheet;
-import functionalTests.CQBaseIntegrationTest;
+import functionaltests.CQBaseIntegrationTest;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
-import resources.pages.agentPages.uwExpansionPages.*;
-import resources.pages.agentPages.uwExpansionPages.variations.authorization.MN_WA_AuthorizationPage;
-import resources.pages.agentPages.uwExpansionPages.variations.checkeligibility.ME_CA_FL_CheckEligibilityAndAvailabilityPage;
-import resources.pages.agentPages.uwExpansionPages.variations.currentinsurancecoverage.OR_CurrentInsuranceCoveragePage;
-import resources.pages.agentPages.uwExpansionPages.variations.eligibilityhealthquestions.ME_CA_FL_EligibilityHealthQuestionsPage;
-import resources.pages.agentPages.uwExpansionPages.variations.planapplication.OR_PlanApplicationQuestionsPage;
-import resources.pages.agentPages.uwExpansionPages.variations.replacenotice.RN034andRE073WithSignaturePage;
+import resources.pages.agentpages.uwExpansionPages.*;
+import resources.pages.agentpages.uwExpansionPages.variations.authorization.MN_WA_AuthorizationPage;
+import resources.pages.agentpages.uwExpansionPages.variations.checkeligibility.ME_CA_FL_CheckEligibilityAndAvailabilityPage;
+import resources.pages.agentpages.uwExpansionPages.variations.currentinsurancecoverage.OR_CurrentInsuranceCoveragePage;
+import resources.pages.agentpages.uwExpansionPages.variations.eligibilityhealthquestions.ME_CA_FL_EligibilityHealthQuestionsPage;
+import resources.pages.agentpages.uwExpansionPages.variations.planapplication.OR_PlanApplicationQuestionsPage;
+import resources.pages.agentpages.uwExpansionPages.variations.replacenotice.RN034andRE073WithSignaturePage;
 import queries.SubmissionQueryAgent;
 import resources.utils.DateUtils;
 
@@ -99,8 +99,8 @@ public class OreganIntegrationTest extends CQBaseIntegrationTest {
         app.setGender("M");
         app.setMedicareClaimNum(faker.bothify("?#########"));
         app.setPartABActiveIndicator(YES);
-        app.setAgentEmail("agentPages@uhc.com");
-        app.setAgentEmailConfirm("agentPages@uhc.com");
+        app.setAgentEmail("agentpages@uhc.com");
+        app.setAgentEmailConfirm("agentpages@uhc.com");
         //Plan ApplicationPage
         app.setPlanEffIn6OfEligible(YES);
         app.setTobaccoUse(YES);
@@ -188,8 +188,8 @@ public class OreganIntegrationTest extends CQBaseIntegrationTest {
         app.setEmail("test@uhc.com");
         app.setConfirmEmail("test@uhc.com");
         app.setPartABActiveIndicator(YES);
-        app.setAgentEmail("agentPages@uhc.com");
-        app.setAgentEmailConfirm("agentPages@uhc.com");
+        app.setAgentEmail("agentpages@uhc.com");
+        app.setAgentEmailConfirm("agentpages@uhc.com");
         //Plan application question
         app.setTurned65In6GA(NO);
         app.setPlanEffIn6OfEligible(NO);

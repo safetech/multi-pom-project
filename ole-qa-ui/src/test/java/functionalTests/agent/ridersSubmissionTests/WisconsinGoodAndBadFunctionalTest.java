@@ -1,18 +1,18 @@
-package functionalTests.agent.ridersSubmissionTests;
+package functionaltests.agent.ridersSubmissiontests;
 
 import com.github.javafaker.Faker;
 import resources.entity.Application;
 import resources.entity.SubmissionResult;
 import resources.entity.agent.CribSheet;
-import functionalTests.CQBaseIntegrationTest;
-import resources.pages.agentPages.oldOlePages.*;
+import functionaltests.CQBaseIntegrationTest;
+import resources.pages.agentpages.oldOlePages.*;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
-import resources.pages.agentPages.oldOlePages.variations.currentinsurancecoverage.AR_PA_OR_CurrentInsuranceCoveragePage;
-import resources.pages.agentPages.oldOlePages.variations.planapplication.AR_PA_PlanApplicationQuestionsPage;
-import resources.pages.agentPages.oldOlePages.variations.planselection.riders_WI_PlanSelectionPage;
-import resources.pages.agentPages.oldOlePages.variations.replacenotice.RN034_AR_Page;
+import resources.pages.agentpages.oldOlePages.variations.currentinsurancecoverage.AR_PA_OR_CurrentInsuranceCoveragePage;
+import resources.pages.agentpages.oldOlePages.variations.planapplication.AR_PA_PlanApplicationQuestionsPage;
+import resources.pages.agentpages.oldOlePages.variations.planselection.riders_WI_PlanSelectionPage;
+import resources.pages.agentpages.oldOlePages.variations.replacenotice.RN034_AR_Page;
 import queries.SubmissionQueryAgent;
 import resources.utils.DateUtils;
 

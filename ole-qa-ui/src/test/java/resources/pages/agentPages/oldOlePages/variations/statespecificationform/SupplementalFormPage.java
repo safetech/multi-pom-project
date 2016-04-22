@@ -1,4 +1,4 @@
-package resources.pages.agentPages.oldOlePages.variations.statespecificationform;
+package resources.pages.agentpages.oldOlePages.variations.statespecificationform;
 
 import resources.entity.Application;
 import org.fluentlenium.core.domain.FluentWebElement;

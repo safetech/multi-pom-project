@@ -113,48 +113,93 @@
     </build>
     <profiles>
         <profile>
-            <id>AgentStageUrl</id>
+            <id>AgentStage</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <base.url>https://aarpsupplementalhealth-stg.uhc.com/ole/ms-agent.html?cheat=true</base.url>
+                <agent.url>https://aarpsupplementalhealth-stg.uhc.com/ole/ms-agent.html?cheat=true</agent.url>
+                <db.connection>jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=dbslt0014.uhc.com)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=cmpts08.uhc.com)))</db.connection>
+                <db.username>QAAUTOREAD</db.username>
+                <db.password>Aut0mation1</db.password>
             </properties>
         </profile>
         <profile>
-            <id>AgentTestUrl</id>
+            <id>AgentTest</id>
             <properties>
-                <base.url>https://aarpsupplementalhealth-tst.uhc.com/ole/ms-agent.html?cheat=true</base.url>
+                <agent.url>https://aarpsupplementalhealth-tst.uhc.com/ole/ms-agent.html?cheat=true</agent.url>
+                <db.connection>jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=orass0023.uhc.com)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=cmpst03.uhc.com)))</db.connection>
+                <db.username>QAAUTOREAD</db.username>
+                <db.password>Aut0mation1</db.password>
             </properties>
         </profile>
         <profile>
-            <id>DtcStageUrl</id>
+            <id>AgentPerf</id>
+            <properties>
+                <agent.url>https://aarpsupplementalhealth-stg.uhc.com/ole/ms-agent.html?cheat=true</agent.url>
+                <db.connection>jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=orass0023.uhc.com)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=cmpst01.uhc.com)))</db.connection>
+                <db.username>QAAUTOREAD</db.username>
+                <db.password>Aut0mation1</db.password>
+            </properties>
+        </profile>
+        <profile>
+            <id>DtcStage</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <base.url>https://aarpsupplementalhealth-stg.uhc.com/ole/ms.html?cheat=true</base.url>
+                <dtc.url>https://aarpsupplementalhealth-stg.uhc.com/ole/ms.html?cheat=true</dtc.url>
+                <db.connection>jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=dbslt0014.uhc.com)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=cmpts08.uhc.com)))</db.connection>
+                <db.username>QAAUTOREAD</db.username>
+                <db.password>Aut0mation1</db.password>
             </properties>
         </profile>
         <profile>
-            <id>DtcTestUrl</id>
+            <id>DtcTest</id>
             <properties>
-                <base.url>https://aarpsupplementalhealth-tst.uhc.com/ole/ms.html?cheat=true</base.url>
+                <dtc.url>https://aarpsupplementalhealth-tst.uhc.com/ole/ms.html?cheat=true</dtc.url>
+                <db.connection>jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=orass0023.uhc.com)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=cmpst03.uhc.com)))</db.connection>
+                <db.username>QAAUTOREAD</db.username>
+                <db.password>Aut0mation1</db.password>
             </properties>
         </profile>
         <profile>
-            <id>PhoneStageUrl</id>
+            <id>DtcPerf</id>
+            <properties>
+                <dtc.url>https://aarpsupplementalhealth-stg.uhc.com/ole/ms.html?cheat=true</dtc.url>
+                <db.connection>jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=orass0023.uhc.com)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=cmpst01.uhc.com)))</db.connection>
+                <db.username>QAAUTOREAD</db.username>
+                <db.password>Aut0mation1</db.password>
+            </properties>
+        </profile>
+        <profile>
+            <id>PhoneStage</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <base.url>https://aarpsupplementalhealth-stg.uhc.com/ole/ms.html?cheat=true</base.url>
+                <phone.url>https://aarpsupplementalhealth-stg.uhc.com/ole/ms-phone.html?cheat=true</phone.url>
+                <db.connection>jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=dbslt0014.uhc.com)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=cmpts08.uhc.com)))</db.connection>
+                <db.username>QAAUTOREAD</db.username>
+                <db.password>Aut0mation1</db.password>
             </properties>
         </profile>
         <profile>
-            <id>PhoneTestUrl</id>
+            <id>PhoneTest</id>
             <properties>
-                <base.url>https://aarpsupplementalhealth-tst.uhc.com/ole/ms.html?cheat=true</base.url>
+                <phone.url>https://aarpsupplementalhealth-tst.uhc.com/ole/ms-phone.html?cheat=true</phone.url>
+                <db.connection>jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=orass0023.uhc.com)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=cmpst03.uhc.com)))</db.connection>
+                <db.username>QAAUTOREAD</db.username>
+                <db.password>Aut0mation1</db.password>
+            </properties>
+        </profile>
+        <profile>
+            <id>PhonePerf</id>
+            <properties>
+                <phone.url>https://aarpsupplementalhealth-stg.uhc.com/ole/ms-agent.html?cheat=true</phone.url>
+                <db.connection>jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=orass0023.uhc.com)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=cmpst01.uhc.com)))</db.connection>
+                <db.username>QAAUTOREAD</db.username>
+                <db.password>Aut0mation1</db.password>
             </properties>
         </profile>
     </profiles>

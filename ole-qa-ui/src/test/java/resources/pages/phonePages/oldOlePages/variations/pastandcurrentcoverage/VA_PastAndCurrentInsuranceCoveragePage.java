@@ -1,4 +1,4 @@
-package resources.pages.phonePages.oldOlePages.variations.pastandcurrentcoverage;
+package resources.pages.phonepages.oldOlePages.variations.pastandcurrentcoverage;
 import resources.entity.Application;
 import resources.pages.WizardPage;
 import org.fluentlenium.core.domain.FluentWebElement;

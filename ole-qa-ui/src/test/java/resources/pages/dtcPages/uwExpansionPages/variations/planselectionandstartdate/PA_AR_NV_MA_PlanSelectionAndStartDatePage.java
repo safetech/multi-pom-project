@@ -1,4 +1,4 @@
-package resources.pages.dtcPages.uwExpansionPages.variations.planselectionandstartdate;
+package resources.pages.dtcpages.uwExpansionPages.variations.planselectionandstartdate;
 
 import resources.entity.Application;
 import org.fluentlenium.core.domain.FluentWebElement;

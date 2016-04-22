@@ -1,17 +1,17 @@
-package functionalTests.dtc.oldSubmissionTests;
+package functionaltests.dtc.oldSubmissionTests;
 
 import com.github.javafaker.Faker;
 import resources.entity.Application;
 import resources.entity.SubmissionResult;
 import resources.entity.dtc.CribSheet;
-import functionalTests.CQBaseIntegrationTest;
+import functionaltests.CQBaseIntegrationTest;
 //import jdk.nashorn.internal.ir.annotations.Ignore;
-import resources.pages.dtcPages.oldOlePages.*;
+import resources.pages.dtcpages.oldOlePages.*;
 import org.junit.Ignore;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
-import resources.pages.dtcPages.oldOlePages.variations.pastandcurrentcoverage.NY_PastAndCurrentCoveragePage;
+import resources.pages.dtcpages.oldOlePages.variations.pastandcurrentcoverage.NY_PastAndCurrentCoveragePage;
 import queries.SubmissionQueryDtc;
 import resources.utils.DateUtils;
 

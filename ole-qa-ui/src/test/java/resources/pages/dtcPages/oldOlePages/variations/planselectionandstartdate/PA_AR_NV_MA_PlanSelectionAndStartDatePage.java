@@ -1,4 +1,4 @@
-package resources.pages.dtcPages.oldOlePages.variations.planselectionandstartdate;
+package resources.pages.dtcpages.oldOlePages.variations.planselectionandstartdate;
 
 import resources.entity.Application;
 import org.fluentlenium.core.domain.FluentWebElement;

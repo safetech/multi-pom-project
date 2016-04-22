@@ -1,10 +1,10 @@
-package functionalTests;
+package functionaltests;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import resources.entity.Application;
 import resources.entity.phone.CribSheet;
-import resources.pages.phonePages.oldOlePages.CheatPage;
+import resources.pages.phonepages.oldOlePages.CheatPage;
 import org.apache.commons.io.FileUtils;
 import org.fluentlenium.adapter.FluentTest;
 import org.fluentlenium.adapter.util.SharedDriver;
@@ -92,7 +92,7 @@ public class CQBaseIntegrationTest extends FluentTest {
         executeScript("window.onbeforeunload = null;");
     }
 
-    protected void startApp(resources.pages.phonePages.uwExpansionPages.CheatPage cheatPage, Application app, CribSheet sheet) {
+    protected void startApp(resources.pages.phonepages.uwExpansionPages.CheatPage cheatPage, Application app, CribSheet sheet) {
 
         app.setAnswersWithSheetValues(sheet);
         logger.info(gson.toJson(app));

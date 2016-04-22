@@ -1,4 +1,4 @@
-package resources.pages.phonePages.oldOlePages;
+package resources.pages.phonepages.oldOlePages;
 
 import resources.entity.phone.CribSheet;
 import org.fluentlenium.core.FluentPage;

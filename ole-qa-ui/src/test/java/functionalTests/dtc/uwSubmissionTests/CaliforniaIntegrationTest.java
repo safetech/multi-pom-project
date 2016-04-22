@@ -1,19 +1,19 @@
-package functionalTests.dtc.uwSubmissionTests;
+package functionaltests.dtc.uwSubmissionTests;
 
 import com.github.javafaker.Faker;
 import resources.entity.Application;
 import resources.entity.SubmissionResult;
 import resources.entity.dtc.CribSheet;
-import functionalTests.CQBaseIntegrationTest;
+import functionaltests.CQBaseIntegrationTest;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
-import resources.pages.dtcPages.uwExpansionPages.*;
-import resources.pages.dtcPages.uwExpansionPages.variations.authorization.CA_AuthorizationPage;
-import resources.pages.dtcPages.uwExpansionPages.variations.eligibilityhealthquestions.CA_EligibilityHealthQuestions;
-import resources.pages.dtcPages.uwExpansionPages.variations.pastandcurrentcoverage.AR_CA_PA_WI_MN_PastAndCurrentCoveragePage;
-import resources.pages.dtcPages.uwExpansionPages.variations.planapplication.CA_PlanApplicationQuestions;
-import resources.pages.dtcPages.uwExpansionPages.variations.replacenotice.RN040Page;
+import resources.pages.dtcpages.uwExpansionPages.*;
+import resources.pages.dtcpages.uwExpansionPages.variations.authorization.CA_AuthorizationPage;
+import resources.pages.dtcpages.uwExpansionPages.variations.eligibilityhealthquestions.CA_EligibilityHealthQuestions;
+import resources.pages.dtcpages.uwExpansionPages.variations.pastandcurrentcoverage.AR_CA_PA_WI_MN_PastAndCurrentCoveragePage;
+import resources.pages.dtcpages.uwExpansionPages.variations.planapplication.CA_PlanApplicationQuestions;
+import resources.pages.dtcpages.uwExpansionPages.variations.replacenotice.RN040Page;
 import queries.SubmissionQueryDtc;
 import resources.utils.DateUtils;
 

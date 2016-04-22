@@ -1,4 +1,4 @@
-package resources.pages.agentPages.oldOlePages.variations.currentinsurancecoverage;
+package resources.pages.agentpages.oldOlePages.variations.currentinsurancecoverage;
 
 
 import resources.entity.Application;

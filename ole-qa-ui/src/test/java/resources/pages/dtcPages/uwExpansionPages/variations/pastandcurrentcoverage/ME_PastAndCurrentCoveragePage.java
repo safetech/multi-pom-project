@@ -1,4 +1,4 @@
-package resources.pages.dtcPages.uwExpansionPages.variations.pastandcurrentcoverage;
+package resources.pages.dtcpages.uwExpansionPages.variations.pastandcurrentcoverage;
 
 import resources.entity.Application;
 import org.fluentlenium.core.domain.FluentWebElement;

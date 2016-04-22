@@ -1,17 +1,17 @@
-package functionalTests.agent.oldSubmissionTests;
+package functionaltests.agent.oldSubmissiontests;
 
 import com.github.javafaker.Faker;
 import resources.entity.Application;
 import resources.entity.SubmissionResult;
 import resources.entity.agent.CribSheet;
-import functionalTests.CQBaseIntegrationTest;
-import resources.pages.agentPages.oldOlePages.*;
+import functionaltests.CQBaseIntegrationTest;
+import resources.pages.agentpages.oldOlePages.*;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
-import resources.pages.agentPages.oldOlePages.variations.currentinsurancecoverage.AR_PA_OR_CurrentInsuranceCoveragePage;
-import resources.pages.agentPages.oldOlePages.variations.planapplication.AR_PA_PlanApplicationQuestionsPage;
-import resources.pages.agentPages.oldOlePages.variations.replacenotice.RN034_AR_Page;
+import resources.pages.agentpages.oldOlePages.variations.currentinsurancecoverage.AR_PA_OR_CurrentInsuranceCoveragePage;
+import resources.pages.agentpages.oldOlePages.variations.planapplication.AR_PA_PlanApplicationQuestionsPage;
+import resources.pages.agentpages.oldOlePages.variations.replacenotice.RN034_AR_Page;
 import queries.SubmissionQueryAgent;
 import resources.utils.DateUtils;
 
@@ -44,7 +44,6 @@ public class ArkansasIntegrationTest extends CQBaseIntegrationTest {
         submissionQuery = new SubmissionQueryAgent();
         faker = new Faker();
         sheet = new CribSheet(faker);
-
         expectedSubmissionResult = new SubmissionResult();
     }
     @Test
@@ -66,7 +65,6 @@ public class ArkansasIntegrationTest extends CQBaseIntegrationTest {
         app.setZipCode("71601");
         app.setDOB(DateUtils.getDOBInNormalDateFormat(69));
         app.setMPBED("05/01/2012");
-
         app.setCpaSignatureIndTouch(Application.ALL_SIGNATURES[0]);
         app.setSignatureIndTouch(Application.ALL_SIGNATURES[1]);
         app.setMedicalReleaseAuthSignatureIndTouch(Application.ALL_SIGNATURES[2]);
@@ -96,8 +94,8 @@ public class ArkansasIntegrationTest extends CQBaseIntegrationTest {
         app.setMedicareClaimNum("123443123A");
         app.setMPAED("01/01/2015");
         app.setPartABActiveIndicator(YES);
-        app.setAgentEmail("agentPages@uhc.com");
-        app.setAgentEmailConfirm("agentPages@uhc.com");
+        app.setAgentEmail("agentpages@uhc.com");
+        app.setAgentEmailConfirm("agentpages@uhc.com");
         //app.setDefaultPlanEligibilityQuestions(sheet);
         app.setGI30dayBday(YES);
         app.setGIEmployerCov(NO);
@@ -226,8 +224,8 @@ public class ArkansasIntegrationTest extends CQBaseIntegrationTest {
         app.setMedicareClaimNum("123123123A");
         app.setMPAED("01/01/2010");
         app.setPartABActiveIndicator(YES);
-        app.setAgentEmail("agentPages@uhc.com");
-        app.setAgentEmailConfirm("agentPages@uhc.com");
+        app.setAgentEmail("agentpages@uhc.com");
+        app.setAgentEmailConfirm("agentpages@uhc.com");
         //Eligibility Questions
         app.setESRD(NO);
         app.setSurgeryNeeded(NO);

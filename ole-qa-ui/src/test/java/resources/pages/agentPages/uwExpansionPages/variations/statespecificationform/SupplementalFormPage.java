@@ -1,4 +1,4 @@
-package resources.pages.agentPages.uwExpansionPages.variations.statespecificationform;
+package resources.pages.agentpages.uwExpansionPages.variations.statespecificationform;
 
 import resources.entity.Application;
 import org.fluentlenium.core.domain.FluentWebElement;

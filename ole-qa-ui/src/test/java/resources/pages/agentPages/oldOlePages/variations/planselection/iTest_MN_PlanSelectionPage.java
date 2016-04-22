@@ -1,4 +1,4 @@
-package resources.pages.agentPages.oldOlePages.variations.planselection;
+package resources.pages.agentpages.oldOlePages.variations.planselection;
 
 import resources.entity.Application;
 import org.fluentlenium.core.domain.FluentWebElement;

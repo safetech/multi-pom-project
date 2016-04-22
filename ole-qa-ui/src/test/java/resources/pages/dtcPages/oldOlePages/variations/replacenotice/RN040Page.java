@@ -1,4 +1,4 @@
-package resources.pages.dtcPages.oldOlePages.variations.replacenotice;
+package resources.pages.dtcpages.oldOlePages.variations.replacenotice;
 
 import resources.entity.Application;
 import org.fluentlenium.core.domain.FluentWebElement;

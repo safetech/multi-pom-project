@@ -1,10 +1,10 @@
-package resources.pages.phonePages.uwExpansionPages.variations.planapplication;
+package resources.pages.phonepages.uwExpansionPages.variations.planapplication;
 
 
 import resources.entity.Application;
 import org.fluentlenium.core.domain.FluentWebElement;
 import org.openqa.selenium.support.FindBy;
-import resources.pages.phonePages.oldOlePages.PlanApplicationQuestions;
+import resources.pages.phonepages.oldOlePages.PlanApplicationQuestions;
 
 public class CA_PlanApplicationQuestions extends PlanApplicationQuestions {
 

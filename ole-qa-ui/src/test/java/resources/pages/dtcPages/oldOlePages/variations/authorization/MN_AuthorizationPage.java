@@ -1,4 +1,4 @@
-package resources.pages.dtcPages.oldOlePages.variations.authorization;
+package resources.pages.dtcpages.oldOlePages.variations.authorization;
 
 import org.fluentlenium.core.domain.FluentWebElement;
 import resources.pages.WizardPage;

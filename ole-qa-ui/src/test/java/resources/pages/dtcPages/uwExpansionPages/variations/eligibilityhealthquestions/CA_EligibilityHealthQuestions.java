@@ -1,4 +1,4 @@
-package resources.pages.dtcPages.uwExpansionPages.variations.eligibilityhealthquestions;
+package resources.pages.dtcpages.uwExpansionPages.variations.eligibilityhealthquestions;
 
 import resources.entity.Application;
 import org.fluentlenium.core.domain.FluentWebElement;

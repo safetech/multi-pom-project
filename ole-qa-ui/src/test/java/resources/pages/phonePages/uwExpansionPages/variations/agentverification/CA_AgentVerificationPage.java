@@ -1,8 +1,8 @@
-package resources.pages.phonePages.uwExpansionPages.variations.agentverification;
+package resources.pages.phonepages.uwExpansionPages.variations.agentverification;
 
 import resources.entity.Application;
 import org.fluentlenium.core.domain.FluentWebElement;
-import resources.pages.phonePages.oldOlePages.AgentVerificationPage;
+import resources.pages.phonepages.oldOlePages.AgentVerificationPage;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;

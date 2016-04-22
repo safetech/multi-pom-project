@@ -1,19 +1,19 @@
-package functionalTests.phone.uwSubmissionTests;
+package functionaltests.phone.uwSubmissionTests;
 
 import com.github.javafaker.Faker;
 import resources.entity.Application;
 import resources.entity.SubmissionResult;
 import resources.entity.phone.CribSheet;
-import functionalTests.CQBaseIntegrationTest;
+import functionaltests.CQBaseIntegrationTest;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
-import resources.pages.phonePages.uwExpansionPages.*;
-import resources.pages.phonePages.uwExpansionPages.variations.eligibilityhealthquestions.MN_EligibilityHealthQuestionsPage;
-import resources.pages.phonePages.uwExpansionPages.variations.pastandcurrentcoverage.MN_GA_MI_PastAndCurrentInsuranceCoveragePage;
-import resources.pages.phonePages.uwExpansionPages.variations.planapplication.MN_PlanApplicationQuestions;
-import resources.pages.phonePages.uwExpansionPages.variations.planselection.MN_iTest_PlanSelectionPage;
-import resources.pages.phonePages.uwExpansionPages.variations.replacementnotice.MN_RN034Page;
+import resources.pages.phonepages.uwExpansionPages.*;
+import resources.pages.phonepages.uwExpansionPages.variations.eligibilityhealthquestions.MN_EligibilityHealthQuestionsPage;
+import resources.pages.phonepages.uwExpansionPages.variations.pastandcurrentcoverage.MN_GA_MI_PastAndCurrentInsuranceCoveragePage;
+import resources.pages.phonepages.uwExpansionPages.variations.planapplication.MN_PlanApplicationQuestions;
+import resources.pages.phonepages.uwExpansionPages.variations.planselection.MN_iTest_PlanSelectionPage;
+import resources.pages.phonepages.uwExpansionPages.variations.replacementnotice.MN_RN034Page;
 import queries.SubmissionQueryPhone;
 import resources.utils.DateUtils;
 

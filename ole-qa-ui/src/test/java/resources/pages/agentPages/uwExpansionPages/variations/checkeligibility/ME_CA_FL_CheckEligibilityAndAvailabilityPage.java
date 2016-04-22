@@ -1,4 +1,4 @@
-package resources.pages.agentPages.uwExpansionPages.variations.checkeligibility;
+package resources.pages.agentpages.uwExpansionPages.variations.checkeligibility;
 
 import resources.entity.Application;
 import org.fluentlenium.core.domain.FluentWebElement;

@@ -1,4 +1,4 @@
-package resources.pages.dtcPages.oldOlePages;
+package resources.pages.dtcpages.oldOlePages;
 
 import resources.entity.dtc.CribSheet;
 import org.fluentlenium.core.FluentPage;

@@ -1,4 +1,4 @@
-package resources.pages.dtcPages.uwExpansionPages;
+package resources.pages.dtcpages.uwExpansionPages;
 
 import resources.entity.dtc.CribSheet;
 import org.fluentlenium.core.FluentPage;

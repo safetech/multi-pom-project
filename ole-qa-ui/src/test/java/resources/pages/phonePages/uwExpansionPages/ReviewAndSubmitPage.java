@@ -1,4 +1,4 @@
-package resources.pages.phonePages.uwExpansionPages;
+package resources.pages.phonepages.uwExpansionPages;
 
 
 import resources.entity.Application;

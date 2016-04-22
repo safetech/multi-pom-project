@@ -1,4 +1,4 @@
-package resources.pages.agentPages.uwExpansionPages.variations.replacenotice;
+package resources.pages.agentpages.uwExpansionPages.variations.replacenotice;
 
 import resources.entity.Application;
 import org.fluentlenium.core.domain.FluentWebElement;

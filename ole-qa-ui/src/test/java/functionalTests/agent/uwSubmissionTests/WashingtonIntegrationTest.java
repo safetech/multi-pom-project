@@ -1,20 +1,20 @@
-package functionalTests.agent.uwSubmissionTests;
+package functionaltests.agent.uwSubmissiontests;
 
 import com.github.javafaker.Faker;
 import resources.entity.Application;
 import resources.entity.SubmissionResult;
 import resources.entity.agent.CribSheet;
-import functionalTests.CQBaseIntegrationTest;
-import resources.pages.agentPages.oldOlePages.*;
+import functionaltests.CQBaseIntegrationTest;
+import resources.pages.agentpages.oldOlePages.*;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
-import resources.pages.agentPages.uwExpansionPages.variations.authorization.MN_WA_AuthorizationPage;
-import resources.pages.agentPages.uwExpansionPages.variations.checkeligibility.ME_CA_FL_CheckEligibilityAndAvailabilityPage;
-import resources.pages.agentPages.uwExpansionPages.variations.currentinsurancecoverage.WA_CurrentInsuranceCoveragePage;
-import resources.pages.agentPages.uwExpansionPages.variations.eligibilityhealthquestions.ME_CA_FL_EligibilityHealthQuestionsPage;
-import resources.pages.agentPages.uwExpansionPages.variations.planapplication.WA_PlanApplicationQuestionsPage;
-import resources.pages.agentPages.oldOlePages.variations.replacenotice.RN034andRE073WithSignaturePage;
+import resources.pages.agentpages.uwExpansionPages.variations.authorization.MN_WA_AuthorizationPage;
+import resources.pages.agentpages.uwExpansionPages.variations.checkeligibility.ME_CA_FL_CheckEligibilityAndAvailabilityPage;
+import resources.pages.agentpages.uwExpansionPages.variations.currentinsurancecoverage.WA_CurrentInsuranceCoveragePage;
+import resources.pages.agentpages.uwExpansionPages.variations.eligibilityhealthquestions.ME_CA_FL_EligibilityHealthQuestionsPage;
+import resources.pages.agentpages.uwExpansionPages.variations.planapplication.WA_PlanApplicationQuestionsPage;
+import resources.pages.agentpages.oldOlePages.variations.replacenotice.RN034andRE073WithSignaturePage;
 import queries.SubmissionQueryAgent;
 import resources.utils.DateUtils;
 
@@ -99,8 +99,8 @@ public class WashingtonIntegrationTest extends CQBaseIntegrationTest {
         app.setMedicareClaimNum(faker.bothify("?#########"));
         app.setGender("M");
         app.setPartABActiveIndicator(YES);
-        app.setAgentEmail("agentPages@uhc.com");
-        app.setAgentEmailConfirm("agentPages@uhc.com");
+        app.setAgentEmail("agentpages@uhc.com");
+        app.setAgentEmailConfirm("agentpages@uhc.com");
         //Plan ApplicationPage
         app.setPlanEffIn6OfEligible(YES);
         //Past And Current Coverage
@@ -180,8 +180,8 @@ public class WashingtonIntegrationTest extends CQBaseIntegrationTest {
         app.setConfirmEmail("test@uhc.com");
         app.setMPAED("01/01/2010");
         app.setPartABActiveIndicator(YES);
-        app.setAgentEmail("agentPages@uhc.com");
-        app.setAgentEmailConfirm("agentPages@uhc.com");
+        app.setAgentEmail("agentpages@uhc.com");
+        app.setAgentEmailConfirm("agentpages@uhc.com");
         //Plan application question\
         app.setESRD(NO);
         app.setSurgeryNeeded(NO);

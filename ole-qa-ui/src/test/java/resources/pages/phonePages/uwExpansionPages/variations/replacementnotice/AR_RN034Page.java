@@ -1,4 +1,4 @@
-package resources.pages.phonePages.uwExpansionPages.variations.replacementnotice;
+package resources.pages.phonepages.uwExpansionPages.variations.replacementnotice;
 
 import resources.entity.Application;
 import org.fluentlenium.core.domain.FluentWebElement;

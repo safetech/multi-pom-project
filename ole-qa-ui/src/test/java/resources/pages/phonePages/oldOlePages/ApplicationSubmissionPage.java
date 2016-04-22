@@ -1,4 +1,4 @@
-package resources.pages.phonePages.oldOlePages;
+package resources.pages.phonepages.oldOlePages;
 
 import org.fluentlenium.core.domain.FluentWebElement;
 import org.openqa.selenium.support.FindBy;

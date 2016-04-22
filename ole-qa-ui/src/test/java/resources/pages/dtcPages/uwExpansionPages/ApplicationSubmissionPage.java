@@ -1,4 +1,4 @@
-package resources.pages.dtcPages.uwExpansionPages;
+package resources.pages.dtcpages.uwExpansionPages;
 
 import org.fluentlenium.core.domain.FluentWebElement;
 import org.openqa.selenium.support.FindBy;

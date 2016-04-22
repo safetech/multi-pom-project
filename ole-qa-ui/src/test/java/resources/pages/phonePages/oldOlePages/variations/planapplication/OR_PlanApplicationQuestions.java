@@ -1,4 +1,4 @@
-package resources.pages.phonePages.oldOlePages.variations.planapplication;
+package resources.pages.phonepages.oldOlePages.variations.planapplication;
 import resources.entity.Application;
 import resources.pages.WizardPage;
 import org.fluentlenium.core.domain.FluentWebElement;

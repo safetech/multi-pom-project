@@ -1,4 +1,4 @@
-package resources.pages.dtcPages.uwExpansionPages.variations.authorization;
+package resources.pages.dtcpages.uwExpansionPages.variations.authorization;
 
 import resources.entity.Application;
 import org.fluentlenium.core.domain.FluentWebElement;

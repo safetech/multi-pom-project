@@ -1,8 +1,8 @@
-package resources.pages.phonePages.oldOlePages.variations.planapplication;
+package resources.pages.phonepages.oldOlePages.variations.planapplication;
 
 
 import resources.entity.Application;
-import resources.pages.phonePages.oldOlePages.PlanApplicationQuestions;
+import resources.pages.phonepages.oldOlePages.PlanApplicationQuestions;
 import org.fluentlenium.core.domain.FluentWebElement;
 import org.openqa.selenium.support.FindBy;
 

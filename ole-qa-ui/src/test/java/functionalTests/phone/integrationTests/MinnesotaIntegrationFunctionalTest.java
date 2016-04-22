@@ -1,15 +1,15 @@
-package functionalTests.phone.integrationTests;
+package functionaltests.phone.integrationTests;
 
 import com.github.javafaker.Faker;
 import resources.entity.Application;
 import resources.entity.SubmissionResult;
 import resources.entity.phone.CribSheet;
-import functionalTests.CQBaseIntegrationTest;
-import resources.pages.phonePages.oldOlePages.*;
-import resources.pages.phonePages.oldOlePages.variations.pastandcurrentcoverage.MN_GA_MI_PastAndCurrentInsuranceCoveragePage;
-import resources.pages.phonePages.oldOlePages.variations.planapplication.MN_PlanApplicationQuestions;
-import resources.pages.phonePages.oldOlePages.variations.planselection.MN_iTest_PlanSelectionPage;
-import resources.pages.phonePages.oldOlePages.variations.replacementnotice.RN034andRE073Page;
+import functionaltests.CQBaseIntegrationTest;
+import resources.pages.phonepages.oldOlePages.*;
+import resources.pages.phonepages.oldOlePages.variations.pastandcurrentcoverage.MN_GA_MI_PastAndCurrentInsuranceCoveragePage;
+import resources.pages.phonepages.oldOlePages.variations.planapplication.MN_PlanApplicationQuestions;
+import resources.pages.phonepages.oldOlePages.variations.planselection.MN_iTest_PlanSelectionPage;
+import resources.pages.phonepages.oldOlePages.variations.replacementnotice.RN034andRE073Page;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
@@ -49,7 +49,6 @@ public class MinnesotaIntegrationFunctionalTest extends CQBaseIntegrationTest {
         sheet.setRandomCallCenterInfo();
 
         sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(69));
-       // sheet.setMedPartBdate(DateUtils.getFirstDayOfPastOrFutureMonths(-7));
         sheet.setDpsdToFirstDayOfFutureMonth(1);
         sheet.setRandomNameGenderAndMembershipNumber();
         app = new Application();
@@ -138,7 +137,6 @@ public class MinnesotaIntegrationFunctionalTest extends CQBaseIntegrationTest {
         app.setRNOther("Cheaper");
         app.setCommonReplacementNoticeAnswersWithApplicantInfo();
         app.setApplicantRNSignatureIndRequired("");
-
 
         startApp(cheatPage, app, sheet);
 
@@ -239,7 +237,6 @@ public class MinnesotaIntegrationFunctionalTest extends CQBaseIntegrationTest {
         reviewAndSubmitPage.fillAndSubmit(app);
 
         expectedSubmissionResult.verifyAcceptedPlanAndRiderCodes("TW1", "YW1", "VW1", "WW1", "");
-
         submissionQueryPhone.verifyPlanAndRiderCodes(app, sheet, expectedSubmissionResult);
     }
     @Test

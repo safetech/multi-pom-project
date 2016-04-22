@@ -1,4 +1,4 @@
-package resources.pages.phonePages.oldOlePages.variations.replacementnotice;
+package resources.pages.phonepages.oldOlePages.variations.replacementnotice;
 
 import resources.entity.Application;
 import resources.pages.WizardPage;

@@ -1,4 +1,4 @@
-package resources.pages.agentPages.uwExpansionPages.variations.currentinsurancecoverage;
+package resources.pages.agentpages.uwExpansionPages.variations.currentinsurancecoverage;
 
 
 import resources.entity.Application;

@@ -1,4 +1,4 @@
-package resources.pages.dtcPages.oldOlePages.variations.aboutyourpage;
+package resources.pages.dtcpages.oldOlePages.variations.aboutyourpage;
 
 import resources.entity.Application;
 import resources.entity.dtc.CribSheet;

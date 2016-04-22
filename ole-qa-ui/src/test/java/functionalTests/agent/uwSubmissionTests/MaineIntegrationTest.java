@@ -1,17 +1,17 @@
-package functionalTests.agent.uwSubmissionTests;
+package functionaltests.agent.uwSubmissiontests;
 
 import com.github.javafaker.Faker;
 import resources.entity.Application;
 import resources.entity.SubmissionResult;
 import resources.entity.agent.CribSheet;
-import functionalTests.CQBaseIntegrationTest;
-import resources.pages.agentPages.uwExpansionPages.*;
-import resources.pages.agentPages.uwExpansionPages.variations.authorization.ME_AuthorizationPage;
-import resources.pages.agentPages.uwExpansionPages.variations.checkeligibility.ME_CA_FL_CheckEligibilityAndAvailabilityPage;
-import resources.pages.agentPages.uwExpansionPages.variations.currentinsurancecoverage.ME_CurrentInsuranceCoveragePage;
-import resources.pages.agentPages.uwExpansionPages.variations.eligibilityhealthquestions.ME_CA_FL_EligibilityHealthQuestionsPage;
-import resources.pages.agentPages.uwExpansionPages.variations.planapplication.ME_PlanApplicationQuestionsPage;
-import resources.pages.agentPages.uwExpansionPages.variations.replacenotice.RN034andRE073WithSignaturePage;
+import functionaltests.CQBaseIntegrationTest;
+import resources.pages.agentpages.uwExpansionPages.*;
+import resources.pages.agentpages.uwExpansionPages.variations.authorization.ME_AuthorizationPage;
+import resources.pages.agentpages.uwExpansionPages.variations.checkeligibility.ME_CA_FL_CheckEligibilityAndAvailabilityPage;
+import resources.pages.agentpages.uwExpansionPages.variations.currentinsurancecoverage.ME_CurrentInsuranceCoveragePage;
+import resources.pages.agentpages.uwExpansionPages.variations.eligibilityhealthquestions.ME_CA_FL_EligibilityHealthQuestionsPage;
+import resources.pages.agentpages.uwExpansionPages.variations.planapplication.ME_PlanApplicationQuestionsPage;
+import resources.pages.agentpages.uwExpansionPages.variations.replacenotice.RN034andRE073WithSignaturePage;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
@@ -99,8 +99,8 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
         app.setMedicareClaimNum(faker.bothify("?#########"));
         app.setMPAED("01/01/2015");
         app.setPartABActiveIndicator(YES);
-        app.setAgentEmail("agentPages@uhc.com");
-        app.setAgentEmailConfirm("agentPages@uhc.com");
+        app.setAgentEmail("agentpages@uhc.com");
+        app.setAgentEmailConfirm("agentpages@uhc.com");
 
         //Plan ApplicationPage
         app.setPlanEffIn6OfEligible(YES);
@@ -188,8 +188,8 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
         app.setGender("M");
         app.setMedicareClaimNum(faker.bothify("#########?"));
         app.setPartABActiveIndicator(YES);
-        app.setAgentEmail("agentPages@uhc.com");
-        app.setAgentEmailConfirm("agentPages@uhc.com");
+        app.setAgentEmail("agentpages@uhc.com");
+        app.setAgentEmailConfirm("agentpages@uhc.com");
         //Plan application question
         app.setPlanEffIn6OfEligible(NO);
         app.setLostCoverage(NO);

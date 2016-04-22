@@ -1,4 +1,4 @@
-package resources.pages.agentPages.oldOlePages.variations.eligibilityhealthquestions;
+package resources.pages.agentpages.oldOlePages.variations.eligibilityhealthquestions;
 
 import resources.entity.Application;
 import org.fluentlenium.core.domain.FluentWebElement;

@@ -1,4 +1,4 @@
-package resources.pages.agentPages.oldOlePages.variations.checkeligibility;
+package resources.pages.agentpages.oldOlePages.variations.checkeligibility;
 
 import resources.entity.Application;
 import org.fluentlenium.core.domain.FluentWebElement;
