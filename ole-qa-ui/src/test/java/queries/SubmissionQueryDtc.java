@@ -215,7 +215,7 @@ public class SubmissionQueryDtc {
         assertThat(row.get("MECHANISM"), equalTo("2"));
         assertThat(row.get("ADJUDICATION_CD"), equalTo(expectedSubmissionResult.getAdjudicationStatus()));
 
-        logger.info(String.format("Here is the link to the image... https://acesx-stg-alt.uhc.com/appEnroll-web/resources/retrievePDF/v1/%s\n", row.get("APPL_IMAGE_NUM_ORIG\n") +" For the state of --> " + row.get("STATE_CD\n")));
+        logger.info(String.format("Here is the link to the image... https://acesx-stg-alt.uhc.com/appEnroll-web/resources/retrievePDF/v1/%s", row.get("APPL_IMAGE_NUM_ORIG") +" For the state of --> " + row.get("STATE_CD")));
     }
 
     public void verifyAdjudicationData(Application app, SubmissionResult expectedSubmissionResult) throws SQLException {
