@@ -11,7 +11,8 @@ import java.util.Hashtable;
 
 public class Application {
 
-
+    public Application() {
+    }
     public String getAARPMembershipNumber() {
         return AARPMembershipNumber;
     }
@@ -307,6 +308,35 @@ public class Application {
     private String GIMPBED = "";
     private String AARPMemberNumber = "";
     private String CAGuaranteedAcceptance = "";
+    private String EmployerId = "";
+
+    public Integer getExpectedRefEffectiveDates() {
+        return ExpectedRefEffectiveDates;
+    }
+
+    public void setExpectedRefEffectiveDates(Integer expectedRefEffectiveDates) {
+        ExpectedRefEffectiveDates = expectedRefEffectiveDates;
+    }
+
+    private Integer ExpectedRefEffectiveDates = 0;
+
+    public String getEmployerId() {
+        return EmployerId;
+    }
+
+    public void setEmployerId(String employerId) {
+        EmployerId = employerId;
+    }
+
+    public String getGroupApp() {
+        return GroupApp;
+    }
+
+    public void setGroupApp(String groupApp) {
+        GroupApp = groupApp;
+    }
+
+    private String GroupApp = "";
 
     public String getCAGuaranteedAcceptance() {
         return CAGuaranteedAcceptance;
@@ -1007,6 +1037,15 @@ public class Application {
     private String EligibilityHeartAttackTIAStroke = "";
     private String EligibilityChronicMedicalConditions = "";
     private String ContinuousMedicareCoverageNoGap = "";
+    private String UnderstandAndAuthorize = "";
+
+    public String getUnderstandAndAuthorize() {
+        return UnderstandAndAuthorize;
+    }
+
+    public void setUnderstandAndAuthorize(String understandAndAuthorize) {
+        UnderstandAndAuthorize = understandAndAuthorize;
+    }
 
     public String getContinuousMedicareCoverageNoGap() {
         return ContinuousMedicareCoverageNoGap;
@@ -1557,8 +1596,7 @@ public class Application {
 
     private String HCSGApplicationId = "";
 
-    public Application() {
-    }
+
 
     public Application(CribSheet sheet) {
         setAnswersWithSheetValues(sheet);
@@ -1885,7 +1923,8 @@ public class Application {
         setAgentPrintedNameAdd("ProducerName");
         setAgentAddress("ProducerAdd");
     }
-
+ 
+    
     public void setAnswersWithSheetValues(CribSheet sheet) {
         setAARPMembershipNumber(sheet.getMembershipNumber());
         setFirstName(sheet.getFirstName());
@@ -1903,8 +1942,9 @@ public class Application {
         setGender(sheet.getGender().equals("M") || sheet.getGender().equals("F") ? sheet.getGender() : "");
         setPrefix(sheet.getPrefix().toUpperCase());
         setSuffix(sheet.getSuffix().toUpperCase());
+        
     }
-
+        
     public void setPaymentDetailsSummaryPageWithAppValues() {
         setBankName("BofA");
         setRoutingNumber("123123123");
@@ -1945,5 +1985,6 @@ public class Application {
             "{\"lines\":[[[61.5,16],[60.5,16],[58.5,15],[57.5,14],[55.5,14],[55.5,13],[53.5,13],[52.5,13],[52.5,12],[52.5,13],[52.5,14],[52.5,15],[52.5,16],[52.5,17],[52.5,18],[52.5,19],[52.5,20],[52.5,21],[53.5,21],[53.5,22],[54.5,22],[56.5,22],[57.5,22],[58.5,22],[59.5,22],[60.5,22],[61.5,23],[61.5,24],[63.5,25],[63.5,26],[63.5,28],[64.5,29],[64.5,30],[64.5,31],[64.5,32],[64.5,33],[63.5,33],[61.5,34],[60.5,34],[59.5,34],[58.5,34],[57.5,34],[56.5,34],[55.5,34],[54.5,34],[53.5,34],[52.5,34],[51.5,34],[50.5,34],[49.5,34],[49.5,33]],[[75.5,17],[74.5,16],[74.5,17],[73.5,18],[73.5,20],[73.5,23],[73.5,25],[73.5,26],[73.5,27],[73.5,28],[73.5,30],[73.5,31],[73.5,32],[73.5,33],[74.5,34],[75.5,34],[76.5,34],[77.5,34],[78.5,34],[79.5,34]],[[104.5,31],[103.5,25],[103.5,23],[102.5,20],[102.5,19],[102.5,17],[102.5,15],[102.5,13],[102.5,12],[102.5,11],[102.5,10],[102.5,9],[102.5,8],[102.5,7],[103.5,7],[104.5,7],[105.5,7],[106.5,8],[107.5,9],[107.5,10],[108.5,11],[108.5,12],[108.5,13],[109.5,15],[109.5,16],[109.5,17],[109.5,18],[109.5,19],[110.5,20],[110.5,22],[110.5,23],[111.5,24],[111.5,25]],[[107.5,20],[108.5,20],[109.5,20],[110.5,20],[111.5,20]],[[127.5,12],[125.5,12],[124.5,12],[123.5,12],[123.5,13],[123.5,14],[123.5,16],[123.5,17],[123.5,18],[123.5,19],[123.5,20],[123.5,21],[123.5,22],[124.5,22],[125.5,22],[126.5,21],[126.5,20],[126.5,19],[126.5,18],[127.5,19],[127.5,20],[127.5,22],[127.5,26],[127.5,27],[127.5,29],[126.5,31],[126.5,33],[125.5,34],[125.5,35],[124.5,38],[123.5,38],[123.5,39],[120.5,36],[119.5,33],[119.5,31],[119.5,30],[119.5,29],[119.5,28],[119.5,27],[119.5,26]],[[149.5,11],[149.5,12],[149.5,13],[149.5,16],[150.5,21],[151.5,25],[151.5,28],[151.5,31],[151.5,33],[151.5,34]]]}", //AgentSig 1
             "{\"lines\":[[[58.5,38],[59.5,38],[61.5,35],[65.5,31],[69.5,24],[74.5,18],[78.5,12],[81.5,10],[82.5,10],[82.5,11],[82.5,16],[83.5,20],[83.5,26],[84.5,34],[85.5,39],[85.5,40],[85.5,41],[85.5,42]],[[66.5,32],[65.5,32],[68.5,32],[78.5,32],[86.5,33],[93.5,34],[96.5,35],[97.5,35],[98.5,35],[99.5,35],[100.5,35],[99.5,35],[98.5,35],[96.5,35],[94.5,36],[93.5,36],[93.5,37],[93.5,38],[94.5,38],[95.5,38],[96.5,38],[97.5,38],[98.5,38],[99.5,38],[100.5,37],[100.5,36],[100.5,35],[101.5,35],[102.5,36],[103.5,38],[105.5,40],[105.5,42],[106.5,43],[106.5,44],[106.5,45],[106.5,46],[106.5,47],[106.5,48],[105.5,49],[104.5,50],[103.5,50],[102.5,50],[100.5,50],[99.5,50],[99.5,49],[98.5,48],[98.5,47],[98.5,46],[98.5,45],[98.5,44],[99.5,43],[101.5,43],[102.5,43],[103.5,43],[104.5,43],[105.5,43],[107.5,43],[108.5,43],[108.5,44],[108.5,45]],[[16.5,31],[17.5,31],[17.5,30],[18.5,28],[20.5,25],[21.5,20],[24.5,12],[25.5,8],[27.5,5],[28.5,3],[29.5,3],[30.5,4],[30.5,6],[31.5,10],[31.5,13],[31.5,17],[31.5,18],[32.5,21],[32.5,22],[32.5,23],[33.5,23],[33.5,24],[33.5,25],[33.5,26],[33.5,28],[33.5,29],[33.5,26],[35.5,21],[37.5,17],[37.5,14],[38.5,13],[38.5,12],[39.5,12],[40.5,13],[41.5,16],[42.5,18],[42.5,22],[43.5,24],[44.5,26],[45.5,29],[45.5,30],[45.5,29],[44.5,27],[44.5,26],[44.5,24],[44.5,22],[44.5,21],[45.5,19],[47.5,17],[49.5,15],[50.5,14],[51.5,14],[51.5,13],[52.5,13],[53.5,13],[54.5,12],[55.5,12],[56.5,11],[56.5,11],[57.5,11],[58.5,11]]]}" // AR Agent Sig    };
     };
+
 
 }

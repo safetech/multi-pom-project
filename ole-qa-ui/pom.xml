@@ -88,6 +88,18 @@
             <version>1.1.4</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.fluentlenium</groupId>
+            <artifactId>fluentlenium-core</artifactId>
+            <version>0.10.9</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>backport-util-concurrent</groupId>
+            <artifactId>backport-util-concurrent</artifactId>
+            <version>3.1</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>
@@ -113,91 +125,29 @@
     </build>
     <profiles>
         <profile>
-            <id>AgentStage</id>
+            <id>OleStage</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
                 <agent.url>https://aarpsupplementalhealth-stg.uhc.com/ole/ms-agent.html?cheat=true</agent.url>
-                <db.connection>jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=dbslt0014.uhc.com)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=cmpts08.uhc.com)))</db.connection>
+                <phone.url>https://aarpsupplementalhealth-stg.uhc.com/ole/ms-phone.html?cheat=true</phone.url>
+                <dtc.url>https://aarpsupplementalhealth-stg.uhc.com/ole/ms.html?cheat=true</dtc.url>
+                <greenbay.url>https://aarpsupplementalhealth-stg.uhc.com/ole/ms-greenbay.html</greenbay.url>
+                <db.stage.connection>jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=dbslt0014.uhc.com)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=cmpts08.uhc.com)))</db.stage.connection>
                 <db.username>QAAUTOREAD</db.username>
                 <db.password>Aut0mation1</db.password>
             </properties>
         </profile>
         <profile>
-            <id>AgentTest</id>
+            <id>OleTest</id>
             <properties>
                 <agent.url>https://aarpsupplementalhealth-tst.uhc.com/ole/ms-agent.html?cheat=true</agent.url>
-                <db.connection>jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=orass0023.uhc.com)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=cmpst03.uhc.com)))</db.connection>
-                <db.username>QAAUTOREAD</db.username>
-                <db.password>Aut0mation1</db.password>
-            </properties>
-        </profile>
-        <profile>
-            <id>AgentPerf</id>
-            <properties>
-                <agent.url>https://aarpsupplementalhealth-stg.uhc.com/ole/ms-agent.html?cheat=true</agent.url>
-                <db.connection>jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=orass0023.uhc.com)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=cmpst01.uhc.com)))</db.connection>
-                <db.username>QAAUTOREAD</db.username>
-                <db.password>Aut0mation1</db.password>
-            </properties>
-        </profile>
-        <profile>
-            <id>DtcStage</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <properties>
-                <dtc.url>https://aarpsupplementalhealth-stg.uhc.com/ole/ms.html?cheat=true</dtc.url>
-                <db.connection>jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=dbslt0014.uhc.com)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=cmpts08.uhc.com)))</db.connection>
-                <db.username>QAAUTOREAD</db.username>
-                <db.password>Aut0mation1</db.password>
-            </properties>
-        </profile>
-        <profile>
-            <id>DtcTest</id>
-            <properties>
-                <dtc.url>https://aarpsupplementalhealth-tst.uhc.com/ole/ms.html?cheat=true</dtc.url>
-                <db.connection>jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=orass0023.uhc.com)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=cmpst03.uhc.com)))</db.connection>
-                <db.username>QAAUTOREAD</db.username>
-                <db.password>Aut0mation1</db.password>
-            </properties>
-        </profile>
-        <profile>
-            <id>DtcPerf</id>
-            <properties>
-                <dtc.url>https://aarpsupplementalhealth-stg.uhc.com/ole/ms.html?cheat=true</dtc.url>
-                <db.connection>jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=orass0023.uhc.com)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=cmpst01.uhc.com)))</db.connection>
-                <db.username>QAAUTOREAD</db.username>
-                <db.password>Aut0mation1</db.password>
-            </properties>
-        </profile>
-        <profile>
-            <id>PhoneStage</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <properties>
-                <phone.url>https://aarpsupplementalhealth-stg.uhc.com/ole/ms-phone.html?cheat=true</phone.url>
-                <db.connection>jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=dbslt0014.uhc.com)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=cmpts08.uhc.com)))</db.connection>
-                <db.username>QAAUTOREAD</db.username>
-                <db.password>Aut0mation1</db.password>
-            </properties>
-        </profile>
-        <profile>
-            <id>PhoneTest</id>
-            <properties>
                 <phone.url>https://aarpsupplementalhealth-tst.uhc.com/ole/ms-phone.html?cheat=true</phone.url>
-                <db.connection>jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=orass0023.uhc.com)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=cmpst03.uhc.com)))</db.connection>
-                <db.username>QAAUTOREAD</db.username>
-                <db.password>Aut0mation1</db.password>
-            </properties>
-        </profile>
-        <profile>
-            <id>PhonePerf</id>
-            <properties>
-                <phone.url>https://aarpsupplementalhealth-stg.uhc.com/ole/ms-agent.html?cheat=true</phone.url>
-                <db.connection>jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=orass0023.uhc.com)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=cmpst01.uhc.com)))</db.connection>
+                <dtc.url>https://aarpsupplementalhealth-tst.uhc.com/ole/ms.html?cheat=true</dtc.url>
+                <greenbay.url>https://aarpsupplementalhealth-tst.uhc.com/ole/ms-greenbay.html</greenbay.url>
+                <db.test.connection>jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=orass0023.uhc.com)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=cmpst03.uhc.com)))</db.test.connection>
+                <db.perf.connection>jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=orass0023.uhc.com)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=cmpst01.uhc.com)))</db.perf.connection>
                 <db.username>QAAUTOREAD</db.username>
                 <db.password>Aut0mation1</db.password>
             </properties>

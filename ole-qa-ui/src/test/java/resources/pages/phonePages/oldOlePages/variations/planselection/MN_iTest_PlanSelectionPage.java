@@ -67,11 +67,10 @@ public class MN_iTest_PlanSelectionPage extends WizardPage {
         RiderChoice_WW.click();
         clickNextAndWaitForSpinnerToFinish();
     }
+    
     public void extendedPlanFullUwWithRnQr() {
         isAt();
         basicPlanWithCoPay.click();
-
-
         clickNextAndWaitForSpinnerToFinish();
     }
     public void basicPlanGaRider234And5NoRnNoQr() {

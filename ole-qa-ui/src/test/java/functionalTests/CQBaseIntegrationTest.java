@@ -24,6 +24,12 @@ import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+
+
+
+
+
+
 import static org.slf4j.LoggerFactory.getLogger;
 
 @SharedDriver(type = SharedDriver.SharedType.PER_CLASS)
@@ -62,7 +68,7 @@ public class CQBaseIntegrationTest extends FluentTest {
 
     @Override
     public WebDriver getDefaultDriver() {
-        logger.info(String.format("Using driver: webdriver.firefox.bin=%s", System.getProperty("webdriver.firefox.bin")));
+ //       logger.info(String.format("Using driver: webdriver.firefox.bin=%s", System.getProperty("webdriver.firefox.bin")));
 //        Comment the below lines if your not using Browser Stack
 //        DesiredCapabilities caps = new DesiredCapabilities();
 //        caps.setCapability("browser", "IE");
@@ -121,7 +127,4 @@ public class CQBaseIntegrationTest extends FluentTest {
     }
 }
 
-// TODO: Junit Setup
-// -ea -DDBUN=uhg_000921560 -DDBPW=*Hansa2001 -Dwebdriver.Chrome.driver=/Users/sislam13/dev/apps/chrome/Chrome-46/Google\ Chrome.app
-// -ea -DDBUN=uhg_000921560 -DDBPW=*Hansa2001 -Dwebdriver.firefox.bin=/Users/sislam13/dev/apps/Firefox/firefox-29/firefox
 

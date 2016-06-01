@@ -28,6 +28,8 @@ public class CheatPage extends FluentPage{
     FluentWebElement returnURL;
     FluentWebElement HASHID;
     @FindBy(id = "WT.mc_id") FluentWebElement WT_mc_id;
+    
+    
     FluentWebElement applicationId;
     FluentWebElement readonly;
     FluentWebElement resume;

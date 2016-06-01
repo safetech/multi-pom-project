@@ -13,7 +13,7 @@ public class PA_AR_NV_MA_PlanSelectionAndStartDatePage extends WizardPage{
     @FindBy(xpath = "//b[contains(text(), 'ID ')]") public FluentWebElement applicationId;
     @FindBy(xpath = "//a[contains(text(), 'cancel')]") public FluentWebElement cancel;
     @FindBy(xpath = "//*[contains(text(), 'end session')]") public FluentWebElement endSession;
-
+    @FindBy(css = "#ReqEffectiveDate") FluentWebElement RequestedEffectiveDate;
     public void fillAndSubmit(Application app) {
 
         isAt();

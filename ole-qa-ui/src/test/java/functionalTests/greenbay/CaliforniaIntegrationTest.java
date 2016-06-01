@@ -1,13 +1,14 @@
-package functionaltests.phone.uwSubmissionTests;
+package functionaltests.greenbay;
 
 import com.github.javafaker.Faker;
-import resources.entity.Application;
-import resources.entity.SubmissionResult;
-import resources.entity.phone.CribSheet;
 import functionaltests.CQBaseIntegrationTest;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
+import queries.SubmissionQueryPhone;
+import resources.entity.Application;
+import resources.entity.SubmissionResult;
+import resources.entity.phone.CribSheet;
 import resources.pages.phonepages.uwExpansionPages.*;
 import resources.pages.phonepages.uwExpansionPages.variations.agentverification.CA_AgentVerificationPage;
 import resources.pages.phonepages.uwExpansionPages.variations.authorization.CA_AuthorizationAndVerificationPage;
@@ -16,7 +17,6 @@ import resources.pages.phonepages.uwExpansionPages.variations.healthhistoryquest
 import resources.pages.phonepages.uwExpansionPages.variations.pastandcurrentcoverage.CA_PA_NJ_IN_PastAndCurrentInsuranceCoveragePage;
 import resources.pages.phonepages.uwExpansionPages.variations.planapplication.CA_PlanApplicationQuestions;
 import resources.pages.phonepages.uwExpansionPages.variations.replacementnotice.RN040Page;
-import queries.SubmissionQueryPhone;
 import resources.utils.DateUtils;
 
 
@@ -45,14 +45,12 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
     public void setup() {
         submissionQueryPhone = new SubmissionQueryPhone();
         faker = new Faker();
-
         sheet = new CribSheet(faker);
         sheet.setRandomNameGenderAndMembershipNumber();
         sheet.setRandomAddress("CA", "90210");
         sheet.setRandomContactInfo();
         sheet.setRandomCallCenterInfo();
         sheet.setPlanCode("F01");
-
         app = new Application();
         // Customer Info Page Question
         app.setMedicareClaimNum(faker.bothify("#########A"));
@@ -64,7 +62,6 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         app.setSurgeryNeeded(NO);
         //Agent Verification Page
         app.setCommonAgentVerificationAnswers();
-
         expectedSubmissionResult = new SubmissionResult();
     }
 
@@ -74,9 +71,11 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(69));
         sheet.setMedPartBdate(DateUtils.getFirstDayOfPastOrFutureMonths(-7));
         sheet.setDpsdToFirstDayOfFutureMonth(3);
+
         //Customer Information
         app.setMPAED(DateUtils.getFirstDayOfPastOrFutureMonths(-7));
         app.setMPBED(DateUtils.getFirstDayOfPastOrFutureMonths(-7));
+
         //Plan Application
         app.setDefaultPlanEligibilityQuestions(sheet);
         app.setLostCoverage(NO);
@@ -126,7 +125,6 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         app.setOtherInsEnd("01/01/2014");
         app.setOtherInsReplace(YES);
         app.setCpaSignatureInd(YES);
-        //Authorization Page
         //Agent Verification Page
         app.setAgentOtherInsPoliciesSold("HIP");
         app.setAgentPoliciesInForce("EP");
@@ -139,8 +137,6 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         app.setAgentAddress("ProducerAdd");
         app.setApplicantPrintedNameAdd("AppName");
         app.setApplicantAddress("AppAdd");
-        
-        
         app.setMedicalReleaseAuthSignatureIndRequired("Required");
         logger.info(gson.toJson(app));
 
@@ -162,6 +158,9 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         submissionQueryPhone.verifySubmissionData(app, expectedSubmissionResult);
         submissionQueryPhone.verifyAdjudicationData(app, expectedSubmissionResult);
 
+        
+        
+        
     }
 
     @Test

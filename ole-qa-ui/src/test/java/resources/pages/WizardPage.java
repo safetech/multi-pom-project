@@ -1,8 +1,10 @@
 package resources.pages;
 
+import com.github.javafaker.Faker;
 import org.fluentlenium.core.FluentPage;
 import org.fluentlenium.core.domain.FluentWebElement;
 import org.openqa.selenium.support.FindBy;
+import resources.entity.Application;
 import resources.utils.AnswerUtils;
 
 import java.util.concurrent.TimeUnit;
@@ -12,7 +14,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.fail;
 
 public class WizardPage extends FluentPage {
-
+    Faker faker;
     protected final static String NO = AnswerUtils.NO;
     protected final static String YES = AnswerUtils.YES;
     protected final static String UNSURE = AnswerUtils.UNSURE;
@@ -26,9 +28,18 @@ public class WizardPage extends FluentPage {
     public FluentWebElement MPBED;
     public String dtcApplicationId = "";
 
+
+
+    public void setCommonCustomerInformation(String commonCustomerInformation) {
+        this.commonCustomerInformation = commonCustomerInformation;
+    }
+
+    public String commonCustomerInformation = "";
+
     public String getDtcApplicationId() {
         return this.dtcApplicationId;
-    }
+    }    
+
 
     public void setDtcApplicationId(String dtcApplicationId) {
         this.dtcApplicationId = dtcApplicationId;
@@ -208,4 +219,26 @@ public class WizardPage extends FluentPage {
         assertThat(marketibilityError, equalTo(marketCode));
     }
 
+
+    public String getCommonCustomerInformation(Application app) {
+
+        app.setAARPMembershipNumber(faker.numerify("########"+11));
+        app.setPrefix(faker.letterify("?"));
+        app.setFirstName(faker.lastName());
+        app.setMI(faker.letterify("?"));
+        app.setLastName(faker.lastName());
+        app.setSuffix(faker.suffix());
+        app.setAddressLine1(faker.streetAddress(false));
+        app.setAddressLine2(faker.secondaryAddress());
+        app.setCity(faker.citySuffix());
+        app.setEmail(faker.letterify("????????"+"@"+"???"+".com"));
+        app.setPhonePrimary(faker.numerify("##########"));
+        app.setPhoneEvening(faker.numerify("##########"));
+        app.setGender("M");
+        app.setMedicareClaimNum(faker.numerify("#########"));
+        app.setPartABActiveIndicator(AnswerUtils.YES);
+        return commonCustomerInformation;
+    }
+
+    
 }
