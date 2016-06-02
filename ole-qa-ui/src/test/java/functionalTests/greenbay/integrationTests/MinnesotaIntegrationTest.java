@@ -9,23 +9,19 @@ import queries.SubmissionQueryPhone;
 import resources.entity.Application;
 import resources.entity.SubmissionResult;
 import resources.pages.greenbaypages.*;
-import resources.pages.greenbaypages.AgentVerificationPage;
-import resources.pages.greenbaypages.ApplicationSubmissionPage;
-import resources.pages.greenbaypages.AuthorizationAndVerificationPage;
-import resources.pages.greenbaypages.CustomerInformationPage;
-import resources.pages.greenbaypages.EligibilityHealthQuestionsPage;
-import resources.pages.greenbaypages.PlanSelectionAndStartDatePage;
-import resources.pages.greenbaypages.VoiceSignatureInstructionsPage;
-import resources.pages.greenbaypages.PastAndCurrentCoveragePage;
+import resources.pages.greenbaypages.variations.customerinformationpage.MN_CustomerInformationPage;
+import resources.pages.greenbaypages.variations.planapplication.MN_PlanApplicationQuestions;
+import resources.pages.greenbaypages.variations.planselection.MN_PlanSelectionAndStartDatePage;
 import resources.utils.DateUtils;
 
-public class NewYorkIntegrationTest extends CQBaseIntegrationTest {
+public class MinnesotaIntegrationTest extends CQBaseIntegrationTest {
     
     @Page LandingPage landingPage;
     @Page VoiceSignatureInstructionsPage voiceSignatureInstructionsPage;
     @Page CheckEligibilityPage checkEligibilityPage;
-    @Page CustomerInformationPage customerInformationPage;
-    @Page PlanSelectionAndStartDatePage planSelectionAndStartDatePage;
+    @Page MN_CustomerInformationPage customerInformationPage;
+    @Page MN_PlanSelectionAndStartDatePage planSelectionAndStartDatePage;
+    @Page MN_PlanApplicationQuestions planApplicationQuestions;
     @Page EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
     @Page PastAndCurrentCoveragePage pastAndCurrentInsuranceCoveragePage;
     @Page AuthorizationAndVerificationPage authorizationAndVerificationPage;
@@ -47,10 +43,8 @@ public class NewYorkIntegrationTest extends CQBaseIntegrationTest {
         app = new Application();
         logger.info(gson.toJson(app));
         
-        app.setEmployerId(faker.numerify("######"));
-        app.setZipCode("12345");
-        app.setState("NY");
-        
+        app.setZipCode("55001");
+        app.setState("MN");
         //CommonDataForCustomerInformationPage
         app.setAARPMembershipNumber(faker.numerify("##########"));
         app.setPrefix("MR");
@@ -68,20 +62,22 @@ public class NewYorkIntegrationTest extends CQBaseIntegrationTest {
         app.setGender("M");
         app.setMedicareClaimNum(faker.bothify("A#########"));
         app.setPartABActiveIndicator(YES);
-        //Plan Selection and Start Date
-        app.setPlanCode("F");
         //Past And Current Coverage page
         app.setUnderstandAndAuthorize(YES);
     }
 
     @Test
-    public void GREENBAY_NeyYork_NonQrGiNoRn(){
-        app.setExpectedReqEffectiveDates(6);
+    public void GREENBAY_Minnesota_NonQrGiNoRnBlankAarp(){
+        app.setExpectedReqEffectiveDates(3);
         app.setGroupApp(YES);
+        app.setEmployerId(faker.numerify("##"));
         app.setDOB(DateUtils.getDOBofPersonTurningAgeToday(65));
         app.setMPAED(DateUtils.getFirstDayOfPastOrFutureMonths(1));
         app.setMPBED(DateUtils.getFirstDayOfPastOrFutureMonths(1));
         //PlanSelectionAndStartDate
+        app.setPlanCode("UW");
+        //PlanApplicationQuestionsPage
+        app.setTobaccoUse(YES);
         app.setReqEffectiveDate(DateUtils.getFirstDayOfPastOrFutureMonths(3));
         //Past And Current Coverage
         app.setCPATurned65(NO);
@@ -91,6 +87,7 @@ public class NewYorkIntegrationTest extends CQBaseIntegrationTest {
         app.setExistMedSupp(NO);
         app.setOtherInsCoverage(NO);
         app.setCpaSignatureInd(YES);
+        app.setPlanEffIn6OfEligible(YES);
         //Agent Verification Test
         app.setAgentOtherInsPoliciesSold("List Number One");
         app.setAgentPoliciesInForce("List two in force");
@@ -99,20 +96,30 @@ public class NewYorkIntegrationTest extends CQBaseIntegrationTest {
         app.setAgentMI("K");
         app.setAgentLastName("GreenLastName");
         app.setAgentPhone(faker.numerify("### ### ####"));
+        //Mailing Address
+        app.setMailingAddressCheck(YES);
+        app.setMailingAddressLine1(faker.bothify("#### ??????????? ??"));
+        app.setMailingAddressLine2(faker.bothify("#### ??????????? ??"));
+        app.setMailingCity(faker.letterify("??????????????"));
+        app.setMailingState(faker.letterify("ME"));
+        app.setMailingZipCode(faker.numerify("#####"));
         
         goTo(landingPage);
         voiceSignatureInstructionsPage.fillAndSubmit(app);
         checkEligibilityPage.fillAndSubmit(app);
         customerInformationPage.fillAndSubmit(app);
         planSelectionAndStartDatePage.fillAndSubmit(app);
+        planApplicationQuestions.fillAndSubmit(app);
         pastAndCurrentInsuranceCoveragePage.fillAndSubmit(app);
         authorizationAndVerificationPage.fillAndSubmit(app);
         agentVerificationPage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
+        applicationSubmissionPage.isPending();
+        
     }
     
     @Test
-    public void GREENBAY_NeyYork_NonQrFuWithRnGroup(){
+    public void GREENBAY_Minnesota_NonQrFuWithRnGroup(){
         app.setExpectedReqEffectiveDates(3);
         app.setGroupApp(YES);
         app.setDOB(DateUtils.getDOBofPersonTurningAgeToday(75));
@@ -169,7 +176,7 @@ public class NewYorkIntegrationTest extends CQBaseIntegrationTest {
         reviewAndSubmitPage.fillAndSubmit(app);
     }
     @Test
-    public void GREENBAY_NeyYork_NonQrGiIndividual(){
+    public void GREENBAY_Minnesota_NonQrGiIndividual(){
         app.setExpectedReqEffectiveDates(6);
         app.setGroupApp(NO);
         app.setDOB(DateUtils.getDOBofPersonTurningAgeToday(65));
@@ -205,7 +212,7 @@ public class NewYorkIntegrationTest extends CQBaseIntegrationTest {
         reviewAndSubmitPage.fillAndSubmit(app);
     }
     @Test
-    public void GREENBAY_NeyYork_NonQrFuWithRnIndividual(){
+    public void GREENBAY_Minnesota_NonQrFuWithRnIndividual(){
         app.setExpectedReqEffectiveDates(3);
         app.setGroupApp(NO);
         app.setDOB(DateUtils.getDOBofPersonTurningAgeToday(75));

@@ -14,10 +14,10 @@ public class ApplicationSubmissionPage extends WizardPage {
     @FindBy(css = "#pageborder") protected FluentWebElement pageBorderContent;
 
 
-        public void isApprovedOrPending() {
+    public void isApprovedOrPending() {
         isAt();
-        boolean isValid  =false;
-        if(pageBorderContent.getText().contains("APPROVED") || pageBorderContent.getText().contains("PENDING") )
+        boolean isValid = false;
+        if(pageBorderContent.getText().contains("APPROVED") || pageBorderContent.getText().contains("PENDING"))
             isValid = true;
         assertThat(isValid,equalTo(true));
     }

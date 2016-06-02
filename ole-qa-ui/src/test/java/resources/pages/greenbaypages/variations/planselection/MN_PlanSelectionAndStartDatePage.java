@@ -1,21 +1,31 @@
-package resources.pages.greenbaypages;
+package resources.pages.greenbaypages.variations.planselection;
 
 import org.fluentlenium.core.domain.FluentList;
 import org.fluentlenium.core.domain.FluentWebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 import resources.entity.Application;
 import resources.pages.WizardPage;
 import resources.utils.DateUtils;
+
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class PlanSelectionAndStartDatePage extends WizardPage {
+public class MN_PlanSelectionAndStartDatePage extends WizardPage {
 
     FluentWebElement ReqEffectiveDate;
+    @FindBy(xpath = "planCode_1") FluentWebElement BasicPlan;
+    @FindBy(xpath = "planCode_2") FluentWebElement ExtendedBasicPlan;
+    @FindBy(css = "#RiderChoiceXW") FluentWebElement Rider1;
+    @FindBy(css = "#RiderChoiceYW") FluentWebElement Rider2;
+    @FindBy(css = "#RiderChoiceVW") FluentWebElement Rider3;
+    @FindBy(css = "#RiderChoiceWW") FluentWebElement Rider4;
+    @FindBy(css = "#RiderChoiceZW") FluentWebElement Rider5;
 
     public void fillAndSubmit(Application app){
 
         isAt();
+                
         getPlanCodeRadio(app.getPlanCode()).click();
         getReqEffectiveDateSelect().selectByValue(app.getReqEffectiveDate());
         availableDesiredPlanStartDates(app.getExpectedReqEffectiveDates());
@@ -80,7 +90,7 @@ public class PlanSelectionAndStartDatePage extends WizardPage {
                 break;
             }
         }else {
-          System.out.print("Expected Available Dates are -->"+expectedAvailableDates + "Actual Available Dates are -->"+startDateOptions.size());
+          assertThat(startDateOptions.size(), equalTo(expectedAvailableDates));
        }
     }
 }

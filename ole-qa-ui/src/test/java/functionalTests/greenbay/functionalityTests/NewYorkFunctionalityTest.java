@@ -1,4 +1,4 @@
-package functionaltests.greenbay.integrationTests;
+package functionaltests.greenbay.functionalityTests;
 
 import com.github.javafaker.Faker;
 import functionaltests.CQBaseIntegrationTest;
@@ -9,17 +9,9 @@ import queries.SubmissionQueryPhone;
 import resources.entity.Application;
 import resources.entity.SubmissionResult;
 import resources.pages.greenbaypages.*;
-import resources.pages.greenbaypages.AgentVerificationPage;
-import resources.pages.greenbaypages.ApplicationSubmissionPage;
-import resources.pages.greenbaypages.AuthorizationAndVerificationPage;
-import resources.pages.greenbaypages.CustomerInformationPage;
-import resources.pages.greenbaypages.EligibilityHealthQuestionsPage;
-import resources.pages.greenbaypages.PlanSelectionAndStartDatePage;
-import resources.pages.greenbaypages.VoiceSignatureInstructionsPage;
-import resources.pages.greenbaypages.PastAndCurrentCoveragePage;
 import resources.utils.DateUtils;
 
-public class NewYorkIntegrationTest extends CQBaseIntegrationTest {
+public class NewYorkFunctionalityTest extends CQBaseIntegrationTest {
     
     @Page LandingPage landingPage;
     @Page VoiceSignatureInstructionsPage voiceSignatureInstructionsPage;
@@ -152,7 +144,7 @@ public class NewYorkIntegrationTest extends CQBaseIntegrationTest {
         app.setAgentLastName("GreenLastName");
         app.setAgentPhone(faker.numerify("### ### ####"));
         //Replacement Notice
-        app.setReplacementReason("OtherReason");
+        app.setReplacementReason("Other Reason");
         app.setRNOther("Other");
         app.setApplicantPrintedNameAdd(faker.firstName()+" "+faker.lastName());
         app.setApplicantAddress(faker.streetAddress(false));

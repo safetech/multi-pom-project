@@ -310,15 +310,15 @@ public class Application {
     private String CAGuaranteedAcceptance = "";
     private String EmployerId = "";
 
-    public Integer getExpectedRefEffectiveDates() {
-        return ExpectedRefEffectiveDates;
+    public Integer getExpectedReqEffectiveDates() {
+        return ExpectedReqEffectiveDates;
     }
 
-    public void setExpectedRefEffectiveDates(Integer expectedRefEffectiveDates) {
-        ExpectedRefEffectiveDates = expectedRefEffectiveDates;
+    public void setExpectedReqEffectiveDates(Integer expectedReqEffectiveDates) {
+        ExpectedReqEffectiveDates = expectedReqEffectiveDates;
     }
 
-    private Integer ExpectedRefEffectiveDates = 0;
+    private Integer ExpectedReqEffectiveDates = 0;
 
     public String getEmployerId() {
         return EmployerId;
