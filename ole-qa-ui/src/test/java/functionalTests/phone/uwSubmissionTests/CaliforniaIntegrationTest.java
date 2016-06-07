@@ -52,6 +52,7 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         sheet.setRandomContactInfo();
         sheet.setRandomCallCenterInfo();
         sheet.setPlanCode("F01");
+        sheet.setGRSId(faker.numerify("######"));
 
         app = new Application();
         // Customer Info Page Question

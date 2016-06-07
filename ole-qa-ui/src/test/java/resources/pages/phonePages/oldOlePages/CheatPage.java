@@ -40,6 +40,7 @@ public class CheatPage extends FluentPage{
     FluentWebElement AgentFullName;
     FluentWebElement QRIndicator;
     FluentWebElement generateXmlAndCheat;
+    FluentWebElement GRSId;
 
     public String getUrl() {
         return PropertyUtils.getProperty("phone.url");
@@ -70,6 +71,7 @@ public class CheatPage extends FluentPage{
         fill(sourceCode).with(sheet.getSourceCode());
         fill(AgentFullName).with(sheet.getAgentFullName());
         fill(QRIndicator).with(sheet.getQrIndicator());
+        fill(GRSId).with(sheet.getGRSId());
         generateXmlAndCheat.click();
         waitForSpinnerToFinish();
     }
@@ -100,6 +102,7 @@ public class CheatPage extends FluentPage{
         fill(sourceCode).with(sheet.getSourceCode());
         fill(AgentFullName).with(sheet.getAgentFullName());
         fill(QRIndicator).with("N");
+        fill(GRSId).with(sheet.getGRSId());
         generateXmlAndCheat.click();
         waitForSpinnerToFinish();
     }

@@ -10,7 +10,8 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class MN_CustomerInformationPage extends WizardPage {
-    FluentWebElement AARPMembershipNumber;
+    @FindBy(css = "#AARPMembershipNumber") FluentWebElement AARPMembershipNumber;
+    @FindBy(xpath = "//html/body/div[2]/div[1]/div[1]/form/section/div[3]/div[4]/div[1]/input") FluentWebElement AARPMembershipNumberNotRequired;
     FluentWebElement Prefix;
     FluentWebElement FirstName;
     FluentWebElement MI;
@@ -44,7 +45,11 @@ public class MN_CustomerInformationPage extends WizardPage {
     protected int TOTAL_POSSIBLE_QUESTION_COUNT = 27;
 
     public void setCustomerInfo(Application app) {
-                //fill(AARPMembershipNumber).with(app.getAARPMembershipNumber()); TODO:Challenging field to fill with AARP Num
+        if(!app.getState().equals("NY") && app.getGroupApp().equals(YES)) {
+            fill(AARPMembershipNumberNotRequired).with(app.getAARPMembershipNumber());
+        }else {
+            fill(AARPMembershipNumber).with(app.getAARPMembershipNumber());
+        }
         
         fill(FirstName).with(app.getFirstName());
         fill(MI).with(app.getMI());

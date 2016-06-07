@@ -22,11 +22,17 @@ public class MN_PlanSelectionAndStartDatePage extends WizardPage {
     @FindBy(css = "#RiderChoiceWW") FluentWebElement Rider4;
     @FindBy(css = "#RiderChoiceZW") FluentWebElement Rider5;
 
-    public void fillAndSubmit(Application app){
+    public void fillAndSubmit(Application app) {
 
         isAt();
-                
-        getPlanCodeRadio(app.getPlanCode()).click();
+        if (app.getPlanCode().equals("TW")) {
+            getPlanCodeRadio(app.getPlanCode()).click();
+            getRiderCodeCheckbox(app.getRider1()).click();
+            getRiderCodeCheckbox(app.getRider2()).click();
+        }else if (app.getPlanCode().equals("UW")) {
+            getPlanCodeRadio(app.getPlanCode()).click();
+        }
+
         getReqEffectiveDateSelect().selectByValue(app.getReqEffectiveDate());
         availableDesiredPlanStartDates(app.getExpectedReqEffectiveDates());
         
@@ -36,7 +42,9 @@ public class MN_PlanSelectionAndStartDatePage extends WizardPage {
     private FluentWebElement getPlanCodeRadio(String planCode) {
         return findFirst(String.format("input[type='radio'][name='planCode'][value='%s']", planCode));
     }
-
+    private FluentWebElement getRiderCodeCheckbox(String planCode) {
+        return findFirst(String.format("input[type='checkbox'][data-parentplan='TW'][value='%s']", planCode));
+    }
     private Select getReqEffectiveDateSelect() {
         return (new Select(ReqEffectiveDate.getElement()));
     }    

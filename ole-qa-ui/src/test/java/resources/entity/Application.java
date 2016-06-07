@@ -309,7 +309,51 @@ public class Application {
     private String AARPMemberNumber = "";
     private String CAGuaranteedAcceptance = "";
     private String EmployerId = "";
+    private String Rider1 = "";
+    private String Rider2 = "";
+    private String Rider3 = "";
+    private String Rider4 = "";
+    private String Rider5 = "";
+    public String getRider1() {
+        return Rider1;
+    }
 
+    public void setRider1(String rider1) {
+        Rider1 = rider1;
+    }
+
+    public String getRider2() {
+        return Rider2;
+    }
+
+    public void setRider2(String rider2) {
+        Rider2 = rider2;
+    }
+
+    public String getRider3() {
+        return Rider3;
+    }
+
+    public void setRider3(String rider3) {
+        Rider3 = rider3;
+    }
+
+    public String getRider4() {
+        return Rider4;
+    }
+
+    public void setRider4(String rider4) {
+        Rider4 = rider4;
+    }
+
+    public String getRider5() {
+        return Rider5;
+    }
+
+    public void setRider5(String rider5) {
+        Rider5 = rider5;
+    }
+    
     public Integer getExpectedReqEffectiveDates() {
         return ExpectedReqEffectiveDates;
     }

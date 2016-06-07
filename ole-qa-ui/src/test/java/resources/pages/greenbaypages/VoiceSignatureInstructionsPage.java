@@ -17,6 +17,7 @@ public class VoiceSignatureInstructionsPage extends WizardPage {
     @FindBy(css = "#GroupApp_1") FluentWebElement GroupApp_Yes;
     @FindBy(css = "#GroupApp_2") FluentWebElement GroupApp_No;
     @FindBy(css = "#employerId") FluentWebElement EmployerId;
+    @FindBy(xpath = "//*[@id='colctrl_0_showhide']/div/label[2]") FluentWebElement EmployerIdRequired;
 
     protected int TOTAL_POSSIBLE_QUESTION_COUNT = 6;
 
@@ -29,7 +30,7 @@ public class VoiceSignatureInstructionsPage extends WizardPage {
         fillYesNoQuestion(GroupApp_Yes, GroupApp_No, app.getGroupApp());
         if(app.getGroupApp().equals(YES)) {
             fill(EmployerId).with(app.getEmployerId());
-        }else{
+        }else {
             assertHidden(EmployerId);
         }
         verifyStateOfElementAfterAnswers(app);
@@ -51,11 +52,17 @@ public class VoiceSignatureInstructionsPage extends WizardPage {
         assertQuestionCount(TOTAL_POSSIBLE_QUESTION_COUNT);
     }
 
-    public void verifyStateOfElementsAfterQrRetreive() {
-        assertQuestionCount(TOTAL_POSSIBLE_QUESTION_COUNT);
-        assertVisible(VoiceSignatureApproval);
-        assert(VoiceSignatureApproval.isSelected());
-        assertVisible(AppInFrontOfYou_Yes, AppInFrontOfYou_No);
+    public void verifyEmployerIDShowsExpectedErrorMessages(Application app) {
+        VoiceSignatureApproval.click();
+        AppInFrontOfYou_Yes.click();
+        fillYesNoQuestion(GroupApp_Yes, GroupApp_No, app.getGroupApp());
+        clickNextAndWaitForSpinnerToFinish();
+        assertThat(EmployerIdRequired.getText(), equalTo("Required field"));
+        
+        fill(EmployerId).with("123abc");
+        assertThat(EmployerIdRequired.getText(), equalTo("Please use only numbers for this field."));
+
+        fill(EmployerId).with(app.getEmployerId());
         clickNextAndWaitForSpinnerToFinish();
     }
 

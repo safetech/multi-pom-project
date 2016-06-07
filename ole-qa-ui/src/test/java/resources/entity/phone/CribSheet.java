@@ -223,6 +223,15 @@ public class CribSheet{
     private String RiderChoice4 = "";
     private String RiderChoice5 = "";
     public String navigateTo = "";
+    public String GRSId = "";
+
+    public String getGRSId() {
+        return GRSId;
+    }
+
+    public void setGRSId(String GRSId) {
+        this.GRSId = GRSId;
+    }
 
     public String getNavigateTo() {
         return navigateTo;

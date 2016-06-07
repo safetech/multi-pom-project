@@ -49,7 +49,7 @@ public class RN078Page extends WizardPage {
         }
 
         AgentRNSignatureInd.click();
-        fill(AgentPrintedNameAdd).with(app.getAgentPrintedNameAdd());
+        //fill(AgentPrintedNameAdd).with(app.getAgentPrintedNameAdd());
         //fill(AgentAddress).with(app.getAgentAddress());
 
         ApplicantRNSignatureInd.click();

@@ -14,7 +14,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.fail;
 
 public class WizardPage extends FluentPage {
-    Faker faker;
+    public Faker faker;
     protected final static String NO = AnswerUtils.NO;
     protected final static String YES = AnswerUtils.YES;
     protected final static String UNSURE = AnswerUtils.UNSURE;

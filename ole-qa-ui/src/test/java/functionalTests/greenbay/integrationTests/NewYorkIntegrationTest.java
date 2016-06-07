@@ -75,7 +75,7 @@ public class NewYorkIntegrationTest extends CQBaseIntegrationTest {
     }
 
     @Test
-    public void GREENBAY_NeyYork_NonQrGiNoRn(){
+    public void GREENBAY_NewYork_NonQrGiNoRn(){
         app.setExpectedReqEffectiveDates(6);
         app.setGroupApp(YES);
         app.setDOB(DateUtils.getDOBofPersonTurningAgeToday(65));
@@ -103,6 +103,7 @@ public class NewYorkIntegrationTest extends CQBaseIntegrationTest {
         goTo(landingPage);
         voiceSignatureInstructionsPage.fillAndSubmit(app);
         checkEligibilityPage.fillAndSubmit(app);
+        customerInformationPage.checkMarketabilityCode("M82044AGMMNY02_02B");
         customerInformationPage.fillAndSubmit(app);
         planSelectionAndStartDatePage.fillAndSubmit(app);
         pastAndCurrentInsuranceCoveragePage.fillAndSubmit(app);
@@ -112,7 +113,7 @@ public class NewYorkIntegrationTest extends CQBaseIntegrationTest {
     }
     
     @Test
-    public void GREENBAY_NeyYork_NonQrFuWithRnGroup(){
+    public void GREENBAY_NewYork_NonQrFuWithRnGroup(){
         app.setExpectedReqEffectiveDates(3);
         app.setGroupApp(YES);
         app.setDOB(DateUtils.getDOBofPersonTurningAgeToday(75));
@@ -160,6 +161,7 @@ public class NewYorkIntegrationTest extends CQBaseIntegrationTest {
         goTo(landingPage);
         voiceSignatureInstructionsPage.fillAndSubmit(app);
         checkEligibilityPage.fillAndSubmit(app);
+        customerInformationPage.checkMarketabilityCode("M82044AGMMNY02_02B");
         customerInformationPage.fillAndSubmit(app);
         planSelectionAndStartDatePage.fillAndSubmit(app);
         pastAndCurrentInsuranceCoveragePage.fillAndSubmit(app);
@@ -169,7 +171,7 @@ public class NewYorkIntegrationTest extends CQBaseIntegrationTest {
         reviewAndSubmitPage.fillAndSubmit(app);
     }
     @Test
-    public void GREENBAY_NeyYork_NonQrGiIndividual(){
+    public void GREENBAY_NewYork_NonQrGiIndividual(){
         app.setExpectedReqEffectiveDates(6);
         app.setGroupApp(NO);
         app.setDOB(DateUtils.getDOBofPersonTurningAgeToday(65));
@@ -197,6 +199,7 @@ public class NewYorkIntegrationTest extends CQBaseIntegrationTest {
         goTo(landingPage);
         voiceSignatureInstructionsPage.fillAndSubmit(app);
         checkEligibilityPage.fillAndSubmit(app);
+        customerInformationPage.checkMarketabilityCode("M82044AGMMNY02_02B");
         customerInformationPage.fillAndSubmit(app);
         planSelectionAndStartDatePage.fillAndSubmit(app);
         pastAndCurrentInsuranceCoveragePage.fillAndSubmit(app);
@@ -205,7 +208,7 @@ public class NewYorkIntegrationTest extends CQBaseIntegrationTest {
         reviewAndSubmitPage.fillAndSubmit(app);
     }
     @Test
-    public void GREENBAY_NeyYork_NonQrFuWithRnIndividual(){
+    public void GREENBAY_NewYork_NonQrFuWithRnIndividual(){
         app.setExpectedReqEffectiveDates(3);
         app.setGroupApp(NO);
         app.setDOB(DateUtils.getDOBofPersonTurningAgeToday(75));
@@ -253,6 +256,7 @@ public class NewYorkIntegrationTest extends CQBaseIntegrationTest {
         goTo(landingPage);
         voiceSignatureInstructionsPage.fillAndSubmit(app);
         checkEligibilityPage.fillAndSubmit(app);
+        
         customerInformationPage.fillAndSubmit(app);
         planSelectionAndStartDatePage.fillAndSubmit(app);
         pastAndCurrentInsuranceCoveragePage.fillAndSubmit(app);

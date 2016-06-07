@@ -4,16 +4,20 @@ import com.github.javafaker.Faker;
 import functionaltests.CQBaseIntegrationTest;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.experimental.theories.DataPoint;
 import queries.SubmissionQueryPhone;
 import resources.entity.Application;
 import resources.entity.SubmissionResult;
 import resources.pages.greenbaypages.*;
+import resources.pages.greenbaypages.variations.authorizationandverification.MN_AuthorizationAndVerificationPage;
 import resources.pages.greenbaypages.variations.customerinformationpage.MN_CustomerInformationPage;
+import resources.pages.greenbaypages.variations.eligibilityhealthquestions.MN_EligibilityHealthQuestionsPage;
 import resources.pages.greenbaypages.variations.planapplication.MN_PlanApplicationQuestions;
 import resources.pages.greenbaypages.variations.planselection.MN_PlanSelectionAndStartDatePage;
 import resources.utils.DateUtils;
-
+import functionaltests.greenbay.IntegrationTestData;
 public class MinnesotaIntegrationTest extends CQBaseIntegrationTest {
     
     @Page LandingPage landingPage;
@@ -22,9 +26,9 @@ public class MinnesotaIntegrationTest extends CQBaseIntegrationTest {
     @Page MN_CustomerInformationPage customerInformationPage;
     @Page MN_PlanSelectionAndStartDatePage planSelectionAndStartDatePage;
     @Page MN_PlanApplicationQuestions planApplicationQuestions;
-    @Page EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
+    @Page MN_EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
     @Page PastAndCurrentCoveragePage pastAndCurrentInsuranceCoveragePage;
-    @Page AuthorizationAndVerificationPage authorizationAndVerificationPage;
+    @Page MN_AuthorizationAndVerificationPage authorizationAndVerificationPage;
     @Page AgentVerificationPage agentVerificationPage;
     @Page RN038Page replacementNotice;
     @Page ReviewAndSubmitPage reviewAndSubmitPage;
@@ -36,7 +40,7 @@ public class MinnesotaIntegrationTest extends CQBaseIntegrationTest {
     private SubmissionResult expectedSubmissionResult;
 
     @Before
-    public void setup() {
+    public void setup() throws Exception {
         submissionQueryPhone = new SubmissionQueryPhone();
         faker = new Faker();
         expectedSubmissionResult = new SubmissionResult();
@@ -71,10 +75,11 @@ public class MinnesotaIntegrationTest extends CQBaseIntegrationTest {
         app.setExpectedReqEffectiveDates(3);
         app.setGroupApp(YES);
         app.setEmployerId(faker.numerify("##"));
+        app.setAARPMembershipNumber(faker.numerify(BLANK));
         app.setDOB(DateUtils.getDOBofPersonTurningAgeToday(65));
         app.setMPAED(DateUtils.getFirstDayOfPastOrFutureMonths(1));
         app.setMPBED(DateUtils.getFirstDayOfPastOrFutureMonths(1));
-        //PlanSelectionAndStartDate
+        //Plan Selection and Start Date
         app.setPlanCode("UW");
         //PlanApplicationQuestionsPage
         app.setTobaccoUse(YES);
@@ -107,6 +112,7 @@ public class MinnesotaIntegrationTest extends CQBaseIntegrationTest {
         goTo(landingPage);
         voiceSignatureInstructionsPage.fillAndSubmit(app);
         checkEligibilityPage.fillAndSubmit(app);
+        customerInformationPage.checkMarketabilityCode("M13Z43AGMMMN01_02D");
         customerInformationPage.fillAndSubmit(app);
         planSelectionAndStartDatePage.fillAndSubmit(app);
         planApplicationQuestions.fillAndSubmit(app);
@@ -115,41 +121,36 @@ public class MinnesotaIntegrationTest extends CQBaseIntegrationTest {
         agentVerificationPage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
         applicationSubmissionPage.isPending();
-        
     }
     
     @Test
-    public void GREENBAY_Minnesota_NonQrFuWithRnGroup(){
+    public void GREENBAY_Minnesota_NonQrGiWithRnAarp(){
         app.setExpectedReqEffectiveDates(3);
         app.setGroupApp(YES);
-        app.setDOB(DateUtils.getDOBofPersonTurningAgeToday(75));
-        app.setMPAED(DateUtils.getFirstDayOfPastOrFutureMonths(-9));
-        app.setMPBED(DateUtils.getFirstDayOfPastOrFutureMonths(-9));
+        app.setEmployerId(faker.numerify("##"));
+        app.setDOB(DateUtils.getDOBofPersonTurningAgeToday(65));
+        app.setMPAED(DateUtils.getFirstDayOfPastOrFutureMonths(-1));
+        app.setMPBED(DateUtils.getFirstDayOfPastOrFutureMonths(-1));
         //PlanSelectionAndStartDate
-        app.setReqEffectiveDate(DateUtils.getFirstDayOfPastOrFutureMonths(3));
+        app.setReqEffectiveDate(DateUtils.getFirstDayOfPastOrFutureMonths(1));
+        app.setRider1("XW");
+        app.setRider2("YW");
+        app.setPlanCode("TW");
+        //Plan Application Questions 
+        app.setPlanEffIn6OfEligible(YES);
+        app.setTobaccoUse(YES);
         //Past And Current Coverage
         app.setCPATurned65(NO);
         app.setCPAPartBIn6(NO);
-        app.setMedicaidCovered(YES);
-        app.setMedicaidSupPremium(YES);
-        app.setMedicaidbenefit(YES);
-        app.setExistingMedicare(YES);
-        app.setOtherMedplanstart("01/01/2012");
-        app.setOtherMedplanend("01/01/2015");
-        app.setIntentReplace(YES);
-        app.setFirstTime(YES);
-        app.setDropMedSuppForThisPlan(YES);
+        app.setMedicaidCovered(NO);
+        app.setExistingMedicare(NO);
         app.setExistMedSupp(YES);
-        app.setMSInsCompany("AARP Insurance");
-        app.setMSPLAN("HMO");
+        app.setMSInsCompany(faker.country());
+        app.setMSPLAN("Best Plan");
         app.setReplaceExistingMedSup(YES);
-        app.setOtherInsCoverage(YES);
-        app.setOtherInsCompany("Blue Cross Blue Shield");
-        app.setOtherInsType("HMO");
-        app.setOtherInsStart("01/01/2001");
-        app.setOtherInsEnd("01/01/2014");
-        app.setOtherInsReplace(YES);
+        app.setOtherInsCoverage(NO);
         app.setCpaSignatureInd(YES);
+        app.setPlanEffIn6OfEligible(YES);
         //Agent Verification Test
         app.setAgentOtherInsPoliciesSold("List Number One");
         app.setAgentPoliciesInForce("List two in force");
@@ -163,12 +164,21 @@ public class MinnesotaIntegrationTest extends CQBaseIntegrationTest {
         app.setRNOther("Other");
         app.setApplicantPrintedNameAdd(faker.firstName()+" "+faker.lastName());
         app.setApplicantAddress(faker.streetAddress(false));
-
+        //Mailing Address
+        app.setMailingAddressCheck(YES);
+        app.setMailingAddressLine1(faker.bothify("#### ??????????? ??"));
+        app.setMailingAddressLine2(faker.bothify("#### ??????????? ??"));
+        app.setMailingCity(faker.letterify("??????????????"));
+        app.setMailingState(faker.letterify("ME"));
+        app.setMailingZipCode(faker.numerify("#####"));
+        
         goTo(landingPage);
         voiceSignatureInstructionsPage.fillAndSubmit(app);
         checkEligibilityPage.fillAndSubmit(app);
+        customerInformationPage.checkMarketabilityCode("M13Z43AGMMMN01_02D");
         customerInformationPage.fillAndSubmit(app);
         planSelectionAndStartDatePage.fillAndSubmit(app);
+        planApplicationQuestions.fillAndSubmit(app);
         pastAndCurrentInsuranceCoveragePage.fillAndSubmit(app);
         authorizationAndVerificationPage.fillAndSubmit(app);
         agentVerificationPage.fillAndSubmit(app);
@@ -176,50 +186,21 @@ public class MinnesotaIntegrationTest extends CQBaseIntegrationTest {
         reviewAndSubmitPage.fillAndSubmit(app);
     }
     @Test
-    public void GREENBAY_Minnesota_NonQrGiIndividual(){
-        app.setExpectedReqEffectiveDates(6);
-        app.setGroupApp(NO);
-        app.setDOB(DateUtils.getDOBofPersonTurningAgeToday(65));
-        app.setMPAED(DateUtils.getFirstDayOfPastOrFutureMonths(1));
-        app.setMPBED(DateUtils.getFirstDayOfPastOrFutureMonths(1));
-        //PlanSelectionAndStartDate
-        app.setReqEffectiveDate(DateUtils.getFirstDayOfPastOrFutureMonths(3));
-        //Past And Current Coverage
-        app.setCPATurned65(NO);
-        app.setCPAPartBIn6(NO);
-        app.setMedicaidCovered(NO);
-        app.setExistingMedicare(NO);
-        app.setExistMedSupp(NO);
-        app.setOtherInsCoverage(NO);
-        app.setCpaSignatureInd(YES);
-        //Agent Verification Test
-        app.setAgentOtherInsPoliciesSold("List Number One");
-        app.setAgentPoliciesInForce("List two in force");
-        app.setAgentPoliciesSoldNotInForce("List three not in force");
-        app.setAgentFirstName("GreenBayFirstName");
-        app.setAgentMI("K");
-        app.setAgentLastName("GreenLastName");
-        app.setAgentPhone(faker.numerify("### ### ####"));
-        
-        goTo(landingPage);
-        voiceSignatureInstructionsPage.fillAndSubmit(app);
-        checkEligibilityPage.fillAndSubmit(app);
-        customerInformationPage.fillAndSubmit(app);
-        planSelectionAndStartDatePage.fillAndSubmit(app);
-        pastAndCurrentInsuranceCoveragePage.fillAndSubmit(app);
-        authorizationAndVerificationPage.fillAndSubmit(app);
-        agentVerificationPage.fillAndSubmit(app);
-        reviewAndSubmitPage.fillAndSubmit(app);
-    }
-    @Test
-    public void GREENBAY_Minnesota_NonQrFuWithRnIndividual(){
+    public void GREENBAY_Minnesota_NonQrFuWithRnAarp(){
         app.setExpectedReqEffectiveDates(3);
         app.setGroupApp(NO);
-        app.setDOB(DateUtils.getDOBofPersonTurningAgeToday(75));
-        app.setMPAED(DateUtils.getFirstDayOfPastOrFutureMonths(-9));
-        app.setMPBED(DateUtils.getFirstDayOfPastOrFutureMonths(-9));
+        app.setEmployerId(faker.numerify("#####"));
+        app.setDOB(DateUtils.getDOBofPersonTurningAgeToday(65));
+        app.setMPAED(DateUtils.getFirstDayOfPastOrFutureMonths(-1));
+        app.setMPBED(DateUtils.getFirstDayOfPastOrFutureMonths(-1));
         //PlanSelectionAndStartDate
-        app.setReqEffectiveDate(DateUtils.getFirstDayOfPastOrFutureMonths(3));
+        app.setReqEffectiveDate(DateUtils.getFirstDayOfPastOrFutureMonths(1));
+        app.setRider1("XW");
+        app.setRider2("YW");
+        app.setPlanCode("TW");
+        //Plan Application Questions page
+        app.setPlanEffIn6OfEligible(YES);
+        app.setTobaccoUse(YES);
         //Past And Current Coverage
         app.setCPATurned65(NO);
         app.setCPAPartBIn6(NO);
@@ -256,12 +237,21 @@ public class MinnesotaIntegrationTest extends CQBaseIntegrationTest {
         app.setRNOther("Other");
         app.setApplicantPrintedNameAdd(faker.firstName()+" "+faker.lastName());
         app.setApplicantAddress(faker.streetAddress(false));
+        //Mailing Address
+        app.setMailingAddressCheck(YES);
+        app.setMailingAddressLine1(faker.bothify("#### ??????????? ??"));
+        app.setMailingAddressLine2(faker.bothify("#### ??????????? ??"));
+        app.setMailingCity(faker.letterify("??????????????"));
+        app.setMailingState(faker.letterify("ME"));
+        app.setMailingZipCode(faker.numerify("#####"));
 
         goTo(landingPage);
         voiceSignatureInstructionsPage.fillAndSubmit(app);
         checkEligibilityPage.fillAndSubmit(app);
+        customerInformationPage.checkMarketabilityCode("M13Z43AGMMMN01_02D");
         customerInformationPage.fillAndSubmit(app);
         planSelectionAndStartDatePage.fillAndSubmit(app);
+        planApplicationQuestions.fillAndSubmit(app);
         pastAndCurrentInsuranceCoveragePage.fillAndSubmit(app);
         authorizationAndVerificationPage.fillAndSubmit(app);
         agentVerificationPage.fillAndSubmit(app);
