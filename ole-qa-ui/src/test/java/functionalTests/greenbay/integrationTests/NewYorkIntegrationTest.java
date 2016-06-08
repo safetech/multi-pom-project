@@ -5,6 +5,7 @@ import functionaltests.CQBaseIntegrationTest;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
+import queries.SubmissionQueryGreenbay;
 import queries.SubmissionQueryPhone;
 import resources.entity.Application;
 import resources.entity.SubmissionResult;
@@ -18,6 +19,8 @@ import resources.pages.greenbaypages.PlanSelectionAndStartDatePage;
 import resources.pages.greenbaypages.VoiceSignatureInstructionsPage;
 import resources.pages.greenbaypages.PastAndCurrentCoveragePage;
 import resources.utils.DateUtils;
+
+import java.sql.SQLException;
 
 public class NewYorkIntegrationTest extends CQBaseIntegrationTest {
     
@@ -35,13 +38,13 @@ public class NewYorkIntegrationTest extends CQBaseIntegrationTest {
     @Page ApplicationSubmissionPage applicationSubmissionPage;
 
 
-    public SubmissionQueryPhone submissionQueryPhone;
+    public SubmissionQueryGreenbay submissionQuery;
     private Faker faker;
     private SubmissionResult expectedSubmissionResult;
 
     @Before
     public void setup() {
-        submissionQueryPhone = new SubmissionQueryPhone();
+        submissionQuery = new SubmissionQueryGreenbay();
         faker = new Faker();
         expectedSubmissionResult = new SubmissionResult();
         app = new Application();
@@ -63,8 +66,8 @@ public class NewYorkIntegrationTest extends CQBaseIntegrationTest {
         app.setCity("Horsham");
         app.setEmail(faker.letterify("??????????"+"@uhc.com"));
         app.setConfirmEmail(faker.letterify("??????????"+"@uhc.com"));
-        app.setPhonePrimary(faker.numerify("### ### ####"));
-        app.setPhoneEvening(faker.numerify("### ### ####"));
+        app.setPhonePrimary(faker.numerify("##########"));
+        app.setPhoneEvening(faker.numerify("##########"));
         app.setGender("M");
         app.setMedicareClaimNum(faker.bothify("A#########"));
         app.setPartABActiveIndicator(YES);
@@ -75,8 +78,8 @@ public class NewYorkIntegrationTest extends CQBaseIntegrationTest {
     }
 
     @Test
-    public void GREENBAY_NewYork_NonQrGiNoRn(){
-        app.setExpectedReqEffectiveDates(6);
+    public void GREENBAY_NewYork_NonQrGiNoRn() throws SQLException {
+        app.setExpectedReqEffectiveDates(3);
         app.setGroupApp(YES);
         app.setDOB(DateUtils.getDOBofPersonTurningAgeToday(65));
         app.setMPAED(DateUtils.getFirstDayOfPastOrFutureMonths(1));
@@ -110,10 +113,15 @@ public class NewYorkIntegrationTest extends CQBaseIntegrationTest {
         authorizationAndVerificationPage.fillAndSubmit(app);
         agentVerificationPage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
+
+        expectedSubmissionResult.setPendingInfo("INFORMATION","REQUIRED");
+        submissionQuery.verifySubmissionData(app, expectedSubmissionResult);
+        
+        
     }
     
     @Test
-    public void GREENBAY_NewYork_NonQrFuWithRnGroup(){
+    public void GREENBAY_NewYork_NonQrFuWithRnGroup() throws SQLException {
         app.setExpectedReqEffectiveDates(3);
         app.setGroupApp(YES);
         app.setDOB(DateUtils.getDOBofPersonTurningAgeToday(75));
@@ -169,10 +177,14 @@ public class NewYorkIntegrationTest extends CQBaseIntegrationTest {
         agentVerificationPage.fillAndSubmit(app);
         replacementNotice.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
+
+        expectedSubmissionResult.setPendingInfo("INFORMATION","REQUIRED");
+        submissionQuery.verifySubmissionData(app, expectedSubmissionResult);
+        
     }
     @Test
-    public void GREENBAY_NewYork_NonQrGiIndividual(){
-        app.setExpectedReqEffectiveDates(6);
+    public void GREENBAY_NewYork_NonQrGiIndividual() throws SQLException {
+        app.setExpectedReqEffectiveDates(3);
         app.setGroupApp(NO);
         app.setDOB(DateUtils.getDOBofPersonTurningAgeToday(65));
         app.setMPAED(DateUtils.getFirstDayOfPastOrFutureMonths(1));
@@ -206,9 +218,13 @@ public class NewYorkIntegrationTest extends CQBaseIntegrationTest {
         authorizationAndVerificationPage.fillAndSubmit(app);
         agentVerificationPage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
+
+        expectedSubmissionResult.setAcceptedInfo();
+        submissionQuery.verifySubmissionData(app, expectedSubmissionResult);
+        
     }
     @Test
-    public void GREENBAY_NewYork_NonQrFuWithRnIndividual(){
+    public void GREENBAY_NewYork_NonQrFuWithRnIndividual() throws SQLException {
         app.setExpectedReqEffectiveDates(3);
         app.setGroupApp(NO);
         app.setDOB(DateUtils.getDOBofPersonTurningAgeToday(75));
@@ -264,5 +280,9 @@ public class NewYorkIntegrationTest extends CQBaseIntegrationTest {
         agentVerificationPage.fillAndSubmit(app);
         replacementNotice.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
+
+        expectedSubmissionResult.setAcceptedInfo();
+        submissionQuery.verifySubmissionData(app, expectedSubmissionResult);
+        
     }
 }

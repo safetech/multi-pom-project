@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.experimental.theories.DataPoint;
+import queries.SubmissionQueryGreenbay;
 import queries.SubmissionQueryPhone;
 import resources.entity.Application;
 import resources.entity.SubmissionResult;
@@ -18,6 +19,9 @@ import resources.pages.greenbaypages.variations.planapplication.MN_PlanApplicati
 import resources.pages.greenbaypages.variations.planselection.MN_PlanSelectionAndStartDatePage;
 import resources.utils.DateUtils;
 import functionaltests.greenbay.IntegrationTestData;
+
+import java.sql.SQLException;
+
 public class MinnesotaIntegrationTest extends CQBaseIntegrationTest {
     
     @Page LandingPage landingPage;
@@ -35,17 +39,17 @@ public class MinnesotaIntegrationTest extends CQBaseIntegrationTest {
     @Page ApplicationSubmissionPage applicationSubmissionPage;
 
 
-    public SubmissionQueryPhone submissionQueryPhone;
+    public SubmissionQueryGreenbay submissionQuery;
     private Faker faker;
     private SubmissionResult expectedSubmissionResult;
 
     @Before
     public void setup() throws Exception {
-        submissionQueryPhone = new SubmissionQueryPhone();
+        submissionQuery = new SubmissionQueryGreenbay();
         faker = new Faker();
         expectedSubmissionResult = new SubmissionResult();
         app = new Application();
-        logger.info(gson.toJson(app));
+
         
         app.setZipCode("55001");
         app.setState("MN");
@@ -61,8 +65,8 @@ public class MinnesotaIntegrationTest extends CQBaseIntegrationTest {
         app.setCity("Horsham");
         app.setEmail(faker.letterify("??????????"+"@uhc.com"));
         app.setConfirmEmail(faker.letterify("??????????"+"@uhc.com"));
-        app.setPhonePrimary(faker.numerify("### ### ####"));
-        app.setPhoneEvening(faker.numerify("### ### ####"));
+        app.setPhonePrimary(faker.numerify("##########"));
+        app.setPhoneEvening(faker.numerify("##########"));
         app.setGender("M");
         app.setMedicareClaimNum(faker.bothify("A#########"));
         app.setPartABActiveIndicator(YES);
@@ -71,7 +75,7 @@ public class MinnesotaIntegrationTest extends CQBaseIntegrationTest {
     }
 
     @Test
-    public void GREENBAY_Minnesota_NonQrGiNoRnBlankAarp(){
+    public void GREENBAY_Minnesota_NonQrGiNoRnBlankAarp() throws SQLException {
         app.setExpectedReqEffectiveDates(3);
         app.setGroupApp(YES);
         app.setEmployerId(faker.numerify("##"));
@@ -108,7 +112,7 @@ public class MinnesotaIntegrationTest extends CQBaseIntegrationTest {
         app.setMailingCity(faker.letterify("??????????????"));
         app.setMailingState(faker.letterify("ME"));
         app.setMailingZipCode(faker.numerify("#####"));
-        
+        logger.info(gson.toJson(app));
         goTo(landingPage);
         voiceSignatureInstructionsPage.fillAndSubmit(app);
         checkEligibilityPage.fillAndSubmit(app);
@@ -121,10 +125,13 @@ public class MinnesotaIntegrationTest extends CQBaseIntegrationTest {
         agentVerificationPage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
         applicationSubmissionPage.isPending();
+
+//        expectedSubmissionResult.setAcceptedInfo();
+//        submissionQuery.verifySubmissionData(app, expectedSubmissionResult);
     }
     
     @Test
-    public void GREENBAY_Minnesota_NonQrGiWithRnAarp(){
+    public void GREENBAY_Minnesota_NonQrGiWithRnAarp() throws SQLException {
         app.setExpectedReqEffectiveDates(3);
         app.setGroupApp(YES);
         app.setEmployerId(faker.numerify("##"));
@@ -184,9 +191,12 @@ public class MinnesotaIntegrationTest extends CQBaseIntegrationTest {
         agentVerificationPage.fillAndSubmit(app);
         replacementNotice.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
+
+        expectedSubmissionResult.setPendingInfo("INFORMATION","REQUIRED");
+        submissionQuery.verifySubmissionData(app, expectedSubmissionResult);
     }
     @Test
-    public void GREENBAY_Minnesota_NonQrFuWithRnAarp(){
+    public void GREENBAY_Minnesota_NonQrFuWithRnAarp() throws SQLException {
         app.setExpectedReqEffectiveDates(3);
         app.setGroupApp(NO);
         app.setEmployerId(faker.numerify("#####"));
@@ -257,5 +267,8 @@ public class MinnesotaIntegrationTest extends CQBaseIntegrationTest {
         agentVerificationPage.fillAndSubmit(app);
         replacementNotice.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
+
+        expectedSubmissionResult.setAcceptedInfo();
+        submissionQuery.verifySubmissionData(app, expectedSubmissionResult);
     }
 }

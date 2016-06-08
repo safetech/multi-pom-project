@@ -189,6 +189,7 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         app.setCAGuaranteedAcceptance(BLANK);
         app.setTobaccoUse(YES);
         app.setGI30dayBday(BLANK);
+        
         //Past And Current Coverage
         app.setMedicaidCovered(YES);
         app.setMedicaidSupPremium(YES);

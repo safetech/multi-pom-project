@@ -46,7 +46,7 @@ public class NewYorkIntegrationAndQRTest extends CQBaseIntegrationTest {
     }
 
     @Test
-    public void test_newyork_health_history_underwriting_with_rn() throws Exception {
+    public void OCSS_NewYork_QR_Fu_with_Rn_And_HH() throws Exception {
 
         sheet.setRandomNameGenderAndMembershipNumber();
         sheet.setFirstName("QR-Ret"+this.faker.firstName());
@@ -127,7 +127,7 @@ public class NewYorkIntegrationAndQRTest extends CQBaseIntegrationTest {
         app.setApplicantPrintedNameAdd("AppName");
         app.setApplicantAddress("AppAdd");
 
-        expectedSubmissionResult.setPendingInfo("UNDERWRITING", "REVIEW FOR POSSIBLE ESRD");
+        expectedSubmissionResult.setPendingInfo("ENROLLMENT", "REVIEW");
 
         logger.info(gson.toJson(app));
 

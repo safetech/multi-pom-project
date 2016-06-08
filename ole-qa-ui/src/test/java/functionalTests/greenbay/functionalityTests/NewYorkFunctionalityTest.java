@@ -96,11 +96,8 @@ public class NewYorkFunctionalityTest extends CQBaseIntegrationTest {
         voiceSignatureInstructionsPage.verifyEmployerIDShowsExpectedErrorMessages(app);
         checkEligibilityPage.fillAndSubmit(app);
         customerInformationPage.fillAndSubmit(app);
-        planSelectionAndStartDatePage.fillAndSubmit(app);
-        pastAndCurrentInsuranceCoveragePage.fillAndSubmit(app);
-        authorizationAndVerificationPage.fillAndSubmit(app);
-        agentVerificationPage.fillAndSubmit(app);
-        reviewAndSubmitPage.fillAndSubmit(app);
+        customerInformationPage.isDisplayingErrorMessages(app);
+
     }
     
   

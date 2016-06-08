@@ -80,7 +80,7 @@ public class PlanSelectionAndStartDatePage extends WizardPage {
                 break;
             }
         }else {
-          System.out.print("Expected Available Dates are -->"+expectedAvailableDates + "Actual Available Dates are -->"+startDateOptions.size());
+          assertThat(startDateOptions.size(), equalTo(expectedAvailableDates));
        }
     }
 }

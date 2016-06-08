@@ -36,7 +36,11 @@ public class CustomerInformationPage extends WizardPage {
     FluentWebElement MPAED;
     @FindBy(css = "#PartABActiveIndicator_1") FluentWebElement PartABActiveIndicator_Yes;
     @FindBy(css = "#PartABActiveIndicator_2") FluentWebElement PartABActiveIndicator_No;
-   
+    @FindBy(xpath = "//*[@id='colctrl_0_showhide']/div/label[2]") FluentWebElement AarpIdRequired;
+    @FindBy(css = ".button.action_back") FluentWebElement backButton;
+    FluentWebElement VoiceSignatureApproval;
+    @FindBy(css = "#GroupApp_1") FluentWebElement GroupApp_Yes;
+    @FindBy(css = "#GroupApp_2") FluentWebElement GroupApp_No;
     protected int TOTAL_POSSIBLE_QUESTION_COUNT = 22;
 
     public void setCustomerInfo(Application app) {
@@ -101,5 +105,20 @@ public class CustomerInformationPage extends WizardPage {
 
     public void isAt() {
         assertThat(pageTitle.getText(), equalTo("Customer Information"));
+    }    
+    
+    
+    public void isDisplayingErrorMessages(Application app) {
+        assertThat(AarpIdRequired.getText(), equalTo("Required field"));
+        app.setGroupApp(NO);
+        backButton.click();
+        backButton.click();
+        VoiceSignatureApproval.click();
+        fillYesNoQuestion(GroupApp_Yes, GroupApp_No, app.getGroupApp());
+        clickNextAndWaitForSpinnerToFinish();
+        clickNextAndWaitForSpinnerToFinish();
+        clickNextAndWaitForSpinnerToFinish();
+        assertThat(AarpIdRequired.getText(), equalTo("Required field"));
+        
     }
 }
