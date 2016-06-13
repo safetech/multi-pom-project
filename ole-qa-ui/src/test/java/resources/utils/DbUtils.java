@@ -1,11 +1,7 @@
 package resources.utils;
-
 import oracle.jdbc.pool.OracleDataSource;
-
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class DbUtils {
 

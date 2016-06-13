@@ -3,7 +3,7 @@ package smokeTest;
 import com.github.javafaker.Faker;
 import resources.entity.Application;
 import resources.entity.agent.CribSheet;
-import functionaltests.CQBaseIntegrationTest;
+import functionalAndIntegrationTests.CQBaseIntegrationTest;
 import resources.pages.agentpages.oldOlePages.CheckEligibilityAndAvailabilityPage;
 import resources.pages.agentpages.uwExpansionPages.CheatPage;
 import resources.pages.agentpages.uwExpansionPages.PlanSelectionPage;

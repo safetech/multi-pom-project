@@ -9,4 +9,4 @@ target
 *.pdf
 .DS_Store
 .brackets.json
-ole-qa-ui/src/test/java/functionaltests/agent/ridersSubmissionTests/MinnesotaGoodAndBadFunctionalTest.java___jb_tmp___
+ole-qa-ui/src/test/java/functionalAndIntegrationTests/agent/ridersSubmissionTests/MinnesotaGoodAndBadFunctionalTest.java___jb_tmp___

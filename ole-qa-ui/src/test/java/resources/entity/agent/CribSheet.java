@@ -6,7 +6,7 @@ import java.util.Random;
 
 import static resources.utils.DateUtils.randBetween;
 
-public class CribSheet {
+public class CribSheet extends resources.entity.phone.CribSheet {
 
     private Faker faker;
 

@@ -1,11 +1,11 @@
 package resources;
+import org.apache.commons.lang.time.DateUtils;
 import org.junit.Test;
 
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
+
+import static resources.utils.DateUtils.COMPAS_DATE_FORMAT;
 
 
 public class playGroungForTestingMethods {
@@ -39,16 +39,26 @@ public class playGroungForTestingMethods {
 //        }
 
 
-        List<String> arrayList1= Arrays.asList("Joe", "kapil","danush");
-        List<String> arrayList2 = Arrays.asList("Joe", "kapil","Sunil");
+//        List<String> arrayList1= Arrays.asList("Joe", "kapil","danush");
+//        List<String> arrayList2 = Arrays.asList("Joe", "kapil","Sunil");
+//        
+//        List<String> commonElements = new ArrayList<String>(arrayList1);
+//        commonElements.retainAll(arrayList2);
+//        System.out.println("common elements -> "+commonElements);
+//        
+//        List<String> uniqueElementsInFirstList = new ArrayList<String>(arrayList1);
+//        uniqueElementsInFirstList.removeAll(arrayList2);
+//        System.out.println("unique elements in first list ->"+ uniqueElementsInFirstList);
+//   
+
         
-        List<String> commonElements = new ArrayList<String>(arrayList1);
-        commonElements.retainAll(arrayList2);
-        System.out.println("common elements -> "+commonElements);
         
-        List<String> uniqueElementsInFirstList = new ArrayList<String>(arrayList1);
-        uniqueElementsInFirstList.removeAll(arrayList2);
-        System.out.println("unique elements in first list ->"+ uniqueElementsInFirstList);
+
+//        System.out.print(resources.utils.DateUtils.getDOBofPersonTurningAgeToday(65));
+        
+        
+
+        
         
     }
 }

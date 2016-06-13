@@ -10,7 +10,7 @@ import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
 import resources.utils.DateUtils;
-import functionaltests.CQBaseIntegrationTest;
+import functionalAndIntegrationTests.CQBaseIntegrationTest;
 
 public class PhoneOnlineEnrollmentNotAvailableTest extends CQBaseIntegrationTest {
 

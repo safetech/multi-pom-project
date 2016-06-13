@@ -35,7 +35,7 @@ public class CheckEligibilityPage extends WizardPage {
         fill(MPBED).with(app.getMPBED());
         blur("#MPBED");
             try{
-                Thread.sleep(300);
+                Thread.sleep(500);
             }catch(Exception e){
             }
         

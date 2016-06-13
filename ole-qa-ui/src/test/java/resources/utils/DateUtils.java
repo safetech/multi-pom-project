@@ -1,11 +1,16 @@
 package resources.utils;
 
+import java.lang.reflect.Array;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.List;
+
+import static java.util.Calendar.MONTH;
+import static org.apache.xalan.xsltc.compiler.util.Type.Int;
 
 public class DateUtils {
 
@@ -42,7 +47,7 @@ public class DateUtils {
 
         gc.set(gc.DAY_OF_YEAR, dayOfYear);
 
-        return gc.get(gc.MONTH) + "/" + gc.get(gc.DAY_OF_MONTH) + "/" + gc.get(gc.YEAR);
+        return gc.get(MONTH) + "/" + gc.get(gc.DAY_OF_MONTH) + "/" + gc.get(gc.YEAR);
 
     }
 
@@ -56,13 +61,14 @@ public class DateUtils {
         Calendar cal = Calendar.getInstance();
         cal.setTime(nextMonth);
 
-        String month = Integer.toString(cal.get(Calendar.MONTH) + numberOfMonths);
+        String month = Integer.toString(cal.get(MONTH) + numberOfMonths);
         if(month.length()==1) month = "0"+month;
 
         return  month + "/01/" + Integer.toString(cal.get(Calendar.YEAR));
     }
 
     public static String getDOBofPersonTurningAgeToday(int age) {
+        
         Date dob = org.apache.commons.lang3.time.DateUtils.addYears(new Date(), -age);
         return NORMALIZED_DATE_FORMAT.format(dob);
     }
@@ -98,7 +104,11 @@ public class DateUtils {
         String month = Integer.toString(pastMonth.getMonth()+1);//Integer.toString(cal.get(Calendar.MONTH) - numberOfMonths;
 
         if(month.length()==1) month = "0"+month;
+        
         return  month + "/01/" + Integer.toString(cal.get(Calendar.YEAR));
     }
 
+    
 }
+//    Date pastMonth = org.apache.commons.lang3.time.DateUtils.addMonths(new Date(), Integer.parseInt(numberOfMonths));
+//    Date pastYear = org.apache.commons.lang3.time.DateUtils.addYears(new Date(), Integer.parseInt(String.valueOf(-numberOfYears)));
