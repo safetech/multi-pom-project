@@ -50,7 +50,7 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
         sheet.setRandomCallCenterInfo();
         sheet.setDpsdToFirstDayOfFutureMonth(3);
         sheet.setPlanCode("F01");
-
+        sheet.setGRSId(faker.numerify("######"));
         app = new Application();
 
         //Customer Info Page Question
@@ -132,7 +132,7 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
         //Replacement Notice Page
         app.setCommonReplacementNoticeAnswersWithApplicantInfo();
 
-        expectedSubmissionResult.setPendingInfo("UW - PENDING HEALTH PROFILE","UNDERWRITING REQUIRED");
+        expectedSubmissionResult.setPendingInfo("ENROLLMENT EA SPECIAL PROCESSING","EA INDIVIDUAL");
         startApp(cheatPage, app, sheet);
 
         voiceSignatureInstructionsPage.checkMarketabilityCode("M13T43AGMMME01_01E");
@@ -147,6 +147,7 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
         replacementNoticePage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
         applicationSubmissionPage.isApprovedOrPending();
+        
         submissionQueryPhone.verifySubmissionData(app, expectedSubmissionResult);
         submissionQueryPhone.verifyAdjudicationData(app, expectedSubmissionResult);
 
@@ -157,11 +158,9 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
 
         sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(68));
         sheet.setMedPartBdate("2014-01-01");
-
         // Customer Info Page
         app.setMPAED("01/01/2014");
         app.setMPBED("01/01/2014");
-
         //Eligibility Questions
         app.setKidneyProblem(NO);
         app.setEligibilitySurgery(NO);
@@ -169,13 +168,11 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
         app.setNursingFacility(NO);
         app.setEligibilityHeartAttackTIAStroke(NO);
         app.setEligibilityChronicMedicalConditions(NO);
-
 //        //Plan Application
         app.setPlanEffIn6OfEligible(NO);
         app.setContinuousCoverage(NO);
         app.setLostCoverage(NO);
         app.setTobaccoUse(NO);
-
         //Past And Current Coverage
         app.setCPATurned65(NO);
         app.setCPAPartBIn6(NO);
@@ -197,14 +194,10 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
         app.setContinuousMedicareCoverageNoGap(YES);
         app.setOtherInsReplace(YES);
         app.setCpaSignatureInd(YES);
-
         //Authorizationa and verififcation page
         app.setDesignateLapse(YES);
-
-        expectedSubmissionResult.setPendingInfo("UW - PENDING HEALTH PROFILE","UNDERWRITING REQUIRED");
-
+        
         startApp(cheatPage, app, sheet);
-
         voiceSignatureInstructionsPage.checkMarketabilityCode("M13T43AGMMME01_01E");
         voiceSignatureInstructionsPage.fillAndSubmit(app);
         customerInformationPage.fillAndSubmit(app);
@@ -217,6 +210,7 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
         reviewAndSubmitPage.fillAndSubmit(app);
         applicationSubmissionPage.isApprovedOrPending();
 
+        expectedSubmissionResult.setPendingInfo("ENROLLMENT EA SPECIAL PROCESSING","EA INDIVIDUAL");
         submissionQueryPhone.verifySubmissionData(app, expectedSubmissionResult);
         submissionQueryPhone.verifyAdjudicationData(app, expectedSubmissionResult);
 

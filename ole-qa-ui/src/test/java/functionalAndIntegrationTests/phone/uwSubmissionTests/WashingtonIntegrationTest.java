@@ -50,7 +50,7 @@ public class WashingtonIntegrationTest extends CQBaseIntegrationTest {
         sheet.setRandomCallCenterInfo();
         sheet.setDpsdToFirstDayOfFutureMonth(3);
         sheet.setPlanCode("F01");
-
+        sheet.setGRSId(faker.numerify("######"));
         app = new Application();
         // Customer Info Page Question
         app.setMedicareClaimNum(faker.bothify("#########?"));
@@ -72,11 +72,12 @@ public class WashingtonIntegrationTest extends CQBaseIntegrationTest {
     public void PHONE_Washington_FU_With_RN() throws Exception {
 
         sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(69));
-        sheet.setMedPartBdate("2012-10-01");
+
+        sheet.setMedPartBdate(DateUtils.getFirstDayOfPastOrFutureMonths(-48));
 
         //Customer Information
-        app.setMPAED("01/01/2011");
-        app.setMPBED("10/01/2012");
+        app.setMPAED(DateUtils.getFirstDayOfPastOrFutureMonths(-48));
+        app.setMPBED(DateUtils.getFirstDayOfPastOrFutureMonths(-48));
 
         //Plan Eligibility
         app.setTurned65In6GA(NO);
@@ -131,9 +132,7 @@ public class WashingtonIntegrationTest extends CQBaseIntegrationTest {
         app.setAgentAddress("ProducerAdd");
         app.setApplicantPrintedNameAdd("AppName");
         app.setApplicantAddress("AppAdd");
-
-        expectedSubmissionResult.setPendingInfo("ENROLLMENT MISSING INFORMATION", "CPA REVIEW REQUIRED");
-
+        
         logger.info(gson.toJson(app));
 
         startApp(cheatPage, app, sheet);
@@ -152,6 +151,7 @@ public class WashingtonIntegrationTest extends CQBaseIntegrationTest {
         reviewAndSubmitPage.fillAndSubmit(app);
         applicationSubmissionPage.isAt();
 
+        expectedSubmissionResult.setPendingInfo("ENROLLMENT EA SPECIAL PROCESSING","EA INDIVIDUAL NOT FOUNDMANUAL GUARANTEED ISSUE REVIEW REQUIREDUW -");
         submissionQueryPhone.verifySubmissionData(app, expectedSubmissionResult);
         submissionQueryPhone.verifyAdjudicationData(app, expectedSubmissionResult);
 
@@ -161,11 +161,11 @@ public class WashingtonIntegrationTest extends CQBaseIntegrationTest {
     public void PHONE_Washington_FU_Without_RN() throws Exception {
 
         sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(66));
-        sheet.setMedPartBdate("2016-01-01");
+        sheet.setMedPartBdate(DateUtils.getFirstDayOfPastOrFutureMonths(-12));
 
         //Customer Information
-        app.setMPAED("03/01/2011");
-        app.setMPBED("01/01/2016");
+        app.setMPAED(DateUtils.getFirstDayOfPastOrFutureMonths(-12));
+        app.setMPBED(DateUtils.getFirstDayOfPastOrFutureMonths(-12));
         //Plan Eligibility
         app.setTurned65In6GA(NO);
         app.setPartBIn6GA(YES);
@@ -173,6 +173,7 @@ public class WashingtonIntegrationTest extends CQBaseIntegrationTest {
         app.setLostCoverage(NO);
         app.setTobaccoUse(YES);
         //Plan application Questions
+        app.setLostCoverage(NO);
         app.setMedSuppReplace(NO);
         //Eligibility Page
         app.setESRD(NO);
@@ -192,7 +193,7 @@ public class WashingtonIntegrationTest extends CQBaseIntegrationTest {
         app.setExistingMedicare(NO);
         app.setOtherMedplanstart("");
         app.setOtherMedplanend("");
-        app.setIntentReplace("");
+        app.setIntentReplace(NO);
         app.setFirstTime("");
         app.setDropMedSuppForThisPlan("");
         app.setExistMedSupp(NO);
@@ -216,9 +217,7 @@ public class WashingtonIntegrationTest extends CQBaseIntegrationTest {
         app.setAgentAddress("ProducerAdd");
         app.setApplicantPrintedNameAdd("AppName");
         app.setApplicantAddress("AppAdd");
-
-        expectedSubmissionResult.setPendingInfo("ENROLLMENT CPA REVIEW","CPA REVIEW REQUIRED");
-
+        
         logger.info(gson.toJson(app));
 
         startApp(cheatPage, app, sheet);
@@ -235,6 +234,7 @@ public class WashingtonIntegrationTest extends CQBaseIntegrationTest {
         reviewAndSubmitPage.fillAndSubmit(app);
         applicationSubmissionPage.isAt();
 
+        expectedSubmissionResult.setPendingInfo("ENROLLMENT EA SPECIAL PROCESSING","EA INDIVIDUAL NOT FOUNDMANUAL GUARANTEED ISSUE REVIEW REQUIREDUW -");
         submissionQueryPhone.verifySubmissionData(app, expectedSubmissionResult);
         submissionQueryPhone.verifyAdjudicationData(app, expectedSubmissionResult);
 

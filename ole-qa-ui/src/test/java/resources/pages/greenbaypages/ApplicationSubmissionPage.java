@@ -11,7 +11,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class ApplicationSubmissionPage extends WizardPage {
 
     @FindBy(css = "#page-title") protected FluentWebElement pageTitle;
-    @FindBy(css = "#pageborder") protected FluentWebElement pageBorderContent;
+    @FindBy(css = "#colctrl_1_showhide>p>span>b") protected FluentWebElement pageBorderContent;
 
 
     public void isApprovedOrPending() {

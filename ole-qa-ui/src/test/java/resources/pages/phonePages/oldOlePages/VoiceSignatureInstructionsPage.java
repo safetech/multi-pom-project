@@ -19,7 +19,7 @@ public class VoiceSignatureInstructionsPage extends WizardPage {
 
     public void fillAndSubmit(Application app) {
 
-        //isAt();
+        isAt();
         verifyInitialStateOfElements();
 
         VoiceSignatureApproval.click();

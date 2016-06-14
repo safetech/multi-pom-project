@@ -58,7 +58,7 @@ public class NewYorkIntegrationAndQRTest extends CQBaseIntegrationTest {
         sheet.setPlanCode("F01");
         sheet.setQrIndicator("Y");
         sheet.setGRSId(faker.numerify("######"));
-        
+        sheet.setMembershipNumber(faker.numerify("#########"));
         Application app = new Application(sheet);
 
         app.setMedicareClaimNum(faker.bothify("#########A"));

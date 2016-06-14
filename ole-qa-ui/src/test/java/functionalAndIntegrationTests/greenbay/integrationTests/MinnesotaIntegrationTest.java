@@ -131,7 +131,7 @@ public class MinnesotaIntegrationTest extends CQBaseIntegrationTest {
     public void GREENBAY_Minnesota_NonQrGiWithRnAarp() throws SQLException {
         app.setExpectedReqEffectiveDates(5);
         app.setGroupApp(YES);
-        app.setEmployerId(faker.numerify("##"));
+        app.setEmployerId("000100");
         app.setDOB(DateUtils.getDOBofPersonTurningAgeToday(65));
         app.setMPAED(DateUtils.getFirstDayOfPastOrFutureMonths(-1));
         app.setMPBED(DateUtils.getFirstDayOfPastOrFutureMonths(-1));
@@ -188,6 +188,7 @@ public class MinnesotaIntegrationTest extends CQBaseIntegrationTest {
         agentVerificationPage.fillAndSubmit(app);
         replacementNotice.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
+        applicationSubmissionPage.isApprovedOrPending();
 
         expectedSubmissionResult.setPendingInfo("INFORMATION","REQUIRED");
         submissionQuery.verifySubmissionData(app, expectedSubmissionResult);

@@ -83,8 +83,6 @@ public class CaliforniaFunctionalTest extends CQBaseIntegrationTest {
         voiceSignatureInstructionsPage.checkMarketabilityCode("M14M43AGMMCA02_01D");
         voiceSignatureInstructionsPage.fillAndSubmit(app);
         customerInformationPage.fillAndSubmit(app);
-        
-
 
     }
   

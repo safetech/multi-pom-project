@@ -140,8 +140,6 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         app.setAgentAddress("ProducerAdd");
         app.setApplicantPrintedNameAdd("AppName");
         app.setApplicantAddress("AppAdd");
-        
-        
         app.setMedicalReleaseAuthSignatureIndRequired("Required");
         logger.info(gson.toJson(app));
 
@@ -159,7 +157,7 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         replacementNoticePage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
 
-        expectedSubmissionResult.setPendingInfo("","");
+        expectedSubmissionResult.setPendingInfo("ENROLLMENT EA","EA INDIVIDUAL NOT FOUND");
         submissionQueryPhone.verifySubmissionData(app, expectedSubmissionResult);
         submissionQueryPhone.verifyAdjudicationData(app, expectedSubmissionResult);
 
@@ -238,7 +236,7 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         applicationSubmissionPage.isAt();
         applicationSubmissionPage.isApprovedOrPending();
 
-        expectedSubmissionResult.setAcceptedInfo();
+        expectedSubmissionResult.setPendingInfo("ENROLLMENT EA","EA INDIVIDUAL NOT FOUND");
         submissionQueryPhone.verifySubmissionData(app, expectedSubmissionResult);
         submissionQueryPhone.verifyAdjudicationData(app, expectedSubmissionResult);
 

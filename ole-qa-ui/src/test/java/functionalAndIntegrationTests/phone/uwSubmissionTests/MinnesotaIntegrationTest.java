@@ -48,7 +48,7 @@ public class MinnesotaIntegrationTest extends CQBaseIntegrationTest {
         sheet.setRandomAddress("MN", "55001");
         sheet.setRandomContactInfo();
         sheet.setRandomCallCenterInfo();
-
+        sheet.setGRSId(faker.numerify("######"));
         app = new Application();
         // Customer Info Page Question
         app.setMedicareClaimNum(faker.bothify("#########A"));
@@ -148,7 +148,7 @@ public class MinnesotaIntegrationTest extends CQBaseIntegrationTest {
         reviewAndSubmitPage.fillAndSubmit(app);
         applicationSubmissionPage.isApprovedOrPending();
 
-        expectedSubmissionResult.verifyAcceptedPlanAndRiderCodes("TW1", "", "", "", "");
+        expectedSubmissionResult.verifyPendingPlanAndRiderCodes("TW1", "", "", "", "","","");
         submissionQueryPhone.verifyPlanAndRiderCodes(app, sheet, expectedSubmissionResult);
     }
 
@@ -226,7 +226,7 @@ public class MinnesotaIntegrationTest extends CQBaseIntegrationTest {
 
         startApp(cheatPage, app, sheet);
 
-        voiceSignatureInstructionsPage.checkMarketabilityCode("M13Z43AGMMMN01_01D");
+        voiceSignatureInstructionsPage.checkMarketabilityCode("M13Z43AGMMMN01_02D");
         voiceSignatureInstructionsPage.fillAndSubmit(app);
         customerInformationPage.fillAndSubmit(app);
         planSelectionAndStartDatePage.basicPlanGaRider23And4NoRnNoQr();
@@ -238,8 +238,7 @@ public class MinnesotaIntegrationTest extends CQBaseIntegrationTest {
         reviewAndSubmitPage.fillAndSubmit(app);
         applicationSubmissionPage.isApprovedOrPending();
 
-        expectedSubmissionResult.verifyAcceptedPlanAndRiderCodes("TW1", "YW1", "VW1", "WW1", "");
-
+        expectedSubmissionResult.verifyPendingPlanAndRiderCodes("TW1", "YW1", "VW1", "WW1", "","","");
         submissionQueryPhone.verifyPlanAndRiderCodes(app, sheet, expectedSubmissionResult);
     }
 
@@ -316,7 +315,7 @@ public class MinnesotaIntegrationTest extends CQBaseIntegrationTest {
 
         startApp(cheatPage, app, sheet);
 
-        voiceSignatureInstructionsPage.checkMarketabilityCode("M13Z43AGMMMN01_01D");
+        voiceSignatureInstructionsPage.checkMarketabilityCode("M13Z43AGMMMN01_02D");
         voiceSignatureInstructionsPage.fillAndSubmit(app);
         customerInformationPage.fillAndSubmit(app);
         planSelectionAndStartDatePage.basicPlanGaRider23And4NoRnNoQr();
@@ -328,7 +327,7 @@ public class MinnesotaIntegrationTest extends CQBaseIntegrationTest {
         reviewAndSubmitPage.fillAndSubmit(app);
         applicationSubmissionPage.isApprovedOrPending();
 
-        expectedSubmissionResult.verifyAcceptedPlanAndRiderCodes("TW1", "YW1", "VW1", "WW1", "");
+        expectedSubmissionResult.verifyPendingPlanAndRiderCodes("TW1", "YW1", "VW1", "WW1", "","","");
         submissionQueryPhone.verifyPlanAndRiderCodes(app, sheet, expectedSubmissionResult);
     }
 
@@ -406,7 +405,7 @@ public class MinnesotaIntegrationTest extends CQBaseIntegrationTest {
 
         startApp(cheatPage, app, sheet);
 
-        voiceSignatureInstructionsPage.checkMarketabilityCode("M13Z43AGMMMN01_01D");
+        voiceSignatureInstructionsPage.checkMarketabilityCode("M13Z43AGMMMN01_02D");
         voiceSignatureInstructionsPage.fillAndSubmit(app);
         customerInformationPage.fillAndSubmit(app);
         planSelectionAndStartDatePage.basicPlanGaRider234And5NoRnNoQr();
@@ -417,7 +416,7 @@ public class MinnesotaIntegrationTest extends CQBaseIntegrationTest {
         ReplacementNotice034Page.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
 
-        expectedSubmissionResult.verifyAcceptedPlanAndRiderCodes("TW1", "YW1", "VW1", "WW1", "ZW1");
+        expectedSubmissionResult.verifyPendingPlanAndRiderCodes("TW1", "YW1", "VW1", "WW1", "ZW1","","");
         submissionQueryPhone.verifyPlanAndRiderCodes(app, sheet, expectedSubmissionResult);
     }
 
@@ -497,7 +496,7 @@ public class MinnesotaIntegrationTest extends CQBaseIntegrationTest {
 
         startApp(cheatPage, app, sheet);
 
-        voiceSignatureInstructionsPage.checkMarketabilityCode("M13Z43AGMMMN01_01D");
+        voiceSignatureInstructionsPage.checkMarketabilityCode("M13Z43AGMMMN01_02D");
         voiceSignatureInstructionsPage.fillAndSubmit(app);
         customerInformationPage.fillAndSubmit(app);
         planSelectionAndStartDatePage.extendedPlanFullUwWithRnQr();

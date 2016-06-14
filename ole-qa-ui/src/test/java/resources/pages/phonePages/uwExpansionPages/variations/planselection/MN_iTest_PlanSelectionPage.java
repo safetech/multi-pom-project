@@ -30,9 +30,7 @@ public class MN_iTest_PlanSelectionPage extends WizardPage {
      @FindBy(xpath = "//*[@id='RiderChoiceSW' and @data-parentplan = 'NW']") FluentWebElement RiderChoice_SW2;
 
     public void fillAndSubmit(Application app) {
-
           isAt();
-
      }
 
     public void isAt() {
@@ -41,7 +39,7 @@ public class MN_iTest_PlanSelectionPage extends WizardPage {
 
      public void blurAndSleep() {
           try{
-               Thread.sleep(1000);
+               Thread.sleep(2000);
           }catch(Exception e){
           }
      }
@@ -63,6 +61,7 @@ public class MN_iTest_PlanSelectionPage extends WizardPage {
         clickNextAndWaitForSpinnerToFinish();
         blurAndSleep();
         Update_Rider_Selection.click();
+        blurAndSleep();
         RiderChoice_XW.click();
         RiderChoice_WW.click();
         clickNextAndWaitForSpinnerToFinish();

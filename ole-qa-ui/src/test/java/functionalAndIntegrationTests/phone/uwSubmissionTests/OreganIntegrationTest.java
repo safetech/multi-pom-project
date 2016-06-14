@@ -50,7 +50,7 @@ public class OreganIntegrationTest extends CQBaseIntegrationTest {
         sheet.setRandomCallCenterInfo();
         sheet.setDpsdToFirstDayOfFutureMonth(3);
         sheet.setPlanCode("F01");
-
+        sheet.setGRSId(faker.numerify("######"));
         app = new Application();
         // Customer Info Page Question
         app.setMedicareClaimNum(faker.bothify("#########A"));
@@ -131,9 +131,7 @@ public class OreganIntegrationTest extends CQBaseIntegrationTest {
         app.setAgentAddress("ProducerAdd");
         app.setApplicantPrintedNameAdd("AppName");
         app.setApplicantAddress("AppAdd");
-
-        expectedSubmissionResult.setAcceptedInfo();
-
+        
         logger.info(gson.toJson(app));
 
         startApp(cheatPage, app, sheet);
@@ -151,8 +149,9 @@ public class OreganIntegrationTest extends CQBaseIntegrationTest {
         ReplacementNotice034Page.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
         applicationSubmissionPage.isAt();
-
         applicationSubmissionPage.isApprovedOrPending();
+
+        expectedSubmissionResult.setPendingInfo("ENROLLMENT EA SPECIAL PROCESSING","EA INDIVIDUAL NOT FOUNDMANUAL GUARANTEED ISSUE REVIEW REQUIREDUW -");
         submissionQueryPhone.verifySubmissionData(app, expectedSubmissionResult);
         submissionQueryPhone.verifyAdjudicationData(app, expectedSubmissionResult);
 
@@ -174,6 +173,7 @@ public class OreganIntegrationTest extends CQBaseIntegrationTest {
         //Plan application Questions
         app.setMedSuppReplace(NO);
         app.setGI30dayBday(NO);
+        app.setPlanEffIn6OfEligible(NO);
         //Eligibility Questions
         app.setESRD(NO);
         app.setSurgeryNeeded(NO);
@@ -219,8 +219,6 @@ public class OreganIntegrationTest extends CQBaseIntegrationTest {
         app.setApplicantPrintedNameAdd("AppName");
         app.setApplicantAddress("AppAdd");
 
-        expectedSubmissionResult.setAcceptedInfo();
-
         logger.info(gson.toJson(app));
 
         startApp(cheatPage, app, sheet);
@@ -238,6 +236,7 @@ public class OreganIntegrationTest extends CQBaseIntegrationTest {
         applicationSubmissionPage.isAt();
         applicationSubmissionPage.isApprovedOrPending();
 
+        expectedSubmissionResult.setPendingInfo("","");
         submissionQueryPhone.verifySubmissionData(app, expectedSubmissionResult);
         submissionQueryPhone.verifyAdjudicationData(app, expectedSubmissionResult);
 
