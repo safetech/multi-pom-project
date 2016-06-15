@@ -149,7 +149,7 @@ public class SubmissionQueryDtc {
             "  left outer join individual c on b.individual_id = c.individual_id)\n" +
             "  left outer join household_billing_profile d on b.household_id = d.household_id\n" +
             "where \n" +
-            "  b.MEMBERSHIP_NUMBER = substr(%s,1, LENGTH(%s) - 1)\n";
+            "  b.MEMBERSHIP_NUMBER = substr(%s,1, LENGTH(%s) - 1)";
 
     public void verifyPlanAndRiderCodes(Application app, CribSheet sheet, SubmissionResult expectedSubmissionResult) throws SQLException {
         SELECTED_COMPAS_ENVIRONMENT = PropertyUtils.getProperty("compas.db");

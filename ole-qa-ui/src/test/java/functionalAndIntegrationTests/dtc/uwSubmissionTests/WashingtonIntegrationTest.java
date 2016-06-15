@@ -146,7 +146,7 @@ public class WashingtonIntegrationTest extends CQBaseIntegrationTest {
         planPaymentOptionsPage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
 
-        expectedSubmissionResult.setPendingInfo("REVIEW", "REQUIRED");
+        expectedSubmissionResult.setAcceptedInfo();
         submissionQuery.verifySubmissionData(app, expectedSubmissionResult);
         submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
 
@@ -239,7 +239,7 @@ public class WashingtonIntegrationTest extends CQBaseIntegrationTest {
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);
 
-        whatYouNeedPage.checkMarketabilityCode("S13J43AGMMWA02_01D");
+        whatYouNeedPage.checkMarketabilityCode("S13J43AGMMWA02_02B");
         whatYouNeedPage.clickNextAndWaitForSpinnerToFinish();
         electronicSignatureAndDocumentConsentPage.clickNextAndWaitForSpinnerToFinish();
         aboutYouPage.fillAndSubmit(app, sheet);

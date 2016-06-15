@@ -37,7 +37,7 @@ public class SubmissionQueryAgent {
         " left outer join work_queue_item e on a.tracking_number = e.tracking_number)\n" +
         " left outer join work_queue_type g on e.type_id = g.type_id)  \n" +
         " where\n" +
-        " b.MEMBERSHIP_NUMBER = substr(%s,1,9)";
+        " b.MEMBERSHIP_NUMBER = substr(%s,1, LENGTH(%s) - 1)";
 
     private String SUBMISSION_QUERY =
         "select \n" +
@@ -86,7 +86,7 @@ public class SubmissionQueryAgent {
         " left outer join individual c on b.individual_id = c.individual_id)\n" +
         " left outer join household_billing_profile d on b.household_id = d.household_id\n" +
         " where\n" +
-        " b.MEMBERSHIP_NUMBER = substr(%s,1,9)";
+        " b.MEMBERSHIP_NUMBER = substr(%s,1, LENGTH(%s) - 1)";
 
 
     public void verifyUwExpansionSubmissionData(Application app, SubmissionResult expectedSubmissionResult) throws SQLException {
@@ -179,7 +179,7 @@ public class SubmissionQueryAgent {
         "  left outer join individual c on b.individual_id = c.individual_id)\n" +
         "  left outer join household_billing_profile d on b.household_id = d.household_id\n" +
         " where\n" +
-        "  b.MEMBERSHIP_NUMBER = substr(%s,1,9)";
+        "  b.MEMBERSHIP_NUMBER = substr(%s,1, LENGTH(%s) - 1)";
 
     public void verifyPlanAndRiderCodes(Application app, SubmissionResult expectedSubmissionResult) throws SQLException {
         SELECTED_COMPAS_ENVIRONMENT = PropertyUtils.getProperty("compas.db");

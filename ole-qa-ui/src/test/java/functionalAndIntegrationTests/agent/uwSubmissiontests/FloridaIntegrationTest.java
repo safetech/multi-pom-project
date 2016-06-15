@@ -167,7 +167,7 @@ public class FloridaIntegrationTest extends CQBaseIntegrationTest {
 
         checkEligibilityAndAvailabilityPage.isAt();
         checkEligibilityAndAvailabilityPage.fillAndSubmit(app);
-        planSelectionPage.checkMarketabilityCode("M14M43AGMMCA01_01D");
+        planSelectionPage.checkMarketabilityCode("S03Q43AGMMFL03_02B");
         planSelectionPage.fillAndSubmit(app);
         whatYouNeedPage.fillAndSubmit(app);
         customerInformationPage.fillAndSubmit(app);
@@ -291,12 +291,11 @@ public class FloridaIntegrationTest extends CQBaseIntegrationTest {
         app.setAgencyAddress("Agency Address");
         app.setAgencyPhone("2346759876");
         app.setMailingAddressCheck(NO);
-        expectedSubmissionResult.setPendingInfo("ENROLLMENT MEMBERSHIP VERIFICATION", "VERIFY MEMBER NUMBER");
-
+        
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);
         checkEligibilityAndAvailabilityPage.fillAndSubmit(app);
-        planSelectionPage.checkMarketabilityCode("M14M43AGMMCA01_01D");
+        planSelectionPage.checkMarketabilityCode("S03Q43AGMMFL03_02B");
         planSelectionPage.fillAndSubmit(app);
         whatYouNeedPage.fillAndSubmit(app);
         customerInformationPage.fillAndSubmit(app);
@@ -311,6 +310,7 @@ public class FloridaIntegrationTest extends CQBaseIntegrationTest {
         reviewAndSubmitPage.fillAndSubmit(app);
         applicationSubmissionPage.isPending();
 
+        expectedSubmissionResult.setPendingInfo("ENROLLMENT MEMBERSHIP VERIFICATION", "VERIFY MEMBER NUMBER");
         submissionQuery.verifySubmissionData(app, expectedSubmissionResult);
         submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
 

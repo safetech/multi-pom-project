@@ -160,16 +160,14 @@ public class WashingtonIntegrationTest extends CQBaseIntegrationTest {
     @Test
     public void PHONE_Washington_FU_Without_RN() throws Exception {
 
-        sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(66));
-        sheet.setMedPartBdate(DateUtils.getFirstDayOfPastOrFutureMonths(-12));
-
-        //Customer Information
-        app.setMPAED(DateUtils.getFirstDayOfPastOrFutureMonths(-12));
-        app.setMPBED(DateUtils.getFirstDayOfPastOrFutureMonths(-12));
+        sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(67));
+        sheet.setMedPartBdate(DateUtils.getFirstDayOfPastOrFutureMonths(-7));
+        app.setMPAED(DateUtils.getFirstDayOfPastOrFutureMonths(-7));
+        app.setMPBED(DateUtils.getFirstDayOfPastOrFutureMonths(-7));
         //Plan Eligibility
         app.setTurned65In6GA(NO);
         app.setPartBIn6GA(YES);
-        app.setPlanEffIn6OfEligible(YES);
+        app.setPlanEffIn6OfEligible(NO);
         app.setLostCoverage(NO);
         app.setTobaccoUse(YES);
         //Plan application Questions
@@ -193,7 +191,7 @@ public class WashingtonIntegrationTest extends CQBaseIntegrationTest {
         app.setExistingMedicare(NO);
         app.setOtherMedplanstart("");
         app.setOtherMedplanend("");
-        app.setIntentReplace(NO);
+        app.setIntentReplace("");
         app.setFirstTime("");
         app.setDropMedSuppForThisPlan("");
         app.setExistMedSupp(NO);
@@ -225,9 +223,9 @@ public class WashingtonIntegrationTest extends CQBaseIntegrationTest {
         voiceSignatureInstructionsPage.checkMarketabilityCode("S13J43AGMMWA02_01D");
         voiceSignatureInstructionsPage.fillAndSubmit(app);
         customerInformationPage.fillAndSubmit(app);
-        // The above resources.util.pages will always appear
         planSelectionAndStartDatePage.fillAndSubmit(app);
         planApplicationQuestionsPage.fillAndSubmit(app);
+        eligibilityHealthQuestionsPage.fillAndSubmit(app);
         pastAndCurrentInsuranceCoveragePage.fillAndSubmit(app);
         authorizationAndVerificationPage.fillAndSubmit(app);
         agentVerificationPage.fillAndSubmit(app);

@@ -17,8 +17,8 @@ public class WA_PlanApplicationQuestions extends PlanApplicationQuestions {
 
     public void verifyInitialStateOfElements(Application app) {
         assertQuestionCount(TOTAL_POSSIBLE_QUESTION_COUNT);
-        if (app.getPlanEffIn6OfEligible().equals("yes")){
-            assertHidden(MedSuppReplace_Yes, MedSuppReplace_No);
+        if (app.getPlanEffIn6OfEligible().equals(YES)){
+            assertBlank(MedSuppReplace_Yes, MedSuppReplace_No);
             assertHidden(LostCoverage_Yes, LostCoverage_No);
 
         } else {

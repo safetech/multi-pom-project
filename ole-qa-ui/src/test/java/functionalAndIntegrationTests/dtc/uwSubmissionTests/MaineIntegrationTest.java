@@ -148,7 +148,7 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
         planPaymentOptionsPage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
 
-        expectedSubmissionResult.setPendingInfo("UW - ", "REQUIRED");
+        expectedSubmissionResult.setPendingInfo("ENROLLMENT STATE MANDATE","STATE MANDATE");
         submissionQuery.verifySubmissionData(app, expectedSubmissionResult);
         submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
 
@@ -251,7 +251,7 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
         planPaymentOptionsPage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
 
-        expectedSubmissionResult.setAcceptedInfo();
+        expectedSubmissionResult.setPendingInfo("ENROLLMENT STATE MANDATE","STATE MANDATE");
         submissionQuery.verifySubmissionData(app, expectedSubmissionResult);
         submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
 

@@ -139,7 +139,7 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);
         checkEligibilityAndAvailabilityPage.fillAndSubmit(app);
-        planSelectionPage.checkMarketabilityCode("M13T43AGMMME01_01E");
+        planSelectionPage.checkMarketabilityCode("M13Z43AGMMMN01_02D");
         planSelectionPage.fillAndSubmit(app);
         whatYouNeedPage.fillAndSubmit(app);
         customerInformationPage.fillAndSubmit(app);
@@ -173,7 +173,7 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
         app.setMPBED(DateUtils.getFirstDayOfPastOrFutureMonths(-10));
         app.setMPAED(DateUtils.getFirstDayOfPastOrFutureMonths(-10));
         //TestData
-        app.setAARPMembershipNumber(faker.numerify("###########"));
+        app.setAARPMembershipNumber(faker.numerify("##########"));
         app.setPrefix("MR");
         app.setFirstName(app.getState()+"Agent_FU_InteliJ");
         app.setLastName(faker.letterify("??????????"));
@@ -260,7 +260,7 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
         cheatPage.fillAndSubmit(sheet);
 
         checkEligibilityAndAvailabilityPage.fillAndSubmit(app);
-        planSelectionPage.checkMarketabilityCode("M13T43AGMMME01_01E");
+        planSelectionPage.checkMarketabilityCode("M13Z43AGMMMN01_02D");
         planSelectionPage.fillAndSubmit(app);
         whatYouNeedPage.fillAndSubmit(app);
         customerInformationPage.fillAndSubmit(app);
@@ -274,7 +274,7 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
         paymentDetailsSummaryPage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
 
-        expectedSubmissionResult.setPendingInfo("INFORMATION","REQUIRED");
+        expectedSubmissionResult.setPendingInfo("ENROLLMENT STATE MANDATE","STATE MANDATE");
         submissionQuery.verifyUwExpansionSubmissionData(app, expectedSubmissionResult);
         submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
 

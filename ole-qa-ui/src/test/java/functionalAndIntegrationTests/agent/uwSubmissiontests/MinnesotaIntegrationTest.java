@@ -131,7 +131,7 @@ public class MinnesotaIntegrationTest extends CQBaseIntegrationTest {
         cheatPage.fillAndSubmit(sheet);
 
         checkEligibilityAndAvailabilityPage.fillAndSubmit(app);
-        planSelectionPage.checkMarketabilityCode("M13Z43AGMMMN01_01D");
+        planSelectionPage.checkMarketabilityCode("M13Z43AGMMMN01_02D");
         planSelectionPage.fillAndSubmit(app);
         whatYouNeedPage.fillAndSubmit(app);
         customerInformationPage.fillAndSubmit(app);
@@ -264,7 +264,7 @@ public class MinnesotaIntegrationTest extends CQBaseIntegrationTest {
         cheatPage.fillAndSubmit(sheet);
 
         checkEligibilityAndAvailabilityPage.fillAndSubmit(app);
-        planSelectionPage.checkMarketabilityCode("M13Z43AGMMMN01_01D");
+        planSelectionPage.checkMarketabilityCode("M13Z43AGMMMN01_02D");
         planSelectionPage.fillAndSubmit(app);
         whatYouNeedPage.fillAndSubmit(app);
         customerInformationPage.fillAndSubmit(app);
