@@ -16,7 +16,7 @@ import resources.pages.agentpages.uwExpansionPages.variations.eligibilityhealthq
 import resources.pages.agentpages.uwExpansionPages.variations.planapplication.MN_PlanApplicationQuestionsPage;
 import resources.pages.agentpages.uwExpansionPages.variations.planselection.riders_MN_PlanSelectionPage;
 import resources.pages.agentpages.oldOlePages.variations.replacenotice.RN034andRE073WithSignaturePage;
-import queries.SubmissionQueryAgent;
+import queries.AgentSubmissionQuery;
 import resources.utils.DateUtils;
 
 ;
@@ -40,14 +40,14 @@ public class MinnesotaIntegrationTest extends CQBaseIntegrationTest {
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
     @Page public ApplicationSubmissionPage applicationSubmissionPage;
 
-    public SubmissionQueryAgent submissionQuery;
+    public AgentSubmissionQuery submissionQuery;
     private Faker faker;
     private CribSheet sheet;
     private SubmissionResult expectedSubmissionResult;
 
     @Before
     public void setup() {
-        submissionQuery = new SubmissionQueryAgent();
+        submissionQuery = new AgentSubmissionQuery();
         faker = new Faker();
         sheet = new CribSheet(faker);
         app = new Application();

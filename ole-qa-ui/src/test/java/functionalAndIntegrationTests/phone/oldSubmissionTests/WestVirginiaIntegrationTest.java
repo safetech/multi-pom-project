@@ -13,7 +13,7 @@ import resources.pages.phonepages.oldOlePages.variations.authorization.WV_Author
 import resources.pages.phonepages.oldOlePages.variations.pastandcurrentcoverage.MN_GA_MI_PastAndCurrentInsuranceCoveragePage;
 import resources.pages.phonepages.oldOlePages.variations.planapplication.OH_MI_TX_PlanApplicationQuestions;
 import resources.pages.phonepages.oldOlePages.variations.replacementnotice.RN034andRE073Page;
-import queries.SubmissionQueryPhone;
+import queries.PhoneSubmissionQuery;
 import resources.utils.DateUtils;
 
 public class WestVirginiaIntegrationTest extends CQBaseIntegrationTest {
@@ -32,14 +32,14 @@ public class WestVirginiaIntegrationTest extends CQBaseIntegrationTest {
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
     @Page public ApplicationSubmissionPage applicationSubmissionPage;
 
-    public SubmissionQueryPhone submissionQueryPhone;
+    public PhoneSubmissionQuery phoneSubmissionQuery;
     private Faker faker;
     private CribSheet sheet;
     private SubmissionResult expectedSubmissionResult;
 
     @Before
     public void setup() {
-        submissionQueryPhone = new SubmissionQueryPhone();
+        phoneSubmissionQuery = new PhoneSubmissionQuery();
         faker = new Faker();
         sheet = new CribSheet(faker);
         expectedSubmissionResult = new SubmissionResult();
@@ -166,8 +166,8 @@ public class WestVirginiaIntegrationTest extends CQBaseIntegrationTest {
         applicationSubmissionPage.isAt();
         applicationSubmissionPage.isPending();
 
-        submissionQueryPhone.verifySubmissionData(app, expectedSubmissionResult);
-        submissionQueryPhone.verifyAdjudicationData(app, expectedSubmissionResult);
+        phoneSubmissionQuery.verifySubmissionData(app, expectedSubmissionResult);
+        phoneSubmissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
 
     }
 
@@ -272,8 +272,8 @@ public class WestVirginiaIntegrationTest extends CQBaseIntegrationTest {
         applicationSubmissionPage.isAt();
         applicationSubmissionPage.isApproved();
 
-        submissionQueryPhone.verifySubmissionData(app, expectedSubmissionResult);
-        submissionQueryPhone.verifyAdjudicationData(app, expectedSubmissionResult);
+        phoneSubmissionQuery.verifySubmissionData(app, expectedSubmissionResult);
+        phoneSubmissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
 
     }
 

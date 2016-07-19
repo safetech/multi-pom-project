@@ -12,7 +12,7 @@ import org.junit.Test;
 import resources.pages.agentpages.oldOlePages.variations.currentinsurancecoverage.AR_PA_OR_CurrentInsuranceCoveragePage;
 import resources.pages.agentpages.oldOlePages.variations.planapplication.AR_PA_PlanApplicationQuestionsPage;
 import resources.pages.agentpages.oldOlePages.variations.replacenotice.RN034_AR_Page;
-import queries.SubmissionQueryAgent;
+import queries.AgentSubmissionQuery;
 import resources.utils.DateUtils;
 
 public class ArkansasIntegrationTest extends CQBaseIntegrationTest {
@@ -34,14 +34,14 @@ public class ArkansasIntegrationTest extends CQBaseIntegrationTest {
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
     @Page public ApplicationSubmissionPage applicationSubmissionPage;
 
-    public SubmissionQueryAgent submissionQuery;
+    public AgentSubmissionQuery submissionQuery;
     private Faker faker;
     private CribSheet sheet;
     private SubmissionResult expectedSubmissionResult;
 
     @Before
     public void setup() {
-        submissionQuery = new SubmissionQueryAgent();
+        submissionQuery = new AgentSubmissionQuery();
         faker = new Faker();
         sheet = new CribSheet(faker);
         expectedSubmissionResult = new SubmissionResult();
@@ -276,7 +276,6 @@ public class ArkansasIntegrationTest extends CQBaseIntegrationTest {
         app.setAgencyName("Agency Name");
         app.setAgencyAddress("Agency Address");
         app.setAgencyPhone("2346759876");
-        expectedSubmissionResult.setPendingInfo("ENROLLMENT MEMBERSHIP VERIFICATION", "VERIFY MEMBER NUMBER");
 
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);
@@ -296,6 +295,7 @@ public class ArkansasIntegrationTest extends CQBaseIntegrationTest {
         paymentDetailsSummaryPage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
 
+        expectedSubmissionResult.setPendingInfo("ENROLLMENT MEMBERSHIP VERIFICATION", "VERIFY MEMBER NUMBER");
         submissionQuery.verifySubmissionData(app, expectedSubmissionResult);
         submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
 

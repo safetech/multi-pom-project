@@ -13,7 +13,7 @@ import resources.pages.dtcpages.uwExpansionPages.variations.planselectionandstar
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
-import queries.SubmissionQueryDtc;
+import queries.DtcSubmissionQuery;
 import resources.utils.DateUtils;
 
 
@@ -32,14 +32,14 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
     @Page public HealthHistoryQuestionsPage healthHistoryQuestionsPage;
 
-    public SubmissionQueryDtc submissionQuery;
+    public DtcSubmissionQuery submissionQuery;
     private Faker faker;
     protected CribSheet sheet;
     private SubmissionResult expectedSubmissionResult;
 
     @Before
     public void setup() {
-        submissionQuery = new SubmissionQueryDtc();
+        submissionQuery = new DtcSubmissionQuery();
         faker = new Faker();
         sheet = new CribSheet(faker);
         sheet.setState("ME");

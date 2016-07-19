@@ -13,7 +13,7 @@ import resources.pages.dtcpages.oldOlePages.variations.authorization.WI_Authoriz
 import resources.pages.dtcpages.oldOlePages.variations.pastandcurrentcoverage.AR_CA_PA_WI_MN_PastAndCurrentCoveragePage;
 import resources.pages.dtcpages.oldOlePages.variations.planapplication.AR_PA_WI_PlanApplicationQuestionsPage;
 import resources.pages.dtcpages.oldOlePages.variations.planselectionandstartdate.PA_AR_NV_MA_PlanSelectionAndStartDatePage;
-import queries.SubmissionQueryDtc;
+import queries.DtcSubmissionQuery;
 import resources.utils.DateUtils;
 
 import java.text.SimpleDateFormat;
@@ -35,7 +35,7 @@ public class WisconsinIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
     @Page public HealthHistoryQuestionsPage healthHistoryQuestionsPage;
 
-    public SubmissionQueryDtc submissionQuery;
+    public DtcSubmissionQuery submissionQuery;
     private Faker faker;
     protected CribSheet sheet;
     private SubmissionResult expectedSubmissionResult;
@@ -44,7 +44,7 @@ public class WisconsinIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
     public void setup() {
         faker = new Faker();
         sheet = new CribSheet(faker);
-        submissionQuery = new SubmissionQueryDtc();
+        submissionQuery = new DtcSubmissionQuery();
         expectedSubmissionResult = new SubmissionResult();
         app = new Application();
         logger.info(gson.toJson(app));

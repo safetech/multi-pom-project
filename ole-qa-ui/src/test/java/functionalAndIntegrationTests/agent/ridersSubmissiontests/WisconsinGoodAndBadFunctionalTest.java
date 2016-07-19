@@ -13,7 +13,7 @@ import resources.pages.agentpages.oldOlePages.variations.currentinsurancecoverag
 import resources.pages.agentpages.oldOlePages.variations.planapplication.AR_PA_PlanApplicationQuestionsPage;
 import resources.pages.agentpages.oldOlePages.variations.planselection.riders_WI_PlanSelectionPage;
 import resources.pages.agentpages.oldOlePages.variations.replacenotice.RN034_AR_Page;
-import queries.SubmissionQueryAgent;
+import queries.AgentSubmissionQuery;
 import resources.utils.DateUtils;
 
 public class WisconsinGoodAndBadFunctionalTest extends CQBaseIntegrationTest {
@@ -35,14 +35,14 @@ public class WisconsinGoodAndBadFunctionalTest extends CQBaseIntegrationTest {
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
     @Page public ApplicationSubmissionPage applicationSubmissionPage;
 
-    public SubmissionQueryAgent submissionQuery;
+    public AgentSubmissionQuery submissionQuery;
     private Faker faker;
     private CribSheet sheet;
     private SubmissionResult expectedSubmissionResult;
 
     @Before
     public void setup() {
-        submissionQuery = new SubmissionQueryAgent();
+        submissionQuery = new AgentSubmissionQuery();
         faker = new Faker();
         sheet = new CribSheet(faker);
 

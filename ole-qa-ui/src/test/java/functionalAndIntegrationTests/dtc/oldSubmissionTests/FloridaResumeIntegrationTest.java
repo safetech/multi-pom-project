@@ -11,7 +11,7 @@ import org.junit.Before;
 import org.junit.Test;
 import resources.pages.dtcpages.oldOlePages.variations.planapplication.NV_MA_PlanApplicationQuestionsPage;
 import resources.pages.dtcpages.oldOlePages.variations.planselectionandstartdate.PA_AR_NV_MA_PlanSelectionAndStartDatePage;
-import queries.SubmissionQueryDtc;
+import queries.DtcSubmissionQuery;
 import resources.utils.DateUtils;
 
 public class FloridaResumeIntegrationTest extends CQBaseIntegrationTest {
@@ -31,14 +31,14 @@ public class FloridaResumeIntegrationTest extends CQBaseIntegrationTest {
     @Page public UniqueIDEntryPage uniqueIDEntryPage;
     @Page public ResumeApplicationPage resumeApplicationPage;
 
-    public SubmissionQueryDtc submissionQuery;
+    public DtcSubmissionQuery submissionQuery;
     private Faker faker;
     private CribSheet sheet;
     private SubmissionResult expectedSubmissionResult;
 
     @Before
     public void setup() {
-        submissionQuery = new SubmissionQueryDtc();
+        submissionQuery = new DtcSubmissionQuery();
         faker = new Faker();
         sheet = new CribSheet(faker);
         expectedSubmissionResult = new SubmissionResult();

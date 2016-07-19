@@ -12,7 +12,7 @@ import org.junit.Test;
 import resources.pages.phonepages.oldOlePages.variations.pastandcurrentcoverage.CA_PA_NJ_IN_OR_PastAndCurrentInsuranceCoveragePage;
 import resources.pages.phonepages.oldOlePages.variations.planapplication.VA_NJ_IL_LA_NC_KY_AR_PlanApplicationQuestions;
 import resources.pages.phonepages.oldOlePages.variations.replacementnotice.AR_RN034Page;
-import queries.SubmissionQueryPhone;
+import queries.PhoneSubmissionQuery;
 import resources.utils.DateUtils;
 
 public class ArkansasIntegrationTest extends CQBaseIntegrationTest {
@@ -31,7 +31,7 @@ public class ArkansasIntegrationTest extends CQBaseIntegrationTest {
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
     @Page public ApplicationSubmissionPage applicationSubmissionPage;
 
-    public SubmissionQueryPhone submissionQueryPhone;
+    public PhoneSubmissionQuery phoneSubmissionQuery;
 
     private Faker faker;
     private CribSheet sheet;
@@ -39,7 +39,7 @@ public class ArkansasIntegrationTest extends CQBaseIntegrationTest {
 
     @Before
     public void setup() {
-        submissionQueryPhone = new SubmissionQueryPhone();
+        phoneSubmissionQuery = new PhoneSubmissionQuery();
         faker = new Faker();
         sheet = new CribSheet(faker);
         expectedSubmissionResult = new SubmissionResult();
@@ -141,8 +141,8 @@ public class ArkansasIntegrationTest extends CQBaseIntegrationTest {
         reviewAndSubmitPage.fillAndSubmit(app);
         applicationSubmissionPage.isPending();
 
-        submissionQueryPhone.verifySubmissionData(app, expectedSubmissionResult);
-        submissionQueryPhone.verifyAdjudicationData(app, expectedSubmissionResult);
+        phoneSubmissionQuery.verifySubmissionData(app, expectedSubmissionResult);
+        phoneSubmissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
 
     }
 
@@ -240,8 +240,8 @@ public class ArkansasIntegrationTest extends CQBaseIntegrationTest {
         reviewAndSubmitPage.fillAndSubmit(app);
         applicationSubmissionPage.isPending();
 
-        submissionQueryPhone.verifySubmissionData(app, expectedSubmissionResult);
-        submissionQueryPhone.verifyAdjudicationData(app, expectedSubmissionResult);
+        phoneSubmissionQuery.verifySubmissionData(app, expectedSubmissionResult);
+        phoneSubmissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
 
     }
 

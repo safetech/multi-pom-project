@@ -12,7 +12,7 @@ import org.junit.Test;
 import resources.pages.agentpages.oldOlePages.variations.currentinsurancecoverage.MA_CurrentInsuranceCoveragePage;
 import resources.pages.agentpages.oldOlePages.variations.planapplication.NV_PlanApplicationQuestionsPage;
 import resources.pages.agentpages.oldOlePages.variations.replacenotice.RN034andRE073WithSignaturePage;
-import queries.SubmissionQueryAgent;
+import queries.AgentSubmissionQuery;
 
 public class MassachusettsIntegrationTest extends CQBaseIntegrationTest {
 
@@ -33,14 +33,14 @@ public class MassachusettsIntegrationTest extends CQBaseIntegrationTest {
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
 
 
-    public SubmissionQueryAgent submissionQuery;
+    public AgentSubmissionQuery submissionQuery;
     private Faker faker;
     private CribSheet sheet;
     private SubmissionResult expectedSubmissionResult;
 
     @Before
     public void setup() {
-        submissionQuery = new SubmissionQueryAgent();
+        submissionQuery = new AgentSubmissionQuery();
         faker = new Faker();
         sheet = new CribSheet(faker);
 

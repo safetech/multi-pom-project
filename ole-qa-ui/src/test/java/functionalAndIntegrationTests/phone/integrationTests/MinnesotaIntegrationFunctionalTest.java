@@ -13,7 +13,7 @@ import resources.pages.phonepages.oldOlePages.variations.replacementnotice.RN034
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
-import queries.SubmissionQueryPhone;
+import queries.PhoneSubmissionQuery;
 import resources.utils.DateUtils;
 
 public class MinnesotaIntegrationFunctionalTest extends CQBaseIntegrationTest {
@@ -32,14 +32,14 @@ public class MinnesotaIntegrationFunctionalTest extends CQBaseIntegrationTest {
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
     @Page public ApplicationSubmissionPage applicationSubmissionPage;
 
-    public SubmissionQueryPhone submissionQueryPhone;
+    public PhoneSubmissionQuery phoneSubmissionQuery;
     private Faker faker;
     private CribSheet sheet;
     private SubmissionResult expectedSubmissionResult;
 
     @Before
       public void setup() {
-        submissionQueryPhone = new SubmissionQueryPhone();
+        phoneSubmissionQuery = new PhoneSubmissionQuery();
         faker = new Faker();
 
         sheet = new CribSheet(faker);
@@ -151,7 +151,7 @@ public class MinnesotaIntegrationFunctionalTest extends CQBaseIntegrationTest {
         reviewAndSubmitPage.fillAndSubmit(app);
 
         expectedSubmissionResult.verifyAcceptedPlanAndRiderCodes("TW1", "", "", "", "");
-        submissionQueryPhone.verifyPlanAndRiderCodes(app, sheet, expectedSubmissionResult);
+        phoneSubmissionQuery.verifyPlanAndRiderCodes(app, sheet, expectedSubmissionResult);
     }
     @Test
     public void MN_MNP1b_BaiscGaPlanRider1And3NoRnNoQr() throws Exception {
@@ -237,7 +237,7 @@ public class MinnesotaIntegrationFunctionalTest extends CQBaseIntegrationTest {
         reviewAndSubmitPage.fillAndSubmit(app);
 
         expectedSubmissionResult.verifyAcceptedPlanAndRiderCodes("TW1", "YW1", "VW1", "WW1", "");
-        submissionQueryPhone.verifyPlanAndRiderCodes(app, sheet, expectedSubmissionResult);
+        phoneSubmissionQuery.verifyPlanAndRiderCodes(app, sheet, expectedSubmissionResult);
     }
     @Test
     public void MN_MNP2_BaiscGaPlanRider1NoRnNoQr() throws Exception {
@@ -323,7 +323,7 @@ public class MinnesotaIntegrationFunctionalTest extends CQBaseIntegrationTest {
         reviewAndSubmitPage.fillAndSubmit(app);
 
         expectedSubmissionResult.verifyAcceptedPlanAndRiderCodes("TW1", "YW1", "VW1", "WW1", "");
-        submissionQueryPhone.verifyPlanAndRiderCodes(app, sheet, expectedSubmissionResult);
+        phoneSubmissionQuery.verifyPlanAndRiderCodes(app, sheet, expectedSubmissionResult);
     }
     @Test
     public void MN_MNP3_BaiscPlanRider234And5FullUwWithRnNoQr() throws Exception {
@@ -411,7 +411,7 @@ public class MinnesotaIntegrationFunctionalTest extends CQBaseIntegrationTest {
         reviewAndSubmitPage.fillAndSubmit(app);
 
         expectedSubmissionResult.verifyAcceptedPlanAndRiderCodes("TW1", "YW1", "VW1", "WW1", "ZW1");
-        submissionQueryPhone.verifyPlanAndRiderCodes(app, sheet, expectedSubmissionResult);
+        phoneSubmissionQuery.verifyPlanAndRiderCodes(app, sheet, expectedSubmissionResult);
     }
     @Test
     public void MN_MNP4_ExtendedPlanFullUwWithRnAndQr() throws Exception {
@@ -499,7 +499,7 @@ public class MinnesotaIntegrationFunctionalTest extends CQBaseIntegrationTest {
         reviewAndSubmitPage.fillAndSubmit(app);
 
         expectedSubmissionResult.verifyPendingAndWorkQPlanAndRiderCodes("UW1", "", "", "", "", "", "");
-        submissionQueryPhone.verifyQrYPendingPlanAndRiderCodes(app, sheet, expectedSubmissionResult);
+        phoneSubmissionQuery.verifyQrYPendingPlanAndRiderCodes(app, sheet, expectedSubmissionResult);
     }
 }
 

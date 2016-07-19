@@ -15,7 +15,7 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.slf4j.LoggerFactory.getLogger;
 
-public class SubmissionQueryAgent {
+public class AgentSubmissionQuery {
     private final Logger logger = getLogger(this.getClass());
 
     private String SELECTED_COMPAS_ENVIRONMENT;

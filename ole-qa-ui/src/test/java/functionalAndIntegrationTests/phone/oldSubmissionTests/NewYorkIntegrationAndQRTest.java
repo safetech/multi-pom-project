@@ -5,7 +5,7 @@ import functionalAndIntegrationTests.CQBaseIntegrationTest;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
-import queries.SubmissionQueryPhone;
+import queries.PhoneSubmissionQuery;
 import resources.entity.Application;
 import resources.entity.SubmissionResult;
 import resources.entity.phone.CribSheet;
@@ -31,14 +31,14 @@ public class NewYorkIntegrationAndQRTest extends CQBaseIntegrationTest {
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
     @Page public ApplicationSubmissionPage applicationSubmissionPage;
 
-    public SubmissionQueryPhone submissionQueryPhone;
+    public PhoneSubmissionQuery phoneSubmissionQuery;
     private Faker faker;
     private CribSheet sheet;
     private SubmissionResult expectedSubmissionResult;
 
     @Before
     public void setup() {
-        submissionQueryPhone = new SubmissionQueryPhone();
+        phoneSubmissionQuery = new PhoneSubmissionQuery();
         faker = new Faker();
         sheet = new CribSheet(faker);
         expectedSubmissionResult = new SubmissionResult();
@@ -154,8 +154,8 @@ public class NewYorkIntegrationAndQRTest extends CQBaseIntegrationTest {
         replacementNoticePage.clickNextAndWaitForSpinnerToFinish();
         reviewAndSubmitPage.clickNextAndWaitForSpinnerToFinish();
 
-        submissionQueryPhone.verifySubmissionData(app, expectedSubmissionResult);
-        submissionQueryPhone.verifyAdjudicationData(app, expectedSubmissionResult);
+        phoneSubmissionQuery.verifySubmissionData(app, expectedSubmissionResult);
+        phoneSubmissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
 
     }
   }

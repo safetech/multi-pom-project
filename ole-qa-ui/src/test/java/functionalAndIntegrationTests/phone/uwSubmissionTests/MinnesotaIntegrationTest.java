@@ -14,7 +14,7 @@ import resources.pages.phonepages.uwExpansionPages.variations.pastandcurrentcove
 import resources.pages.phonepages.uwExpansionPages.variations.planapplication.MN_PlanApplicationQuestions;
 import resources.pages.phonepages.uwExpansionPages.variations.planselection.MN_iTest_PlanSelectionPage;
 import resources.pages.phonepages.uwExpansionPages.variations.replacementnotice.MN_RN034Page;
-import queries.SubmissionQueryPhone;
+import queries.PhoneSubmissionQuery;
 import resources.utils.DateUtils;
 
 public class MinnesotaIntegrationTest extends CQBaseIntegrationTest {
@@ -33,14 +33,14 @@ public class MinnesotaIntegrationTest extends CQBaseIntegrationTest {
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
     @Page public ApplicationSubmissionPage applicationSubmissionPage;
 
-    public SubmissionQueryPhone submissionQueryPhone;
+    public PhoneSubmissionQuery phoneSubmissionQuery;
     private Faker faker;
     private CribSheet sheet;
     private SubmissionResult expectedSubmissionResult;
 
     @Before
       public void setup() {
-        submissionQueryPhone = new SubmissionQueryPhone();
+        phoneSubmissionQuery = new PhoneSubmissionQuery();
         faker = new Faker();
 
         sheet = new CribSheet(faker);
@@ -149,7 +149,7 @@ public class MinnesotaIntegrationTest extends CQBaseIntegrationTest {
         applicationSubmissionPage.isApprovedOrPending();
 
         expectedSubmissionResult.verifyPendingPlanAndRiderCodes("TW1", "", "", "", "","","");
-        submissionQueryPhone.verifyPlanAndRiderCodes(app, sheet, expectedSubmissionResult);
+        phoneSubmissionQuery.verifyPlanAndRiderCodes(app, sheet, expectedSubmissionResult);
     }
 
     @Test
@@ -239,7 +239,7 @@ public class MinnesotaIntegrationTest extends CQBaseIntegrationTest {
         applicationSubmissionPage.isApprovedOrPending();
 
         expectedSubmissionResult.verifyPendingPlanAndRiderCodes("TW1", "YW1", "VW1", "WW1", "","","");
-        submissionQueryPhone.verifyPlanAndRiderCodes(app, sheet, expectedSubmissionResult);
+        phoneSubmissionQuery.verifyPlanAndRiderCodes(app, sheet, expectedSubmissionResult);
     }
 
     @Test
@@ -328,7 +328,7 @@ public class MinnesotaIntegrationTest extends CQBaseIntegrationTest {
         applicationSubmissionPage.isApprovedOrPending();
 
         expectedSubmissionResult.verifyPendingPlanAndRiderCodes("TW1", "YW1", "VW1", "WW1", "","","");
-        submissionQueryPhone.verifyPlanAndRiderCodes(app, sheet, expectedSubmissionResult);
+        phoneSubmissionQuery.verifyPlanAndRiderCodes(app, sheet, expectedSubmissionResult);
     }
 
     @Test
@@ -417,7 +417,7 @@ public class MinnesotaIntegrationTest extends CQBaseIntegrationTest {
         reviewAndSubmitPage.fillAndSubmit(app);
 
         expectedSubmissionResult.verifyPendingPlanAndRiderCodes("TW1", "YW1", "VW1", "WW1", "ZW1","","");
-        submissionQueryPhone.verifyPlanAndRiderCodes(app, sheet, expectedSubmissionResult);
+        phoneSubmissionQuery.verifyPlanAndRiderCodes(app, sheet, expectedSubmissionResult);
     }
 
 
@@ -509,7 +509,7 @@ public class MinnesotaIntegrationTest extends CQBaseIntegrationTest {
         applicationSubmissionPage.isPending();
 
         expectedSubmissionResult.verifyPendingAndWorkQPlanAndRiderCodes("UW1", "", "", "", "", "", "");
-        submissionQueryPhone.verifyQrYPendingPlanAndRiderCodes(app, sheet, expectedSubmissionResult);
+        phoneSubmissionQuery.verifyQrYPendingPlanAndRiderCodes(app, sheet, expectedSubmissionResult);
     }
 }
 

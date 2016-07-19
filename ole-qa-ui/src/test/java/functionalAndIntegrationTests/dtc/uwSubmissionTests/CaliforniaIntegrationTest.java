@@ -14,7 +14,7 @@ import resources.pages.dtcpages.uwExpansionPages.variations.eligibilityhealthque
 import resources.pages.dtcpages.uwExpansionPages.variations.pastandcurrentcoverage.AR_CA_PA_WI_MN_PastAndCurrentCoveragePage;
 import resources.pages.dtcpages.uwExpansionPages.variations.planapplication.CA_PlanApplicationQuestions;
 import resources.pages.dtcpages.uwExpansionPages.variations.replacenotice.RN040Page;
-import queries.SubmissionQueryDtc;
+import queries.DtcSubmissionQuery;
 import resources.utils.DateUtils;
 
 public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
@@ -33,14 +33,14 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
     @Page public HealthHistoryQuestionsPage healthHistoryQuestionsPage;
 
-    public SubmissionQueryDtc submissionQuery;
+    public DtcSubmissionQuery submissionQuery;
     private Faker faker;
     private CribSheet sheet;
     private SubmissionResult expectedSubmissionResult;
 
     @Before
     public void setup() {
-        submissionQuery = new SubmissionQueryDtc();
+        submissionQuery = new DtcSubmissionQuery();
         faker = new Faker();
         sheet = new CribSheet(faker);
         sheet.setState("CA");

@@ -12,7 +12,7 @@ import org.junit.Test;
 import resources.pages.agentpages.oldOlePages.variations.currentinsurancecoverage.AR_PA_OR_CurrentInsuranceCoveragePage;
 import resources.pages.agentpages.oldOlePages.variations.planapplication.AR_PA_PlanApplicationQuestionsPage;
 import resources.pages.agentpages.oldOlePages.variations.replacenotice.RN078Page;
-import queries.SubmissionQueryAgent;
+import queries.AgentSubmissionQuery;
 import resources.utils.DateUtils;
 
 public class PennsylvaniaIntegrationTest extends CQBaseIntegrationTest {
@@ -34,14 +34,14 @@ public class PennsylvaniaIntegrationTest extends CQBaseIntegrationTest {
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
     @Page public ApplicationSubmissionPage applicationSubmissionPage;
 
-    public SubmissionQueryAgent submissionQuery;
+    public AgentSubmissionQuery submissionQuery;
     private Faker faker;
     private CribSheet sheet;
     private SubmissionResult expectedSubmissionResult;
 
     @Before
     public void setup() {
-        submissionQuery = new SubmissionQueryAgent();
+        submissionQuery = new AgentSubmissionQuery();
         faker = new Faker();
         sheet = new CribSheet(faker);
 
@@ -151,54 +151,27 @@ public class PennsylvaniaIntegrationTest extends CQBaseIntegrationTest {
         //Replacement Notice Page
         app.setCommonReplacementNoticeAnswersWithApplicantInfo();
         app.setCommonHealthHistoryAnswers();
-
-        expectedSubmissionResult.setPendingInfo("ENROLLMENT MEMBERSHIP VERIFICATION", "VERIFY MEMBER NUMBER");
-
+        
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);
-
-        checkEligibilityAndAvailabilityPage.isAt();
+        
         checkEligibilityAndAvailabilityPage.fillAndSubmit(app);
-
-        planSelectionPage.isAt();
         planSelectionPage.fillAndSubmit(app);
-
-        whatYouNeedPage.isAt();
         whatYouNeedPage.fillAndSubmit(app);
-
-        customerInformationPage.isAt();
         customerInformationPage.fillAndSubmit(app);
-
-        planApplicationQuestionsPage.isAt();
         planApplicationQuestionsPage.fillAndSubmit(app);
-
-        eligibilityHealthQuestionsPage.isAt();
         eligibilityHealthQuestionsPage.fillAndSubmit(app);
-
-        healthHistoryQuestionsPage.isAt();
         healthHistoryQuestionsPage.fillAndSubmit(app);
-
-        currentInsuranceCoveragePage.isAt();
         currentInsuranceCoveragePage.fillAndSubmit(app);
-
-        authorizationPage.isAt();
         authorizationPage.fillAndSubmit(app);
-
-        agentVerificationPage.isAt();
         agentVerificationPage.fillAndSubmit(app);
-
-        planPaymentOptionsPage.isAt();
         planPaymentOptionsPage.fillAndSubmit(app);
-
-        paymentDetailsSummaryPage.isAt();
         paymentDetailsSummaryPage.fillAndSubmit(app);
-
-        reviewAndSubmitPage.isAt();
         reviewAndSubmitPage.fillAndSubmit(app);
 
-        applicationSubmissionPage.isAt();
         applicationSubmissionPage.isPending();
-
+        
+        expectedSubmissionResult.setPendingInfo("UNDERWRITING ELIGIBILITY", "REVIEW FOR POSSIBLE ESRD");
         submissionQuery.verifySubmissionData(app, expectedSubmissionResult);
         submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
 
@@ -313,47 +286,21 @@ public class PennsylvaniaIntegrationTest extends CQBaseIntegrationTest {
 
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);
-
-        checkEligibilityAndAvailabilityPage.isAt();
         checkEligibilityAndAvailabilityPage.fillAndSubmit(app);
-
-        planSelectionPage.isAt();
         planSelectionPage.fillAndSubmit(app);
-
-        whatYouNeedPage.isAt();
         whatYouNeedPage.fillAndSubmit(app);
-
-        customerInformationPage.isAt();
         customerInformationPage.fillAndSubmit(app);
-
-        planApplicationQuestionsPage.isAt();
         planApplicationQuestionsPage.fillAndSubmit(app);
-
-        eligibilityHealthQuestionsPage.isAt();
         eligibilityHealthQuestionsPage.fillAndSubmit(app);
-
-        currentInsuranceCoveragePage.isAt();
         currentInsuranceCoveragePage.fillAndSubmit(app);
-
-        authorizationPage.isAt();
         authorizationPage.fillAndSubmit(app);
-
-        agentVerificationPage.isAt();
         agentVerificationPage.fillAndSubmit(app);
-
-        replacementNotice.isAt();
         replacementNotice.fillAndSubmit(app);
-
-        planPaymentOptionsPage.isAt();
         planPaymentOptionsPage.fillAndSubmit(app);
-
-        paymentDetailsSummaryPage.isAt();
         paymentDetailsSummaryPage.fillAndSubmit(app);
-
-        reviewAndSubmitPage.isAt();
         reviewAndSubmitPage.fillAndSubmit(app);
 
-        expectedSubmissionResult.setPendingInfo("ENROLLMENT MEMBERSHIP VERIFICATION","VERIFY MEMBER NUMBER");
+        expectedSubmissionResult.setAcceptedInfo();
         submissionQuery.verifySubmissionData(app, expectedSubmissionResult);
         submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
 

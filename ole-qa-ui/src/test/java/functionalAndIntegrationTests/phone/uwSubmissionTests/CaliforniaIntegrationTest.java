@@ -16,7 +16,7 @@ import resources.pages.phonepages.uwExpansionPages.variations.healthhistoryquest
 import resources.pages.phonepages.uwExpansionPages.variations.pastandcurrentcoverage.CA_PA_NJ_IN_PastAndCurrentInsuranceCoveragePage;
 import resources.pages.phonepages.uwExpansionPages.variations.planapplication.CA_PlanApplicationQuestions;
 import resources.pages.phonepages.uwExpansionPages.variations.replacementnotice.RN040Page;
-import queries.SubmissionQueryPhone;
+import queries.PhoneSubmissionQuery;
 import resources.utils.DateUtils;
 
 
@@ -36,14 +36,14 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
     @Page public ApplicationSubmissionPage applicationSubmissionPage;
 
-    public SubmissionQueryPhone submissionQueryPhone;
+    public PhoneSubmissionQuery phoneSubmissionQuery;
     private Faker faker;
     private CribSheet sheet;
     private SubmissionResult expectedSubmissionResult;
 
     @Before
     public void setup() {
-        submissionQueryPhone = new SubmissionQueryPhone();
+        phoneSubmissionQuery = new PhoneSubmissionQuery();
         faker = new Faker();
 
         sheet = new CribSheet(faker);
@@ -158,8 +158,8 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         reviewAndSubmitPage.fillAndSubmit(app);
 
         expectedSubmissionResult.setPendingInfo("ENROLLMENT EA","EA INDIVIDUAL NOT FOUND");
-        submissionQueryPhone.verifySubmissionData(app, expectedSubmissionResult);
-        submissionQueryPhone.verifyAdjudicationData(app, expectedSubmissionResult);
+        phoneSubmissionQuery.verifySubmissionData(app, expectedSubmissionResult);
+        phoneSubmissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
 
     }
 
@@ -237,8 +237,8 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         applicationSubmissionPage.isApprovedOrPending();
 
         expectedSubmissionResult.setPendingInfo("ENROLLMENT EA","EA INDIVIDUAL NOT FOUND");
-        submissionQueryPhone.verifySubmissionData(app, expectedSubmissionResult);
-        submissionQueryPhone.verifyAdjudicationData(app, expectedSubmissionResult);
+        phoneSubmissionQuery.verifySubmissionData(app, expectedSubmissionResult);
+        phoneSubmissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
 
     }
 }

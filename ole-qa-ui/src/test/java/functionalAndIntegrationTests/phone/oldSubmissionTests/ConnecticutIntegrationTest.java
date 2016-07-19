@@ -10,7 +10,7 @@ import resources.pages.phonepages.oldOlePages.*;
 import org.junit.Ignore;
 import resources.pages.phonepages.oldOlePages.variations.pastandcurrentcoverage.CT_PastAndCurrentInsuranceCoveragePage;
 import resources.pages.phonepages.oldOlePages.variations.replacementnotice.RN034andRE073Page;
-import queries.SubmissionQueryPhone;
+import queries.PhoneSubmissionQuery;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
@@ -29,14 +29,14 @@ public class ConnecticutIntegrationTest extends CQBaseIntegrationTest {
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
     @Page public ApplicationSubmissionPage applicationSubmissionPage;
 
-    public SubmissionQueryPhone submissionQueryPhone;
+    public PhoneSubmissionQuery phoneSubmissionQuery;
     private Faker faker;
     private CribSheet sheet;
     private SubmissionResult expectedSubmissionResult;
 
     @Before
     public void setup() {
-        submissionQueryPhone = new SubmissionQueryPhone();
+        phoneSubmissionQuery = new PhoneSubmissionQuery();
         faker = new Faker();
         sheet = new CribSheet(faker);
         expectedSubmissionResult = new SubmissionResult();
@@ -49,7 +49,7 @@ public class ConnecticutIntegrationTest extends CQBaseIntegrationTest {
         Application app = new Application();
         app.setHCSGApplicationId("3-BXRJHQO");
         SubmissionResult expectedSubmissionResult = new SubmissionResult();
-        submissionQueryPhone.verifySubmissionData(app, expectedSubmissionResult);
+        phoneSubmissionQuery.verifySubmissionData(app, expectedSubmissionResult);
     }
 
     @Test
@@ -104,8 +104,8 @@ public class ConnecticutIntegrationTest extends CQBaseIntegrationTest {
         applicationSubmissionPage.isApproved();
 
         expectedSubmissionResult.setAcceptedInfo();
-        submissionQueryPhone.verifySubmissionData(app, expectedSubmissionResult);
-        submissionQueryPhone.verifyAdjudicationData(app, expectedSubmissionResult);
+        phoneSubmissionQuery.verifySubmissionData(app, expectedSubmissionResult);
+        phoneSubmissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
 
     }
 
@@ -163,8 +163,8 @@ public class ConnecticutIntegrationTest extends CQBaseIntegrationTest {
         applicationSubmissionPage.isApproved();
 
         expectedSubmissionResult.setAcceptedInfo();
-        submissionQueryPhone.verifySubmissionData(app, expectedSubmissionResult);
-        submissionQueryPhone.verifyAdjudicationData(app, expectedSubmissionResult);
+        phoneSubmissionQuery.verifySubmissionData(app, expectedSubmissionResult);
+        phoneSubmissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
     }
 
 }

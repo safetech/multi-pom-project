@@ -12,7 +12,7 @@ import org.junit.Test;
 import resources.pages.phonepages.oldOlePages.variations.pastandcurrentcoverage.CA_PA_NJ_IN_OR_PastAndCurrentInsuranceCoveragePage;
 import resources.pages.phonepages.oldOlePages.variations.planapplication.IN_OK_PlanApplicationQuestions;
 import resources.pages.phonepages.oldOlePages.variations.replacementnotice.RN034andRE073Page;
-import queries.SubmissionQueryPhone;
+import queries.PhoneSubmissionQuery;
 import resources.utils.DateUtils;
 
 public class IndianaIntegrationTest extends CQBaseIntegrationTest {
@@ -31,14 +31,14 @@ public class IndianaIntegrationTest extends CQBaseIntegrationTest {
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
     @Page public ApplicationSubmissionPage applicationSubmissionPage;
 
-          public SubmissionQueryPhone submissionQueryPhone;
+          public PhoneSubmissionQuery phoneSubmissionQuery;
           private Faker faker;
           private CribSheet sheet;
           private SubmissionResult expectedSubmissionResult;
 
     @Before
     public void setup() {
-        submissionQueryPhone = new SubmissionQueryPhone();
+        phoneSubmissionQuery = new PhoneSubmissionQuery();
         faker = new Faker();
 
         sheet = new CribSheet(faker);
@@ -145,8 +145,8 @@ public class IndianaIntegrationTest extends CQBaseIntegrationTest {
 
         expectedSubmissionResult.setPendingInfo("UNDERWRITING", "REVIEW FOR POSSIBLE ESRD");
 
-        submissionQueryPhone.verifySubmissionData(app, expectedSubmissionResult);
-        submissionQueryPhone.verifyAdjudicationData(app, expectedSubmissionResult);
+        phoneSubmissionQuery.verifySubmissionData(app, expectedSubmissionResult);
+        phoneSubmissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
     }
 
     @Test
@@ -225,8 +225,8 @@ public class IndianaIntegrationTest extends CQBaseIntegrationTest {
 
         expectedSubmissionResult.setAcceptedInfo();
 
-        submissionQueryPhone.verifySubmissionData(app, expectedSubmissionResult);
-        submissionQueryPhone.verifyAdjudicationData(app, expectedSubmissionResult);
+        phoneSubmissionQuery.verifySubmissionData(app, expectedSubmissionResult);
+        phoneSubmissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
 
     }
 

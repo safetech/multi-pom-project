@@ -12,7 +12,7 @@ import org.junit.Test;
 import resources.pages.phonepages.oldOlePages.variations.pastandcurrentcoverage.CA_PA_NJ_IN_OR_PastAndCurrentInsuranceCoveragePage;
 import resources.pages.phonepages.oldOlePages.variations.planapplication.VA_NJ_IL_LA_NC_KY_AR_PlanApplicationQuestions;
 import resources.pages.phonepages.oldOlePages.variations.replacementnotice.RN078Page;
-import queries.SubmissionQueryPhone;
+import queries.PhoneSubmissionQuery;
 import resources.utils.DateUtils;
 
 public class PennsylvaniaIntegrationAndQRTest extends CQBaseIntegrationTest {
@@ -31,14 +31,14 @@ public class PennsylvaniaIntegrationAndQRTest extends CQBaseIntegrationTest {
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
     @Page public ApplicationSubmissionPage applicationSubmissionPage;
 
-    public SubmissionQueryPhone submissionQueryPhone;
+    public PhoneSubmissionQuery phoneSubmissionQuery;
     private Faker faker;
     private CribSheet sheet;
     private SubmissionResult expectedSubmissionResult;
 
     @Before
     public void setup() {
-        submissionQueryPhone = new SubmissionQueryPhone();
+        phoneSubmissionQuery = new PhoneSubmissionQuery();
         faker = new Faker();
         sheet = new CribSheet(faker);
         expectedSubmissionResult = new SubmissionResult();
@@ -155,8 +155,8 @@ public class PennsylvaniaIntegrationAndQRTest extends CQBaseIntegrationTest {
         replacementNoticePage.clickNextAndWaitForSpinnerToFinish();
         reviewAndSubmitPage.clickNextAndWaitForSpinnerToFinish();
 
-        submissionQueryPhone.verifySubmissionData(app, expectedSubmissionResult);
-        submissionQueryPhone.verifyAdjudicationData(app, expectedSubmissionResult);
+        phoneSubmissionQuery.verifySubmissionData(app, expectedSubmissionResult);
+        phoneSubmissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
 
     }
   }

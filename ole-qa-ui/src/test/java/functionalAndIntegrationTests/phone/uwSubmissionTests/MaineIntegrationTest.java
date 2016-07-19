@@ -14,7 +14,7 @@ import resources.pages.phonepages.uwExpansionPages.variations.eligibilityhealthq
 import resources.pages.phonepages.uwExpansionPages.variations.pastandcurrentcoverage.ME_PastAndCurrentInsuranceCoveragePage;
 import resources.pages.phonepages.uwExpansionPages.variations.planapplication.ME_PlanApplicationQuestions;
 import resources.pages.phonepages.uwExpansionPages.variations.replacementnotice.RN034andRE073Page;
-import queries.SubmissionQueryPhone;
+import queries.PhoneSubmissionQuery;
 import resources.utils.DateUtils;
 
 public class MaineIntegrationTest extends CQBaseIntegrationTest {
@@ -32,7 +32,7 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
     @Page public ApplicationSubmissionPage applicationSubmissionPage;
 
-    public SubmissionQueryPhone submissionQueryPhone;
+    public PhoneSubmissionQuery phoneSubmissionQuery;
     private Faker faker;
     private CribSheet sheet;
     private SubmissionResult expectedSubmissionResult;
@@ -40,7 +40,7 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
 
     @Before
     public void setup() {
-        submissionQueryPhone = new SubmissionQueryPhone();
+        phoneSubmissionQuery = new PhoneSubmissionQuery();
         faker = new Faker();
 
         sheet = new CribSheet(faker);
@@ -148,8 +148,8 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
         reviewAndSubmitPage.fillAndSubmit(app);
         applicationSubmissionPage.isApprovedOrPending();
         
-        submissionQueryPhone.verifySubmissionData(app, expectedSubmissionResult);
-        submissionQueryPhone.verifyAdjudicationData(app, expectedSubmissionResult);
+        phoneSubmissionQuery.verifySubmissionData(app, expectedSubmissionResult);
+        phoneSubmissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
 
     }
 
@@ -211,8 +211,8 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
         applicationSubmissionPage.isApprovedOrPending();
 
         expectedSubmissionResult.setPendingInfo("ENROLLMENT EA SPECIAL PROCESSING","EA INDIVIDUAL");
-        submissionQueryPhone.verifySubmissionData(app, expectedSubmissionResult);
-        submissionQueryPhone.verifyAdjudicationData(app, expectedSubmissionResult);
+        phoneSubmissionQuery.verifySubmissionData(app, expectedSubmissionResult);
+        phoneSubmissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
 
     }
 

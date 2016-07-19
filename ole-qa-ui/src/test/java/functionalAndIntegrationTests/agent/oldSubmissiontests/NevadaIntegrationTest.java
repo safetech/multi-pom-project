@@ -13,7 +13,7 @@ import resources.pages.agentpages.oldOlePages.variations.authorization.NV_ME_Aut
 import resources.pages.agentpages.oldOlePages.variations.currentinsurancecoverage.NV_ME_CurrentInsuranceCoveragePage;
 import resources.pages.agentpages.oldOlePages.variations.planapplication.NV_PlanApplicationQuestionsPage;
 import resources.pages.agentpages.oldOlePages.variations.replacenotice.RN034andRE073WithSignaturePage;
-import queries.SubmissionQueryAgent;
+import queries.AgentSubmissionQuery;
 import resources.utils.DateUtils;
 
 public class NevadaIntegrationTest extends CQBaseIntegrationTest {
@@ -35,14 +35,14 @@ public class NevadaIntegrationTest extends CQBaseIntegrationTest {
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
 
 
-    public SubmissionQueryAgent submissionQuery;
+    public AgentSubmissionQuery submissionQuery;
     private Faker faker;
     protected CribSheet sheet;
     private SubmissionResult expectedSubmissionResult;
 
     @Before
     public void setup() {
-        submissionQuery = new SubmissionQueryAgent();
+        submissionQuery = new AgentSubmissionQuery();
         faker = new Faker();
         sheet = new CribSheet(faker);
 

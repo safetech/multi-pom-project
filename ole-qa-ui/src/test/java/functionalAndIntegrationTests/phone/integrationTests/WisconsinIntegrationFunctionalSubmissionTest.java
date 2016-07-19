@@ -14,7 +14,7 @@ import resources.pages.phonepages.oldOlePages.variations.pastandcurrentcoverage.
 import resources.pages.phonepages.oldOlePages.variations.planapplication.WI_PlanApplicationQuestions;
 import resources.pages.phonepages.oldOlePages.variations.planselection.WI_iTest_PlanSelectionPage;
 import resources.pages.phonepages.oldOlePages.variations.replacementnotice.RN034andRE073Page;
-import queries.SubmissionQueryPhone;
+import queries.PhoneSubmissionQuery;
 import resources.utils.DateUtils;
 
 public class WisconsinIntegrationFunctionalSubmissionTest extends CQBaseIntegrationTest {
@@ -33,14 +33,14 @@ public class WisconsinIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
     @Page public ApplicationSubmissionPage applicationSubmissionPage;
 
-    public SubmissionQueryPhone submissionQueryPhone;
+    public PhoneSubmissionQuery phoneSubmissionQuery;
     private Faker faker;
     protected CribSheet sheet;
     private SubmissionResult expectedSubmissionResult;
 
     @Before
     public void setup() {
-        submissionQueryPhone = new SubmissionQueryPhone();
+        phoneSubmissionQuery = new PhoneSubmissionQuery();
         faker = new Faker();
 
         sheet = new CribSheet(faker);
@@ -149,8 +149,8 @@ public class WisconsinIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
 //        applicationSubmissionPage.isApprovedOrPending();
 
         expectedSubmissionResult.setAcceptedInfo();
-        submissionQueryPhone.verifySubmissionData(app, expectedSubmissionResult);
-        submissionQueryPhone.verifyAdjudicationData(app, expectedSubmissionResult);
+        phoneSubmissionQuery.verifySubmissionData(app, expectedSubmissionResult);
+        phoneSubmissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
     }
     @Test
     public void MWWI_WIP3_BaiscPlanFullUWWithRNRider2And4() throws Exception {
@@ -248,8 +248,8 @@ public class WisconsinIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
 //        applicationSubmissionPage.isApprovedOrPending();
 
         expectedSubmissionResult.setAcceptedInfo();
-        submissionQueryPhone.verifySubmissionData(app, expectedSubmissionResult);
-        submissionQueryPhone.verifyAdjudicationData(app, expectedSubmissionResult);
+        phoneSubmissionQuery.verifySubmissionData(app, expectedSubmissionResult);
+        phoneSubmissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
     }
     @Test
     public void WI_WIP4_BaiscPlanWithCoPayGAWithRNRider1And4() throws Exception {
@@ -336,8 +336,8 @@ public class WisconsinIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
 //        applicationSubmissionPage.isApprovedOrPending();
 
         expectedSubmissionResult.setAcceptedInfo();
-        submissionQueryPhone.verifySubmissionData(app, expectedSubmissionResult);
-        submissionQueryPhone.verifyAdjudicationData(app, expectedSubmissionResult);
+        phoneSubmissionQuery.verifySubmissionData(app, expectedSubmissionResult);
+        phoneSubmissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
     }
     @Test
     public void WI_WIP5_BaiscPlanFUWithCoPayRider2And4WRN() throws Exception {
@@ -434,8 +434,8 @@ public class WisconsinIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
 //        applicationSubmissionPage.isApprovedOrPending();
 
         expectedSubmissionResult.setAcceptedInfo();
-        submissionQueryPhone.verifySubmissionData(app, expectedSubmissionResult);
-        submissionQueryPhone.verifyAdjudicationData(app, expectedSubmissionResult);
+        phoneSubmissionQuery.verifySubmissionData(app, expectedSubmissionResult);
+        phoneSubmissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
     }
     @Test
     public void WI_WIP6_BaiscPlanWithCoPayWithRnQrNoRider() throws Exception {
@@ -533,7 +533,7 @@ public class WisconsinIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
 //        applicationSubmissionPage.isApprovedOrPending();
 
         expectedSubmissionResult.setAcceptedInfo();
-        submissionQueryPhone.verifySubmissionData(app, expectedSubmissionResult);
-        submissionQueryPhone.verifyAdjudicationData(app, expectedSubmissionResult);
+        phoneSubmissionQuery.verifySubmissionData(app, expectedSubmissionResult);
+        phoneSubmissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
     }
 }

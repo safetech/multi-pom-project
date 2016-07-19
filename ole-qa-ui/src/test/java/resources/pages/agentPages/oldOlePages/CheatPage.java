@@ -33,7 +33,7 @@ public class CheatPage extends FluentPage{
 
 
     public String getUrl() {
-        return PropertyUtils.getProperty("agent.url");
+        return PropertyUtils.getProperty("agent.urls");
 
     }
 

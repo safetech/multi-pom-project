@@ -12,7 +12,7 @@ import org.junit.Test;
 import resources.pages.phonepages.oldOlePages.variations.pastandcurrentcoverage.TX_PastAndCurrentInsuranceCoveragePage;
 import resources.pages.phonepages.oldOlePages.variations.planapplication.OH_MI_TX_PlanApplicationQuestions;
 import resources.pages.phonepages.oldOlePages.variations.replacementnotice.RN035Page;
-import queries.SubmissionQueryPhone;
+import queries.PhoneSubmissionQuery;
 import resources.utils.DateUtils;
 
 public class TexasIntegrationTest extends CQBaseIntegrationTest {
@@ -31,14 +31,14 @@ public class TexasIntegrationTest extends CQBaseIntegrationTest {
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
     @Page public ApplicationSubmissionPage applicationSubmissionPage;
 
-    public SubmissionQueryPhone submissionQueryPhone;
+    public PhoneSubmissionQuery phoneSubmissionQuery;
     private Faker faker;
     private CribSheet sheet;
     private SubmissionResult expectedSubmissionResult;
 
     @Before
     public void setup() {
-        submissionQueryPhone = new SubmissionQueryPhone();
+        phoneSubmissionQuery = new PhoneSubmissionQuery();
         faker = new Faker();
 
         sheet = new CribSheet(faker);
@@ -159,8 +159,8 @@ public class TexasIntegrationTest extends CQBaseIntegrationTest {
         applicationSubmissionPage.isAt();
         applicationSubmissionPage.isPending();
 
-        submissionQueryPhone.verifySubmissionData(app, expectedSubmissionResult);
-        submissionQueryPhone.verifyAdjudicationData(app, expectedSubmissionResult);
+        phoneSubmissionQuery.verifySubmissionData(app, expectedSubmissionResult);
+        phoneSubmissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
 
     }
     @Test
@@ -252,8 +252,8 @@ public class TexasIntegrationTest extends CQBaseIntegrationTest {
         applicationSubmissionPage.isAt();
         applicationSubmissionPage.isApproved();
 
-        submissionQueryPhone.verifySubmissionData(app, expectedSubmissionResult);
-        submissionQueryPhone.verifyAdjudicationData(app, expectedSubmissionResult);
+        phoneSubmissionQuery.verifySubmissionData(app, expectedSubmissionResult);
+        phoneSubmissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
 
     }
 

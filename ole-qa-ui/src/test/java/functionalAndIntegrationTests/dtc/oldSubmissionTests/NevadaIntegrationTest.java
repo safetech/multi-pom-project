@@ -13,7 +13,7 @@ import resources.pages.dtcpages.oldOlePages.variations.authorization.NV_Authoriz
 import resources.pages.dtcpages.oldOlePages.variations.pastandcurrentcoverage.NV_PastAndCurrentCoveragePage;
 import resources.pages.dtcpages.oldOlePages.variations.planapplication.NV_MA_PlanApplicationQuestionsPage;
 import resources.pages.dtcpages.oldOlePages.variations.planselectionandstartdate.PA_AR_NV_MA_PlanSelectionAndStartDatePage;
-import queries.SubmissionQueryDtc;
+import queries.DtcSubmissionQuery;
 import resources.utils.DateUtils;
 
 public class NevadaIntegrationTest extends CQBaseIntegrationTest {
@@ -31,14 +31,14 @@ public class NevadaIntegrationTest extends CQBaseIntegrationTest {
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
     @Page public HealthHistoryQuestionsPage healthHistoryQuestionsPage;
 
-    public SubmissionQueryDtc submissionQuery;
+    public DtcSubmissionQuery submissionQuery;
     private Faker faker;
     protected CribSheet sheet;
     private SubmissionResult expectedSubmissionResult;
 
     @Before
     public void setup() {
-        submissionQuery = new SubmissionQueryDtc();
+        submissionQuery = new DtcSubmissionQuery();
         faker = new Faker();
         sheet = new CribSheet(faker);
         sheet.setState("NV");

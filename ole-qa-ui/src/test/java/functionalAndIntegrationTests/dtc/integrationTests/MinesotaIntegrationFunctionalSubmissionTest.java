@@ -14,7 +14,7 @@ import resources.pages.dtcpages.oldOlePages.variations.authorization.MN_Authoriz
 import resources.pages.dtcpages.oldOlePages.variations.pastandcurrentcoverage.MN_PastAndCurrentCoveragePage;
 import resources.pages.dtcpages.oldOlePages.variations.planapplication.MN_PlanApplicationQuestionsPage;
 import resources.pages.dtcpages.oldOlePages.variations.planselectionandstartdate.PA_AR_NV_MA_PlanSelectionAndStartDatePage;
-import queries.SubmissionQueryDtc;
+import queries.DtcSubmissionQuery;
 import resources.utils.DateUtils;
 
 public class MinesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrationTest {
@@ -33,7 +33,7 @@ public class MinesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrati
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
     @Page public HealthHistoryQuestionsPage healthHistoryQuestionsPage;
 
-    public SubmissionQueryDtc submissionQuery;
+    public DtcSubmissionQuery submissionQuery;
     private Faker faker;
     protected CribSheet sheet;
     private SubmissionResult expectedSubmissionResult;
@@ -43,7 +43,7 @@ public class MinesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrati
         faker = new Faker();
         sheet = new CribSheet(faker);
         app = new Application();
-        submissionQuery = new SubmissionQueryDtc();
+        submissionQuery = new DtcSubmissionQuery();
         expectedSubmissionResult = new SubmissionResult();
         logger.info(gson.toJson(app));
     }

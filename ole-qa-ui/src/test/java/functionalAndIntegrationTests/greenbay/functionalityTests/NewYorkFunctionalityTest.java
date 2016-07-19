@@ -5,7 +5,7 @@ import functionalAndIntegrationTests.CQBaseIntegrationTest;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
-import queries.SubmissionQueryPhone;
+import queries.PhoneSubmissionQuery;
 import resources.entity.Application;
 import resources.entity.SubmissionResult;
 import resources.pages.greenbaypages.*;
@@ -27,13 +27,13 @@ public class NewYorkFunctionalityTest extends CQBaseIntegrationTest {
     @Page ApplicationSubmissionPage applicationSubmissionPage;
 
 
-    public SubmissionQueryPhone submissionQueryPhone;
+    public PhoneSubmissionQuery phoneSubmissionQuery;
     private Faker faker;
     private SubmissionResult expectedSubmissionResult;
 
     @Before
     public void setup() {
-        submissionQueryPhone = new SubmissionQueryPhone();
+        phoneSubmissionQuery = new PhoneSubmissionQuery();
         faker = new Faker();
         expectedSubmissionResult = new SubmissionResult();
         app = new Application();
@@ -100,5 +100,4 @@ public class NewYorkFunctionalityTest extends CQBaseIntegrationTest {
 
     }
     
-  
 }

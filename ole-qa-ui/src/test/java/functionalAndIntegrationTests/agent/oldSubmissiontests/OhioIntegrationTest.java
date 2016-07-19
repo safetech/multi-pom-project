@@ -13,7 +13,7 @@ import resources.pages.agentpages.oldOlePages.variations.currentinsurancecoverag
 import resources.pages.agentpages.oldOlePages.variations.planapplication.NV_PlanApplicationQuestionsPage;
 import resources.pages.agentpages.oldOlePages.variations.replacenotice.RN034andRE073WithSignaturePage;
 import resources.pages.agentpages.oldOlePages.variations.statespecificationform.OH_SupplementalFormPage;
-import queries.SubmissionQueryAgent;
+import queries.AgentSubmissionQuery;
 import resources.utils.DateUtils;
 
 public class OhioIntegrationTest extends CQBaseIntegrationTest {
@@ -35,14 +35,14 @@ public class OhioIntegrationTest extends CQBaseIntegrationTest {
     @Page public PlanPaymentOptionsPage planPaymentOptionsPage;
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
 
-    public SubmissionQueryAgent submissionQuery;
+    public AgentSubmissionQuery submissionQuery;
     private Faker faker;
     private CribSheet sheet;
     private SubmissionResult expectedSubmissionResult;
 
     @Before
     public void setup() {
-        submissionQuery = new SubmissionQueryAgent();
+        submissionQuery = new AgentSubmissionQuery();
         faker = new Faker();
         sheet = new CribSheet(faker);
 

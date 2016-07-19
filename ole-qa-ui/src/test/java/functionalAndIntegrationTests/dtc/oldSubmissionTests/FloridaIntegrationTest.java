@@ -12,7 +12,7 @@ import org.junit.Test;
 import resources.pages.dtcpages.oldOlePages.variations.pastandcurrentcoverage.FL_PastAndCurrentCoveragePage;
 import resources.pages.dtcpages.oldOlePages.variations.planapplication.NV_MA_PlanApplicationQuestionsPage;
 import resources.pages.dtcpages.oldOlePages.variations.planselectionandstartdate.PA_AR_NV_MA_PlanSelectionAndStartDatePage;
-import queries.SubmissionQueryDtc;
+import queries.DtcSubmissionQuery;
 import resources.utils.DateUtils;
 
 public class FloridaIntegrationTest extends CQBaseIntegrationTest {
@@ -31,14 +31,14 @@ public class FloridaIntegrationTest extends CQBaseIntegrationTest {
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
     @Page public ApplicationSubmissionPage applicationSubmissionPage;
 
-    public SubmissionQueryDtc submissionQuery;
+    public DtcSubmissionQuery submissionQuery;
     private Faker faker;
     private CribSheet sheet;
     private SubmissionResult expectedSubmissionResult;
 
     @Before
     public void setup() {
-        submissionQuery = new SubmissionQueryDtc();
+        submissionQuery = new DtcSubmissionQuery();
         faker = new Faker();
         sheet = new CribSheet(faker);
         expectedSubmissionResult = new SubmissionResult();

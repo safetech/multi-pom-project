@@ -14,7 +14,7 @@ import resources.pages.agentpages.oldOlePages.variations.currentinsurancecoverag
 import resources.pages.agentpages.oldOlePages.variations.planapplication.MN_PlanApplicationQuestions;
 import resources.pages.agentpages.oldOlePages.variations.planselection.iTest_MN_PlanSelectionPage;
 import resources.pages.agentpages.oldOlePages.variations.replacenotice.RN034andRE073WithSignaturePage;
-import queries.SubmissionQueryAgent;
+import queries.AgentSubmissionQuery;
 import resources.utils.DateUtils;
 
 
@@ -37,14 +37,14 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
     @Page public ApplicationSubmissionPage applicationSubmissionPage;
 
-    public SubmissionQueryAgent submissionQueryAgent;
+    public AgentSubmissionQuery submissionQueryAgent;
     private Faker faker;
     private CribSheet sheet;
     private SubmissionResult expectedSubmissionResult;
 
     @Before
     public void setup() {
-        submissionQueryAgent = new SubmissionQueryAgent();
+        submissionQueryAgent = new AgentSubmissionQuery();
         faker = new Faker();
         sheet = new CribSheet(faker);
         expectedSubmissionResult = new SubmissionResult();
