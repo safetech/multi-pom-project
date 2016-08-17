@@ -10,13 +10,13 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class PaymentDetailsSummaryPage extends WizardPage{
 
-    FluentWebElement BankName;
-    FluentWebElement RoutingNumber;
-    FluentWebElement RoutingNumberConfirm;
-    FluentWebElement AccountNumber;
-    FluentWebElement AccountNumberConfirm;
-    @FindBy(css = "#AccountType_1") FluentWebElement AccountTypeChecking;
-    FluentWebElement EftSignatureInd;
+    private FluentWebElement BankName;
+    private FluentWebElement RoutingNumber;
+    private FluentWebElement RoutingNumberConfirm;
+    private FluentWebElement AccountNumber;
+    private FluentWebElement AccountNumberConfirm;
+    private @FindBy(css = "#AccountType_1") FluentWebElement AccountTypeChecking;
+    private  FluentWebElement EftSignatureInd;
     public void fillAndSubmit(Application app) {
 
         isAt();

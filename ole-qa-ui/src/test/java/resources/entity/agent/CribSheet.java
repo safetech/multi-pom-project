@@ -167,7 +167,7 @@ public class CribSheet extends resources.entity.phone.CribSheet {
     private String readonly = "";
     private String resume = "";
     private String log_level = "";
-    private String AgentId = "";
+    private String AgentID = "";
     private String AgentMedSuppStates = "";
     private String AgentCertificationYears = "";
     private String SiteId = "";
@@ -377,12 +377,12 @@ public class CribSheet extends resources.entity.phone.CribSheet {
     private String sourceCode = "";
     private String agentFullName = "";
 
-    public String getAgentId() {
-        return AgentId;
+    public String getAgentID() {
+        return AgentID;
     }
 
-    public void setAgentId(String agentId) {
-        AgentId = agentId;
+    public void setAgentID(String agentID) {
+        AgentID = agentID;
     }
 
     public String getAgentMedSuppStates() {

@@ -67,7 +67,7 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
     @Test
     public void AGENT_California_GI() throws Exception {
 
-        sheet.setAgentId("Test");
+        sheet.setAgentID("Test");
         sheet.setAgentMedSuppStates("[NV| CA| MA| FL| NY| OH]");
         sheet.setAgentCertificationYears("[2014 |2015| 2016]");
         sheet.setMarketability_code(BLANK);
@@ -151,7 +151,7 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
     @Test
     public void AGENT_California_Eligibility_FU_With_RN() throws Exception {
 
-        sheet.setAgentId("Test");
+        sheet.setAgentID("Test");
         sheet.setAgentMedSuppStates("[NV| CA| MA| FL| NY| OH]");
         sheet.setAgentCertificationYears("[2014 |2015| 2016]");
         sheet.setMarketability_code(BLANK);

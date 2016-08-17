@@ -51,7 +51,7 @@ public class MinnesotaGoodAndBadFunctionalTest extends CQBaseIntegrationTest {
     @Test
     public void test_minnesota_basic_plan() throws Exception {
 
-        sheet.setAgentId("Test");
+        sheet.setAgentID("Test");
         sheet.setAgentMedSuppStates("[NV| CA| MA| FL| NY| OH| AR| WI| MN]");
         sheet.setAgentCertificationYears("[2014 |2015| 2016]");
         sheet.setMarketability_code(BLANK);
@@ -84,7 +84,7 @@ public class MinnesotaGoodAndBadFunctionalTest extends CQBaseIntegrationTest {
     @Test
     public void test_minnesota_extended_plan() throws Exception {
 
-        sheet.setAgentId("Test");
+        sheet.setAgentID("Test");
         sheet.setAgentMedSuppStates("[NV| CA| MA| FL| NY| OH| AR| WI| MN]");
         sheet.setAgentCertificationYears("[2014 |2015| 2016]");
         sheet.setMarketability_code(BLANK);

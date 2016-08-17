@@ -52,7 +52,7 @@ public class FloridaIntegrationTest extends CQBaseIntegrationTest {
     @Test
     public void AGENT_florida_eligibility_underwriting_with_rn() throws Exception {
 
-        sheet.setAgentId("Test");
+        sheet.setAgentID("Test");
         sheet.setAgentMedSuppStates("[NV| CA| MA| FL| NY| OH]");
         sheet.setAgentCertificationYears("[2014 |2015| 2016]");
         sheet.setMarketability_code(BLANK);
@@ -217,7 +217,7 @@ public class FloridaIntegrationTest extends CQBaseIntegrationTest {
     @Test
     public void AGENT_florida_guranteed_issue() throws Exception {
 
-        sheet.setAgentId("Test");
+        sheet.setAgentID("Test");
         sheet.setAgentMedSuppStates("[NV| CA| MA| FL| NY| OH]");
         sheet.setAgentCertificationYears("[2014 |2015| 2016]");
         sheet.setMarketability_code(BLANK);

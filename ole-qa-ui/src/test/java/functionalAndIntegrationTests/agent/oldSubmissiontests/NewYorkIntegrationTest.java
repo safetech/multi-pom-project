@@ -49,7 +49,7 @@ public class NewYorkIntegrationTest extends CQBaseIntegrationTest {
     @Test
     public void AGENT_new_york_with_rn() throws Exception {
 
-        sheet.setAgentId("Test");
+        sheet.setAgentID("Test");
         sheet.setAgentMedSuppStates("[NV| CA| MA| FL| NY| OH]");
         sheet.setAgentCertificationYears("[2014 |2015| 2016]");
         sheet.setMarketability_code(BLANK);
@@ -208,7 +208,7 @@ public class NewYorkIntegrationTest extends CQBaseIntegrationTest {
     @Test
     public void AGENT_new_york_guranteed_issue_Without_rn() throws Exception {
 
-        sheet.setAgentId("Test");
+        sheet.setAgentID("Test");
         sheet.setAgentMedSuppStates("[NV| CA| MA| FL| NY| OH]");
         sheet.setAgentCertificationYears("[2014 |2015| 2016]");
         sheet.setMarketability_code(BLANK);

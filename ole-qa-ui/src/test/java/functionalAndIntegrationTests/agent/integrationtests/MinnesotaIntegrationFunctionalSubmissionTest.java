@@ -1,20 +1,21 @@
 package functionalAndIntegrationTests.agent.integrationtests;
 
 import com.github.javafaker.Faker;
-import resources.entity.Application;
-import resources.entity.SubmissionResult;
-import resources.entity.agent.CribSheet;
 import functionalAndIntegrationTests.CQBaseIntegrationTest;
-import resources.pages.agentpages.oldOlePages.*;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
+import queries.AgentSubmissionQuery;
+import resources.entity.Application;
+import resources.entity.SubmissionResult;
+import resources.entity.agent.CribSheet;
+import resources.excelObject.excelData;
+import resources.pages.agentpages.oldOlePages.*;
 import resources.pages.agentpages.oldOlePages.variations.authorization.MN_AuthorizationPage;
 import resources.pages.agentpages.oldOlePages.variations.currentinsurancecoverage.MN_CurrentInsuranceCoveragePage;
 import resources.pages.agentpages.oldOlePages.variations.planapplication.MN_PlanApplicationQuestions;
 import resources.pages.agentpages.oldOlePages.variations.planselection.iTest_MN_PlanSelectionPage;
 import resources.pages.agentpages.oldOlePages.variations.replacenotice.RN034andRE073WithSignaturePage;
-import queries.AgentSubmissionQuery;
 import resources.utils.DateUtils;
 
 
@@ -37,10 +38,11 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
     @Page public ApplicationSubmissionPage applicationSubmissionPage;
 
-    public AgentSubmissionQuery submissionQueryAgent;
+    private AgentSubmissionQuery submissionQueryAgent;
     private Faker faker;
     private CribSheet sheet;
     private SubmissionResult expectedSubmissionResult;
+
 
     @Before
     public void setup() {
@@ -49,6 +51,8 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         sheet = new CribSheet(faker);
         expectedSubmissionResult = new SubmissionResult();
         app = new Application();
+        xlData = new excelData();
+        
         app.setCpaSignatureIndTouch(Application.ALL_SIGNATURES[0]);
         app.setSignatureIndTouch(Application.ALL_SIGNATURES[1]);
         app.setMedicalReleaseAuthSignatureIndTouch(Application.ALL_SIGNATURES[2]);
@@ -62,10 +66,11 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         app.setSS_Agent_Signature1(Application.ALL_SIGNATURES[10]);
         app.setReplacementAgentSignInd2Touch(Application.ALL_SIGNATURES[11]);
     }
-    @Test
+    
+@Test
     public void MN_MNA2_BasicPlanWithRider1And2FullUWwithRn() throws Exception {
 
-        sheet.setAgentId("Test");
+        sheet.setAgentID("Test");
         sheet.setAgentMedSuppStates("[WI| MN]");
         sheet.setAgentCertificationYears("[2014 |2015| 2016]");
         sheet.setMarketability_code(BLANK);
@@ -75,7 +80,6 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         sheet.setAgentEmail("bob@dobbsco.com");
         sheet.setAgentPartyId("54321");
         sheet.setReferrer("ulayer");
-
         app.setState("MN");
         app.setZipCode("55445");
         app.setDOB(DateUtils.getDOBInNormalDateFormat(67));
@@ -153,7 +157,8 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         app.setRoutingNumberConfirm("123123123");
         app.setAccountNumber("23456");
         app.setAccountNumberConfirm(app.getAccountNumber());
-    //App.setMailingAddressCheck("Yes");
+//        app.setMailingAddressCheck("Yes");
+    
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);
 
@@ -177,7 +182,7 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
     @Test
     public void MN_MNA3_BasicPlanWithRider34And5FullUWwithRn() throws Exception {
 
-        sheet.setAgentId("Test");
+        sheet.setAgentID("Test");
         sheet.setAgentMedSuppStates("[WI| MN]");
         sheet.setAgentCertificationYears("[2014 |2015| 2016]");
         sheet.setMarketability_code(BLANK);
@@ -289,4 +294,16 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
 
     }
 
+    @Test
+    public void testRunner(){
+        String [][] myTestData = xlData.getExcelData("/Users/sislam13/Desktop/TestCases.xls","Sheet1");
+
+        int x;
+        
+        for (x=0; x < myTestData.length; x++) {
+            //UserName	Password	State
+            app.setState(myTestData[x][2]);
+        }
+        
+    }
 }

@@ -65,7 +65,7 @@ public class WisconsinIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
     @Test
     public void WI_WIA2_BasicPlanWithRider1And3FullUWwithRn() throws Exception {
 
-        sheet.setAgentId("Test");
+        sheet.setAgentID("Test");
         sheet.setAgentMedSuppStates("[NV| CA| MA| FL| NY| OH| AR| WI| MN]");
         sheet.setAgentCertificationYears("[2014 |2015| 2016]");
         sheet.setMarketability_code(BLANK);
@@ -177,7 +177,7 @@ public class WisconsinIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
     @Test
     public void WI_WIA3_BasicPlanWithCoPayRider2And4GaNoRn() throws Exception {
 
-        sheet.setAgentId("Test");
+        sheet.setAgentID("Test");
         sheet.setAgentMedSuppStates("[NV| CA| MA| FL| NY| OH| AR| WI| MN]");
         sheet.setAgentCertificationYears("[2014 |2015| 2016]");
         sheet.setMarketability_code(BLANK);

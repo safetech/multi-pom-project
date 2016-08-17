@@ -2,9 +2,6 @@ package functionalAndIntegrationTests;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import resources.entity.Application;
-import resources.entity.phone.CribSheet;
-import resources.pages.phonepages.oldOlePages.CheatPage;
 import org.apache.commons.io.FileUtils;
 import org.fluentlenium.adapter.FluentTest;
 import org.fluentlenium.adapter.util.SharedDriver;
@@ -18,17 +15,15 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.slf4j.Logger;
+import resources.entity.Application;
+import resources.entity.phone.CribSheet;
+import resources.excelObject.excelData;
+import resources.pages.phonepages.oldOlePages.CheatPage;
 import resources.utils.AnswerUtils;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
-
-
-
-
-
-
 
 import static org.slf4j.LoggerFactory.getLogger;
 
@@ -39,16 +34,16 @@ public class CQBaseIntegrationTest extends FluentTest {
     protected final Logger logger = getLogger(this.getClass());
     protected Gson gson = new GsonBuilder().create();
     protected Application app;
+    protected excelData xlData;
     protected String NO = AnswerUtils.NO;
     protected String YES = AnswerUtils.YES;
     protected String UNSURE = AnswerUtils.UNSURE;
-    protected String BLANK = AnswerUtils.BLANK;
+    protected static String BLANK = AnswerUtils.BLANK;
     //Comment the below 3 lines if your not using Browser Stack
     public static final String USERNAME = "holleyrussell1";
     public static final String AUTOMATE_KEY = "e1hxsgqbj5542GMQCAev";
     public static final String URL = "http://" + USERNAME + ":" + AUTOMATE_KEY + "@hub.browserstack.com/wd/hub";
-
-
+    
     @Rule
     public TestRule testWatcher = new TestWatcher() {
         @Override

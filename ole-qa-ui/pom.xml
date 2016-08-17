@@ -89,15 +89,21 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.fluentlenium</groupId>
-            <artifactId>fluentlenium-core</artifactId>
-            <version>0.10.9</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
             <groupId>backport-util-concurrent</groupId>
             <artifactId>backport-util-concurrent</artifactId>
             <version>3.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>6.9.9</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.sourceforge.jexcelapi</groupId>
+            <artifactId>jxl</artifactId>
+            <version>2.6.12</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -131,6 +137,7 @@
             </activation>
             <properties>
                 <agent.url>https://aarpsupplementalhealth-stg.uhc.com/ole/ms-agent.html?cheat=true</agent.url>
+                <agentLean.url>https://aarpsupplementalhealth-stg.uhc.com/ole/ms-agent.html?cheat=true</agentLean.url>
                 <phone.url>https://aarpsupplementalhealth-stg.uhc.com/ole/ms-phone.html?cheat=true</phone.url>
                 <dtc.url>https://aarpsupplementalhealth-stg.uhc.com/ole/ms.html?cheat=true</dtc.url>
                 <greenbay.url>https://aarpsupplementalhealth-stg.uhc.com/ole/ms-greenbay.html</greenbay.url>
@@ -142,7 +149,8 @@
         <profile>
             <id>OleTest</id>
             <properties>
-                <agent.url>https://aarpsupplementalhealth-tst.uhc.com/ole/ms-agent.html?cheat=true</agent.url>
+                <agent.url>https://aarpsupplementalhealth-tst.uhc.com/ole/ms-agent.html?cheat=true&amp;uhg_cheat=true</agent.url>
+                <agentLean.url>https://aarpsupplementalhealth-tst.uhc.com/ole/ms-agent.html?cheat=true</agentLean.url>
                 <phone.url>https://aarpsupplementalhealth-tst.uhc.com/ole/ms-phone.html?cheat=true</phone.url>
                 <dtc.url>https://aarpsupplementalhealth-tst.uhc.com/ole/ms.html?cheat=true</dtc.url>
                 <greenbay.url>https://aarpsupplementalhealth-tst.uhc.com/ole/ms-greenbay.html</greenbay.url>

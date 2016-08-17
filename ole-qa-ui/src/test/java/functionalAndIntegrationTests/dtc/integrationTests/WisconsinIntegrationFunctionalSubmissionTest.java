@@ -355,6 +355,10 @@ public class WisconsinIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         expectedSubmissionResult.verifyPendingPlanAndRiderCodes("MW1", "OW1", "SW1", "", "", "", "");
         submissionQuery.verifyPlanAndRiderCodes(app, sheet, expectedSubmissionResult);
     }
+
+
+//    -ea -Dwebdriver.firefox.bin=/Users/sislam13/dev/apps/firefox/firefox-29/
+    
     @Test
     public void WI_WID6_BaiscPlanWithCoPayGANORNRider2And4() throws Exception {
 

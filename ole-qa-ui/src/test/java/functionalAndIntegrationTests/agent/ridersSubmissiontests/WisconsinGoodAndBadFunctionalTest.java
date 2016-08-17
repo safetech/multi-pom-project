@@ -40,6 +40,8 @@ public class WisconsinGoodAndBadFunctionalTest extends CQBaseIntegrationTest {
     private CribSheet sheet;
     private SubmissionResult expectedSubmissionResult;
 
+    
+    
     @Before
     public void setup() {
         submissionQuery = new AgentSubmissionQuery();
@@ -53,7 +55,7 @@ public class WisconsinGoodAndBadFunctionalTest extends CQBaseIntegrationTest {
     @Test
     public void test_wisconson_basic_plan_with_good_combo() throws Exception {
 
-        sheet.setAgentId("Test");
+        sheet.setAgentID("Test");
         sheet.setAgentMedSuppStates("[NV| CA| MA| FL| NY| OH| AR| WI| MN]");
         sheet.setAgentCertificationYears("[2014 |2015| 2016]");
         sheet.setMarketability_code(BLANK);
@@ -84,7 +86,7 @@ public class WisconsinGoodAndBadFunctionalTest extends CQBaseIntegrationTest {
     @Test
     public void test_wisconson_basic_plan_with_CoPay_good_combo() throws Exception {
 
-        sheet.setAgentId("Test");
+        sheet.setAgentID("Test");
         sheet.setAgentMedSuppStates("[NV| CA| MA| FL| NY| OH| AR| WI| MN]");
         sheet.setAgentCertificationYears("[2014 |2015| 2016]");
         sheet.setMarketability_code(BLANK);

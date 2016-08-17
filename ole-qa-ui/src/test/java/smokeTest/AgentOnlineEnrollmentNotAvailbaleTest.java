@@ -15,7 +15,7 @@ import resources.utils.DateUtils;
 public class AgentOnlineEnrollmentNotAvailbaleTest extends CQBaseIntegrationTest{
 
     @Page CheatPage cheatPage;
-    @Page public PlanSelectionPage planSelectionPage;
+    @Page PlanSelectionPage planSelectionPage;
     @Page CheckEligibilityAndAvailabilityPage checkEligibilityAndAvailabilityPage;
 
     private Faker faker;
@@ -33,7 +33,7 @@ public class AgentOnlineEnrollmentNotAvailbaleTest extends CQBaseIntegrationTest
     @Test
     public void AgentAmericanSamoaNotAvailableTest() throws Exception {
 
-        sheet.setAgentId("Test");
+        sheet.setAgentID("Test");
         sheet.setAgentMedSuppStates("[AS| GU| MH| VI]");
         sheet.setAgentCertificationYears("[2014 |2015| 2016]");
         sheet.setMarketability_code(BLANK);
@@ -54,10 +54,11 @@ public class AgentOnlineEnrollmentNotAvailbaleTest extends CQBaseIntegrationTest
         checkEligibilityAndAvailabilityPage.fillAndSubmit(app);
         planSelectionPage.checkMarketabilityCode("M14M43AGMMCA02_01D");
     }
+    
     @Test
     public void AgentGuamNotAvailableTest() throws Exception {
 
-        sheet.setAgentId("Test");
+        sheet.setAgentID("Test");
         sheet.setAgentMedSuppStates("[AS| GU| MH| VI]");
         sheet.setAgentCertificationYears("[2014 |2015| 2016]");
         sheet.setMarketability_code(BLANK);
@@ -81,7 +82,7 @@ public class AgentOnlineEnrollmentNotAvailbaleTest extends CQBaseIntegrationTest
     @Test
     public void AgentMarshalIslandsNotAvailableTest() throws Exception {
 
-        sheet.setAgentId("Test");
+        sheet.setAgentID("Test");
         sheet.setAgentMedSuppStates("[AS| GU| MH| VI| PR]");
         sheet.setAgentCertificationYears("[2014 |2015| 2016]");
         sheet.setMarketability_code(BLANK);
@@ -105,7 +106,7 @@ public class AgentOnlineEnrollmentNotAvailbaleTest extends CQBaseIntegrationTest
     @Test
     public void AgentVirginIslandsNotAvailableTest() throws Exception {
 
-        sheet.setAgentId("Test");
+        sheet.setAgentID("Test");
         sheet.setAgentMedSuppStates("[AS| GU| MH| VI]");
         sheet.setAgentCertificationYears("[2014 |2015| 2016]");
         sheet.setMarketability_code(BLANK);
@@ -131,7 +132,7 @@ public class AgentOnlineEnrollmentNotAvailbaleTest extends CQBaseIntegrationTest
     @Test
     public void AgentPuertoRicoNotAvailableTest() throws Exception {
 
-        sheet.setAgentId("Test");
+        sheet.setAgentID("Test");
         sheet.setAgentMedSuppStates("[AS| GU| MH| VI| PR]");
         sheet.setAgentCertificationYears("[2014 |2015| 2016]");
         sheet.setMarketability_code(BLANK);

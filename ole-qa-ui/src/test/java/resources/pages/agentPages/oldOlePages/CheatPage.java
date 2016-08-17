@@ -17,7 +17,7 @@ public class CheatPage extends FluentPage{
     @FindBy(css = "#page-title") FluentWebElement pageTitle;
 
     FluentWebElement preset_select;
-    FluentWebElement AgentId;
+    FluentWebElement AgentID;
     FluentWebElement AgentMedSuppStates;
     FluentWebElement AgentCertificationYears;
     FluentWebElement marketability_code;
@@ -39,7 +39,7 @@ public class CheatPage extends FluentPage{
 
     public void fillAndSubmit(CribSheet sheet) {
         isAt();
-        fill(AgentId).with(sheet.getAgentId());
+        fill(AgentID).with(sheet.getAgentID());
         fill(AgentMedSuppStates).with(sheet.getAgentMedSuppStates());
         fill(AgentCertificationYears).with(sheet.getAgentCertificationYears());
         fill(marketability_code).with(sheet.getMarketability_code());

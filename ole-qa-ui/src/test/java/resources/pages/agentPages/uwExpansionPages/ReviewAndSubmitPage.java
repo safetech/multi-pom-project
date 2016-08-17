@@ -13,7 +13,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ReviewAndSubmitPage extends WizardPage {
 
-    FluentWebElement requiredlink;
+    private FluentWebElement requiredlink;
     @FindBy(css = "#page-title") protected FluentWebElement pageTitle;
     @FindBy(css = "#pageborder") protected FluentWebElement applicationStatus;
 
@@ -27,7 +27,7 @@ public class ReviewAndSubmitPage extends WizardPage {
         await().atMost(40, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
     }
 
-    public void closeSpecificBrowser(int Brow){
+    private void closeSpecificBrowser(int Brow){
         ArrayList<String> windows = new ArrayList<String> (getDriver().getWindowHandles());
         String baseWindowHdl = getDriver().getWindowHandle();
         getDriver().switchTo().window(windows.get(Brow));

@@ -1,9 +1,9 @@
 package resources.pages.agentpages.uwExpansionPages;
 
-import resources.entity.Application;
 import org.fluentlenium.core.domain.FluentWebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
+import resources.entity.Application;
 import resources.pages.WizardPage;
 
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -11,40 +11,39 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class CustomerInformationPage extends WizardPage {
 
-    FluentWebElement AARPMembershipNumber;
-    FluentWebElement Prefix;
+    private FluentWebElement AARPMembershipNumber;
+    private FluentWebElement Prefix;
     FluentWebElement FirstName;
-    FluentWebElement MI;
-    FluentWebElement LastName;
-    FluentWebElement Suffix;
-    FluentWebElement AddressLine1;
-    FluentWebElement AddressLine2;
-    FluentWebElement City;
-    FluentWebElement State;
-    FluentWebElement ZipCode;
-    FluentWebElement Email;
-    @FindBy(css = "#na1110")
-    FluentWebElement ConfirmEmail;
-    FluentWebElement PhonePrimary;
-    FluentWebElement PhoneEvening;
-    FluentWebElement DOB;
-    FluentWebElement Gender;
-    FluentWebElement MedicareClaimNum;
-    FluentWebElement MPBED;
-    FluentWebElement MPAED;
-    FluentWebElement AgentEmail;
-    FluentWebElement AgentEmailConfirm;
+    private FluentWebElement MI;
+    private FluentWebElement LastName;
+    private FluentWebElement Suffix;
+    private FluentWebElement AddressLine1;
+    private FluentWebElement AddressLine2;
+    private FluentWebElement City;
+    private FluentWebElement State;
+    private FluentWebElement ZipCode;
+    private FluentWebElement Email;
+    private @FindBy(css = "#na1110") FluentWebElement ConfirmEmail;
+    private FluentWebElement PhonePrimary;
+    private FluentWebElement PhoneEvening;
+    private FluentWebElement DOB;
+    private FluentWebElement Gender;
+    private FluentWebElement MedicareClaimNum;
+    private FluentWebElement MPBED;
+    private FluentWebElement MPAED;
+    private FluentWebElement AgentEmail;
+    private FluentWebElement AgentEmailConfirm;
 
-    FluentWebElement MailingAddressLine1;
-    FluentWebElement MailingAddressLine2;
-    FluentWebElement MailingCity;
-    FluentWebElement MailingState;
-    FluentWebElement MailingZipCode;
+    private FluentWebElement MailingAddressLine1;
+    private FluentWebElement MailingAddressLine2;
+    private FluentWebElement MailingCity;
+    private FluentWebElement MailingState;
+    private FluentWebElement MailingZipCode;
 
-    @FindBy(css = "#PartABActiveIndicator_1") FluentWebElement PartABActiveIndicator_Yes;
-    @FindBy(css = "#PartABActiveIndicator_2") FluentWebElement PartABActiveIndicator_No;
-    @FindBy(css = "#MailingAddressCheck_1") FluentWebElement MailingAddressCheck_Yes;
-    @FindBy(css = "#MailingAddressCheck_2") FluentWebElement MailingAddressCheck_No;
+    private @FindBy(css = "#PartABActiveIndicator_1") FluentWebElement PartABActiveIndicator_Yes;
+    private @FindBy(css = "#PartABActiveIndicator_2") FluentWebElement PartABActiveIndicator_No;
+    private @FindBy(css = "#MailingAddressCheck_1") FluentWebElement MailingAddressCheck_Yes;
+    private @FindBy(css = "#MailingAddressCheck_2") FluentWebElement MailingAddressCheck_No;
 
 
     public void fillAndSubmit(Application app) {

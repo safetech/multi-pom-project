@@ -69,7 +69,7 @@ public class WashingtonIntegrationTest extends CQBaseIntegrationTest {
     @Test
     public void AGENT_Washington_GI() throws Exception {
 
-        sheet.setAgentId("Test");
+        sheet.setAgentID("Test");
         sheet.setAgentMedSuppStates("[NV| CA| MA| FL| NY| OH| AR| PA| WA]");
         sheet.setAgentCertificationYears("[2014 |2015| 2016]");
         sheet.setMarketability_code(BLANK);
@@ -146,7 +146,7 @@ public class WashingtonIntegrationTest extends CQBaseIntegrationTest {
 
     public void AGENT_Washington_Eligibility_HH_With_RN() throws Exception {
 
-        sheet.setAgentId("Test");
+        sheet.setAgentID("Test");
         sheet.setAgentMedSuppStates("[NV| CA| MA| FL| NY| OH| AR| PA| WA]");
         sheet.setAgentCertificationYears("[2014 |2015| 2016]");
         sheet.setMarketability_code(BLANK);

@@ -52,8 +52,7 @@ public class WizardPage extends FluentPage {
     public void blur(String selector){
         executeScript("$('"+selector+"').blur()");
     }
-
-
+    
     private String TEXT_SUB_SELECTOR = "span[data-textsub-id='%s']";
     public String WIZARD_PAGE_NEXT_BTN_SELECTOR = "a.action_next";
 
@@ -206,7 +205,7 @@ public class WizardPage extends FluentPage {
 
     protected void fillTouchSignature(String answername, String signatureVector) {
 
-        executeScript(String.format("$('#%s').signature('draw','%s')",answername, signatureVector));
+        executeScript(String.format("$('#%s').signature('draw','%s')", answername, signatureVector));
 
     }
     public void isAt() {
