@@ -41,6 +41,7 @@ public class NewYorkIntegrationAndQRTest extends CQBaseIntegrationTest {
         phoneSubmissionQuery = new PhoneSubmissionQuery();
         faker = new Faker();
         sheet = new CribSheet(faker);
+        sheet.setGRSId(faker.numerify("######"));
         expectedSubmissionResult = new SubmissionResult();
     }
 

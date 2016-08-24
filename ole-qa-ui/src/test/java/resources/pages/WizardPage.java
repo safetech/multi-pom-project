@@ -119,7 +119,7 @@ public class WizardPage extends FluentPage {
 
     protected void assertVisibleBasedUpon(boolean shouldBeVisible, FluentWebElement... elements) {
         for(FluentWebElement element : elements) {
-            assertThat(String.format("Testing visibility of %s", element.getId()),element.isDisplayed(), equalTo(shouldBeVisible));
+            assertThat(String.format("Testing visibility of %s", element.getId()), element.isDisplayed(), equalTo(shouldBeVisible));
         }
     }
 
@@ -187,7 +187,8 @@ public class WizardPage extends FluentPage {
 
     protected void assertQuestionCount(int expectedCount) {
         assertThat(find("input[type='text'], input[type='checkbox'], input[type='radio'], select").size(), equalTo(expectedCount));
-    }
+    }    
+
 
     public int getVisibleElementCount() {
         return Integer.parseInt(getScriptResult("$('input:visible, select:visible').length"));

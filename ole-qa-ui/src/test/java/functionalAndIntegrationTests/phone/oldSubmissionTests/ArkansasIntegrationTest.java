@@ -56,7 +56,7 @@ public class ArkansasIntegrationTest extends CQBaseIntegrationTest {
         sheet.setMedPartBdate("2012-04-01");
         sheet.setDpsdToFirstDayOfFutureMonth(1);
         sheet.setPlanCode("F01");
-
+        sheet.setGRSId(faker.numerify("######"));
         Application app = new Application(sheet);
 
         app.setMedicareClaimNum(faker.bothify("#########A"));

@@ -11,12 +11,13 @@ import resources.entity.SubmissionResult;
 import resources.entity.agent.CribSheet;
 import resources.pages.agentpages.leanPages.CheatPage;
 import resources.pages.agentpages.leanPages.PreferencesPage;
+import resources.pages.agentpages.leanPages.variations.*;
 import resources.pages.agentpages.uwExpansionPages.*;
 import resources.pages.agentpages.uwExpansionPages.variations.authorization.CA_AuthorizationPage;
 import resources.pages.agentpages.uwExpansionPages.variations.checkeligibility.ME_CA_FL_CheckEligibilityAndAvailabilityPage;
 import resources.pages.agentpages.uwExpansionPages.variations.currentinsurancecoverage.CA_CurrentInsuranceCoveragePage;
 import resources.pages.agentpages.uwExpansionPages.variations.eligibilityhealthquestions.ME_CA_FL_EligibilityHealthQuestionsPage;
-import resources.pages.agentpages.uwExpansionPages.variations.planapplication.CA_PlanApplicationQuestions;
+
 import resources.pages.agentpages.uwExpansionPages.variations.replacenotice.RN034andRE073WithSignaturePage;
 import resources.utils.DateUtils;
 
@@ -27,12 +28,13 @@ public class IllinoisIntegrationLeanTests extends CQBaseIntegrationTest {
     @Page public ME_CA_FL_CheckEligibilityAndAvailabilityPage checkEligibilityAndAvailabilityPage;
     @Page public WhatYouNeedPage whatYouNeedPage;
     @Page public CustomerInformationPage customerInformationPage;
-    @Page public CA_PlanApplicationQuestions planApplicationQuestionsPage;
+    @Page public IL_PlanApplicationQuestionsPage planApplicationQuestionsPage;
     @Page public ME_CA_FL_EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
     @Page public CA_CurrentInsuranceCoveragePage currentInsuranceCoveragePage;
     @Page public CA_AuthorizationPage authorizationPage;
     @Page public RN034andRE073WithSignaturePage replacementNotice;
     @Page public AgentVerificationPage agentVerificationPage;
+    @Page public IL_SupplementalFormPage supplementalFormPage;
     @Page public PaymentDetailsSummaryPage paymentDetailsSummaryPage;
     @Page public PlanPaymentOptionsPage planPaymentOptionsPage;
     @Page public PreferencesPage preferencesPage;
@@ -71,6 +73,8 @@ public class IllinoisIntegrationLeanTests extends CQBaseIntegrationTest {
         app.setSS_Agent_Signature1(Application.ALL_SIGNATURES[10]);
         app.setReplacementAgentSignInd2Touch(Application.ALL_SIGNATURES[11]);
         app.setOnlinePreferenceSignatureTouch(Application.ALL_SIGNATURES[12]);
+        app.setIL23991Touch(Application.ALL_SIGNATURES[13]);
+        app.setIL23993Touch(Application.ALL_SIGNATURES[14]);
     }
 
     @Test
@@ -103,8 +107,11 @@ public class IllinoisIntegrationLeanTests extends CQBaseIntegrationTest {
         app.setGIMediCal(NO);
         app.setGIMilitary(NO);
         app.setGILocation(NO);
-        //Eligibility Questions
+        //Plan Application Question Page
+        app.setTurned65In6GA(YES);
+        app.setPartBIn6GA(YES);
         app.setPlanEffIn6OfEligible(YES);
+        
         //Past And Current Coverage
         app.setMedicaidCovered(NO);
         app.setExistingMedicare(NO);
@@ -119,8 +126,7 @@ public class IllinoisIntegrationLeanTests extends CQBaseIntegrationTest {
         app.setAgentMI("A");
         app.setAgentLastName("AgentLast");
         app.setAgentPhone("3334445555");
-        //Mailing Address
-        app.setMailingAddressCheck(NO);
+        app.setMedicalReleaseAuthSignatureIndRequired("Required");
         //Payment Details Summary Page
         app.setPaymentDetailsSummaryPageWithAppValues();
         //Replacement Notice Page
@@ -138,6 +144,7 @@ public class IllinoisIntegrationLeanTests extends CQBaseIntegrationTest {
         currentInsuranceCoveragePage.fillAndSubmit(app);
         authorizationPage.fillAndSubmit(app);
         agentVerificationPage.fillAndSubmit(app);
+        supplementalFormPage.fillAndSubmit(app);
         planPaymentOptionsPage.fillAndSubmit(app);
         paymentDetailsSummaryPage.fillAndSubmit(app);
         preferencesPage.fillAndSubmit(app);
@@ -175,10 +182,13 @@ public class IllinoisIntegrationLeanTests extends CQBaseIntegrationTest {
         app.setAgentEmail("agentpages@uhc.com");
         app.setAgentEmailConfirm("agentpages@uhc.com");
         //Plan Application Question
+        //Plan Application Question Page
+        app.setTurned65In6GA(NO);
+        app.setPartBIn6GA(NO);
         app.setPlanEffIn6OfEligible(NO);
         app.setGI30dayBday(NO);
         app.setESRD(NO);
-        app.setCAGuaranteedAcceptance(NO);
+        
         app.setLostCoverage(NO);
         app.setTobaccoUse(YES);
         //Eligibility Health Questions
@@ -220,14 +230,7 @@ public class IllinoisIntegrationLeanTests extends CQBaseIntegrationTest {
         app.setAgentLastName("AgentLast");
         app.setAgentPhone("3334445555");
         app.setMedicalReleaseAuthSignatureIndRequired("Required");
-        //Mailing Address
-        app.setMailingAddressCheck(YES);
-        app.setMailingAddressLine1(faker.bothify("#### ??????????? ??"));
-        app.setMailingAddressLine2(faker.bothify("#### ??????????? ??"));
-        app.setMailingCity(faker.letterify("??????????????"));
-        app.setMailingState(faker.letterify("CA"));
-        app.setMailingZipCode(faker.numerify("#####"));
-
+        
         //Sig required
         app.setMedicalReleaseAuthSignatureIndRequired("Required");
         //Payment Details Summary Page
@@ -247,6 +250,7 @@ public class IllinoisIntegrationLeanTests extends CQBaseIntegrationTest {
         currentInsuranceCoveragePage.fillAndSubmit(app);
         authorizationPage.fillAndSubmit(app);
         agentVerificationPage.fillAndSubmit(app);
+        supplementalFormPage.fillAndSubmit(app);
         replacementNotice.fillAndSubmit(app);
         planPaymentOptionsPage.fillAndSubmit(app);
         paymentDetailsSummaryPage.fillAndSubmit(app);

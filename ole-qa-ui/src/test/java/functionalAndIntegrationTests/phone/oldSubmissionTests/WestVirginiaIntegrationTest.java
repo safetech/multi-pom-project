@@ -42,6 +42,7 @@ public class WestVirginiaIntegrationTest extends CQBaseIntegrationTest {
         phoneSubmissionQuery = new PhoneSubmissionQuery();
         faker = new Faker();
         sheet = new CribSheet(faker);
+        sheet.setGRSId(faker.numerify("######"));
         expectedSubmissionResult = new SubmissionResult();
 
         app = new Application();

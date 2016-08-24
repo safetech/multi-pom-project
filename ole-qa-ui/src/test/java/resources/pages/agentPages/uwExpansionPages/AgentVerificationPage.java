@@ -1,7 +1,7 @@
 package resources.pages.agentpages.uwExpansionPages;
 
-import resources.entity.Application;
 import org.fluentlenium.core.domain.FluentWebElement;
+import resources.entity.Application;
 import resources.pages.WizardPage;
 
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -18,11 +18,11 @@ public class AgentVerificationPage extends WizardPage {
     protected FluentWebElement AgentLastName;
     protected FluentWebElement AgentPhone;
     FluentWebElement AgentSignatureIndTouch;
-
+    protected int TOTAL_POSSIBLE_QUESTION_COUNT = 8;
     public void fillAndSubmit(Application app) {
-
         isAt();
-
+        assertQuestionCount(TOTAL_POSSIBLE_QUESTION_COUNT);
+        
         fill(AgentOtherInsPoliciesSold).with(app.getAgentOtherInsPoliciesSold());
         fill(AgentPoliciesInForce).with(app.getAgentPoliciesInForce());
         fill(AgentPoliciesSoldNotInForce).with(app.getAgentPoliciesSoldNotInForce());
@@ -33,9 +33,11 @@ public class AgentVerificationPage extends WizardPage {
 
         AgentSignatureInd.click();
         fillTouchSignature("AgentSignatureIndTouch", app.getAgentSignatureIndTouch());
-
+        
         clickNextAndWaitForSpinnerToFinish();
+        
     }
+
     public void isAt() {
         assertThat(pageTitle.getText(), equalTo("Agent Verification"));
     }

@@ -42,7 +42,7 @@ public class MichiganIntegrationTest extends CQBaseIntegrationTest {
         faker = new Faker();
         sheet = new CribSheet(faker);
         expectedSubmissionResult = new SubmissionResult();
-
+        sheet.setGRSId(faker.numerify("######"));
         app = new Application();
 
         // Customer Info Page Question

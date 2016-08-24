@@ -48,7 +48,7 @@ public class IndianaIntegrationTest extends CQBaseIntegrationTest {
         sheet.setRandomCallCenterInfo();
         sheet.setDpsdToFirstDayOfFutureMonth(1);
         sheet.setPlanCode("F01");
-
+        sheet.setGRSId(faker.numerify("######"));
         app = new Application();
         // Customer Info Page Question
         app.setMedicareClaimNum(faker.bothify("#########A"));

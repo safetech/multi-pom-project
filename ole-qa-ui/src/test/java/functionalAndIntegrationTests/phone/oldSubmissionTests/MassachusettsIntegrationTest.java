@@ -45,7 +45,7 @@ public class MassachusettsIntegrationTest extends CQBaseIntegrationTest {
         sheet.setRandomCallCenterInfo();
         sheet.setDpsdToFirstDayOfFutureMonth(1);
         sheet.setPlanCode("MX");
-
+        sheet.setGRSId(faker.numerify("######"));
         app = new Application();
         // Customer Info Page Question
         app.setMedicareClaimNum(faker.bothify("#########A"));

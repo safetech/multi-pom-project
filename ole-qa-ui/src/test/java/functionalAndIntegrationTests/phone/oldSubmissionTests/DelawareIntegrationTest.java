@@ -42,7 +42,7 @@ public class DelawareIntegrationTest extends CQBaseIntegrationTest {
         faker = new Faker();
         sheet = new CribSheet(faker);
         expectedSubmissionResult = new SubmissionResult();
-
+        sheet.setGRSId(faker.numerify("######"));
     }
 
     @Test

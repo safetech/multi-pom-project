@@ -48,7 +48,7 @@ public class IllinoisIntegrationTest extends CQBaseIntegrationTest {
         sheet.setRandomCallCenterInfo();
         sheet.setDpsdToFirstDayOfFutureMonth(1);
         sheet.setPlanCode("F01");
-
+        sheet.setGRSId(faker.numerify("######"));
         app = new Application();
         // Customer Info Page Question
         app.setMedicareClaimNum(faker.bothify("#########A"));
@@ -73,7 +73,6 @@ public class IllinoisIntegrationTest extends CQBaseIntegrationTest {
 
         sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(69));
         sheet.setMedPartBdate("2011-10-01");
-
 
         //Customer Information
         app.setMedicareClaimNum(faker.bothify("??#########"));

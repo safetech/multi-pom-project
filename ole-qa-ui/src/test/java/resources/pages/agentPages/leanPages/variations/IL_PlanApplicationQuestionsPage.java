@@ -1,53 +1,51 @@
 package resources.pages.agentpages.leanPages.variations;
 
-import resources.entity.Application;
 import org.fluentlenium.core.domain.FluentWebElement;
 import org.openqa.selenium.support.FindBy;
+import resources.entity.Application;
 import resources.pages.agentpages.oldOlePages.PlanApplicationQuestions;
 
 public class IL_PlanApplicationQuestionsPage extends PlanApplicationQuestions {
 
-    protected int TOTAL_POSSIBLE_QUESTION_COUNT = 8;
+
+    protected int TOTAL_POSSIBLE_QUESTION_COUNT = 10;
     @FindBy(css = "#LostCoverage_1") FluentWebElement LostCoverage_Yes;
     @FindBy(css = "#LostCoverage_2") FluentWebElement LostCoverage_No;
-    @FindBy(css = "#GI30dayBday_1") FluentWebElement GI30dayBday_Yes;
-    @FindBy(css = "#GI30dayBday_2") FluentWebElement GI30dayBday_No;
 
     public void verifyInitialStateOfElements(Application app) {
-        assertQuestionCount(TOTAL_POSSIBLE_QUESTION_COUNT);
+        assertYesNoQuestion(Turned65In6GA_Yes, Turned65In6GA_No, app.getTurned65In6GA());
+        assertYesNoQuestion(PartBIn6GA_Yes, PartBIn6GA_No, app.getPartBIn6GA());
         assertYesNoQuestion(PlanEffIn6OfEligible_Yes, PlanEffIn6OfEligible_No, app.getPlanEffIn6OfEligible());
-        assertVisibleBasedUpon(app.getPlanEffIn6OfEligible().equals(NO), GI30dayBday_Yes, GI30dayBday_No);
-        assertHidden(LostCoverage_Yes, LostCoverage_No);
-        assertBlank(TobaccoUse_Yes, TobaccoUse_No);
-
+        assertVisibleBasedUpon(app.getTurned65In6GA().equals(NO), LostCoverage_Yes, LostCoverage_No);
+        //assertVisibleBasedUpon(app.getTurned65In6GA().equals(YES),TobaccoUse_Yes, TobaccoUse_No);
+        assertQuestionCount(TOTAL_POSSIBLE_QUESTION_COUNT);
     }
 
     public void fillAndSubmit(Application app) {
         isAt();
 
         verifyInitialStateOfElements(app);
-        if(app.getPlanEffIn6OfEligible().equals(NO)) {
-            fillYesNoQuestion(GI30dayBday_Yes, GI30dayBday_No, app.getGI30dayBday());
-            if(app.getGI30dayBday().equals(NO)) {
-                fillYesNoQuestion(LostCoverage_Yes, LostCoverage_No, app.getLostCoverage());
-            }
-
-        }
+        fillYesNoQuestion(LostCoverage_Yes, LostCoverage_No, app.getLostCoverage());
         fillYesNoQuestion(TobaccoUse_Yes, TobaccoUse_No, app.getTobaccoUse());
+
         verifyStateOfElementAfterAnswers(app);
 
         clickNextAndWaitForSpinnerToFinish();
     }
 
     public void verifyStateOfElementAfterAnswers(Application app) {
-        assertVisible(PlanEffIn6OfEligible_Yes,
-                PlanEffIn6OfEligible_No,
-                TobaccoUse_Yes,
-                TobaccoUse_No);
+        assertVisible(Turned65In6GA_Yes,
+                Turned65In6GA_No,
+                PartBIn6GA_Yes,
+                PartBIn6GA_No,
+                PlanEffIn6OfEligible_Yes,
+                PlanEffIn6OfEligible_No);
+        assertYesNoQuestion(Turned65In6GA_Yes, Turned65In6GA_No, app.getTurned65In6GA());
+        assertYesNoQuestion(PartBIn6GA_Yes, PartBIn6GA_No, app.getPartBIn6GA());
         assertYesNoQuestion(PlanEffIn6OfEligible_Yes, PlanEffIn6OfEligible_No, app.getPlanEffIn6OfEligible());
-        assertVisibleBasedUpon(app.getPlanEffIn6OfEligible().equals(NO), GI30dayBday_Yes, GI30dayBday_No);
-        assertVisibleBasedUpon(app.getGI30dayBday().equals(NO), LostCoverage_Yes, LostCoverage_No);
-
+        assertYesNoQuestion(LostCoverage_Yes, LostCoverage_No, app.getLostCoverage());
+        assertVisibleBasedUpon(app.getLostCoverage().equals(NO), LostCoverage_Yes,
+                LostCoverage_No, TobaccoUse_Yes, TobaccoUse_No);
         assertYesNoQuestion(TobaccoUse_Yes, TobaccoUse_No, app.getTobaccoUse());
         assertQuestionCount(TOTAL_POSSIBLE_QUESTION_COUNT);
     }

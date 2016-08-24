@@ -1,14 +1,15 @@
 package resources;
-import org.apache.commons.lang.time.DateUtils;
+
 import org.junit.Test;
+import resources.pages.WizardPage;
+
+import java.util.List;
+
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 
-import java.util.*;
-
-import static resources.utils.DateUtils.COMPAS_DATE_FORMAT;
-
-
-public class playGroungForTestingMethods {
+public class playGroungForTestingMethods extends WizardPage{
 
 
     @Test
@@ -51,16 +52,21 @@ public class playGroungForTestingMethods {
 //        System.out.println("unique elements in first list ->"+ uniqueElementsInFirstList);
 //   
 
-        
-        
 
 //        System.out.print(resources.utils.DateUtils.getDOBofPersonTurningAgeToday(65));
-        
-        
+        assertTextFieldCount(31);
 
-        
-        
+        List<String> x = find("div[class='form_row columns Centered']").find("input[type='text']").getAttributes("id");
+        System.out.println(x);
+
     }
+
+
+        public void assertTextFieldCount(int expectedCount) {
+            assertThat(find("input[type='text']").size(), equalTo(expectedCount));
+        }
+        
+    
 }
             
 
