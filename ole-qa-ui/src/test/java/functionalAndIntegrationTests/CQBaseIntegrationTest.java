@@ -13,13 +13,17 @@ import org.junit.runner.Description;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxProfile;
+import org.openqa.selenium.firefox.internal.ProfilesIni;
 import org.slf4j.Logger;
 import resources.entity.Application;
 import resources.entity.phone.CribSheet;
 import resources.excelObject.excelData;
 import resources.pages.phonepages.oldOlePages.CheatPage;
 import resources.utils.AnswerUtils;
+import resources.utils.PropertyUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -60,30 +64,23 @@ public class CQBaseIntegrationTest extends FluentTest {
             }
         }
     };
+//        -Dwebdriver.firefox.bin=/Applications/Firefox.app
+//        logger.info(String.format("Using driver: webdriver.firefox.driver=%s", System.getProperty("~/Application/x/Firefox.app")));
 
     @Override
     public WebDriver getDefaultDriver() {
- //       logger.info(String.format("Using driver: webdriver.firefox.bin=%s", System.getProperty("webdriver.firefox.bin")));
-//        Comment the below lines if your not using Browser Stack
-//        DesiredCapabilities caps = new DesiredCapabilities();
-//        caps.setCapability("browser", "IE");
-//        caps.setCapability("browser", "Chrome");
-//        caps.setCapability("browser_version", "11");
-//        caps.setCapability("os", "Windows");
-//        caps.setCapability("os_version", "7");
-//        caps.setCapability("browserstack.debug", "true");
-//        //caps.setCapability("local", "true");
-//        caps.setCapability("acceptSslCert", "true");
-//        caps.setCapability("checkURL", "false");
-//
-//        try {
-//            driver = new RemoteWebDriver(new java.net.URL(URL), caps);
-//        } catch (MalformedURLException e) {
-//            e.printStackTrace();
-//        }
 
-        //Comment the below line to run test in browser stack
-       driver = new FirefoxDriver();
+        if(PropertyUtils.getProperty( "Browser" ).equals( "Firefox" )){
+        ProfilesIni profile = new ProfilesIni();
+        FirefoxProfile ffprofile = profile.getProfile("Selenium");
+        driver = new FirefoxDriver(ffprofile);
+        driver.manage().window().maximize();
+        }else {
+        System.setProperty("webdriver.chrome.driver","/Users/sislam13/dev/apps/chrome/chrome-46/chromedriver");
+        driver = new ChromeDriver(  );
+        }
+        
+//        System.setProperty("webdriver.firefox.bin","/Users/sislam13/dev/apps/firefox/firefox-48/Firefox.app");
         return driver;
 
     }

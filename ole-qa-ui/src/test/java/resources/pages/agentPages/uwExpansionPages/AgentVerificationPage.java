@@ -17,8 +17,8 @@ public class AgentVerificationPage extends WizardPage {
     protected FluentWebElement AgentMI;
     protected FluentWebElement AgentLastName;
     protected FluentWebElement AgentPhone;
-    FluentWebElement AgentSignatureIndTouch;
-    protected int TOTAL_POSSIBLE_QUESTION_COUNT = 8;
+    FluentWebElement DidNotAssistAnsweringQuestions;
+    protected int TOTAL_POSSIBLE_QUESTION_COUNT = 9;
     public void fillAndSubmit(Application app) {
         isAt();
         assertQuestionCount(TOTAL_POSSIBLE_QUESTION_COUNT);
@@ -26,6 +26,7 @@ public class AgentVerificationPage extends WizardPage {
         fill(AgentOtherInsPoliciesSold).with(app.getAgentOtherInsPoliciesSold());
         fill(AgentPoliciesInForce).with(app.getAgentPoliciesInForce());
         fill(AgentPoliciesSoldNotInForce).with(app.getAgentPoliciesSoldNotInForce());
+        DidNotAssistAnsweringQuestions.click();
         fill(AgentFirstName).with(app.getAgentFirstName());
         fill(AgentMI).with(app.getAgentMI());
         fill(AgentLastName).with(app.getAgentLastName());

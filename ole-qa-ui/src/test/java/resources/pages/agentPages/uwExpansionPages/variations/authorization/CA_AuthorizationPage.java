@@ -10,18 +10,22 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class CA_AuthorizationPage extends WizardPage{
 
     private FluentWebElement SignatureInd;
+    FluentWebElement MedicalReleaseClaimSignatureInd;
     private FluentWebElement MedicalReleaseAuthSignatureInd;
 
     public void fillAndSubmit(Application app) {
         isAt();
         SignatureInd.click();
         fillTouchSignature("SignatureIndTouch",  app.getSignatureIndTouch());
-        
-        MedicalReleaseAuthSignatureInd.click();
-        fillTouchSignature("MedicalReleaseAuthSignatureIndTouch", app.getMedicalReleaseAuthSignatureIndTouch());
 
+        if(app.getMedicalReleaseAuthSignatureIndRequired().equals("Required")){
+            MedicalReleaseAuthSignatureInd.click();
+        }
+
+        MedicalReleaseClaimSignatureInd.click();
+        fillTouchSignature("MedicalReleaseClaimSignatureIndTouch",  app.getMedicalReleaseClaimSignatureIndTouch());
         clickNextAndWaitForSpinnerToFinish();
-
+        
     }
 
     public void isAt() {

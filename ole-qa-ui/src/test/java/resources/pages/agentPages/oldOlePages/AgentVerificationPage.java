@@ -18,10 +18,11 @@ public class AgentVerificationPage extends WizardPage {
     protected FluentWebElement AgentLastName;
     protected FluentWebElement AgentPhone;
     protected FluentWebElement AgentSignatureIndTouch;
+    protected int TOTAL_POSSIBLE_QUESTION_COUNT = 9;
 
     public void fillAndSubmit(Application app) {
-
         isAt();
+        assertQuestionCount(TOTAL_POSSIBLE_QUESTION_COUNT);
 
         fill(AgentOtherInsPoliciesSold).with(app.getAgentOtherInsPoliciesSold());
         fill(AgentPoliciesInForce).with(app.getAgentPoliciesInForce());

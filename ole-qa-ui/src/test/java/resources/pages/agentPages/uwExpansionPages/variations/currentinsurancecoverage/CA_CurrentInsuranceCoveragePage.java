@@ -42,7 +42,7 @@ public class CA_CurrentInsuranceCoveragePage extends WizardPage{
     @FindBy(css = "#OtherInsReplace_2") FluentWebElement OtherInsReplace_No;
     FluentWebElement CpaSignatureInd;
 
-    protected int TOTAL_POSSIBLE_QUESTION_COUNT = 29;
+    protected int TOTAL_POSSIBLE_QUESTION_COUNT = 31;
 
     public void fillAndSubmit(Application app) {
         isAt();
@@ -66,6 +66,8 @@ public class CA_CurrentInsuranceCoveragePage extends WizardPage{
         fillYesNoQuestion(ExistMedSupp_Yes, ExistMedSupp_No, app.getExistMedSupp());
         if(app.getExistMedSupp().equals("yes")){
             fillYesNoQuestion(ReplaceExistingMedSup_Yes, ReplaceExistingMedSup_No, app.getReplaceExistingMedSup());
+            fill(MSInsCompany).with(app.getMSInsCompany());
+            fill(MSPLAN).with(app.getMSPLAN());
         }
 
         fillYesNoQuestion(OtherInsCoverage_Yes, OtherInsCoverage_No, app.getOtherInsCoverage());

@@ -39,7 +39,7 @@ public class MinnesotaIntegrationTest extends CQBaseIntegrationTest {
     @Page public PlanPaymentOptionsPage planPaymentOptionsPage;
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
     @Page public ApplicationSubmissionPage applicationSubmissionPage;
-
+    
     public AgentSubmissionQuery submissionQuery;
     private Faker faker;
     private CribSheet sheet;

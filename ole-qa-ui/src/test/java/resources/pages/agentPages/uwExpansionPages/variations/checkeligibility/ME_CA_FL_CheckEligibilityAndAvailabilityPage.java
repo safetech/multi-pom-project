@@ -1,8 +1,8 @@
 package resources.pages.agentpages.uwExpansionPages.variations.checkeligibility;
 
-import resources.entity.Application;
 import org.fluentlenium.core.domain.FluentWebElement;
 import org.openqa.selenium.support.FindBy;
+import resources.entity.Application;
 import resources.pages.WizardPage;
 
 import java.util.concurrent.TimeUnit;
@@ -29,7 +29,17 @@ public class ME_CA_FL_CheckEligibilityAndAvailabilityPage extends WizardPage {
                 Thread.sleep(5000);
             }catch(Exception e){
             }
+        
+        
         await().atMost(10, TimeUnit.SECONDS).until("#State").hasAttribute("value", app.getState());
+       if(State.getText().equals(null)){
+           fill(ZipCode).with("08406");
+                if(State.getText().equals( null)){
+                    fill(ZipCode).with(app.getZipCode());   
+           }
+       }
+        
+        
         fill(DOB).with(app.getDOB());
         blur("#DOB");
             try{

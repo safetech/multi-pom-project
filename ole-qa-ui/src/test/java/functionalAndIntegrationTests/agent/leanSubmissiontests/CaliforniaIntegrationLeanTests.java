@@ -71,10 +71,12 @@ public class CaliforniaIntegrationLeanTests extends CQBaseIntegrationTest {
         app.setSS_Agent_Signature1(Application.ALL_SIGNATURES[10]);
         app.setReplacementAgentSignInd2Touch(Application.ALL_SIGNATURES[11]);
         app.setOnlinePreferenceSignatureTouch(Application.ALL_SIGNATURES[12]);
+        app.setIL23991Touch(Application.ALL_SIGNATURES[13]);
+        app.setIL23993Touch(Application.ALL_SIGNATURES[14]);
     }
 
     @Test
-    public void AGENT_California_GI() throws Exception {
+    public void AGENTlean_California_GI() throws Exception {
 
         sheet.setAgentID(agentID);
                 
@@ -152,7 +154,7 @@ public class CaliforniaIntegrationLeanTests extends CQBaseIntegrationTest {
     }
     
     @Test
-    public void AGENT_California_Eligibility_FU_With_RN() throws Exception {
+    public void AGENTlean_California_Eligibility_FU_With_RN() throws Exception {
 
         sheet.setAgentID(agentID);
         app.setState("CA");
