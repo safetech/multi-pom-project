@@ -20,6 +20,7 @@ public class CA_AuthorizationPage extends WizardPage{
 
         if(app.getMedicalReleaseAuthSignatureIndRequired().equals("Required")){
             MedicalReleaseAuthSignatureInd.click();
+            fillTouchSignature("MedicalReleaseAuthSignatureIndTouch",  app.getMedicalReleaseAuthSignatureIndTouch());
         }
 
         MedicalReleaseClaimSignatureInd.click();

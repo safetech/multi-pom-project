@@ -26,7 +26,7 @@ public class ME_CA_FL_CheckEligibilityAndAvailabilityPage extends WizardPage {
         fill(ZipCode).with(app.getZipCode());
         blur("#ZipCode");
             try{
-                Thread.sleep(5000);
+                Thread.sleep(2000);
             }catch(Exception e){
             }
         

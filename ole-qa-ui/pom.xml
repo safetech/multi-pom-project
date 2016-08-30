@@ -157,7 +157,8 @@
                 <phone.url>https://aarpsupplementalhealth-stg.uhc.com/ole/ms-phone.html?cheat=true</phone.url>
                 <dtc.url>https://aarpsupplementalhealth-stg.uhc.com/ole/ms.html?cheat=true</dtc.url>
                 <greenbay.url>https://aarpsupplementalhealth-stg.uhc.com/ole/ms-greenbay.html</greenbay.url>
-                <db.stage.connection>jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=orass0023.uhc.com)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=cmpst01.uhc.com)))</db.stage.connection>
+                <!--<db.stage.connection>jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=orass0023.uhc.com)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=cmpst01.uhc.com)))</db.stage.connection>-->
+                <db.stage.connection>jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=dbsrt1046.uhc.com)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=cmp0ts17svc.uhc.com)))</db.stage.connection>
                 <db.username>QAAUTOREAD</db.username>
                 <db.password>Aut0mation1</db.password>
             </properties>
