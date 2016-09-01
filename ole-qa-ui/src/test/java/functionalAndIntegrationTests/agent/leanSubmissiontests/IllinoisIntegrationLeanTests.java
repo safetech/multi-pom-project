@@ -16,7 +16,7 @@ import resources.pages.agentpages.uwExpansionPages.*;
 import resources.pages.agentpages.uwExpansionPages.variations.authorization.CA_AuthorizationPage;
 import resources.pages.agentpages.uwExpansionPages.variations.checkeligibility.ME_CA_FL_CheckEligibilityAndAvailabilityPage;
 import resources.pages.agentpages.uwExpansionPages.variations.currentinsurancecoverage.CA_CurrentInsuranceCoveragePage;
-import resources.pages.agentpages.uwExpansionPages.variations.eligibilityhealthquestions.ME_CA_FL_EligibilityHealthQuestionsPage;
+//import resources.pages.agentpages.uwExpansionPages.variations.eligibilityhealthquestions.ME_CA_FL_EligibilityHealthQuestionsPage;
 
 import resources.pages.agentpages.uwExpansionPages.variations.replacenotice.RN034andRE073WithSignaturePage;
 import resources.utils.DateUtils;
@@ -29,7 +29,7 @@ public class IllinoisIntegrationLeanTests extends CQBaseIntegrationTest {
     @Page public WhatYouNeedPage whatYouNeedPage;
     @Page public CustomerInformationPage customerInformationPage;
     @Page public IL_PlanApplicationQuestionsPage planApplicationQuestionsPage;
-    @Page public ME_CA_FL_EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
+    @Page public IL_EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
     @Page public CA_CurrentInsuranceCoveragePage currentInsuranceCoveragePage;
     @Page public CA_AuthorizationPage authorizationPage;
     @Page public RN034andRE073WithSignaturePage replacementNotice;
@@ -194,6 +194,7 @@ public class IllinoisIntegrationLeanTests extends CQBaseIntegrationTest {
         //Eligibility Health Questions
         app.setKidneyProblem(NO);
         app.setEligibilitySurgery(NO);
+        app.setSurgeryNeeded(NO);
         app.setEligibilityAdmitToHospPast90Days(NO);
         app.setNursingFacility(NO);
         app.setEligibilityHeartAttackTIAStroke(NO);
@@ -250,8 +251,8 @@ public class IllinoisIntegrationLeanTests extends CQBaseIntegrationTest {
         currentInsuranceCoveragePage.fillAndSubmit(app);
         authorizationPage.fillAndSubmit(app);
         agentVerificationPage.fillAndSubmit(app);
-        supplementalFormPage.fillAndSubmit(app);
         replacementNotice.fillAndSubmit(app);
+        supplementalFormPage.fillAndSubmit(app);
         planPaymentOptionsPage.fillAndSubmit(app);
         paymentDetailsSummaryPage.fillAndSubmit(app);
         preferencesPage.fillAndSubmit(app);

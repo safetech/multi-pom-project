@@ -18,6 +18,7 @@ public class ReviewAndSubmitPage extends WizardPage {
     }
 
     public void isAt() {
+        System.out.println(pageTitle.getText());
         assertThat(pageTitle.getText(), equalTo("Review and Submit"));
     }
 }

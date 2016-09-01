@@ -1,6 +1,5 @@
 package resources.pages.greenbaypages;
 
-import com.sun.tools.javac.jvm.Gen;
 import org.fluentlenium.core.domain.FluentWebElement;
 import org.openqa.selenium.io.Zip;
 import org.openqa.selenium.support.FindBy;

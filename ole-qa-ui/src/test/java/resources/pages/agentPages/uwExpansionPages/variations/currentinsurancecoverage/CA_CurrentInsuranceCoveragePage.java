@@ -46,8 +46,13 @@ public class CA_CurrentInsuranceCoveragePage extends WizardPage{
 
     public void fillAndSubmit(Application app) {
         isAt();
-        assertQuestionCount(TOTAL_POSSIBLE_QUESTION_COUNT);
+        //assertQuestionCount(TOTAL_POSSIBLE_QUESTION_COUNT);
+        {
+            //find("input[type='text'], input[type='checkbox'], input[type='radio'], select").size();
+            System.out.println(find("input[type='text'], input[type='checkbox'], input[type='radio'], select").getIds());
 
+        }
+//app
         fillYesNoQuestion(MedicaidCovered_Yes, MedicaidCovered_No, app.getMedicaidCovered());
         if(app.getMedicaidCovered().equals("yes")) {
             fillYesNoQuestion(MedicaidSupPremium_Yes, MedicaidSupPremium_No, app.getMedicaidSupPremium());

@@ -69,6 +69,16 @@ public class CQBaseIntegrationTest extends FluentTest {
 
     @Override
     public WebDriver getDefaultDriver() {
+<<<<<<< HEAD
+//        ProfilesIni profile = new ProfilesIni();
+//        FirefoxProfile myprofile = profile.getProfile("Selenium");
+//        driver = new FirefoxDriver(myprofile);
+//        return driver;
+
+     System.setProperty("webdriver.chrome.driver", "C:\\temp\\Apps\\Chromedriver\\chromedriver.exe");
+     driver=new ChromeDriver();
+      return driver;
+=======
 
         if(PropertyUtils.getProperty( "Browser" ).equals( "Firefox" )){
         ProfilesIni profile = new ProfilesIni();
@@ -83,6 +93,7 @@ public class CQBaseIntegrationTest extends FluentTest {
 //        System.setProperty("webdriver.firefox.bin","/Users/sislam13/dev/apps/firefox/firefox-48/Firefox.app");
         return driver;
 
+>>>>>>> 2730e7d969363ceff842c9f5a537dc6a87283857
     }
 
     @After

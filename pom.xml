@@ -8,8 +8,8 @@
         <artifactId>parent</artifactId>
         <groupId>com.uhg</groupId>
         <version>2.0.2</version>
-        <relativePath/>
     </parent>
+
     <modules>
         <module>ole-qa-ui</module>
     </modules>
