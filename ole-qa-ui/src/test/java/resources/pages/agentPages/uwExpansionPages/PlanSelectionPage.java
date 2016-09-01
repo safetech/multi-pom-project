@@ -1,5 +1,8 @@
 package resources.pages.agentpages.uwExpansionPages;
 
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import resources.entity.Application;
 import org.fluentlenium.core.domain.FluentWebElement;
 import org.openqa.selenium.support.FindBy;
@@ -36,10 +39,12 @@ public class PlanSelectionPage extends WizardPage{
         isAt();
         ChangeEligibilityAndAvailabilityInformation.click();
         clickNextAndWaitForSpinnerToFinish();
-        try{
-            Thread.sleep(6000);
-        }catch(Exception e){
-        }
+        (new WebDriverWait(getDriver(), 10)).until( new ExpectedCondition<Boolean>() {
+            public Boolean apply(WebDriver d) {
+                return First_Plan.isDisplayed();
+            }
+        });
+
         await().atMost(10, TimeUnit.SECONDS).until("#OleRateTable tbody tr").isPresent();
         await().atMost(5, TimeUnit.SECONDS).until(".OleRateTable").withText("Plan").hasSize();
         Second_Plan.click();

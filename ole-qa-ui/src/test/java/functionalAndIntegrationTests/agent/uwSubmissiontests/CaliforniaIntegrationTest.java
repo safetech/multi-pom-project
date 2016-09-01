@@ -1,10 +1,14 @@
 package functionalAndIntegrationTests.agent.uwSubmissiontests;
 
 import com.github.javafaker.Faker;
+import functionalAndIntegrationTests.CQBaseIntegrationTest;
+import org.fluentlenium.core.annotation.Page;
+import org.junit.Before;
+import org.junit.Test;
+import queries.AgentSubmissionQuery;
 import resources.entity.Application;
 import resources.entity.SubmissionResult;
 import resources.entity.agent.CribSheet;
-import functionalAndIntegrationTests.CQBaseIntegrationTest;
 import resources.pages.agentpages.uwExpansionPages.*;
 import resources.pages.agentpages.uwExpansionPages.variations.authorization.CA_AuthorizationPage;
 import resources.pages.agentpages.uwExpansionPages.variations.checkeligibility.ME_CA_FL_CheckEligibilityAndAvailabilityPage;
@@ -12,10 +16,6 @@ import resources.pages.agentpages.uwExpansionPages.variations.currentinsuranceco
 import resources.pages.agentpages.uwExpansionPages.variations.eligibilityhealthquestions.ME_CA_FL_EligibilityHealthQuestionsPage;
 import resources.pages.agentpages.uwExpansionPages.variations.planapplication.CA_PlanApplicationQuestions;
 import resources.pages.agentpages.uwExpansionPages.variations.replacenotice.RN034andRE073WithSignaturePage;
-import org.fluentlenium.core.annotation.Page;
-import org.junit.Before;
-import org.junit.Test;
-import queries.AgentSubmissionQuery;
 import resources.utils.DateUtils;
 
 public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
@@ -33,13 +33,14 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
     @Page public AgentVerificationPage agentVerificationPage;
     @Page public PaymentDetailsSummaryPage paymentDetailsSummaryPage;
     @Page public PlanPaymentOptionsPage planPaymentOptionsPage;
+    @Page public PreferencesPage preferencesPage;
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
 
     public AgentSubmissionQuery submissionQuery;
     private Faker faker;
     private CribSheet sheet;
     private SubmissionResult expectedSubmissionResult;
-
+    private String marketabilityCode = null;
     @Before
     public void setup() {
         submissionQuery = new AgentSubmissionQuery();
@@ -48,6 +49,9 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         app = new Application();
         app.setState("CA");
         app.setZipCode("90201");
+
+
+        marketabilityCode = "M14M43AGMMCA02_01D";
         expectedSubmissionResult = new SubmissionResult();
 
         app.setCpaSignatureIndTouch(Application.ALL_SIGNATURES[0]);
@@ -62,6 +66,9 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         app.setSS_App_Signature1(Application.ALL_SIGNATURES[9]);
         app.setSS_Agent_Signature1(Application.ALL_SIGNATURES[10]);
         app.setReplacementAgentSignInd2Touch(Application.ALL_SIGNATURES[11]);
+        app.setOnlinePreferenceSignatureTouch(Application.ALL_SIGNATURES[12]);
+        app.setIL23991Touch(Application.ALL_SIGNATURES[13]);
+        app.setIL23993Touch(Application.ALL_SIGNATURES[14]);
     }
 
     @Test
@@ -132,7 +139,7 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);
         checkEligibilityAndAvailabilityPage.fillAndSubmit(app);
-        planSelectionPage.checkMarketabilityCode("M14M43AGMMCA02_01D");
+        planSelectionPage.checkMarketabilityCode(marketabilityCode);
         planSelectionPage.fillAndSubmit(app);
         whatYouNeedPage.fillAndSubmit(app);
         customerInformationPage.fillAndSubmit(app);
@@ -142,6 +149,7 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         agentVerificationPage.fillAndSubmit(app);
         planPaymentOptionsPage.fillAndSubmit(app);
         paymentDetailsSummaryPage.fillAndSubmit(app);
+        preferencesPage.fillAndSubmit( app );
         reviewAndSubmitPage.fillAndSubmit(app);
 
         expectedSubmissionResult.setAcceptedInfo();
@@ -249,7 +257,7 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);
         checkEligibilityAndAvailabilityPage.fillAndSubmit(app);
-        planSelectionPage.checkMarketabilityCode("M14M43AGMMCA02_01D");
+        planSelectionPage.checkMarketabilityCode(marketabilityCode);
         planSelectionPage.fillAndSubmit(app);
         whatYouNeedPage.fillAndSubmit(app);
         customerInformationPage.fillAndSubmit(app);
@@ -261,7 +269,9 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         replacementNotice.fillAndSubmit(app);
         planPaymentOptionsPage.fillAndSubmit(app);
         paymentDetailsSummaryPage.fillAndSubmit(app);
+        preferencesPage.fillAndSubmit( app );
         reviewAndSubmitPage.fillAndSubmit(app);
+        
         expectedSubmissionResult.setAcceptedInfo();
         submissionQuery.verifyUwExpansionSubmissionData(app, expectedSubmissionResult);
         submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
