@@ -21,7 +21,7 @@ public class CA_AuthorizationPage extends WizardPage{
         isAt();
         SignatureInd.click();
         fillTouchSignature("SignatureIndTouch",  app.getSignatureIndTouch());
-<<<<<<< HEAD
+
         List<WebElement> mras=getDriver().findElements(By.id("MedicalReleaseAuthSignatureInd"));
         for(WebElement element: mras)
         {
@@ -33,8 +33,6 @@ public class CA_AuthorizationPage extends WizardPage{
         }
         //MedicalReleaseAuthSignatureInd.click();
         fillTouchSignature("MedicalReleaseAuthSignatureIndTouch", app.getMedicalReleaseAuthSignatureIndTouch());
-=======
->>>>>>> 2730e7d969363ceff842c9f5a537dc6a87283857
 
         if(app.getMedicalReleaseAuthSignatureIndRequired().equals("Required")){
             MedicalReleaseAuthSignatureInd.click();
@@ -44,7 +42,6 @@ public class CA_AuthorizationPage extends WizardPage{
         MedicalReleaseClaimSignatureInd.click();
         fillTouchSignature("MedicalReleaseClaimSignatureIndTouch",  app.getMedicalReleaseClaimSignatureIndTouch());
         clickNextAndWaitForSpinnerToFinish();
-        
     }
 
     public void isAt() {

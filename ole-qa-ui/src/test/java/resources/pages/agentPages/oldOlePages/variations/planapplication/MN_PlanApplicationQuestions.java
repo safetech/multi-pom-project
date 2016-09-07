@@ -13,12 +13,13 @@ public class MN_PlanApplicationQuestions extends PlanApplicationQuestions {
     @FindBy(css = "#LostCoverage_2") FluentWebElement LostCoverage_No;
 
     public void verifyInitialStateOfElements(Application app) {
+        assertQuestionCount(TOTAL_POSSIBLE_QUESTION_COUNT);
+        
         assertYesNoQuestion(Turned65In6GA_Yes, Turned65In6GA_No, app.getTurned65In6GA());
         assertYesNoQuestion(PartBIn6GA_Yes, PartBIn6GA_No, app.getPartBIn6GA());
         assertYesNoQuestion(PlanEffIn6OfEligible_Yes, PlanEffIn6OfEligible_No, app.getPlanEffIn6OfEligible());
         assertBlank(LostCoverage_Yes, LostCoverage_No);
         assertBlank(TobaccoUse_Yes, TobaccoUse_No);
-        assertQuestionCount(TOTAL_POSSIBLE_QUESTION_COUNT);
     }
 
     public void fillAndSubmit(Application app) {

@@ -84,8 +84,8 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         app.setZipCode("55445");
         app.setDOB(DateUtils.getDOBInNormalDateFormat(67));
         app.setReqEffectiveDate(DateUtils.getFirstDayOfFutureMonth(2));
-        app.setMPBED("05/01/2014");
-        app.setMPAED("05/01/2015");
+        app.setMPBED("05/01/2015");
+        app.setMPAED("05/01/2016");
         //CustomerInformationPage
         app.setAARPMembershipNumber(faker.numerify("##########"));
         app.setPrefix("MR");
@@ -192,7 +192,6 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         sheet.setAgentEmail("bob@dobbsco.com");
         sheet.setAgentPartyId("54321");
         sheet.setReferrer("ulayer");
-
         app.setState("MN");
         app.setZipCode("55445");
         app.setDOB(DateUtils.getDOBInNormalDateFormat(67));
@@ -294,16 +293,4 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
 
     }
 
-    @Test
-    public void testRunner(){
-        String [][] myTestData = xlData.getExcelData("/Users/sislam13/Desktop/TestCases.xls","Sheet1");
-
-        int x;
-        
-        for (x=0; x < myTestData.length; x++) {
-            //UserName	Password	State
-            app.setState(myTestData[x][2]);
-        }
-        
-    }
 }

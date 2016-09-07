@@ -64,36 +64,28 @@ public class CQBaseIntegrationTest extends FluentTest {
             }
         }
     };
-//        -Dwebdriver.firefox.bin=/Applications/Firefox.app
 //        logger.info(String.format("Using driver: webdriver.firefox.driver=%s", System.getProperty("~/Application/x/Firefox.app")));
 
     @Override
     public WebDriver getDefaultDriver() {
-<<<<<<< HEAD
-//        ProfilesIni profile = new ProfilesIni();
-//        FirefoxProfile myprofile = profile.getProfile("Selenium");
-//        driver = new FirefoxDriver(myprofile);
-//        return driver;
 
-     System.setProperty("webdriver.chrome.driver", "C:\\temp\\Apps\\Chromedriver\\chromedriver.exe");
-     driver=new ChromeDriver();
-      return driver;
-=======
+
+//     System.setProperty("webdriver.chrome.driver", "C:\\temp\\Apps\\Chromedriver\\chromedriver.exe");
+//     driver=new ChromeDriver();
+//      return driver;
 
         if(PropertyUtils.getProperty( "Browser" ).equals( "Firefox" )){
         ProfilesIni profile = new ProfilesIni();
         FirefoxProfile ffprofile = profile.getProfile("Selenium");
         driver = new FirefoxDriver(ffprofile);
-        driver.manage().window().maximize();
+//        driver.manage().window().maximize();
         }else {
         System.setProperty("webdriver.chrome.driver","/Users/sislam13/dev/apps/chrome/chrome-46/chromedriver");
         driver = new ChromeDriver(  );
         }
         
-//        System.setProperty("webdriver.firefox.bin","/Users/sislam13/dev/apps/firefox/firefox-48/Firefox.app");
         return driver;
 
->>>>>>> 2730e7d969363ceff842c9f5a537dc6a87283857
     }
 
     @After

@@ -1,9 +1,10 @@
 package resources.pages.agentpages.oldOlePages;
 
-import resources.entity.Application;
 import org.fluentlenium.core.domain.FluentWebElement;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.support.FindBy;
+import resources.entity.Application;
 import resources.pages.WizardPage;
 
 import java.util.concurrent.TimeUnit;
@@ -17,7 +18,8 @@ public class CheckEligibilityAndAvailabilityPage extends WizardPage {
     public FluentWebElement DOB;
     public FluentWebElement MPBED;
     public FluentWebElement ReqEffectiveDate;
-    public FluentWebElement State;
+    @FindBy(css = "#State") FluentWebElement State;
+
 
     public void fillAndSubmit(Application app) {
 
@@ -30,22 +32,35 @@ public class CheckEligibilityAndAvailabilityPage extends WizardPage {
         }catch(Exception e){
         }
         getDriver().findElement(By.id("ZipCode")).sendKeys(Keys.TAB);
+        
+        while (State.getValue().equals( null )){
+            getDriver().manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+            if(State.getValue().equals( app.getState())){
+                break;
+            }
+            if(State.getValue().equals( "" )){
+                fill(ZipCode).with("08406");
+                getDriver().manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+                assert(State.getValue().equals( "NJ" ));
+            }
+            fill(ZipCode).with(app.getZipCode());
+            assert(State.getValue().equals( app.getState()));
+        }
 
-        await().atMost(30, TimeUnit.SECONDS).until("#State").hasAttribute("value", app.getState());
         fill(DOB).with(app.getDOB());
         blur("#DOB");
-            try{
-                Thread.sleep(300);
-            }catch(Exception e){
-            }
+        try{
+            Thread.sleep(1000);
+        }catch(Exception e){
+        }
         fill(MPBED).with(app.getMPBED());
         blur("#MPBED");
-            try{
-                Thread.sleep(300);
-            }catch(Exception e){
-            }
+        try{
+            Thread.sleep(300);
+        }catch(Exception e){
+        }
 
-       // await().atMost(20, TimeUnit.SECONDS).until("div.customer_eligibility_form #ReqEffectiveDate option").hasSize(4);
+        await().atMost(20, TimeUnit.SECONDS).until("div.customer_eligibility_form #ReqEffectiveDate option").hasSize(4);
 
         fillSelect("div.customer_eligibility_form #ReqEffectiveDate").withIndex(1);
         blur("#ReqEffectiveDate");
@@ -57,7 +72,6 @@ public class CheckEligibilityAndAvailabilityPage extends WizardPage {
         getDriver().manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         clickNextAndWaitForSpinnerToFinish();
     }
-
     public void blur(String selector){
         executeScript("$('"+selector+"').blur()");
     }
