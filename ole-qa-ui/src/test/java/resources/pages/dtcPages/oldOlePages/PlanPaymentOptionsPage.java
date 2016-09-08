@@ -11,7 +11,11 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class PlanPaymentOptionsPage extends WizardPage {
 
     @FindBy(css = "#PaymentChoice_1") FluentWebElement CouponBook;
-    @FindBy(css = "#PaymentChoice_1") FluentWebElement AutomaticPayment;
+    @FindBy(css = "#PaymentChoice_2") FluentWebElement AutomaticPayment;
+    @FindBy(css = "#EFTType_1") FluentWebElement ReoccuringPayments;
+    @FindBy(css = "#EFTType_2") FluentWebElement OneTimePayments;
+    
+    
 
     protected int TOTAL_POSSIBLE_QUESTION_COUNT = 5;
 
@@ -21,6 +25,15 @@ public class PlanPaymentOptionsPage extends WizardPage {
         isAt();
 
         CouponBook.click();
+        
+        if(app.getPlanPaymentOptions().equals("Recurring")) {
+            AutomaticPayment.click();
+            ReoccuringPayments.click();
+        }else if (app.getPlanPaymentOptions().equals("OneTime")){
+            AutomaticPayment.click();
+            OneTimePayments.click();                
+        }
+                
 
         verifyStateOfElementAfterAnswers(app);
 

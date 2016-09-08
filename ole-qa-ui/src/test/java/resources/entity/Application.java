@@ -314,6 +314,19 @@ public class Application {
     private String Rider3 = "";
     private String Rider4 = "";
     private String Rider5 = "";
+
+    public String getPlanPaymentOptions() {
+        return PlanPaymentOptions;
+    }
+
+    public void setPlanPaymentOptions(String planPaymentOptions) {
+        PlanPaymentOptions = planPaymentOptions;
+    }
+
+    private String PlanPaymentOptions = "";
+    
+    
+    
     public String getRider1() {
         return Rider1;
     }

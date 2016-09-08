@@ -2,17 +2,18 @@ package functionalAndIntegrationTests.phone.oldSubmissionTests;
 
 import com.github.javafaker.Faker;
 import functionalAndIntegrationTests.CQBaseIntegrationTest;
+import org.fluentlenium.core.annotation.Page;
+import org.junit.Before;
+import org.junit.Test;
+import queries.PhoneSubmissionQuery;
 import resources.entity.Application;
-import resources.entity.phone.CribSheet;
 import resources.entity.SubmissionResult;
+import resources.entity.phone.CribSheet;
 import resources.pages.phonepages.oldOlePages.*;
 import resources.pages.phonepages.oldOlePages.variations.pastandcurrentcoverage.CA_PA_NJ_IN_OR_PastAndCurrentInsuranceCoveragePage;
 import resources.pages.phonepages.oldOlePages.variations.planapplication.VA_NJ_IL_LA_NC_KY_AR_PlanApplicationQuestions;
 import resources.pages.phonepages.oldOlePages.variations.replacementnotice.RN034andRE073Page;
-import queries.PhoneSubmissionQuery;
-import org.fluentlenium.core.annotation.Page;
-import org.junit.Before;
-import org.junit.Test;
+import resources.pages.phonepages.uwExpansionPages.PreferencesPage;
 import resources.utils.DateUtils;
 
 public class IllinoisIntegrationTest extends CQBaseIntegrationTest {
@@ -28,6 +29,7 @@ public class IllinoisIntegrationTest extends CQBaseIntegrationTest {
     @Page public HealthHistoryQuestionsPage healthHistoryQuestionsPage;
     @Page public AgentVerificationPage agentVerificationPage;
     @Page public RN034andRE073Page ReplacementNotice034Page;
+    @Page public PreferencesPage preferencesPage;
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
     @Page public ApplicationSubmissionPage applicationSubmissionPage;
 
@@ -152,6 +154,7 @@ public class IllinoisIntegrationTest extends CQBaseIntegrationTest {
         authorizationAndVerificationPage.fillAndSubmit(app);
         agentVerificationPage.fillAndSubmit(app);
         ReplacementNotice034Page.fillAndSubmit(app);
+        preferencesPage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
 
         applicationSubmissionPage.isAt();
@@ -244,6 +247,7 @@ public class IllinoisIntegrationTest extends CQBaseIntegrationTest {
         pastAndCurrentInsuranceCoveragePage.fillAndSubmit(app);
         authorizationAndVerificationPage.fillAndSubmit(app);
         agentVerificationPage.fillAndSubmit(app);
+        preferencesPage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
 
         applicationSubmissionPage.isAt();

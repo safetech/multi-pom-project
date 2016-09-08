@@ -13,6 +13,7 @@ import resources.pages.dtcpages.oldOlePages.variations.pastandcurrentcoverage.AR
 import resources.pages.dtcpages.oldOlePages.variations.planapplication.AR_PA_WI_PlanApplicationQuestionsPage;
 import resources.pages.dtcpages.oldOlePages.variations.planselectionandstartdate.PA_AR_NV_MA_PlanSelectionAndStartDatePage;
 import queries.DtcSubmissionQuery;
+import resources.pages.dtcpages.uwExpansionPages.PreferencesPage;
 import resources.utils.DateUtils;
 
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -31,6 +32,8 @@ public class PennsylvaniaIntegrationTest extends CQBaseIntegrationTest {
     @Page public AuthorizationPage authorizationPage;
     @Page public RN034andRE073Page replacementNoticePage;
     @Page public PlanPaymentOptionsPage planPaymentOptionsPage;
+    @Page public PaymentSummaryPage paymentSummaryPage;
+    @Page public PreferencesPage preferencesPage;
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
     @Page public HealthHistoryQuestionsPage healthHistoryQuestionsPage;
 
@@ -125,7 +128,9 @@ public class PennsylvaniaIntegrationTest extends CQBaseIntegrationTest {
         app.setOtherInsEnd("01/01/2014");
         app.setOtherInsReplace(YES);
         app.setCpaSignatureInd(YES);
-
+        app.setPlanPaymentOptions("Recurring");
+        //Payment Summary Page
+        app.setPaymentDetailsSummaryPageWithAppValues();
         //Replacement Notice Page
         app.setCommonReplacementNoticeAnswersWithApplicantInfo();
         app.setCommonHealthHistoryAnswers();
@@ -166,6 +171,10 @@ public class PennsylvaniaIntegrationTest extends CQBaseIntegrationTest {
 
         planPaymentOptionsPage.isAt();
         planPaymentOptionsPage.fillAndSubmit(app);
+
+        paymentSummaryPage.fillAndSubmit(app);
+
+        preferencesPage.fillAndSubmit(app);
 
         reviewAndSubmitPage.isAt();
         reviewAndSubmitPage.fillAndSubmit(app);
@@ -259,9 +268,12 @@ public class PennsylvaniaIntegrationTest extends CQBaseIntegrationTest {
         app.setAuxCity("AuxCity");
         app.setAuxState("NV");
         app.setAuxZipCode("89101");
+        app.setPlanPaymentOptions("OneTime");
         //Replacement Notice Page
         app.setCommonReplacementNoticeAnswersWithApplicantInfo();
-
+        //Payment Summary Page
+        app.setPaymentDetailsSummaryPageWithAppValues();
+        
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);
 
@@ -289,6 +301,10 @@ public class PennsylvaniaIntegrationTest extends CQBaseIntegrationTest {
         planPaymentOptionsPage.isAt();
         planPaymentOptionsPage.fillAndSubmit(app);
 
+        paymentSummaryPage.fillAndSubmit(app);
+
+        preferencesPage.fillAndSubmit(app);
+        
         reviewAndSubmitPage.isAt();
         reviewAndSubmitPage.fillAndSubmit(app);
 

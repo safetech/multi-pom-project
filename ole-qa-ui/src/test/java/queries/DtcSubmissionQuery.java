@@ -88,7 +88,8 @@ public class DtcSubmissionQuery {
             "  b.ADJUDICATION_CD,\n" +
             "  b.HASH_CD,\n" +
             "  d.PAYMENT_METHOD_TYPE_ID,\n" +
-            "  b.APPL_IMAGE_NUM_ORIG \n"+
+            "  b.APPL_IMAGE_NUM_ORIG, \n"+
+            "  d.EFT_FREQUENCY_TYPE_ID \n" +
             "from \n" +
             "  ((ole_application a left outer join application b on a.application_id = b.application_id)\n" +
             "  left outer join individual c on b.individual_id = c.individual_id)\n" +
@@ -143,7 +144,8 @@ public class DtcSubmissionQuery {
             "  b.ADJUDICATION_CD,\n" +
             "  b.HASH_CD,\n" +
             "  d.PAYMENT_METHOD_TYPE_ID,\n" +
-            "  b.APPL_IMAGE_NUM_ORIG \n" +
+            "  b.APPL_IMAGE_NUM_ORIG, \n" +
+            "  d.EFT_FREQUENCY_TYPE_ID \n" +
             "from \n" +
             "  ((ole_application a left outer join application b on a.application_id = b.application_id)\n" +
             "  left outer join individual c on b.individual_id = c.individual_id)\n" +
@@ -203,7 +205,6 @@ public class DtcSubmissionQuery {
         assertThat(row.get("ADDRESS_LINE_2"), equalTo(app.getAddressLine2().toUpperCase()));
         assertThat(row.get("CITY"), equalTo(app.getCity().toUpperCase()));
         assertThat(row.get("DAY_PHONE_NUM"), equalTo(app.getPhonePrimary()));
-//        assertThat(row.get("EVENING_PHONE_NUM"), equalTo(app.getPhoneEvening()));
         assertThat(row.get("EMAIL_ADDRESS"), equalTo(app.getEmail().toUpperCase()));
         assertThat(row.get("BOTH_PARTS_ACTIVE"), equalTo(app.getPartABActiveIndicator() == "yes" ? "Y" : "N"));
         assertThat(row.get("CPA_SIGNATURE_DATE"), equalTo(currentDate));
@@ -214,6 +215,7 @@ public class DtcSubmissionQuery {
         assertThat(row.get("ACTOR"), equalTo("1"));
         assertThat(row.get("MECHANISM"), equalTo("2"));
         assertThat(row.get("ADJUDICATION_CD"), equalTo(expectedSubmissionResult.getAdjudicationStatus()));
+        assertThat(row.get("EFT_FREQUENCY_TYPE_ID"), equalTo(app.getPlanPaymentOptions().equals("Recurring")?"1":app.getPlanPaymentOptions().equals("OneTime")?"2":"")); //eft 1=reoccuring
 
         logger.info(String.format("Here is the link to the image... https://acesx-stg-alt.uhc.com/appEnroll-web/resources/retrievePDF/v1/%s", row.get("APPL_IMAGE_NUM_ORIG") +" For the state of --> " + row.get("STATE_CD")));
     }

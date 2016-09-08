@@ -23,7 +23,7 @@ public class ME_CA_FL_CheckEligibilityAndAvailabilityPage extends WizardPage {
 
     @FindBy(xpath = "//*[@id='block']/div[3]/div/div[5]/a") FluentWebElement helpToolTip;
 
-    public void fillAndSubmit(Application app) {
+    public void fillAndSubmit(Application app) throws InterruptedException {
 
         isAt();
         fill(ZipCode).with(app.getZipCode());
@@ -35,7 +35,7 @@ public class ME_CA_FL_CheckEligibilityAndAvailabilityPage extends WizardPage {
         
         
 //        await().atMost(10, TimeUnit.SECONDS).until("#State").hasAttribute("value", app.getState());
-       if(State.getValue().equals(null)){
+       if(State.getValue().equals("")){
            fill(ZipCode).with("08406");
                 if(State.getValue().equals( null)){
                     fill(ZipCode).with(app.getZipCode());   
@@ -58,9 +58,11 @@ public class ME_CA_FL_CheckEligibilityAndAvailabilityPage extends WizardPage {
 
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
 
+        Thread.sleep(2000);
+        
         fillSelect("div.customer_eligibility_form #ReqEffectiveDate").withIndex(3);
         try{
-            Thread.sleep(5000);
+            Thread.sleep(1000);
         }catch(Exception e){
         }
 

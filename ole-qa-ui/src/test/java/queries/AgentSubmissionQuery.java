@@ -80,7 +80,8 @@ public class AgentSubmissionQuery {
         " b.ADJUDICATION_CD,\n" +
         " b.HASH_CD,\n" +
         " d.PAYMENT_METHOD_TYPE_ID,\n" +
-        " b.APPL_IMAGE_NUM_ORIG\n" +
+        " b.APPL_IMAGE_NUM_ORIG,\n" +        
+        " d.EFT_frequency_type_id\n" +
         " from \n" +
         " ((ole_application a left outer join application b on a.application_id = b.application_id)\n" +
         " left outer join individual c on b.individual_id = c.individual_id)\n" +
@@ -97,8 +98,6 @@ public class AgentSubmissionQuery {
         HashMap<String, String> row = DbUtils.getSingleRecord(query, SELECTED_COMPAS_ENVIRONMENT);
         String currentDate = DateUtils.NORMALIZED_DATE_FORMAT.format(new java.util.Date());
         assertThat(row.get("MEMBERSHIP_NUMBER"), containsString(app.getAARPMemberNumber()));
-        //assertThat(row.get("NAME_PREFIX_ID"), equalTo(""));
-        //assertThat(row.get("NAME_SUFFIX_ID"), equalTo(""));
         assertThat(row.get("FIRST_NAME"), equalTo(app.getFirstName().toUpperCase()));
         assertThat(row.get("MIDDLE_NAME"), equalTo(app.getMI().toUpperCase()));
         assertThat(row.get("LAST_NAME"), equalTo(app.getLastName().toUpperCase()));
@@ -122,7 +121,8 @@ public class AgentSubmissionQuery {
         assertThat(row.get("CHANNEL"), equalTo("10"));
         assertThat(row.get("ACTOR"), equalTo("3"));
         assertThat(row.get("MECHANISM"), equalTo("2"));
-        //assertThat(row.get("ADJUDICATION_CD"), equalTo(expectedSubmissionResult.getAdjudicationStatus()));
+        assertThat(row.get("EFT_frequency_type_id"), equalTo("1")); //eft 1=reoccuring
+
         logger.info(String.format("Here is the link to the image... https://acesx-stg-alt.uhc.com/appEnroll-web/resources/retrievePDF/v1/%s", row.get("APPL_IMAGE_NUM_ORIG") + " For the state of --> " + app.getState()));
 
     }

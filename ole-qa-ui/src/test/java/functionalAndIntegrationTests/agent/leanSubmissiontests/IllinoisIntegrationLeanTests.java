@@ -11,15 +11,15 @@ import resources.entity.SubmissionResult;
 import resources.entity.agent.CribSheet;
 import resources.pages.agentpages.leanPages.CheatPage;
 import resources.pages.agentpages.leanPages.PreferencesPage;
-import resources.pages.agentpages.leanPages.variations.*;
+import resources.pages.agentpages.leanPages.variations.IL_EligibilityHealthQuestionsPage;
+import resources.pages.agentpages.leanPages.variations.IL_PlanApplicationQuestionsPage;
+import resources.pages.agentpages.leanPages.variations.IL_SupplementalFormPage;
+import resources.pages.agentpages.oldOlePages.variations.currentinsurancecoverage.AR_PA_OR_CurrentInsuranceCoveragePage;
 import resources.pages.agentpages.uwExpansionPages.*;
-import resources.pages.agentpages.uwExpansionPages.variations.authorization.CA_AuthorizationPage;
 import resources.pages.agentpages.uwExpansionPages.variations.checkeligibility.ME_CA_FL_CheckEligibilityAndAvailabilityPage;
-import resources.pages.agentpages.uwExpansionPages.variations.currentinsurancecoverage.CA_CurrentInsuranceCoveragePage;
-//import resources.pages.agentpages.uwExpansionPages.variations.eligibilityhealthquestions.ME_CA_FL_EligibilityHealthQuestionsPage;
-
 import resources.pages.agentpages.uwExpansionPages.variations.replacenotice.RN034andRE073WithSignaturePage;
 import resources.utils.DateUtils;
+
 
 public class IllinoisIntegrationLeanTests extends CQBaseIntegrationTest {
 
@@ -30,8 +30,8 @@ public class IllinoisIntegrationLeanTests extends CQBaseIntegrationTest {
     @Page public CustomerInformationPage customerInformationPage;
     @Page public IL_PlanApplicationQuestionsPage planApplicationQuestionsPage;
     @Page public IL_EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
-    @Page public CA_CurrentInsuranceCoveragePage currentInsuranceCoveragePage;
-    @Page public CA_AuthorizationPage authorizationPage;
+    @Page public AR_PA_OR_CurrentInsuranceCoveragePage currentInsuranceCoveragePage;
+    @Page public AuthorizationPage authorizationPage;
     @Page public RN034andRE073WithSignaturePage replacementNotice;
     @Page public AgentVerificationPage agentVerificationPage;
     @Page public IL_SupplementalFormPage supplementalFormPage;
