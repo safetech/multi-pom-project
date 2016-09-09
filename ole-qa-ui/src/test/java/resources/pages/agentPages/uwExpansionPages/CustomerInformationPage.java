@@ -44,12 +44,10 @@ public class CustomerInformationPage extends WizardPage {
     private @FindBy(css = "#PartABActiveIndicator_2") FluentWebElement PartABActiveIndicator_No;
     private @FindBy(css = "#MailingAddressCheck_1") FluentWebElement MailingAddressCheck_Yes;
     private @FindBy(css = "#MailingAddressCheck_2") FluentWebElement MailingAddressCheck_No;
-
-
+    
     public void fillAndSubmit(Application app) {
         isAt();
         fill(AARPMembershipNumber).with(app.getAARPMembershipNumber());
-
         fill(FirstName).with(app.getFirstName());
         fill(MI).with(app.getMI());
         fill(LastName).with(app.getLastName());

@@ -29,7 +29,7 @@ public class ME_CA_FL_CheckEligibilityAndAvailabilityPage extends WizardPage {
         fill(ZipCode).with(app.getZipCode());
         blur("#ZipCode");
             try{
-                Thread.sleep(2000);
+                Thread.sleep(5000);
             }catch(Exception e){
             }
         
@@ -37,6 +37,17 @@ public class ME_CA_FL_CheckEligibilityAndAvailabilityPage extends WizardPage {
 //        await().atMost(10, TimeUnit.SECONDS).until("#State").hasAttribute("value", app.getState());
        if(State.getValue().equals("")){
            fill(ZipCode).with("08406");
+           blur("#ZipCode");
+           try{
+               Thread.sleep(2000);
+           }catch(Exception e){
+           }
+           fill(ZipCode).with(app.getZipCode());
+           blur("#ZipCode");
+           try{
+               Thread.sleep(2000);
+           }catch(Exception e){
+           }
                 if(State.getValue().equals( null)){
                     fill(ZipCode).with(app.getZipCode());   
            }
@@ -49,7 +60,7 @@ public class ME_CA_FL_CheckEligibilityAndAvailabilityPage extends WizardPage {
                 Thread.sleep(300);
             }catch(Exception e){
             }
-        fill(MPBED).with(app.getMPBED());
+        fill(MPBED).with(app.getMPBED()+"\t");
         blur("#MPBED");
             try{
                 Thread.sleep(3000);

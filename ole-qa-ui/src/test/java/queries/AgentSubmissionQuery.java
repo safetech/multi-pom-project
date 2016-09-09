@@ -81,7 +81,7 @@ public class AgentSubmissionQuery {
         " b.HASH_CD,\n" +
         " d.PAYMENT_METHOD_TYPE_ID,\n" +
         " b.APPL_IMAGE_NUM_ORIG,\n" +        
-        " d.EFT_frequency_type_id\n" +
+        " d.EFT_FREQUENCY_TYPE_ID\n" + 
         " from \n" +
         " ((ole_application a left outer join application b on a.application_id = b.application_id)\n" +
         " left outer join individual c on b.individual_id = c.individual_id)\n" +
@@ -121,7 +121,8 @@ public class AgentSubmissionQuery {
         assertThat(row.get("CHANNEL"), equalTo("10"));
         assertThat(row.get("ACTOR"), equalTo("3"));
         assertThat(row.get("MECHANISM"), equalTo("2"));
-        assertThat(row.get("EFT_frequency_type_id"), equalTo("1")); //eft 1=reoccuring
+        assertThat(row.get("EFT_FREQUENCY_TYPE_ID"), equalTo(app.getPlanPaymentOptions().equals("Recurring")? "1":app.getPlanPaymentOptions().equals("OneTime")?"2":"")); //eft 1=reoccuring
+        assertThat(row.get("PAYMENT_METHOD_TYPE_ID"), equalTo(app.getPlanPaymentOptions().equals("Recurring")? "3":app.getPlanPaymentOptions().equals("OneTime")?"3":"2"));
 
         logger.info(String.format("Here is the link to the image... https://acesx-stg-alt.uhc.com/appEnroll-web/resources/retrievePDF/v1/%s", row.get("APPL_IMAGE_NUM_ORIG") + " For the state of --> " + app.getState()));
 
