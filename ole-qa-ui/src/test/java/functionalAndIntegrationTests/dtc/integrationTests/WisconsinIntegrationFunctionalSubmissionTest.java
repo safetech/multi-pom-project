@@ -1,23 +1,21 @@
 package functionalAndIntegrationTests.dtc.integrationTests;
 
 import com.github.javafaker.Faker;
-import resources.entity.Application;
-import resources.entity.SubmissionResult;
-import resources.entity.dtc.CribSheet;
 import functionalAndIntegrationTests.CQBaseIntegrationTest;
-import resources.pages.dtcpages.oldOlePages.*;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
+import queries.DtcSubmissionQuery;
+import resources.entity.Application;
+import resources.entity.SubmissionResult;
+import resources.entity.dtc.CribSheet;
+import resources.pages.dtcpages.oldOlePages.*;
 import resources.pages.dtcpages.oldOlePages.variations.authorization.WI_AuthorizationPage;
 import resources.pages.dtcpages.oldOlePages.variations.pastandcurrentcoverage.AR_CA_PA_WI_MN_PastAndCurrentCoveragePage;
 import resources.pages.dtcpages.oldOlePages.variations.planapplication.AR_PA_WI_PlanApplicationQuestionsPage;
 import resources.pages.dtcpages.oldOlePages.variations.planselectionandstartdate.PA_AR_NV_MA_PlanSelectionAndStartDatePage;
-import queries.DtcSubmissionQuery;
+import resources.pages.dtcpages.uwExpansionPages.PreferencesPage;
 import resources.utils.DateUtils;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class WisconsinIntegrationFunctionalSubmissionTest extends CQBaseIntegrationTest {
 
@@ -32,6 +30,7 @@ public class WisconsinIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
     @Page public WI_AuthorizationPage authorizationPage;
     @Page public RN034andRE073Page replacementNoticePage;
     @Page public PlanPaymentOptionsPage planPaymentOptionsPage;
+    @Page public PreferencesPage preferencesPage;
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
     @Page public HealthHistoryQuestionsPage healthHistoryQuestionsPage;
 
@@ -49,8 +48,7 @@ public class WisconsinIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         app = new Application();
         logger.info(gson.toJson(app));
     }
-    public static SimpleDateFormat NORMALIZED_DATE_FORMAT = new SimpleDateFormat("MM/dd/yyyy");
-
+    
     @Test
     public void WI_WID2_GARider1And3NoRN() throws Exception {
 
@@ -138,6 +136,7 @@ public class WisconsinIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         pastAndCurrentCoveragePage.fillAndSubmit(app);
         authorizationPage.fillAndSubmit(app);
         planPaymentOptionsPage.fillAndSubmit(app);
+        preferencesPage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
         expectedSubmissionResult.verifyAcceptedPlanAndRiderCodes("MW1", "OW1", "QW1", "", "");
         submissionQuery.verifyPlanAndRiderCodes(app, sheet, expectedSubmissionResult);
@@ -245,6 +244,7 @@ public class WisconsinIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         pastAndCurrentCoveragePage.fillAndSubmit(app);
         authorizationPage.fillAndSubmit(app);
         planPaymentOptionsPage.fillAndSubmit(app);
+        preferencesPage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
 
         expectedSubmissionResult.verifyPendingPlanAndRiderCodes("MW1", "PW1", "SW1", "", "", "", "");
@@ -350,6 +350,7 @@ public class WisconsinIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         pastAndCurrentCoveragePage.fillAndSubmit(app);
         authorizationPage.fillAndSubmit(app);
         planPaymentOptionsPage.fillAndSubmit(app);
+        preferencesPage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
 
         expectedSubmissionResult.verifyPendingPlanAndRiderCodes("MW1", "OW1", "SW1", "", "", "", "");
@@ -459,14 +460,11 @@ public class WisconsinIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         pastAndCurrentCoveragePage.fillAndSubmit(app);
         authorizationPage.fillAndSubmit(app);
         planPaymentOptionsPage.fillAndSubmit(app);
+        preferencesPage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
 
         expectedSubmissionResult.verifyPendingPlanAndRiderCodes("MW1", "PW1", "SW1", "", "","","");
         submissionQuery.verifyPlanAndRiderCodes(app, sheet, expectedSubmissionResult);
     }
 
-    public static String getDOBInNormalDateFormat(int age) {
-        Date dob = org.apache.commons.lang3.time.DateUtils.addYears(new Date(), -age);
-        return NORMALIZED_DATE_FORMAT.format(dob);
-    }
 }

@@ -51,6 +51,7 @@ public class MinnesotaIntegrationFunctionalTest extends CQBaseIntegrationTest {
         sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(69));
         sheet.setDpsdToFirstDayOfFutureMonth(1);
         sheet.setRandomNameGenderAndMembershipNumber();
+        sheet.setGRSId(faker.numerify("######"));
         app = new Application();
 
         // Customer Info Page Question

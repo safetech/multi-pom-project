@@ -1,20 +1,20 @@
 package functionalAndIntegrationTests.agent.integrationtests;
 
 import com.github.javafaker.Faker;
-import resources.entity.Application;
-import resources.entity.SubmissionResult;
-import resources.entity.agent.CribSheet;
 import functionalAndIntegrationTests.CQBaseIntegrationTest;
-import resources.pages.agentpages.oldOlePages.*;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
+import queries.AgentSubmissionQuery;
+import resources.entity.Application;
+import resources.entity.SubmissionResult;
+import resources.entity.agent.CribSheet;
+import resources.pages.agentpages.oldOlePages.*;
 import resources.pages.agentpages.oldOlePages.variations.authorization.WI_AuthorizationPage;
 import resources.pages.agentpages.oldOlePages.variations.currentinsurancecoverage.AR_PA_OR_CurrentInsuranceCoveragePage;
 import resources.pages.agentpages.oldOlePages.variations.planapplication.WI_PlanApplicationQuestionsPage;
 import resources.pages.agentpages.oldOlePages.variations.planselection.iTest_WI_PlanSelectionPage;
 import resources.pages.agentpages.oldOlePages.variations.replacenotice.RN034_AR_Page;
-import queries.AgentSubmissionQuery;
 import resources.utils.DateUtils;
 
 public class WisconsinIntegrationFunctionalSubmissionTest extends CQBaseIntegrationTest {
@@ -30,7 +30,7 @@ public class WisconsinIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
     @Page public WI_AuthorizationPage authorizationPage;
     @Page public RN034_AR_Page replacementNotice;
     @Page public HealthHistoryQuestionsPage healthHistoryQuestionsPage;
-    @Page public AgentVerificationPage agentVerificationPage;
+    @Page public resources.pages.agentpages.uwExpansionPages.AgentVerificationPage agentVerificationPage;
     @Page public PaymentDetailsSummaryPage paymentDetailsSummaryPage;
     @Page public PlanPaymentOptionsPage planPaymentOptionsPage;
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;

@@ -12,7 +12,7 @@ import resources.pages.agentpages.uwExpansionPages.*;
 import resources.pages.agentpages.uwExpansionPages.variations.authorization.MN_WA_AuthorizationPage;
 import resources.pages.agentpages.uwExpansionPages.variations.checkeligibility.ME_CA_FL_CheckEligibilityAndAvailabilityPage;
 import resources.pages.agentpages.uwExpansionPages.variations.currentinsurancecoverage.OR_CurrentInsuranceCoveragePage;
-import resources.pages.agentpages.uwExpansionPages.variations.eligibilityhealthquestions.ME_CA_FL_EligibilityHealthQuestionsPage;
+import resources.pages.agentpages.uwExpansionPages.variations.eligibilityhealthquestions.MN_ME_CA_FL_EligibilityHealthQuestionsPage;
 import resources.pages.agentpages.uwExpansionPages.variations.planapplication.OR_PlanApplicationQuestionsPage;
 import resources.pages.agentpages.uwExpansionPages.variations.replacenotice.RN034andRE073WithSignaturePage;
 import queries.AgentSubmissionQuery;
@@ -26,13 +26,14 @@ public class OreganIntegrationTest extends CQBaseIntegrationTest {
     @Page public WhatYouNeedPage whatYouNeedPage;
     @Page public CustomerInformationPage customerInformationPage;
     @Page public OR_PlanApplicationQuestionsPage planApplicationQuestionsPage;
-    @Page public ME_CA_FL_EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
+    @Page public MN_ME_CA_FL_EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
     @Page public OR_CurrentInsuranceCoveragePage currentInsuranceCoveragePage;
     @Page public MN_WA_AuthorizationPage authorizationPage;
     @Page public RN034andRE073WithSignaturePage replacementNotice;
     @Page public HealthHistoryQuestionsPage healthHistoryQuestionsPage;
     @Page public AgentVerificationPage agentVerificationPage;
     @Page public PaymentDetailsSummaryPage paymentDetailsSummaryPage;
+    @Page public PreferencesPage preferencesPage;
     @Page public PlanPaymentOptionsPage planPaymentOptionsPage;
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
     @Page public ApplicationSubmissionPage applicationSubmissionPage;
@@ -92,8 +93,8 @@ public class OreganIntegrationTest extends CQBaseIntegrationTest {
         app.setAddressLine1("11211 frStreet dr");
         app.setAddressLine2("apt #123");
         app.setCity("Horsham");
-        app.setEmail("test@uhc.com");
-        app.setConfirmEmail("test@uhc.com");
+        app.setEmail("romansilver@g212dnk5.com");
+        app.setConfirmEmail(app.getEmail());
         app.setPhonePrimary(faker.numerify("##########"));
         app.setPhoneEvening("1255561234");
         app.setGender("M");
@@ -104,7 +105,7 @@ public class OreganIntegrationTest extends CQBaseIntegrationTest {
         //Plan ApplicationPage
         app.setPlanEffIn6OfEligible(YES);
         app.setTobaccoUse(YES);
-        //Past And Current Coverage
+        //Past And Current Coverage 
         app.setCPATurned65(YES);
         app.setCPAPartBIn6(YES);
         app.setMedicaidCovered(NO);
@@ -137,6 +138,7 @@ public class OreganIntegrationTest extends CQBaseIntegrationTest {
         agentVerificationPage.fillAndSubmit(app);
         planPaymentOptionsPage.fillAndSubmit(app);
         paymentDetailsSummaryPage.fillAndSubmit(app);
+        preferencesPage.fillAndSubmit( app );
         reviewAndSubmitPage.fillAndSubmit(app);
 
         expectedSubmissionResult.setAcceptedInfo();
@@ -164,8 +166,7 @@ public class OreganIntegrationTest extends CQBaseIntegrationTest {
         app.setMPBED("01/01/2010");
         app.setMPAED("01/01/2010");
         //TestData
-        app.setAARPMembershipNumber(faker.numerify("##########"));
-        app.setPrefix("MR");
+        
         app.setFirstName(app.getState()+"_Agent_FU_"+faker.letterify("??????????"));
         app.setLastName(faker.letterify("??????????"));
         app.setSuffix("PHD");
@@ -173,20 +174,13 @@ public class OreganIntegrationTest extends CQBaseIntegrationTest {
         app.setAddressLine2("apt #123");
         app.setCity(faker.letterify("??????????"));
         app.setEmail("test@uhc.com");
-        app.setConfirmEmail("test@uhc.com");
+        app.setConfirmEmail(app.getEmail());
         app.setPhonePrimary(faker.numerify("##########"));
     //    app.setPhoneEvening("1234561234");
         app.setGender("M");
         app.setMedicareClaimNum(faker.bothify("#########?"));
-        //TestData
         app.setAARPMembershipNumber(faker.numerify("##########"));
         app.setPrefix("MR");
-        app.setSuffix("PHD");
-        app.setAddressLine1("3211 Street dr");
-        app.setAddressLine2("apt #123");
-        app.setCity("Horsham");
-        app.setEmail("test@uhc.com");
-        app.setConfirmEmail("test@uhc.com");
         app.setPartABActiveIndicator(YES);
         app.setAgentEmail("agentpages@uhc.com");
         app.setAgentEmailConfirm("agentpages@uhc.com");
@@ -269,6 +263,7 @@ public class OreganIntegrationTest extends CQBaseIntegrationTest {
         replacementNotice.fillAndSubmit(app);
         planPaymentOptionsPage.fillAndSubmit(app);
         paymentDetailsSummaryPage.fillAndSubmit(app);
+        preferencesPage.fillAndSubmit( app );
         reviewAndSubmitPage.fillAndSubmit(app);
 
         expectedSubmissionResult.setAcceptedInfo();

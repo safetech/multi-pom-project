@@ -69,8 +69,8 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         app.setAddressLine1("111 Street dr");
         app.setAddressLine2("apt #123");
         app.setCity("Horsham");
-        app.setEmail("test@uhc.com");
-        app.setConfirmEmail("test@uhc.com");
+        app.setEmail("thiclicral@throwam.com");
+        app.setConfirmEmail("thiclicral@throwam.com");
         app.setPhonePrimary("9874562345");
         app.setPhoneEvening("1234561234");
         app.setGender("M");
@@ -202,7 +202,6 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
 
         whatYouNeedPage.checkMarketabilityCode("M14M43AGMMCA02_01D");
         whatYouNeedPage.clickNextAndWaitForSpinnerToFinish();
-        electronicSignatureAndDocumentConsentPage.isAt();
         electronicSignatureAndDocumentConsentPage.clickNextAndWaitForSpinnerToFinish();
         aboutYouPage.fillAndSubmit(app, sheet);
         planSelectionAndStartDatePage.fillAndSubmit(sheet);

@@ -31,6 +31,12 @@ public class DateUtils {
         Calendar cal = Calendar.getInstance();
         cal.add(Calendar.DATE, numOfDays);
         return dateFormat.format(cal.getTime());
+    }    
+    public static String customizeDaysInNormalForat(int numOfDays) {
+        DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DATE, numOfDays);
+        return dateFormat.format(cal.getTime());
     }
 
     public static String getRandomDOB() {

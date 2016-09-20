@@ -13,7 +13,7 @@ public class PlanPaymentOptionsPage extends WizardPage {
     @FindBy(css = "#PaymentChoice_2") FluentWebElement PaymentChoice_CouponBook;
     @FindBy(xpath = "html/body/div[2]/div[1]/div[1]/form/section/div[3]/div[6]/div[2]/input") FluentWebElement EFTOption;
 
-    protected int TOTAL_POSSIBLE_QUESTION_COUNT = 5;
+    protected int TOTAL_POSSIBLE_QUESTION_COUNT = 4;
     
     public void fillAndSubmit(Application app) {
 

@@ -1,20 +1,20 @@
 package functionalAndIntegrationTests.dtc.integrationTests;
 
 import com.github.javafaker.Faker;
-import resources.entity.Application;
-import resources.entity.SubmissionResult;
-import resources.entity.dtc.CribSheet;
 import functionalAndIntegrationTests.CQBaseIntegrationTest;
-import resources.pages.dtcpages.oldOlePages.*;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
+import queries.DtcSubmissionQuery;
+import resources.entity.Application;
+import resources.entity.SubmissionResult;
+import resources.entity.dtc.CribSheet;
+import resources.pages.dtcpages.oldOlePages.*;
 import resources.pages.dtcpages.oldOlePages.variations.aboutyourpage.MN_AboutYouPage;
 import resources.pages.dtcpages.oldOlePages.variations.authorization.MN_AuthorizationPage;
-import resources.pages.dtcpages.oldOlePages.variations.pastandcurrentcoverage.MN_PastAndCurrentCoveragePage;
 import resources.pages.dtcpages.oldOlePages.variations.planapplication.MN_PlanApplicationQuestionsPage;
 import resources.pages.dtcpages.oldOlePages.variations.planselectionandstartdate.PA_AR_NV_MA_PlanSelectionAndStartDatePage;
-import queries.DtcSubmissionQuery;
+import resources.pages.dtcpages.uwExpansionPages.variations.eligibilityhealthquestions.CA_EligibilityHealthQuestions;
 import resources.utils.DateUtils;
 
 public class MinesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrationTest {
@@ -25,11 +25,12 @@ public class MinesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrati
     @Page public MN_AboutYouPage aboutYouPage;
     @Page public PA_AR_NV_MA_PlanSelectionAndStartDatePage planSelectionAndStartDatePage;
     @Page public MN_PlanApplicationQuestionsPage planApplicationQuestionsPage;
-    @Page public EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
-    @Page public MN_PastAndCurrentCoveragePage pastAndCurrentCoveragePage;
+    @Page public CA_EligibilityHealthQuestions eligibilityHealthQuestionsPage;
+    @Page public resources.pages.dtcpages.uwExpansionPages.variations.pastandcurrentcoverage.MN_PastAndCurrentCoveragePage pastAndCurrentCoveragePage;
     @Page public MN_AuthorizationPage authorizationPage;
     @Page public RN034andRE073Page replacementNoticePage;
     @Page public PlanPaymentOptionsPage planPaymentOptionsPage;
+    @Page public resources.pages.dtcpages.uwExpansionPages.PreferencesPage preferencesPage;
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
     @Page public HealthHistoryQuestionsPage healthHistoryQuestionsPage;
 
@@ -89,9 +90,8 @@ public class MinesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrati
         app.setPlanEffIn6OfEligible(NO);
         app.setTobaccoUse(YES);
         app.setLostCoverage(NO);
-        //Eligibility Page
-        app.setESRD(NO);
-        app.setSurgeryNeeded(NO);
+        //EligibilityHealthQuestionsPage
+        app.setUWEligibilityPageWithAppValues(NO);
         //Authorizationa and verififcation page
         app.setDesignateLapse(YES);
         //Past And Current Coverage
@@ -141,7 +141,7 @@ public class MinesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrati
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);
 
-        whatYouNeedPage.clickNextAndWaitForSpinnerToFinish();
+        whatYouNeedPage.fillAndSubmit(app);
         electronicSignatureAndDocumentConsentPage.clickNextAndWaitForSpinnerToFinish();
         aboutYouPage.fillAndSubmit(app, sheet);
         planSelectionAndStartDatePage.fillAndSubmit(app);
@@ -150,6 +150,7 @@ public class MinesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrati
         pastAndCurrentCoveragePage.fillAndSubmit(app);
         authorizationPage.fillAndSubmit();
         planPaymentOptionsPage.fillAndSubmit(app);
+        preferencesPage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
 
         expectedSubmissionResult.verifyAcceptedPlanAndRiderCodes("TW1", "XW1", "", "", "");
@@ -257,6 +258,7 @@ public class MinesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrati
         pastAndCurrentCoveragePage.fillAndSubmit(app);
         authorizationPage.fillAndSubmit();
         planPaymentOptionsPage.fillAndSubmit(app);
+        preferencesPage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
 
         expectedSubmissionResult.verifyPendingPlanAndRiderCodes("TW1", "YW1", "VW1", "WW1", "ZW1", "", "");

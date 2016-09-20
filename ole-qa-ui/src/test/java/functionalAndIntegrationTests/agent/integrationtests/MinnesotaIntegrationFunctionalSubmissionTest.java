@@ -11,11 +11,13 @@ import resources.entity.SubmissionResult;
 import resources.entity.agent.CribSheet;
 import resources.excelObject.excelData;
 import resources.pages.agentpages.oldOlePages.*;
-import resources.pages.agentpages.oldOlePages.variations.authorization.MN_AuthorizationPage;
-import resources.pages.agentpages.oldOlePages.variations.currentinsurancecoverage.MN_CurrentInsuranceCoveragePage;
 import resources.pages.agentpages.oldOlePages.variations.planapplication.MN_PlanApplicationQuestions;
 import resources.pages.agentpages.oldOlePages.variations.planselection.iTest_MN_PlanSelectionPage;
 import resources.pages.agentpages.oldOlePages.variations.replacenotice.RN034andRE073WithSignaturePage;
+import resources.pages.agentpages.uwExpansionPages.PreferencesPage;
+import resources.pages.agentpages.uwExpansionPages.variations.authorization.MN_WA_AuthorizationPage;
+import resources.pages.agentpages.uwExpansionPages.variations.currentinsurancecoverage.MN_WA_CurrentInsuranceCoveragePage;
+import resources.pages.agentpages.uwExpansionPages.variations.eligibilityhealthquestions.MN_ME_CA_FL_EligibilityHealthQuestionsPage;
 import resources.utils.DateUtils;
 
 
@@ -27,14 +29,15 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
     @Page public WhatYouNeedPage whatYouNeedPage;
     @Page public CustomerInformationPage customerInformationPage;
     @Page public MN_PlanApplicationQuestions planApplicationQuestionsPage;
-    @Page public EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
-    @Page public MN_CurrentInsuranceCoveragePage currentInsuranceCoveragePage;
-    @Page public MN_AuthorizationPage authorizationPage;
+    @Page public MN_ME_CA_FL_EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
+    @Page public MN_WA_CurrentInsuranceCoveragePage currentInsuranceCoveragePage;
+    @Page public MN_WA_AuthorizationPage authorizationPage;
     @Page public RN034andRE073WithSignaturePage replacementNotice;
     @Page public HealthHistoryQuestionsPage healthHistoryQuestionsPage;
-    @Page public AgentVerificationPage agentVerificationPage;
-    @Page public PaymentDetailsSummaryPage paymentDetailsSummaryPage;
+    @Page public resources.pages.agentpages.uwExpansionPages.AgentVerificationPage agentVerificationPage;
     @Page public PlanPaymentOptionsPage planPaymentOptionsPage;
+    @Page public PaymentDetailsSummaryPage paymentDetailsSummaryPage;
+    @Page public PreferencesPage preferencesPage;
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
     @Page public ApplicationSubmissionPage applicationSubmissionPage;
 
@@ -52,7 +55,7 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         expectedSubmissionResult = new SubmissionResult();
         app = new Application();
         xlData = new excelData();
-        
+
         app.setCpaSignatureIndTouch(Application.ALL_SIGNATURES[0]);
         app.setSignatureIndTouch(Application.ALL_SIGNATURES[1]);
         app.setMedicalReleaseAuthSignatureIndTouch(Application.ALL_SIGNATURES[2]);
@@ -65,6 +68,9 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         app.setSS_App_Signature1(Application.ALL_SIGNATURES[9]);
         app.setSS_Agent_Signature1(Application.ALL_SIGNATURES[10]);
         app.setReplacementAgentSignInd2Touch(Application.ALL_SIGNATURES[11]);
+        app.setOnlinePreferenceSignatureTouch(Application.ALL_SIGNATURES[12]);
+        app.setIL23991Touch(Application.ALL_SIGNATURES[13]);
+        app.setIL23993Touch(Application.ALL_SIGNATURES[14]);
     }
     
 @Test
@@ -83,7 +89,7 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         app.setState("MN");
         app.setZipCode("55445");
         app.setDOB(DateUtils.getDOBInNormalDateFormat(67));
-        app.setReqEffectiveDate(DateUtils.getFirstDayOfFutureMonth(2));
+        app.setReqEffectiveDate(DateUtils.getFirstDayOfFutureMonth(1));
         app.setMPBED("05/01/2015");
         app.setMPAED("05/01/2016");
         //CustomerInformationPage
@@ -96,7 +102,7 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         app.setAddressLine1(faker.bothify("#### ??????????" + " Rd"));
         app.setAddressLine2(faker.bothify("#### ????????" + " St"));
         app.setCity(faker.letterify("?????? " + "City"));
-        app.setEmail(faker.bothify("??????##"+"@uhc.com"));
+        app.setEmail("cason@jr9fds46y97.com");
         app.setConfirmEmail(app.getEmail());
         app.setPhonePrimary(faker.numerify("##########"));
         app.setPhoneEvening(faker.numerify("##########"));
@@ -112,8 +118,7 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         app.setTobaccoUse(YES);
         app.setLostCoverage(NO);
     //EligibilityHealthQuestionsPage
-        app.setESRD(NO);
-        app.setSurgeryNeeded(NO);
+        app.setUWEligibilityPageWithAppValues(NO);
     //CurrentInsuranceCoveragePage
         app.setCPATurned65(NO);
         app.setTurned65In6GA(NO);
@@ -174,6 +179,7 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         replacementNotice.fillAndSubmit(app);
         planPaymentOptionsPage.fillAndSubmit(app);
         paymentDetailsSummaryPage.fillAndSubmit(app);
+        preferencesPage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
 
         expectedSubmissionResult.verifyPendingPlanAndRiderCodes("TW1","OW1","PW1","","","","");
@@ -223,9 +229,8 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         app.setPartBIn6GA(NO);
         app.setTobaccoUse(YES);
         app.setLostCoverage(NO);
-    //EligibilityHealthQuestionsPage
-        app.setESRD(NO);
-        app.setSurgeryNeeded(NO);
+        //EligibilityHealthQuestionsPage
+        app.setUWEligibilityPageWithAppValues(NO);
     //CurrentInsuranceCoveragePage
         app.setCPATurned65(NO);
         app.setTurned65In6GA(NO);

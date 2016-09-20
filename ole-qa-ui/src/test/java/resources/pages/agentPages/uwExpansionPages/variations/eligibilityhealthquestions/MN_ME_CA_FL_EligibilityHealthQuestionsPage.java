@@ -8,7 +8,7 @@ import resources.pages.WizardPage;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class ME_CA_FL_EligibilityHealthQuestionsPage extends WizardPage {
+public class MN_ME_CA_FL_EligibilityHealthQuestionsPage extends WizardPage {
 
     @FindBy(css = "#KidneyProblem_1") FluentWebElement KidneyProblem_Yes;
     @FindBy(css = "#KidneyProblem_2") FluentWebElement KidneyProblem_No;
@@ -32,7 +32,7 @@ public class ME_CA_FL_EligibilityHealthQuestionsPage extends WizardPage {
     protected int TOTAL_POSSIBLE_QUESTION_COUNT = 18;
 
     public void verifyInitialStateOfElements(Application app) {
-//        assertQuestionCount(TOTAL_POSSIBLE_QUESTION_COUNT);
+        assertQuestionCount(TOTAL_POSSIBLE_QUESTION_COUNT);
         assertBlank(
             KidneyProblem_Yes,
             KidneyProblem_No,

@@ -7,6 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import resources.entity.Application;
 import resources.utils.AnswerUtils;
 
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -154,7 +155,18 @@ public class WizardPage extends FluentPage {
     protected void assertTextSubValue(String answername, String value) {
         assertThat(getTextSubValue(answername).getText(), equalTo(value));
     }
-
+    public void closeSpecificBrowser(int Brow){
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        ArrayList<String> windows = new ArrayList<String> (getDriver().getWindowHandles());
+        String baseWindowHdl = getDriver().getWindowHandle();
+        getDriver().switchTo().window(windows.get(Brow));
+        getDriver().close();
+        getDriver().switchTo().window(baseWindowHdl);
+    }
 
     protected void assertHidden(FluentWebElement element) {
         assertThat(element.isDisplayed(), equalTo(false));

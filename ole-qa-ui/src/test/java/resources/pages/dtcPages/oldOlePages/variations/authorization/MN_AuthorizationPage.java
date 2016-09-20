@@ -14,8 +14,6 @@ public class MN_AuthorizationPage extends WizardPage {
     public void fillAndSubmit() {
 
         SignatureInd.click();
-        MedicalReleaseAuthSignatureInd.click();
-
         clickNextAndWaitForSpinnerToFinish();
 
     }

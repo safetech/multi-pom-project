@@ -1,11 +1,10 @@
 package resources.pages.agentpages.oldOlePages;
 
-import resources.entity.Application;
 import org.fluentlenium.core.domain.FluentWebElement;
 import org.openqa.selenium.support.FindBy;
+import resources.entity.Application;
 import resources.pages.WizardPage;
 
-import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -27,13 +26,7 @@ public class ReviewAndSubmitPage extends WizardPage {
         await().atMost(30, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
     }
 
-    public void closeSpecificBrowser(int Brow){
-        ArrayList<String> windows = new ArrayList<String> (getDriver().getWindowHandles());
-        String baseWindowHdl = getDriver().getWindowHandle();
-        getDriver().switchTo().window(windows.get(Brow));
-        getDriver().close();
-        getDriver().switchTo().window(baseWindowHdl);
-    }
+
     public void isAt() {
         assertThat(pageTitle.getText(), equalTo("Review and Submit"));
 

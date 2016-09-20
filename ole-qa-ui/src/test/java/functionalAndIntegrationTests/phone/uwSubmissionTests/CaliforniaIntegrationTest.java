@@ -32,6 +32,7 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
     @Page public CA_PA_NJ_IN_PastAndCurrentInsuranceCoveragePage pastAndCurrentInsuranceCoveragePage;
     @Page public CA_AuthorizationAndVerificationPage authorizationAndVerificationPage;
     @Page public CA_AgentVerificationPage agentVerificationPage;
+    @Page public PreferencesPage preferencesPage;
     @Page public RN040Page replacementNoticePage;
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
     @Page public ApplicationSubmissionPage applicationSubmissionPage;
@@ -76,6 +77,7 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         sheet.setMedPartBdate(DateUtils.getFirstDayOfPastOrFutureMonths(-7));
         sheet.setDpsdToFirstDayOfFutureMonth(3);
         //Customer Information
+        app.setEmail("aba@bd.com");
         app.setMPAED(DateUtils.getFirstDayOfPastOrFutureMonths(-7));
         app.setMPBED(DateUtils.getFirstDayOfPastOrFutureMonths(-7));
         //Plan Application
@@ -127,7 +129,6 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         app.setOtherInsEnd("01/01/2014");
         app.setOtherInsReplace(YES);
         app.setCpaSignatureInd(YES);
-        //Authorization Page
         //Agent Verification Page
         app.setAgentOtherInsPoliciesSold("HIP");
         app.setAgentPoliciesInForce("EP");
@@ -155,8 +156,8 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         authorizationAndVerificationPage.fillAndSubmit(app);
         agentVerificationPage.fillAndSubmit(app);
         replacementNoticePage.fillAndSubmit(app);
+        preferencesPage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
-
         expectedSubmissionResult.setPendingInfo("ENROLLMENT EA","EA INDIVIDUAL NOT FOUND");
         phoneSubmissionQuery.verifySubmissionData(app, expectedSubmissionResult);
         phoneSubmissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
@@ -170,6 +171,7 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         sheet.setMedPartBdate(DateUtils.getFirstDayOfPastOrFutureMonths(2));
         sheet.setDpsdToFirstDayOfFutureMonth(3);
         //Customer Information
+        app.setEmail("aba@bd.com");
         app.setMPAED("01/01/2015");
         app.setMPBED(DateUtils.getFirstDayOfPastOrFutureMonths(2));
         //Eligibility Questions
@@ -232,6 +234,7 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         pastAndCurrentInsuranceCoveragePage.fillAndSubmit(app);
         authorizationAndVerificationPage.fillAndSubmit(app);
         agentVerificationPage.fillAndSubmit(app);
+        preferencesPage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
         applicationSubmissionPage.isAt();
         applicationSubmissionPage.isApprovedOrPending();

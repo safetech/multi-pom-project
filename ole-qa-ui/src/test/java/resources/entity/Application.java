@@ -2037,8 +2037,18 @@ public class Application {
         setRoutingNumberConfirm("123123123");
         setAccountNumber("23456");
         setAccountNumberConfirm("23456");
+    }    
+    public void setUWEligibilityPageWithAppValues(String EligAnswers) {
+        setKidneyProblem(EligAnswers);
+        setEligibilitySurgery(EligAnswers);
+        setEligibilityAdmitToHospPast90Days(EligAnswers);
+        setNursingFacility(EligAnswers);
+        setEligibilityHeartAttackTIAStroke(EligAnswers);
+        setEligibilityChronicMedicalConditions(EligAnswers);
     }
 
+    
+    
     public void setDefaultPlanEligibilityQuestions(CribSheet sheet) {
 
         Date dob = new Date(DateUtils.convertDate(sheet.getDateOfBirth(), DateUtils.NORMALIZED_DATE_FORMAT));

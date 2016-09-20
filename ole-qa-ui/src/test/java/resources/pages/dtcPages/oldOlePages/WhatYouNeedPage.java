@@ -22,11 +22,17 @@ public class WhatYouNeedPage extends WizardPage {
 
         isAt();
         PlanOverview.click();
+        closeSpecificBrowser(1);
         BenefitsTable.click();
+        closeSpecificBrowser(1);
         RulesAndDisclousures.click();
+        closeSpecificBrowser(1);
         YourGuideToAARPMedicareSupplementInsurancePlans.click();
+        closeSpecificBrowser(1);
         GuideToHealthInsuranceForPeopleWithMedicare.click();
+        closeSpecificBrowser(1);
         ImportantDisclousures.click();
+        closeSpecificBrowser(1);
 
         clickNextAndWaitForSpinnerToFinish();
     }

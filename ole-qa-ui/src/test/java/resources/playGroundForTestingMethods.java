@@ -1,17 +1,23 @@
 package resources;
 
+import org.fluentlenium.core.domain.FluentWebElement;
 import org.junit.Test;
+import org.openqa.selenium.support.FindBy;
 import resources.pages.WizardPage;
+import resources.utils.DateUtils;
 
+import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 
-public class playGroungForTestingMethods extends WizardPage{
+public class playGroundForTestingMethods extends WizardPage{
 
-
+    @FindBy(xpath = "html/body/div[2]/div[1]/div[2]/div/div[1]/aside/div/p[6]/b")
+    FluentWebElement RequestedEffectiveDate;
     @Test
    public void CodingExercise() {
 //        List<String> s1 = new ArrayList<String>();
@@ -52,7 +58,10 @@ public class playGroungForTestingMethods extends WizardPage{
 //        System.out.println("unique elements in first list ->"+ uniqueElementsInFirstList);
 //   
 
-
+        long days= TimeUnit.DAYS.convert((new Date(DateUtils.customizeDaysInNormalForat(29)).getTime()-new Date(RequestedEffectiveDate.getText()).getTime() ),TimeUnit.MILLISECONDS);
+        System.out.println(days);
+        
+        
 //        System.out.print(resources.utils.DateUtils.getDOBofPersonTurningAgeToday(65));
         assertTextFieldCount(31);
 
