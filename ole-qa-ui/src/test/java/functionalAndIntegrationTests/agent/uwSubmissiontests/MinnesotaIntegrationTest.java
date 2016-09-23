@@ -9,6 +9,7 @@ import resources.pages.agentpages.oldOlePages.*;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
+import resources.pages.agentpages.uwExpansionPages.PreferencesPage;
 import resources.pages.agentpages.uwExpansionPages.variations.authorization.MN_WA_AuthorizationPage;
 import resources.pages.agentpages.uwExpansionPages.variations.checkeligibility.ME_CA_FL_CheckEligibilityAndAvailabilityPage;
 import resources.pages.agentpages.uwExpansionPages.variations.currentinsurancecoverage.MN_WA_CurrentInsuranceCoveragePage;
@@ -19,7 +20,6 @@ import resources.pages.agentpages.oldOlePages.variations.replacenotice.RN034andR
 import queries.AgentSubmissionQuery;
 import resources.utils.DateUtils;
 
-;
 
 public class MinnesotaIntegrationTest extends CQBaseIntegrationTest {
 
@@ -36,6 +36,7 @@ public class MinnesotaIntegrationTest extends CQBaseIntegrationTest {
     @Page public HealthHistoryQuestionsPage healthHistoryQuestionsPage;
     @Page public AgentVerificationPage agentVerificationPage;
     @Page public PaymentDetailsSummaryPage paymentDetailsSummaryPage;
+    @Page public PreferencesPage preferencesPage;
     @Page public PlanPaymentOptionsPage planPaymentOptionsPage;
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
     @Page public ApplicationSubmissionPage applicationSubmissionPage;
@@ -89,14 +90,14 @@ public class MinnesotaIntegrationTest extends CQBaseIntegrationTest {
         //TestData
         app.setAARPMembershipNumber(faker.numerify("##########"));
         app.setPrefix("MR");
-        app.setFirstName(app.getState()+"Agent_GA_InteliJ");
+        app.setFirstName(app.getState()+"_Agent_"+faker.firstName());
         app.setLastName(faker.letterify("??????????"));
         app.setSuffix("PHD");
         app.setAddressLine1(faker.bothify("#### ??????????? ??"));
         app.setAddressLine2("apt #123");
         app.setCity(faker.letterify("??????????"));
-        app.setEmail("test@uhc.com");
-        app.setConfirmEmail("test@uhc.com");
+        app.setEmail("txjr@e.incq.com");
+        app.setConfirmEmail(app.getEmail());
         app.setPhonePrimary(faker.numerify("##########"));
         app.setPhoneEvening("1255561234");
         app.setMedicareClaimNum(faker.bothify("?#########"));
@@ -141,12 +142,12 @@ public class MinnesotaIntegrationTest extends CQBaseIntegrationTest {
         agentVerificationPage.fillAndSubmit(app);
         planPaymentOptionsPage.fillAndSubmit(app);
         paymentDetailsSummaryPage.fillAndSubmit(app);
+        preferencesPage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
 
         expectedSubmissionResult.setAcceptedInfo();
         submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
-//        expectedSubmissionResult.setPendingInfo("ENROLLMENT GI REVIEW","BBA REVIEW REQUIRED");
-//        submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
+
     }
     @Test
     public void AGENT_minnesota_eligibility_healthhistory_underwriting_with_rn() throws Exception {
@@ -276,6 +277,7 @@ public class MinnesotaIntegrationTest extends CQBaseIntegrationTest {
         replacementNotice.fillAndSubmit(app);
         planPaymentOptionsPage.fillAndSubmit(app);
         paymentDetailsSummaryPage.fillAndSubmit(app);
+        preferencesPage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
 
         expectedSubmissionResult.setPendingInfo("INFORMATION","REQUIRED");

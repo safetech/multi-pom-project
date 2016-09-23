@@ -80,6 +80,8 @@ public class GreenbaySubmissionQuery {
         " b.APPL_COMPONENT_NUMBER,\n" +
         " b.ADJUDICATION_CD,\n" +
         " b.HASH_CD,\n" +
+        " b.ASSOCIATION_ID,\n"+
+        " b.INSURED_CD,\n"+
         " d.PAYMENT_METHOD_TYPE_ID,\n" +
         " b.APPL_IMAGE_NUM_ORIG\n" +
         " from \n" +

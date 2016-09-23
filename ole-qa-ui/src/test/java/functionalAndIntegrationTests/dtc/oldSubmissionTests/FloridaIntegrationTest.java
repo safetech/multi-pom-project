@@ -68,8 +68,8 @@ public class FloridaIntegrationTest extends CQBaseIntegrationTest {
         app.setAddressLine1("111 Street dr");
         app.setAddressLine2("apt #123");
         app.setCity("Horsham");
-        app.setEmail("test@uhc.com");
-        app.setConfirmEmail("test@uhc.com");
+        app.setEmail("bernabe74@jr9fds46y97.com");
+        app.setConfirmEmail(app.getEmail());
         app.setPhonePrimary("9874562345");
         app.setPhoneEvening("1234561234");
         app.setGender("M");
@@ -150,9 +150,9 @@ public class FloridaIntegrationTest extends CQBaseIntegrationTest {
 
         sheet.setAarpMemid("y");
         sheet.setDOB(DateUtils.getDOBofPersonTurningAgeToday(65));
-        sheet.setEffDate("04/01/2015");
-        sheet.setPsd(DateUtils.getFirstDayOfFutureMonth(1));
-        sheet.setPlanCode("A");
+        sheet.setPsd("02/01/2017");
+        sheet.setEffDate("01/01/2017");
+        sheet.setPlanCode("FS");
         sheet.setReferrer("uLayer");
 
         Application app = new Application();
@@ -166,8 +166,8 @@ public class FloridaIntegrationTest extends CQBaseIntegrationTest {
         app.setAddressLine1("111 Street dr");
         app.setAddressLine2("apt #123");
         app.setCity("Horsham");
-        app.setEmail("test@uhc.com");
-        app.setConfirmEmail("test@uhc.com");
+        app.setEmail("josejr5@jr9fds46y97.com");
+        app.setConfirmEmail(app.getEmail());
         app.setPhonePrimary("9874562345");
         app.setPhoneEvening("1234561234");
         app.setGender("M");
@@ -186,7 +186,7 @@ public class FloridaIntegrationTest extends CQBaseIntegrationTest {
         app.setMPAED("01/01/1999");
         app.setMPBED("01/01/1999");
         app.setPartABActiveIndicator(YES);
-        app.setPlanCode("A");
+        app.setPlanCode("F01");
         app.setReqEffectiveDate(DateUtils.getFirstDayOfFutureMonth(1));
         app.setTobaccoUse(NO);
         app.setCPATurned65(YES);

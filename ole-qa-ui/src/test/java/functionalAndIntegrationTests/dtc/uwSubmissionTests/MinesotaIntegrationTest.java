@@ -179,16 +179,16 @@ public class MinesotaIntegrationTest extends CQBaseIntegrationTest {
         submissionQuery.verifyPlanAndRiderCodes(app, sheet, expectedSubmissionResult);
     }
     @Test
-    public void DTC_GuranteedIssueNoEliginility() throws Exception {
+    public void DTC_GuranteedIssueNoEliginilityRider2345() throws Exception {
 
         sheet.setState("MN");
         sheet.setZip("55001");
         sheet.setPlanCode("TW");
-        sheet.setRiderChoice1("YW");
-        sheet.setRiderChoice2("VW");
-        sheet.setRiderChoice3("WW");
-        sheet.setRiderChoice4("ZW");
-        sheet.setRiderChoice5("");
+        sheet.setRiderChoice1("");
+        sheet.setRiderChoice2("YW");
+        sheet.setRiderChoice3("VW");
+        sheet.setRiderChoice4("WW");
+        sheet.setRiderChoice5("ZW");
         sheet.setAarpMemid("y");
         sheet.setDOB(DateUtils.getDOBofPersonTurningAgeToday(65));
         sheet.setEffDate(DateUtils.getFirstDayOfPastOrFutureMonths(1));
@@ -261,6 +261,93 @@ public class MinesotaIntegrationTest extends CQBaseIntegrationTest {
         reviewAndSubmitPage.fillAndSubmit(app);
 
         expectedSubmissionResult.verifyAcceptedPlanAndRiderCodes("TW1", "YW1", "VW1", "WW1", "ZW1");
+        submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
+
+    }
+    @Test
+    public void DTC_GuranteedIssueNoEliginilityRider234() throws Exception {
+
+        sheet.setState("MN");
+        sheet.setZip("55001");
+        sheet.setPlanCode("TW");
+        sheet.setRiderChoice1("");
+        sheet.setRiderChoice2("YW");
+        sheet.setRiderChoice3("VW");
+        sheet.setRiderChoice4("WW");
+        sheet.setRiderChoice5("");
+        sheet.setAarpMemid("y");
+        sheet.setDOB(DateUtils.getDOBofPersonTurningAgeToday(65));
+        sheet.setEffDate(DateUtils.getFirstDayOfPastOrFutureMonths(1));
+        sheet.setPsd(DateUtils.getFirstDayOfFutureMonth(5));
+        sheet.setReferrer("uLayer");
+
+        //TestData
+        app.setAARPMembershipNumber(faker.numerify("##########"));
+        app.setPrefix("MR");
+        app.setFirstName(app.getState()+"_DTC_"+faker.firstName());
+        app.setMI(this.faker.letterify("?"));
+        app.setLastName(this.faker.lastName());
+        app.setSuffix("PHD");
+        app.setAddressLine1("111 Street dr");
+        app.setAddressLine2("apt #123");
+        app.setCity("Horsham");
+        app.setEmail("thy@jcpclothing.ga");
+        app.setConfirmEmail(app.getEmail());
+        app.setPhonePrimary("9874562345");
+        app.setPhoneEvening("1234561234");
+        app.setGender("M");
+        app.setMedicareClaimNum(faker.bothify("A#########"));
+        app.setMPAED("01/01/2010");
+        app.setPartABActiveIndicator(YES);
+        //Plan Application Page
+        app.setPlanEffIn6OfEligible(YES);
+        app.setTobaccoUse(YES);
+        app.setLostCoverage(NO);
+        //Eligibility Page
+        app.setESRD(NO);
+        app.setSurgeryNeeded(NO);
+        app.setKidneyProblem(NO);
+        app.setEligibilitySurgery(NO);
+        app.setEligibilityAdmitToHospPast90Days(NO);
+        app.setNursingFacility(NO);
+        app.setEligibilityHeartAttackTIAStroke(NO);
+        app.setEligibilityChronicMedicalConditions(NO);
+        //Authorizationa and verififcation page
+        app.setDesignateLapse(YES);
+        //Past And Current Coverage
+        app.setCPATurned65(YES);
+        app.setCPAPartBIn6(YES);
+        app.setMedicaidCovered(NO);
+        app.setExistingMedicare(NO);
+        app.setExistMedSupp(NO);
+        app.setOtherInsCoverage(NO);
+        app.setCpaSignatureInd(YES);
+        //Replacement Notice Page
+        app.setCommonReplacementNoticeAnswersWithApplicantInfo();
+        app.setCommonHealthHistoryAnswers();
+        app.setReplaceExistingMedSup(YES);
+        app.setReplacementReason("OtherReason");
+        app.setApplicantPrintedNameAdd("AppName");
+        app.setApplicantAddress("AppAdd");
+        app.setRNOther("Cheaper");
+        app.setHIV("NotHidden");
+        app.setMailingAddressCheck(NO);
+        
+        goTo(cheatPage);
+        cheatPage.fillAndSubmit(sheet);
+
+        whatYouNeedPage.clickNextAndWaitForSpinnerToFinish();
+        electronicSignatureAndDocumentConsentPage.clickNextAndWaitForSpinnerToFinish();
+        aboutYouPage.fillAndSubmit(app, sheet);
+        planSelectionAndStartDatePage.fillAndSubmit(app);
+        planApplicationQuestionsPage.fillAndSubmit(app);
+        // eligibilityHealthQuestionsPage.fillAndSubmit(app);
+        pastAndCurrentCoveragePage.fillAndSubmit(app);
+        authorizationPage.fillAndSubmit();
+        planPaymentOptionsPage.fillAndSubmit(app);
+        reviewAndSubmitPage.fillAndSubmit(app);
+
+        expectedSubmissionResult.verifyAcceptedPlanAndRiderCodes("TW1", "YW1", "VW1", "WW1", "");
         submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
 
     }

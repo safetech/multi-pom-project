@@ -50,7 +50,6 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         app.setState("CA");
         app.setZipCode("90201");
 
-
         marketabilityCode = "M14M43AGMMCA02_01D";
         expectedSubmissionResult = new SubmissionResult();
 
@@ -121,6 +120,8 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         app.setExistMedSupp(NO);
         app.setOtherInsCoverage(NO);
         app.setCpaSignatureInd(YES);
+        //Plan Payment Options
+        app.setPlanPaymentOptions("Recurring");
         //Agent Verification page
         app.setAgentOtherInsPoliciesSold("HMO");
         app.setAgentPoliciesInForce("HMO In Force");

@@ -65,10 +65,10 @@ public class DateUtils {
         Calendar cal = Calendar.getInstance();
         cal.setTime(nextMonth);
 
-        String month = Integer.toString(cal.get(MONTH) + numberOfMonths);
+        String month = Integer.toString((cal.get(MONTH) + numberOfMonths)%12==0?12:(cal.get(MONTH) + numberOfMonths)%12);
         if(month.length()==1) month = "0"+month;
 
-        return  month + "/01/" + Integer.toString(cal.get(Calendar.YEAR));
+        return month + "/01/" + Integer.toString((cal.get(MONTH) + numberOfMonths)>12?cal.get(Calendar.YEAR)+((cal.get(MONTH) + numberOfMonths)/12):cal.get(Calendar.YEAR));
     }
 
     public static String getDOBofPersonTurningAgeToday(int age) {

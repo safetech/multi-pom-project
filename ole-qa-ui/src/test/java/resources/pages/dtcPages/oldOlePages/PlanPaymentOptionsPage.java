@@ -14,17 +14,17 @@ public class PlanPaymentOptionsPage extends WizardPage {
     @FindBy(css = "#PaymentChoice_2") FluentWebElement AutomaticPayment;
     @FindBy(css = "#EFTType_1") FluentWebElement ReoccuringPayments;
     @FindBy(css = "#EFTType_2") FluentWebElement OneTimePayments;
-    
-    
+    @FindBy(xpath = "html/body/div[2]/div[1]/div[1]/form/section/div[3]/div[2]/div[2]/input") FluentWebElement PaymentChoiceCouponBook;
 
     protected int TOTAL_POSSIBLE_QUESTION_COUNT = 5;
-
 
     public void fillAndSubmit(Application app) {
 
         isAt();
-
+        if(!PaymentChoiceCouponBook.isDisplayed()){
         CouponBook.click();
+        }else
+            PaymentChoiceCouponBook.click();
         
         if(app.getPlanPaymentOptions().equals("Recurring")) {
             AutomaticPayment.click();
