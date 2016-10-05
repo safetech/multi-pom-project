@@ -52,7 +52,8 @@ public class FloridaIntegrationTest extends CQBaseIntegrationTest {
         sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(65));
         sheet.setMedPartBdate("1999-01-01");
         sheet.setDpsdToFirstDayOfFutureMonth(1);
-        sheet.setPlanCode("A01");
+        sheet.setPlanCode("FS");
+        sheet.setEmail("thy@jcpclothing.ga");
 
         Application app = new Application(sheet);
 

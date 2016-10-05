@@ -102,7 +102,7 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         app.setAddressLine1(faker.bothify("#### ??????????" + " Rd"));
         app.setAddressLine2(faker.bothify("#### ????????" + " St"));
         app.setCity(faker.letterify("?????? " + "City"));
-        app.setEmail("cason@jr9fds46y97.com");
+        app.setEmail("thy@jcpclothing.ga");
         app.setConfirmEmail(app.getEmail());
         app.setPhonePrimary(faker.numerify("##########"));
         app.setPhoneEvening(faker.numerify("##########"));
@@ -213,7 +213,7 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         app.setAddressLine1(faker.bothify("#### ??????????" + " Rd"));
         app.setAddressLine2(faker.bothify("#### ????????" + " St"));
         app.setCity(faker.letterify("?????? " + "City"));
-        app.setEmail(faker.bothify("??????##"+"@uhc.com"));
+        app.setEmail("thy@jcpclothing.ga");
         app.setConfirmEmail(app.getEmail());
         app.setPhonePrimary(faker.numerify("##########"));
         app.setPhoneEvening(faker.numerify("##########"));
@@ -291,6 +291,7 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         replacementNotice.fillAndSubmit(app);
         planPaymentOptionsPage.fillAndSubmit(app);
         paymentDetailsSummaryPage.fillAndSubmit(app);
+        preferencesPage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
 
         expectedSubmissionResult.verifyAcceptedPlanAndRiderCodes("TW1","VW1","WW1","ZW1","");

@@ -13,6 +13,7 @@ import resources.pages.dtcpages.oldOlePages.variations.pastandcurrentcoverage.FL
 import resources.pages.dtcpages.oldOlePages.variations.planapplication.NV_MA_PlanApplicationQuestionsPage;
 import resources.pages.dtcpages.oldOlePages.variations.planselectionandstartdate.PA_AR_NV_MA_PlanSelectionAndStartDatePage;
 import queries.DtcSubmissionQuery;
+import resources.pages.dtcpages.uwExpansionPages.PreferencesPage;
 import resources.utils.DateUtils;
 
 public class FloridaIntegrationTest extends CQBaseIntegrationTest {
@@ -28,6 +29,7 @@ public class FloridaIntegrationTest extends CQBaseIntegrationTest {
     @Page public AuthorizationPage authorizationPage;
     @Page public RN034andRE073Page replacementNoticePage;
     @Page public PlanPaymentOptionsPage planPaymentOptionsPage;
+    @Page public PreferencesPage preferencesPage;
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
     @Page public ApplicationSubmissionPage applicationSubmissionPage;
 
@@ -150,8 +152,8 @@ public class FloridaIntegrationTest extends CQBaseIntegrationTest {
 
         sheet.setAarpMemid("y");
         sheet.setDOB(DateUtils.getDOBofPersonTurningAgeToday(65));
-        sheet.setPsd("02/01/2017");
-        sheet.setEffDate("01/01/2017");
+        sheet.setPsd("12/01/2016");
+        sheet.setEffDate("12/01/2016");
         sheet.setPlanCode("FS");
         sheet.setReferrer("uLayer");
 
@@ -166,7 +168,7 @@ public class FloridaIntegrationTest extends CQBaseIntegrationTest {
         app.setAddressLine1("111 Street dr");
         app.setAddressLine2("apt #123");
         app.setCity("Horsham");
-        app.setEmail("josejr5@jr9fds46y97.com");
+        app.setEmail("zesr@a.artepg.com");
         app.setConfirmEmail(app.getEmail());
         app.setPhonePrimary("9874562345");
         app.setPhoneEvening("1234561234");
@@ -235,6 +237,8 @@ public class FloridaIntegrationTest extends CQBaseIntegrationTest {
 
         planPaymentOptionsPage.isAt();
         planPaymentOptionsPage.fillAndSubmit(app);
+
+        preferencesPage.fillAndSubmit(app);
 
         reviewAndSubmitPage.isAt();
         reviewAndSubmitPage.fillAndSubmit(app);

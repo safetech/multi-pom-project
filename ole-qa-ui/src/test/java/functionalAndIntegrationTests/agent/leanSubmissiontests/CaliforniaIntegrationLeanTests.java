@@ -53,7 +53,9 @@ public class CaliforniaIntegrationLeanTests extends CQBaseIntegrationTest {
         app = new Application();
         app.setState("CA");
         app.setZipCode("90201");
-        agentID = "2039962";
+//        agentID = "2039962";
+//        agentID = "2091159";
+        agentID = "2105698";
 
         marketabilityCode = "M14M43AGMMCA02_01D";
         expectedSubmissionResult = new SubmissionResult();
@@ -131,6 +133,7 @@ public class CaliforniaIntegrationLeanTests extends CQBaseIntegrationTest {
         //Replacement Notice Page
         app.setCommonReplacementNoticeAnswersWithApplicantInfo();
         app.setCommonHealthHistoryAnswers();
+        app.setPlanPaymentOptions("Recurring");
 
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);
@@ -227,6 +230,7 @@ public class CaliforniaIntegrationLeanTests extends CQBaseIntegrationTest {
         app.setAgentLastName("AgentLast");
         app.setAgentPhone("3334445555");
         app.setMedicalReleaseAuthSignatureIndRequired("Required");
+        app.setPlanPaymentOptions("Recurring");
         //Mailing Address
         app.setMailingAddressCheck(YES);
         app.setMailingAddressLine1(faker.bothify("#### ??????????? ??"));
@@ -234,7 +238,7 @@ public class CaliforniaIntegrationLeanTests extends CQBaseIntegrationTest {
         app.setMailingCity(faker.letterify("??????????????"));
         app.setMailingState(faker.letterify("CA"));
         app.setMailingZipCode(faker.numerify("#####"));
-
+        app.setPlanPaymentOptions("Recurring");
         //Sig required
         app.setMedicalReleaseAuthSignatureIndRequired("Required");
         //Payment Details Summary Page

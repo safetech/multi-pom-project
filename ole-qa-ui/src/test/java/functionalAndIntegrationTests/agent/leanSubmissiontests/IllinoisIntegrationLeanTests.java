@@ -111,7 +111,6 @@ public class IllinoisIntegrationLeanTests extends CQBaseIntegrationTest {
         app.setTurned65In6GA(YES);
         app.setPartBIn6GA(YES);
         app.setPlanEffIn6OfEligible(YES);
-        
         //Past And Current Coverage
         app.setMedicaidCovered(NO);
         app.setExistingMedicare(NO);
@@ -132,7 +131,7 @@ public class IllinoisIntegrationLeanTests extends CQBaseIntegrationTest {
         //Replacement Notice Page
         app.setCommonReplacementNoticeAnswersWithApplicantInfo();
         app.setCommonHealthHistoryAnswers();
-
+        app.setPlanPaymentOptions("Recurring");
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);
         checkEligibilityAndAvailabilityPage.fillAndSubmit(app);
@@ -231,7 +230,7 @@ public class IllinoisIntegrationLeanTests extends CQBaseIntegrationTest {
         app.setAgentLastName("AgentLast");
         app.setAgentPhone("3334445555");
         app.setMedicalReleaseAuthSignatureIndRequired("Required");
-        
+        app.setPlanPaymentOptions("Recurring");
         //Sig required
         app.setMedicalReleaseAuthSignatureIndRequired("Required");
         //Payment Details Summary Page

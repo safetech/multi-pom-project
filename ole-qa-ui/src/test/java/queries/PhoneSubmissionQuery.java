@@ -54,6 +54,7 @@ public class PhoneSubmissionQuery {
             "  a.CITY,\n" +
             "  a.STATE_CD,\n" +
             "  a.ZIP_CD,\n" +
+            "  a.OLE_REFERENCE_IDENTIFIER,\n"+
             "  TO_CHAR(a.DATE_OF_BIRTH, 'MM/DD/YYYY') as DATE_OF_BIRTH,\n" +
             "  c.GENDER_CD,\n" +
             "  a.DAY_PHONE_NUM,\n" +

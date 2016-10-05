@@ -18,7 +18,7 @@ public class AgentVerificationPage extends WizardPage {
     protected FluentWebElement AgentLastName;
     protected FluentWebElement AgentPhone;
     protected FluentWebElement AgentSignatureIndTouch;
-    protected int TOTAL_POSSIBLE_QUESTION_COUNT = 9;
+    protected int TOTAL_POSSIBLE_QUESTION_COUNT = 8;
 
     public void fillAndSubmit(Application app) {
         isAt();

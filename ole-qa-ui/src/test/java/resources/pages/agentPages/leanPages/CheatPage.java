@@ -15,7 +15,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class CheatPage extends FluentPage{
 
     @FindBy(css = "#page-title") FluentWebElement pageTitle;
-    @FindBy(css = "#AgentID") FluentWebElement AgentId;
+    @FindBy(css = "#AgentID") FluentWebElement AgentID;
 
     FluentWebElement preset_select;
 
@@ -28,7 +28,7 @@ public class CheatPage extends FluentPage{
 
     public void fillAndSubmit(CribSheet sheet) {
         isAt();
-        fill(AgentId).with(sheet.getAgentID());
+        fill(AgentID).with(sheet.getAgentID());
         
         if(!sheet.getResume().equals(AnswerUtils.BLANK)) {
             resume.click();

@@ -32,6 +32,7 @@ public class MinesotaIntegrationTest extends CQBaseIntegrationTest {
     @Page public MN_OR_QA_AuthorizationPage authorizationPage;
     @Page public RN034andRE073Page replacementNoticePage;
     @Page public PlanPaymentOptionsPage planPaymentOptionsPage;
+    @Page public PreferencesPage preferencesPage;
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
     @Page public HealthHistoryQuestionsPage healthHistoryQuestionsPage;
 
@@ -173,6 +174,7 @@ public class MinesotaIntegrationTest extends CQBaseIntegrationTest {
         pastAndCurrentCoveragePage.fillAndSubmit(app);
         authorizationPage.fillAndSubmit();
         planPaymentOptionsPage.fillAndSubmit(app);
+        preferencesPage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
 
         expectedSubmissionResult.verifyAcceptedPlanAndRiderCodes("TW1", "XW1", "", "", "");
@@ -254,10 +256,10 @@ public class MinesotaIntegrationTest extends CQBaseIntegrationTest {
         aboutYouPage.fillAndSubmit(app, sheet);
         planSelectionAndStartDatePage.fillAndSubmit(app);
         planApplicationQuestionsPage.fillAndSubmit(app);
-       // eligibilityHealthQuestionsPage.fillAndSubmit(app);
         pastAndCurrentCoveragePage.fillAndSubmit(app);
         authorizationPage.fillAndSubmit();
         planPaymentOptionsPage.fillAndSubmit(app);
+        preferencesPage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
 
         expectedSubmissionResult.verifyAcceptedPlanAndRiderCodes("TW1", "YW1", "VW1", "WW1", "ZW1");
@@ -269,29 +271,29 @@ public class MinesotaIntegrationTest extends CQBaseIntegrationTest {
 
         sheet.setState("MN");
         sheet.setZip("55001");
-        sheet.setPlanCode("TW");
+        sheet.setPlanCode("UW");
         sheet.setRiderChoice1("");
-        sheet.setRiderChoice2("YW");
-        sheet.setRiderChoice3("VW");
-        sheet.setRiderChoice4("WW");
+//        sheet.setRiderChoice2("YW");
+//        sheet.setRiderChoice3("VW");
+//        sheet.setRiderChoice4("WW");
         sheet.setRiderChoice5("");
         sheet.setAarpMemid("y");
         sheet.setDOB(DateUtils.getDOBofPersonTurningAgeToday(65));
         sheet.setEffDate(DateUtils.getFirstDayOfPastOrFutureMonths(1));
-        sheet.setPsd(DateUtils.getFirstDayOfFutureMonth(5));
+        sheet.setPsd(DateUtils.getFirstDayOfFutureMonth(2));
         sheet.setReferrer("uLayer");
 
         //TestData
         app.setAARPMembershipNumber(faker.numerify("##########"));
         app.setPrefix("MR");
-        app.setFirstName(app.getState()+"_DTC_"+faker.firstName());
+        app.setFirstName(sheet.getState()+"_DTC_"+faker.firstName());
         app.setMI(this.faker.letterify("?"));
         app.setLastName(this.faker.lastName());
         app.setSuffix("PHD");
         app.setAddressLine1("111 Street dr");
         app.setAddressLine2("apt #123");
         app.setCity("Horsham");
-        app.setEmail("thy@jcpclothing.ga");
+        app.setEmail("ehl@g.gowa.ru");
         app.setConfirmEmail(app.getEmail());
         app.setPhonePrimary("9874562345");
         app.setPhoneEvening("1234561234");
@@ -341,13 +343,14 @@ public class MinesotaIntegrationTest extends CQBaseIntegrationTest {
         aboutYouPage.fillAndSubmit(app, sheet);
         planSelectionAndStartDatePage.fillAndSubmit(app);
         planApplicationQuestionsPage.fillAndSubmit(app);
-        // eligibilityHealthQuestionsPage.fillAndSubmit(app);
         pastAndCurrentCoveragePage.fillAndSubmit(app);
         authorizationPage.fillAndSubmit();
         planPaymentOptionsPage.fillAndSubmit(app);
+        preferencesPage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
 
-        expectedSubmissionResult.verifyAcceptedPlanAndRiderCodes("TW1", "YW1", "VW1", "WW1", "");
+        expectedSubmissionResult.verifyAcceptedPlanAndRiderCodes("UW1", "", "", "", "");
+//        expectedSubmissionResult.verifyAcceptedPlanAndRiderCodes("TW1", "YW1", "VW1", "WW1", "");
         submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
 
     }

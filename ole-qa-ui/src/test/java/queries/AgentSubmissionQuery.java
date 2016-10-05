@@ -52,6 +52,7 @@ public class AgentSubmissionQuery {
         " a.CITY,\n" +
         " a.STATE_CD,\n" +
         " a.ZIP_CD,\n" +
+        " a.OLE_REFERENCE_IDENTIFIER,\n"+
         " TO_CHAR(a.DATE_OF_BIRTH, 'MM/DD/YYYY') as DATE_OF_BIRTH,\n" +
         " c.GENDER_CD,\n" +
         " a.DAY_PHONE_NUM,\n" +
@@ -123,8 +124,8 @@ public class AgentSubmissionQuery {
         assertThat(row.get("CHANNEL"), equalTo("10"));
         assertThat(row.get("ACTOR"), equalTo("3"));
         assertThat(row.get("MECHANISM"), equalTo("2"));
-        assertThat(row.get("EFT_FREQUENCY_TYPE_ID"), equalTo(app.getPlanPaymentOptions().equals("Recurring")? "1":app.getPlanPaymentOptions().equals("OneTime")?"2":"")); //eft 1=reoccuring
-        assertThat(row.get("PAYMENT_METHOD_TYPE_ID"), equalTo(app.getPlanPaymentOptions().equals("Recurring")? "3":app.getPlanPaymentOptions().equals("OneTime")?"3":"2"));
+        assertThat(row.get("EFT_FREQUENCY_TYPE_ID"), equalTo(app.getPlanPaymentOptions().equals("Recurring")? "":app.getPlanPaymentOptions().equals("OneTime")?"2":"")); //eft 1=reoccuring
+        assertThat(row.get("PAYMENT_METHOD_TYPE_ID"), equalTo(app.getPlanPaymentOptions().equals("Recurring")? "2":app.getPlanPaymentOptions().equals("OneTime")?"3":"2"));
 
         logger.info(String.format("Here is the link to the image... https://acesx-stg-alt.uhc.com/appEnroll-web/resources/retrievePDF/v1/%s", row.get("APPL_IMAGE_NUM_ORIG") + " For the state of --> " + app.getState()));
 

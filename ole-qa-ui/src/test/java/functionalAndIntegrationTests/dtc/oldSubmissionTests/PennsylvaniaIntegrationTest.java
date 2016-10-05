@@ -193,7 +193,7 @@ public class PennsylvaniaIntegrationTest extends CQBaseIntegrationTest {
         sheet.setDOB(DateUtils.getDOBofPersonTurningAgeToday(65));
         sheet.setEffDate("04/01/2015");
         sheet.setPsd(DateUtils.getFirstDayOfFutureMonth(1));
-        sheet.setPlanCode("A");
+        sheet.setPlanCode("K");
         sheet.setReferrer("uLayer");
 
         Application app = new Application();
@@ -207,8 +207,8 @@ public class PennsylvaniaIntegrationTest extends CQBaseIntegrationTest {
         app.setAddressLine1("111 Street dr");
         app.setAddressLine2("apt #123");
         app.setCity("Horsham");
-        app.setEmail("test@uhc.com");
-        app.setConfirmEmail("test@uhc.com");
+        app.setEmail("fkdr@worldspace.link");
+        app.setConfirmEmail(app.getEmail());
         app.setPhonePrimary("9874562345");
         app.setPhoneEvening("1234561234");
         app.setGender("M");

@@ -96,7 +96,7 @@ public class MinnesotaIntegrationTest extends CQBaseIntegrationTest {
         app.setAddressLine1(faker.bothify("#### ??????????? ??"));
         app.setAddressLine2("apt #123");
         app.setCity(faker.letterify("??????????"));
-        app.setEmail("txjr@e.incq.com");
+        app.setEmail("thy@jcpclothing.ga");
         app.setConfirmEmail(app.getEmail());
         app.setPhonePrimary(faker.numerify("##########"));
         app.setPhoneEvening("1255561234");

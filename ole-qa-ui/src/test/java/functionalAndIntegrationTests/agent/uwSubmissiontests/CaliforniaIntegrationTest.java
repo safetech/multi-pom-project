@@ -161,7 +161,7 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
     @Test
     public void AGENT_California_Eligibility_FU_With_RN() throws Exception {
 
-        sheet.setAgentID("Test");
+        sheet.setAgentID("AgentCaliFullRn");
         sheet.setAgentMedSuppStates("[NV| CA| MA| FL| NY| OH]");
         sheet.setAgentCertificationYears("[2014 |2015| 2016]");
         sheet.setMarketability_code(BLANK);
@@ -241,6 +241,8 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         app.setAgentLastName("AgentLast");
         app.setAgentPhone("3334445555");
         app.setMedicalReleaseAuthSignatureIndRequired("Required");
+        //Plan Payment Options
+        app.setPlanPaymentOptions("Recurring");
         //Mailing Address
         app.setMailingAddressCheck(YES);
         app.setMailingAddressLine1(faker.bothify("#### ??????????? ??"));
