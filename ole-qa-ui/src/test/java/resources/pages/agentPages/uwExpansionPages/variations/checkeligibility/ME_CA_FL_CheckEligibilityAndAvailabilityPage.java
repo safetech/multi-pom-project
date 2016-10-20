@@ -71,7 +71,7 @@ public class ME_CA_FL_CheckEligibilityAndAvailabilityPage extends WizardPage {
 
         Thread.sleep(2000);
         
-        fillSelect("div.customer_eligibility_form #ReqEffectiveDate").withIndex(3);
+        fillSelect("div.customer_eligibility_form #ReqEffectiveDate").withIndex(2);
         try{
             Thread.sleep(1000);
         }catch(Exception e){

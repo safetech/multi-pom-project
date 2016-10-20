@@ -178,21 +178,21 @@ public class MichiganIntegrationTest extends CQBaseIntegrationTest {
         sheet.setRandomContactInfo();
         sheet.setRandomCallCenterInfo();
         sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(66));
-        sheet.setMedPartBdate("01/01/2012");
+        sheet.setMedPartBdate("09/01/2016");
         sheet.setDpsdToFirstDayOfFutureMonth(1);
         sheet.setPlanCode("F01");
 
         Application app = new Application(sheet);
 
         app.setMedicareClaimNum(faker.bothify("??#########"));
-        app.setMPAED("01/01/2012");
-        app.setMPBED("01/01/2012");
+        app.setMPAED(sheet.getMedPartBdate());
+        app.setMPBED(sheet.getMedPartBdate());
         app.setPartABActiveIndicator(YES);
         app.setPlanCode("F");
         app.setReqEffectiveDate(DateUtils.getFirstDayOfFutureMonth(1));
         //Plan Eligibility
         app.setTurned65In6GA(NO);
-        app.setPartBIn6GA(NO);
+        app.setPartBIn6GA(YES);
         app.setPlanEffIn6OfEligible(NO);
         app.setLostCoverage(NO);
         app.setTobaccoUse(YES);

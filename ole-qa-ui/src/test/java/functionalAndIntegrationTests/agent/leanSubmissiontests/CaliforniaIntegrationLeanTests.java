@@ -137,7 +137,7 @@ public class CaliforniaIntegrationLeanTests extends CQBaseIntegrationTest {
 
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);
-        checkEligibilityAndAvailabilityPage.fillAndSubmit(app);
+  //      checkEligibilityAndAvailabilityPage.fillAndSubmit(app);
         planSelectionPage.checkMarketabilityCode(marketabilityCode);
         planSelectionPage.fillAndSubmit(app);
         whatYouNeedPage.fillAndSubmit(app);

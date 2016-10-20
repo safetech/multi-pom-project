@@ -75,19 +75,19 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
 
         sheet.setAgentID("Test");
         sheet.setAgentMedSuppStates("[NV| CA| MA| FL| NY| OH]");
-        sheet.setAgentCertificationYears("[2014 |2015| 2016]");
         sheet.setMarketability_code(BLANK);
         sheet.setSiteId("UHP");
         sheet.setAgentNPN(BLANK);
         sheet.setAgentName("BOB DOBBS");
-        sheet.setAgentEmail(this.faker.letterify("??????????")+"@"+this.faker.letterify("gmail")+".com");
+//        sheet.setAgentEmail(this.faker.letterify("??????????")+"@"+this.faker.letterify("gmail")+".com");
+        sheet.setAgentEmail("satya_catta@uhc.com");
         sheet.setAgentPartyId("54321");
         sheet.setReferrer("ulayer");
         app.setState("CA");
         app.setZipCode("90210");
         app.setDOB(DateUtils.getDOBInNormalDateFormat(65));
-        app.setMPBED(DateUtils.getFirstDayOfPastOrFutureMonths(0));
-        app.setMPAED(DateUtils.getFirstDayOfPastOrFutureMonths(0));
+        app.setMPBED(DateUtils.getFirstDayOfPastOrFutureMonths(1));
+        app.setMPAED(DateUtils.getFirstDayOfPastOrFutureMonths(1));
         //TestData
         app.setAARPMembershipNumber(faker.numerify("##########"));
         app.setPrefix("MR");
@@ -99,7 +99,7 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         app.setAddressLine2("apt #123");
         app.setCity("Horsham");
 //        app.setEmail(this.faker.letterify("??????????")+"@"+this.faker.letterify("gmail")+".com");
-        app.setEmail("frodruslan@throwam.com");
+        app.setEmail("jasmine_kshirsagar@uhc.com");
         app.setConfirmEmail(app.getEmail());
         app.setPhonePrimary("9874562345");
         app.setPhoneEvening("1234561234");
@@ -163,7 +163,6 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
 
         sheet.setAgentID("AgentCaliFullRn");
         sheet.setAgentMedSuppStates("[NV| CA| MA| FL| NY| OH]");
-        sheet.setAgentCertificationYears("[2014 |2015| 2016]");
         sheet.setMarketability_code(BLANK);
         sheet.setSiteId("UHP");
         sheet.setAgentNPN(BLANK);

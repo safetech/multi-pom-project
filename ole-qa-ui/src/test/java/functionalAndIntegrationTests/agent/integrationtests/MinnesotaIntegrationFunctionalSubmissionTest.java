@@ -78,7 +78,6 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
 
         sheet.setAgentID("Test");
         sheet.setAgentMedSuppStates("[WI| MN]");
-        sheet.setAgentCertificationYears("[2014 |2015| 2016]");
         sheet.setMarketability_code(BLANK);
         sheet.setSiteId("UHP");
         sheet.setAgentNPN(BLANK);
@@ -187,10 +186,8 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
     }
     @Test
     public void MN_MNA3_BasicPlanWithRider34And5FullUWwithRn() throws Exception {
-
         sheet.setAgentID("Test");
         sheet.setAgentMedSuppStates("[WI| MN]");
-        sheet.setAgentCertificationYears("[2014 |2015| 2016]");
         sheet.setMarketability_code(BLANK);
         sheet.setSiteId("UHP");
         sheet.setAgentNPN(BLANK);

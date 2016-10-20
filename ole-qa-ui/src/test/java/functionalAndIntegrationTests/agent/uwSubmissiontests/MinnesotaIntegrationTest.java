@@ -75,7 +75,6 @@ public class MinnesotaIntegrationTest extends CQBaseIntegrationTest {
 
         sheet.setAgentID("Test");
         sheet.setAgentMedSuppStates("[NV| CA| MA| FL| NY| OH| AR| PA| WA| MN]");
-        sheet.setAgentCertificationYears("[2014 |2015| 2016]");
         sheet.setMarketability_code(BLANK);
         sheet.setSiteId("UHP");
         sheet.setAgentNPN(BLANK);
@@ -154,7 +153,6 @@ public class MinnesotaIntegrationTest extends CQBaseIntegrationTest {
 
         sheet.setAgentID("Test");
         sheet.setAgentMedSuppStates("[NV| CA| MA| FL| NY| OH| AR| PA| WA| MN]");
-        sheet.setAgentCertificationYears("[2014 |2015| 2016]");
         sheet.setMarketability_code(BLANK);
         sheet.setSiteId("UHP");
         sheet.setAgentNPN(BLANK);

@@ -163,8 +163,16 @@
             </activation>
             <properties>
                 <browser>Firefox</browser>
-            </properties> 
-            
+            </properties>
+        </profile>        
+        <profile>
+            <id>Chrome</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <browser>Chrome</browser>
+            </properties>
         </profile>
         <profile>
             <id>OleTest</id>
