@@ -54,6 +54,7 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         sheet.setRandomCallCenterInfo();
         sheet.setPlanCode("F01");
         sheet.setGRSId(faker.numerify("######"));
+        sheet.setAgentFullName(faker.firstName() +faker.letterify(" ? ")+ faker.lastName());
 
         app = new Application();
         // Customer Info Page Question
@@ -78,6 +79,7 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         sheet.setDpsdToFirstDayOfFutureMonth(3);
         //Customer Information
         app.setEmail("aba@bd.com");
+        app.setAgentFullName("Agent Name: "+sheet.getAgentFullName());
         app.setMPAED(DateUtils.getFirstDayOfPastOrFutureMonths(-7));
         app.setMPBED(DateUtils.getFirstDayOfPastOrFutureMonths(-7));
         //Plan Application
@@ -171,6 +173,7 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         sheet.setMedPartBdate(DateUtils.getFirstDayOfPastOrFutureMonths(2));
         sheet.setDpsdToFirstDayOfFutureMonth(3);
         //Customer Information
+        app.setAgentFullName("Agent Name: "+sheet.getAgentFullName());
         app.setEmail("aba@bd.com");
         app.setMPAED("01/01/2015");
         app.setMPBED(DateUtils.getFirstDayOfPastOrFutureMonths(2));

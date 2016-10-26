@@ -83,7 +83,7 @@ public class ME_CA_FL_CheckEligibilityAndAvailabilityPage extends WizardPage {
             }
         });
         
-        clickNextAndWaitForSpinnerToFinish(20);
+        clickNextAndWaitForSpinnerToFinish();
 
     }
 

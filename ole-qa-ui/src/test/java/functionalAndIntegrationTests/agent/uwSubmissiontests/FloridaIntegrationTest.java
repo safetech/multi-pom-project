@@ -48,6 +48,7 @@ public class FloridaIntegrationTest extends CQBaseIntegrationTest {
         faker = new Faker();
         sheet = new CribSheet(faker);
         app = new Application();
+        sheet.setAgentCertificationYears("[2016| 2017| 2018]");
         //Signatures
         app.setCpaSignatureIndTouch(Application.ALL_SIGNATURES[0]);
         app.setSignatureIndTouch(Application.ALL_SIGNATURES[1]);

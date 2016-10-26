@@ -166,7 +166,7 @@ public class WizardPage extends FluentPage {
         getDriver().switchTo().window(windows.get(Brow));
         getDriver().close();
         getDriver().switchTo().window(baseWindowHdl);
-    }
+}
 
     protected void assertHidden(FluentWebElement element) {
         assertThat(element.isDisplayed(), equalTo(false));

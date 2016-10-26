@@ -309,6 +309,16 @@ public class Application {
     private String AARPMemberNumber = "";
     private String CAGuaranteedAcceptance = "";
     private String EmployerId = "";
+
+    public String getAgentFullName() {
+        return AgentFullName;
+    }
+
+    public void setAgentFullName(String agentFullName) {
+        AgentFullName = agentFullName;
+    }
+
+    private String AgentFullName = "";
     private String Rider1 = "";
     private String Rider2 = "";
     private String Rider3 = "";
@@ -2001,8 +2011,8 @@ public class Application {
         setCommonReplacementNoticeAnswersWithoutApplicantInfo();
         setApplicantPrintedNameAdd("AppName");
         setApplicantAddress("AppAdd");
-    }
-
+    }    
+    
     public void setCommonReplacementNoticeAnswersWithoutApplicantInfo() {
         setReplacementReason("OtherReason");
         setRNOther("Cheaper");

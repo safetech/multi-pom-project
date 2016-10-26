@@ -2,9 +2,9 @@ package resources.entity.phone;
 
 import com.github.javafaker.Faker;
 import resources.utils.DateUtils;
+
 import java.util.Random;
 
-import static resources.utils.AnswerUtils.BLANK;
 import static resources.utils.DateUtils.randBetween;
 
 public class CribSheet{
@@ -292,7 +292,7 @@ public class CribSheet{
         this.setLastName(this.faker.lastName());
         this.setSuffix(this.getRandomSuffix());
         this.setGender(this.getRandomGender());
-        this.setMembershipNumber(BLANK);//faker.numerify("#########")
+        this.setMembershipNumber(faker.numerify("#########"));
     }
 
 

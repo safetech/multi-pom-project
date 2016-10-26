@@ -29,6 +29,7 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
     @Page public ME_AuthorizationAndVerificationPage authorizationAndVerificationPage;
     @Page public AgentVerificationPage agentVerificationPage;
     @Page public RN034andRE073Page replacementNoticePage;
+    @Page public PreferencesPage preferencesPage;
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
     @Page public ApplicationSubmissionPage applicationSubmissionPage;
 
@@ -73,7 +74,7 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
 
         sheet.setDateOfBirth(DateUtils.getDOBofPersonTurningAgeToday(71));
         sheet.setMedPartBdate("2010-04-01");
-
+        app.setAgentFullName("Agent Name: "+sheet.getAgentFullName());
         // Customer Info Page
         app.setMPAED("01/01/2010");
         app.setMPBED("04/01/2010");
@@ -131,7 +132,10 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
 
         //Replacement Notice Page
         app.setCommonReplacementNoticeAnswersWithApplicantInfo();
-
+//Preference Page
+        app.setEmail("alkjas@bd.com");
+        
+        
         expectedSubmissionResult.setPendingInfo("ENROLLMENT EA SPECIAL PROCESSING","EA INDIVIDUAL");
         startApp(cheatPage, app, sheet);
 
@@ -145,6 +149,7 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
         authorizationAndVerificationPage.fillAndSubmit(app);
         agentVerificationPage.fillAndSubmit(app);
         replacementNoticePage.fillAndSubmit(app);
+        preferencesPage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
         applicationSubmissionPage.isApprovedOrPending();
         

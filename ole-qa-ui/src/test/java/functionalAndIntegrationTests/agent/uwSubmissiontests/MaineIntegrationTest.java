@@ -11,6 +11,7 @@ import resources.pages.agentpages.uwExpansionPages.variations.checkeligibility.M
 import resources.pages.agentpages.uwExpansionPages.variations.currentinsurancecoverage.ME_CurrentInsuranceCoveragePage;
 import resources.pages.agentpages.uwExpansionPages.variations.eligibilityhealthquestions.MN_ME_CA_FL_EligibilityHealthQuestionsPage;
 import resources.pages.agentpages.uwExpansionPages.variations.planapplication.ME_PlanApplicationQuestionsPage;
+
 import resources.pages.agentpages.uwExpansionPages.variations.replacenotice.RN034andRE073WithSignaturePage;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
@@ -34,6 +35,7 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
     @Page public AgentVerificationPage agentVerificationPage;
     @Page public PaymentDetailsSummaryPage paymentDetailsSummaryPage;
     @Page public PlanPaymentOptionsPage planPaymentOptionsPage;
+    @Page public PreferencesPage preferencesPage;
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
     @Page public ApplicationSubmissionPage applicationSubmissionPage;
 
@@ -50,6 +52,7 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
         app = new Application();
         app.setState("ME");
         app.setZipCode("04001");
+        sheet.setAgentCertificationYears("[2016| 2017| 2018]");
         expectedSubmissionResult = new SubmissionResult();
 
         app.setCpaSignatureIndTouch(Application.ALL_SIGNATURES[0]);
@@ -253,12 +256,14 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
         app.setAuxCity("AuxCity");
         app.setAuxState("NV");
         app.setAuxZipCode("89101");
-
+        //Plan Payment Options
+        app.setPlanPaymentOptions("Recurring");
+        
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);
 
         checkEligibilityAndAvailabilityPage.fillAndSubmit(app);
-        planSelectionPage.checkMarketabilityCode("M13Z43AGMMMN01_02D");
+        planSelectionPage.checkMarketabilityCode("M13T43AGMMME01_01E");
         planSelectionPage.fillAndSubmit(app);
         whatYouNeedPage.fillAndSubmit(app);
         customerInformationPage.fillAndSubmit(app);
@@ -270,6 +275,7 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
         replacementNotice.fillAndSubmit(app);
         planPaymentOptionsPage.fillAndSubmit(app);
         paymentDetailsSummaryPage.fillAndSubmit(app);
+        preferencesPage.fillAndSubmit( app );
         reviewAndSubmitPage.fillAndSubmit(app);
 
         expectedSubmissionResult.setPendingInfo("ENROLLMENT STATE MANDATE","STATE MANDATE");

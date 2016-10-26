@@ -28,6 +28,7 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
     @Page public CA_EligibilityHealthQuestions eligibilityHealthQuestionsPage;
     @Page public AR_CA_PA_WI_MN_PastAndCurrentCoveragePage pastAndCurrentCoveragePage;
     @Page public CA_AuthorizationPage authorizationPage;
+    @Page public PreferencesPage preferencesPage;
     @Page public RN040Page replacementNoticePage;
     @Page public PlanPaymentOptionsPage planPaymentOptionsPage;
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
@@ -114,6 +115,7 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         pastAndCurrentCoveragePage.fillAndSubmit(app);
         authorizationPage.fillAndSubmit(app);
         planPaymentOptionsPage.fillAndSubmit(app);
+        preferencesPage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
 
         expectedSubmissionResult.setAcceptedInfo();
