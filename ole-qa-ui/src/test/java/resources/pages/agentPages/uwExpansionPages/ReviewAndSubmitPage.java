@@ -104,11 +104,7 @@ public class ReviewAndSubmitPage extends WizardPage {
         ArrayList<String> windows = new ArrayList<String> (getDriver().getWindowHandles());
         String baseWindowHdl = getDriver().getWindowHandle();
         getDriver().switchTo().window(windows.get(1)).manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
-<<<<<<< HEAD
 
-
-=======
->>>>>>> 90d76c5ad4a26c0405cb077cfb34eb0d105df9ce
         PdfAssertions(app);
 
         getDriver().switchTo().window(baseWindowHdl);
@@ -152,7 +148,7 @@ public class ReviewAndSubmitPage extends WizardPage {
         assertThat(FirstNamePage2Pdf.getText(), equalTo(app.getFirstName()));
         assertThat(LastNamePage2Pdf.getText(), equalTo(app.getLastName()));
         assertThat(PlanBPdf.getText(), equalTo("B"));
-<<<<<<< HEAD
+
          assertThat(PlanStartDatePdf.getText(), equalTo(app.getReqEffectiveDate().replace("/","-")));
         assertThat(startDateWithin6MonthsOFTurning65.getText(),equalTo("Yes"));
         //page 3 and 4
@@ -209,9 +205,9 @@ public class ReviewAndSubmitPage extends WizardPage {
         assertThat(BankRoutingNumber.getText(),equalTo(app.getRoutingNumber()));
         assert(!AccountType.getText().equals(""));
         assertThat(TodayDatePage9Pdf.getText(),equalTo(TodayDate));
-=======
+
         assertThat(PlanStartDatePdf.getText(), equalTo(app.getReqEffectiveDate().replace("/","-").trim()));
->>>>>>> 90d76c5ad4a26c0405cb077cfb34eb0d105df9ce
+
 
     }
 
