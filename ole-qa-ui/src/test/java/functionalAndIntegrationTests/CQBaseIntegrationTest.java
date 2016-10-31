@@ -68,22 +68,16 @@ public class CQBaseIntegrationTest extends FluentTest {
 
     @Override
     public WebDriver getDefaultDriver() {
-
-
-//     System.setProperty("webdriver.chrome.driver", "C:\\temp\\Apps\\Chromedriver\\chromedriver.exe");
-//     driver=new ChromeDriver();
-//      return driver;
-
         if(PropertyUtils.getProperty( "Browser" ).equals( "Firefox" )){
-        ProfilesIni profile = new ProfilesIni();
-        FirefoxProfile ffprofile = profile.getProfile("Selenium");
-        driver = new FirefoxDriver(ffprofile);
+            //ProfilesIni profile = new ProfilesIni();
+            FirefoxProfile ffprofile = new FirefoxProfile(new File("C:\\temp\\Apps\\Firefox\\Profiles"));
+            driver = new FirefoxDriver(ffprofile);
 //        driver.manage().window().maximize();
         }else {
-        System.setProperty("webdriver.chrome.driver","/Users/sislam13/dev/apps/chrome/chrome-46/chromedriver");
-        driver = new ChromeDriver(  );
+            System.setProperty("webdriver.chrome.driver", "C:\\temp\\Apps\\Chromedriver\\chromedriver.exe");
+            driver = new ChromeDriver(  );
         }
-        
+
         return driver;
 
     }
