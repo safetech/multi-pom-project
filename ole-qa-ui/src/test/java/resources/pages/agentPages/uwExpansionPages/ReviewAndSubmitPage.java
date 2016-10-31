@@ -48,12 +48,7 @@ public class ReviewAndSubmitPage extends WizardPage {
         requiredlink.click();
         ArrayList<String> windows = new ArrayList<String> (getDriver().getWindowHandles());
         String baseWindowHdl = getDriver().getWindowHandle();
-        getDriver().switchTo().window(windows.get(1));
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        getDriver().switchTo().window(windows.get(1)).manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
         PdfAssertions(app);
         
         getDriver().switchTo().window(baseWindowHdl);
@@ -83,14 +78,14 @@ public class ReviewAndSubmitPage extends WizardPage {
         assertThat(SexPdf.getText(), equalTo(app.getGender()));
         assertThat(HospitalPartADatePdf.getText(), equalTo(app.getMPAED().replace("/","-")));
         assertThat(HospitalPartBDatePdf.getText(), equalTo(app.getMPBED().replace("/","-")));
-        assertThat(MedicarePartABActivePdf.getText(), equalTo("yes"));
+        assertThat(MedicarePartABActivePdf.getText().toLowerCase(), equalTo("yes"));
         assertThat(DateOfBirthPdf.getText(), equalTo(app.getDOB().replace("/","-")));
         assertThat(PhoneNumberPdf.getText().replace("-",""), equalTo(app.getPhonePrimary()));
         assertThat(EmailAddressPdf.getText(), equalTo(app.getEmail()));
         assertThat(FirstNamePage2Pdf.getText(), equalTo(app.getFirstName()));
         assertThat(LastNamePage2Pdf.getText(), equalTo(app.getLastName()));
         assertThat(PlanBPdf.getText(), equalTo("B"));
-        assertThat(PlanStartDatePdf.getText(), equalTo(app.getReqEffectiveDate().replace("/","-")));
+        assertThat(PlanStartDatePdf.getText(), equalTo(app.getReqEffectiveDate().replace("/","-").trim()));
 
     }
     

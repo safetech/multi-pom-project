@@ -223,6 +223,15 @@ public class Application {
         this.GILocation = GILocation;
     }
 
+    public resources.entity.agent.CribSheet getAgentSheet() {
+        return AgentSheet;
+    }
+
+    public void setAgentSheet(resources.entity.agent.CribSheet agentSheet) {
+        AgentSheet = agentSheet;
+    }
+
+    private resources.entity.agent.CribSheet AgentSheet;
     private String MedicareClaimNum = "";
     private String MPAED = "";
     private String MPBED = "";

@@ -49,6 +49,9 @@ public class CaliforniaPdfAssertionTest extends CQBaseIntegrationTest {
         app = new Application();
         app.setState("CA");
         app.setZipCode("90201");
+        app.setAgentFirstName(faker.firstName());
+        app.setAgentMI(faker.letterify(" ? "));
+        app.setAgentLastName(faker.lastName());
         marketabilityCode = "M14M43AGMMCA02_01D";
         expectedSubmissionResult = new SubmissionResult();
 
@@ -77,7 +80,7 @@ public class CaliforniaPdfAssertionTest extends CQBaseIntegrationTest {
         sheet.setMarketability_code(BLANK);
         sheet.setSiteId("UHP");
         sheet.setAgentNPN(BLANK);
-        sheet.setAgentName("BOB DOBBS");
+        sheet.setAgentName(app.getAgentFirstName()+app.getAgentMI()+app.getAgentLastName());
         sheet.setAgentEmail(this.faker.letterify("??????????")+"@"+this.faker.letterify("gmail")+".com");
 //        sheet.setAgentEmail("dsds@uhc.com");
         sheet.setAgentPartyId("54321");
@@ -125,9 +128,6 @@ public class CaliforniaPdfAssertionTest extends CQBaseIntegrationTest {
         app.setAgentOtherInsPoliciesSold("HMO");
         app.setAgentPoliciesInForce("HMO In Force");
         app.setAgentPoliciesSoldNotInForce("HMO Not In Force");
-        app.setAgentFirstName("AgnetFirst");
-        app.setAgentMI("A");
-        app.setAgentLastName("AgentLast");
         app.setAgentPhone("3334445555");
         //Mailing Address
         app.setMailingAddressCheck(NO);
