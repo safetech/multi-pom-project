@@ -49,6 +49,9 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         app = new Application();
         app.setState("CA");
         app.setZipCode("90201");
+        app.setAgentFirstName(faker.firstName());
+        app.setAgentLastName(faker.lastName());
+        app.setAgentMI(faker.letterify(" ? "));
 
         marketabilityCode = "M14M43AGMMCA02_01D";
         expectedSubmissionResult = new SubmissionResult();
@@ -78,9 +81,8 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         sheet.setMarketability_code(BLANK);
         sheet.setSiteId("UHP");
         sheet.setAgentNPN(BLANK);
-        sheet.setAgentName("BOB DOBBS");
+        sheet.setAgentName(app.getAgentFirstName()+app.getAgentMI()+app.getLastName());
         sheet.setAgentEmail(this.faker.letterify("??????????")+"@"+this.faker.letterify("gmail")+".com");
-//        sheet.setAgentEmail("dsds@uhc.com");
         sheet.setAgentPartyId("54321");
         sheet.setReferrer("ulayer");
         app.setState("CA");
@@ -126,9 +128,6 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         app.setAgentOtherInsPoliciesSold("HMO");
         app.setAgentPoliciesInForce("HMO In Force");
         app.setAgentPoliciesSoldNotInForce("HMO Not In Force");
-        app.setAgentFirstName("AgnetFirst");
-        app.setAgentMI("A");
-        app.setAgentLastName("AgentLast");
         app.setAgentPhone("3334445555");
         //Mailing Address
         app.setMailingAddressCheck(NO);
@@ -170,6 +169,7 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         sheet.setAgentEmail("bob@dobbsco.com");
         sheet.setAgentPartyId("54321");
         sheet.setReferrer("ulayer");
+        sheet.setAgentName(app.getAgentFirstName()+app.getAgentMI()+app.getLastName());
         app.setState("CA");
         app.setZipCode("90210");
         app.setDOB(DateUtils.getDOBInNormalDateFormat(75));
@@ -235,9 +235,6 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         app.setAgentOtherInsPoliciesSold("HMO");
         app.setAgentPoliciesInForce("HMO In Force");
         app.setAgentPoliciesSoldNotInForce("HMO Not In Force");
-        app.setAgentFirstName("AgnetFirst");
-        app.setAgentMI("A");
-        app.setAgentLastName("AgentLast");
         app.setAgentPhone("3334445555");
         app.setMedicalReleaseAuthSignatureIndRequired("Required");
         //Plan Payment Options

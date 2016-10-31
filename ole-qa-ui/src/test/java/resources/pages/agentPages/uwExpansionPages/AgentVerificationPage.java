@@ -31,9 +31,9 @@ public class AgentVerificationPage extends WizardPage {
         if(app.getState().equals("CA")){
         DidNotAssistAnsweringQuestions.click();
         }
-        fill(AgentFirstName).with(app.getAgentFirstName());
-        fill(AgentMI).with(app.getAgentMI());
-        fill(AgentLastName).with(app.getAgentLastName());
+        assert(AgentFirstName.getValue().equals(app.getAgentFirstName()));
+        assert(AgentMI.getValue()).equals(app.getAgentMI().trim());
+        assert(AgentLastName.getValue()).equals(app.getAgentLastName());
         fill(AgentPhone).with(app.getAgentPhone());
 
         AgentSignatureInd.click();

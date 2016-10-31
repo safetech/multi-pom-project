@@ -1,8 +1,8 @@
 package resources.pages.agentpages.uwExpansionPages;
 
-import resources.entity.Application;
 import org.fluentlenium.core.domain.FluentWebElement;
 import org.openqa.selenium.support.FindBy;
+import resources.entity.Application;
 import resources.pages.WizardPage;
 
 import java.util.concurrent.TimeUnit;
@@ -21,15 +21,33 @@ public class WhatYouNeedPage extends WizardPage {
     @FindBy(css = "#colctrl_showhide>p>a") FluentWebElement ImportantDisclousures;
     @FindBy(css = "#AgentKitProvided") FluentWebElement AgentKitProvided;
     @FindBy(css = "#signatureType_3") FluentWebElement TouchSign;
+    @FindBy(xpath = "html/body/div[2]/div[1]/div[2]/div/div[1]/aside/div/p[6]/b") FluentWebElement RequestedEffectiveDate;
+    @FindBy(xpath = "html/body/div[2]/div[1]/div[2]/div/div[1]/aside/div/p[3]/b") FluentWebElement SelectedPlan;
 
 
     public void fillAndSubmit(Application app) {
         isAt();
 
+        app.setReqEffectiveDate(RequestedEffectiveDate.getText());
+        assertThat(SelectedPlan.getText(),equalTo("Plan B"));
+        
+        PlanOverview.click();
+        closeSpecificBrowser(1);
+        BenefitsTable.click();
+        closeSpecificBrowser(1);
+        RulesAndDisclousures.click();
+        closeSpecificBrowser(1);
+        YourGuideToAARPMedicareSupplementInsurancePlans.click();
+        closeSpecificBrowser(1);
+        GuideToHealthInsuranceForPeopleWithMedicare.click();
+        closeSpecificBrowser(1);
+        
         AgentKitProvided.click();
         TouchSign.click();
         await().atMost(5, TimeUnit.SECONDS).until(".right").withText().startsWith("*An enrollment kit").isPresent();
 
+        
+        
         clickNextAndWaitForSpinnerToFinish();
     }
     public void isAt() {

@@ -76,13 +76,11 @@ public class ME_CA_FL_CheckEligibilityAndAvailabilityPage extends WizardPage {
             Thread.sleep(1000);
         }catch(Exception e){
         }
-
         (new WebDriverWait(getDriver(), 10)).until( new ExpectedCondition<Boolean>() {
             public Boolean apply(WebDriver d) {
                 return helpToolTip.isDisplayed();
             }
         });
-        
         clickNextAndWaitForSpinnerToFinish();
 
     }

@@ -64,7 +64,13 @@ public class WizardPage extends FluentPage {
     protected void waitForSpinnerToFinish(int seconds) {
         await().atMost(seconds, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
     }
-
+    public void waitForSpecificSeconds(int numOfSeconds) {
+        try {
+            Thread.sleep(numOfSeconds*1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
     protected void fillYesNoQuestion(FluentWebElement yesRadio, FluentWebElement noRadio, String answer) {
         if(answer.equals(YES)) {
             yesRadio.click();

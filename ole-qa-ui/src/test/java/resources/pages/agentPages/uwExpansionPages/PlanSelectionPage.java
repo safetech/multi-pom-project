@@ -1,11 +1,11 @@
 package resources.pages.agentpages.uwExpansionPages;
 
+import org.fluentlenium.core.domain.FluentWebElement;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import resources.entity.Application;
-import org.fluentlenium.core.domain.FluentWebElement;
-import org.openqa.selenium.support.FindBy;
 import resources.pages.WizardPage;
 
 import java.util.concurrent.TimeUnit;
@@ -33,12 +33,16 @@ public class PlanSelectionPage extends WizardPage{
     @FindBy(xpath = "(//*[@id='RiderChoiceOW'])[2]") FluentWebElement RiderChoice_OW2;
     @FindBy(xpath = "(//*[@id='RiderChoicePW'])[2]") FluentWebElement RiderChoice_PW2;
     @FindBy(xpath = "(//*[@id='RiderChoiceSW'])[2]") FluentWebElement RiderChoice_SW2;
+    @FindBy(xpath = "html/body/div[2]/div[1]/div[1]/form/section/div[3]/p[3]/b") FluentWebElement DobPsdMpbedContainer;
+    
+    
 
     public void fillAndSubmit(Application app) {
 
         isAt();
         ChangeEligibilityAndAvailabilityInformation.click();
         clickNextAndWaitForSpinnerToFinish();
+        
         (new WebDriverWait(getDriver(), 10)).until( new ExpectedCondition<Boolean>() {
             public Boolean apply(WebDriver d) {
                 return First_Plan.isDisplayed();
@@ -47,6 +51,10 @@ public class PlanSelectionPage extends WizardPage{
 
         await().atMost(10, TimeUnit.SECONDS).until("#OleRateTable tbody tr").isPresent();
         await().atMost(5, TimeUnit.SECONDS).until(".OleRateTable").withText("Plan").hasSize();
+        
+        
+        assert(DobPsdMpbedContainer).getText().contains(app.getDOB());
+        assert(DobPsdMpbedContainer).getText().contains(app.getMPBED());
         Second_Plan.click();
 
         blur("apply");
