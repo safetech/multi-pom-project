@@ -160,6 +160,8 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         replacementNoticePage.fillAndSubmit(app);
         preferencesPage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
+        
+        logger.info(reviewAndSubmitPage.getQuestionMapValues());
         expectedSubmissionResult.setPendingInfo("ENROLLMENT EA","EA INDIVIDUAL NOT FOUND");
         phoneSubmissionQuery.verifySubmissionData(app, expectedSubmissionResult);
         phoneSubmissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);

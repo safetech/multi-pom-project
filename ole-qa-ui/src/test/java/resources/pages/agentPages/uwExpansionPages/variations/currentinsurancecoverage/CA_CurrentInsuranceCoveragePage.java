@@ -53,6 +53,8 @@ public class CA_CurrentInsuranceCoveragePage extends WizardPage{
             fillYesNoQuestion(MedicaidSupPremium_Yes, MedicaidSupPremium_No, app.getMedicaidSupPremium());
             fillYesNoQuestion(Medicaidbenefit_Yes, Medicaidbenefit_No, app.getMedicaidbenefit());
         }
+        
+        assertBlank(Medicaidbenefit_No,Medicaidbenefit_Yes);
 
         fillYesNoQuestion(ExistingMedicare_Yes, ExistingMedicare_No, app.getExistingMedicare());
         if(app.getExistingMedicare().equals("yes")){

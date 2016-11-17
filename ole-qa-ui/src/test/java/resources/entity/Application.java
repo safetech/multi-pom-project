@@ -12,7 +12,8 @@ import java.util.Hashtable;
 public class Application {
 
     public Application() {
-    }
+    }    
+    
     public String getAARPMembershipNumber() {
         return AARPMembershipNumber;
     }

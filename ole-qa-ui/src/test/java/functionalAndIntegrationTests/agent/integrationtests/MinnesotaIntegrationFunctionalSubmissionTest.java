@@ -9,7 +9,6 @@ import queries.AgentSubmissionQuery;
 import resources.entity.Application;
 import resources.entity.SubmissionResult;
 import resources.entity.agent.CribSheet;
-import resources.excelObject.excelData;
 import resources.pages.agentpages.oldOlePages.*;
 import resources.pages.agentpages.oldOlePages.variations.planapplication.MN_PlanApplicationQuestions;
 import resources.pages.agentpages.oldOlePages.variations.planselection.iTest_MN_PlanSelectionPage;
@@ -54,7 +53,6 @@ public class MinnesotaIntegrationFunctionalSubmissionTest extends CQBaseIntegrat
         sheet = new CribSheet(faker);
         expectedSubmissionResult = new SubmissionResult();
         app = new Application();
-        xlData = new excelData();
 
         app.setCpaSignatureIndTouch(Application.ALL_SIGNATURES[0]);
         app.setSignatureIndTouch(Application.ALL_SIGNATURES[1]);

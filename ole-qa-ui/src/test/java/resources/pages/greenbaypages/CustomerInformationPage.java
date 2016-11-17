@@ -1,13 +1,11 @@
 package resources.pages.greenbaypages;
 
 import org.fluentlenium.core.domain.FluentWebElement;
-import org.openqa.selenium.io.Zip;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 import resources.entity.Application;
-import resources.entity.TestData;
 import resources.pages.WizardPage;
-import static javafx.beans.binding.Bindings.select;
+
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 

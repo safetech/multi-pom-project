@@ -10,6 +10,7 @@ import java.util.concurrent.TimeUnit;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static resources.utils.PDFSignatureAssertions.PdfSignatureAssertions;
 
 public class ReviewAndSubmitPage extends WizardPage {
 
@@ -50,10 +51,17 @@ public class ReviewAndSubmitPage extends WizardPage {
         String baseWindowHdl = getDriver().getWindowHandle();
         getDriver().switchTo().window(windows.get(1)).manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
         PdfAssertions(app);
+
+       String pdfUrl= getDriver().getCurrentUrl();
+        if(pdfUrl.contains("https://aarpsupplementalhealth-tst.uhc.com/")){
+            pdfUrl=pdfUrl.replace("https://aarpsupplementalhealth-tst.uhc.com/","http://apsrt0786.uhc.com:8080/");
+        }else
+            pdfUrl.replace("https://aarpsupplementalhealth-stg.uhc.com/","http://apsrt0786.uhc.com:8080/");
+            
         
+        PdfSignatureAssertions(pdfUrl);
         getDriver().switchTo().window(baseWindowHdl);
         closeSpecificBrowser(1);
-
         click(WIZARD_PAGE_NEXT_BTN_SELECTOR);
         await().atMost(40, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
     }

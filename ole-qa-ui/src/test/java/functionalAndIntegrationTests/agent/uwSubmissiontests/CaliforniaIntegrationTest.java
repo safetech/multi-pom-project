@@ -52,7 +52,7 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         app.setAgentFirstName(faker.firstName());
         app.setAgentLastName(faker.lastName());
         app.setAgentMI(faker.letterify(" ? "));
-
+        
         marketabilityCode = "M14M43AGMMCA02_01D";
         expectedSubmissionResult = new SubmissionResult();
 
@@ -81,7 +81,7 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         sheet.setMarketability_code(BLANK);
         sheet.setSiteId("UHP");
         sheet.setAgentNPN(BLANK);
-        sheet.setAgentName(app.getAgentFirstName()+app.getAgentMI()+app.getLastName());
+        sheet.setAgentName(app.getAgentFirstName()+app.getAgentMI()+app.getAgentLastName());
         sheet.setAgentEmail(this.faker.letterify("??????????")+"@"+this.faker.letterify("gmail")+".com");
         sheet.setAgentPartyId("54321");
         sheet.setReferrer("ulayer");
@@ -100,8 +100,8 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         app.setAddressLine1("111 Street dr");
         app.setAddressLine2("apt #123");
         app.setCity("Horsham");
-        app.setEmail(this.faker.letterify("??????????")+"@"+this.faker.letterify("gmail")+".com");
-//        app.setEmail("jjkhgar@uhc.com");
+//        app.setEmail(this.faker.letterify("??????????")+"@"+this.faker.letterify("gmail")+".com");
+        app.setEmail("wlvr@arurgitu.gq");
         app.setConfirmEmail(app.getEmail());
         app.setPhonePrimary("9874562345");
         app.setPhoneEvening("1234561234");
@@ -136,7 +136,7 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         //Replacement Notice Page
         app.setCommonReplacementNoticeAnswersWithApplicantInfo();
         app.setCommonHealthHistoryAnswers();
-
+                
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);
         checkEligibilityAndAvailabilityPage.fillAndSubmit(app);
@@ -153,6 +153,7 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         preferencesPage.fillAndSubmit( app );
         reviewAndSubmitPage.fillAndSubmit(app);
 
+        logger.info(reviewAndSubmitPage.getQuestionMapValues());
         expectedSubmissionResult.setAcceptedInfo();
         submissionQuery.verifyUwExpansionSubmissionData(app, expectedSubmissionResult);
         submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);

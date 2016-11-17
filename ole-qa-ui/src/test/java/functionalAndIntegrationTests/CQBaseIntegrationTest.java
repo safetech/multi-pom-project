@@ -20,7 +20,6 @@ import org.openqa.selenium.firefox.internal.ProfilesIni;
 import org.slf4j.Logger;
 import resources.entity.Application;
 import resources.entity.phone.CribSheet;
-import resources.excelObject.excelData;
 import resources.pages.phonepages.oldOlePages.CheatPage;
 import resources.utils.AnswerUtils;
 import resources.utils.PropertyUtils;
@@ -38,7 +37,6 @@ public class CQBaseIntegrationTest extends FluentTest {
     protected final Logger logger = getLogger(this.getClass());
     protected Gson gson = new GsonBuilder().create();
     protected Application app;
-    protected excelData xlData;
     protected String NO = AnswerUtils.NO;
     protected String YES = AnswerUtils.YES;
     protected String UNSURE = AnswerUtils.UNSURE;

@@ -3,11 +3,15 @@ package resources.pages;
 import com.github.javafaker.Faker;
 import org.fluentlenium.core.FluentPage;
 import org.fluentlenium.core.domain.FluentWebElement;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import resources.entity.Application;
 import resources.utils.AnswerUtils;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -20,7 +24,7 @@ public class WizardPage extends FluentPage {
     protected final static String YES = AnswerUtils.YES;
     protected final static String UNSURE = AnswerUtils.UNSURE;
     protected final static String BLANK = AnswerUtils.BLANK;
-
+    
     @FindBy(css = "section h3:first-of-type") protected FluentWebElement pageTitle;
 
 
@@ -235,8 +239,21 @@ public class WizardPage extends FluentPage {
         isAt();
         String marketibilityError = getScriptResult("controller.model.getQuestionValue('marketabilityCode')");
         assertThat(marketibilityError, equalTo(marketCode));
+    }    
+    public String getQuestionMapValues(){
+        String getQuestionMapValues = getScriptResult("controller.model.getQuestionMap()");
+        return getQuestionMapValues;
     }
-
+    public int getCountOfInputElements(String getElement, WebDriver driver) {        
+        List<WebElement> findElement = driver.findElements(By.tagName("input"));
+        List<WebElement> actualElements = new ArrayList<>();
+        for (WebElement element : findElement) {
+            if (element.getAttribute("type").equals(getElement)) {
+                actualElements.add(element);
+            }
+        }
+        return actualElements.size();
+    }
 
     public String getCommonCustomerInformation(Application app) {
 

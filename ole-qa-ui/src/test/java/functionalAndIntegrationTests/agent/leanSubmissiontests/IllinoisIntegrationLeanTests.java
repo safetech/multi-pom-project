@@ -132,6 +132,7 @@ public class IllinoisIntegrationLeanTests extends CQBaseIntegrationTest {
         app.setCommonReplacementNoticeAnswersWithApplicantInfo();
         app.setCommonHealthHistoryAnswers();
         app.setPlanPaymentOptions("Recurring");
+        
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);
         checkEligibilityAndAvailabilityPage.fillAndSubmit(app);
