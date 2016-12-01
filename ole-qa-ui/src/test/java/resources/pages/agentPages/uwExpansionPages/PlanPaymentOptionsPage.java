@@ -1,5 +1,6 @@
 package resources.pages.agentpages.uwExpansionPages;
 
+import com.relevantcodes.extentreports.LogStatus;
 import org.fluentlenium.core.domain.FluentWebElement;
 import org.openqa.selenium.support.FindBy;
 import resources.entity.Application;
@@ -25,8 +26,10 @@ public class PlanPaymentOptionsPage extends WizardPage {
     protected int TOTAL_POSSIBLE_QUESTION_COUNT = 5;
     //TODO: update this page
     public void fillAndSubmit(Application app) {
-        assert((find("input[type='text'], input[type='checkbox'], input[type='radio'], select").size()==4)||(find("input[type='text'], input[type='checkbox'], input[type='radio'], select").size()==5)); 
+        assert((find("input[type='text'], input[type='checkbox'], input[type='radio'], select").size()==4)||(find("input[type='text'], input[type='checkbox'], input[type='radio'], select").size()==5));
+        app.getTest().log(LogStatus.INFO, "Question Count: "+String.valueOf(TOTAL_POSSIBLE_QUESTION_COUNT));
         isAt();
+        app.getTest().log(LogStatus.INFO, "Page Checkpoint Passed");
 try {
     if(app.getPlanPaymentOptions().equals("Recurring")) {
         EFTwithin40days.click();
@@ -50,6 +53,7 @@ try {
 catch (Exception e){
     
 }
+        app.getTest().log(LogStatus.INFO, "Clicking Next..");
         clickNextAndWaitForSpinnerToFinish();
     }
 

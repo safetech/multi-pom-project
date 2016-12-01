@@ -1,9 +1,9 @@
 package resources.pages.agentpages.uwExpansionPages;
 
-import resources.entity.agent.CribSheet;
 import org.fluentlenium.core.FluentPage;
 import org.fluentlenium.core.domain.FluentWebElement;
 import org.openqa.selenium.support.FindBy;
+import resources.entity.agent.CribSheet;
 import resources.utils.AnswerUtils;
 import resources.utils.PropertyUtils;
 
@@ -48,7 +48,6 @@ public class CheatPage extends FluentPage{
         fill(AgentEmail).with(sheet.getAgentEmail());
         fill(AgentPartyId).with(sheet.getAgentPartyId());
         fill(referrer).with(sheet.getReferrer());
-
         if(!sheet.getCloakedInd().equals(AnswerUtils.BLANK)) {
             CloakedInd.click();
         }

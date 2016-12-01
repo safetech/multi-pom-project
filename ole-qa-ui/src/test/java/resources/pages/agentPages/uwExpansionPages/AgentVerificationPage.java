@@ -1,5 +1,6 @@
 package resources.pages.agentpages.uwExpansionPages;
 
+import com.relevantcodes.extentreports.LogStatus;
 import org.fluentlenium.core.domain.FluentWebElement;
 import resources.entity.Application;
 import resources.pages.WizardPage;
@@ -23,8 +24,9 @@ public class AgentVerificationPage extends WizardPage {
 
         TOTAL_POSSIBLE_QUESTION_COUNT=app.getState().equals("CA")?9:8;
         isAt();
+        app.getTest().log(LogStatus.INFO,"Page Checkpoint Passed");
         assertQuestionCount(TOTAL_POSSIBLE_QUESTION_COUNT);
-        
+        app.getTest().log(LogStatus.INFO, "Question Count: "+String.valueOf(TOTAL_POSSIBLE_QUESTION_COUNT));
         fill(AgentOtherInsPoliciesSold).with(app.getAgentOtherInsPoliciesSold());
         fill(AgentPoliciesInForce).with(app.getAgentPoliciesInForce());
         fill(AgentPoliciesSoldNotInForce).with(app.getAgentPoliciesSoldNotInForce());
@@ -38,7 +40,8 @@ public class AgentVerificationPage extends WizardPage {
 
         AgentSignatureInd.click();
         fillTouchSignature("AgentSignatureIndTouch", app.getAgentSignatureIndTouch());
-        
+
+        app.getTest().log(LogStatus.INFO,"Clicking Next..");
         clickNextAndWaitForSpinnerToFinish();
         
     }

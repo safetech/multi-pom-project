@@ -1,5 +1,6 @@
 package resources.pages.agentpages.uwExpansionPages;
 
+import com.relevantcodes.extentreports.LogStatus;
 import resources.entity.Application;
 import org.fluentlenium.core.domain.FluentWebElement;
 import org.openqa.selenium.support.FindBy;
@@ -20,7 +21,7 @@ public class PaymentDetailsSummaryPage extends WizardPage{
     public void fillAndSubmit(Application app) {
 
         isAt();
-
+        app.getTest().log(LogStatus.INFO,"Page Checkpoint Passed");
         fill(BankName).with(app.getBankName());
         fill(RoutingNumber).with(app.getRoutingNumber());
         fill(RoutingNumberConfirm).with(app.getRoutingNumberConfirm());
@@ -30,6 +31,8 @@ public class PaymentDetailsSummaryPage extends WizardPage{
         AccountTypeChecking.click();
         EftSignatureInd.click();
         fillTouchSignature("EftSignatureIndTouch", app.getEftSignatureIndTouch());
+
+        app.getTest().log(LogStatus.INFO,"Clicking Next..");
         clickNextAndWaitForSpinnerToFinish();
     }
     

@@ -66,8 +66,13 @@ class Boy extends playGroundForTestingMethods {
     }
 
     public static void main(String args[]) {
-        Boy obj = new Boy();
-        obj.disp();
+//        Boy obj = new Boy();
+//        obj.disp();
+        System.out.println(System.getProperty("user.dir")+"/ole-qa-ui/RegressionResults/");
+
+
+//        /Users/sislam13/dev/code/codehub/ole-qa/ole-qa-ui/RegressionResults
+//        /Users/sislam13/dev/code/codehub/ole-qa
     }
 }
 

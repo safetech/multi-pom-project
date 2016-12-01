@@ -12,9 +12,9 @@ import resources.entity.agent.CribSheet;
 import resources.pages.agentpages.uwExpansionPages.*;
 import resources.pages.agentpages.uwExpansionPages.variations.authorization.CA_AuthorizationPage;
 import resources.pages.agentpages.uwExpansionPages.variations.checkeligibility.ME_CA_FL_CheckEligibilityAndAvailabilityPage;
-import resources.pages.agentpages.uwExpansionPages.variations.currentinsurancecoverage.CA_CurrentInsuranceCoveragePage;
+import resources.pages.agentpages.uwExpansionPages.variations.currentinsurancecoverage.CA_AR_CurrentInsuranceCoveragePage;
 import resources.pages.agentpages.uwExpansionPages.variations.eligibilityhealthquestions.MN_ME_CA_FL_EligibilityHealthQuestionsPage;
-import resources.pages.agentpages.uwExpansionPages.variations.planapplication.CA_PlanApplicationQuestions;
+import resources.pages.agentpages.uwExpansionPages.variations.planapplication.CA_PlanApplicationQuestionsPage;
 import resources.pages.agentpages.uwExpansionPages.variations.replacenotice.RN034andRE073WithSignaturePage;
 import resources.utils.DateUtils;
 
@@ -25,9 +25,9 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
     @Page public ME_CA_FL_CheckEligibilityAndAvailabilityPage checkEligibilityAndAvailabilityPage;
     @Page public WhatYouNeedPage whatYouNeedPage;
     @Page public CustomerInformationPage customerInformationPage;
-    @Page public CA_PlanApplicationQuestions planApplicationQuestionsPage;
+    @Page public CA_PlanApplicationQuestionsPage planApplicationQuestionsPage;
     @Page public MN_ME_CA_FL_EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
-    @Page public CA_CurrentInsuranceCoveragePage currentInsuranceCoveragePage;
+    @Page public CA_AR_CurrentInsuranceCoveragePage currentInsuranceCoveragePage;
     @Page public CA_AuthorizationPage authorizationPage;
     @Page public RN034andRE073WithSignaturePage replacementNotice;
     @Page public AgentVerificationPage agentVerificationPage;

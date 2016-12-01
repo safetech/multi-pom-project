@@ -1,5 +1,6 @@
 package resources.entity;
 
+import com.relevantcodes.extentreports.ExtentTest;
 import resources.entity.phone.CribSheet;
 import resources.utils.AnswerUtils;
 import resources.utils.DateUtils;
@@ -9,11 +10,232 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Hashtable;
 
+import static resources.utils.AnswerUtils.NO;
+
 public class Application {
 
     public Application() {
-    }    
-    
+    }
+    private resources.entity.agent.CribSheet AgentSheet;
+    private String MedicareClaimNum = "";
+    private String MPAED = "";
+    private String MPBED = "";
+    private String Email = "";
+    private String GIEmployerCov = "";
+    private String GIMediCal = "";
+    private String GIMilitary = "";
+    private String GILocation = "";
+    private String PartABActiveIndicator = "";
+    private String Turned65In6GA = "";
+    private String PartBIn6GA = "";
+    private String PlanEffIn6OfEligible = "";
+    private String LostCoverage = "";
+    private String ContinuousCoverage = "";
+    private String TobaccoUse = "";
+    private String CPATurned65 = "";
+    private String CPAPartBIn6 = "";
+    private String MedicaidCovered = "";
+    private String MedicaidSupPremium = "";
+    private String Medicaidbenefit = "";
+    private String OtherMedplanstart = "";
+    private String OtherMedplanend = "";
+    private String ExistMedSupp = "";
+    private String MSInsCompany = "";
+    private String MSPLAN = "";
+    private String ReplaceExistingMedSup = "";
+    private String OtherInsCoverage = "";
+    private String OtherInsCompany = "";
+    private String OtherInsType = "";
+    private String OtherInsStart = "";
+    private String OtherInsEnd = "";
+    private String OtherInsReplace = "";
+    private String CpaSignatureInd = "";
+    private String AgentOtherInsPoliciesSold = "";
+    private String AgentPoliciesInForce = "";
+    private String AgentPoliciesSoldNotInForce = "";
+    private String AgentSignatureInd = "";
+    private String ESRD = "";
+    private String SurgeryNeeded = "";
+    private String ExistingMedicare = "";
+    private String FirstTime = "";
+    private String DropMedSuppForThisPlan = "";
+    private String AgentPrintedNameAdd = "";
+    private String AgentAddress = "";
+    private String AddressLine1 = "";
+    private String AddressLine2 = "";
+    private String City = "";
+    private String State = "";
+    private String ZipCode = "";
+    private String DesignateLapse = "";
+    private String AuxAddressLine1 = "";
+    private String AuxCity = "";
+    private String AuxState = "";
+    private String AuxZipCode = "";
+    private String AuxPhonePrimary = "";
+    private String AARPMembershipNumber = "";
+    private String AuxFirstName = "";
+    private String AuxMI = "";
+    private String AuxLastName = "";
+    private String FirstName = "";
+    private String MI = "";
+    private String LastName = "";
+    private String Prefix = "";
+    private String Suffix = "";
+    private String Eligdialysis = "";
+    private String EligRecdialysis = "";
+    private String EligHospital = "";
+    private String EligSurgery = "";
+    private String EligOrgan = "";
+    private String EligSpine = "";
+    private String Eligjoint = "";
+    private String EligCancer = "";
+    private String EligHeart = "";
+    private String EligVascular = "";
+    private String CPAMPBED = "";
+    private String SellingAgentSignatureInd = "";
+    private String MedSuppReplace = "";
+    private String involTerm = "";
+    private String OtherInsTerm = "";
+    private String ConfirmEmail = "";
+    private String AgentEmail = "";
+    private String AgentEmailConfirm = "";
+    private String GIMPBED = "";
+    private String AARPMemberNumber = "";
+    private String CAGuaranteedAcceptance = "";
+    private String EmployerId = "";
+    private String aneurysm = "";
+    private String sclerosis = "";
+    private String artery = "";
+    private String atrial = "";
+    private String carotid = "";
+    private String CHF = "";
+    private String CAD = "";
+    private String heart_attack = "";
+    private String PVD = "";
+    private String stroke = "";
+    private String ventricular = "";
+    private String diabetes_child = "";
+    private String COPD = "";
+    private String emphysema = "";
+    private String othercancer = "";
+    private String leukemia = "";
+    private String melanoma = "";
+    private String renalfailure = "";
+    private String polycystic = "";
+    private String renal = "";
+    private String cirrhosis = "";
+    private String bonemarrow = "";
+    private String pancreatitis = "";
+    private String esophageal_varices = "";
+    private String amputation = "";
+    private String rheumatoid = "";
+    private String spinal_stenosis = "";
+    private String alcohol = "";
+    private String drug = "";
+    private String paraplegia = "";
+    private String bipolar = "";
+    private String schizophrenia = "";
+    private String macular = "";
+    private String ALS = "";
+    private String alzheimers = "";
+    private String multiple_sclerosis = "";
+    private String parkinsons = "";
+    private String nervous_condition = "";
+    private String AIDS = "";
+    private String HIV = "";
+    private String SixMonEligEnroll = "";
+    private String SixMonTurn65Enroll = "";
+    private String SixEmpCovTerm = "";
+    private String SixMonMoveOut = "";
+    private String SixMonResident = "";
+    private String MOPlanCode = "";
+    private String MOAnniversaryDate = "";
+    private String AgentFirstName = "";
+    private String AgentMI = "";
+    private String AgentLastName = "";
+    private String AgentPhone = "";
+    public String AgentSignatureIndTouch = "";
+    public String SignatureIndTouch = "";
+    public String MedicalReleaseAuthSignatureIndTouch = "";
+    public String DesigneeSigTouch = "";
+    public String CpaSignatureIndTouch = "";
+    public String AgentRNSignatureIndTouch = "";
+    public String ApplicantRNSignatureIndTouch = "";
+    public String ApplicantRNSignatureIndRequired = "";
+    public String EftSignatureIndTouch = "";
+    public String MedicalReleaseClaimSignatureIndTouch = "";
+    public ExtentTest test;
+    public String OnlinePreferenceSignatureTouch = "";
+    private String BankName = "";
+    private String RoutingNumber = "";
+    private String SS_FormDate = "";
+    private String SS_App_Signature1 = "";
+    private String SS_Agent_Signature1 = "";
+    private String AgencyName = "";
+    private String AgencyAddress = "";
+    private String AgencyPhone = "";
+    private String SS_App_PrintedName = "";
+    private String SS_Agent_PrintedName = "";
+    private String SS_LicenseNumber = "";
+    private String SS_StreetAddress = "";
+    private String SS_City = "";
+    private String SS_Zip = "";
+    private String SS_Phone = "";
+    private String SS_State = "";
+    private String oleReffId = "";
+    public String resumeApplication = "";
+    public String applicationId = "";
+    public String applicationStatus = "";
+    public String MedicalReleaseAuthSignatureIndRequired = "";
+    public String ArteryorVeinBlockage = "";
+    public String PeripheralVascularDisease = "";
+    public String Cardiomyopathy = "";
+    public String CongestiveHeartFailure = "";
+    public String CoronaryArteryDisease = "";
+    public String ChronicLungDisease = "";
+    public String ChronicKidneyDisease = "";
+    public String Diabetes = "";
+    public String Cancer = "";
+    public String CirrhosisDisease = "";
+    public String IL23991Touch = "";
+    public String IL23993Touch = "";
+    private String MailingAddressLine1 = "";
+    private String MailingAddressLine2 = "";
+    private String MailingCity = "";
+    private String MailingState = "";
+    private String MailingZipCode = "";
+    private String MailingAddressCheck = "";
+    private String KidneyProblem = "";
+    private String EligibilitySurgery = "";
+    private String EligibilityAdmitToHospPast90Days = "";
+    private String NursingFacility = "";
+    private String EligibilityHeartAttackTIAStroke = "";
+    private String EligibilityChronicMedicalConditions = "";
+    private String ContinuousMedicareCoverageNoGap = "";
+    private String UnderstandAndAuthorize = "";
+    private String AgentFullName = "";
+    private String MethodName = "";
+    private String Rider1 = "";
+    private String Rider2 = "";
+    private String Rider3 = "";
+    private String Rider4 = "";
+    private String Rider5 = "";
+
+
+    public String getMethodName() {
+        return MethodName;
+    }
+
+    public void setMethodName(String methodName) {
+        MethodName = methodName;
+    }
+    public String getCardiomyopathy() {
+        return Cardiomyopathy;
+    }
+
+    public void setCardiomyopathy(String cardiomyopathy) {
+        Cardiomyopathy = cardiomyopathy;
+    }
     public String getAARPMembershipNumber() {
         return AARPMembershipNumber;
     }
@@ -232,94 +454,6 @@ public class Application {
         AgentSheet = agentSheet;
     }
 
-    private resources.entity.agent.CribSheet AgentSheet;
-    private String MedicareClaimNum = "";
-    private String MPAED = "";
-    private String MPBED = "";
-    private String Email = "";
-    private String GIEmployerCov = "";
-    private String GIMediCal = "";
-    private String GIMilitary = "";
-    private String GILocation = "";
-    private String PartABActiveIndicator = "";
-    private String Turned65In6GA = "";
-    private String PartBIn6GA = "";
-    private String PlanEffIn6OfEligible = "";
-    private String LostCoverage = "";
-    private String ContinuousCoverage = "";
-    private String TobaccoUse = "";
-    private String CPATurned65 = "";
-    private String CPAPartBIn6 = "";
-    private String MedicaidCovered = "";
-    private String MedicaidSupPremium = "";
-    private String Medicaidbenefit = "";
-    private String OtherMedplanstart = "";
-    private String OtherMedplanend = "";
-    private String ExistMedSupp = "";
-    private String MSInsCompany = "";
-    private String MSPLAN = "";
-    private String ReplaceExistingMedSup = "";
-    private String OtherInsCoverage = "";
-    private String OtherInsCompany = "";
-    private String OtherInsType = "";
-    private String OtherInsStart = "";
-    private String OtherInsEnd = "";
-    private String OtherInsReplace = "";
-    private String CpaSignatureInd = "";
-    private String AgentOtherInsPoliciesSold = "";
-    private String AgentPoliciesInForce = "";
-    private String AgentPoliciesSoldNotInForce = "";
-    private String AgentSignatureInd = "";
-    private String ESRD = "";
-    private String SurgeryNeeded = "";
-    private String ExistingMedicare = "";
-    private String FirstTime = "";
-    private String DropMedSuppForThisPlan = "";
-    private String AgentPrintedNameAdd = "";
-    private String AgentAddress = "";
-    private String AddressLine1 = "";
-    private String AddressLine2 = "";
-    private String City = "";
-    private String State = "";
-    private String ZipCode = "";
-    private String DesignateLapse = "";
-    private String AuxAddressLine1 = "";
-    private String AuxCity = "";
-    private String AuxState = "";
-    private String AuxZipCode = "";
-    private String AuxPhonePrimary = "";
-    private String AARPMembershipNumber = "";
-    private String AuxFirstName = "";
-    private String AuxMI = "";
-    private String AuxLastName = "";
-    private String FirstName = "";
-    private String MI = "";
-    private String LastName = "";
-    private String Prefix = "";
-    private String Suffix = "";
-    private String Eligdialysis = "";
-    private String EligRecdialysis = "";
-    private String EligHospital = "";
-    private String EligSurgery = "";
-    private String EligOrgan = "";
-    private String EligSpine = "";
-    private String Eligjoint = "";
-    private String EligCancer = "";
-    private String EligHeart = "";
-    private String EligVascular = "";
-    private String CPAMPBED = "";
-    private String SellingAgentSignatureInd = "";
-    private String MedSuppReplace = "";
-    private String involTerm = "";
-    private String OtherInsTerm = "";
-    private String ConfirmEmail = "";
-    private String AgentEmail = "";
-    private String AgentEmailConfirm = "";
-    private String GIMPBED = "";
-    private String AARPMemberNumber = "";
-    private String CAGuaranteedAcceptance = "";
-    private String EmployerId = "";
-
     public String getAgentFullName() {
         return AgentFullName;
     }
@@ -327,14 +461,6 @@ public class Application {
     public void setAgentFullName(String agentFullName) {
         AgentFullName = agentFullName;
     }
-
-    private String AgentFullName = "";
-    private String Rider1 = "";
-    private String Rider2 = "";
-    private String Rider3 = "";
-    private String Rider4 = "";
-    private String Rider5 = "";
-
     public String getPlanPaymentOptions() {
         return PlanPaymentOptions;
     }
@@ -344,8 +470,6 @@ public class Application {
     }
 
     private String PlanPaymentOptions = "";
-    
-    
     
     public String getRider1() {
         return Rider1;
@@ -720,13 +844,7 @@ public class Application {
         this.atrial = atrial;
     }
 
-    public String getCardiomyopathy() {
-        return cardiomyopathy;
-    }
 
-    public void setCardiomyopathy(String cardiomyopathy) {
-        this.cardiomyopathy = cardiomyopathy;
-    }
 
     public String getCarotid() {
         return carotid;
@@ -1016,70 +1134,88 @@ public class Application {
     public void setDiabetes_child(String diabetes_child) {
         this.diabetes_child = diabetes_child;
     }
+    
+    public String getCirrhosisDisease() {
+        return CirrhosisDisease;
+    }
 
-    private String aneurysm = "";
-    private String sclerosis = "";
-    private String artery = "";
-    private String atrial = "";
-    private String cardiomyopathy = "";
-    private String carotid = "";
-    private String CHF = "";
-    private String CAD = "";
-    private String heart_attack = "";
-    private String PVD = "";
-    private String stroke = "";
-    private String ventricular = "";
-    private String diabetes_child = "";
-    private String COPD = "";
-    private String emphysema = "";
-    private String othercancer = "";
-    private String leukemia = "";
-    private String melanoma = "";
-    private String renalfailure = "";
-    private String polycystic = "";
-    private String renal = "";
-    private String cirrhosis = "";
-    private String bonemarrow = "";
-    private String pancreatitis = "";
-    private String esophageal_varices = "";
-    private String amputation = "";
-    private String rheumatoid = "";
-    private String spinal_stenosis = "";
-    private String alcohol = "";
-    private String drug = "";
-    private String paraplegia = "";
-    private String bipolar = "";
-    private String schizophrenia = "";
-    private String macular = "";
-    private String ALS = "";
-    private String alzheimers = "";
-    private String multiple_sclerosis = "";
-    private String parkinsons = "";
-    private String nervous_condition = "";
-    private String AIDS = "";
-    private String HIV = "";
-    private String SixMonEligEnroll = "";
-    private String SixMonTurn65Enroll = "";
-    private String SixEmpCovTerm = "";
-    private String SixMonMoveOut = "";
-    private String SixMonResident = "";
-    private String MOPlanCode = "";
-    private String MOAnniversaryDate = "";
-    private String AgentFirstName = "";
-    private String AgentMI = "";
-    private String AgentLastName = "";
-    private String AgentPhone = "";
-    public String AgentSignatureIndTouch = "";
-    public String SignatureIndTouch = "";
-    public String MedicalReleaseAuthSignatureIndTouch = "";
-    public String DesigneeSigTouch = "";
-    public String CpaSignatureIndTouch = "";
-    public String AgentRNSignatureIndTouch = "";
-    public String ApplicantRNSignatureIndTouch = "";
-    public String ApplicantRNSignatureIndRequired = "";
-    public String EftSignatureIndTouch = "";
-    public String MedicalReleaseClaimSignatureIndTouch = "";
+    public void setCirrhosisDisease(String cirrhosisDisease) {
+        CirrhosisDisease = cirrhosisDisease;
+    }
+
+    public String getArteryorVeinBlockage() {
+        return ArteryorVeinBlockage;
+    }
+
+    public void setArteryorVeinBlockage(String arteryorVeinBlockage) {
+        ArteryorVeinBlockage = arteryorVeinBlockage;
+    }
+
+    public String getPeripheralVascularDisease() {
+        return PeripheralVascularDisease;
+    }
+
+    public void setPeripheralVascularDisease(String peripheralVascularDisease) {
+        PeripheralVascularDisease = peripheralVascularDisease;
+    }
+
+    public String getCongestiveHeartFailure() {
+        return CongestiveHeartFailure;
+    }
+
+    public void setCongestiveHeartFailure(String congestiveHeartFailure) {
+        CongestiveHeartFailure = congestiveHeartFailure;
+    }
+
+    public String getCoronaryArteryDisease() {
+        return CoronaryArteryDisease;
+    }
+
+    public void setCoronaryArteryDisease(String coronaryArteryDisease) {
+        CoronaryArteryDisease = coronaryArteryDisease;
+    }
+
+    public String getChronicLungDisease() {
+        return ChronicLungDisease;
+    }
+
+    public void setChronicLungDisease(String chronicLungDisease) {
+        ChronicLungDisease = chronicLungDisease;
+    }
+
+    public String getChronicKidneyDisease() {
+        return ChronicKidneyDisease;
+    }
+
+    public void setChronicKidneyDisease(String chronicKidneyDisease) {
+        ChronicKidneyDisease = chronicKidneyDisease;
+    }
+
+    public String getDiabetes() {
+        return Diabetes;
+    }
+
+    public void setDiabetes(String diabetes) {
+        Diabetes = diabetes;
+    }
+
+    public String getCancer() {
+        return Cancer;
+    }
+
+    public void setCancer(String cancer) {
+        Cancer = cancer;
+    }
+    
     public String ReplacementAgentSignInd2Touch = "";
+
+    public ExtentTest getTest() {
+        return test;
+    }
+
+    public void setTest(ExtentTest test) {
+        this.test = test;
+    }
 
     public String getOnlinePreferenceSignatureTouch() {
         return OnlinePreferenceSignatureTouch;
@@ -1088,29 +1224,6 @@ public class Application {
     public void setOnlinePreferenceSignatureTouch(String onlinePreferenceSignatureTouch) {
         OnlinePreferenceSignatureTouch = onlinePreferenceSignatureTouch;
     }
-
-    public String OnlinePreferenceSignatureTouch = "";
-    private String BankName = "";
-    private String RoutingNumber = "";
-    private String SS_FormDate = "";
-    private String SS_App_Signature1 = "";
-    private String SS_Agent_Signature1 = "";
-    private String AgencyName = "";
-    private String AgencyAddress = "";
-    private String AgencyPhone = "";
-    private String SS_App_PrintedName = "";
-    private String SS_Agent_PrintedName = "";
-    private String SS_LicenseNumber = "";
-    private String SS_StreetAddress = "";
-    private String SS_City = "";
-    private String SS_Zip = "";
-    private String SS_Phone = "";
-    private String SS_State = "";
-    private String oleReffId = "";
-    public String resumeApplication = "";
-    public String applicationId = "";
-    public String applicationStatus = "";
-    public String MedicalReleaseAuthSignatureIndRequired = "";
 
     public String getIL23991Touch() {
         return IL23991Touch;
@@ -1127,24 +1240,7 @@ public class Application {
     public void setIL23993Touch(String IL23993Touch) {
         this.IL23993Touch = IL23993Touch;
     }
-
-    public String IL23991Touch = "";
-    public String IL23993Touch = "";
-    private String MailingAddressLine1 = "";
-    private String MailingAddressLine2 = "";
-    private String MailingCity = "";
-    private String MailingState = "";
-    private String MailingZipCode = "";
-    private String MailingAddressCheck = "";
-    private String KidneyProblem = "";
-    private String EligibilitySurgery = "";
-    private String EligibilityAdmitToHospPast90Days = "";
-    private String NursingFacility = "";
-    private String EligibilityHeartAttackTIAStroke = "";
-    private String EligibilityChronicMedicalConditions = "";
-    private String ContinuousMedicareCoverageNoGap = "";
-    private String UnderstandAndAuthorize = "";
-
+    
     public String getUnderstandAndAuthorize() {
         return UnderstandAndAuthorize;
     }
@@ -2015,6 +2111,25 @@ public class Application {
         setAgentPoliciesInForce("EP");
         setAgentPoliciesSoldNotInForce("EPHIP");
         setAgentSignatureInd(AnswerUtils.YES);
+    }    
+    
+    public void setNoToAllEligibilityAnswers() {
+        setKidneyProblem(NO);
+        setEligibilitySurgery(NO);
+        setEligibilityAdmitToHospPast90Days(NO);
+        setNursingFacility(NO);
+        setEligibilityHeartAttackTIAStroke(NO);
+        setESRD(NO);
+        setArteryorVeinBlockage(NO);
+        setPeripheralVascularDisease(NO);
+        setCardiomyopathy(NO);
+        setCongestiveHeartFailure(NO);
+        setCoronaryArteryDisease(NO);
+        setChronicLungDisease(NO);
+        setChronicKidneyDisease(NO);
+        setDiabetes(NO);
+        setCancer(NO);
+        setCirrhosisDisease(NO);
     }
 
     public void setCommonReplacementNoticeAnswersWithApplicantInfo() {

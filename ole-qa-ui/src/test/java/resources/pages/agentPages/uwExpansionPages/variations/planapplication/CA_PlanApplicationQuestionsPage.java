@@ -1,12 +1,13 @@
 package resources.pages.agentpages.uwExpansionPages.variations.planapplication;
 
 
+import com.relevantcodes.extentreports.LogStatus;
 import resources.entity.Application;
 import org.fluentlenium.core.domain.FluentWebElement;
 import org.openqa.selenium.support.FindBy;
 import resources.pages.phonepages.oldOlePages.PlanApplicationQuestions;
 
-public class CA_PlanApplicationQuestions extends PlanApplicationQuestions {
+public class CA_PlanApplicationQuestionsPage extends PlanApplicationQuestions {
 
 
     @FindBy(css = "#GI30dayBday_1") protected FluentWebElement GI30Bday_Yes;
@@ -27,6 +28,7 @@ public class CA_PlanApplicationQuestions extends PlanApplicationQuestions {
 
     public void fillAndSubmit(Application app) {
         isAt();
+        app.getTest().log(LogStatus.INFO,"Page Checkpoint Passed");
         assertQuestionCount(TOTAL_POSSIBLE_QUESTION_COUNT);
         assertVisible(PlanEffIn6OfEligible_Yes, PlanEffIn6OfEligible_No);
         if(app.getPlanEffIn6OfEligible().equals(NO)){
@@ -39,13 +41,14 @@ public class CA_PlanApplicationQuestions extends PlanApplicationQuestions {
             }
             fillYesNoQuestion(TobaccoUse_Yes, TobaccoUse_No, app.getTobaccoUse());
         }
-
+        
         verifyStateOfElementAfterAnswers(app);
+        app.getTest().log(LogStatus.INFO,"Clicking Next..");
         clickNextAndWaitForSpinnerToFinish();
     }
 
     public void verifyStateOfElementAfterAnswers(Application app) {
-
+        app.getTest().log(LogStatus.INFO,"Verified State Of Element After Answers..");
         assertYesNoQuestion(PlanEffIn6OfEligible_Yes, PlanEffIn6OfEligible_No, app.getPlanEffIn6OfEligible());
         assertVisibleBasedUpon(app.getPlanEffIn6OfEligible().equals(NO), GI30Bday_Yes, GI30Bday_No);
         assertVisibleBasedUpon(app.getGI30dayBday().equals(NO), CAGuaranteedAcceptance_Yes, CAGuaranteedAcceptance_No);

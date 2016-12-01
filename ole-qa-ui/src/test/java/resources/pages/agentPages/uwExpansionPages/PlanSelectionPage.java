@@ -1,5 +1,6 @@
 package resources.pages.agentpages.uwExpansionPages;
 
+import com.relevantcodes.extentreports.LogStatus;
 import org.fluentlenium.core.domain.FluentWebElement;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
@@ -40,6 +41,7 @@ public class PlanSelectionPage extends WizardPage{
     public void fillAndSubmit(Application app) {
 
         isAt();
+        app.getTest().log(LogStatus.INFO,"Page checkpoint passed");
         ChangeEligibilityAndAvailabilityInformation.click();
         clickNextAndWaitForSpinnerToFinish();
         
@@ -55,6 +57,8 @@ public class PlanSelectionPage extends WizardPage{
         
         assert(DobPsdMpbedContainer).getText().contains(app.getDOB());
         assert(DobPsdMpbedContainer).getText().contains(app.getMPBED());
+
+        app.getTest().log(LogStatus.INFO,"Selecting Plan B");
         Second_Plan.click();
 
         blur("apply");

@@ -15,7 +15,7 @@ public class PDFSignatureAssertions {
                 for(int i=0;i<actualImages.length;i++) {
                     String actualFileName=actualImages[i].getName();
                     
-                    assertThat("Actual --> "+actualFileName,CompareImages.compareImages(expectedImages[i],actualImages[i]), equalTo(true));
+                    assertThat("Actual --> "+actualFileName,CompareImages.compareImages(expectedImages[i], actualImages[i]), equalTo(true));
                 }
             }
         } catch (Exception e) {

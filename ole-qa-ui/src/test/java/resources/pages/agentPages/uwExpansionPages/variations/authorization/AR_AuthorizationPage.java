@@ -8,7 +8,7 @@ import resources.pages.WizardPage;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class CA_AuthorizationPage extends WizardPage{
+public class AR_AuthorizationPage extends WizardPage{
 
     FluentWebElement SignatureInd;
     FluentWebElement MedicalReleaseClaimSignatureInd;
@@ -25,8 +25,6 @@ public class CA_AuthorizationPage extends WizardPage{
             fillTouchSignature("MedicalReleaseAuthSignatureIndTouch",  app.getMedicalReleaseAuthSignatureIndTouch());
         }
 
-        MedicalReleaseClaimSignatureInd.click();
-        fillTouchSignature("MedicalReleaseClaimSignatureIndTouch",  app.getMedicalReleaseClaimSignatureIndTouch());
         app.getTest().log(LogStatus.INFO,"Clicking Next..");
         clickNextAndWaitForSpinnerToFinish();
     }

@@ -1,5 +1,6 @@
 package resources.pages.agentpages.uwExpansionPages.variations.currentinsurancecoverage;
 
+import com.relevantcodes.extentreports.LogStatus;
 import resources.entity.Application;
 import org.fluentlenium.core.domain.FluentWebElement;
 import org.openqa.selenium.support.FindBy;
@@ -8,7 +9,7 @@ import resources.pages.WizardPage;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class CA_CurrentInsuranceCoveragePage extends WizardPage{
+public class CA_AR_CurrentInsuranceCoveragePage extends WizardPage{
 
     @FindBy(css = "#MedicaidCovered_1") FluentWebElement MedicaidCovered_Yes;
     @FindBy(css = "#MedicaidCovered_2") FluentWebElement MedicaidCovered_No;
@@ -46,7 +47,9 @@ public class CA_CurrentInsuranceCoveragePage extends WizardPage{
 
     public void fillAndSubmit(Application app) {
         isAt();
+        app.getTest().log(LogStatus.INFO,"Page Checkpoint Passed");
         assertQuestionCount(TOTAL_POSSIBLE_QUESTION_COUNT);
+        app.getTest().log(LogStatus.INFO, "Question Count: "+String.valueOf(TOTAL_POSSIBLE_QUESTION_COUNT));
 
         fillYesNoQuestion(MedicaidCovered_Yes, MedicaidCovered_No, app.getMedicaidCovered());
         if(app.getMedicaidCovered().equals("yes")) {
@@ -54,7 +57,7 @@ public class CA_CurrentInsuranceCoveragePage extends WizardPage{
             fillYesNoQuestion(Medicaidbenefit_Yes, Medicaidbenefit_No, app.getMedicaidbenefit());
         }
         
-        assertBlank(Medicaidbenefit_No,Medicaidbenefit_Yes);
+        //assertBlank(Medicaidbenefit_No,Medicaidbenefit_Yes);
 
         fillYesNoQuestion(ExistingMedicare_Yes, ExistingMedicare_No, app.getExistingMedicare());
         if(app.getExistingMedicare().equals("yes")){
@@ -83,6 +86,8 @@ public class CA_CurrentInsuranceCoveragePage extends WizardPage{
 
         CpaSignatureInd.click();
         fillTouchSignature("CpaSignatureIndTouch", app.getCpaSignatureIndTouch());
+
+        app.getTest().log(LogStatus.INFO,"Clicking Next..");
         clickNextAndWaitForSpinnerToFinish();
 
     }

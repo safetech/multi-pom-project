@@ -1,5 +1,6 @@
 package resources.pages.agentpages.uwExpansionPages;
 
+import com.relevantcodes.extentreports.LogStatus;
 import org.fluentlenium.core.domain.FluentWebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
@@ -47,6 +48,7 @@ public class CustomerInformationPage extends WizardPage {
     
     public void fillAndSubmit(Application app) {
         isAt();
+        app.getTest().log(LogStatus.INFO,"Page Checkpoint Passed");
         fill(AARPMembershipNumber).with(app.getAARPMembershipNumber());
         fill(FirstName).with(app.getFirstName());
         fill(MI).with(app.getMI());
@@ -81,6 +83,7 @@ public class CustomerInformationPage extends WizardPage {
             fill(PhoneEvening).with(app.getPhoneEvening());
         }
 
+        app.getTest().log(LogStatus.INFO,"Clicking Next..");
         clickNextAndWaitForSpinnerToFinish();
     }
 

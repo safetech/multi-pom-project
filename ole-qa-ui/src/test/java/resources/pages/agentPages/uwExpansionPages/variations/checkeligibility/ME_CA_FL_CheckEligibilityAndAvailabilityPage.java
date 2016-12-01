@@ -1,5 +1,6 @@
 package resources.pages.agentpages.uwExpansionPages.variations.checkeligibility;
 
+import com.relevantcodes.extentreports.LogStatus;
 import org.fluentlenium.core.domain.FluentWebElement;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
@@ -70,8 +71,8 @@ public class ME_CA_FL_CheckEligibilityAndAvailabilityPage extends WizardPage {
         await().atMost(10, TimeUnit.SECONDS).until("#loading_fader").areNotDisplayed();
 
         Thread.sleep(2000);
-        
-        fillSelect("div.customer_eligibility_form #ReqEffectiveDate").withIndex(2);
+        fillSelect("div.customer_eligibility_form #ReqEffectiveDate").withIndex(3);
+        app.getTest().log(LogStatus.INFO,"Selected the 3rd options");
         try{
             Thread.sleep(1000);
         }catch(Exception e){
@@ -81,6 +82,7 @@ public class ME_CA_FL_CheckEligibilityAndAvailabilityPage extends WizardPage {
                 return helpToolTip.isDisplayed();
             }
         });
+        app.getTest().log(LogStatus.INFO,"Clicking Next..");
         clickNextAndWaitForSpinnerToFinish();
 
     }

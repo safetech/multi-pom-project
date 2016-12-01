@@ -1,5 +1,6 @@
 package resources.pages.agentpages.uwExpansionPages;
 
+import com.relevantcodes.extentreports.LogStatus;
 import org.fluentlenium.core.domain.FluentWebElement;
 import org.openqa.selenium.support.FindBy;
 import resources.entity.Application;
@@ -21,6 +22,7 @@ public class PreferencesPage extends WizardPage{
     
     public void fillAndSubmit(Application app){
         isAt();
+        app.getTest().log(LogStatus.INFO,"Page Checkpoint Passed");
         USMail.click();
         Online.click();
 
@@ -33,6 +35,8 @@ public class PreferencesPage extends WizardPage{
         
         OnlinePreferenceSignature.click();
         fillTouchSignature("OnlinePreferenceSignatureTouch", app.getOnlinePreferenceSignatureTouch());
+        
+        app.getTest().log(LogStatus.INFO,"Clicking Next..");
         clickNextAndWaitForSpinnerToFinish();
     }
     public void isAt() {
