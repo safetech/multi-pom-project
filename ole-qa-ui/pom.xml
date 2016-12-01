@@ -190,7 +190,7 @@
         <profile>
             <id>Chrome</id>
             <activation>
-                <activeByDefault>true</activeByDefault>
+                <activeByDefault>false</activeByDefault>
             </activation>
             <properties>
                 <browser>Chrome</browser>
