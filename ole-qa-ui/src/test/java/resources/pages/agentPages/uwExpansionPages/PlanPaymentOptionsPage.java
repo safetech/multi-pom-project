@@ -25,7 +25,7 @@ public class PlanPaymentOptionsPage extends WizardPage {
 
     protected int TOTAL_POSSIBLE_QUESTION_COUNT = 5;
     //TODO: update this page
-    public void fillAndSubmit(Application app) {
+    public void  fillAndSubmit(Application app) {
         assert((find("input[type='text'], input[type='checkbox'], input[type='radio'], select").size()==4)||(find("input[type='text'], input[type='checkbox'], input[type='radio'], select").size()==5));
         app.getTest().log(LogStatus.INFO, "Question Count: "+String.valueOf(TOTAL_POSSIBLE_QUESTION_COUNT));
         isAt();
