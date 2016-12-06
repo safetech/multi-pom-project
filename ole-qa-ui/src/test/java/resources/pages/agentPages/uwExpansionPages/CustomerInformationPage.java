@@ -70,8 +70,8 @@ public class CustomerInformationPage extends WizardPage {
 
         if (app.getMailingAddressCheck().equals(YES)) {
             MailingAddressCheck_Yes.click();
-            fill(MailingAddressLine1).with(app.getAddressLine1());
-            fill(MailingAddressLine2).with(app.getAddressLine2());
+            fill(MailingAddressLine1).with(app.getMailingAddressLine1());
+            fill(MailingAddressLine2).with(app.getMailingAddressLine2());
             fill(MailingCity).with(app.getMailingCity());
             (new Select(MailingState.getElement())).selectByValue(app.getMailingState());
             fill(MailingZipCode).with(app.getMailingZipCode());

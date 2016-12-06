@@ -4,6 +4,7 @@ import com.github.javafaker.Faker;
 import org.fluentlenium.core.FluentPage;
 import org.fluentlenium.core.domain.FluentWebElement;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -274,6 +275,16 @@ public class WizardPage extends FluentPage {
         app.setPartABActiveIndicator(AnswerUtils.YES);
         return commonCustomerInformation;
     }
+    public void gotoPdfpage(int pageNumber){
+        if(System.getProperty("os.name").toLowerCase().contains("mac")){
+            getDriver().findElement(By.id("pageNumber")).sendKeys(Keys.COMMAND+"a");
+            getDriver().findElement(By.id("pageNumber")).sendKeys(pageNumber+"\r");
+        }
+        else{
+            getDriver().findElement(By.id("pageNumber")).sendKeys(Keys.CONTROL+"a");
+            getDriver().findElement(By.id("pageNumber")).sendKeys(pageNumber+"\r");
 
+        }
+    }
     
 }

@@ -1,8 +1,8 @@
 package resources.entity;
 
+import com.github.javafaker.Faker;
 import com.relevantcodes.extentreports.ExtentTest;
 import resources.entity.phone.CribSheet;
-import resources.utils.AnswerUtils;
 import resources.utils.DateUtils;
 import resources.utils.PlanEligibilityQuestionUtils;
 
@@ -11,9 +11,11 @@ import java.util.Date;
 import java.util.Hashtable;
 
 import static resources.utils.AnswerUtils.NO;
+import static resources.utils.AnswerUtils.YES;
 
 public class Application {
-
+private Faker faker;
+    
     public Application() {
     }
     private resources.entity.agent.CribSheet AgentSheet;
@@ -2091,26 +2093,47 @@ public class Application {
 
 
     public void setCommonHealthHistoryAnswers() {
-        setEmphysema(AnswerUtils.YES);
-        setOthercancer(AnswerUtils.YES);
-        setPolycystic(AnswerUtils.YES);
-        setCirrhosis(AnswerUtils.YES);
-        setBonemarrow(AnswerUtils.YES);
-        setPancreatitis(AnswerUtils.YES);
-        setAmputation(AnswerUtils.YES);
-        setAlcohol(AnswerUtils.YES);
-        setParaplegia(AnswerUtils.YES);
-        setBipolar(AnswerUtils.YES);
-        setMacular(AnswerUtils.YES);
-        setAlzheimers(AnswerUtils.YES);
-        setHIV(AnswerUtils.YES);
+        setEmphysema(YES);
+        setOthercancer(YES);
+        setPolycystic(YES);
+        setCirrhosis(YES);
+        setBonemarrow(YES);
+        setPancreatitis(YES);
+        setAmputation(YES);
+        setAlcohol(YES);
+        setParaplegia(YES);
+        setBipolar(YES);
+        setMacular(YES);
+        setAlzheimers(YES);
+        setHIV(YES);
     }
 
     public void setCommonAgentVerificationAnswers() {
         setAgentOtherInsPoliciesSold("HIP");
         setAgentPoliciesInForce("EP");
         setAgentPoliciesSoldNotInForce("EPHIP");
-        setAgentSignatureInd(AnswerUtils.YES);
+        setAgentSignatureInd(YES);
+    }     
+    public void setCommonCustomerInformationAnswers() {
+        faker = new Faker();
+        setAARPMembershipNumber(faker.numerify("##########"));
+        setPrefix("MR");
+        setFirstName(getState()+"_auto_"+faker.firstName());
+        setMI(this.faker.letterify("?"));
+        setLastName(this.faker.lastName());
+        setSuffix("PHD");
+        setAddressLine1("111 Street dr");
+        setAddressLine2("apt #123");
+        setCity("Horsham");
+        setEmail(this.faker.letterify("??????????")+"@uhc.com");
+        setConfirmEmail(getEmail());
+        setMedicareClaimNum(faker.bothify("#########A"));
+        setPhonePrimary("9874562345");
+        setPhoneEvening("1234561234");
+        setGender("M");
+        setPartABActiveIndicator(YES);
+        setAgentEmail("agentpages@uhc.com");
+        setAgentEmailConfirm("agentpages@uhc.com");
     }    
     
     public void setNoToAllEligibilityAnswers() {

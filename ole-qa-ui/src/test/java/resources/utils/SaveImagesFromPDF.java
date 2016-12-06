@@ -20,7 +20,7 @@ public class SaveImagesFromPDF {
     {
         try {
 
-            String destinationDir = "/Users/sislam13/dev/code/codehub/ole-qa/ole-qa-ui/src/test/java/resources/pdf/"+destination+"/ExpectedImages/";
+            String destinationDir = "/Users/sislam13/dev/code/codehub/ole-qa/ole-qa-ui/src/test/java/resources/pdf/"+destination+"/ActualImages/";
 
             // Removes all files from PdfActualImages Directory
             FileUtils.cleanDirectory(new File(destinationDir));
@@ -57,7 +57,7 @@ public class SaveImagesFromPDF {
 
     public static void main(String[] args) {
         try {
-            System.out.println(saveImagesFromPDF(new URL("http://apsrt0786.uhc.com:8080/bin/oleuhcproxy.html/appEnroll-web/resources/applicationDetail/SHIP/MEDSUPP/1561-E629-27/generatePDF/full_PDF?verifyDOB=1941-12-01&verifyZipCode=71611&channel=agent&appPdfFile=https%3A%2F%2Faarpsupplementalhealth-tst.uhc.com%2Fcontent%2Fdam%2Fole%2FMedSuppDocs%2FApplicationPDFs%2FS25F49AGMMAR01_01D_WB.pdf&onePdfFile=https%3A%2F%2Faarpsupplementalhealth-tst.uhc.com%2Fcontent%2Fdam%2Fole%2FMedSuppDocs%2FEFTPDFs%2FBIL_EFT_Web_1_Time_AGT_3.pdf&recPdfFile=https%3A%2F%2Faarpsupplementalhealth-tst.uhc.com%2Fcontent%2Fdam%2Fole%2FMedSuppDocs%2FEFTPDFs%2FBIL_EFT_Web_Recurring_Only_AGT.pdf&rnPdfFile=https%3A%2F%2Faarpsupplementalhealth-tst.uhc.com%2Fcontent%2Fdam%2Fole%2FMedSuppDocs%2FReplacementNotices%2FRN034_AR_WB.pdf&ssPdfFile=&&override=requiredlink_clicked:true"),"AGENT_Arkansas_Eligibility_FU_With_RN"));
+            System.out.println(saveImagesFromPDF(new URL("http://apsrt0786.uhc.com:8080/bin/oleuhcproxy.html/appEnroll-web/resources/applicationDetail/SHIP/MEDSUPP/1562-8566-79/generatePDF/full_PDF?verifyDOB=1951-12-05&verifyZipCode=71611&channel=agent&appPdfFile=https%3A%2F%2Faarpsupplementalhealth-tst.uhc.com%2Fcontent%2Fdam%2Fole%2FMedSuppDocs%2FApplicationPDFs%2FS25F49AGMMAR01_01D_WB.pdf&onePdfFile=https%3A%2F%2Faarpsupplementalhealth-tst.uhc.com%2Fcontent%2Fdam%2Fole%2FMedSuppDocs%2FEFTPDFs%2FBIL_EFT_Web_1_Time_AGT_3.pdf&recPdfFile=https%3A%2F%2Faarpsupplementalhealth-tst.uhc.com%2Fcontent%2Fdam%2Fole%2FMedSuppDocs%2FEFTPDFs%2FBIL_EFT_Web_Recurring_Only_AGT.pdf&rnPdfFile=https%3A%2F%2Faarpsupplementalhealth-tst.uhc.com%2Fcontent%2Fdam%2Fole%2FMedSuppDocs%2FReplacementNotices%2FRN034_AR_WB.pdf&ssPdfFile=&&override=requiredlink_clicked:true"),"AGENT_Arkansas_GI"));
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }

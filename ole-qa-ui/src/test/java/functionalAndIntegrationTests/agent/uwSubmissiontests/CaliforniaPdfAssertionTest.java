@@ -15,7 +15,7 @@ import resources.pages.agentpages.uwExpansionPages.variations.checkeligibility.M
 import resources.pages.agentpages.uwExpansionPages.variations.currentinsurancecoverage.CA_AR_CurrentInsuranceCoveragePage;
 import resources.pages.agentpages.uwExpansionPages.variations.eligibilityhealthquestions.MN_ME_CA_FL_EligibilityHealthQuestionsPage;
 import resources.pages.agentpages.uwExpansionPages.variations.planapplication.CA_PlanApplicationQuestionsPage;
-import resources.pages.agentpages.uwExpansionPages.variations.replacenotice.RN034andRE073WithSignaturePage;
+import resources.pages.agentpages.uwExpansionPages.variations.replacenotice.RN034_RN038_RN073WithSignaturePage;
 import resources.utils.DateUtils;
 
 public class CaliforniaPdfAssertionTest extends CQBaseIntegrationTest {
@@ -29,7 +29,7 @@ public class CaliforniaPdfAssertionTest extends CQBaseIntegrationTest {
     @Page public MN_ME_CA_FL_EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
     @Page public CA_AR_CurrentInsuranceCoveragePage currentInsuranceCoveragePage;
     @Page public CA_AuthorizationPage authorizationPage;
-    @Page public RN034andRE073WithSignaturePage replacementNotice;
+    @Page public RN034_RN038_RN073WithSignaturePage replacementNotice;
     @Page public AgentVerificationPage agentVerificationPage;
     @Page public PaymentDetailsSummaryPage paymentDetailsSummaryPage;
     @Page public PlanPaymentOptionsPage planPaymentOptionsPage;

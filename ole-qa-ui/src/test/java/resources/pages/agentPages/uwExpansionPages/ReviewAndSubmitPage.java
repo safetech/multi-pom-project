@@ -2,8 +2,6 @@ package resources.pages.agentpages.uwExpansionPages;
 
 import com.relevantcodes.extentreports.LogStatus;
 import org.fluentlenium.core.domain.FluentWebElement;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.support.FindBy;
 import resources.entity.Application;
 import resources.pages.WizardPage;
@@ -42,11 +40,60 @@ public class ReviewAndSubmitPage extends WizardPage {
     @FindBy(xpath = "//*[@id='pageContainer1']/div[2]/div[62]") static FluentWebElement ArGiDateOfBirthPdf;
     @FindBy(xpath = "//*[@id='pageContainer1']/div[2]/div[73]") static FluentWebElement ArGiPhoneNumberPdf;
     @FindBy(xpath = "//*[@id='pageContainer1']/div[2]/div[69]") static FluentWebElement ArGiEmailAddressPdf;
+    //Page2g
     @FindBy(xpath = "//*[@id='pageContainer2']/div[2]/div[78]") static FluentWebElement ArGiFirstNamePage2Pdf;
     @FindBy(xpath = "//*[@id='pageContainer2']/div[2]/div[76]") static FluentWebElement ArGiLastNamePage2Pdf;
     @FindBy(xpath = "//*[@id='pageContainer2']/div[2]/div[75]") static FluentWebElement ArGiPlanBPdf;
     @FindBy(xpath = "//*[@id='pageContainer2']/div[2]/div[77]") static FluentWebElement ArGiPlanStartDatePdf;
-
+    @FindBy(xpath = "//*[@id='pageContainer2']/div[2]/div[79]") static FluentWebElement ArGiPlanEffIn6OfEligible;
+    //Page3g
+    @FindBy(xpath = "//*[@id='pageContainer3']/div[2]/div[61]") static FluentWebElement ArGiFirstNamePage3;
+    @FindBy(xpath = "//*[@id='pageContainer3']/div[2]/div[60]") static FluentWebElement ArGiLastNamePage3;
+    //Page4g
+    @FindBy(xpath = "//*[@id='pageContainer4']/div[2]/div[63]") static FluentWebElement ArGiFirstNamePage4;
+    @FindBy(xpath = "//*[@id='pageContainer4']/div[2]/div[62]") static FluentWebElement ArGiLastNamePage4;
+    @FindBy(xpath = "//*[@id='pageContainer4']/div[2]/div[64]") static FluentWebElement ArGiMedicaidCovered;
+    @FindBy(xpath = "//*[@id='pageContainer4']/div[2]/div[61]") static FluentWebElement ArGiExistingMedicare;
+    //Page5g
+    @FindBy(xpath = "//*[@id='pageContainer5']/div[2]/div[72]") static FluentWebElement ArGiFirstNamePage5;
+    @FindBy(xpath = "//*[@id='pageContainer5']/div[2]/div[69]") static FluentWebElement ArGiLastNamePage5;
+    @FindBy(xpath = "//*[@id='pageContainer5']/div[2]/div[71]") static FluentWebElement ArGiExistMedSupp;
+    @FindBy(xpath = "//*[@id='pageContainer5']/div[2]/div[70]") static FluentWebElement ArGiOtherInsCoverage;
+    @FindBy(xpath = "//*[@id='pageContainer5']/div[2]/div[73]") static FluentWebElement ArGiTodayDatePage5;
+    //Page6g
+    @FindBy(xpath = "//*[@id='pageContainer6']/div[2]/div[60]") static FluentWebElement ArGiFirstNamePage6;
+    @FindBy(xpath = "//*[@id='pageContainer6']/div[2]/div[58]") static FluentWebElement ArGiLastNamePage6;
+    @FindBy(xpath = "//*[@id='pageContainer6']/div[2]/div[59]") static FluentWebElement ArGiTodayDatePage6;
+    //Page7g
+    @FindBy(xpath = "//*[@id='pageContainer7']/div[2]/div[75]") static FluentWebElement ArGiFirstNamePage7;
+    @FindBy(xpath = "//*[@id='pageContainer7']/div[2]/div[67]") static FluentWebElement ArGiLastNamePage7;
+    @FindBy(xpath = "//*[@id='pageContainer7']/div[2]/div[73]") static FluentWebElement ArGiTodayDatePage7;
+    @FindBy(xpath = "//*[@id='pageContainer7']/div[2]/div[72]") static FluentWebElement ArGiAgentOtherInsPoliciesSold;
+    @FindBy(xpath = "//*[@id='pageContainer7']/div[2]/div[71]") static FluentWebElement ArGiAgentPoliciesInForce;
+    @FindBy(xpath = "//*[@id='pageContainer7']/div[2]/div[74]") static FluentWebElement ArGiAgentPoliciesSoldNotInForce;
+    @FindBy(xpath = "//*[@id='pageContainer7']/div[2]/div[76]") static FluentWebElement ArGiAgentFirstName;
+    @FindBy(xpath = "//*[@id='pageContainer7']/div[2]/div[79]") static FluentWebElement ArGiAgentMI;
+    @FindBy(xpath = "//*[@id='pageContainer7']/div[2]/div[80]") static FluentWebElement ArGiAgentLastName;
+    @FindBy(xpath = "//*[@id='pageContainer7']/div[2]/div[78]") static FluentWebElement ArGiAgentId;
+    @FindBy(xpath = "//*[@id='pageContainer7']/div[2]/div[69]") static FluentWebElement ArGiAgentTodayDatePage7;
+    @FindBy(xpath = "//*[@id='pageContainer7']/div[2]/div[68]") static FluentWebElement ArGiAgentPhone;
+    @FindBy(xpath = "//*[@id='pageContainer7']/div[2]/div[77]") static FluentWebElement ArGiAgentEmail;
+    //Page8g
+    @FindBy(xpath = "//*[@id='pageContainer8']/div[2]/div[46]") static FluentWebElement ArGiEftPlanCode;
+    @FindBy(xpath = "//*[@id='pageContainer8']/div[2]/div[48]") static FluentWebElement ArGiEftAppFirstName;
+    @FindBy(xpath = "//*[@id='pageContainer8']/div[2]/div[47]") static FluentWebElement ArGiEftAppMiddleName;
+    @FindBy(xpath = "//*[@id='pageContainer8']/div[2]/div[45]") static FluentWebElement ArGiEftAppLastName;
+    @FindBy(xpath = "//*[@id='pageContainer8']/div[2]/div[36]") static FluentWebElement ArGiEftAppAddress;
+    @FindBy(xpath = "//*[@id='pageContainer8']/div[2]/div[42]") static FluentWebElement ArGiEftAddress2;
+    @FindBy(xpath = "//*[@id='pageContainer8']/div[2]/div[40]") static FluentWebElement ArGiEftCity;
+    @FindBy(xpath = "//*[@id='pageContainer8']/div[2]/div[41]") static FluentWebElement ArGiEftState;
+    @FindBy(xpath = "//*[@id='pageContainer8']/div[2]/div[37]") static FluentWebElement ArGiEftZip;
+    @FindBy(xpath = "//*[@id='pageContainer8']/div[2]/div[43]") static FluentWebElement ArGiEftBankName;
+    @FindBy(xpath = "//*[@id='pageContainer8']/div[2]/div[44]") static FluentWebElement ArGiEftRoutingNumber;
+    @FindBy(xpath = "//*[@id='pageContainer8']/div[2]/div[38]") static FluentWebElement ArGiEftAccountNumber;
+    @FindBy(xpath = "//*[@id='pageContainer8']/div[2]/div[49]") static FluentWebElement ArGiEftAccountType;
+    @FindBy(xpath = "//*[@id='pageContainer8']/div[2]/div[39]") static FluentWebElement ArGiEftDate;
+    //-------------------------------------------------------------------------------------------------------------//
     //Page1f
     @FindBy(xpath = "//*[@id='pageContainer1']/div[2]/div[84]") static FluentWebElement ArFullAarpMemberShipnumber;
     @FindBy(xpath = "//*[@id='pageContainer1']/div[2]/div[79]") static FluentWebElement ArFullFirstNamePdf;
@@ -178,15 +225,15 @@ public class ReviewAndSubmitPage extends WizardPage {
         String baseWindowHdl = getDriver().getWindowHandle();
         getDriver().switchTo().window(windows.get(1)).manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
         String pdfUrl= getDriver().getCurrentUrl();
+        System.out.println(pdfUrl);
         if(pdfUrl.contains("https://aarpsupplementalhealth-tst.uhc.com/")){
             pdfUrl=pdfUrl.replace("https://aarpsupplementalhealth-tst.uhc.com/","http://apsrt0786.uhc.com:8080/");
         }else
             pdfUrl.replace("https://aarpsupplementalhealth-stg.uhc.com/","http://apsrt0786.uhc.com:8080/");
-        if(app.getMethodName().equals("AGENT_Arkansas_GI")){
+        if(app.getMethodName().equals("AGENT_NewYork_GI")||(app.getMethodName().equals("AGENT_Arkansas_GI"))){
             ArGiPdfAssertions(app);
             PdfSignatureAssertions(pdfUrl,app.getMethodName());
-        }else if(app.getMethodName().equals("AGENT_Arkansas_Eligibility_FU_With_RN"))
-        {
+        }else if(app.getMethodName().equals("AGENT_NewYork_Eligibility_FU_With_RN")||(app.getMethodName().equals("AGENT_NewYork_Eligibility_FU_With_RN"))){
             ArFullUnderwritingPdfAssertions(app);
             PdfSignatureAssertions(pdfUrl,app.getMethodName());
         }
@@ -199,7 +246,8 @@ public class ReviewAndSubmitPage extends WizardPage {
 
     public void isAt() {
         assertThat(pageTitle.getText(), equalTo("Review and Submit"));
-    }    
+    }   
+    
     public void ArGiPdfAssertions(Application app) {
         app.getTest().log(LogStatus.INFO,"Verifying Pdf..");
         assertThat(ArGiAarpMemberShipnumber.getText(), equalTo(app.getAARPMembershipNumber()));
@@ -221,10 +269,59 @@ public class ReviewAndSubmitPage extends WizardPage {
         assertThat(ArGiDateOfBirthPdf.getText(), equalTo(app.getDOB().replace("/","-")));
         assertThat(ArGiPhoneNumberPdf.getText().replace("-",""), equalTo(app.getPhonePrimary()));
         assertThat(ArGiEmailAddressPdf.getText(), equalTo(app.getEmail()));
+        gotoPdfpage(2);
         assertThat(ArGiFirstNamePage2Pdf.getText(), equalTo(app.getFirstName()));
         assertThat(ArGiLastNamePage2Pdf.getText(), equalTo(app.getLastName()));
         assertThat(ArGiPlanBPdf.getText(), equalTo("B"));
         assertThat(ArGiPlanStartDatePdf.getText(), equalTo(app.getReqEffectiveDate().replace("/","-").trim()));
+        assertThat(ArGiPlanEffIn6OfEligible.getText().toLowerCase(), equalTo(app.getPlanEffIn6OfEligible()));
+        gotoPdfpage(3);
+        assertThat(ArGiFirstNamePage3.getText(), equalTo(app.getFirstName()));
+        assertThat(ArGiLastNamePage3.getText(), equalTo(app.getLastName()));
+        gotoPdfpage(4);
+        assertThat(ArGiFirstNamePage4.getText(), equalTo(app.getFirstName()));
+        assertThat(ArGiLastNamePage4.getText(), equalTo(app.getLastName()));
+        assertThat(ArGiMedicaidCovered.getText().toLowerCase(), equalTo(app.getMedicaidCovered()));
+        assertThat(ArGiExistingMedicare.getText().toLowerCase(), equalTo(app.getExistingMedicare()));
+        gotoPdfpage(5);
+        assertThat(ArGiFirstNamePage5.getText(), equalTo(app.getFirstName()));
+        assertThat(ArGiLastNamePage5.getText(), equalTo(app.getLastName()));
+        assertThat(ArGiExistMedSupp.getText().toLowerCase(), equalTo(app.getExistMedSupp()));
+        assertThat(ArGiOtherInsCoverage.getText().toLowerCase(), equalTo(app.getOtherInsCoverage()));
+        assertThat(ArGiTodayDatePage5.getText(), equalTo(TodaysDate));
+        gotoPdfpage(6);
+        assertThat(ArGiFirstNamePage6.getText(), equalTo(app.getFirstName()));
+        assertThat(ArGiLastNamePage6.getText(), equalTo(app.getLastName()));
+        assertThat(ArGiTodayDatePage6.getText(), equalTo(TodaysDate));
+        gotoPdfpage(7);
+        assertThat(ArGiFirstNamePage7.getText(), equalTo(app.getFirstName()));
+        assertThat(ArGiLastNamePage7.getText(), equalTo(app.getLastName()));
+        assertThat(ArGiTodayDatePage7.getText(), equalTo(TodaysDate));
+        assertThat(ArGiAgentOtherInsPoliciesSold.getText(), equalTo(app.getAgentOtherInsPoliciesSold()));
+        assertThat(ArGiAgentPoliciesInForce.getText(), equalTo(app.getAgentPoliciesInForce()));
+        assertThat(ArGiAgentPoliciesSoldNotInForce.getText(), equalTo(app.getAgentPoliciesSoldNotInForce()));
+        assertThat(ArGiAgentFirstName.getText(), equalTo(app.getAgentFirstName()));
+        assertThat(ArGiAgentMI.getText(), equalTo(app.getAgentMI().trim()));
+        assertThat(ArGiAgentLastName.getText(), equalTo(app.getAgentLastName()));
+        assertThat(ArGiAgentId.getText(), equalTo("AutoTester"));
+        assertThat(ArGiAgentTodayDatePage7.getText(), equalTo(TodaysDate));
+        assertThat(ArGiAgentPhone.getText().replace("-",""), equalTo(app.getAgentPhone()));
+        assertThat(ArGiAgentEmail.getText(), equalTo(app.getAgentEmail()));
+        gotoPdfpage(8);
+        assertThat(ArGiEftPlanCode.getText(), equalTo("B"));
+        assertThat(ArGiEftAppFirstName.getText(), equalTo(app.getFirstName()));
+        assertThat(ArGiEftAppMiddleName.getText(), equalTo(app.getMI()));
+        assertThat(ArGiEftAppLastName.getText(), equalTo(app.getLastName()));
+        assertThat(ArGiEftAppAddress.getText(), equalTo(app.getAddressLine1()));
+        assertThat(ArGiEftAddress2.getText(), equalTo(app.getAddressLine2()));
+        assertThat(ArGiEftCity.getText(), equalTo(app.getCity()));
+        assertThat(ArGiEftState.getText(), equalTo(app.getState()));
+        assertThat(ArGiEftZip.getText(), equalTo(app.getZipCode()));
+        assertThat(ArGiEftBankName.getText(), equalTo(app.getBankName()));
+        assertThat(ArGiEftRoutingNumber.getText(), equalTo(app.getRoutingNumber()));
+        assertThat(ArGiEftAccountNumber.getText(), equalTo(app.getAccountNumber()));
+        assertThat(ArGiEftAccountType.getText(), equalTo("Checking"));
+        assertThat(ArGiEftDate.getText(), equalTo(TodaysDate));
     }
     public void ArFullUnderwritingPdfAssertions(Application app) {
         app.getTest().log(LogStatus.INFO,"Verifying Pdf..");
@@ -243,7 +340,7 @@ public class ReviewAndSubmitPage extends WizardPage {
         assertThat(ArFullSexPdf.getText(), equalTo(app.getGender()));
         assertThat(ArFullHospitalPartADatePdf.getText(), equalTo(app.getMPAED().replace("/","-")));
         assertThat(ArFullHospitalPartBDatePdf.getText(), equalTo(app.getMPBED().replace("/","-")));
-        assertThat(ArFullMedicarePartABActivePdf.getText().toLowerCase(), equalTo("yes"));
+        assertThat(ArFullMedicarePartABActivePdf.getText().toLowerCase(), equalTo(YES));
         assertThat(ArFullDateOfBirthPdf.getText(), equalTo(app.getDOB().replace("/","-")));
         assertThat(ArFullPhoneNumberPdf.getText().replace("-",""), equalTo(app.getPhonePrimary()));
         assertThat(ArFullEmailAddressPdf.getText(), equalTo(app.getEmail()));
@@ -340,17 +437,6 @@ public class ReviewAndSubmitPage extends WizardPage {
         assertThat(ArFullEftAccountNumber.getText(),equalTo(app.getAccountNumber()));
         assertThat(ArFullEftAccountType.getText(),equalTo("Checking"));
         assertThat(ArFullEftDate.getText(),equalTo(TodaysDate));
-    }
-    public void gotoPdfpage(int pageNumber){
-        if(System.getProperty("os.name").toLowerCase().contains("mac")){
-        getDriver().findElement(By.id("pageNumber")).sendKeys(Keys.COMMAND+"a");
-        getDriver().findElement(By.id("pageNumber")).sendKeys(pageNumber+"\r");
-        }
-        else{
-            getDriver().findElement(By.id("pageNumber")).sendKeys(Keys.CONTROL+"a");
-            getDriver().findElement(By.id("pageNumber")).sendKeys(pageNumber+"\r");
-            
-        }
     }
     
 }

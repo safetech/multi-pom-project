@@ -14,7 +14,7 @@ import resources.pages.agentpages.uwExpansionPages.variations.checkeligibility.M
 import resources.pages.agentpages.uwExpansionPages.variations.currentinsurancecoverage.OR_CurrentInsuranceCoveragePage;
 import resources.pages.agentpages.uwExpansionPages.variations.eligibilityhealthquestions.MN_ME_CA_FL_EligibilityHealthQuestionsPage;
 import resources.pages.agentpages.uwExpansionPages.variations.planapplication.OR_PlanApplicationQuestionsPage;
-import resources.pages.agentpages.uwExpansionPages.variations.replacenotice.RN034andRE073WithSignaturePage;
+import resources.pages.agentpages.uwExpansionPages.variations.replacenotice.RN034_RN038_RN073WithSignaturePage;
 import queries.AgentSubmissionQuery;
 import resources.utils.DateUtils;
 
@@ -29,7 +29,7 @@ public class OreganIntegrationTest extends CQBaseIntegrationTest {
     @Page public MN_ME_CA_FL_EligibilityHealthQuestionsPage eligibilityHealthQuestionsPage;
     @Page public OR_CurrentInsuranceCoveragePage currentInsuranceCoveragePage;
     @Page public MN_WA_AuthorizationPage authorizationPage;
-    @Page public RN034andRE073WithSignaturePage replacementNotice;
+    @Page public RN034_RN038_RN073WithSignaturePage replacementNotice;
     @Page public HealthHistoryQuestionsPage healthHistoryQuestionsPage;
     @Page public AgentVerificationPage agentVerificationPage;
     @Page public PaymentDetailsSummaryPage paymentDetailsSummaryPage;

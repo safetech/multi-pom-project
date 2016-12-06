@@ -8,7 +8,7 @@ import resources.pages.WizardPage;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class RN034andRE073WithSignaturePage extends WizardPage {
+public class RN034_RN038_RN073WithSignaturePage extends WizardPage {
 
     @FindBy(css = "#ReplacementReason_1") FluentWebElement ReplacementReason_ReplaceAdditionalBenefits;
     @FindBy(css = "#ReplacementReason_2") FluentWebElement ReplacementReason_SameBenefits;
