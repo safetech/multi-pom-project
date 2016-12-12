@@ -30,32 +30,32 @@ public class PlanPaymentOptionsPage extends WizardPage {
         app.getTest().log(LogStatus.INFO, "Question Count: "+String.valueOf(TOTAL_POSSIBLE_QUESTION_COUNT));
         isAt();
         app.getTest().log(LogStatus.INFO, "Page Checkpoint Passed");
-try {
-    if(app.getPlanPaymentOptions().equals("Recurring")) {
-        EFTwithin40days.click();
-    }
-    else if (app.getPlanPaymentOptions().equals("OneTime")){
-        Couponwithin40days.click();
-    }
-}
-catch (Exception e){
-    
-}
-try {
-    if(app.getPlanPaymentOptions().equals("Recurring")) {
-        EFT.click();
-        PaymentChoiceEFT.click();
-    }
-    else if (app.getPlanPaymentOptions().equals("OneTime")){
-        CouponBook.click();
-    }
-}
-catch (Exception e){
-    
-}
+        try {
+            if(app.getPlanPaymentOptions().equals("Recurring")) {
+                EFTwithin40days.click();
+            }
+            else if (app.getPlanPaymentOptions().equals("OneTime")){
+                Couponwithin40days.click();
+            }
+        }
+        catch (Exception e){
+            
+        }
+        try {
+            if(app.getPlanPaymentOptions().equals("Recurring")) {
+                EFT.click();
+                PaymentChoiceEFT.click();
+            }
+            else if (app.getPlanPaymentOptions().equals("OneTime")){
+                CouponBook.click();
+            }
+        }
+        catch (Exception e){
+            
+        }
         app.getTest().log(LogStatus.INFO, "Clicking Next..");
         clickNextAndWaitForSpinnerToFinish();
-    }
+        }
 
     public void isAt() {
         assertThat(pageTitle.getText(), equalTo("Plan Payment Options"));

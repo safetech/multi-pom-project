@@ -19,7 +19,7 @@ import resources.pages.agentpages.uwExpansionPages.variations.currentinsuranceco
 import resources.pages.agentpages.uwExpansionPages.variations.eligibilityhealthquestions.AR_EligibilityHealthQuestionsPage;
 import resources.pages.agentpages.uwExpansionPages.variations.planapplication.AR_PlanApplicationQuestionsPage;
 import resources.pages.agentpages.uwExpansionPages.variations.replacenotice.RN034_RN038_RN073WithSignaturePage;
-import resources.pages.agentpages.uwExpansionPages.variations.reviewandsubmit.NY_ReviewAndSubmitPage;
+import resources.pages.agentpages.uwExpansionPages.variations.reviewandsubmit.NY_AR_ReviewAndSubmitPage;
 import resources.pages.agentpages.uwExpansionPages.variations.whatyouneed.AR_WhatYouNeedPage;
 import resources.reports.ExtentManager;
 import resources.utils.DateUtils;
@@ -40,7 +40,7 @@ public class NewYorkIntegrationTest extends CQBaseIntegrationTest {
     @Page public PaymentDetailsSummaryPage paymentDetailsSummaryPage;
     @Page public PlanPaymentOptionsPage planPaymentOptionsPage;
     @Page public PreferencesPage preferencesPage;
-    @Page public NY_ReviewAndSubmitPage reviewAndSubmitPage;
+    @Page public NY_AR_ReviewAndSubmitPage reviewAndSubmitPage;
 
     public AgentSubmissionQuery submissionQuery;
     private Faker faker;

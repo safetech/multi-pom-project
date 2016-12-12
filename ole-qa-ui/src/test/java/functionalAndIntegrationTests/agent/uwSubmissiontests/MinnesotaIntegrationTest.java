@@ -1,14 +1,17 @@
 package functionalAndIntegrationTests.agent.uwSubmissiontests;
 
 import com.github.javafaker.Faker;
-import resources.entity.Application;
-import resources.entity.SubmissionResult;
-import resources.entity.agent.CribSheet;
+import com.relevantcodes.extentreports.ExtentReports;
 import functionalAndIntegrationTests.CQBaseIntegrationTest;
-import resources.pages.agentpages.oldOlePages.*;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
+import queries.AgentSubmissionQuery;
+import resources.entity.Application;
+import resources.entity.SubmissionResult;
+import resources.entity.agent.CribSheet;
+import resources.pages.agentpages.oldOlePages.*;
+import resources.pages.agentpages.oldOlePages.variations.replacenotice.RN034andRE073WithSignaturePage;
 import resources.pages.agentpages.uwExpansionPages.PreferencesPage;
 import resources.pages.agentpages.uwExpansionPages.variations.authorization.MN_WA_AuthorizationPage;
 import resources.pages.agentpages.uwExpansionPages.variations.checkeligibility.ME_CA_FL_CheckEligibilityAndAvailabilityPage;
@@ -16,11 +19,10 @@ import resources.pages.agentpages.uwExpansionPages.variations.currentinsuranceco
 import resources.pages.agentpages.uwExpansionPages.variations.eligibilityhealthquestions.MN_ME_CA_FL_EligibilityHealthQuestionsPage;
 import resources.pages.agentpages.uwExpansionPages.variations.planapplication.MN_PlanApplicationQuestionsPage;
 import resources.pages.agentpages.uwExpansionPages.variations.planselection.riders_MN_PlanSelectionPage;
-import resources.pages.agentpages.oldOlePages.variations.replacenotice.RN034andRE073WithSignaturePage;
-import queries.AgentSubmissionQuery;
+import resources.reports.ExtentManager;
 import resources.utils.DateUtils;
 
-
+//TODO: Update pdf's and make sure "Not submitted" message resolves
 public class MinnesotaIntegrationTest extends CQBaseIntegrationTest {
 
     @Page public CheatPage cheatPage;
@@ -34,25 +36,35 @@ public class MinnesotaIntegrationTest extends CQBaseIntegrationTest {
     @Page public MN_WA_AuthorizationPage authorizationPage;
     @Page public RN034andRE073WithSignaturePage replacementNotice;
     @Page public HealthHistoryQuestionsPage healthHistoryQuestionsPage;
-    @Page public AgentVerificationPage agentVerificationPage;
+    @Page public resources.pages.agentpages.uwExpansionPages.AgentVerificationPage agentVerificationPage;
     @Page public PaymentDetailsSummaryPage paymentDetailsSummaryPage;
     @Page public PreferencesPage preferencesPage;
-    @Page public PlanPaymentOptionsPage planPaymentOptionsPage;
+    @Page public resources.pages.agentpages.uwExpansionPages.PlanPaymentOptionsPage planPaymentOptionsPage;
     @Page public ReviewAndSubmitPage reviewAndSubmitPage;
     @Page public ApplicationSubmissionPage applicationSubmissionPage;
-    
+    ExtentReports rep = ExtentManager.getInstance();
     public AgentSubmissionQuery submissionQuery;
     private Faker faker;
     private CribSheet sheet;
     private SubmissionResult expectedSubmissionResult;
-
+    private String marketabilityCode = null;
     @Before
     public void setup() {
         submissionQuery = new AgentSubmissionQuery();
         faker = new Faker();
         sheet = new CribSheet(faker);
         app = new Application();
-
+        sheet.setAgentMedSuppStates("[PA| WA| MN]");
+        sheet.setAgentCertificationYears("[2016| 2017| 2018]");
+        sheet.setAgentID("AutoTester");
+        app.setAgentFirstName(faker.firstName());
+        app.setAgentLastName(faker.lastName());
+        app.setAgentMI(faker.letterify(" ? "));
+        sheet.setAgentName(app.getAgentFirstName()+app.getAgentMI()+app.getAgentLastName());
+        sheet.setAgentEmail(this.faker.letterify("??????????")+"@uhc.com");
+        marketabilityCode = "M27H49AGMMMN01_01D";
+        app.setState("MN");
+        app.setZipCode("55445");
         app.setCpaSignatureIndTouch(Application.ALL_SIGNATURES[0]);
         app.setSignatureIndTouch(Application.ALL_SIGNATURES[1]);
         app.setMedicalReleaseAuthSignatureIndTouch(Application.ALL_SIGNATURES[2]);
@@ -65,21 +77,17 @@ public class MinnesotaIntegrationTest extends CQBaseIntegrationTest {
         app.setSS_App_Signature1(Application.ALL_SIGNATURES[9]);
         app.setSS_Agent_Signature1(Application.ALL_SIGNATURES[10]);
         app.setReplacementAgentSignInd2Touch(Application.ALL_SIGNATURES[11]);
-
-        app.setState("MN");
-        app.setZipCode("55445");
+        app.setOnlinePreferenceSignatureTouch(Application.ALL_SIGNATURES[12]);
+        app.setIL23991Touch(Application.ALL_SIGNATURES[13]);
+        app.setIL23993Touch(Application.ALL_SIGNATURES[14]);
         expectedSubmissionResult = new SubmissionResult();
     }
     @Test
     public void AGENT_minnesota_guranteed_acceptance() throws Exception {
 
-        sheet.setAgentID("Test");
-        sheet.setAgentMedSuppStates("[NV| CA| MA| FL| NY| OH| AR| PA| WA| MN]");
         sheet.setMarketability_code(BLANK);
         sheet.setSiteId("UHP");
         sheet.setAgentNPN(BLANK);
-        sheet.setAgentName("BOB DOBBS");
-        sheet.setAgentEmail("bob@dobbsco.com");
         sheet.setAgentPartyId("54321");
         sheet.setReferrer("ulayer");
 
@@ -87,24 +95,8 @@ public class MinnesotaIntegrationTest extends CQBaseIntegrationTest {
         app.setMPBED(DateUtils.getFirstDayOfPastOrFutureMonths(-1));
         app.setMPAED(DateUtils.getFirstDayOfPastOrFutureMonths(-1));
         //TestData
-        app.setAARPMembershipNumber(faker.numerify("##########"));
-        app.setPrefix("MR");
-        app.setFirstName(app.getState()+"_Agent_"+faker.firstName());
-        app.setLastName(faker.letterify("??????????"));
-        app.setSuffix("PHD");
-        app.setAddressLine1(faker.bothify("#### ??????????? ??"));
-        app.setAddressLine2("apt #123");
-        app.setCity(faker.letterify("??????????"));
-        app.setEmail("thy@jcpclothing.ga");
-        app.setConfirmEmail(app.getEmail());
-        app.setPhonePrimary(faker.numerify("##########"));
-        app.setPhoneEvening("1255561234");
-        app.setMedicareClaimNum(faker.bothify("?#########"));
-        app.setGender("M");
-        app.setPartABActiveIndicator(YES);
-        app.setAgentEmail("agentpages@uhc.com");
-        app.setAgentEmailConfirm("agentpages@uhc.com");
-        //Plan ApplicationPage
+        app.setCommonCustomerInformationAnswers();
+//        //Plan ApplicationPage
         app.setPlanEffIn6OfEligible(YES);
         app.setTobaccoUse(YES);
         //Past And Current Coverage
@@ -118,20 +110,19 @@ public class MinnesotaIntegrationTest extends CQBaseIntegrationTest {
         app.setAgentOtherInsPoliciesSold("HMO");
         app.setAgentPoliciesInForce("HMO In Force");
         app.setAgentPoliciesSoldNotInForce("HMO Not In Force");
-        app.setAgentFirstName("AgnetFirst");
-        app.setAgentMI("A");
-        app.setAgentLastName("AgentLast");
         app.setAgentPhone("3334445555");
+        //Plan Payment Options
+        app.setPlanPaymentOptions("OneTime");
         //Mailing Address
         app.setMailingAddressCheck(NO);
         //Payment Details Summary Page
         app.setPaymentDetailsSummaryPageWithAppValues();
-
+        app.setTest(rep.startTest("AGENT_Minnesota_guranteed_acceptance"));
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);
 
         checkEligibilityAndAvailabilityPage.fillAndSubmit(app);
-        planSelectionPage.checkMarketabilityCode("M13Z43AGMMMN01_02D");
+        planSelectionPage.checkMarketabilityCode(marketabilityCode);
         planSelectionPage.fillAndSubmit(app);
         whatYouNeedPage.fillAndSubmit(app);
         customerInformationPage.fillAndSubmit(app);
@@ -140,52 +131,28 @@ public class MinnesotaIntegrationTest extends CQBaseIntegrationTest {
         authorizationPage.fillAndSubmit(app);
         agentVerificationPage.fillAndSubmit(app);
         planPaymentOptionsPage.fillAndSubmit(app);
-        paymentDetailsSummaryPage.fillAndSubmit(app);
         preferencesPage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
 
+        logger.info(reviewAndSubmitPage.getQuestionMapValues());
         expectedSubmissionResult.setAcceptedInfo();
+        submissionQuery.verifyUwExpansionSubmissionData(app, expectedSubmissionResult);
         submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
 
     }
     @Test
     public void AGENT_minnesota_eligibility_healthhistory_underwriting_with_rn() throws Exception {
-
-        sheet.setAgentID("Test");
-        sheet.setAgentMedSuppStates("[NV| CA| MA| FL| NY| OH| AR| PA| WA| MN]");
         sheet.setMarketability_code(BLANK);
         sheet.setSiteId("UHP");
         sheet.setAgentNPN(BLANK);
-        sheet.setAgentName("BOB DOBBS");
-        sheet.setAgentEmail("bob@dobbsco.com");
         sheet.setAgentPartyId("54321");
         sheet.setReferrer("ulayer");
 
-        app.setState("MN");
-        app.setZipCode("55445");
         app.setDOB(DateUtils.getDOBInNormalDateFormat(67));
-        app.setMPBED("01/01/2012");
+        app.setMPBED(DateUtils.getFirstDayOfPastOrFutureMonths(-7));
+        app.setMPAED(DateUtils.getFirstDayOfPastOrFutureMonths(-1));
         //TestData
-        app.setAARPMembershipNumber(faker.numerify("##########"));
-        app.setPrefix("MR");
-        app.setFirstName(app.getState()+"Agent_FU_InteliJ");
-        app.setLastName(faker.letterify("??????????"));
-        app.setSuffix("PHD");
-        app.setAddressLine1(faker.bothify("#### ??????????? ??"));
-        app.setAddressLine2("apt #123");
-        app.setCity(faker.letterify("??????????"));
-        app.setEmail("test@uhc.com");
-        app.setConfirmEmail("test@uhc.com");
-        app.setPhonePrimary(faker.numerify("##########"));
-        app.setPhoneEvening("1234561234");
-        app.setGender("M");
-        app.setMedicareClaimNum(faker.bothify("#########?"));
-        app.setEmail("test@uhc.com");
-        app.setConfirmEmail("test@uhc.com");
-        app.setMPAED("01/01/2010");
-        app.setPartABActiveIndicator(YES);
-        app.setAgentEmail("agentpages@uhc.com");
-        app.setAgentEmailConfirm("agentpages@uhc.com");
+        app.setCommonCustomerInformationAnswers();
         //Eligibility Page
         app.setESRD(NO);
         app.setSurgeryNeeded(NO);
@@ -202,27 +169,7 @@ public class MinnesotaIntegrationTest extends CQBaseIntegrationTest {
         app.setLostCoverage(NO);
         app.setTobaccoUse(YES);
         //Past And Current Coverage
-        app.setCPATurned65(NO);
-        app.setCPAPartBIn6(NO);
-        app.setMedicaidCovered(YES);
-        app.setMedicaidSupPremium(YES);
-        app.setMedicaidbenefit(YES);
-        app.setExistingMedicare(YES);
-        app.setOtherMedplanstart("01/01/2012");
-        app.setOtherMedplanend("01/01/2015");
-        app.setIntentReplace(YES);
-        app.setFirstTime(YES);
-        app.setDropMedSuppForThisPlan(YES);
-        app.setExistMedSupp(YES);
-        app.setMSInsCompany("Blue Cross Blue Shield NV");
-        app.setMSPLAN("Medical Supplement NV");
-        app.setReplaceExistingMedSup(YES);
-        app.setOtherInsCoverage(YES);
-        app.setOtherInsCompany("Blue Cross Blue Shield");
-        app.setOtherInsType("HMO");
-        app.setOtherInsStart("01/01/2001");
-        app.setOtherInsEnd("01/01/2014");
-        app.setOtherInsReplace(YES);
+        app.setYesToCurrentInsuranceCoverage();
         app.setCpaSignatureInd(YES);
         //Eligibility Health Questions
         app.setKidneyProblem(NO);
@@ -235,10 +182,9 @@ public class MinnesotaIntegrationTest extends CQBaseIntegrationTest {
         app.setAgentOtherInsPoliciesSold("HMO");
         app.setAgentPoliciesInForce("HMO In Force");
         app.setAgentPoliciesSoldNotInForce("HMO Not In Force");
-        app.setAgentFirstName("AgnetFirst");
-        app.setAgentMI("A");
-        app.setAgentLastName("AgentLast");
         app.setAgentPhone("3334445555");
+        //Plan Payment Options
+        app.setPlanPaymentOptions("Recurring");
         //Payment Details Summary Page
         app.setPaymentDetailsSummaryPageWithAppValues();
         //Replacement Notice Page
@@ -258,12 +204,12 @@ public class MinnesotaIntegrationTest extends CQBaseIntegrationTest {
         app.setAgencyName("Agency Name");
         app.setAgencyAddress("Agency Address");
         app.setAgencyPhone("2346759876");
-
+        app.setTest(rep.startTest("AGENT_Minnesota_eligibility_healthhistory_underwriting_with_rn"));
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);
 
         checkEligibilityAndAvailabilityPage.fillAndSubmit(app);
-        planSelectionPage.checkMarketabilityCode("M13Z43AGMMMN01_02D");
+        planSelectionPage.checkMarketabilityCode(marketabilityCode);
         planSelectionPage.fillAndSubmit(app);
         whatYouNeedPage.fillAndSubmit(app);
         customerInformationPage.fillAndSubmit(app);
@@ -278,6 +224,7 @@ public class MinnesotaIntegrationTest extends CQBaseIntegrationTest {
         preferencesPage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
 
+        logger.info(reviewAndSubmitPage.getQuestionMapValues());
         expectedSubmissionResult.setPendingInfo("INFORMATION","REQUIRED");
         submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
 

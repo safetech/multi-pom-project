@@ -52,6 +52,8 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         app.setAgentFirstName(faker.firstName());
         app.setAgentLastName(faker.lastName());
         app.setAgentMI(faker.letterify(" ? "));
+        sheet.setAgentName(app.getAgentFirstName()+app.getAgentMI()+app.getAgentLastName());
+        sheet.setAgentEmail(this.faker.letterify("??????????")+"@uhc.com");
         
         marketabilityCode = "M14M43AGMMCA02_01D";
         expectedSubmissionResult = new SubmissionResult();
@@ -91,25 +93,7 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         app.setMPBED(DateUtils.getFirstDayOfPastOrFutureMonths(1));
         app.setMPAED(DateUtils.getFirstDayOfPastOrFutureMonths(1));
         //TestData
-        app.setAARPMembershipNumber(faker.numerify("##########"));
-        app.setPrefix("MR");
-        app.setFirstName(app.getState()+"_InteliJ"+faker.firstName());
-        app.setMI(this.faker.letterify("?"));
-        app.setLastName(this.faker.lastName());
-        app.setSuffix("PHD");
-        app.setAddressLine1("111 Street dr");
-        app.setAddressLine2("apt #123");
-        app.setCity("Horsham");
-//        app.setEmail(this.faker.letterify("??????????")+"@"+this.faker.letterify("gmail")+".com");
-        app.setEmail("wlvr@arurgitu.gq");
-        app.setConfirmEmail(app.getEmail());
-        app.setPhonePrimary("9874562345");
-        app.setPhoneEvening("1234561234");
-        app.setGender("M");
-        app.setMedicareClaimNum("123123123A");
-        app.setPartABActiveIndicator(YES);
-        app.setAgentEmail("agentpages@uhc.com");
-        app.setAgentEmailConfirm("agentpages@uhc.com");
+        app.setCommonCustomerInformationAnswers();
         app.setGIEmployerCov(NO);
         app.setGIMediCal(NO);
         app.setGIMilitary(NO);
@@ -161,13 +145,12 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
     @Test
     public void AGENT_California_Eligibility_FU_With_RN() throws Exception {
         sheet.setAgentCertificationYears("[2016| 2017| 2018]");
-        sheet.setAgentID("AgentCaliFullRn");
+        sheet.setAgentID("AutoTest");
         sheet.setAgentMedSuppStates("[NV| CA| MA| FL| NY| OH]");
         sheet.setMarketability_code(BLANK);
         sheet.setSiteId("UHP");
         sheet.setAgentNPN(BLANK);
-        sheet.setAgentName("BOB DOBBS");
-        sheet.setAgentEmail("bob@dobbsco.com");
+
         sheet.setAgentPartyId("54321");
         sheet.setReferrer("ulayer");
         sheet.setAgentName(app.getAgentFirstName()+app.getAgentMI()+app.getLastName());
@@ -177,25 +160,7 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         app.setMPBED(DateUtils.getFirstDayOfPastOrFutureMonths(-9));
         app.setMPAED(DateUtils.getFirstDayOfPastOrFutureMonths(-9));
         //TestData
-        app.setAARPMembershipNumber(faker.numerify("##########"));
-        app.setPrefix("MR");
-        app.setFirstName(app.getState()+"Agent_FU_InteliJ");
-        app.setMI(this.faker.letterify("?"));
-        app.setLastName(this.faker.lastName());
-        app.setSuffix("PHD");
-        app.setAddressLine1("111 Street dr");
-        app.setAddressLine2("apt #123");
-        app.setCity("Horsham");
-        app.setEmail("jaxon18@g212dnk5.com");
-        app.setConfirmEmail(app.getEmail());
-        app.setPhonePrimary("9874562345");
-        app.setPhoneEvening("1234561234");
-        app.setGender("M");
-        app.setMedicareClaimNum("123123123A");
-        app.setPartABActiveIndicator(YES);
-        app.setAgentEmail("agentpages@uhc.com");
-        app.setAgentEmailConfirm("agentpages@uhc.com");
-        //Plan Application Question
+        app.setCommonCustomerInformationAnswers();
         app.setPlanEffIn6OfEligible(NO);
         app.setGI30dayBday(NO);
         app.setESRD(NO);
@@ -210,28 +175,7 @@ public class CaliforniaIntegrationTest extends CQBaseIntegrationTest {
         app.setEligibilityHeartAttackTIAStroke(NO);
         app.setEligibilityChronicMedicalConditions(NO);
         //Current Insurance Coverage
-        app.setCPATurned65(NO);
-        app.setCPAPartBIn6(NO);
-        app.setMedicaidCovered(YES);
-        app.setMedicaidSupPremium(YES);
-        app.setMedicaidbenefit(YES);
-        app.setExistingMedicare(YES);
-        app.setOtherMedplanstart("01/01/2012");
-        app.setOtherMedplanend("01/01/2015");
-        app.setIntentReplace(YES);
-        app.setFirstTime(YES);
-        app.setDropMedSuppForThisPlan(YES);
-        app.setExistMedSupp(YES);
-        app.setReplaceExistingMedSup(YES);
-        app.setOtherInsCoverage(YES);
-        app.setOtherInsCompany("Blue Cross Blue Shield");
-        app.setOtherInsType("HMO");
-        app.setOtherInsStart("01/01/2001");
-        app.setOtherInsEnd("01/01/2014");
-        app.setOtherInsReplace(YES);
-        app.setCpaSignatureInd(YES);
-        app.setMSInsCompany("Blue Cross Blue Shield");
-        app.setMSPLAN("Medical Supplement");
+        app.setYesToCurrentInsuranceCoverage();
         //Agent Verification page
         app.setAgentOtherInsPoliciesSold("HMO");
         app.setAgentPoliciesInForce("HMO In Force");

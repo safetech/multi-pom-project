@@ -1,22 +1,24 @@
 package functionalAndIntegrationTests.agent.uwSubmissiontests;
 
 import com.github.javafaker.Faker;
+import com.relevantcodes.extentreports.ExtentReports;
+import functionalAndIntegrationTests.CQBaseIntegrationTest;
+import org.fluentlenium.core.annotation.Page;
+import org.junit.Before;
+import org.junit.Test;
+import queries.AgentSubmissionQuery;
 import resources.entity.Application;
 import resources.entity.SubmissionResult;
 import resources.entity.agent.CribSheet;
-import functionalAndIntegrationTests.CQBaseIntegrationTest;
 import resources.pages.agentpages.uwExpansionPages.*;
 import resources.pages.agentpages.uwExpansionPages.variations.authorization.ME_AuthorizationPage;
 import resources.pages.agentpages.uwExpansionPages.variations.checkeligibility.ME_CA_FL_CheckEligibilityAndAvailabilityPage;
 import resources.pages.agentpages.uwExpansionPages.variations.currentinsurancecoverage.ME_CurrentInsuranceCoveragePage;
 import resources.pages.agentpages.uwExpansionPages.variations.eligibilityhealthquestions.MN_ME_CA_FL_EligibilityHealthQuestionsPage;
 import resources.pages.agentpages.uwExpansionPages.variations.planapplication.ME_PlanApplicationQuestionsPage;
-
 import resources.pages.agentpages.uwExpansionPages.variations.replacenotice.RN034_RN038_RN073WithSignaturePage;
-import org.fluentlenium.core.annotation.Page;
-import org.junit.Before;
-import org.junit.Test;
-import queries.AgentSubmissionQuery;
+import resources.pages.agentpages.uwExpansionPages.variations.reviewandsubmit.ME_ReviewAndSubmitPage;
+import resources.reports.ExtentManager;
 import resources.utils.DateUtils;
 
 public class MaineIntegrationTest extends CQBaseIntegrationTest {
@@ -36,14 +38,14 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
     @Page public PaymentDetailsSummaryPage paymentDetailsSummaryPage;
     @Page public PlanPaymentOptionsPage planPaymentOptionsPage;
     @Page public PreferencesPage preferencesPage;
-    @Page public ReviewAndSubmitPage reviewAndSubmitPage;
+    @Page public ME_ReviewAndSubmitPage reviewAndSubmitPage;
     @Page public ApplicationSubmissionPage applicationSubmissionPage;
-
+    ExtentReports rep = ExtentManager.getInstance();
     public AgentSubmissionQuery submissionQuery;
     private Faker faker;
     private CribSheet sheet;
     private SubmissionResult expectedSubmissionResult;
-
+    String MarketabilityCode = null; 
     @Before
     public void setup() {
         submissionQuery = new AgentSubmissionQuery();
@@ -54,7 +56,12 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
         app.setZipCode("04001");
         sheet.setAgentCertificationYears("[2016| 2017| 2018]");
         expectedSubmissionResult = new SubmissionResult();
-
+        MarketabilityCode = "M27G49AGMMME01_01D";
+        app.setAgentFirstName(faker.firstName());
+        app.setAgentLastName(faker.lastName());
+        app.setAgentMI(faker.letterify(" ? "));
+        sheet.setAgentName(app.getAgentFirstName()+app.getAgentMI()+app.getAgentLastName());
+        sheet.setAgentEmail(this.faker.letterify("??????????")+"@uhc.com");
         app.setCpaSignatureIndTouch(Application.ALL_SIGNATURES[0]);
         app.setSignatureIndTouch(Application.ALL_SIGNATURES[1]);
         app.setMedicalReleaseAuthSignatureIndTouch(Application.ALL_SIGNATURES[2]);
@@ -67,6 +74,9 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
         app.setSS_App_Signature1(Application.ALL_SIGNATURES[9]);
         app.setSS_Agent_Signature1(Application.ALL_SIGNATURES[10]);
         app.setReplacementAgentSignInd2Touch(Application.ALL_SIGNATURES[11]);
+        app.setOnlinePreferenceSignatureTouch(Application.ALL_SIGNATURES[12]);
+        app.setIL23991Touch(Application.ALL_SIGNATURES[13]);
+        app.setIL23993Touch(Application.ALL_SIGNATURES[14]);
     }
     @Test
     public void AGENT_Maine_GI_Without_RN() throws Exception {
@@ -76,34 +86,14 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
         sheet.setMarketability_code(BLANK);
         sheet.setSiteId("UHP");
         sheet.setAgentNPN(BLANK);
-        sheet.setAgentName("BOB DOBBS");
-        sheet.setAgentEmail("bob@dobbsco.com");
         sheet.setAgentPartyId("54321");
         sheet.setReferrer("ulayer");
 
         app.setDOB(DateUtils.getDOBInNormalDateFormat(65));
         app.setMPBED(DateUtils.getFirstDayOfPastOrFutureMonths(-1));
         app.setMPAED(DateUtils.getFirstDayOfPastOrFutureMonths(-1));
-
         //TestData
-        app.setAARPMembershipNumber(faker.numerify("##########"));
-        app.setFirstName(app.getState()+"Agent_GA_InteliJ");
-        app.setMI(faker.letterify("?"));
-        app.setLastName(faker.letterify("??????????"));
-        app.setAddressLine1(faker.bothify("#### ??????????? ??"));
-        app.setAddressLine2("apt #123");
-        app.setCity("Horsham");
-        app.setEmail("test@uhc.com");
-        app.setConfirmEmail("test@uhc.com");
-        app.setPhonePrimary(faker.numerify("##########"));
-        app.setPhoneEvening("1255561234");
-        app.setGender("M");
-        app.setMedicareClaimNum(faker.bothify("?#########"));
-        app.setMPAED("01/01/2015");
-        app.setPartABActiveIndicator(YES);
-        app.setAgentEmail("agentpages@uhc.com");
-        app.setAgentEmailConfirm("agentpages@uhc.com");
-
+        app.setCommonCustomerInformationAnswers();
         //Plan ApplicationPage
         app.setPlanEffIn6OfEligible(YES);
         app.setTobaccoUse(YES);
@@ -125,23 +115,21 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
         app.setAuxZipCode("89101");
         //Mailing Address
         app.setMailingAddressCheck(NO);
+        //Plan Payment Options
+        app.setPlanPaymentOptions("OneTime");
         //Agent Verification page
         app.setAgentOtherInsPoliciesSold("HMO");
         app.setAgentPoliciesInForce("HMO In Force");
         app.setAgentPoliciesSoldNotInForce("HMO Not In Force");
-        app.setAgentFirstName("AgnetFirst");
-        app.setAgentMI("A");
-        app.setAgentLastName("AgentLast");
         app.setAgentPhone("3334445555");
         //Payment Details Summary Page
         app.setPaymentDetailsSummaryPageWithAppValues();
 
-        expectedSubmissionResult.setAcceptedInfo();
-
+        app.setTest(rep.startTest("AGENT_Maine_GI"));
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);
         checkEligibilityAndAvailabilityPage.fillAndSubmit(app);
-        planSelectionPage.checkMarketabilityCode("M13Z43AGMMMN01_02D");
+        planSelectionPage.checkMarketabilityCode(MarketabilityCode);
         planSelectionPage.fillAndSubmit(app);
         whatYouNeedPage.fillAndSubmit(app);
         customerInformationPage.fillAndSubmit(app);
@@ -150,9 +138,10 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
         authorizationPage.fillAndSubmit(app);
         agentVerificationPage.fillAndSubmit(app);
         planPaymentOptionsPage.fillAndSubmit(app);
-        paymentDetailsSummaryPage.fillAndSubmit(app);
+        preferencesPage.fillAndSubmit(app);
         reviewAndSubmitPage.fillAndSubmit(app);
 
+        expectedSubmissionResult.setAcceptedInfo();
         submissionQuery.verifyUwExpansionSubmissionData(app, expectedSubmissionResult);
         submissionQuery.verifyAdjudicationData(app, expectedSubmissionResult);
 
@@ -165,8 +154,6 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
         sheet.setMarketability_code(BLANK);
         sheet.setSiteId("UHP");
         sheet.setAgentNPN(BLANK);
-        sheet.setAgentName("BOB DOBBS");
-        sheet.setAgentEmail("bob@dobbsco.com");
         sheet.setAgentPartyId("54321");
         sheet.setReferrer("ulayer");
 
@@ -174,23 +161,7 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
         app.setMPBED(DateUtils.getFirstDayOfPastOrFutureMonths(-10));
         app.setMPAED(DateUtils.getFirstDayOfPastOrFutureMonths(-10));
         //TestData
-        app.setAARPMembershipNumber(faker.numerify("##########"));
-        app.setPrefix("MR");
-        app.setFirstName(app.getState()+"Agent_FU_InteliJ");
-        app.setLastName(faker.letterify("??????????"));
-        app.setSuffix("PHD");
-        app.setAddressLine1(faker.bothify("#### ??????????? ??"));
-        app.setAddressLine2("apt #123");
-        app.setCity(faker.letterify("??????????"));
-        app.setEmail("test@uhc.com");
-        app.setConfirmEmail("test@uhc.com");
-        app.setPhonePrimary(faker.numerify("##########"));
-        app.setPhoneEvening("1234561234");
-        app.setGender("M");
-        app.setMedicareClaimNum(faker.bothify("#########?"));
-        app.setPartABActiveIndicator(YES);
-        app.setAgentEmail("agentpages@uhc.com");
-        app.setAgentEmailConfirm("agentpages@uhc.com");
+        app.setCommonCustomerInformationAnswers();
         //Plan application question
         app.setPlanEffIn6OfEligible(NO);
         app.setLostCoverage(NO);
@@ -204,37 +175,16 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
         app.setEligibilityHeartAttackTIAStroke(NO);
         app.setEligibilityChronicMedicalConditions(NO);
         //Past And Current Coverage
-        app.setCPATurned65(NO);
-        app.setCPAPartBIn6(NO);
-        app.setMedicaidCovered(YES);
-        app.setMedicaidSupPremium(YES);
-        app.setMedicaidbenefit(YES);
-        app.setExistingMedicare(YES);
-        app.setOtherMedplanstart("01/01/2012");
-        app.setOtherMedplanend("01/01/2015");
-        app.setContinuousMedicareCoverageNoGap(YES);
-        app.setIntentReplace(YES);
-        app.setDropMedSuppForThisPlan(YES);
-        app.setExistMedSupp(YES);
-        app.setMSInsCompany("Blue Cross Blue Shield");
-        app.setMSPLAN("Medical Supplement");
-        app.setReplaceExistingMedSup(YES);
-        app.setOtherInsCoverage(YES);
-        app.setOtherInsCompany("Blue Cross Blue Shield");
-        app.setOtherInsType("HMO");
-        app.setOtherInsStart("01/01/2001");
-        app.setOtherInsEnd("01/01/2014");
-        app.setOtherInsReplace(YES);
+        app.setYesToCurrentInsuranceCoverage();
         //Agent Verification page
         app.setAgentOtherInsPoliciesSold("HMO");
         app.setAgentPoliciesInForce("HMO In Force");
         app.setAgentPoliciesSoldNotInForce("HMO Not In Force");
-        app.setAgentFirstName("AgnetFirst");
-        app.setAgentMI("A");
-        app.setAgentLastName("AgentLast");
         app.setAgentPhone("3334445555");
         //Payment Details Summary Page
         app.setPaymentDetailsSummaryPageWithAppValues();
+        //Plan Payment Options
+        app.setPlanPaymentOptions("Recurring");
         //Replacement Notice Page
         app.setCommonReplacementNoticeAnswersWithApplicantInfo();
         app.setCommonHealthHistoryAnswers();
@@ -258,12 +208,13 @@ public class MaineIntegrationTest extends CQBaseIntegrationTest {
         app.setAuxZipCode("89101");
         //Plan Payment Options
         app.setPlanPaymentOptions("Recurring");
-        
+        app.setMethodName("AGENT_Maine_Eligibility_FU_With_RN");
+        app.setTest(rep.startTest("AGENT_Maine_Eligibility_FU_With_RN"));
         goTo(cheatPage);
         cheatPage.fillAndSubmit(sheet);
 
         checkEligibilityAndAvailabilityPage.fillAndSubmit(app);
-        planSelectionPage.checkMarketabilityCode("M13T43AGMMME01_01E");
+        planSelectionPage.checkMarketabilityCode(MarketabilityCode);
         planSelectionPage.fillAndSubmit(app);
         whatYouNeedPage.fillAndSubmit(app);
         customerInformationPage.fillAndSubmit(app);

@@ -2128,14 +2128,39 @@ private Faker faker;
         setEmail(this.faker.letterify("??????????")+"@uhc.com");
         setConfirmEmail(getEmail());
         setMedicareClaimNum(faker.bothify("#########A"));
-        setPhonePrimary("9874562345");
+        setPhonePrimary(faker.numerify("##########"));
         setPhoneEvening("1234561234");
         setGender("M");
         setPartABActiveIndicator(YES);
         setAgentEmail("agentpages@uhc.com");
         setAgentEmailConfirm("agentpages@uhc.com");
-    }    
-    
+    }
+
+    public void setYesToCurrentInsuranceCoverage(){
+        setCPATurned65(NO);
+        setCPAPartBIn6(NO);
+        setMedicaidCovered(YES);
+        setMedicaidSupPremium(YES);
+        setMedicaidbenefit(YES);
+        setExistingMedicare(YES);
+        setOtherMedplanstart("01/01/2012");
+        setOtherMedplanend("01/01/2015");
+        setContinuousMedicareCoverageNoGap(YES);
+        setIntentReplace(YES);
+        setFirstTime(YES);
+        setDropMedSuppForThisPlan(YES);
+        setExistMedSupp(YES);
+        setMSInsCompany("Blue Cross Blue Shield");
+        setMSPLAN("Medical Supplement");
+        setReplaceExistingMedSup(YES);
+        setOtherInsCoverage(YES);
+        setOtherInsCompany("Blue Cross Blue Shield");
+        setOtherInsType("HMO");
+        setOtherInsStart("01/01/2001");
+        setOtherInsEnd("01/01/2014");
+        setOtherInsReplace(YES);
+    }
+
     public void setNoToAllEligibilityAnswers() {
         setKidneyProblem(NO);
         setEligibilitySurgery(NO);

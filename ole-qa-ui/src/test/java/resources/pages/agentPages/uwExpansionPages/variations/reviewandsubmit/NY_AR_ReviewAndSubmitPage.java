@@ -15,7 +15,7 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static resources.utils.PDFSignatureAssertions.PdfSignatureAssertions;
 
-public class NY_ReviewAndSubmitPage extends WizardPage {
+public class NY_AR_ReviewAndSubmitPage extends WizardPage {
 
     private FluentWebElement requiredlink;
     @FindBy(css = "#page-title") protected FluentWebElement pageTitle;

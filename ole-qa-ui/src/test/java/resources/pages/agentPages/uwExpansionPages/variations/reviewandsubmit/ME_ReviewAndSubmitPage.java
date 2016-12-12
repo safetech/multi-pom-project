@@ -1,4 +1,4 @@
-package resources.pages.agentpages.uwExpansionPages;
+package resources.pages.agentpages.uwExpansionPages.variations.reviewandsubmit;
 
 import com.relevantcodes.extentreports.LogStatus;
 import org.fluentlenium.core.domain.FluentWebElement;
@@ -15,7 +15,7 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static resources.utils.PDFSignatureAssertions.PdfSignatureAssertions;
 
-public class ReviewAndSubmitPage extends WizardPage {
+public class ME_ReviewAndSubmitPage extends WizardPage {
 
     private FluentWebElement requiredlink;
     @FindBy(css = "#page-title") protected FluentWebElement pageTitle;
@@ -100,13 +100,9 @@ public class ReviewAndSubmitPage extends WizardPage {
     @FindBy(xpath = "//*[@id='pageContainer1']/div[2]/div[66]") static FluentWebElement ArFullMiddleNamePdf;
     @FindBy(xpath = "//*[@id='pageContainer1']/div[2]/div[64]") static FluentWebElement ArFullLastNamePdf;
     @FindBy(xpath = "//*[@id='pageContainer1']/div[2]/div[71]") static FluentWebElement ArFullAddressOnePdf;
-    @FindBy(xpath = "//*[@id='pageContainer1']/div[2]/div[74]") static FluentWebElement ArFullAddressTwoPdf;
     @FindBy(xpath = "//*[@id='pageContainer1']/div[2]/div[82]") static FluentWebElement ArFullCityPdf;
     @FindBy(xpath = "//*[@id='pageContainer1']/div[2]/div[85]") static FluentWebElement ArFullStatePdf;
-    @FindBy(xpath = "//*[@id='pageContainer1']/div[2]/div[81]") static FluentWebElement ArFullZipcodePdf;        
-    @FindBy(xpath = "//*[@id='pageContainer1']/div[2]/div[77]") static FluentWebElement ArFullCity2Pdf;
-    @FindBy(xpath = "//*[@id='pageContainer1']/div[2]/div[85]") static FluentWebElement ArFullState2Pdf;
-    @FindBy(xpath = "//*[@id='pageContainer1']/div[2]/div[76]") static FluentWebElement ArFullZipcode2Pdf;
+    @FindBy(xpath = "//*[@id='pageContainer1']/div[2]/div[81]") static FluentWebElement ArFullZipcodePdf;
     @FindBy(xpath = "//*[@id='pageContainer1']/div[2]/div[68]") static FluentWebElement ArFullFirstNameOfBeneficiaryPdf;
     @FindBy(xpath = "//*[@id='pageContainer1']/div[2]/div[83]") static FluentWebElement ArFullMiddleNameOfBeneficiaryPdf;
     @FindBy(xpath = "//*[@id='pageContainer1']/div[2]/div[67]") static FluentWebElement ArFullLastNameOfBeneficiaryPdf;
@@ -118,23 +114,63 @@ public class ReviewAndSubmitPage extends WizardPage {
     @FindBy(xpath = "//*[@id='pageContainer1']/div[2]/div[62]") static FluentWebElement ArFullDateOfBirthPdf;
     @FindBy(xpath = "//*[@id='pageContainer1']/div[2]/div[75]") static FluentWebElement ArFullPhoneNumberPdf;
     @FindBy(xpath = "//*[@id='pageContainer1']/div[2]/div[69]") static FluentWebElement ArFullEmailAddressPdf;
+    @FindBy(xpath = "//*[@id='pageContainer1']/div[2]/div[73]") static FluentWebElement ArFullAddressTwoPdf;     
+    @FindBy(xpath = "//*[@id='pageContainer1']/div[2]/div[77]") static FluentWebElement ArFullCity2Pdf;
+    @FindBy(xpath = "//*[@id='pageContainer1']/div[2]/div[76]") static FluentWebElement ArFullState2Pdf;
+    @FindBy(xpath = "//*[@id='pageContainer1']/div[2]/div[80]") static FluentWebElement ArFullZipcode2Pdf;
     //Page2f
-    @FindBy(xpath = "//*[@id='pageContainer2']/div[2]/div[79]") static FluentWebElement ArFullFirstNamePage2;
-    @FindBy(xpath = "//*[@id='pageContainer2']/div[2]/div[76]") static FluentWebElement ArFullLastNamePage2;
-    @FindBy(xpath = "//*[@id='pageContainer2']/div[2]/div[75]") static FluentWebElement ArFullPlanBPdf;
-    @FindBy(xpath = "//*[@id='pageContainer2']/div[2]/div[78]") static FluentWebElement ArFullPlanStartDatePdf;
-    @FindBy(xpath = "//*[@id='pageContainer2']/div[2]/div[82]") static FluentWebElement ArFullPlanEffIn6OfEligible;
-    @FindBy(xpath = "//*[@id='pageContainer2']/div[2]/div[81]") static FluentWebElement ArFullLostCoverage;
-    @FindBy(xpath = "//*[@id='pageContainer2']/div[2]/div[77]") static FluentWebElement ArFullKidneyProblem;
-    @FindBy(xpath = "//*[@id='pageContainer2']/div[2]/div[80]") static FluentWebElement ArFullEligibilitySurgery;
+    @FindBy(xpath = "//*[@id='pageContainer2']/div[2]/div[113]") static FluentWebElement ArFullFirstNamePage2;
+    @FindBy(xpath = "//*[@id='pageContainer2']/div[2]/div[110]") static FluentWebElement ArFullLastNamePage2;
+    @FindBy(xpath = "//*[@id='pageContainer2']/div[2]/div[109]") static FluentWebElement ArFullPlanBPdf;
+    @FindBy(xpath = "//*[@id='pageContainer2']/div[2]/div[112]") static FluentWebElement ArFullPlanStartDatePdf;
+    @FindBy(xpath = "//*[@id='pageContainer2']/div[2]/div[115]") static FluentWebElement ArFullPlanEffIn6OfEligible;
+    @FindBy(xpath = "//*[@id='pageContainer2']/div[2]/div[111]") static FluentWebElement ArFullLostCoverage;
+    @FindBy(xpath = "//*[@id='pageContainer2']/div[2]/div[114]") static FluentWebElement ArFullContinuousCoverage;
     //Page3f
-    @FindBy(xpath = "//*[@id='pageContainer3']/div[2]/div[67]") static FluentWebElement ArFullAdmitToHospPast90Days;
-    @FindBy(xpath = "//*[@id='pageContainer3']/div[2]/div[64]") static FluentWebElement ArFullNursingFacility;
-    @FindBy(xpath = "//*[@id='pageContainer3']/div[2]/div[61]") static FluentWebElement ArFullESRD;
-    @FindBy(xpath = "//*[@id='pageContainer3']/div[2]/div[69]") static FluentWebElement ArFullFirstNamePage3;
-    @FindBy(xpath = "//*[@id='pageContainer3']/div[2]/div[62]") static FluentWebElement ArFullLastNamePage3;
-    @FindBy(xpath = "//*[@id='pageContainer3']/div[2]/div[68]") static FluentWebElement ArFullArteryorVeinBlockage;
-    @FindBy(xpath = "//*[@id='pageContainer3']/div[2]/div[65]") static FluentWebElement ArFullPeripheralVascularDisease;
+    @FindBy(xpath = "//*[@id='pageContainer3']/div[2]/div[91]") static FluentWebElement ArFullFirstNamePage3;
+    @FindBy(xpath = "//*[@id='pageContainer3']/div[2]/div[85]") static FluentWebElement ArFullLastNamePage3;
+    @FindBy(xpath = "//*[@id='pageContainer3']/div[2]/div[89]") static FluentWebElement ArFullKidneyProblem;
+    @FindBy(xpath = "//*[@id='pageContainer3']/div[2]/div[92]") static FluentWebElement EligibilitySurgery;
+    @FindBy(xpath = "//*[@id='pageContainer3']/div[2]/div[88]") static FluentWebElement AdmitToHospPast90Days;
+    @FindBy(xpath = "//*[@id='pageContainer3']/div[2]/div[86]") static FluentWebElement NursingFacility;
+    @FindBy(xpath = "//*[@id='pageContainer3']/div[2]/div[90]") static FluentWebElement EligibilityHeartAttackTIAStroke;
+    @FindBy(xpath = "//*[@id='pageContainer3']/div[2]/div[65]") static FluentWebElement EligibilityChronicMedicalConditions;
+    @FindBy(xpath = "//*[@id='pageContainer4']/div[2]/div[87]") static FluentWebElement ArFullTobaccoUse;
+    //Page4f
+    @FindBy(xpath = "//*[@id='pageContainer4']/div[2]/div[61]") static FluentWebElement ArFullFirstNamePage4;
+    @FindBy(xpath = "//*[@id='pageContainer4']/div[2]/div[57]") static FluentWebElement ArFullLastNamePage4;
+    @FindBy(xpath = "//*[@id='pageContainer4']/div[2]/div[62]") static FluentWebElement CPATurned65;
+    @FindBy(xpath = "//*[@id='pageContainer4']/div[2]/div[64]") static FluentWebElement CPAPartBIn6;
+    @FindBy(xpath = "//*[@id='pageContainer4']/div[2]/div[58]") static FluentWebElement CPAMPBED;
+    @FindBy(xpath = "//*[@id='pageContainer4']/div[2]/div[63]") static FluentWebElement ArFullMedicaidCovered;
+    @FindBy(xpath = "//*[@id='pageContainer4']/div[2]/div[66]") static FluentWebElement ArFullMedicaidSupPremium;
+    
+    //Page5f
+    @FindBy(xpath = "//*[@id='pageContainer5']/div[2]/div[77]") static FluentWebElement ArFullFirstNamePage5;
+    @FindBy(xpath = "//*[@id='pageContainer5']/div[2]/div[71]") static FluentWebElement ArFullLastNamePage5;
+    
+    @FindBy(xpath = "//*[@id='pageContainer4']/div[2]/div[50]") static FluentWebElement ArFullExistingMedicare;
+    
+    @FindBy(xpath = "//*[@id='pageContainer4']/div[2]/div[80]") static FluentWebElement ArFullOtherMedplanstart;
+    @FindBy(xpath = "//*[@id='pageContainer4']/div[2]/div[73]") static FluentWebElement ArFullOtherMedplanend;
+    @FindBy(xpath = "//*[@id='pageContainer4']/div[2]/div[65]") static FluentWebElement ArFullMedicaidbenefit;
+    @FindBy(xpath = "//*[@id='pageContainer4']/div[2]/div[82]") static FluentWebElement ContinuousMedicareCoverageNoGap;
+    @FindBy(xpath = "//*[@id='pageContainer5']/div[2]/div[74]") static FluentWebElement ArFullIntentReplace;
+    @FindBy(xpath = "//*[@id='pageContainer5']/div[2]/div[81]") static FluentWebElement ArFullDropMedSuppForThisPlan;
+    @FindBy(xpath = "//*[@id='pageContainer5']/div[2]/div[75]") static FluentWebElement ArFullExistMedSupp;
+    @FindBy(xpath = "//*[@id='pageContainer5']/div[2]/div[79]") static FluentWebElement ArFullMSInsCompany;
+    @FindBy(xpath = "//*[@id='pageContainer5']/div[2]/div[69]") static FluentWebElement ArFullMSPLAN;
+    @FindBy(xpath = "//*[@id='pageContainer5']/div[2]/div[70]") static FluentWebElement ArFullReplaceExistingMedSup;
+    @FindBy(xpath = "//*[@id='pageContainer5']/div[2]/div[75]") static FluentWebElement ArFullOtherInsCoverage;
+    @FindBy(xpath = "//*[@id='pageContainer5']/div[2]/div[72]") static FluentWebElement ArFullOtherInsCompany;
+    @FindBy(xpath = "//*[@id='pageContainer5']/div[2]/div[]") static FluentWebElement ArFullOtherInsType;
+    @FindBy(xpath = "//*[@id='pageContainer5']/div[2]/div[71]") static FluentWebElement ArFullOtherInsStart;
+    @FindBy(xpath = "//*[@id='pageContainer5']/div[2]/div[77]") static FluentWebElement ArFullOtherInsEnd;
+    @FindBy(xpath = "//*[@id='pageContainer5']/div[2]/div[75]") static FluentWebElement ArFullOtherInsReplace;
+    //Page6f
+    @FindBy(xpath = "//*[@id='pageContainer6']/div[2]/div[60]") static FluentWebElement ArFullFirstNamePage6;
+    @FindBy(xpath = "//*[@id='pageContainer6']/div[2]/div[58]") static FluentWebElement ArFullLastNamePage6;
+    @FindBy(xpath = "//*[@id='pageContainer6']/div[2]/div[59]") static FluentWebElement ArFullTodayDatePage6;
     @FindBy(xpath = "//*[@id='pageContainer3']/div[2]/div[63]") static FluentWebElement ArFullCardiomyopathy;
     @FindBy(xpath = "//*[@id='pageContainer3']/div[2]/div[66]") static FluentWebElement ArFullCongestiveHeartFailure;
     @FindBy(xpath = "//*[@id='pageContainer3']/div[2]/div[74]") static FluentWebElement ArFullCoronaryArteryDisease;
@@ -144,37 +180,7 @@ public class ReviewAndSubmitPage extends WizardPage {
     @FindBy(xpath = "//*[@id='pageContainer3']/div[2]/div[71]") static FluentWebElement ArFullCancer;
     @FindBy(xpath = "//*[@id='pageContainer3']/div[2]/div[73]") static FluentWebElement ArFullCirrhosisDisease;
     @FindBy(xpath = "//*[@id='pageContainer3']/div[2]/div[60]") static FluentWebElement ArFullEligibilityHeartAttackTIAStroke;
-    //Page4f
-    @FindBy(xpath = "//*[@id='pageContainer4']/div[2]/div[67]") static FluentWebElement ArFullFirstNamePage4;
-    @FindBy(xpath = "//*[@id='pageContainer4']/div[2]/div[62]") static FluentWebElement ArFullLastNamePage4;
-    @FindBy(xpath = "//*[@id='pageContainer4']/div[2]/div[64]") static FluentWebElement ArFullTobaccoUse;
-    @FindBy(xpath = "//*[@id='pageContainer4']/div[2]/div[68]") static FluentWebElement ArFullMedicaidCovered;
-    @FindBy(xpath = "//*[@id='pageContainer4']/div[2]/div[66]") static FluentWebElement ArFullMedicaidSupPremium;
-    @FindBy(xpath = "//*[@id='pageContainer4']/div[2]/div[65]") static FluentWebElement ArFullMedicaidbenefit;
-    @FindBy(xpath = "//*[@id='pageContainer4']/div[2]/div[61]") static FluentWebElement ArFullExistingMedicare;
-    @FindBy(xpath = "//*[@id='pageContainer4']/div[2]/div[69]") static FluentWebElement ArFullOtherMedplanstart;
-    @FindBy(xpath = "//*[@id='pageContainer4']/div[2]/div[63]") static FluentWebElement ArFullOtherMedplanend;
-    //Page5f
-    @FindBy(xpath = "//*[@id='pageContainer5']/div[2]/div[79]") static FluentWebElement ArFullFirstNamePage5;
-    @FindBy(xpath = "//*[@id='pageContainer5']/div[2]/div[72]") static FluentWebElement ArFullLastNamePage5;
-    @FindBy(xpath = "//*[@id='pageContainer5']/div[2]/div[74]") static FluentWebElement ArFullIntentReplace;
     @FindBy(xpath = "//*[@id='pageContainer5']/div[2]/div[82]") static FluentWebElement ArFullFirstTime;
-    @FindBy(xpath = "//*[@id='pageContainer5']/div[2]/div[84]") static FluentWebElement ArFullDropMedSuppForThisPlan;
-    @FindBy(xpath = "//*[@id='pageContainer5']/div[2]/div[76]") static FluentWebElement ArFullExistMedSupp;
-    @FindBy(xpath = "//*[@id='pageContainer5']/div[2]/div[83]") static FluentWebElement ArFullMSInsCompany;
-    @FindBy(xpath = "//*[@id='pageContainer5']/div[2]/div[69]") static FluentWebElement ArFullMSPLAN;
-    @FindBy(xpath = "//*[@id='pageContainer5']/div[2]/div[70]") static FluentWebElement ArFullReplaceExistingMedSup;
-    @FindBy(xpath = "//*[@id='pageContainer5']/div[2]/div[73]") static FluentWebElement ArFullOtherInsCoverage;
-    @FindBy(xpath = "//*[@id='pageContainer5']/div[2]/div[81]") static FluentWebElement ArFullOtherInsCompany;
-    @FindBy(xpath = "//*[@id='pageContainer5']/div[2]/div[78]") static FluentWebElement ArFullOtherInsType;
-    @FindBy(xpath = "//*[@id='pageContainer5']/div[2]/div[71]") static FluentWebElement ArFullOtherInsStart;
-    @FindBy(xpath = "//*[@id='pageContainer5']/div[2]/div[77]") static FluentWebElement ArFullOtherInsEnd;
-    @FindBy(xpath = "//*[@id='pageContainer5']/div[2]/div[75]") static FluentWebElement ArFullOtherInsReplace;
-    @FindBy(xpath = "//*[@id='pageContainer5']/div[2]/div[80]") static FluentWebElement ArFullTodayDatePage5;
-   //Page6f
-    @FindBy(xpath = "//*[@id='pageContainer6']/div[2]/div[60]") static FluentWebElement ArFullFirstNamePage6;
-    @FindBy(xpath = "//*[@id='pageContainer6']/div[2]/div[58]") static FluentWebElement ArFullLastNamePage6;
-    @FindBy(xpath = "//*[@id='pageContainer6']/div[2]/div[59]") static FluentWebElement ArFullTodayDatePage6;
     //Page7f
     @FindBy(xpath = "//*[@id='pageContainer7']/div[2]/div[75]") static FluentWebElement ArFullFirstNamePage7;
     @FindBy(xpath = "//*[@id='pageContainer7']/div[2]/div[67]") static FluentWebElement ArFullLastNamePage7;
@@ -349,15 +355,9 @@ public class ReviewAndSubmitPage extends WizardPage {
         assertThat(ArFullPlanEffIn6OfEligible.getText().toLowerCase(),equalTo(app.getPlanEffIn6OfEligible()));
         assertThat(ArFullLostCoverage.getText().toLowerCase(),equalTo(app.getLostCoverage()));
         assertThat(ArFullKidneyProblem.getText().toLowerCase(),equalTo(app.getKidneyProblem()));
-        assertThat(ArFullEligibilitySurgery.getText().toLowerCase(),equalTo(app.getEligibilitySurgery()));
         gotoPdfpage(3);
-        assertThat(ArFullAdmitToHospPast90Days.getText().toLowerCase(),equalTo(app.getEligibilityAdmitToHospPast90Days()));
-        assertThat(ArFullNursingFacility.getText().toLowerCase(),equalTo(app.getNursingFacility()));
-        assertThat(ArFullESRD.getText().toLowerCase(),equalTo(app.getESRD()));
         assertThat(ArFullFirstNamePage3.getText(),equalTo(app.getFirstName()));
         assertThat(ArFullLastNamePage3.getText(),equalTo(app.getLastName()));
-        assertThat(ArFullArteryorVeinBlockage.getText().toLowerCase(),equalTo(app.getArteryorVeinBlockage()));
-        assertThat(ArFullPeripheralVascularDisease.getText().toLowerCase(),equalTo(app.getPeripheralVascularDisease()));
         assertThat(ArFullCardiomyopathy.getText().toLowerCase(),equalTo(app.getCardiomyopathy()));
         assertThat(ArFullCongestiveHeartFailure.getText().toLowerCase(),equalTo(app.getCongestiveHeartFailure()));
         assertThat(ArFullCoronaryArteryDisease.getText().toLowerCase(),equalTo(app.getCoronaryArteryDisease()));
@@ -393,7 +393,6 @@ public class ReviewAndSubmitPage extends WizardPage {
         assertThat(ArFullOtherInsStart.getText(),equalTo(app.getOtherInsStart().replace("/","-").trim()));
         assertThat(ArFullOtherInsEnd.getText(),equalTo(app.getOtherInsEnd().replace("/","-").trim()));
         assertThat(ArFullOtherInsReplace.getText().toLowerCase(),equalTo(app.getOtherInsReplace()));
-        assertThat(ArFullTodayDatePage5.getText(),equalTo(TodaysDate));
         gotoPdfpage(6);
         assertThat(ArFullFirstNamePage6.getText(),equalTo(app.getFirstName()));
         assertThat(ArFullLastNamePage6.getText(),equalTo(app.getLastName()));
